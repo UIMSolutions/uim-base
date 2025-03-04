@@ -22,3 +22,7 @@ docs/
 
 # Code coverage
 *.lst
+uim-base-level-test-library.pdb
+.gitignore
+oop/oop-test-test_uim_oop.pdb
+core/core-test-test_uim_core.pdb
