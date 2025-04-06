@@ -1,17 +1,19 @@
-name "uim-base-level"
+name "uim-base"
 description "UIM base library"
-homepage "https://www.sueel.de"
+homepage "https://www.sueel.de/uim/baselevel"
 license "Apache-2.0"
 copyright "Copyright © 2018-2025, Ozan Nurettin Süel"
 authors "Ozan Nurettin Süel"
 
-targetName "uim-base-level"
+targetName "uim-base"
 targetType "library"
 
-dependency ":core" version="*"
-dependency ":oop" version="*"
+dependency "uim-phobos" path="./phobos"
+dependency "uim-vibe" path="./vibe"
+dependency "uim-core" path="./core"
+dependency "uim-oop" path="./oop"
 
-sourceFiles "source/uim/uim_baselevel.d"
+sourceFiles "./uim/base.d"
 
-subPackage "core"
-subPackage "oop"
+sourcePaths "."
+importPaths "."

@@ -13,6 +13,8 @@ public {
 }
 
 public {
+    import uim.phobos;
+    import uim.vibe;
     import uim.core;
     import uim.oop;
 }

@@ -1,25 +1,25 @@
-name "oop"
+name "uim-oop"
 description "D-Library for core OOP functionalities"
-homepage "https://www.sueel.de"
+homepage "https://www.sueel.de/uim"
 license "Apache-2.0"
 copyright "Copyright © 2018-2025, Ozan Nurettin Süel"
 authors "Ozan Nurettin Süel"
 
-dependency "colored" version="~>0.0.31"
-dependency "vibe-d" version="~>0.10.2"
-dependency "uim-base-level:core" path="../"
+// target
+targetName "uim-oop"
 targetType "library"
+
+dependency "uim-core" path="../core"
 
 sourcePaths "."
 importPaths "."
 
-targetName "uim-oop"
 
 // configuration "default" {}
-
+ 
 configuration "test_uim_oop" {
 	versions "test_uim_oop"
 }
-configuration "test_all" {
+/* configuration "test_all" {
 	versions "test_uim_core" "test_uim_oop"
-}
+} */

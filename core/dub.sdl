@@ -1,15 +1,15 @@
-name "core"
+name "uim-core"
 description "Core D-Library for the uim framework"
-homepage "https://www.sueel.de"
+homepage "https://www.sueel.de/uim"
 authors "Ozan Nurettin Süel"
 copyright "Copyright © 2018-2025, Ozan Nurettin Süel"
 license "Apache-2.0"
 
-targetType "library"
+// target
 targetName "uim-core"
+targetType "library"
 
-dependency "vibe-d" version="~>0.10.2"
-dependency "colored" version="~>0.0.31"
+dependency "uim-vibe" path="../vibe"
 
 sourcePaths "."
 importPaths "."
