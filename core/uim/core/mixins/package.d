@@ -6,8 +6,9 @@
 module uim.core.mixins;
 
 public {
-  import uim.core.mixins.function_;
+  import uim.core.mixins.functions;
   import uim.core.mixins.json;
+  import uim.core.mixins.map;
   import uim.core.mixins.phobos;
   import uim.core.mixins.properties;
 }

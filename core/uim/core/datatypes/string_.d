@@ -6,7 +6,6 @@
 module uim.core.datatypes.string_;
 
 import uim.core;
-
 @safe:
 
 version (test_uim_core) {
@@ -19,6 +18,17 @@ V Null(V : string)() {
   return null;
 }
 
+string toJSONString(T)(T[string] values, bool sorted = NOTSORTED) {
+  string result = "{" ~ MapHelper.sortedKeys(values)
+    .map!(key => `"%s": %s`.format(key, values[key]))
+    .join(",") ~ "}";
+
+  return result;
+}
+
+unittest {
+  // assert(["a": 1, "b": 2].toJSONString(SORTED) == `{"a": 1,"b": 2}`);
+}
 // #region fill
 /// create a string with defined length and content
 string fill(size_t width, string fillText = "0") {
@@ -72,7 +82,6 @@ bool endsWith(string text, string[] endings) {
 }
 ///
 unittest {
-  writeln("Testing endsWith()");
   assert("ABC".endsWith(["C"]));
   assert(!"".endsWith(["C"]));
   assert(!"ABC".endsWith([""]));
@@ -80,56 +89,13 @@ unittest {
 // #endregion endsWith
 
 // #region contains
-bool containsAny(string[] bases, string[] values...) {
-  return containsAny(bases, values.dup);
-}
-
-unittest {
-  writeln("Testing containsAny()");
-
-  assert(["One Two Three"].containsAny("One"));
-  assert(!["One Two Three", "Eight Seven Six"].containsAny("Five", "Four"));
-  assert(!["One Two Three"].containsAny("Five", "Four"));
-}
-
-bool containsAny(string[] bases, string[] values) {
-  return bases.any!(base => base.containsAny(values));
-}
-
-unittest {
-  assert(["One Two Three"].containsAny(["One"]));
-  assert(!["One Two Three", "Eight Seven Six"].containsAny(["Five", "Four"]));
-  assert(!["One Two Three"].containsAny(["Five", "Four"]));
-}
-
-bool containsAny(string base, string[] values...) {
-  return containsAny(base, values.dup);
-}
-
-bool containsAny(string base, string[] values) {
-  return values.any!(value => base.contains(value));
-}
-
+// #region containsAll
 bool containsAll(string[] bases, string[] values...) {
   return containsAll(bases, values.dup);
 }
 
-unittest {
-  assert(["One Two Three"].containsAll("One"));
-  assert(!["One Two Three", "Eight Seven Six"].containsAll("Five", "Four", "Six"));
-  assert(!["One Two Three"].containsAll("Five", "Four"));
-}
-
 bool containsAll(string[] bases, string[] values) {
   return bases.all!(base => base.containsAll(values));
-}
-
-unittest {
-  assert(["One Two Three"].containsAll(["One"]));
-  assert(!["One Two Three", "Eight Seven Six"].containsAll([
-      "Five", "Four", "Six"
-    ]));
-  assert(!["One Two Three"].containsAll(["Five", "Four"]));
 }
 
 bool containsAll(string base, string[] values...) {
@@ -139,65 +105,56 @@ bool containsAll(string base, string[] values...) {
 bool containsAll(string base, string[] values) {
   return values.all!(value => base.contains(value));
 }
+// #endregion containsAll
 
-unittest {
-  assert("One Two Three".contains("One"));
-  /*   assert(!"One Two Three".contains("Five", "Four", "Three"));
-  assert(!"One Two Three".contains("Five", "Four"));
- */
+// #region containsAny
+bool containsAny(string[] bases, string[] values...) {
+  return containsAny(bases, values.dup);
 }
+
+bool containsAny(string[] bases, string[] values) {
+  return bases.any!(base => base.containsAny(values));
+}
+
+bool containsAny(string base, string[] values...) {
+  return containsAny(base, values.dup);
+}
+
+bool containsAny(string base, string[] values) {
+  return values.any!(value => base.contains(value));
+}
+// #endregion containsAny
 
 bool contains(string text, string checkValue) {
   return (text.length == 0 || checkValue.length == 0 || checkValue.length > text.length)
     ? false : (text.indexOf(checkValue) >= 0);
 }
 
-/* bool hasValue(string base, string checkValue) {
-  if (base.length == 0 || checkValue.length == 0 || checkValue.length > base.length) {
-    return false;
-  }
-  return (base.indexOf(checkValue) >= 0);
-} */
-// #endregion has
-
-// #region remove
-pure string[] removeValues(string[] values, string[] removingValues...) {
-  return removeValues(values, removingValues.dup);
-}
-
-pure string[] removeValues(string[] values, string[] removingValues) {
-  string[] results = values;
-  removingValues
-    .each!(value => results = results.removeValue(value));
-
-  return results;
-}
-
 unittest {
-  writeln("Testing removeValues()");
+  assert(["One Two Three"].containsAll("One"));
+  assert(["One Two Three"].containsAll("One", "Two", "Three"));
+  assert(!["One Two Three", "Eight Seven Six"].containsAll("One", "Four", "Six"));
+  assert(!["One Two Three"].containsAll("Five", "Four"));
 
-  assert(removeValues(["a", "b", "c"], "b") == ["a", "c"]);
-  assert(removeValues(["a", "b", "c", "b"], "b") == ["a", "c"]);
+  assert(["One Two Three"].containsAll(["One"]));
+  assert(["One Two Three"].containsAll(["One", "Two", "Three"]));
+  assert(!["One Two Three", "Eight Seven Six"].containsAll([
+      "Five", "Four", "Six"
+    ]));
+  assert(!["One Two Three"].containsAll(["Five", "Four"]));
 
-  assert(removeValues(["a", "b", "c"], "a", "b") == ["c"]);
-  assert(removeValues(["a", "b", "c", "b"], "a", "b") == ["c"]);
+  assert(["One Two Three"].containsAny("One"));
+  assert(!["One Two Three", "Eight Seven Six"].containsAny("Five", "Four"));
+  assert(!["One Two Three"].containsAny("Five", "Four"));
+
+  assert(["One Two Three"].containsAny(["One"]));
+  assert(!["One Two Three", "Eight Seven Six"].containsAny(["Five", "Four"]));
+  assert(!["One Two Three"].containsAny(["Five", "Four"]));
+
 }
+// #endregion contains
 
-pure string[] removeValue(string[] values, string valueToRemove) {
-  auto updatedValues = values.dup;
-  return valueToRemove.length == 0
-    ? updatedValues
-    : updatedValues
-    .filter!(value => value != valueToRemove)
-    .array;
-}
-
-unittest {
-  assert(removeValue(["a", "b", "c"], "b") == ["a", "c"]);
-  assert(removeValue(["a", "b", "c", "b"], "b") == ["a", "c"]);
-}
-// #endregion remove
-
+// #region startsWith
 bool startsWith(string text, string[] startings) {
   if (text.length == 0) {
     return false;
@@ -212,6 +169,7 @@ unittest {
   assert(!"".startsWith(["A"]));
   assert(!"ABC".startsWith([""]));
 }
+// #endregion startsWith
 
 string toString(string[] values) {
   return "%s".format(values);
@@ -439,7 +397,7 @@ string[] lower(string[] texts) {
     .array;
 }
 
-// region upper
+// #region upper
 string[] upper(string[] texts) {
   return texts
     .map!(text => text.toUpper)
@@ -451,10 +409,7 @@ string upper(string text) {
 }
 
 unittest {
-  writeln("Testing upper()");
-
   assert("a".upper == "A");
-
   assert(["a", "b", "c"].upper.equal(["A", "B", "C"]));
 }
 // #endregion upper
@@ -855,8 +810,6 @@ string camelize(string text, string delimiter = "_") {
 }
 
 unittest {
-  writeln("Testing camelize()");
-
   assert("aa".camelize == "Aa");
   assert(["aa", "bb"].camelize == ["Aa", "Bb"]);
 }
@@ -913,7 +866,7 @@ string underscore(string text) {
   return delimit(std.string.replace(text, "-", "_"), "_");
 }
 
-unittest {
+unittest { // TODO
   writeln("underscore");
   writeln(underscore("camel-cased-input-string"));
   writeln(underscore("  camel-cased-input-string  "));
@@ -1115,9 +1068,11 @@ string _caching(string inflectionType, string originalValue, string inflectedVal
 }
 
 bool isBoolean(string value) {
-  return ["yes", "no", "true", "false", "0", "1", "on", "off"].has(value.lower);
+  return ["yes", "no", "true", "false", "0", "1", "on", "off"].hasValue(value.lower);
 }
+// #endregion longestText
 
+// #region longestText
 protected string shortestText(string[] texts) {
   if (texts.isEmpty) {
     return null;
@@ -1130,6 +1085,7 @@ protected string shortestText(string[] texts) {
   return texts.sort!("a.length < b.length")[0];
 }
 
+// #region longestText
 protected string longestText(string[] texts) {
   if (texts.isEmpty) {
     return null;
@@ -1141,10 +1097,211 @@ protected string longestText(string[] texts) {
 
   return texts.sort!("a.length > b.length")[0];
 }
+unittest {
+  // TODO
+}
+// #endregion longestText
 
 // #region replace
 string replace(string origin, string[] selects, string newTxt) {
   selects.each!(select => origin = std.string.replace(origin, select, newTxt));
   return origin;
 }
+unittest {
+  // TODO
+}
 // #endregion replace
+
+// #region isString
+// #region Json[]
+bool isAnyString(Json[] values...) {
+  return isAnyString(values.dup);
+}
+
+bool isAnyString(Json[] values) {
+  return values.any!(value => value.isString);
+}
+
+bool isAllString(Json[] values...) {
+  return isAllString(values.dup);
+}
+
+bool isAllString(Json[] values) {
+  return values.all!(value => value.isString);
+}
+
+unittest {
+  auto values = [Json("a"), Json("b")];
+  assert(values.isAnyString);
+  assert(values.isAllString);
+
+  values = [Json("a"), Json(3)];
+  assert(values.isAnyString);
+  assert(!values.isAllString);
+
+  values = [Json(4), Json(5)];
+  assert(!values.isAnyString);
+  assert(!values.isAllString);
+
+  assert(isAnyString(Json("a"), Json("b")));
+  assert(isAnyString([Json("a"), Json("b")]));
+
+  assert(isAnyString(Json(7), Json("b")));
+  assert(isAnyString([Json(7), Json("b")]));
+
+  assert(!isAnyString(Json(7), Json(8)));
+  assert(!isAnyString([Json(7), Json(8)]));
+
+  assert(isAllString(Json("a"), Json("b")));
+  assert(isAllString([Json("a"), Json("b")]));
+
+  assert(!isAllString(Json(7), Json("b")));
+  assert(!isAllString([Json(7), Json("b")]));
+
+  assert(!isAllString(Json(7), Json(8)));
+  assert(!isAllString([Json(7), Json(8)]));
+}
+// #endregion Json[]
+
+// #region Json[string]
+bool isAnyString(Json[string] map, string[] keys...) {
+  return map.isAnyString(keys.dup);
+}
+
+bool isAnyString(Json[string] map, string[] keys) {
+  return keys.any!(key => map.isString(key));
+}
+
+bool isAllString(Json[string] map, string[] keys...) {
+  return map.isAllString(keys.dup);
+}
+
+bool isAllString(Json[string] map, string[] keys) {
+  return keys.all!(key => map.isString(key));
+}
+
+bool isString(Json[string] map, string[] path) {
+  if (path.length == 0) {
+    return false;
+  }
+
+  if (path.length == 1) {
+    return map.isString(path[0]);
+  }
+
+  return path.length > 1 && map.hasKey(path[0]) 
+    ? map[path[0]].isString(path[1..$]) : false;
+}
+
+bool isString(Json[string] items, string key) {
+  return items.hasKey(key)
+    ? items[key].isString : false;
+}
+
+unittest {
+  Json[string] map;
+  map["a"] = Json("a");
+  map["b"] = Json("b");
+  assert(map.isAllString("a", "b"));
+  assert(map.isAllString(["a", "b"]));
+
+  assert(map.isAnyString("a", "b"));
+  assert(map.isAnyString(["a", "b"]));
+
+  map["b"] = Json(8);
+  assert(!map.isAllString("a", "b"));
+  assert(!map.isAllString(["a", "b"]));
+
+  assert(map.isAnyString("a", "b"));
+  assert(map.isAnyString(["a", "b"]));
+
+  map["a"] = Json(true);
+  assert(!map.isAllString("a", "b"));
+  assert(!map.isAllString(["a", "b"]));
+
+  assert(!map.isAnyString("a", "b"));
+  assert(!map.isAnyString(["a", "b"]));
+}
+// #endregion Json[string]
+
+// #region Json
+bool isAnyString(Json value, string[] keys...) {
+  return value.isAnyString(keys.dup);
+}
+
+bool isAnyString(Json value, string[] keys) {
+  return keys.any!(key => value.isString(key));
+}
+
+bool isAllString(Json value, string[] keys...) {
+  return value.isAllString(keys.dup);
+}
+
+bool isAllString(Json value, string[] keys) {
+  return keys.all!(key => value.isString(key));
+}
+
+bool isString(Json value, string[] path) {
+  if (path.length == 0) {
+    return false;
+  }
+
+  if (path.length == 1) {
+    return value.isString(path[0]);
+  }
+
+  return path.length > 1 && value.hasKey(path[0]) 
+    ? value[path[0]].isString(path[1..$]) : false;
+}
+
+bool isString(Json value, string key) {
+  return value.hasKey(key)
+    ? value[key].isString : false;
+}
+
+bool isString(Json value) {
+  return (value.type == Json.Type.string);
+}
+
+unittest {
+  assert(parseJsonString(`"a"`).isString);
+  assert(!parseJsonString(`1.1`).isString);
+
+  auto json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": 1.1}], "i": {"j": "x"}}`);
+  assert(json.isString("a"));
+  assert(!json.isString("c"));
+  assert(json.isString(["i", "j"]));
+  assert(!json.isString(["e", "g"]));
+}
+
+unittest {
+  assert(!Json(true).isString);
+  assert(!Json(10).isString);
+  assert(!Json(1.1).isString);
+  assert(Json("text").isString);
+
+  Json map = Json.emptyObject;
+  map["a"] = Json("a");
+  map["b"] = Json("b");
+  assert(map.isAllString("a", "b"));
+  assert(map.isAllString(["a", "b"]));
+
+  assert(map.isAnyString("a", "b"));
+  assert(map.isAnyString(["a", "b"]));
+
+  map["b"] = Json(9);
+  assert(!map.isAllString("a", "b"));
+  assert(!map.isAllString(["a", "b"]));
+
+  assert(map.isAnyString("a", "b"));
+  assert(map.isAnyString(["a", "b"]));
+
+  map["a"] = Json(true);
+  assert(!map.isAllString("a", "b"));
+  assert(!map.isAllString(["a", "b"]));
+
+  assert(!map.isAnyString("a", "b"));
+  assert(!map.isAnyString(["a", "b"]));
+}
+// #endregion Json
+// #endregion isString

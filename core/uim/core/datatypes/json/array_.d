@@ -9,6 +9,9 @@ import uim.core;
 
 @safe:
 
+// #region is
+// #endregion is
+
 // #region hasAll
 bool hasAll(T)(Json json, T[] values...) {
   return json.hasAll(values.dup);
@@ -62,7 +65,6 @@ bool has(Json json, Json value) {
 
   return json.byValue.any!(v => v == value);
 }
-// #endregion has
 
 unittest {
   auto json = Json.emptyArray;
@@ -70,6 +72,7 @@ unittest {
   json ~= Json(2);
   json ~= Json(3);
 
+  writeln(json.toString);
   assert(json.has(Json(1)));
   assert(!json.has(Json("1")));
 
@@ -100,3 +103,4 @@ unittest {
   assert(json.hasAll(1, 2, 3));
   assert(!json.hasAll(1, 12, 13));
 }
+// #endregion has

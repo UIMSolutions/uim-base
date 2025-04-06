@@ -54,11 +54,6 @@ alias JMAP = Json[string];
   } */
 
   // returns a updated map with new values
-  /* ref set(K : string, V:
-    Json, T)(ref V[K] items, K key, T value) if (!is(typeof(value) == Json)) {
-    return items.set(key, Json(value));
-  } */
-
   // returns a updated map with new values
 
 
@@ -320,8 +315,8 @@ unittest {
   assert(map.getLong("c") == 1);
 }
 
-double getDouble(Json[string] values, string key, double defaultValue = 0.0) {
-  auto json = getJson(values, key);
+double getDouble(Json[string] items, string key, double defaultValue = 0.0) {
+  auto json = items.get(key, Json(null));
   return !uim.core.datatypes.json.isNull(json)
     ? json.get!double : defaultValue;
 }
@@ -332,8 +327,8 @@ unittest {
   assert(map.getDouble("d") == 1.1);
 }
 
-string getString(Json[string] values, string key, string defaultValue = null) {
-  auto json = getJson(values, key);
+string getString(Json[string] items, string key, string defaultValue = null) {
+  auto json = items.get(key, Json(null));
   return !uim.core.datatypes.json.isNull(json)
     ? json.get!string : defaultValue;
 }
@@ -344,15 +339,16 @@ unittest {
   assert(map.getString("a") == "A");
 }
 
-// #region getStrings
-STRINGAA getStringArray(Json[string] values, string[] keys...) {
-  return getStringArray(values, keys.dup);
+// #region getStringArray
+string[] getStringArray(Json[string] items, string[] keys...) {
+  return getStringArray(items, (keys.length == 0) ? items.keys : keys.dup);
 }
 
-STRINGAA getStringArray(Json[string] values, string[] keys) {
-  STRINGAA results;
-  keys.each!(key => results[key] = values.getString(key));
-  return results;
+string[] getStringArray(Json[string] items, string[] keys) {
+  return keys
+    .filter!(key => items.hasKey(key))
+    .map!(key => items.getString(key))
+    .array;
 }
 
 unittest {
@@ -366,19 +362,49 @@ unittest {
   values["b"] = "B".toJson;
   // assert(values.getStringArray(["a"]) == ["a": "A"]);
 }
-// #endregion getStrings
+// #endregion getStringArray
+
+// #region getStringMap
+string[string] getStringMap(Json[string] items, string[] keys...) {
+  if (keys.length == 0) {
+    return getStringMap(items, items.keys);
+  }
+  return getStringMap(items, keys.dup);
+}
+
+string[string] getStringMap(Json[string] items, string[] keys) {
+  STRINGAA results;
+  keys.each!(key => results[key] = items.getString(key));
+  return results;
+}
+
+unittest {
+  Json[string] values;
+
+  Json testArray = Json.emptyArray;
+  testArray ~= "A";
+  testArray ~= "B";
+
+  values["a"] = Json("A");
+  values["b"] = "B".toJson;
+  // assert(values.getStringMap(["a"]) == ["a": "A"]);
+}
+// #endregion getStringMap
 
 Json getJson(Json[string] values, string key, Json defaultValue = Json(null)) {
   return key in values
     ? values[key] : defaultValue;
 }
 
-Json[] getArray(Json[string] values, string key, Json[] defaultValue = null) {
-  auto json = getJson(values, key);
-  return !uim.core.datatypes.json.isNull(json)
-    ? json.get!(Json[]) : defaultValue;
+// #region getArray
+Json[] getArray(Json[string] map, string key, Json[] defaultValue = null) {
+  return (key in map) 
+    ? map[key].get!(Json[])
+    : defaultValue;
 }
+// #endregion getArray
 
+// #region getMap
 Json[string] getMap(Json[string] values, string key, Json[string] defaultValue = null) {
   auto json = getJson(values, key);
   return !uim.core.datatypes.json.isNull(json) && uim.core.datatypes.json.isObject(json)
@@ -402,6 +428,7 @@ unittest {
     // assert(jsonMain.getMap("x")["one"].getInteger == 1);
  */
 }
+// #endregion getMap
 // #endregion Getter
 
 // #region convert
@@ -432,7 +459,7 @@ Json[string] toJsonMap(double[string] values, string[] excludeKeys = null) {
 Json[string] toJsonMap(string[string] items, string[] excludeKeys = null) {
   Json[string] result;
   items.byKeyValue
-    .filter!(item => !excludeKeys.has(item.key))
+    .filter!(item => !excludeKeys.hasValue(item.key))
     .each!(item => result[item.key] = Json(item.value));
   return result;
 }
@@ -456,11 +483,6 @@ bool isBigInteger(Json[string] items, string key) {
     ? uim.core.datatypes.json.isBigInteger(items[key]) : false;
 }
 
-bool isBoolean(Json[string] items, string key) {
-  return items.hasKey(key)
-    ? uim.core.datatypes.json.isBoolean(items[key]) : false;
-}
-
 bool isDouble(Json[string] items, string key) {
   return items.hasKey(key)
     ? uim.core.datatypes.json.isDouble(items[key]) : false;
@@ -474,11 +496,6 @@ bool isEmpty(Json[string] items, string key) {
 bool isFloat(Json[string] items, string key) {
   return items.hasKey(key)
     ? uim.core.datatypes.json.isFloat(items[key]) : false;
-}
-
-bool isInteger(Json[string] items, string key) {
-  return items.hasKey(key)
-    ? uim.core.datatypes.json.isInteger(items[key]) : false;
 }
 
 bool isIntegral(Json[string] items, string key) {
@@ -506,11 +523,6 @@ bool isScalar(Json[string] items, string key) {
     ? uim.core.datatypes.json.isScalar(items[key]) : false;
 }
 
-bool isString(Json[string] items, string key) {
-  return items.hasKey(key)
-    ? uim.core.datatypes.json.isString(items[key]) : false;
-  return false;
-}
 
 bool isUndefined(Json[string] items, string key) {
   return items.hasKey(key)
@@ -562,15 +574,6 @@ unittest {
   return created;
 } */
 
-string toString(Json[string] items, string[] keys = null) {
-  return keys is null
-    ? "[" ~ items.byKeyValue.map!(item => `"%s":%s`.format(item.key, item.value)).join(
-      ",") ~ "]" : "[" ~ items.byKeyValue
-    .filter!(item => keys.has(item.key))
-    .map!(item => `"%s":%s`.format(item.key, item.value))
-    .join(",") ~ "]";
-}
-
 unittest {
   Json[string] testItems;
   /* testItems = testItems
@@ -599,7 +602,7 @@ Json[string] copy(Json[string] values, string[] keys = null) {
 }
 
 
-Json[string] filterKeys(Json[string] values, string[] keys) {
+Json[string] onlyKeys(Json[string] values, string[] keys) {
   if (keys.length == 0) {
     return values.dup;
   }
@@ -612,7 +615,7 @@ Json[string] filterKeys(Json[string] values, string[] keys) {
   return filteredData;
 }
 
-/* Json[string] filterKeys(Json[string] values, string[] keys, string[] excludeKeys) {
+/* Json[string] onlyKeys(Json[string] values, string[] keys, string[] excludeKeys) {
   if (keys.length == 0) {
     return values.dup;
   }
@@ -625,7 +628,7 @@ Json[string] filterKeys(Json[string] values, string[] keys) {
   return filteredData;
 }
 
-Json[string] filterKeys(Json[string] values, string[] keys, string excludeKey) {
+Json[string] onlyKeys(Json[string] values, string[] keys, string excludeKey) {
   if (keys.length == 0) {
     return values.dup;
   }
@@ -638,3 +641,5 @@ Json[string] filterKeys(Json[string] values, string[] keys, string excludeKey) {
   return filteredData;
 }
  */
+
+
