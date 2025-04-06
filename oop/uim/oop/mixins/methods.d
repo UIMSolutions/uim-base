@@ -6,7 +6,6 @@
 module uim.oop.mixins.methods;
 
 import uim.oop;
-
 @safe:
 
 // #region isMethods

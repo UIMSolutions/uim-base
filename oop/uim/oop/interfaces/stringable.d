@@ -11,5 +11,5 @@ import uim.oop;
 @safe:
 
 interface IStringable {
-    string toString(); 
+  string toString();
 }

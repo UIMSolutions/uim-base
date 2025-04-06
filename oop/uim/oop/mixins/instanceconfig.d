@@ -5,6 +5,8 @@
 *****************************************************************************************************************/
 module uim.oop.mixins.instanceconfig;
 
+mixin(Version!"test_uim_oop");
+
 import uim.oop;
 @safe:
 

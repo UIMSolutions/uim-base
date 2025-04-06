@@ -5,8 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.mixins.configuration;
 
+mixin(Version!"test_uim_oop");
+
 import uim.oop;
-@safe: 
+@safe:
 
 string configurationThis(string name) {
     return `

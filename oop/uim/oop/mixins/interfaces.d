@@ -5,6 +5,8 @@
 *****************************************************************************************************************/
 module uim.oop.mixins.interfaces;
 
+mixin(Version!"test_uim_oop");
+
 import uim.oop;
 @safe:
 

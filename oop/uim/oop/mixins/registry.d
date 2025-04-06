@@ -1,5 +1,7 @@
 module uim.oop.mixins.registry;
 
+mixin(Version!"test_uim_oop");
+
 import uim.oop;
 @safe:
 
