@@ -5,3 +5,7 @@
 *****************************************************************************************************************/
 module uim.oop.collections.interfaces;
 
+mixin(Version!"test_uim_oop");
+
+import uim.oop;
+@safe:
