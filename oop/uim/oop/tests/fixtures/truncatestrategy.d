@@ -5,8 +5,9 @@
 *****************************************************************************************************************/
 module uim.oop.tests.fixtures.truncatestrategys;
 
-import uim.oop;
+mixin(Version!"test_uim_oop");
 
+import uim.oop;
 @safe:
 
 // Fixture strategy that truncates all fixture ables at the end of test.

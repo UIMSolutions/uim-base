@@ -5,13 +5,16 @@
 *****************************************************************************************************************/
 module uim.oop.tests.configuration;
 
-import uim.oop;
+mixin(Version!"test_uim_oop");
 
+import uim.oop;
 @safe:
 
-bool testConfiguration(IConfiguration aConfig) {
-    // in case of - writeln(__MODULE__, " in ", __LINE__);
-    aConfig.data([
+bool testConfiguration(IConfiguration config) {
+    writeln("Testing configuration: ", config.name);
+
+    writeln("Init Entries...");
+    config.entries([
         "a": Json("A"),
         "b": Json("B"),
         "1": Json(1),
@@ -21,102 +24,15 @@ bool testConfiguration(IConfiguration aConfig) {
         "null": Json(null)
     ]);
 
-    aConfig.defaultData([
-        "a": Json("A"),
-        "c": Json("C")
-    ]);
+    // writeln("Entries: ", config.entries.toString());
+    assert(config.entries.length == 7, config.name);
+    assert(config.entryKeys.length == 7, config.name);
+    assert(config.entryValues.length == 7, config.name);
 
-    assert(aConfig.defaultData.getString("c") == "C", aConfig.name~": "~`aConfig.defaultData.getString("c") == "C"`);
-
-    assert(aConfig.data["a"].to!string == "A", aConfig.name);
-    assert(aConfig.data.getString("a") == "A", aConfig.name);
-    assert(aConfig.getString("b") == "B", aConfig.name);
-    
-    assert(aConfig.getString("c") == "C", aConfig.name);
-    assert(aConfig.getString("c") != "X", aConfig.name);
-
-    assert(aConfig.defaultData["a"].to!string == "A", aConfig.name);
-    assert(aConfig.defaultData.getString("c") == "C", aConfig.name);
-
-    assert(aConfig.hasAnyDefaults(["a", "x"]), aConfig.name);
-    assert(!aConfig.hasAnyDefaults(["x", "y"]), aConfig.name);
-
-    assert(aConfig.hasAllDefaults(["a", "c"]));
-    assert(!aConfig.hasAllDefaults(["a", "x"]));
-
-// TODO
-/*
-    assert(aConfig.hasDefault("a"));
-    assert(!aConfig.hasDefault("x"));
-        bool (string[] keys);
-        bool hasDefault(string key);
-
-        void setDefaults(Json[string] newData);
-        void updateDefault(string key, Json newData);
-
-        void mergeDefaults(Json[string] newData);
-        void mergeDefault(string key, Json newData);
-    // #endregion default data
-
-    // #region keys
-        string[] keys();
-
-        bool hasAnyKeys(string[] keys...);
-        bool hasAnyKeys(string[] keys);
-
-        bool hasAllKeys(string[] keys...);
-        bool hasAllKeys(string[] keys);
-
-        bool has(string key); // Short of hasKey
-        bool hasKey(string[] path); // for a path as key
-        bool hasKey(string key);
-    // #endregion keys
-
-    // #region values
-        bool hasAnyValues(string[] values...);
-        bool hasAnyValues(string[] values);
-
-        bool hasAllValues(string[] values...);
-        bool hasAllValues(string[] values);
-
-        bool hasValue(string value);
-    // #endregion values
-
-    // #region get
-        Json opIndex(string key);
-        Json get(string key, Json defaultValue = Json(null));
-        Json[string] get(string[] keys, bool compressMode = false);
-
-        int getLong(string key);
-        long getLong(string key);
-        float getDouble(string key);
-        double getDouble(string key);
-        string getString(string key);
-        string[] getStringArray(string key);
-        Json getJson(string key);
-    // #endregion get
-
-    // #region set
-        void opIndexAssign(Json data, string key);
-        void opAssign(Json[string] data);
-        void set(string[string] values, string[] keys = null);
-        void set(Json[string] newData, string[] keys = null);
-        void set(string key, Json newData);
-    // #endregion set
-
-    void updateKey(Json[string] newData, string[] validKeys = null);
-    void updateKey(string key, Json newData);
-    void updateKey(string key, Json[string] newData);
-
-    void merge(Json[string] newData, string[] validKeys = null);
-    void merge(string key, Json newData);
-    void merge(string key, Json[string] newData);
-
-    bool removeKey(string[] keys);
-    bool removeItem(string keys);
-
-    IConfiguration clear();
-*/
+    // writeln("Reading 1... ", config.entries.toString());
+    assert(config.getStringEntry("a") == "A", config.name);
+    writeln("Reading 2... ", config.entries.toString());
+    assert(config.getStringEntry("b") == "B", config.name);
 
     return true;
 }

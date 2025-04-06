@@ -5,207 +5,117 @@
 *****************************************************************************************************************/
 module uim.oop.configurations.memory;
 
-import uim.oop;
+mixin(Version!"test_uim_oop");
 
+import uim.oop;
 @safe:
 
 class DMemoryConfiguration : DConfiguration {
-    // mixin(ConfigurationThis!("Memory"));
-    this() {
-        // writeln("DMemoryConfiguration::this() - ", this.classinfo);
-        super("MemoryConfiguration");
+  mixin(ConfigurationThis!("Memory"));
+
+  // #region entries
+    protected Json[string] _entries;
+    override Json[string] entries() {
+      return _entries;
     }
-
-    this(Json[string] initData) {
-        // writeln("this(Json[string] initData) - DMemoryConfiguration");
-        super(initData);
+    override IConfiguration entries(Json[string] newEntries) {
+      _entries = newEntries;
+      return this;
     }
+ // #endregion entries
 
-    this(string name, Json[string] initData = null) {
-        // writeln("this(string newName, Json[string] initData) - DMemoryConfiguration");
-        super(name, initData);
+  // #region keys
+  override string[] entryKeys() {
+    return _entries.keys;
+  }
+  // #endregion keys
+
+  // #region values
+  override Json[] entryValues() {
+    return _entries.values;
+  }
+  // #endregion values
+  
+  // #region has
+    override bool hasEntry(string key) {
+      return _entries.hasKey(key);
     }
-
-    override bool initialize(Json[string] initData = null) {
-        // writeln("DMemoryConfiguration::initialize(Json[string] initData = null) - ", this.classinfo);
-        if (!super.initialize(initData)) {
-            return false;
-        }
-
-        return true;
+      
+    alias hasEntryValue = DConfiguration.hasEntryValue;
+    override bool hasEntryValue(Json value) {
+      return _entries.values.any!(v => v == value);
     }
+  // #endregion has
 
-    // #region defaultData
-    protected Json[string] _defaultData;
-    override Json[string] defaultData() {
-        return _defaultData.dup;
-    }
+  // #region get
+    override Json getEntry(string key) {
+      if (key.length == 0) {
+        return Json(null);
+      }
 
-    override IConfiguration defaultData(Json[string] newValue) {
-        _defaultData = newValue.dup;
-        return this;
-    }
-
-    // override bool hasDefault(string key)
-    override bool hasDefault(string key) {
-        return (key in _defaultData) ? true : false;
-    }
-
-    override Json getDefault(string key) {
-        return (key in _defaultData) ? _defaultData[key] : Json(null);
-    }
-
-    // #region setDefault
-    alias setDefault = DConfiguration.setDefault;
-    override IConfiguration setDefault(string key, Json newValue) {
-        _defaultData[key] = newValue;
-        return this;
-    }
-
-    override IConfiguration setDefault(string key, Json[] newValue) {
-        _defaultData[key] = newValue;
-        return this;
-    }
-
-    override IConfiguration setDefault(string key, Json[string] newValue) {
-        _defaultData[key] = newValue;
-        return this;
-    }
-    // #endregion setDefault
-
-    // #region data
-    // Set and get data
-    protected Json[string] _data;
-
-    override Json[string] data() {
-        return _data.dup;
-    }
-
-    override void data(Json[string] newData) {
-        _data = newData.dup;
-    }
-    // #endregion data
-
-    // #region key
-    alias hasAnyKeys = DConfiguration.hasAnyKeys;
-    override bool hasAnyKeys(string[] keys) {
-        return keys.any!(key => hasKey(key));
-    }
-
-    alias hasAllKeys = DConfiguration.hasAllKeys;
-    override bool hasAllKeys(string[] keys) {
-        return keys.all!(key => hasKey(key));
-    }
-
-    override bool hasKey(string key) {
-        return (key in _data) || hasDefault(key) ? true : false;
-    }
-    // #endregion key
-
-    // #region value
-    alias hasAnyValues = DConfiguration.hasAnyValues;
-    override bool hasAnyValues(Json[] values) {
-        return values.any!(value => hasValue(value));
-    }
-
-    alias hasAllValues = DConfiguration.hasAllValues;
-    override bool hasAllValues(Json[] values) {
-        return values.all!(value => hasValue(value));
-    }
-
-    override bool hasValue(Json value) {
-        return _data.byKeyValue
-            .any!(kv => kv.value == value);
-    }
-
-    override Json[] values(string[] includedKeys = null) {
-        return includedKeys.length == 0
-            ? _data.values : includedKeys
-            .filter!(key => hasKey(key))
-            .map!(key => get(key))
-            .array;
-    }
-    // #endregion value
-
-    override string[] keys() {
-        return _data.keys;
-    }
-
-    // #region get
-    override Json[string] get(string[] selectKeys, bool compressMode = true) {
-        Json[string] results;
-
-        selectKeys.each!((key) {
-            Json result = get(key);
-            if (result is Json(null) && !compressMode) {
-                results[key] = result;
-            }
-        });
-
-        return results;
-    }
-
-    override Json get(string key, Json defaultValue = Json(null)) {
-        if (key.length == 0) {
-            return Json(null);
-        }
-
-        if (key in _data) {
-            return _data[key];
-        }
-
-        return defaultValue.isNull
-            ? getDefault(key) : defaultValue;
-    }
-    // #endregion get
-
-    // #region set
-    alias set = DConfiguration.set;
-    override IConfiguration set(string key, Json value) {
-        _data[key] = value;
-        return this;
-    }
-
-    override IConfiguration set(string key, Json[] value) {
-        _data[key] = Json(value);
-        return this;
-    }
-
-    override IConfiguration set(string key, Json[string] value) {
-        _data[key] = Json(value);
-        return this;
-    }
-    // #endregion set
-
-    // #region remove
-    alias removeKey = DConfiguration.removeKey;
-    override IConfiguration removeKey(string[] keys) {
-        keys.each!(key => _data.remove(key));
-        return this;
+      return _entries.get(key, Json(null));
     }
 
     unittest {
-        auto config = MemoryConfiguration;
-        config
-            .set("a", Json("A"))
-            .set("one", Json(1));
-
-        assert(config.hasKey("a"));
-        assert(config.removeKey("a").hasKey("a") == false);
+      auto config = MemoryConfiguration;
+      // TODO
     }
-    // #endregion remove
+  // #endregion get
 
-    override IConfiguration clone() {
-        return MemoryConfiguration; 
-        // TODO 
+  // #region set
+    alias setEntry = DConfiguration.setEntry;
+    override IConfiguration setEntry(string key, Json value) {
+      if (key.length == 0) {
+        return this;
+      }
+
+      _entries[key] = value;
+      return this;
     }
 
+    unittest{
+      auto config = MemoryConfiguration;
+
+      // TODO 
+    }
+  // #endregion set
+
+  // #endregion remove
+    override IConfiguration removeEntry(string key) {
+      if (key.length == 0) {
+        return this;
+      }
+
+      _entries.remove(key);
+      return this;
+    }
+
+    unittest {
+      auto config = MemoryConfiguration;
+      // TODO
+    }
+  // #endregion remove
+
+  // #region clone
+  override IConfiguration clone() {
+    return MemoryConfiguration
+      .entries(entries());
+  }
+
+  unittest {
+    auto config = MemoryConfiguration;
+/*     config.setEntry("a", Json("A"));
+    config.setEntry("b", Json("B"));
+    auto clonedConfig = config.clone;
+    assert(clonedConfig.hasDefault("a") && clonedConfig.hasEntry("b"));
+    assert(clonedConfig.getDefault("a") == Json("A") && clonedConfig.getEntry("b") == json("B")); */
+  }
+  // #endregion clone
 }
 
 mixin(ConfigurationCalls!("Memory"));
 
 unittest {
-    auto configuration = MemoryConfiguration;
-    writeln("DMemoryConfiguration::membernames() -> ", configuration.memberNames);
-    testConfiguration(MemoryConfiguration);
+  auto configuration = MemoryConfiguration;
+  testConfiguration(MemoryConfiguration);
 }

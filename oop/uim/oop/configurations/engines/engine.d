@@ -3,16 +3,13 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.oop.containers.lists;
+module uim.oop.configurations.engines.engine;
 
-version (test_uim_oop) {
-  import std.stdio;
-  
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
+mixin(Version!"test_uim_oop");
 
-public {
-  // import uim.oop.containers.lists.list;
+import uim.oop;
+@safe:
+
+class DConfigEngine : UIMObject, IConfigEngine {
+    mixin(ConfigEngineThis!());    
 }

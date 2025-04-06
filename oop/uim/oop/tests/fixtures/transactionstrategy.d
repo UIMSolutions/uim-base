@@ -5,8 +5,9 @@
 *****************************************************************************************************************/
 module uim.oop.tests.fixtures.transactionstrategy;
 
-import uim.oop;
+mixin(Version!"test_uim_oop");
 
+import uim.oop;
 @safe:
 
 /*
@@ -34,7 +35,7 @@ class DTransactionStrategy : IFixtureStrategy {
     // Hook method
     bool initialize(Json[string] initData = null) {
         configuration(MemoryConfiguration);
-        configuration.data(initData);
+        configuration.entries(initData);
 
         return true;
     }

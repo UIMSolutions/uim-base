@@ -6,7 +6,6 @@
 module uim.oop.mixins.conventions;
 
 import uim.oop;
-
 @safe:
 
 // Provides methods that allow other classes access to conventions based inflections.
@@ -69,7 +68,7 @@ mixin template TConventions() {
     protected string _pluginPath(string pluginName) {
         return Plugin.isLoaded(pluginName)
             ? Plugin.path(pluginName)
-            : currentValue(App.path("plugins")) ~ pluginName ~ DIRECTORY_SEPARATOR;
+            : currentValue(App.path("plugins")) ~ pluginName ~ DIR_SEPARATOR;
     }
     
     // Return plugin`s namespace

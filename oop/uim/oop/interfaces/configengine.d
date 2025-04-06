@@ -5,8 +5,15 @@
 *****************************************************************************************************************/
 module uim.oop.interfaces.configengine;
 
-import uim.oop;
+version (test_uim_oop) {
+  import std.stdio;
 
+  unittest {
+    writeln("-----  ", __MODULE__, "\t  -----");
+  }
+}
+
+import uim.oop;
 @safe:
 
 // An interface for creating objects compatible with Configure.load()
@@ -21,5 +28,5 @@ interface IConfigEngine {
     // TODO array read(string key);
 
     // Dumps the configure data into the storage key/file of the given `aKey`.
-    bool dump(string key, Json[string] dataToDump);
+    // bool dump(string key, Json[string] dataToDump);
 }

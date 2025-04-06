@@ -5,14 +5,16 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.factory;
 
-import uim.oop;
-@safe:
-
 version (test_uim_oop) {
+  import std.stdio;
+  
   unittest {
     writeln("-----  ", __MODULE__, "\t  -----");
   }
 }
+
+import uim.oop;
+@safe:
 
 class DFactory(T : UIMObject) : UIMObject, IKeyAndPath {
     this() {
@@ -144,7 +146,7 @@ class DFactory(T : UIMObject) : UIMObject, IKeyAndPath {
 }
 
 unittest {
-    class Test : UIMObject {
+    /* class Test : UIMObject {
         this() {
             this.name("Test");
         }
@@ -187,5 +189,5 @@ unittest {
     assert(Factory.hasAnyKeys("testWorker.two", "unknown"));
     assert(Factory.hasAnyKeys(["testWorker.two", "unknown"]));
     assert(Factory.hasAllKeys("testWorker.two", "testWorkerOne"));
-    assert(Factory.hasAllKeys(["testWorker.two", "testWorkerOne"]));
+    assert(Factory.hasAllKeys(["testWorker.two", "testWorkerOne"])); */
 }

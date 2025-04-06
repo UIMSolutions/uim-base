@@ -6,7 +6,6 @@
 module uim.oop.mixins.staticconfig;
 
 import uim.oop;
-
 @safe:
 
 /**
@@ -46,7 +45,7 @@ mixin template TStaticConfig() {
      * Injecting a constructed adapter in:
      *
      * ```
-     * Cache.setConfig("default",  anInstance);
+     * Cache.setConfig("default", anInstance);
      * ```
      *
      * Configure multiple adapters at once:
@@ -59,28 +58,28 @@ mixin template TStaticConfig() {
         if (!isString(configurationName)) {
             throw new DLogicException("If config is not null, key must be a string.");
         }
-        if (configuration.hasKey(configurationName)) {
+        if (configuration.hasEntry(configurationName)) {
             throw new BadMethodCallException(
                 "Cannot reconfigure existing key `%s`.".format(configurationName));
         }
         if (isObject(configData)) {
             configData = ["classname": configData];
         }
-        if (configData.isArray && configData.hasKey("url")) {
-            auto parsed = parseDsn(configuration.get("url"));
+        if (configuration.isArray && configuration.hasEntry("url")) {
+            auto parsed = parseDsn(configuration.getEntry("url"));
             configuration.removeKey("url");
             configData = parsed + configData;
         }
-        if (configData.hasKey("engine") && configData.isEmpty("classname")) {
-            configuration.set("classname", configuration.get("engine"));
+        if (configuration.hasEntry("engine") && configuration.isEmpty("classname")) {
+            configuration.setEntry("classname", configuration.getEntry("engine"));
             configuration.removeKey("engine");
         }
-        configuration.set(aKey, configData);
+        configuration.setEntry(aKey, configData);
     }
 
     // Reads existing configuration.
     static Json getConfig(string key) {
-        return configuration.get(aKey, null);
+        return configuration.getEntry(aKey, null);
     }
 
     /**
@@ -91,7 +90,7 @@ mixin template TStaticConfig() {
      * string aKey The name of the configuration.
      */
     static Json getConfigOrFail(string configName) {
-        if (configuration.isNull(configName)) {
+        if (configuration.isNullEntry(configName)) {
             throw new DInvalidArgumentException(
                 "Expected configuration `%s` not found.".format(configName));
         }
@@ -108,7 +107,7 @@ mixin template TStaticConfig() {
      * will also be unloaded from the registry.
     */
     static bool drop(string key) {
-        if (!configuration.hasKey(key)) {
+        if (!configuration.hasEntry(key)) {
             return false;
         }
         if (!_registry.isNull) {

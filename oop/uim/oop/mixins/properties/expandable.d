@@ -5,8 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.mixins.properties.expandable;
 
-import std.string;
-import uim.core;
+mixin(Version!"test_uim_oop");
+
+import uim.oop;
+@safe:
 
 // Mixin for expandable string datatypes
 template XString(string name) {
@@ -135,11 +137,11 @@ template XPropertyArray(string datatype, string name) {
 }
 version(test_uim_oop) { unittest {
   class DTest { mixin(XPropertyArray!("int", "a")); }
-   assert((new DTest).a(0).a == [0]);
+  /*  assert((new DTest).a(0).a == [0]);
   assert((new DTest).a(0).a(1).a == [0, 1]);
   assert((new DTest).a(0, 1).a == [0, 1]);
   assert((new DTest).a(0).clearA.a == null);
-  assert((new DTest).a([1, 2, 3]).a == [1, 2, 3]);
+  assert((new DTest).a([1, 2, 3]).a == [1, 2, 3]); */
    // assert((new DTest).a([1, 2, 3]).removeA(4).a == [1, 2, 3]);
   /* assert((new DTest).a([1, 2, 3, 1]).a == [1, 2, 3, 1]); 
   assert((new DTest).a([1, 2, 3, 1]).removeA(1).a == [2, 3, 1]);

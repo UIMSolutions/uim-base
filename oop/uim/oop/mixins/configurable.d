@@ -5,8 +5,9 @@
 *****************************************************************************************************************/
 module uim.oop.mixins.configurable;
 
-import uim.oop;
+mixin(Version!"test_uim_oop");
 
+import uim.oop;
 @safe:
 
 mixin template TConfigurable() {
@@ -22,33 +23,33 @@ mixin template TConfigurable() {
         _configuration = newConfiguration;
     }
 
-    // Get configuration data
-    Json[string] getConfigurationData() {
-        return configuration ? configuration.data() : null;
+    // Get configuration entries
+    Json[string] configurationEntries() {
+        return configuration ? configuration.entries() : null;
     }
 
-    // Set configuration data
-    void setConfigurationData(Json[string] newData) {
+    // Set configuration entries
+    void configurationEntries(Json[string] newEntries) {
         if (configuration) {
-            configuration.data(newData);
+            configuration.entries(newEntries);
         }
     }
 
-    // Set configuration data
-    /* void updateConfiguration(Json[string] newData) {
+    // Set configuration entries
+    /* void updateConfiguration(Json[string] newEntries) {
         if (configuration) {
-            configuration.set(newData);
+            configuration.setEntry(newEntries);
         }
     } */
 
     // TODO
-    /* Json getConfigurationData(string key) {
-        return _configuration ? _configuration.get(key) : null;
+    /* Json getConfigurationEntries(string key) {
+        return _configuration ? _configuration.getEntry(key) : null;
     }
 
-    void setConfigurationData(string key, Json newData) {
+    void setConfigurationEntries(string key, Json newEntries) {
         if (configuration) {
-            configuration.set(key, newData);
+            configuration.setEntry(key, newEntries);
         }
     } */
 }

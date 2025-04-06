@@ -5,8 +5,15 @@
 *****************************************************************************************************************/
 module uim.oop.interfaces.containerapplication;
 
-import uim.oop;
+version (test_uim_oop) {
+  import std.stdio;
 
+  unittest {
+    writeln("-----  ", __MODULE__, "\t  -----");
+  }
+}
+
+import uim.oop;
 @safe:
 
 // Interface for applications that configure and use a dependency injection container.

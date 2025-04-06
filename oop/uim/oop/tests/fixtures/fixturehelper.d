@@ -5,8 +5,9 @@
 *****************************************************************************************************************/
 module uim.oop.tests.fixtures.fixturehelper;
 
-import uim.oop;
+mixin(Version!"test_uim_oop");
 
+import uim.oop;
 @safe:
 
 // Helper for managing fixtures.
@@ -30,7 +31,7 @@ class DFixtureHelper {
                         baseNamespace = "uim";
                         break;
                     case "app": 
-                        baseNamespace = configuration.get("App.namespace");
+                        baseNamespace = configuration.getEntry("App.namespace");
                         break;
                     case "plugin": 
                         [plugin, name] = somePathName.split(".");
@@ -98,18 +99,18 @@ class DFixtureHelper {
     /* void insert(IFixture[] fixtures) {
         runPerConnection(void (IConnection aConnection, Json[string] anGroupFixtures) {
             if (cast(DConnection)aConnection) {
-                sortedFixtures = this.sortByConstraint(aConnection,  anGroupFixtures);
+                sortedFixtures = this.sortByConstraint(aConnection, anGroupFixtures);
                 if (sortedFixtures) {
                     this.insertConnection(aConnection, sortedFixtures);
                 } else {
                     helper = new DConnectionHelper();
                     helper.runWithoutConstraints(
                         aConnection,
-                        fn (Connection aConnection): this.insertConnection(aConnection,  anGroupFixtures)
+                        fn (Connection aConnection): this.insertConnection(aConnection, anGroupFixtures)
                    );
                 }
             } else {
-                this.insertConnection(aConnection,  anGroupFixtures);
+                this.insertConnection(aConnection, anGroupFixtures);
             }
         }, fixtures);
     } */
@@ -140,7 +141,7 @@ class DFixtureHelper {
             if (cast(DConnection)aConnection) {
                 sortedFixtures = null;
                 if (aConnection.getDriver().supports(DriverFeatures.TRUNCATE_WITH_CONSTRAINTS)) {
-                    sortedFixtures = this.sortByConstraint(aConnection,  anGroupFixtures);
+                    sortedFixtures = this.sortByConstraint(aConnection, anGroupFixtures);
                 }
                 if (sortedFixtures !is null) {
                     this.truncateConnection(aConnection, array_reverse(sortedFixtures));
@@ -148,11 +149,11 @@ class DFixtureHelper {
                     helper = new DConnectionHelper();
                     helper.runWithoutConstraints(
                         aConnection,
-                        fn (Connection aConnection): this.truncateConnection(aConnection,  anGroupFixtures)
+                        fn (Connection aConnection): this.truncateConnection(aConnection, anGroupFixtures)
                    );
                 }
             } else {
-                this.truncateConnection(aConnection,  anGroupFixtures);
+                this.truncateConnection(aConnection, anGroupFixtures);
             }
         }, testFixtures);
     } */

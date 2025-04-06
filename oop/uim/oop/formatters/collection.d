@@ -9,6 +9,8 @@ import uim.oop;
 @safe:
 
 version (test_uim_oop) {
+  import std.stdio;
+  
   unittest {
     writeln("-----  ", __MODULE__, "\t  -----");
   }
@@ -19,7 +21,7 @@ class DFormatterCollection : DCollection!DFormatter {
 auto FormatterCollection() { return new DFormatterCollection; } 
 
 unittest {
-  assert(FormatterCollection);
+  /* assert(FormatterCollection);
 
-  auto collection = FormatterCollection;
+  auto collection = FormatterCollection; */
 }

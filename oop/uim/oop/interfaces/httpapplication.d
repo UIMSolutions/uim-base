@@ -5,8 +5,15 @@
 *****************************************************************************************************************/
 module uim.oop.interfaces.httpapplication; 
 
-import uim.oop;
+version (test_uim_oop) {
+  import std.stdio;
 
+  unittest {
+    writeln("-----  ", __MODULE__, "\t  -----");
+  }
+}
+
+import uim.oop;
 @safe:
 
 // An interface defining the methods that the http server depend on.

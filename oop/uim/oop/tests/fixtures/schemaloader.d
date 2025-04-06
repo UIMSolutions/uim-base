@@ -5,8 +5,9 @@
 *****************************************************************************************************************/
 module uim.oop.tests.fixtures.schemaloader;
 
-import uim.oop;
+mixin(Version!"test_uim_oop");
 
+import uim.oop;
 @safe:
 
 /*
@@ -153,7 +154,7 @@ class DSchemaLoader {
                 }
                 if (aTable.hasKey("constraints")) {
                     aTable["constraints"].byKeyValue
-                        .each!(kv => tableSchema.addConstraint(aKey,  anIndex));
+                        .each!(kv => tableSchema.addConstraint(aKey, anIndex));
                 }
                 
                 // Generate SQL for each table.

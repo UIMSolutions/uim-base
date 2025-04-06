@@ -6,7 +6,6 @@
 module uim.oop.mixins.instanceconfig;
 
 import uim.oop;
-
 @safe:
 
 /**
@@ -29,13 +28,13 @@ mixin template TInstanceConfig() {
      * Setting a specific value:
      *
      * ```
-     * configuration.set("key", valueToSet);
+     * configuration.setEntry("key", valueToSet);
      * ```
      *
      * Setting a nested value:
      *
      * ```
-     * configuration.set("some.nested.key", valueToSet);
+     * configuration.setEntry("some.nested.key", valueToSet);
      * ```
      *
      * Updating multiple config settings at the same time:
@@ -66,19 +65,19 @@ mixin template TInstanceConfig() {
      * Reading a specific value:
      *
      * ```
-     * _configData.hasKey("key");
+     * _configuration.hasEntry("key");
      * ```
      *
      * Reading a nested value:
      *
      * ```
-     * _configData.hasKey("some.nested.key");
+     * _configuration.hasEntry("some.nested.key");
      * ```
      *
      * Reading with default value:
      *
      * ```
-     * _configData.hasKey("some-key", "default-value");
+     * _configuration.hasEntry("some-key", "default-value");
      * ```
      */
   // TODO Kill code?
@@ -98,8 +97,8 @@ mixin template TInstanceConfig() {
      * string keyToGet The key to get.
      */
   Json getConfigOrFail(string key) {
-    Json configData = configuration.get(key);
-    if (configData.isNull) {
+    Json configData = configuration.getEntry(key);
+    if (configuration.isNull) {
       throw new DInvalidArgumentException(
         "Expected configuration `%s` not found.".format(key));
     }
@@ -143,7 +142,7 @@ mixin template TInstanceConfig() {
     }
 
     if (!keyToRead.contains(".")) {
-      return configuration.get(keyToRead);
+      return configuration.getEntry(keyToRead);
     }
 
     result = _config;
@@ -183,7 +182,7 @@ mixin template TInstanceConfig() {
       return;
     }
     if (!keysToWrite.contains(".")) {
-      configuration.set(keysToWrite, valueToWrite);
+      configuration.setEntry(keysToWrite, valueToWrite);
       return;
     }
 

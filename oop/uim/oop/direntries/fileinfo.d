@@ -1,9 +1,15 @@
 module uim.oop.direntries.fileinfo;
 
 import uim.oop;
-
 @safe:
 
+version (test_uim_oop) {
+  import std.stdio;
+  
+  unittest {
+    writeln("-----  ", __MODULE__, "\t  -----");
+  }
+}
 class DFileInfo : UIMObject {
     int getATime() {
         return 0;

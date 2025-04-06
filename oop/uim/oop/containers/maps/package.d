@@ -5,6 +5,13 @@
 *****************************************************************************************************************/
 module uim.oop.containers.maps;
 
+mixin(Version!"test_uim_oop");
+
+import uim.oop;
+@safe:
+
 public {
   import uim.oop.containers.maps.map;
+  import uim.oop.containers.maps.string_;
+  import uim.oop.containers.maps.json;
 }

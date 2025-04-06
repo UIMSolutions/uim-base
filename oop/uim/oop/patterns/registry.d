@@ -6,9 +6,13 @@
 module uim.oop.patterns.registry;
 
 import uim.oop;
-
 @safe:
 
+version (test_uim_oop) {
+    unittest {
+        writeln("-----  ", __MODULE__, "\t  -----");
+    }
+}
 class DObjectRegistry(T : UIMObject) {
   // #region Singleton
   protected static DObjectRegistry!T _registration;
@@ -175,8 +179,8 @@ class DObjectRegistry(T : UIMObject) {
 
 }
 
-/* unittest {
-  class Test {
+unittest {
+  /* class Test {
     this() {      
     }
     this(string newName) {
@@ -188,5 +192,5 @@ class DObjectRegistry(T : UIMObject) {
   class TestRegistry : DObjectRegistry!Test {}
 
   assert(TestRegistry.registry.length == 0);
-  assert(TestRegistry.registry.length == 0);
-} */
+  assert(TestRegistry.registry.length == 0); */
+}

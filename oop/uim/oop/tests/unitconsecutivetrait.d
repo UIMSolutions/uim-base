@@ -5,8 +5,9 @@
 *****************************************************************************************************************/
 module uim.oop.tests.unitconsecutivetrait;
 
-import uim.oop;
+mixin(Version!"test_uim_oop");
 
+import uim.oop;
 @safe:
 
 mixin template TUnitConsecutive() {

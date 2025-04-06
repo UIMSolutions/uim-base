@@ -5,9 +5,16 @@
 *****************************************************************************************************************/
 module uim.oop.configurations.engines;
 
+mixin(Version!"test_uim_oop");
+
+import uim.oop;
+@safe:
+
 public {
-    // import uim.oop.configurations.engines.file;
-    // import uim.oop.configurations.engines.engine;
-    // import uim.oop.configurations.engines.iniconfig;
-    // import uim.oop.configurations.engines.jsonconfig;
+  import uim.oop.configurations.engines.engine;
+  
+  import uim.oop.configurations.engines.file;
+  import uim.oop.configurations.engines.ini;
+  import uim.oop.configurations.engines.redis;
+  import uim.oop.configurations.engines.rest;
 }

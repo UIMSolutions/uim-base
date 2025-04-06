@@ -5,8 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.validators.mixins;
 
+mixin(Version!"test_uim_oop");
+
 import uim.oop;
-@safe: 
+@safe:
 
 string validatorThis(string name = null) {
     string fullName = name ~ "Validator";

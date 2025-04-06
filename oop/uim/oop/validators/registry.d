@@ -5,6 +5,8 @@
 *****************************************************************************************************************/
 module uim.oop.validators.registry;
 
+mixin(Version!"test_uim_oop");
+
 import uim.oop;
 @safe:
 
