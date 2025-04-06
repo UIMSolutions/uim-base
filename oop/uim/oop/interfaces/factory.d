@@ -5,13 +5,11 @@
 *****************************************************************************************************************/
 module uim.oop.interfaces.factory;
 
-version (test_uim_oop) {
-  import std.stdio;
+mixin(Version!"test_uim_oop");
 
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
+import uim.oop;
+@safe:
+
 interface IFactory {
 
 }

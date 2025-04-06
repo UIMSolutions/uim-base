@@ -10,9 +10,6 @@ mixin(Version!"test_uim_oop");
 import uim.oop;
 @safe:
 
-import uim.oop;
-@safe:
-
 interface IConfigurable {
   // Gets configuration
   IConfiguration configuration();

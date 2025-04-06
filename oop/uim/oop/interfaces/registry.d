@@ -5,3 +5,7 @@
 *****************************************************************************************************************/
 module uim.oop.interfaces.registration;
 
+mixin(Version!"test_uim_oop");
+
+import uim.oop;
+@safe:

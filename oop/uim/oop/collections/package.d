@@ -5,10 +5,8 @@
 *****************************************************************************************************************/
 module uim.oop.collections;
 
+import uim.core;
 mixin(Version!"test_uim_oop");
-
-import uim.oop;
-@safe:
 
 public {
   // import uim.oop.collections.arraylist;

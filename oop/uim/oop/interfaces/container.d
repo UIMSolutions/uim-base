@@ -5,13 +5,8 @@
 *****************************************************************************************************************/
 module uim.oop.interfaces.container;
 
-version (test_uim_oop) {
-  import std.stdio;
 
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
+mixin(Version!"test_uim_oop");
 
 import uim.oop;
 @safe:
