@@ -1,28 +1,15 @@
-# Compiled Object files
-*.o
-*.obj
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
 *.dll
-
-# Compiled Static libraries
-*.a
-*.lib
-
-# Executables
 *.exe
-
-# DUB
-.dub
-docs.json
-__dummy.html
-docs/
-
-# Code coverage
-*.lst
-uim-base-level-test-library.pdb
-.gitignore
-oop/oop-test-test_uim_oop.pdb
-core/core-test-test_uim_core.pdb
+*.dx
+*.pdb
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.sln.ide
+*.sln.ide.user
+*.sln.ide.userprefs
+*.lib
+*.ilk
+*.obj
+dub.selections.json
