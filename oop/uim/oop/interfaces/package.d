@@ -5,8 +5,8 @@
 *****************************************************************************************************************/
 module uim.oop.interfaces;
 
-import uim.oop;
-@safe:
+import uim.core;
+mixin(Version!"test_uim_oop");
 
 public {
   import uim.oop.interfaces.cloneable;

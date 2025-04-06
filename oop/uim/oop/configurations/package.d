@@ -5,13 +5,8 @@
 *****************************************************************************************************************/
 module uim.oop.configurations;
 
-version (test_uim_oop) {
-  import std.stdio;
-  
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
+import uim.core;
+mixin(Version!"test_uim_oop");
 
 public { // Packages
     import uim.oop.configurations.engines;

@@ -5,9 +5,5 @@
 *****************************************************************************************************************/
 module uim.oop.tests.stubs;
 
-version (test_uim_oop) {
-    import std.stdio;
-    unittest {
-        writeln("-----  ", __MODULE__, "\t  -----");
-    }
-}
+import uim.core;
+mixin(Version!"test_uim_oop");

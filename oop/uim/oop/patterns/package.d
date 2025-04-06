@@ -5,6 +5,9 @@
 *****************************************************************************************************************/
 module uim.oop.patterns;
 
+import uim.core;
+mixin(Version!"test_uim_oop");
+
 public {
     import uim.oop.patterns.collection;
     import uim.oop.patterns.obj;

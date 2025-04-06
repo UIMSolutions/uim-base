@@ -5,13 +5,8 @@
 *****************************************************************************************************************/
 module uim.oop.tests.fixtures.extensions;
 
-version (test_uim_oop) {
-  import std.stdio;
-  
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
+import uim.core;
+mixin(Version!"test_uim_oop");
 
 public {
     // TODO import uim.oop.tests.fixtures.extensions.unitextension;

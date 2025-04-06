@@ -5,6 +5,9 @@
 *****************************************************************************************************************/
 module uim.oop.tests;
 
+import uim.core;
+mixin(Version!"test_uim_oop");
+
 public { // Packages
     import uim.oop.tests.constraints;
     import uim.oop.tests.fixtures;

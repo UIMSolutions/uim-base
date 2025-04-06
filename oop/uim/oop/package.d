@@ -1,11 +1,6 @@
 ﻿module uim.oop;
 
-version (test_uim_oop) {
-    import std.stdio;
-    unittest {
-        writeln("-----  ", __MODULE__, "\t  -----");
-    }
-}
+mixin(Version!"test_uim_oop");
 
 // Phobos libraries
 public {
@@ -43,16 +38,3 @@ public {
   import uim.oop.validators;
 }
 
-template Version(string name) {
-  const char[] Version = `
-version (`~name~`) {
-  import std.stdio;
-  import std.string;
-
-  unittest {
-    string mod = leftJustify(__MODULE__, 50, ' ');
-    writeln("-----  ", mod, " -----");
-  }
-}  
-`;
-}

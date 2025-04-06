@@ -5,6 +5,9 @@
 *****************************************************************************************************************/
 module uim.oop.parsers;
 
+import uim.core;
+mixin(Version!"test_uim_oop");
+
 public {
     import uim.oop.parsers.parser;
 }

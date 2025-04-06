@@ -5,12 +5,8 @@
 *****************************************************************************************************************/
 module uim.oop.containers;
 
-static this() {
-    import std.stdio;
-    version (test_uim_oop) {
-        writeln(__MODULE__);
-    }
-}
+import uim.core;
+mixin(Version!"test_uim_oop");
 
 public { // Packages
   import uim.oop.containers.arrays;
