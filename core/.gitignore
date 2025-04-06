@@ -1,0 +1,15 @@
+*.dll
+*.exe
+*.dx
+*.pdb
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.sln.ide
+*.sln.ide.user
+*.sln.ide.userprefs
+*.lib
+*.ilk
+*.obj
+dub.selections.json
