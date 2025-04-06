@@ -30,7 +30,7 @@ template IsInterfaces(string plural, string singular, string keyType) {
 }
 
 unittest {
-  writeln("isInterfaces ->", isInterfaces("Empty", "Empty", "string"));
+  // writeln("isInterfaces ->", isInterfaces("Empty", "Empty", "string"));
 }
 // #endregion isInterfaces
 
@@ -55,7 +55,7 @@ template HasInterfaces(string plural, string singular, string keyType) {
 }
 
 unittest {
-  writeln("hasInterfaces ->", hasInterfaces("Entries", "Entry", "string"));
+  // writeln("hasInterfaces ->", hasInterfaces("Entries", "Entry", "string"));
 }
 // #endregion hasInterfaces
 
@@ -78,7 +78,7 @@ template GetInterfaces(string returntype, string plural, string singular, string
 }
 
 unittest {
-  writeln("getInterfaces ->", getInterfaces("Json", "Entries", "Entry", "string"));
+  // writeln("getInterfaces ->", getInterfaces("Json", "Entries", "Entry", "string"));
 }
 // #endregion getInterfaces
 
@@ -101,7 +101,7 @@ template ShiftInterfaces(string returntype, string plural, string singular, stri
 }
 
 unittest {
-  writeln("shiftInterfaces ->", shiftInterfaces("Json", "Entries", "Entry", "string"));
+  // writeln("shiftInterfaces ->", shiftInterfaces("Json", "Entries", "Entry", "string"));
 }
 // #endregion shiftInterfaces
 
@@ -128,7 +128,7 @@ template SetInterfaces(string returntype, string plural, string singular, string
 }
 
 unittest {
-  writeln("setInterfaces ->", changeInterfaces("void", "set", "Entries", "Entry", "string", "Json"));
+  // writeln("setInterfaces ->", changeInterfaces("void", "set", "Entries", "Entry", "string", "Json"));
 }
 // #endregion setInterfaces
 
@@ -138,7 +138,7 @@ template UpdateInterfaces(string returntype, string plural, string singular, str
 }
 
 unittest {
-  writeln("updateInterfaces ->", changeInterfaces("void", "update", "Entries", "Entry", "string", "Json"));
+  // writeln("updateInterfaces ->", changeInterfaces("void", "update", "Entries", "Entry", "string", "Json"));
 }
 // #endregion updateInterfaces
 
@@ -148,7 +148,7 @@ template MergeInterfaces(string returntype, string plural, string singular, stri
 }
 
 unittest {
-  writeln("mergeInterfaces ->", changeInterfaces("void", "merge", "Entries", "Entry", "string", "Json"));
+  // writeln("mergeInterfaces ->", changeInterfaces("void", "merge", "Entries", "Entry", "string", "Json"));
 }
 // #endregion mergeInterfaces
 
@@ -173,6 +173,6 @@ template RemoveInterfaces(string returntype, string plural, string singular, str
 }
 
 unittest {
-  writeln("removeInterfaces ->", removeInterfaces("void", "Entries", "Entry", "string"));
+  // writeln("removeInterfaces ->", removeInterfaces("void", "Entries", "Entry", "string"));
 }
 // #endregion removeInterfaces

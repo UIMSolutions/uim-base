@@ -866,13 +866,12 @@ string underscore(string text) {
   return delimit(std.string.replace(text, "-", "_"), "_");
 }
 
-unittest { // TODO
-  writeln("underscore");
-  writeln(underscore("camel-cased-input-string"));
-  writeln(underscore("  camel-cased-input-string  "));
+unittest { 
+  writeln(underscore("camel-cased-input-string") == "camel_cased_input_string");
+  writeln(underscore("  camel-cased-input-string  ") == "  camel_cased_input_string  ");
 
-  writeln(underscore("camel-cased-input-string"));
-  writeln(underscore("  camel-cased-input-string  "));
+  writeln(underscore("camel-cased-input-string") == "camel_cased_input_string");
+  writeln(underscore("  camel-cased-input-string  ") == "  camel_cased_input_string  ");
 }
 // #endregion underscore
 

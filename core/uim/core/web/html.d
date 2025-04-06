@@ -235,5 +235,5 @@ string htmlAttributeEscape(string text, bool isDouble = true, string charset = n
 }
 
 unittest {
-  writeln("htmlAttributeEscape -> ", htmlAttributeEscape("Hallo! <world>"));
+  assert(htmlAttributeEscape("Hallo! <world>") == "Hallo! &lt;world&gt;");
 }

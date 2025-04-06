@@ -13,3 +13,6 @@
 *.ilk
 *.obj
 dub.selections.json
+*/dub.selections.json
+*.html
+.dub/*
