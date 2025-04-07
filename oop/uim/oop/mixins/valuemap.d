@@ -5,13 +5,20 @@
 *****************************************************************************************************************/
 module uim.oop.mixins.valuemap;
 
+mixin(Version!"test_uim_oop");
+
 import uim.oop;
 @safe:
-/* 
-template ValueMapWrapper() {
-  bool containsValue(string key) {
+
+// TODO: addValue(string key, DValue value) to addValues(string[] keys, DValue[] values) to addValues(DValue[string] values) to addValues(DAttribute[string] attributes) to addValues(DAttribute[] attributes)
+/* TODO: 
+  - addValue(string key, DValue value) to addValues(string[] keys, DValue[] values) to addValues(DValue[string] values) to addValues(DAttribute[string] attributes) to addValues(DAttribute[] attributes)
+  - addValue(string key, DAttribute attribute) to addValues(string[] keys, DAttribute[] attributes) to addValues(DAttribute[string] attributes) to addValues(DAttribute[] attributes)
+* / 
+template ValueMapWrapper(R, V) {
+  bool hasValue(string key) {
     if (this.values) { // has values
-      return _values.hasKey(key);
+      return values.hasKey(key);
     }
     return false;
   }
