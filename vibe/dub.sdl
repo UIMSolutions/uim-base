@@ -1,4 +1,4 @@
-name "uim-vibe"
+name "vibe"
 description "Vibe Wrapper for the uim framework"
 homepage "https://www.sueel.de"
 authors "Ozan Nurettin Süel"
@@ -6,14 +6,15 @@ copyright "Copyright © 2018-2025, Ozan Nurettin Süel"
 license "Apache-2.0"
 
 // target
-targetName "uim-vibe"
+targetName "uim_vibe"
 targetType "library"
 
-// dependency
+// Exteral dependencies
 dependency "vibe-d" version="~>0.10.2"
 dependency "unit-threaded" version="~>2.2.2"
 dependency "colored" version="~>0.0.31"
-dependency "uim-phobos" path="../phobos"
+
+dependency "uim-base:phobos" path=".."
 
 sourcePaths "."
 importPaths "."

@@ -5,7 +5,8 @@
 *****************************************************************************************************************/
 module uim.oop.base;
 
-import uim.core;
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
 public {

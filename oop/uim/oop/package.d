@@ -14,9 +14,6 @@ public {
   import std.uuid;
 }
 
-// External libraries
-public import vibe.d;
-
 // UIM libraries
 public import uim.core;
 
