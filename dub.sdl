@@ -13,6 +13,7 @@ dependency "vibe-d" version="~>0.10.2"
 dependency "unit-threaded" version="~>2.2.2"
 dependency "colored" version="~>0.0.31"
 
+// Internal dependencies
 dependency ":phobos" version="*"
 dependency ":vibe" version="*"
 dependency ":core" version="*"
@@ -21,6 +22,7 @@ dependency ":oop" version="*"
 sourcePaths "."
 importPaths "."
 
+// Subpackages
 subPackage "phobos"
 subPackage "vibe"
 subPackage "core"
