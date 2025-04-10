@@ -15,7 +15,6 @@ public {
   import uim.core.consts;
   import uim.core.convert;
   import uim.core.datatypes;
-  import uim.core.dlang;
   import uim.core.enumerations;
   import uim.core.helpers;
   import uim.core.io;

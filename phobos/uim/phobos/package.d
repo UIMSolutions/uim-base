@@ -63,6 +63,8 @@ public {
   import uim.phobos.path;
   import uim.phobos.range;
   import uim.phobos.regex;
+  import uim.phobos.stdio;
+  import uim.phobos.string;
   import uim.phobos.uni;
   import uim.phobos.windows;
 }
