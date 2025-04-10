@@ -30,6 +30,7 @@ public {
   import std.file;
   import std.format;
   import std.math;
+  import std.path;
   import std.range;
   import std.regex;
   import std.uni;
@@ -57,6 +58,7 @@ public {
   import uim.phobos.format;
   import uim.phobos.math;
   import uim.phobos.net;
+  import uim.phobos.path;
   import uim.phobos.range;
   import uim.phobos.regex;
   import uim.phobos.uni;

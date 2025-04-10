@@ -21,8 +21,3 @@ public {
   import uim.vibe.tests;
  */}
 
-version (test_uim_vibe) {
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
