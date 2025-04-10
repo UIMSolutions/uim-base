@@ -3,7 +3,7 @@ module uim.vibe;
 public import vibe.d;
 
 public {
-    import uim.phobos;
+    import uim.vibe;
     import unit_threaded;
 }
 

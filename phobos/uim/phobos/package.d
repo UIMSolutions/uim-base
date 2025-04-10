@@ -33,6 +33,8 @@ public {
   import std.path;
   import std.range;
   import std.regex;
+  import std.stdio;
+  import std.string;
   import std.uni;
 }
 
