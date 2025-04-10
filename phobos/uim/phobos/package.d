@@ -10,23 +10,55 @@ module uim.phobos;
 public import vibe.d; */
 
 public {
-  import std.stdio;
-  import std.string;
-/*   import uim.phobos.classes;
-  import uim.phobos.containers;
-  import uim.phobos.convert;
-  import uim.phobos.datatypes;
- */  
- // import uim.phobos.enumerations;
-/*   import uim.phobos.helpers;
-  import uim.phobos.io;
-  import uim.phobos.mixins;
-  import uim.phobos.web;
-  import uim.phobos.tests;
- */}
+  import std.algorithm;
+  import std.array;
+  import std.ascii;
+  import std.base64;
+  import std.bigint;
+  import std.bitmanip;
+  import std.checkedint;
+  import std.compiler;
+  import std.complex;
+  import std.concurrency;
+  import std.container;
+  import std.conv;
+  import std.csv;
+  import std.datetime;
+  import std.demangle;
+  import std.digest;
+  import std.logger;
+  import std.file;
+  import std.format;
+  import std.math;
+  import std.range;
+  import std.regex;
+  import std.uni;
+}
 
-/* version (test_uim_core) {
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-} */
+public {
+  import uim.phobos.algorithm;
+  import uim.phobos.array;
+  import uim.phobos.ascii;
+  import uim.phobos.base64;
+  import uim.phobos.bigint;
+  import uim.phobos.bitmanip;
+  import uim.phobos.checkedint;
+  import uim.phobos.compiler;
+  import uim.phobos.complex;
+  import uim.phobos.concurrency;
+  import uim.phobos.container;
+  import uim.phobos.conv;
+  import uim.phobos.csv;
+  import uim.phobos.datetime;
+  import uim.phobos.demangle;
+  import uim.phobos.digest;
+  import uim.phobos.logger;
+  import uim.phobos.file;
+  import uim.phobos.format;
+  import uim.phobos.math;
+  import uim.phobos.net;
+  import uim.phobos.range;
+  import uim.phobos.regex;
+  import uim.phobos.uni;
+  import uim.phobos.windows;
+}
