@@ -12,6 +12,20 @@ import uim.phobos;
 // #endregion CREATE
 
 // #region READ
+  // #region Exists
+  // Checks if the given path exists and is a symlink.
+    bool existsLink(string[] path) {
+      return existsPath(path.join(dirSeparator));
+    }
+
+    bool existsLink(string path) {
+      return existsPath(path) && isSymlink(path);
+    }
+
+    unittests {
+      // TODO: Add tests for existsLink
+    }
+  // #endregion Exists
 // #endregion READ
 
 // #region UPDATE

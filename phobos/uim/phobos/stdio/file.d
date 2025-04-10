@@ -17,6 +17,45 @@ import uim.phobos;
 
 // #region READ
   // #region Exists
+    bool existsAllFiles(string[] paths...) {
+      return existsAllFiles(paths.dup);
+    }
+
+    bool existsAllFiles(string[] paths) {
+      return paths.length == 0
+        ? false // Empty array, no files to check
+        : paths.all!(path => existsFile(path));
+    }
+
+    bool existsAnyFiles(string[] paths...) {
+      return existsAnyFiles(paths.dup);
+    }
+
+    bool existsAnyFiles(string[] paths) {
+      return paths.length == 0
+        ? false // Empty array, no files to check 
+        : paths.any!(path => existsFile(path));
+    }
+
+    bool existsFile(string[] path) {
+      return existsFile(path.join(dirSeparator));
+    }
+    bool existsFile(string[] path, string file) {
+      return existsFile(path.join(dirSeparator) ~ dirSeparator ~ file);
+    }
+    bool existsFile(string[] path, string file, string ext) {
+      return existsFile(path.join(dirSeparator) ~ dirSeparator ~ file ~ "." ~ ext);
+    }
+
+    bool existsFile(string path) {
+      return existsPath(path) && isFile(path);
+    }
+    bool existsFile(string path, string file) {
+      return existsFile(path ~ dirSeparator ~ file);
+    }
+    bool existsFile(string path, string file, string ext) {
+      return existsFile(path ~ dirSeparator ~ file ~ "." ~ ext);
+    }
   // #endregion Exists
 // #endregion READ
 
