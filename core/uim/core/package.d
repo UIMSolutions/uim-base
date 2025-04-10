@@ -35,7 +35,7 @@ alias STRINGAA = string[string];
 alias INTAA = int[int];
 alias DOUBLEAA = double[double];
 
-const DIR_SEPARATOR = "\\";
+const dirSeparator = "\\";
 
 template Version(string name) {
   const char[] Version = `
