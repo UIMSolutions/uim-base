@@ -9,6 +9,13 @@ import uim.phobos;
 
 @safe:
 
+// #region CREATE
+  void createFile(string path) {
+    auto file = File(path, "w+");
+    file.close();
+  }
+// #endregion CREATE
+
 // #region exists
   // #region Path 
     bool existsPath(string[] path) {
@@ -126,3 +133,13 @@ SysTime lastModificationAge(string path) {
   return lastModificationTime(path) - Clock.currTime();
 } */
 // #endregion Times
+
+// #region Remove
+void removeFiles(string[] paths) {
+  paths.each!(path => remove(path));
+}
+
+void removeFile(string path) {
+  remove(path);
+}
+// #endregion Remove
