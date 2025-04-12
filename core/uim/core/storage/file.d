@@ -3,9 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.phobos.stdio.file;
+module uim.core.storage.file;
 
-import uim.phobos;
+import uim.core;
 @safe:
 
 // #region CREATE
@@ -56,6 +56,22 @@ import uim.phobos;
     bool existsFile(string path, string file, string ext) {
       return existsFile(path ~ dirSeparator ~ file ~ "." ~ ext);
     }
+      unittest {
+    version(Windows) {
+      assert(existsFile("C:/Windows/System32/cmd.exe"));
+      assert(!existsFile("C:/Windows/NotARealFolder/NotARealFile.txt"));
+    }
+    version(Linux) {
+      assert(existsFile("/usr/bin/bash"));
+      assert(!existsFile("/usr/bin/NotARealFolder/NotARealFile.txt"));
+    }
+    version(MacOS) {
+      assert(existsFile("/usr/bin/bash"));
+      assert(!existsFile("/usr/bin/NotARealFolder/NotARealFile.txt"));
+    }
+  }
+// #region exists
+
   // #endregion Exists
 // #endregion READ
 

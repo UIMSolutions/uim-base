@@ -5,8 +5,3 @@
 *****************************************************************************************************************/
 module uim.phobos.stdio;
 
-public {
-    import uim.phobos.stdio.file;
-    import uim.phobos.stdio.folder;
-    import uim.phobos.stdio.link;
-}

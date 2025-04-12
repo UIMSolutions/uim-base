@@ -3,9 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.phobos.stdio.link;
+module uim.core.storage.link;
 
-import uim.phobos;
+import uim.core;
 @safe:
 
 // #region CREATE
@@ -13,7 +13,23 @@ import uim.phobos;
 
 // #region READ
   // #region Exists
-  // Checks if the given path exists and is a symlink.
+    // Checks if the given path exists and is a symlink.
+    bool existsAllLinks(string[] paths...) {
+      return existsAllLinks(paths.dup);
+    }
+
+    bool existsAllLinks(string[] paths) {
+      return paths.all!(path => existsPath(path));
+    }
+
+    bool existsAnyLinks(string[] paths...) {
+      return existsAnyLinks(paths.dup);
+    }
+
+    bool existsAnyLinks(string[] paths) {
+      return paths.any!(path => existsPath(path));
+    }
+
     bool existsLink(string[] path) {
       return existsPath(path.join(dirSeparator));
     }
@@ -22,7 +38,7 @@ import uim.phobos;
       return existsPath(path) && isSymlink(path);
     }
 
-    unittests {
+    unittest {
       // TODO: Add tests for existsLink
     }
   // #endregion Exists

@@ -19,6 +19,7 @@ public {
   import uim.core.helpers;
   import uim.core.io;
   import uim.core.mixins;
+  import uim.core.storage;
   import uim.core.web;
   import uim.core.tests;
 }
