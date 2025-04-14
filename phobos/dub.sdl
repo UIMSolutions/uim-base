@@ -19,6 +19,6 @@ importPaths "."
 
 // configuration "default" {}
 
-/* configuration "test_uim_phobos" {
+configuration "test_uim_phobos" {
 	versions "test_uim_phobos"
-} */
+}
