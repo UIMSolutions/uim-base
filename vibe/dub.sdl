@@ -14,7 +14,7 @@ dependency "vibe-d" version="~>0.10.2"
 dependency "unit-threaded" version="~>2.2.2"
 dependency "colored" version="~>0.0.31"
 
-dependency "uim-base:phobos" path=".."
+dependency "uim-base:phobos" version="*"
 
 sourcePaths "."
 importPaths "."
@@ -22,4 +22,9 @@ importPaths "."
 configuration "test_uim_vibe" {
 	targetType "library"
 	versions "test_uim_vibe"
+}
+
+configuration "test_uim_all" {
+	targetType "library"
+	versions "test_uim_vibe" "test_uim_phobos"
 }

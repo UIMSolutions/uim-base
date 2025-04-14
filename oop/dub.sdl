@@ -9,7 +9,7 @@ authors "Ozan Nurettin Süel"
 targetName "uim_oop"
 targetType "library"
 
-dependency "uim-base:core" path=".."
+dependency "uim-base:core" version="*"
 
 sourcePaths "."
 importPaths "."
