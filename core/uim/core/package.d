@@ -7,12 +7,11 @@ module uim.core;
 
 mixin(ImportPhobos!());
 
-public import vibe.d;
-
 public {
   import uim.phobos;
-  import uim.core.classes;
+  import uim.vibe;
 
+  import uim.core.classes;
   import uim.core.containers;
   import uim.core.consts;
   import uim.core.convert;
@@ -20,6 +19,7 @@ public {
   import uim.core.enumerations;
   import uim.core.helpers;
   import uim.core.io;
+  import uim.core.logging;
   import uim.core.mixins;
   import uim.core.storage;
   import uim.core.web;
