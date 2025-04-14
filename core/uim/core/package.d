@@ -10,7 +10,9 @@ mixin(ImportPhobos!());
 public import vibe.d;
 
 public {
+  import uim.phobos;
   import uim.core.classes;
+
   import uim.core.containers;
   import uim.core.consts;
   import uim.core.convert;

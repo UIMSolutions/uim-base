@@ -19,11 +19,11 @@ void createFilesInPath(string path, string[] filenames) {
 }
 
 void createFileInPath(string[] path, string filename) {
-  createFileInPath(buildPath(path), filename);
+  createFileInPath(normalizePath(path), filename);
 }
 
 void createFileInPath(string path, string filename) {
-  createFile(buildPath(path, file) name);
+  createFile(normalizePath(path, filename));
 }
 
 void createFiles(string[] filenames...) {
@@ -40,25 +40,20 @@ void createFile(string filename) {
 }
 
 unittest {
-  version (Windows) {
-    createFile("C:/Windows/System32/test.txt");
-    assert(existsFile("C:/Windows/System32/test.txt"));
-    removeFile("C:/Windows/System32/test.txt");
+  createFile(tempDir~"test.txt");
+  assert(existsFile(tempDir~"test.txt"));
+  removeFile(tempDir~"test.txt");
+  assert(!existsFile(tempDir~"test.txt"));
 
-    createFiles("C:/Windows/NotARealFolder/test.txt");
-    assert(existsAllFiles("C:/Windows/NotARealFolder/test.txt"));
-    removeFiles("C:/Windows/NotARealFolder/test.txt");
-  }
-  version (Linux) {
-    createFile("/usr/bin/test.txt");
-    assert(existsFile("/usr/bin/test.txt"));
-    removeFile("/usr/bin/test.txt");
-  }
-  version (MacOS) {
-    createFile("/usr/bin/test.txt");
-    assert(existsFile("/usr/bin/test.txt"));
-    removeFile("/usr/bin/test.txt");
-  }
+  createFiles([tempDir~"test1.txt", tempDir~"test2.txt", tempDir~"test3.txt"]);
+  assert(existsAllFiles([tempDir~"test1.txt", tempDir~"test2.txt", tempDir~"test3.txt"]));
+  removeFiles([tempDir~"test1.txt", tempDir~"test2.txt", tempDir~"test3.txt"]);
+  assert(!existsAnyFiles([tempDir~"test1.txt", tempDir~"test2.txt", tempDir~"test3.txt"]));
+
+  createFiles(tempDir~"test1.txt", tempDir~"test2.txt", tempDir~"test3.txt");
+  assert(existsAllFiles(tempDir~"test1.txt", tempDir~"test2.txt", tempDir~"test3.txt"));
+  removeFiles(tempDir~"test1.txt", tempDir~"test2.txt", tempDir~"test3.txt");
+  assert(!existsAnyFiles(tempDir~"test1.txt", tempDir~"test2.txt", tempDir~"test3.txt"));
 }
 // #endregion CREATE
 
@@ -108,11 +103,11 @@ unittest {
     assert(existsFile("C:/Windows/System32/cmd.exe"));
     assert(!existsFile("C:/Windows/NotARealFolder/NotARealFile.txt"));
 
-    assert(existsFile("C:/Windows/System32/cmd.exe", "cmd"));
-    assert(!existsFile("C:/Windows/System32/cmd.exe", "NotARealFile.txt"));
+    assert(existsFile("C:/Windows/System32", "cmd.exe"));
+    assert(!existsFile("C:/Windows/System32", "NotARealFile.txt"));
     
-    assert(existsFile("C:/Windows/System32/cmd.exe", "cmd", "exe"));
-    assert(!existsFile("C:/Windows/System32/cmd.exe", "cmd", "NotARealFile.txt"));
+    assert(existsFile("C:/Windows/System32", "cmd", "exe"));
+    assert(!existsFile("C:/Windows/System32", "cmd", "NotARealFile.txt"));
 
     assert(existsAnyFiles(["C:/Windows/System32/cmd.exe", "C:/Windows/NotARealFolder/NotARealFile.txt"]));
     assert(!existsAnyFiles(["C:/Windows/NotARealFolder/NotFile.txt", "C:/Windows/NotARealFolder/NotARealFile.txt"]));
@@ -141,8 +136,6 @@ unittest {
     assert(!existsFile("/usr/bin/NotARealFolder", "NotARealFile.txt"));
   }
 }
-// #region exists
-
 // #endregion Exists
 // #endregion READ
 
@@ -151,22 +144,38 @@ unittest {
 
 // #region DELETE
 // #region Remove
+void removeFilesInPath(string path, string[] filenames...) {
+  removeFilesInPath(path, filenames.dup);
+}
+
+void removeFilesInPath(string path, string[] filenames) {
+  filenames.each!(filename => removeFileInPath(path, filename));
+}
+
+void removeFileInPath(string path, string filename) {
+  removeFile(normalizePath(path, filename));
+}
+
 void removeFiles(string[] paths...) {
   removeFiles(paths.dup);
 }
 
-void removeFiles(string[] paths) {
-  paths.each!(path => remove(path));
+void removeFiles(string[] filenames) {
+  filenames.each!(filename => removeFile(filename));
 }
 
-void removeFile(string[] path, string pathSeparator = null) {
-  remove(path.join(pathSeparator is null ? dirSeparator : pathSeparator));
+void removeFile(string[] filepath) {
+  removeFile(normalizePath(filepath));
 }
 
-void removeFile(string path) {
-  if (path.isFile) {
-    return remove(path);
+void removeFile(string filename) {
+  if (filename.isFile) {
+    remove(normalizePath(filename));
   }
+}
+
+unittest {
+  // TODO: Add unittest for removeFile, removeFiles, removeFileInPath, removeFilesInPath
 }
 // #endregion Remove
 // #endregion DELETE

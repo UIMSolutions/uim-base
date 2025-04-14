@@ -6,7 +6,6 @@
 module uim.phobos.path;
 
 import uim.phobos;
-
 @safe:
 
 // #region normalizePath
@@ -21,8 +20,8 @@ auto normalizePath(string[] path) {
 unittest {
   version (Windows) {
     assert(normalizePath(["C:", "Windows", "System32"]) == "C:\\Windows\\System32");
-    assert(normalizePath(["C:", "Windows", "System32", ""]) == "C:\\Windows\\System32\\");
-    assert(normalizePath(["C:", "Windows", "System32", ".."]) == "C:\\Windows\\");
+    assert(normalizePath(["C:", "Windows", "System32", ""]) == "C:\\Windows\\System32");
+    assert(normalizePath(["C:", "Windows", "System32", ".."]) == "C:\\Windows");
     assert(normalizePath(["C:", "Windows", "System32", "..", ".."]) == "C:\\");
     assert(normalizePath(["C:", "Windows", "System32", "..", "..", "."]) == "C:\\");
 
