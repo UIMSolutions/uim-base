@@ -19,6 +19,8 @@ dependency ":vibe" version="*"
 dependency ":core" version="*"
 dependency ":oop" version="*"
 
+sourceFiles "./source/uim/base.d"
+
 sourcePaths "."
 importPaths "."
 
