@@ -31,7 +31,7 @@ import uim.core;
     }
 
     bool existsLink(string[] path) {
-      return existsPath(path.join(dirSeparator));
+      return existsPath(buildPath(path));
     }
 
     bool existsLink(string path) {

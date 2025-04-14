@@ -9,17 +9,13 @@ import uim.core;
 @safe:
 
 // #region CREATE
-  void createFile(string path) {
-    auto file = File(path, "w+");
-    file.close();
-  }
 // #endregion CREATE
 
 // #region READ
 // #region exists
   // #region Path 
     bool existsPath(string[] path) {
-      return exists(path.join(dirSeparator));
+      return exists(buildPath(path));
     }
 
     bool existsPath(string path) {

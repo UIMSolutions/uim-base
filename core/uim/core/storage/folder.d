@@ -31,7 +31,7 @@ import uim.core;
     }
 
     bool existsFolder(string[] path) {
-        return existsFolder(path.join(dirSeparator));
+        return existsFolder(buildPath(path));
     }
     
     bool existsFolder(string path) {
