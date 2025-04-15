@@ -1,6 +1,6 @@
 module uim.vibe.enumerations.loglevels;
 
-enum LogLevels : string {
+/* enum LogLevels : string {
   NONE = "none",
   EMERGENCY = "emergency",
   ALERT = "alert",
@@ -13,7 +13,7 @@ enum LogLevels : string {
   TRACE = "trace", // Information for locating events when no useful stack traces are available
   DIAGNOSTIC = "diagnostic", // Extended information (e.g. for more detailed error information)
 	FATAL = "fatal", // Error that forces the application to terminate
-}
+} */
 
 /* Vibe is using
 
