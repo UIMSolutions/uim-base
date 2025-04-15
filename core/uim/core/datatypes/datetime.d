@@ -15,41 +15,6 @@ version (test_uim_core) {
   }
 }
 
-enum startUNIX = DateTime(1970, 1, 1, 0, 0, 0);
-
-long toTimestamp(SysTime untilTime) {
-  return (untilTime - cast(SysTime) startUNIX).total!"hnsecs"();
-}
-
-// Convert a timestamp in string format (long value) to SysTime
-SysTime fromTimestamp(string aTimestamp) {
-  return fromTimestamp(to!long(aTimestamp));
-}
-
-// Convert a timestamp (long value) to SysTime
-SysTime fromTimestamp(long aTimestamp) {
-  return (cast(SysTime) startUNIX + aTimestamp.hnsecs);
-}
-
-long toJSTimestamp(long jsTimestamp) {
-  return (fromJSTimestamp(jsTimestamp) - cast(SysTime) startUNIX).total!"msecs"();
-}
-
-SysTime fromJSTimestamp(long jsTimestamp) {
-  return (cast(SysTime) startUNIX + jsTimestamp.msecs);
-}
-
-// Current SysTime based on System Clock
-auto now() {
-  return Clock.currTime();
-}
-
-unittest {
-  auto now1 = now;
-  auto now2 = now;
-  assert(now2 >= now1);
-}
-
 // Current DateTime based on System Clock
 DateTime nowDateTime() {
   return cast(DateTime) now;

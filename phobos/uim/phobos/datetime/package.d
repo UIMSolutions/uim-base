@@ -5,5 +5,6 @@
 *****************************************************************************************************************/
 module uim.phobos.datetime;
 
-import uim.phobos;
-@safe:
+public {
+    import uim.phobos.datatime.timestamp;
+}
