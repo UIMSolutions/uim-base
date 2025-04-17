@@ -13,6 +13,8 @@ dependency "vibe-d" version="~>0.10.2"
 dependency "unit-threaded" version="~>2.2.2"
 dependency "colored" version="~>0.0.31"
 
+sourceFiles "./source/uim/base.d"
+
 // Internal dependencies
 dependency ":phobos" version="*"
 dependency ":vibe" version="*"
