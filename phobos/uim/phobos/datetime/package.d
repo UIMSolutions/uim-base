@@ -6,5 +6,5 @@
 module uim.phobos.datetime;
 
 public {
-    import uim.phobos.datatime.timestamp;
+    import uim.phobos.datetime.timestamp;
 }
