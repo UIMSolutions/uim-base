@@ -1,6 +1,6 @@
-module uim.core.datatypes.json.keys;
+module uim.vibe.data.json.keys;
 
-import uim.core;
+import uim.data;
 
 @safe:
 
