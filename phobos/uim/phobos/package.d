@@ -68,3 +68,17 @@ public {
   import uim.phobos.uni;
   import uim.phobos.windows;
 }
+
+template Version(string name) {
+  const char[] Version = `
+version (`~name~`) {
+  import std.stdio;
+  import std.string;
+
+  unittest {
+    string mod = leftJustify(__MODULE__, 50, ' ');
+    writeln("-----  ", mod, " -----");
+  }
+}  
+`;
+}

@@ -39,20 +39,6 @@ alias DOUBLEAA = double[double];
 
 const dirSeparator = "\\";
 
-template Version(string name) {
-  const char[] Version = `
-version (`~name~`) {
-  import std.stdio;
-  import std.string;
-
-  unittest {
-    string mod = leftJustify(__MODULE__, 50, ' ');
-    writeln("-----  ", mod, " -----");
-  }
-}  
-`;
-}
-
 
 
 /+ +/

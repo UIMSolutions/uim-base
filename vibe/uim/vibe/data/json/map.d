@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.vibe.data.json.map;
 
-import uim.data;
+import uim.vibe;
 
 @safe:
 version (test_uim_core) {

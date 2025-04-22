@@ -1,6 +1,6 @@
 module uim.vibe.data.json.values;
 
-import uim.data;
+import uim.vibe;
 
 @safe:
 
