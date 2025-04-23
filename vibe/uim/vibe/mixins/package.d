@@ -7,3 +7,5 @@ module uim.vibe.mixins;
 
 import uim.vibe;
 @safe:
+
+public import uim.vibe.mixins.json;

@@ -1240,28 +1240,6 @@ bool isAllString(Json value, string[] keys) {
   return keys.all!(key => value.isString(key));
 }
 
-bool isString(Json value, string[] path) {
-  if (path.length == 0) {
-    return false;
-  }
-
-  if (path.length == 1) {
-    return value.isString(path[0]);
-  }
-
-  return path.length > 1 && value.hasKey(path[0]) 
-    ? value[path[0]].isString(path[1..$]) : false;
-}
-
-bool isString(Json value, string key) {
-  return value.hasKey(key)
-    ? value[key].isString : false;
-}
-
-bool isString(Json value) {
-  return (value.type == Json.Type.string);
-}
-
 unittest {
   assert(parseJsonString(`"a"`).isString);
   assert(!parseJsonString(`1.1`).isString);

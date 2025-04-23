@@ -139,8 +139,12 @@ bool isNull(Json value) {
 mixin(CheckJsonIs!("Null"));
 
 bool isNull(Json value, string[] path) {
-  if (uim.core.containers.arrays.array_.isEmpty(path)) {
+  if (value.isNull) {
     return true;
+  }
+
+  if (path.length == 0) {
+    return false;
   }
 
   auto firstKey = path[0];
@@ -149,7 +153,8 @@ bool isNull(Json value, string[] path) {
   }
 
   return path.length > 1
-    ? isNull(value[firstKey], path.removeFirst) : false;
+    ? isNull(value[firstKey], path[1..$]) 
+    : false;
 }
 
 bool isNull(Json value, string key) {
@@ -189,6 +194,87 @@ unittest {
   // TODO running test assert(parseJsonString(`#12abc`).isUndefined);
   assert(!parseJsonString(`1.1`).isUndefined);
 }
+
+// #region isBoolean
+mixin(CheckJsonIs!("Boolean"));
+bool isBooleanLike(Json value) {
+  if (value.isString) {
+    return isBoolean(value.getString);
+  }
+  
+  return value.isLong || value.isInteger
+    ? true // 0 - false; >0 - true   
+    : value.isBoolean;
+}
+
+
+bool isBoolean(Json value, string key) {
+  return value.hasKey(key) 
+    ? value[key].isBoolean 
+    : false;
+}
+
+bool isBoolean(Json value) {
+  return (value.type == Json.Type.bool_);
+}
+///
+unittest {
+  assert(Json(true).isBoolean);
+  assert(!Json("text").isBoolean);
+  assert(!Json(10).isBoolean);
+  assert(!Json(1.1).isBoolean);
+
+  Json map = Json.emptyObject;
+  map["one"] = Json(1);  
+  map["alfa"] = Json("text");
+  map["t"] = Json(true);  
+  map["f"] = Json(false);
+  assert(!map.isBoolean);  
+  assert(!map.isBoolean("one"));  
+  assert(!map.isBoolean("alfa"));  
+  assert(map.isBoolean("t"));  
+  assert(map.isBoolean("f"));  
+
+  assert(map.anyBoolean("one", "t"));  
+  assert(map.anyBoolean("f", "t"));  
+  assert(!map.anyBoolean("one", "alfa"));  
+
+  assert(map.allBoolean("f", "t"));
+  assert(!map.allBoolean("f", "alfa"));  
+  assert(!map.allBoolean("one", "alfa"));  
+
+  map = Json.emptyObject;
+  map["t"] = Json(true);  
+  map["f"] = Json(false);
+  assert(map.isAllBoolean);
+}
+// #endregion isBoolean
+
+// #region isString
+mixin(CheckJsonIs!("String"));
+
+bool isString(Json value, string[] path) {
+  if (path.length == 0) {
+    return false;
+  }
+
+  if (path.length == 1) {
+    return value.isString(path[0]);
+  }
+
+  return path.length > 1 && value.hasKey(path[0]) 
+    ? value[path[0]].isString(path[1..$]) : false;
+}
+
+bool isString(Json value, string key) {
+  return value.hasKey(key)
+    ? value[key].isString : false;
+}
+
+bool isString(Json value) {
+  return (value.type == Json.Type.string);
+}
+// #endregion isString
 
 // #region isEmpty
 bool isEmpty(Json value) {
@@ -754,38 +840,7 @@ Json getJson(Json value, string key) {
   return value;
 }
 
-// #region getBoolean 
-bool getBoolean(Json value, size_t index) {
-  return !value.isNull && value.isArray && value.length > index
-    ? value[index].getBoolean : false;
-}
 
-bool getBoolean(Json value, string key) {
-  return !value.isNull && value.isObject && value.hasKey(key)
-    ? value[key].getBoolean : false;
-}
-
-bool getBoolean(Json value) {
-  return !value.isNull && value.isBoolean
-    ? value.get!bool : false;
-}
-
-unittest {
-  Json jValue = Json(true);
-
-  Json jArray = Json.emptyArray;
-  jArray ~= true;
-  jArray ~= false;
-
-  Json jObject = Json.emptyObject;
-  jObject["true"] = true;
-  jObject["false"] = false;
-
-  assert(jValue.getBoolean); // == true
-  assert(jArray.getBoolean(0)); // == true
-  assert(jObject.getBoolean("true")); // == true
-}
-// #endregion getBoolean
 
 // #region getInteger 
 int getInteger(Json value, size_t index) {
@@ -1261,11 +1316,16 @@ Json onlyKeys(Json json, string[] keys...) {
 }
 
 Json onlyKeys(Json json, string[] keys) {
-  json.keys
-    .filter!(key => keys.hasValue(key))
-    .each!(key => json.removeKey(key));
+  if (!json.isObject || keys.length == 0) {
+    return Json(null);
+  }
+
+  auto result = Json.emptyObject;
+  keys
+    .filter!(key => json.hasKey(key))
+    .each!(key => result[key] = json[key]);
     
-  return json;
+  return result;
 }
 unittest {
   // TODO

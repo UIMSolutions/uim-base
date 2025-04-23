@@ -1,14 +1,9 @@
 module uim.vibe.data.json.keys;
 
+mixin(Version!("test_uim_vibe"));
+
 import uim.vibe;
-
 @safe:
-
-version (test_uim_core) {
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
 
 // #region keys
 // Get keys from json object

@@ -1,7 +1,25 @@
-module uim.core.mixins.json;
+module uim.vibe.mixins.json;
 
 template CheckJsonIs(string jsonType) {
   const char[] CheckJsonIs = `
+// Json[]
+bool all`~jsonType~`(Json[] values...) {
+  return all`~jsonType~`(values.dup);
+}
+
+bool all`~jsonType~`(Json[] values) {
+  return values.all`~jsonType~`(value => value.is`~jsonType~`);
+}
+
+bool any`~jsonType~`(Json[] values...) {
+  return any`~jsonType~`(values.dup);
+}
+
+bool any`~jsonType~`(Json[] values) {
+  return values.any`~jsonType~`(value => value.is`~jsonType~`);
+}
+
+// Json
 bool all`~jsonType~`(Json value, string[] keys...) {
   return value.all`~jsonType~`(keys.dup);
 }
