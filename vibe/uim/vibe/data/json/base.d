@@ -5,15 +5,10 @@
 *****************************************************************************************************************/
 module uim.vibe.data.json.base;
 
+mixin(Version!("test_uim_vibe"));
+
 import uim.vibe;
-
 @safe:
-
-version (test_uim_core) {
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
 
 // #region Null
 V Null(V : Json)() {
@@ -197,32 +192,51 @@ unittest {
 
 // #region isBoolean
 mixin(CheckJsonIs!("Boolean"));
-bool isBooleanLike(Json value) {
-  if (value.isString) {
-    return isBoolean(value.getString);
-  }
-  
-  return value.isLong || value.isInteger
-    ? true // 0 - false; >0 - true   
-    : value.isBoolean;
-}
 
-
-bool isBoolean(Json value, string key) {
+bool isBoolean(Json value, string key, bool strict = true) {
   return value.hasKey(key) 
-    ? value[key].isBoolean 
+    ? value[key].isBoolean(strict)
     : false;
 }
 
-bool isBoolean(Json value) {
+bool isBoolean(Json value, bool strict = true) {
+  if (!strict) {
+    if (value.isString) {
+      return (value.getString.lower == "false") || (value.getString.lower == "no") || (value.getString == "0") ||
+        (value.getString.lower == "true") || (value.getString.lower == "yes") || (value.getString == "1");
+    }
+
+    if (value.isLong || value.isInteger) {
+      return (value.getLong == 0) || (value.getLong == 1);
+    }
+
+    if (value.isDouble) {
+      return (value.getDouble == 0.0) && (value.getDouble == 1.0);
+    }
+  }
+
   return (value.type == Json.Type.bool_);
 }
 ///
 unittest {
+  // strict
   assert(Json(true).isBoolean);
   assert(!Json("text").isBoolean);
   assert(!Json(10).isBoolean);
   assert(!Json(1.1).isBoolean);
+
+  // not strict
+  assert(Json(true).isBoolean(false));
+  assert(Json("false").isBoolean(false));
+  assert(Json("true").isBoolean(false));
+  assert(Json("no").isBoolean(false));
+  assert(Json("yes").isBoolean(false));
+  assert(Json("0").isBoolean(false));
+  assert(Json("1").isBoolean(false));
+  assert(Json(0).isBoolean(false));
+  assert(Json(1).isBoolean(false));
+  assert(Json(0.0).isBoolean(false));
+  assert(Json(1.0).isBoolean(false));
 
   Json map = Json.emptyObject;
   map["one"] = Json(1);  
@@ -842,38 +856,6 @@ Json getJson(Json value, string key) {
 
 
 
-// #region getInteger 
-int getInteger(Json value, size_t index) {
-  return !value.isNull && value.isArray && value.length > index
-    ? value[index].getInteger : 0;
-}
-
-int getInteger(Json value, string key) {
-  return !value.isNull && value.isObject && value.hasKey(key)
-    ? value[key].getInteger : 0;
-}
-
-int getInteger(Json value) {
-  return !value.isNull && value.isInteger
-    ? value.get!int : 0;
-}
-
-unittest {
-  Json jValue = Json(1);
-
-  Json jArray = Json.emptyArray;
-  jArray ~= 1;
-  jArray ~= 2;
-
-  Json jObject = Json.emptyObject;
-  jObject["one"] = 1;
-  jObject["two"] = 2;
-
-  assert(jValue.getInteger == 1); // == true
-  assert(jArray.getInteger(0) == 1); // == true
-  assert(jObject.getInteger("one") == 1); // == true
-}
-// #endregion getInteger
 
 // #region getLong
 long getLong(Json value, size_t index) {
@@ -941,25 +923,7 @@ unittest {
 }
 // #endregion getFloat
 
-double getDouble(Json value, string key) {
-  return !value.isNull && value.isObject && value.hasKey(key)
-    ? value[key].getDouble : 0.0;
-}
 
-double getDouble(Json value) {
-  return !value.isNull && (value.isFloat || value.isDouble)
-    ? value.get!double : 0.0;
-}
-
-string getString(Json value, string key) {
-  return value.isObject && value.hasKey(key)
-    ? value[key].getString : null;
-}
-
-string getString(Json value) {
-  return value.isString
-    ? value.get!string : null;
-}
 
 // #region getArray
 Json[] getArray(Json value, string key) {

@@ -1,3 +1,8 @@
+/****************************************************************************************************************
+* Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *
+* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
+* Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
+*****************************************************************************************************************/
 module uim.vibe.data.json.integer;
 
 mixin(Version!("test_uim_vibe"));
@@ -88,6 +93,36 @@ unittest {
 // #endregion isInteger
 
 // #region get
+int getInteger(Json value, size_t index) {
+  return !value.isNull && value.isArray && value.length > index
+    ? value[index].getInteger : 0;
+}
+
+int getInteger(Json value, string key) {
+  return !value.isNull && value.isObject && value.hasKey(key)
+    ? value[key].getInteger : 0;
+}
+
+int getInteger(Json value) {
+  return !value.isNull && value.isInteger
+    ? value.get!int : 0;
+}
+
+unittest {
+  Json jValue = Json(1);
+
+  Json jArray = Json.emptyArray;
+  jArray ~= 1;
+  jArray ~= 2;
+
+  Json jObject = Json.emptyObject;
+  jObject["one"] = 1;
+  jObject["two"] = 2;
+
+  assert(jValue.getInteger == 1); // == true
+  assert(jArray.getInteger(0) == 1); // == true
+  assert(jObject.getInteger("one") == 1); // == true
+}
 // #endregion get
 
 // #region only

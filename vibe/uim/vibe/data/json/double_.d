@@ -3,16 +3,27 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.vibe.data.json;
+module uim.vibe.data.json.double_;
 
-public {
-    import uim.vibe.data.json.array_;
-    import uim.vibe.data.json.base;
-    import uim.vibe.data.json.boolean;
-    import uim.vibe.data.json.double_;
-    import uim.vibe.data.json.integer;
-    import uim.vibe.data.json.keys;
-    import uim.vibe.data.json.map;
-    import uim.vibe.data.json.string_;
-    import uim.vibe.data.json.values;
+mixin(Version!("test_uim_vibe"));
+
+import uim.vibe;
+@safe:
+
+// #region is
+// #endregion is
+
+// #region get
+double getDouble(Json value, string key) {
+  return !value.isNull && value.isObject && value.hasKey(key)
+    ? value[key].getDouble : 0.0;
 }
+
+double getDouble(Json value) {
+  return !value.isNull && (value.isFloat || value.isDouble)
+    ? value.get!double : 0.0;
+}
+// #endregion get
+
+// #region only
+// #endregion only

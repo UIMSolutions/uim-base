@@ -5,14 +5,10 @@
 *****************************************************************************************************************/
 module uim.vibe.data.json.map;
 
-import uim.vibe;
+mixin(Version!("test_uim_vibe"));
 
+import uim.vibe;
 @safe:
-version (test_uim_core) {
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
 
 // #region set
 // #region set multi
