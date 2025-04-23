@@ -27,12 +27,7 @@ bool isSet(V)(V[] values) {
 }
 ///
 unittest {
-
-}
-
-bool isSet(V)(V[] values, size_t[] index...) {
-  return isSet(values, index);
-
+  // TODO 
 }
 
 bool isSet(V)(V[] values, size_t[] index) {

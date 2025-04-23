@@ -13,12 +13,18 @@ import uim.vibe;
 // #region isInteger
 mixin(CheckJsonIs!("Integer"));
 
-bool isInteger(Json value, string key) {
+bool isInteger(Json value, string key, bool strict = true) {
   return value.hasKey(key)
-    ? value[key].isInteger : false;
+    ? value[key].isInteger(strict) : false;
 }
 
-bool isInteger(Json value) {
+bool isInteger(Json value, bool strict = true) {
+  if (!strict) {
+    if (value.isString) {
+      return Json(to!int(value.getString)).isInteger;
+    }
+  }
+  
   return (value.type == Json.Type.int_);
 }
 

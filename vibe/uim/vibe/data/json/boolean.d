@@ -10,9 +10,82 @@ mixin(Version!("test_uim_vibe"));
 import uim.vibe;
 @safe:
 
+// #region is
+mixin(CheckJsonIs!("Boolean"));
 
+bool isBoolean(Json value, string key, bool strict = true) {
+  return value.hasKey(key) 
+    ? value[key].isBoolean(strict)
+    : false;
+}
 
-// #region getBoolean 
+bool isBoolean(Json value, bool strict = true) {
+  if (!strict) {
+    if (value.isString) {
+      auto val = value.getString.toLower;
+      return (val == "false") || (val == "no") || (val == "0") ||
+        (val == "true") || (val == "yes") || (val == "1");
+    }
+
+    if (value.isLong || value.isInteger) {
+      return (value.getLong == 0) || (value.getLong == 1);
+    }
+
+    if (value.isDouble) {
+      return (value.getDouble == 0.0) && (value.getDouble == 1.0);
+    }
+  }
+
+  return (value.type == Json.Type.bool_);
+}
+///
+unittest {
+  // strict
+  assert(Json(true).isBoolean);
+  assert(!Json("text").isBoolean);
+  assert(!Json(10).isBoolean);
+  assert(!Json(1.1).isBoolean);
+
+  // not strict
+  assert(Json(true).isBoolean(false));
+  assert(Json("false").isBoolean(false));
+  assert(Json("true").isBoolean(false));
+  assert(Json("no").isBoolean(false));
+  assert(Json("yes").isBoolean(false));
+  assert(Json("0").isBoolean(false));
+  assert(Json("1").isBoolean(false));
+  assert(Json(0).isBoolean(false));
+  assert(Json(1).isBoolean(false));
+  assert(Json(0.0).isBoolean(false));
+  assert(Json(1.0).isBoolean(false));
+
+  Json map = Json.emptyObject;
+  map["one"] = Json(1);  
+  map["alfa"] = Json("text");
+  map["t"] = Json(true);  
+  map["f"] = Json(false);
+  assert(!map.isBoolean);  
+  assert(!map.isBoolean("one"));  
+  assert(!map.isBoolean("alfa"));  
+  assert(map.isBoolean("t"));  
+  assert(map.isBoolean("f"));  
+
+  assert(map.anyBoolean("one", "t"));  
+  assert(map.anyBoolean("f", "t"));  
+  assert(!map.anyBoolean("one", "alfa"));  
+
+  assert(map.allBoolean("f", "t"));
+  assert(!map.allBoolean("f", "alfa"));  
+  assert(!map.allBoolean("one", "alfa"));  
+
+  map = Json.emptyObject;
+  map["t"] = Json(true);  
+  map["f"] = Json(false);
+  assert(map.isAllBoolean);
+}
+// #endregion is
+
+// #region get 
 bool getBoolean(Json value, size_t index) {
   return !value.isNull && value.isArray && value.length > index
     ? value[index].getBoolean : false;
@@ -43,4 +116,4 @@ unittest {
   assert(jArray.getBoolean(0)); // == true
   assert(jObject.getBoolean("true")); // == true
 }
-// #endregion getBoolean
+// #endregion get

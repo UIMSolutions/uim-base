@@ -29,10 +29,7 @@ unittest {
 // #endregion allEndsNotWith
 
 // #region filterByValues
-/* string[string] filterByValues(string[string] entries, string[] values...) {
-  return filterByValues(entries, values.dup);
-}
-
+/* 
 string[string] filterByValues(string[string] entries, string[] values) {
   string[string] results;
   foreach (value; values) {

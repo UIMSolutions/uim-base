@@ -11,15 +11,46 @@ import uim.vibe;
 @safe:
 
 // #region is
+mixin(CheckJsonIs!("Double"));
+
+bool isDouble(Json value, string key) {
+  return value.hasKey(key) 
+    ? value[key].isDouble 
+    : false;
+}
+
+bool isDouble(Json value) {
+  return (value.type == Json.Type.float_);
+}
+
+unittest {
+  writeln("bool isDouble(Json value)");
+  assert(!Json(true).isDouble);  
+  assert(!Json(10).isDouble);  
+  assert(Json(1.1).isDouble);  
+  assert(!Json("text").isDouble);
+}
 // #endregion is
 
 // #region get
-double getDouble(Json value, string key) {
+double getDouble(Json value, string key, bool strict = true) {
   return !value.isNull && value.isObject && value.hasKey(key)
-    ? value[key].getDouble : 0.0;
+    ? value[key].getDouble(strict) : 0.0;
 }
 
-double getDouble(Json value) {
+double getDouble(Json value, bool strict = true) {
+  if (!strict) {
+    if (value.isBoolean) {
+      return value.get!bool ? 1.0 : 0.0;
+    }
+    if (value.isInteger) {
+      return to!double(value.get!int);
+    }
+    if (value.isString) {
+      return to!double(value.getString);
+    }
+  }
+
   return !value.isNull && (value.isFloat || value.isDouble)
     ? value.get!double : 0.0;
 }

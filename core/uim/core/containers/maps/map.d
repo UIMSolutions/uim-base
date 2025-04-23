@@ -39,11 +39,6 @@ unittest {
 
 // #region newWithoutKeys
 // Returns a new map without the specified keys
-T[string] newWithoutKeys(T)(T[string] items, string[] keys...) {
-  return newWithoutKeys(items, keys.dup);
-}
-
-// Returns a new map without the specified keys
 T[string] newWithoutKeys(T)(T[string] items, string[] keys) {
   T[string] results = items.dup;
   keys
@@ -80,11 +75,6 @@ unittest {
 // #endregion newWithoutKeys
 
 // #region withKeys
-// returns a new map with only the specified keys
-T[string] withKeys(T)(T[string] items, string[] keys...) {
-  return withKeys(items, keys.dup);
-}
-
 // returns a new map with only the specified keys
 T[string] withKeys(T)(T[string] items, string[] keys) {
   T[string] results;
@@ -397,10 +387,6 @@ unittest {
     return items.hasAnyValue(checkItems.values);
   }
 
-  bool hasAnyValue(T)(T[string] items, T[] values...) {
-    return items.hasAnyValue(values.dup);
-  }
-
   bool hasAnyValue(T)(T[string] items, T[] values) {
     return values.any!(value => items.hasValue(value));
   }
@@ -418,17 +404,9 @@ unittest {
     assert(map.hasValue(1)); 
     assert(!map.hasValue(5)); 
 
-    assert(map.hasAnyValue(1, 2)); 
-    assert(!map.hasAnyValue(6, 5)); 
-    assert(map.hasAnyValue(1, 5)); 
-
     assert(map.hasAnyValue([1, 2])); 
     assert(!map.hasAnyValue([6, 5])); 
     assert(map.hasAnyValue([1, 5])); 
-
-    assert(!map.hasAllValues(1, 5)); 
-    assert(!map.hasAllValues(6, 5)); 
-    assert(map.hasAllValues(1, 2)); 
 
     assert(!map.hasAllValues([1, 5])); 
     assert(!map.hasAllValues([6, 5])); 

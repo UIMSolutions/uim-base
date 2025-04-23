@@ -28,21 +28,7 @@ bool isMap(Json json) {
   return json.type == Json.Type.object;
 }
 
-// #region isObject
-bool isObject(Json json) {
-  return json.type == Json.Type.object;
-}
 
-unittest {
-  assert(parseJsonString(`{"a": "b"}`).isObject);
-  assert(!parseJsonString(`["a", "b", "c"]`).isObject);
-
-  Json json = Json.emptyObject;
-  json["a"] = "A";
-  json["one"] = 1;
-  assert(json.isObject);
-}
-// #endregion isObject
 
 // #region isArray
 bool isArray(Json json) {  
@@ -91,27 +77,6 @@ unittest {
 }
 // #endregion isFloat
 
-// #region isDouble
-bool isDouble(Json value, string key) {
-  return value.hasKey(key) 
-    ? value[key].isDouble 
-    : false;
-}
-
-bool isDouble(Json value) {
-  return (value.type == Json.Type.float_);
-}
-
-unittest {
-  writeln("bool isDouble(Json value)");
-  assert(!Json(true).isDouble);  
-  assert(!Json(10).isDouble);  
-  assert(Json(1.1).isDouble);  
-  assert(!Json("text").isDouble);
-}
-// #endregion isDouble
-
-
 // #region isLong
 bool isLong(Json value) {
   return (value.type == Json.Type.int_);
@@ -125,62 +90,6 @@ unittest {
 }
 // #endregion isLong
 
-// #region isNull
-// Check if json value is null
-bool isNull(Json value) {
-  return (value.type == Json.Type.null_);
-}
-
-mixin(CheckJsonIs!("Null"));
-
-bool isNull(Json value, string[] path) {
-  if (value.isNull) {
-    return true;
-  }
-
-  if (path.length == 0) {
-    return false;
-  }
-
-  auto firstKey = path[0];
-  if (value.isNull(firstKey)) {
-    return true;
-  }
-
-  return path.length > 1
-    ? isNull(value[firstKey], path[1..$]) 
-    : false;
-}
-
-bool isNull(Json value, string key) {
-  return value.isObject && value.hasKey(key) 
-    ? value[key].isNull
-    : true;
-}
-
-unittest {
-  assert(Json(null).isNull);
-  assert(!Json.emptyObject.isNull);
-  assert(!Json.emptyArray.isNull);
-
-  auto json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": "h"}]}`);
-  assert(json.isNull("x"));
-  assert(!json.isNull("a"));
-
-  assert(json.isNull(["x"]));
-  assert(!json.isNull(["a"]));
-  assert(json.isNull(["c", "x"]));
-  assert(!json.isNull(["c", "d"]));
-  assert(json.isNull(["c", "d", "x"]));
-
-  assert(json.allNull(["x", "y"]));
-  assert(!json.allNull(["a", "y"]));
-  assert(json.anyNull(["x", "y"]));
-  assert(!json.anyNull(["a", "c"]));
-}
-// #endregion isNull
-
-
 bool isUndefined(Json value) {
   return (value.type == Json.Type.undefined);
 }
@@ -190,105 +99,8 @@ unittest {
   assert(!parseJsonString(`1.1`).isUndefined);
 }
 
-// #region isBoolean
-mixin(CheckJsonIs!("Boolean"));
 
-bool isBoolean(Json value, string key, bool strict = true) {
-  return value.hasKey(key) 
-    ? value[key].isBoolean(strict)
-    : false;
-}
 
-bool isBoolean(Json value, bool strict = true) {
-  if (!strict) {
-    if (value.isString) {
-      return (value.getString.lower == "false") || (value.getString.lower == "no") || (value.getString == "0") ||
-        (value.getString.lower == "true") || (value.getString.lower == "yes") || (value.getString == "1");
-    }
-
-    if (value.isLong || value.isInteger) {
-      return (value.getLong == 0) || (value.getLong == 1);
-    }
-
-    if (value.isDouble) {
-      return (value.getDouble == 0.0) && (value.getDouble == 1.0);
-    }
-  }
-
-  return (value.type == Json.Type.bool_);
-}
-///
-unittest {
-  // strict
-  assert(Json(true).isBoolean);
-  assert(!Json("text").isBoolean);
-  assert(!Json(10).isBoolean);
-  assert(!Json(1.1).isBoolean);
-
-  // not strict
-  assert(Json(true).isBoolean(false));
-  assert(Json("false").isBoolean(false));
-  assert(Json("true").isBoolean(false));
-  assert(Json("no").isBoolean(false));
-  assert(Json("yes").isBoolean(false));
-  assert(Json("0").isBoolean(false));
-  assert(Json("1").isBoolean(false));
-  assert(Json(0).isBoolean(false));
-  assert(Json(1).isBoolean(false));
-  assert(Json(0.0).isBoolean(false));
-  assert(Json(1.0).isBoolean(false));
-
-  Json map = Json.emptyObject;
-  map["one"] = Json(1);  
-  map["alfa"] = Json("text");
-  map["t"] = Json(true);  
-  map["f"] = Json(false);
-  assert(!map.isBoolean);  
-  assert(!map.isBoolean("one"));  
-  assert(!map.isBoolean("alfa"));  
-  assert(map.isBoolean("t"));  
-  assert(map.isBoolean("f"));  
-
-  assert(map.anyBoolean("one", "t"));  
-  assert(map.anyBoolean("f", "t"));  
-  assert(!map.anyBoolean("one", "alfa"));  
-
-  assert(map.allBoolean("f", "t"));
-  assert(!map.allBoolean("f", "alfa"));  
-  assert(!map.allBoolean("one", "alfa"));  
-
-  map = Json.emptyObject;
-  map["t"] = Json(true);  
-  map["f"] = Json(false);
-  assert(map.isAllBoolean);
-}
-// #endregion isBoolean
-
-// #region isString
-mixin(CheckJsonIs!("String"));
-
-bool isString(Json value, string[] path) {
-  if (path.length == 0) {
-    return false;
-  }
-
-  if (path.length == 1) {
-    return value.isString(path[0]);
-  }
-
-  return path.length > 1 && value.hasKey(path[0]) 
-    ? value[path[0]].isString(path[1..$]) : false;
-}
-
-bool isString(Json value, string key) {
-  return value.hasKey(key)
-    ? value[key].isString : false;
-}
-
-bool isString(Json value) {
-  return (value.type == Json.Type.string);
-}
-// #endregion isString
 
 // #region isEmpty
 bool isEmpty(Json value) {
@@ -322,20 +134,20 @@ bool hasPath(Json json, string path, string separator = "/") {
   return hasPath(json, pathItems);
 }
 
-bool hasPath(Json value, string[] path) {
-  if (!value.isObject || path.length == 0) {
+bool hasPath(Json json, string[] path) {
+  if (!json.isObject || path.length == 0) {
     return false;
   }
 
-  auto firstKey = path.shift;
-  if (!value.hasKey(firstKey)) {
+  if (!json.hasKey(path[0])) {
     return false;
   }
 
-  return path.length > 0
-    ? value[firstKey].hasPath(path) : true;
+  return path.length == 1
+      ? true
+      : json[path[0]].hasPath(path[1..$]);
 }
-///
+
 unittest {
   auto json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": "h"}]}`);
   assert(json.hasPath(["c", "d"]));
@@ -842,20 +654,11 @@ Json getJson(Json value, string key) {
   if (value.isNull || !value.isObject) {
     return Json(null);
   }
-  if (value.hasKey(key)) {
-    return value[key];
-  }
-  if (key.contains(".")) {
-    auto keys = std.string.split(key, ".");
-    auto json = getJson(value, keys[0]);
-    return keys.length > 1 && !json.isNull
-      ? getJson(json, keys[1 .. $].join(".")) : json;
-  }
-  return value;
+  
+  return value.hasKey(key)
+    ? value[key]
+    : value;
 }
-
-
-
 
 // #region getLong
 long getLong(Json value, size_t index) {
