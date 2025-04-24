@@ -15,6 +15,7 @@ public {
     import uim.vibe.data.json.map;
     import uim.vibe.data.json.null_;
     import uim.vibe.data.json.object_;
+    import uim.vibe.data.json.scalar;
     import uim.vibe.data.json.string_;
     import uim.vibe.data.json.values;
 }

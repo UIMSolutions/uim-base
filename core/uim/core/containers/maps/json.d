@@ -258,18 +258,10 @@ unittest {
 // #region Getter
 Json getJson(Json[string] values, string key) {
   key = key.strip;
-  if (values.hasKey(key)) {
-    return values[key];
-  }
-  if (key.contains(".")) {
-    string[] keys = std.string.split(key, ".");
-    if (values.hasKey(keys[0])) {
-      auto json = getJson(values, keys[0]);
-      return keys.length > 1 && !uim.core.datatypes.json.isNull(json)
-        ? uim.core.datatypes.json.getJson(json, keys[1 .. $].join(".")) : json;
-    }
-  }
-  return Json(null);
+  
+  return values.hasKey(key)
+    ? values[key]
+    : Json(null);
 }
 
 unittest {
@@ -281,7 +273,7 @@ unittest {
 
 bool getBoolean(Json[string] values, string key, bool defaultValue = false) {
   auto json = getJson(values, key);
-  return !uim.core.datatypes.json.isNull(json)
+  return !(json == Json(null))
     ? json.get!bool : defaultValue;
 }
 unittest {
@@ -293,7 +285,7 @@ unittest {
 
 int getInteger(Json[string] values, string key, int defaultValue = 0) {
   auto json = getJson(values, key);
-  return !uim.core.datatypes.json.isNull(json)
+  return !(json == Json(null))
     ? json.get!int : defaultValue;
 }
 unittest {
@@ -305,7 +297,7 @@ unittest {
 
 long getLong(Json[string] values, string key, long defaultValue = 0) {
   auto json = getJson(values, key);
-  return !uim.core.datatypes.json.isNull(json)
+  return !(json == Json(null))
     ? json.get!long : defaultValue;
 }
 unittest {
@@ -317,7 +309,7 @@ unittest {
 
 double getDouble(Json[string] items, string key, double defaultValue = 0.0) {
   auto json = items.get(key, Json(null));
-  return !uim.core.datatypes.json.isNull(json)
+  return !(json == Json(null))
     ? json.get!double : defaultValue;
 }
 unittest {
@@ -329,7 +321,7 @@ unittest {
 
 string getString(Json[string] items, string key, string defaultValue = null) {
   auto json = items.get(key, Json(null));
-  return !uim.core.datatypes.json.isNull(json)
+  return !(json == Json(null))
     ? json.get!string : defaultValue;
 }
 unittest {
@@ -407,7 +399,7 @@ Json[] getArray(Json[string] map, string key, Json[] defaultValue = null) {
 // #region getMap
 Json[string] getMap(Json[string] values, string key, Json[string] defaultValue = null) {
   auto json = getJson(values, key);
-  return !uim.core.datatypes.json.isNull(json) && uim.core.datatypes.json.isObject(json)
+  return !(json == Json(null)) && isObject(json)
     ? json.get!(Json[string]) : defaultValue;
 }
 
@@ -474,59 +466,39 @@ unittest {
 
 // #region is
 bool isArray(Json[string] items, string key) {
-  return items.hasKey(key)
-    ? uim.core.datatypes.json.isArray(items[key]) : false;
+  return items.hasKey(key) && isArray(items[key]);
 }
 
-bool isBigInteger(Json[string] items, string key) {
-  return items.hasKey(key)
-    ? uim.core.datatypes.json.isBigInteger(items[key]) : false;
+bool isBigInteger(Json[string] items, string key, bool strict = true) {
+  return items.hasKey(key) && isBigInteger(items[key]);
 }
 
-bool isDouble(Json[string] items, string key) {
-  return items.hasKey(key)
-    ? uim.core.datatypes.json.isDouble(items[key]) : false;
+bool isDouble(Json[string] items, string key, bool strict = true) {
+  return items.hasKey(key) && isDouble(items[key]);
 }
 
-bool isEmpty(Json[string] items, string key) {
-  return items.hasKey(key)
-    ? uim.core.datatypes.json.isEmpty(items[key]) : false;
+bool isEmpty(Json[string] items, string key, bool strict = true) {
+  return items.hasKey(key) && isEmpty(items[key]);
 }
 
-bool isFloat(Json[string] items, string key) {
-  return items.hasKey(key)
-    ? uim.core.datatypes.json.isFloat(items[key]) : false;
+bool isFloat(Json[string] items, string key, bool strict = true) {
+  return items.hasKey(key) && isFloat(items[key]);
 }
 
-bool isIntegral(Json[string] items, string key) {
-  return items.hasKey(key)
-    ? uim.core.datatypes.json.isIntegral(items[key]) : false;
+bool isIntegral(Json[string] items, string key, bool strict = true) {
+  return items.hasKey(key) && isIntegral(items[key]);
 }
 
-bool isLong(Json[string] items, string key) {
-  return items.hasKey(key)
-    ? uim.core.datatypes.json.isLong(items[key]) : false;
+bool isLong(Json[string] items, string key, bool strict = true) {
+  return items.hasKey(key) && isLong(items[key]);
 }
 
-bool isNull(Json[string] items, string key) {
-  return items.hasKey(key)
-    ? uim.core.datatypes.json.isNull(items[key]) : false;
+bool isObject(Json[string] items, string key, bool strict = true) {
+  return items.hasKey(key) && isObject(items[key]);
 }
 
-bool isObject(Json[string] items, string key) {
-  return items.hasKey(key)
-    ? uim.core.datatypes.json.isObject(items[key]) : false;
-}
-
-bool isScalar(Json[string] items, string key) {
-  return items.hasKey(key)
-    ? uim.core.datatypes.json.isScalar(items[key]) : false;
-}
-
-
-bool isUndefined(Json[string] items, string key) {
-  return items.hasKey(key)
-    ? uim.core.datatypes.json.isUndefined(items[key]) : false;
+bool isUndefined(Json[string] items, string key, bool strict = true) {
+  return items.hasKey(key) && isUndefined(items[key]);
 }
 
 unittest {

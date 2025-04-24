@@ -117,3 +117,46 @@ unittest {
   assert(jObject.getBoolean("true")); // == true
 }
 // #endregion get
+
+// #region json[]
+bool isAnyBoolean(Json[] values...) {
+  return isAnyBoolean(values.dup);
+}
+
+bool isAnyBoolean(Json[] values) {
+  return values.any!(value => value.isBoolean);
+}
+
+bool isAllBoolean(Json[] values...) {
+  return isAllBoolean(values.dup);
+}
+
+bool isAllBoolean(Json[] values) {
+  return values.all!(value => value.isBoolean);
+}
+
+unittest {
+  auto values = [Json(true), Json(false)];
+  assert(values.isAllBoolean);
+
+  values = [Json(true), Json(1)];
+  assert(!values.isAllBoolean);
+
+  values = [Json(true), Json(false)];
+  assert(values.isAnyBoolean);
+
+  values = [Json(true), Json(1)];
+  assert(values.isAnyBoolean);
+
+  values = [Json("X"), Json(1)];
+  assert(!values.isAnyBoolean);
+}
+// #endregion json[]
+
+// #region Json[string]
+bool isBoolean(Json[string] items, string key) {
+  return key in items
+    ? items[key].isBoolean 
+    : false;
+}
+// #endregion Json[string]

@@ -14,12 +14,12 @@ import uim.vibe;
 // Check if json value is null
 mixin(CheckJsonIs!("Null"));
 
-bool isNull(Json value) {
-  return (value.type == Json.Type.null_);
+bool isNull(Json[string] items, string key, bool strict = true) {
+  return key in items && items[key].isNull(strict); 
 }
 
-bool isNull(Json value, string[] path) {
-  if (value.isNull) {
+bool isNull(Json json, string[] path) {
+  if (json.isNull) {
     return true;
   }
 
@@ -28,19 +28,37 @@ bool isNull(Json value, string[] path) {
   }
 
   auto firstKey = path[0];
-  if (value.isNull(firstKey)) {
+  if (json.isNull(firstKey)) {
     return true;
   }
 
   return path.length > 1
-    ? isNull(value[firstKey], path[1..$]) 
+    ? isNull(json[firstKey], path[1..$]) 
     : false;
 }
 
-bool isNull(Json value, string key) {
-  return value.isObject && value.hasKey(key) 
-    ? value[key].isNull
+bool isNull(Json json, string key, bool strict = true) {
+  return json.isObject && json.hasKey(key) 
+    ? json[key].isNull(strict)
     : true;
+}
+
+bool isNull(Json value, bool strict = true) {
+  if (!strict) {
+    if (value.isString) {
+      auto val = value.getString.toLower;
+      return (val == "null") || (val == "none") || (val == "nil") ||
+        (val == "undefined") || (val == "empty") || (val == "void");
+    }
+    if (value.isInteger) {
+      return value.get!int == 0;
+    }
+    if (value.isDouble) {
+      return value.get!double == 0.0;
+    }
+  }
+
+  return value == Json(null); // null value
 }
 
 unittest {
