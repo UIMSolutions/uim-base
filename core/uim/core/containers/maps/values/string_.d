@@ -10,7 +10,6 @@ mixin(Version!("test_uim_core"));
 import uim.core;
 @safe:
 
-
 // #region set
 /*   string[string] set(K, V:string, T)(string[string] items, string key, T value) if (!is(T == string) && !is(T == Json)) {
     return items.set(key, to!string(value));

@@ -5,15 +5,11 @@
 *****************************************************************************************************************/
 module uim.core.helpers.json;
 
-import uim.core;
+mixin(Version!("test_uim_core"));
 
+import uim.core;
 @safe:
 
-version (test_uim_core) {
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
 string jsonValue(bool value) {
     return value ? "true" : "false";
 }

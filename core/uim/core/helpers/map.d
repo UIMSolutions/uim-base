@@ -1,14 +1,9 @@
 module uim.core.helpers.map;
 
+mixin(Version!("test_uim_core"));
+
 import uim.core;
-
 @safe:
-
-version (test_uim_core) {
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
 
 class MapHelper {
   static V[K] create(K, V)() {

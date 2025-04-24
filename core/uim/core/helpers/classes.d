@@ -5,13 +5,10 @@
 *****************************************************************************************************************/
 module uim.core.helpers.classes;
 
+mixin(Version!("test_uim_core"));
+
 import uim.core;
-
 @safe:
-
-unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-}
 
 string baseName(ClassInfo classinfo) {
     string qualName = classinfo.name;
