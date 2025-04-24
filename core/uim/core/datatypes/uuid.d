@@ -5,15 +5,10 @@
 *****************************************************************************************************************/
 module uim.core.datatypes.uuid;
 
+mixin(Version!("test_uim_core"));
+
 import uim.core;
-
 @safe:
-
-version (test_uim_core) {
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
 
 enum NULLID = "00000000-0000-0000-0000-000000000000";
 enum NULLUUID = UUID(NULLID);

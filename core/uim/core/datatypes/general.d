@@ -5,15 +5,10 @@
 *****************************************************************************************************************/
 module uim.core.datatypes.general;
 
+mixin(Version!("test_uim_core"));
+
 import uim.core;
-
 @safe:
-
-version (test_uim_core) {
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
 
 size_t indexIn(T)(T value, T[] values) {
   foreach (i, ref v; values)

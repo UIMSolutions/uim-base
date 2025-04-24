@@ -5,12 +5,6 @@
 *****************************************************************************************************************/
 module uim.core.datatypes;
 
-import uim.core;
-
-unittest {
-  writeln("-----  ", __MODULE__, "\t  -----");
-}
-
 public {
   // import uim.core.datatypes.datetime;
   import uim.core.datatypes.boolean;

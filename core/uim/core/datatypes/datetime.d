@@ -5,15 +5,10 @@
 *****************************************************************************************************************/
 module uim.core.datatypes.datetime;
 
+mixin(Version!("test_uim_core"));
+
 import uim.core;
-
 @safe:
-
-version (test_uim_core) {
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
 
 // Current DateTime based on System Clock
 DateTime nowDateTime() {

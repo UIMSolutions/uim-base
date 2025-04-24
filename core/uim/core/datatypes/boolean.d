@@ -5,14 +5,10 @@
 *****************************************************************************************************************/
 module uim.core.datatypes.boolean;
 
-@safe:
-import uim.core;
+mixin(Version!("test_uim_core"));
 
-version (test_uim_core) {
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
+import uim.core;
+@safe:
 
 V Null(V : bool)() {
   return false;

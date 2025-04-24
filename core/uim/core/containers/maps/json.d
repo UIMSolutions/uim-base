@@ -5,16 +5,10 @@
 *****************************************************************************************************************/
 module uim.core.containers.maps.json;
 
+mixin(Version!("test_uim_core"));
+
 import uim.core;
 @safe:
-
-import uim.core.containers.maps.map;
-
-version (test_uim_core) {
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
 
 alias JMAP = Json[string];
 

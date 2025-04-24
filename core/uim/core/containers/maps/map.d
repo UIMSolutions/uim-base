@@ -5,14 +5,10 @@
 *****************************************************************************************************************/
 module uim.core.containers.maps.map;
 
-@safe:
-import uim.core;
+mixin(Version!("test_uim_core"));
 
-version (test_uim_core) {
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
+import uim.core;
+@safe:
 
 enum SORTED = true;
 enum NOTSORTED = false;
