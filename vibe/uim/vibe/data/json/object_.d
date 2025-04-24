@@ -66,3 +66,11 @@ unittest {
 
 // #region only
 // #endregion only
+
+// #region to
+Json[string] getObject(Json json) {
+  return json.isObject
+    ? json.to!(Json[string])
+    : null;
+}
+// #endregion to

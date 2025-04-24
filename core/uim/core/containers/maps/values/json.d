@@ -5,15 +5,10 @@
 *****************************************************************************************************************/
 module uim.core.containers.maps.values.json;
 
-@safe:
-import std.algorithm : startsWith, endsWith;
-import uim.core;
+mixin(Version!("test_uim_core"));
 
-version (test_uim_core) {
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
+import uim.core;
+@safe:
 
 
 /* Json[string] setNull(Json[string] items, string[] path) {

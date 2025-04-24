@@ -5,16 +5,10 @@
 *****************************************************************************************************************/
 module uim.core.containers.maps.values.string_;
 
-@safe:
-import std.algorithm : startsWith, endsWith;
-import uim.core;
-import uim.core.containers.maps.map;
+mixin(Version!("test_uim_core"));
 
-version (test_uim_core) {
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
+import uim.core;
+@safe:
 
 
 // #region set

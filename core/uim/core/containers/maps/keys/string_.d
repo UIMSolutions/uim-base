@@ -5,14 +5,11 @@
 *****************************************************************************************************************/
 module uim.core.containers.maps.keys.string_;
 
+mixin(Version!("test_uim_core"));
+
 import uim.core;
 @safe:
 
-version (test_uim_core) {
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
 /// Add prefix to key
 V[string] addPrefixKey(K : string, V)(ref V[string] items, K prefix) {
   items.dup.byKeyValue

@@ -5,14 +5,10 @@
 *****************************************************************************************************************/
 module uim.core.containers.arrays.string_;
 
+mixin(Version!("test_uim_core"));
+
 import uim.core;
 @safe:
-
-version (test_uim_core) {
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
 
 
 string[] getStringArray(Json[] values) {

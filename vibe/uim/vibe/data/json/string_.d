@@ -15,35 +15,6 @@ import uim.vibe;
 mixin(CheckJsonIs!("String"));
 
 // #region Json[string]
-bool isAllString(Json[string] map, bool strict = true) {
-  return map.byValue.all!(value => value.isString(strict));
-}
-
-bool isAllString(Json[string] map, string[] keys, bool strict = true) {
-  return keys.all!(key => map.isString(key, strict));
-}
-
-bool isAnyString(Json[string] map, bool strict = true) {
-  return map.byValue.any!(value => value.isString(strict));
-}
-
-bool isAnyString(Json[string] map, string[] keys = null, bool strict = true) {
-  return keys.any!(key => map.isString(key, strict));
-}
-
-bool isString(Json[string] map, string[] path, bool strict = true) {
-  if (path.length == 0) {
-    return false;
-  }
-
-  auto key = path[0];
-  return path.length == 1
-    ? map.isString(key, strict) : key in map && map[key].isString(path[1 .. $], strict);
-}
-
-bool isString(Json[string] map, string key, bool strict = true) {
-  return key in map && map[key].isString(strict);
-}
 unittest {
   Json[string] map;
   map["a"] = Json("a");
@@ -63,26 +34,6 @@ unittest {
 // #endregion Json[string]
 
 // #region Json[]
-bool isAllString(Json[] values, bool strict = true) {
-  return values.all!(value => value.isString);
-}
-
-bool isAllString(Json[] values, size_t[] indices, bool strict = true) {
-  return indices.all!(index => values.isString(index));
-}
-
-bool isAnyString(Json[] values, bool strict = true) {
-  return values.any!(value => value.isString(strict));
-}
-
-bool isAnyString(Json[] values, size_t[] indices, bool strict = true) {
-  return indices.any!(index => values.isString(index));
-}
-
-bool isString(Json[] values, size_t index, bool strict = true) {
-  return values.length > index && values[index].isString(strict);
-}
-
 unittest {
   auto values = [Json("a"), Json("b")];
   assert(values.isAnyString);
@@ -109,23 +60,15 @@ unittest {
 
 // #region Json
 bool isAllString(Json json, bool strict = true) {
-  if (json.isNull) {
-    return false;
-  }
-
-  if (json.isString) {
-    return true;
+  if (json.isObject) {
+    return isAllString(json.to!(Json[string]), strict);
   }
 
   if (json.isArray) {
     return isAllString(json.to!(Json[]), strict);
   }
 
-  if (json.isObject) {
-    return isAllString(json.to!(Json[string]), strict);
-  }
-
-  return false;
+  return json.isString;
 }
 
 bool isAllString(Json json, string[] keys, bool strict = true) {
@@ -133,23 +76,15 @@ bool isAllString(Json json, string[] keys, bool strict = true) {
 }
 
 bool isAnyString(Json json, bool strict = true) {
-  if (json.isNull) {
-    return false;
-  }
-
-  if (json.isString) {
-    return true;
+  if (json.isObject) {
+    return isAnyString(json.to!(Json[string]), strict);
   }
 
   if (json.isArray) {
     return isAnyString(json.to!(Json[]), strict);
   }
 
-  if (json.isObject) {
-    return isAnyString(json.to!(Json[string]), strict);
-  }
-
-  return false;
+  return json.isString;
 }
 
 bool isAnyString(Json json, string[] keys, bool strict = true) {

@@ -5,15 +5,10 @@
 *****************************************************************************************************************/
 module uim.core.containers.arrays.json;
 
+mixin(Version!("test_uim_core"));
+
 import uim.core;
-
 @safe:
-
-version (test_uim_core) {
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
 // to Json array
 
 Json[] toJsonArray(T)(T[] values) {
