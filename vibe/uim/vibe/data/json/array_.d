@@ -10,6 +10,25 @@ import uim.vibe;
 @safe:
 
 // #region is
+mixin(CheckJsonIs!("Array"));
+
+bool isArray(Json json, bool strict = true) {
+  if (!strict) {
+    // TODO: Future: Add support for array boolean, integer, float, and string.
+  }
+  return json != Json(null)
+    ? (json.type == Json.Type.array) : false;
+}
+
+unittest {
+  assert(parseJsonString(`["a", "b", "c"]`).isArray);
+  assert(!parseJsonString(`{"a": "b"}`).isArray);
+
+  Json json = Json.emptyArray;
+  json ~= Json("A");
+  json ~= Json(1);
+  assert(json.isArray);
+}
 // #endregion is
 
 // #region hasAll

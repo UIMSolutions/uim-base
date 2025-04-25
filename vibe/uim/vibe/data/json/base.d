@@ -31,91 +31,18 @@ bool isMap(Json json) {
 
 
 // #region isArray
-bool isArray(Json json) {  
-  return json != Json(null)
-    ? (json.type == Json.Type.array)
-    : false;
-}
 
-unittest {
-  assert(parseJsonString(`["a", "b", "c"]`).isArray);
-  assert(!parseJsonString(`{"a": "b"}`).isArray);
-
-  Json json = Json.emptyArray;
-  json ~= Json("A");
-  json ~= Json(1);
-  assert(json.isArray);
-}
 // #endregion isArray
 
-// #region isBigInteger
-bool isBigInteger(Json json) {
-  return (json.type == Json.Type.bigInt);
-}
-
-unittest {
-  assert(parseJsonString(`1000000000000000000000`).isBigInteger);
-  assert(!parseJsonString(`1`).isBigInteger);
-}
-// #endregion isBigInteger
-
-
-// #region isFloat
-bool isAllFloat(Json value) {
-  return (value.type == Json.Type.float_);
-}
-
-bool isFloat(Json value) {
-  return (value.type == Json.Type.float_);
-}
-
-unittest {
-  assert(!Json(true).isFloat);  
-  assert(!Json(10).isFloat);  
-  assert(Json(1.1).isFloat);  
-  assert(!Json("text").isFloat);
-}
-// #endregion isFloat
-
-// #region isLong
-bool isLong(Json value) {
-  return (value.type == Json.Type.int_);
-}
-unittest {
-  writeln("bool isLong(Json value)");
-  assert(!Json(true).isLong);  
-  assert(Json(10).isLong);  
-  assert(!Json(1.1).isLong);  
-  assert(!Json("text").isLong);
-}
-// #endregion isLong
-
-bool isUndefined(Json value) {
-  return (value.type == Json.Type.undefined);
-}
-
-unittest {
-  // TODO running test assert(parseJsonString(`#12abc`).isUndefined);
-  assert(!parseJsonString(`1.1`).isUndefined);
-}
 
 
 
 
-// #region isEmpty
-bool isEmpty(Json value, bool strict = true) {
-  if (value.isNull) {
-    return true;
-  }
 
-  if (value.isString) {
-    return value.getString.length == 0;
-  }
 
-  return false;
-  // TODO add not null, but empty
-}
-// #endregion isEmpty
+
+
+
 
 
 // #endregion is

@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.vibe.data.json.integral;
+module uim.vibe.data.json.undefined;
 
 mixin(Version!("test_uim_vibe"));
 
@@ -11,12 +11,23 @@ import uim.vibe;
 @safe:
 
 // #region is
-mixin(CheckJsonIs!("Integral"));
+mixin(CheckJsonIs!("Undefined"));
 
-bool isIntegral(Json value, bool strict = true) {
+bool isUndefined(Json value, bool strict = true) {
   if (!strict) {
-    // Future: Add support for BigInt and other integral types.
+    // Future: Add support for undefined boolean, integer, float, and string.
   }
-  return value.isLong(strict);
+  return (value.type == Json.Type.undefined);
+}
+
+unittest {
+  auto json = Json(undefined);
+  assert(json.isUndefined);
+  assert(!json.isInteger);
+  assert(!json.isFloat);
+  assert(!json.isString);
+  assert(!json.isBoolean);
+  assert(!json.isArray);
+  assert(!json.isObject);
 }
 // #endregion is

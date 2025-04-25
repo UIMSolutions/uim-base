@@ -3,20 +3,28 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.vibe.data.json.integral;
+module uim.vibe.data.json.float_;
 
 mixin(Version!("test_uim_vibe"));
 
 import uim.vibe;
+
 @safe:
 
-// #region is
-mixin(CheckJsonIs!("Integral"));
+// #region is   
+mixin(CheckJsonIs!("Float"));
 
-bool isIntegral(Json value, bool strict = true) {
-  if (!strict) {
-    // Future: Add support for BigInt and other integral types.
+bool isFloat(Json value, bool strict = true) {
+  if (!strict) {  
+    // TODO: Future: Implement a more generic check for float values.
   }
-  return value.isLong(strict);
+  return (value.type == Json.Type.float_);
 }
-// #endregion is
+
+unittest {
+  auto json = Json(1.1);
+  assert(json.isFloat);
+  assert(!json.isInteger);
+
+}
+// #region is   

@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.vibe.data.json.integral;
+module uim.vibe.data.json.biginteger;
 
 mixin(Version!("test_uim_vibe"));
 
@@ -11,12 +11,17 @@ import uim.vibe;
 @safe:
 
 // #region is
-mixin(CheckJsonIs!("Integral"));
+mixin(CheckJsonIs!("BigInteger"));
 
-bool isIntegral(Json value, bool strict = true) {
+bool isBigInteger(Json json, bool strict = true) {
   if (!strict) {
-    // Future: Add support for BigInt and other integral types.
+    // TODO: Future: Implement a more generic check for big integers.
   }
-  return value.isLong(strict);
+  return (json.type == Json.Type.bigInt);
+}
+
+unittest {
+  assert(parseJsonString(`1000000000000000000000`).isBigInteger);
+  assert(!parseJsonString(`1`).isBigInteger);
 }
 // #endregion is
