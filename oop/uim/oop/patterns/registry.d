@@ -143,17 +143,12 @@ class DObjectRegistry(T : UIMObject) {
   // #endregion clone
 
   // #region remove
-  O removeKey(this O)(string[] keys...) {
-    removeKey(keys.dup);
-    return cast(O)this;
-  }
-
-  O removeKey(this O)(string[] keys) {
+  O removeKeys(this O)(string[] keys) {
     keys.all!(reg => removeKey(reg));
     return cast(O)this;
   }
 
-  O remove(this O)(string key) {
+  O removeKey(this O)(string key) {
     _objects.removeKey(key);
     return cast(O)this;
   }
@@ -163,7 +158,7 @@ class DObjectRegistry(T : UIMObject) {
     return cast(O)this;
   }
 
-  O clear(this O)() {
+  O clearAll(this O)() {
     _objects = null;
     return cast(O)this;
   }

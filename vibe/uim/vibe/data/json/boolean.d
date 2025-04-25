@@ -113,16 +113,8 @@ unittest {
 // #endregion get
 
 // #region json[]
-bool isAnyBoolean(Json[] values...) {
-  return isAnyBoolean(values.dup);
-}
-
 bool isAnyBoolean(Json[] values) {
   return values.any!(value => value.isBoolean);
-}
-
-bool isAllBoolean(Json[] values...) {
-  return isAllBoolean(values.dup);
 }
 
 bool isAllBoolean(Json[] values) {

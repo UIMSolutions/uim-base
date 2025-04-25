@@ -10,10 +10,6 @@ import uim.core;
 @safe:
 
 // #region CREATE
-void createFilesInPath(string path, string[] filenames...) {
-  createFilesInPath(path, filenames.dup);
-}
-
 void createFilesInPath(string path, string[] filenames) {
   filenames.each!(filename => createFileInPath(path, filename));
 }
@@ -24,10 +20,6 @@ void createFileInPath(string[] path, string filename) {
 
 void createFileInPath(string path, string filename) {
   createFile(normalizePath(path, filename));
-}
-
-void createFiles(string[] filenames...) {
-  createFiles(filenames.dup);
 }
 
 void createFiles(string[] filenames) {
@@ -49,28 +41,15 @@ unittest {
   assert(existsAllFiles([tempDir~"test1.txt", tempDir~"test2.txt", tempDir~"test3.txt"]));
   removeFiles([tempDir~"test1.txt", tempDir~"test2.txt", tempDir~"test3.txt"]);
   assert(!existsAnyFiles([tempDir~"test1.txt", tempDir~"test2.txt", tempDir~"test3.txt"]));
-
-  createFiles(tempDir~"test1.txt", tempDir~"test2.txt", tempDir~"test3.txt");
-  assert(existsAllFiles(tempDir~"test1.txt", tempDir~"test2.txt", tempDir~"test3.txt"));
-  removeFiles(tempDir~"test1.txt", tempDir~"test2.txt", tempDir~"test3.txt");
-  assert(!existsAnyFiles(tempDir~"test1.txt", tempDir~"test2.txt", tempDir~"test3.txt"));
 }
 // #endregion CREATE
 
 // #region READ
 // #region Exists
-bool existsAllFiles(string[] paths...) {
-  return existsAllFiles(paths.dup);
-}
-
 bool existsAllFiles(string[] paths) {
   return paths.length == 0
     ? false  // Empty array, no files to check
      : paths.all!(path => existsFile(path));
-}
-
-bool existsAnyFiles(string[] paths...) {
-  return existsAnyFiles(paths.dup);
 }
 
 bool existsAnyFiles(string[] paths) {
@@ -112,14 +91,8 @@ unittest {
     assert(existsAnyFiles(["C:/Windows/System32/cmd.exe", "C:/Windows/NotARealFolder/NotARealFile.txt"]));
     assert(!existsAnyFiles(["C:/Windows/NotARealFolder/NotFile.txt", "C:/Windows/NotARealFolder/NotARealFile.txt"]));
 
-    assert(existsAnyFiles("C:/Windows/System32/cmd.exe", "C:/Windows/NotARealFolder/NotARealFile.txt"));
-    assert(!existsAnyFiles("C:/Windows/NotARealFolder/NotARealFile.txt", "C:/Windows/NotARealFolder/NotARealFile.txt"));
-
     assert(existsAllFiles(["C:/Windows/System32/cmd.exe", "C:/Windows/System32/cmd.exe"]));
     assert(!existsAllFiles(["C:/Windows/NotARealFolder/NotARealFile.txt", "C:/Windows/System32/cmd.exe"]));
-
-    assert(existsAllFiles("C:/Windows/System32/cmd.exe", "C:/Windows/System32/cmd.exe"));
-    assert(!existsAllFiles("C:/Windows/NotARealFolder/NotARealFile.txt", "C:/Windows/System32/cmd.exe"));
   }
   version (Linux) {
     assert(existsFile("/usr/bin/bash"));

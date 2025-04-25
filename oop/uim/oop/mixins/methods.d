@@ -12,16 +12,8 @@ import uim.oop;
 // This mixin is used to generate methods for the classes that implement the methods.
 string isMethods(string plural, string singular, string keyType) {
   return `
-    bool isAll{plural}({keyType}[] keys...) {
-      return isAll{plural}(keys.dup);
-    }
-
     bool isAll{plural}({keyType}[] keys) {
       return keys.all!(key => is{singular}(key));
-    }
-
-    bool isAny{plural}({keyType}[] keys...) {
-      return isAny{plural}(keys.dup);
     }
 
     bool isAny{plural}({keyType}[] keys) {

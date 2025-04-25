@@ -8,7 +8,6 @@ module uim.vibe.data.json.float_;
 mixin(Version!("test_uim_vibe"));
 
 import uim.vibe;
-
 @safe:
 
 // #region is   

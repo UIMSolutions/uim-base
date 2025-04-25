@@ -24,11 +24,7 @@ interface IKeyAndPath {
     // #region keys
     string[] keys();
 
-    bool hasAllKeys(string[] keys...);
-
     bool hasAllKeys(string[] keys);
-
-    bool hasAnyKeys(string[] keys...);
 
     bool hasAnyKeys(string[] keys);
 
@@ -43,8 +39,6 @@ interface IKeyAndPath {
     bool removePaths(string[][] paths); 
 
     bool removePath(string[] path); 
-
-    bool removeKeys(string[] keys...); 
 
     bool removeKeys(string[] keys); 
 

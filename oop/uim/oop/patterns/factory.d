@@ -7,146 +7,140 @@ module uim.oop.patterns.factory;
 
 version (test_uim_oop) {
   import std.stdio;
-  
+
   unittest {
     writeln("-----  ", __MODULE__, "\t  -----");
   }
 }
 
 import uim.oop;
+
 @safe:
 
 class DFactory(T : UIMObject) : UIMObject, IKeyAndPath {
-    this() {
-        super();
+  this() {
+    super();
+  }
+
+  this(Json[string] initData) {
+    super(initData);
+  }
+
+  this(string newName, Json[string] initData = null) {
+    super(newName, initData);
+  }
+
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return true;
     }
 
-    this(Json[string] initData) {
-        super(initData);
+    name("Attribute");
+
+    return true;
+  }
+
+  protected static DFactory!T _factory;
+  protected T delegate(Json[string] options = null)[string] _workers;
+  public static DFactory!T factory() {
+    if (_factory is null) {
+      _factory = new DFactory!T;
     }
+    return _factory;
+  }
 
-    this(string newName, Json[string] initData = null) {
-        super(newName, initData);
-    }
+  protected string _pathSeparator = ".";
 
-    override bool initialize(Json[string] initData = null) {
-        if (!super.initialize(initData)) {
-            return true;
-        }
+  // #region paths
+  string[][] paths() {
+    return _workers.keys.map!(key => key.split(_pathSeparator)).array;
+  }
 
-        name("Attribute");
+  bool hasAllPaths(string[][] paths) {
+    return paths.all!(path => hasPath(path));
+  }
 
-        return true;
-    }
+  bool hasAnyPaths(string[][] paths) {
+    return paths.any!(path => hasPath(path));
+  }
 
-    protected static DFactory!T _factory;
-    protected T delegate(Json[string] options = null)[string] _workers;
-    public static DFactory!T factory() {
-        if (_factory is null) {
-            _factory = new DFactory!T;
-        }
-        return _factory;
-    }
-
-    protected string _pathSeparator = ".";
-
-    // #region paths
-    string[][] paths() {
-            return _workers.keys.map!(key => key.split(_pathSeparator)).array;
-        }
-
-    bool hasAllPaths(string[][] paths) {
-            return paths.all!(path => hasPath(path));
-        }
-
-    bool hasAnyPaths(string[][] paths) {
-            return paths.any!(path => hasPath(path));
-        }
-        
-        bool hasPath(string[] path) {
-            return hasKey(path.join(_pathSeparator));
-        }
+  bool hasPath(string[] path) {
+    return hasKey(path.join(_pathSeparator));
+  }
   // #endregion paths
 
-    // #region keys
-    string[] keys() {
-            return _workers.keys;
-        }
+  // #region keys
+  string[] keys() {
+    return _workers.keys;
+  }
 
-    bool hasAllKeys(string[] keys...) {
-            return hasAllKeys(keys.dup);
-        }
+  bool hasAllKeys(string[] keys) {
+    return keys.all!(key => hasKey(key));
+  }
 
-    bool hasAllKeys(string[] keys) {
-            return keys.all!(key => hasKey(key));
-        }
+  bool hasAnyKeys(string[] keys) {
+    return keys.any!(key => hasKey(key));
+  }
 
-    bool hasAnyKeys(string[] keys...) {
-            return hasAnyKeys(keys.dup);
-        }
+  bool hasKey(string key) {
+    return key in _workers ? true : false;
+  }
 
-    bool hasAnyKeys(string[] keys) {
-            return keys.any!(key => hasKey(key));
-        }
+  string correctKey(string[] path) {
+    return correctKey(path.join(_pathSeparator));
+  }
 
-    bool hasKey(string key) {
-            return key in _workers ? true : false;
-        }
-
-        string correctKey(string[] path) {
-            return correctKey(path.join(_pathSeparator));
-        }
-
-        string correctKey(string key) {
-            return key.strip;
-        }
+  string correctKey(string key) {
+    return key.strip;
+  }
   // #endregion keys
 
-    void set(string workerName, T delegate(Json[string] options = null) @safe workFunc) {
-        _workers[workerName] = workFunc;
-    }
+  void set(string workerName, T delegate(Json[string] options = null) @safe workFunc) {
+    _workers[workerName] = workFunc;
+  }
 
-    T path(string[] path, Json[string] options = null) @safe {
-        return create(correctKey(path), options);
-    }
+  T path(string[] path, Json[string] options = null) @safe {
+    return create(correctKey(path), options);
+  }
 
-    T create(string key, Json[string] options = null) @safe {
-        return correctKey(key) in _workers
-            ? _workers[correctKey(key)](options) : null;
-    }
-    T opIndex(string key, Json[string] options = null) {
-        return create(key, options);
-    }
+  T create(string key, Json[string] options = null) @safe {
+    return correctKey(key) in _workers
+      ? _workers[correctKey(key)](options) : null;
+  }
 
-    // #region remove
-    bool removePaths(string[][] paths) {
-            return paths.all!(path => removePath(path));
-        }
+  T opIndex(string key, Json[string] options = null) {
+    return create(key, options);
+  }
 
-    bool removePath(string[] path) {
-            return removeKey(correctKey(path));
-        }
+  // #region remove
+  bool removePaths(string[][] paths) {
+    return paths.all!(path => removePath(path));
+  }
 
-    bool removeKeys(string[] keys...) {
-            return removeKeys(keys.dup);
-        }
+  bool removePath(string[] path) {
+    return removeKey(correctKey(path));
+  }
 
-    bool removeKeys(string[] keys) {
-            return keys.all!(key => removeKey(key));
-        }
+  bool removeKeys(string[] keys...) {
+    return removeKeys(keys.dup);
+  }
 
-    bool removeKey(string key) {
-            return removeKey(correctKey(key));
-        } 
+  bool removeKeys(string[] keys) {
+    return keys.all!(key => removeKey(key));
+  }
 
-    void clear() {
-            _workers = null; 
-        }
+  bool removeKey(string key) {
+    return removeKey(correctKey(key));
+  }
+
+  void clear() {
+    _workers = null;
+  }
   // #endregion remove
 }
 
 unittest {
-    /* class Test : UIMObject {
+  /* class Test : UIMObject {
         this() {
             this.name("Test");
         }

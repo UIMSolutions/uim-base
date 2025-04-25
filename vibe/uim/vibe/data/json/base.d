@@ -418,10 +418,6 @@ unittest {
   assert(jsonWithMinVersion([json3, json3, json2])["versionNumber"].get!size_t == 2);
 }
 
-Json jsonWithMaxVersion(Json[] jsons...) {
-  return jsonWithMaxVersion(jsons.dup);
-}
-
 Json jsonWithMaxVersion(Json[] jsons) {
   if (jsons.length == 0) {
     return Json(null);

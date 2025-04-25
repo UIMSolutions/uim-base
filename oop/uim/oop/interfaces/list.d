@@ -20,14 +20,11 @@ interface IList(T) {
   // Appends all of the elements in the specified collection to the end of this list, in the order that they are returned by the specified collection's iterator (optional operation).
   // bool addAll(Collection!T addItems);
 
-  bool addAll(T[] addItems);
-
-  bool addAll(T[] addItems...); */
+  bool addAll(T[] addItems); */
 /* 
   // Inserts all of the elements in the specified collection into this list at the specified position (optional operation).
   bool addAll(int index, Collection!T addItems);
   bool addAll(int index, T[] addItems);
-  bool addAll(int index, T[] addItems...);
    /
 
   // Removes all of the elements from this list (optional operation).
@@ -61,8 +58,6 @@ interface IList(T) {
   bool retainAll(Collection!T retainItems);
 
   bool retainAll(T[] retainItems);
-
-  bool retainAll(T[] retainItems...);
 
   // Replaces the element at the specified position in this list with the specified element (optional operation).
   /* E  set(int index, E element);*/

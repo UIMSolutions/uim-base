@@ -326,14 +326,10 @@ unittest {
 }
 
 // #region getStringArray
-string[] getStringArray(Json[string] items, string[] keys...) {
-  return getStringArray(items, (keys.length == 0) ? items.keys : keys.dup);
-}
-
-string[] getStringArray(Json[string] items, string[] keys) {
+string[] getStringArray(Json[string] map, string[] keys) {
   return keys
-    .filter!(key => items.hasKey(key))
-    .map!(key => items.getString(key))
+    .filter!(key => map.hasKey(key))
+    .map!(key => map.getString(key))
     .array;
 }
 
@@ -351,13 +347,6 @@ unittest {
 // #endregion getStringArray
 
 // #region getStringMap
-string[string] getStringMap(Json[string] items, string[] keys...) {
-  if (keys.length == 0) {
-    return getStringMap(items, items.keys);
-  }
-  return getStringMap(items, keys.dup);
-}
-
 string[string] getStringMap(Json[string] items, string[] keys) {
   STRINGAA results;
   keys.each!(key => results[key] = items.getString(key));
@@ -377,23 +366,23 @@ unittest {
 }
 // #endregion getStringMap
 
-Json getJson(Json[string] values, string key, Json defaultValue = Json(null)) {
-  return key in values
-    ? values[key] : defaultValue;
+Json getJson(Json[string] map, string key, Json defaultValue = Json(null)) {
+  return key in map
+    ? map[key] : defaultValue;
 }
 
 // #region getArray
 Json[] getArray(Json[string] map, string key, Json[] defaultValue = null) {
-  return values.isArray(key)
+  return map.isArray(key)
     ? map[key].get!(Json[])
     : defaultValue;
 }
 // #endregion getArray
 
 // #region getMap
-Json[string] getMap(Json[string] values, string key, Json[string] defaultValue = null) {
-  return values.isObject(key)
-    ? values[key].get!(Json[string]) : defaultValue;
+Json[string] getMap(Json[string] map, string key, Json[string] defaultValue = null) {
+  return map.isObject(key)
+    ? map[key].get!(Json[string]) : defaultValue;
 }
 
 unittest {

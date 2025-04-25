@@ -13,6 +13,10 @@ import uim.vibe;
 mixin(CheckJsonIs!("Array"));
 
 bool isArray(Json json, bool strict = true) {
+  if (json == Json(null)) {
+    return false;
+  }
+
   if (!strict) {
     // TODO: Future: Add support for array boolean, integer, float, and string.
   }
@@ -32,16 +36,8 @@ unittest {
 // #endregion is
 
 // #region hasAll
-bool hasAll(T)(Json json, T[] values...) {
-  return json.hasAll(values.dup);
-}
-
 bool hasAll(T)(Json json, T[] values) {
   return json.hasAll(values.map!(value => value.toJson).array);
-}
-
-bool hasAll(Json json, Json[] values...) {
-  return json.hasAll(values.dup);
 }
 
 bool hasAll(Json json, Json[] values) {
@@ -53,16 +49,8 @@ bool hasAll(Json json, Json[] values) {
 // #endregion hasAll
 
 // #region hasAny
-bool hasAny(T)(Json json, T[] values...) {
-  return json.hasAny(values.dup);
-}
-
 bool hasAny(T)(Json json, T[] values) {
   return json.hasAny(values.map!(value => value.toJson).array);
-}
-
-bool hasAny(Json json, Json[] values...) {
-  return json.hasAny(values.dup);
 }
 
 bool hasAny(Json json, Json[] values) {
@@ -101,25 +89,13 @@ unittest {
   assert(json.hasAny([Json(1), Json(2), Json(10)]));
   assert(!json.hasAny([Json(10), Json(12), Json(13)]));
 
-  assert(json.hasAny(Json(1), Json(2), Json(10)));
-  assert(!json.hasAny(Json(10), Json(12), Json(13)));
-
   assert(json.hasAny([1, 2, 10]));
   assert(!json.hasAny([10, 12, 13]));
-
-  assert(json.hasAny(1, 2, 10));
-  assert(!json.hasAny(10, 12, 13));
 
   assert(json.hasAll([Json(1), Json(2), Json(3)]));
   assert(!json.hasAll([Json(1), Json(12), Json(13)]));
 
-  assert(json.hasAll(Json(1), Json(2), Json(3)));
-  assert(!json.hasAll(Json(1), Json(12), Json(13)));
-
   assert(json.hasAll([1, 2, 3]));
   assert(!json.hasAll([1, 12, 13]));
-
-  assert(json.hasAll(1, 2, 3));
-  assert(!json.hasAll(1, 12, 13));
 }
 // #endregion has
