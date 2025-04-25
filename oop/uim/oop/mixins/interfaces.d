@@ -14,12 +14,8 @@ import uim.oop;
 // This mixin is used to generate interfaces for the classes that implement the interfaces.
 string isInterfaces(string plural, string singular, string keyType) {
   return `
-    bool isAll{plural}({keyType}[] keys...);
     bool isAll{plural}({keyType}[] keys);
-
-    bool isAny{plural}({keyType}[] keys...);
     bool isAny{plural}({keyType}[] keys);
-
     bool is{singular}({keyType} key);
   `
   .replace("{plural}", plural)

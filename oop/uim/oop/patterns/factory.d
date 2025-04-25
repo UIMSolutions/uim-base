@@ -121,10 +121,6 @@ class DFactory(T : UIMObject) : UIMObject, IKeyAndPath {
     return removeKey(correctKey(path));
   }
 
-  bool removeKeys(string[] keys...) {
-    return removeKeys(keys.dup);
-  }
-
   bool removeKeys(string[] keys) {
     return keys.all!(key => removeKey(key));
   }

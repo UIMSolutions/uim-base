@@ -80,6 +80,30 @@ bool isAny`~type~`(Json json, string[] keys, bool strict = true) {
   return keys.any!(key => json.is`~type~`(key, strict));
 }
 
+bool is`~type~`(Json json, string[] path, bool strict = true) { 
+  `~(type == "Null"
+  ? "if (json.isNull) {
+    return true;
+  }
+
+  if (path.length == 0 && json == Json(null)) {
+    return true;
+  }"
+  
+  : "if (json.isNull) {
+    return false;
+  }
+
+  if (path.length == 0 && json == Json(null)) {
+    return false;
+  }")
+  ~`
+
+  auto key = path[0];
+  return path.length == 1
+    ? json.is`~type~`(key, strict) : json.hasKey(key) && json[key].is`~type~`(path[1 .. $], strict);
+}
+
 bool is`~type~`(Json json, string key, bool strict = true) {
   return key in json && json[key].is`~type~`(strict);
 }

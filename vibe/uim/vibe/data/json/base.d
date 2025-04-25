@@ -381,10 +381,6 @@ unittest {
 }
 // #endregion merge
 
-Json jsonWithMinVersion(Json[] jsons...) {
-  return jsonWithMinVersion(jsons.dup);
-}
-
 Json jsonWithMinVersion(Json[] jsons) {
   if (jsons.length == 0) {
     return Json(null);
@@ -978,10 +974,6 @@ unittest {
 // #endregion count
 
 // #region remove
-Json removeKeys(Json json, string[] keys...) {
-  return removeKeys(json, keys.dup);
-}
-
 Json removeKeys(Json json, string[] keys) {
   keys.each!(key => json = json.removeKey(key));
   return json;
@@ -994,10 +986,6 @@ Json removeKey(Json json, string key) {
 // #endregion remove
 
 // #region filter
-Json onlyKeys(Json json, string[] keys...) {
-  return onlyKeys(json, keys.dup);
-}
-
 Json onlyKeys(Json json, string[] keys) {
   if (!json.isObject || keys.length == 0) {
     return Json(null);

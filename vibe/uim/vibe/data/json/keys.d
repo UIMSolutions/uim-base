@@ -25,22 +25,12 @@ unittest {
 
 // #region hasKey
 // Check if json has key
-bool hasAllKeys(Json json, string[] keys...) {
-  return hasAllKeys(json, keys.dup, false);
-}
-
-// Check if json has key
 bool hasAllKeys(Json json, string[] keys) {
   return keys.all!(key => hasKey(json, key, false));
 }
 
 bool hasAllKeys(Json json, string[] keys, bool deepSearch) {
   return keys.all!(key => hasKey(json, key, deepSearch));
-}
-
-/// Check if Json has key
-bool hasAnyKeys(Json json, string[] keys...) {
-  return json.hasAnyKeys(keys.dup, false);
 }
 
 /// Check if Json has key

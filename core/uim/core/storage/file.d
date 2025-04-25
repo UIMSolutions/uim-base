@@ -117,20 +117,12 @@ unittest {
 
 // #region DELETE
 // #region Remove
-void removeFilesInPath(string path, string[] filenames...) {
-  removeFilesInPath(path, filenames.dup);
-}
-
 void removeFilesInPath(string path, string[] filenames) {
   filenames.each!(filename => removeFileInPath(path, filename));
 }
 
 void removeFileInPath(string path, string filename) {
   removeFile(normalizePath(path, filename));
-}
-
-void removeFiles(string[] paths...) {
-  removeFiles(paths.dup);
 }
 
 void removeFiles(string[] filenames) {

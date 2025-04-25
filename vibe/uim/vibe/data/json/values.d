@@ -17,10 +17,6 @@ version (test_uim_core) {
 
 // #region values
 // Get values from json object
-Json[] values(Json json, string[] keys...) {
-  return json.values(keys.dup);
-}
-
 Json[] values(Json json, string[] keys) {
   return json.isObject
     ? keys

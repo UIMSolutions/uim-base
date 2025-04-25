@@ -185,19 +185,11 @@ unittest {
 
 // #region add
 // adding items into array
-auto ref addValuesNotNull(T)(auto ref T[] items, in T[] values...) {
-  return addValuesNotNull(items, values.dup);
-}
-
 auto ref addValuesNotNull(T)(auto ref T[] items, in T[] values) {
   values
     .filter!(value => !value.isNull)
     .each!(value => items.addValue(value));
   return items;
-}
-
-auto ref addValues(T)(auto ref T[] items, in T[] values...) {
-  return addValues(items, values.dup);
 }
 
 auto ref addValues(T)(auto ref T[] items, in T[] values) {

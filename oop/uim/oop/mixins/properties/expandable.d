@@ -124,10 +124,8 @@ template XPropertyArray(string datatype, string name) {
   `~datatype~`[] _`~name~`; 
   @safe auto `~name~`() { return _`~name~`; }
 
-  O `~name~`(this O)(`~datatype~`[] values...) { _`~name~` = _`~name~`.add(values); return cast(O)this; }
   O `~name~`(this O)(`~datatype~`[] values, bool unique = false) { _`~name~` = _`~name~`.add(values, unique); return cast(O)this; }
   
-  O remove`~Name~`(this O)(`~datatype~`[] values...) { remove`~Name~`(values); return cast(O)this; }
   O remove`~Name~`(this O)(`~datatype~`[] values) { 
     foreach(value; values) if (value.index(_`~name~`) != -1) _`~name~`.removeKey(value.index(_`~name~`)); 
     return cast(O)this; }

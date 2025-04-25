@@ -59,34 +59,42 @@ unittest {
 // #endregion Json[]
 
 // #region Json
-bool isString(Json json, string[] path, bool strict = true) {
-  if (json.isNull) {
-    return false;
-  }
-
-  if (path.length == 0 && json == Json(null)) {
-    return false;
-  }
-
-  auto key = path[0];
-  return path.length == 1
-    ? json.isString(key, strict) : json.hasKey(key) && json[key].isString(path[1 .. $], strict);
-}
-
 bool isString(Json json, bool strict = true) {
-  if (json.isNull) {
-    return false;
-  }
-
   if (strict) { // strict check for future use
-    return json.isString;
+    // TODO: Future use: check if json is a string or a number (int, float)
   }
 
   return (json.type == Json.Type.string);
 }
+
+unittest {
+  auto json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": 1.1}], "i": {"j": "x"}}`);
+  assert(json.isString("a"));
+  assert(!json.isString("c"));
+  assert(json.isString(["i", "j"])); // Check path i/j
+  assert(!json.isString(["e", "g"])); // Check path e/g
+
+  auto a = Json("a");
+  assert(a.isString);
+  assert(!a.isInteger);
+
+  auto b = Json("b");
+  auto c = Json(1);
+
+  assert([a, b].isAnyString);
+  assert([a, c].isAnyString);
+  
+  assert([a, b].isAllString);
+  assert(![a, c].isAllString);
+
+  auto map = ["A": a, "B": b, "C": c];
+  assert(map.isAnyString("A", "B"));
+  assert(map.isAnyString("A", "C"));
+  
+  assert(map.isAllString("A", "B"));
+  assert(!map.isAllString("A", "C"));
+}
 // #endregion Json
-
-
 
 unittest {
   assert(parseJsonString(`"a"`).isString);
