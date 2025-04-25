@@ -384,7 +384,7 @@ Json getJson(Json[string] values, string key, Json defaultValue = Json(null)) {
 
 // #region getArray
 Json[] getArray(Json[string] map, string key, Json[] defaultValue = null) {
-  return (key in map) 
+  return values.isArray(key)
     ? map[key].get!(Json[])
     : defaultValue;
 }
@@ -392,9 +392,8 @@ Json[] getArray(Json[string] map, string key, Json[] defaultValue = null) {
 
 // #region getMap
 Json[string] getMap(Json[string] values, string key, Json[string] defaultValue = null) {
-  auto json = getJson(values, key);
-  return !(json == Json(null)) && isObject(json)
-    ? json.get!(Json[string]) : defaultValue;
+  return values.isObject(key)
+    ? values[key].get!(Json[string]) : defaultValue;
 }
 
 unittest {

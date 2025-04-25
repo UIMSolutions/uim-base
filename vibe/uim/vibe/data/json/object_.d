@@ -13,13 +13,11 @@ import uim.vibe;
 // #region is
 mixin(CheckJsonIs!("Object"));
 
-bool isObject(Json value, string key) {
-  return value.hasKey(key) 
-    ? value[key].isObject
-    : false;
-}
-
-bool isObject(Json json) {
+// Check if the JSON value is an object
+bool isObject(Json json, bool strict = true) {
+  if (!strict) {
+    // Future improvement: check for boolean, integer, and string types
+  }
   return json.type == Json.Type.object;
 }
 

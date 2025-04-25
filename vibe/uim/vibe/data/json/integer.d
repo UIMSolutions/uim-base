@@ -13,8 +13,6 @@ import uim.vibe;
 // #region isInteger
 mixin(CheckJsonIs!("Integer"));
 
-
-
 unittest {
   assert(!Json(true).isInteger);
   assert(Json(10).isInteger);
@@ -29,29 +27,20 @@ unittest {
   assert(map.isInteger("a") && map.isInteger("b"));
   assert(!map.isInteger("c"));
 
-  assert(map.allInteger("a", "b"));
   assert(map.allInteger(["a", "b"]));
-
-  assert(map.anyInteger("a", "b"));
   assert(map.anyInteger(["a", "b"]));
 
   map["b"] = Json("B");
   assert(map.isInteger("a"));
   assert(!map.isInteger("b") && !map.isInteger("c"));
 
-  assert(!map.allInteger("a", "b"));
   assert(!map.allInteger(["a", "b"]));
-
-  assert(map.anyInteger("a", "b"));
   assert(map.anyInteger(["a", "b"]));
 
   map["a"] = Json("A");
   assert(!map.isInteger("a") && !map.isInteger("b") && !map.isInteger("c"));
 
-  assert(!map.allInteger("a", "b"));
   assert(!map.allInteger(["a", "b"]));
-
-  assert(!map.anyInteger("a", "b"));
   assert(!map.anyInteger(["a", "b"]));
 
   // Json[]
@@ -59,47 +48,21 @@ unittest {
   auto b = Json(2);
   assert(a.isInteger("a") && b.isInteger("b"));
 
-  assert(map.allInteger(a, b));
   assert(map.allInteger([a, b]));
-
-  assert(map.anyInteger(a, b));
   assert(map.anyInteger([a, b]));
 
   b = Json(2.0);
   assert(a.isInteger("a") && !b.isInteger("b"));
 
-  assert(!map.allInteger(a, b));
   assert(!map.allInteger([a, b]));
-
-  assert(map.anyInteger(a, b));
   assert(map.anyInteger([a, b]));
 
   a = Json(1.0);
   assert(!a.isInteger("a") && !b.isInteger("b"));
-
-  assert(!map.allInteger(a, b));
   assert(!map.allInteger([a, b]));
-
-  assert(!map.anyInteger(a, b));
   assert(!map.anyInteger([a, b]));
 }
 // #region Json[]
-bool isAnyInteger(Json[] values...) {
-  return isAnyInteger(values.dup);
-}
-
-bool isAnyInteger(Json[] values) {
-  return values.any!(value => value.isInteger);
-}
-
-bool isAllInteger(Json[] values...) {
-  return isAllInteger(values.dup);
-}
-
-bool isAllInteger(Json[] values) {
-  return values.all!(value => value.isInteger);
-}
-
 unittest {
   auto values = [Json(1), Json(2)];
   assert(values.isAnyInteger);
@@ -113,79 +76,36 @@ unittest {
   assert(!values.isAnyInteger);
   assert(!values.isAllInteger);
 
-  assert(isAnyInteger(Json(1), Json(2)));
   assert(isAnyInteger([Json(1), Json(2)]));
-
-  assert(isAnyInteger(Json("x"), Json(2)));
   assert(isAnyInteger([Json("x"), Json(2)]));
 
-  assert(!isAnyInteger(Json("x"), Json("y")));
   assert(!isAnyInteger([Json("x"), Json("y")]));
-
-  assert(isAllInteger(Json(1), Json(2)));
   assert(isAllInteger([Json(1), Json(2)]));
 
-  assert(!isAllInteger(Json("x"), Json(2)));
   assert(!isAllInteger([Json("x"), Json(2)]));
-
-  assert(!isAllInteger(Json("x"), Json("y")));
   assert(!isAllInteger([Json("x"), Json("y")]));
 }
 // #endregion Json[]
 
 // #region Json[string]
-bool isAnyInteger(Json[string] map, string[] keys...) {
-  return map.isAnyInteger(keys.dup);
-}
-
-bool isAnyInteger(Json[string] map, string[] keys) {
-  return keys.any!(key => map.isInteger(key));
-}
-
-bool isAllInteger(Json[string] map, string[] keys...) {
-  return map.isAllInteger(keys.dup);
-}
-
-bool isAllInteger(Json[string] map, string[] keys) {
-  return keys.all!(key => map.isInteger(key));
-}
-
-bool isInteger(Json[string] items, string key) {
-  return items.hasKey(key)
-    ? items[key].isInteger : false;
-}
 unittest {
   Json[string] map;
   map["a"] = Json(1);
   map["b"] = Json(2);
-  assert(map.isAllInteger("a", "b"));
   assert(map.isAllInteger(["a", "b"]));
-
-  assert(map.isAnyInteger("a", "b"));
   assert(map.isAnyInteger(["a", "b"]));
 
   map["b"] = Json("B");
-  assert(!map.isAllInteger("a", "b"));
   assert(!map.isAllInteger(["a", "b"]));
-
-  assert(map.isAnyInteger("a", "b"));
   assert(map.isAnyInteger(["a", "b"]));
 
   map["a"] = Json("A");
-  assert(!map.isAllInteger("a", "b"));
   assert(!map.isAllInteger(["a", "b"]));
-
-  assert(!map.isAnyInteger("a", "b"));
   assert(!map.isAnyInteger(["a", "b"]));
 }
 // #endregion Json[string]
 
 // #region Json
-bool isInteger(Json value, string key, bool strict = true) {
-  return value.hasKey(key)
-    ? value[key].isInteger(strict) : false;
-}
-
 bool isInteger(Json value, bool strict = true) {
   if (!strict) {
     if (value.isString) {

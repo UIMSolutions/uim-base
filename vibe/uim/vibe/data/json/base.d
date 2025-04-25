@@ -103,7 +103,7 @@ unittest {
 
 
 // #region isEmpty
-bool isEmpty(Json value) {
+bool isEmpty(Json value, bool strict = true) {
   if (value.isNull) {
     return true;
   }
@@ -117,11 +117,7 @@ bool isEmpty(Json value) {
 }
 // #endregion isEmpty
 
-// #region isIntegral
-bool isIntegral(Json value) {
-  return value.isLong;
-}
-// #endregion isIntegral
+
 // #endregion is
 
 /// Check if jsonPath exists

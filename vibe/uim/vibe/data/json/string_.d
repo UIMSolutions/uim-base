@@ -59,38 +59,6 @@ unittest {
 // #endregion Json[]
 
 // #region Json
-bool isAllString(Json json, bool strict = true) {
-  if (json.isObject) {
-    return isAllString(json.to!(Json[string]), strict);
-  }
-
-  if (json.isArray) {
-    return isAllString(json.to!(Json[]), strict);
-  }
-
-  return json.isString;
-}
-
-bool isAllString(Json json, string[] keys, bool strict = true) {
-  return json.isObject && keys.all!(key => json.isString(key, strict));
-}
-
-bool isAnyString(Json json, bool strict = true) {
-  if (json.isObject) {
-    return isAnyString(json.to!(Json[string]), strict);
-  }
-
-  if (json.isArray) {
-    return isAnyString(json.to!(Json[]), strict);
-  }
-
-  return json.isString;
-}
-
-bool isAnyString(Json json, string[] keys, bool strict = true) {
-  return json.isObject && keys.any!(key => json.isString(key, strict));
-}
-
 bool isString(Json json, string[] path, bool strict = true) {
   if (json.isNull) {
     return false;
@@ -103,10 +71,6 @@ bool isString(Json json, string[] path, bool strict = true) {
   auto key = path[0];
   return path.length == 1
     ? json.isString(key, strict) : json.hasKey(key) && json[key].isString(path[1 .. $], strict);
-}
-
-bool isString(Json json, string key, bool strict = true) {
-  return json.isObject && json.hasKey(key) && json[key].isString(strict);
 }
 
 bool isString(Json json, bool strict = true) {

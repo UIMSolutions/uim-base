@@ -14,10 +14,6 @@ import uim.vibe;
 // Check if json value is null
 mixin(CheckJsonIs!("Null"));
 
-bool isNull(Json[string] items, string key, bool strict = true) {
-  return key in items && items[key].isNull(strict); 
-}
-
 bool isNull(Json json, string[] path) {
   if (json.isNull) {
     return true;
@@ -35,12 +31,6 @@ bool isNull(Json json, string[] path) {
   return path.length > 1
     ? isNull(json[firstKey], path[1..$]) 
     : false;
-}
-
-bool isNull(Json json, string key, bool strict = true) {
-  return json.isObject && json.hasKey(key) 
-    ? json[key].isNull(strict)
-    : true;
 }
 
 bool isNull(Json value, bool strict = true) {

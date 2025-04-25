@@ -13,13 +13,10 @@ import uim.vibe;
 // #region is
 mixin(CheckJsonIs!("Double"));
 
-bool isDouble(Json value, string key) {
-  return value.hasKey(key) 
-    ? value[key].isDouble 
-    : false;
-}
-
-bool isDouble(Json value) {
+bool isDouble(Json value, bool strict = true) {
+  if (!strict) {
+    // check for boolean, integer, and string types
+  }
   return (value.type == Json.Type.float_);
 }
 

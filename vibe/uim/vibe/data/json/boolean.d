@@ -13,12 +13,6 @@ import uim.vibe;
 // #region is
 mixin(CheckJsonIs!("Boolean"));
 
-bool isBoolean(Json value, string key, bool strict = true) {
-  return value.hasKey(key) 
-    ? value[key].isBoolean(strict)
-    : false;
-}
-
 bool isBoolean(Json value, bool strict = true) {
   if (!strict) {
     if (value.isString) {
