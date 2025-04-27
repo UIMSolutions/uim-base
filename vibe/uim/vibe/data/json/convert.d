@@ -155,3 +155,44 @@ Json toJson(Json[string] map) {
   return json;
 }
 // #endregion toJson
+
+// #region toJsonMap
+Json[string] toJsonMap(bool[string] values, string[] excludeKeys = null) {
+  Json[string] result;
+  values.byKeyValue
+    .filter!(kv => !excludeKeys.any!(key => key in values))
+    .each!(kv => result[kv.key] = Json(kv.value));
+  return result;
+}
+
+Json[string] toJsonMap(long[string] values, string[] excludeKeys = null) {
+  Json[string] result;
+  values.byKeyValue
+    .filter!(kv => !excludeKeys.any!(key => key in values))
+    .each!(kv => result[kv.key] = Json(kv.value));
+  return result;
+}
+
+Json[string] toJsonMap(double[string] values, string[] excludeKeys = null) {
+  Json[string] result;
+  values.byKeyValue
+    .filter!(kv => !excludeKeys.any!(key => key in values))
+    .each!(kv => result[kv.key] = Json(kv.value));
+  return result;
+}
+
+Json[string] toJsonMap(string[string] items, string[] excludeKeys = null) {
+  Json[string] result;
+  items.byKeyValue
+    .filter!(item => !excludeKeys.hasValue(item.key))
+    .each!(item => result[item.key] = Json(item.value));
+  return result;
+}
+
+unittest {
+  // assert(["a": "A", "b": "B"].toJsonMap.length == 2);
+  // assert(["a": "A", "b": "B"].toJsonMap.getString("a") == "A");
+  // assert(["a": "A", "b": "B"].toJsonMap(["b"]).length == 1);
+  // assert(["a": "A", "b": "B"].toJsonMap(["b"]).getString("a") == "A");
+}
+// #endregion toJsonMap

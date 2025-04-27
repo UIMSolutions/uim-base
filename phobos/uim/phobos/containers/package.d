@@ -7,8 +7,10 @@ module uim.phobos.container;
 
 public {
     import uim.phobos.container.array;
+    import uim.phobos.container.arrays;
     import uim.phobos.container.binaryheap;
     import uim.phobos.container.dlist;
+    import uim.phobos.container.map;
     import uim.phobos.container.rbtree;
     import uim.phobos.container.slist;
     import uim.phobos.container.util;
