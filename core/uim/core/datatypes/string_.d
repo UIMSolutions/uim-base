@@ -495,18 +495,10 @@ unittest {
 // #endregion stripText
 
 // #region stripTextLeft
-string[] stripTextLeft(string[] texts, string[] chars...) {
-  return stripTextLeft(texts, chars.dup);
-}
-
 string[] stripTextLeft(string[] texts, string[] chars) {
   return texts
     .map!(text => stripTextLeft(text, chars))
     .array;
-}
-
-string stripTextLeft(string text, string[] chars...) {
-  return stripTextLeft(text, chars.dup);
 }
 
 string stripTextLeft(string text, string[] chars) {

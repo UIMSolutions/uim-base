@@ -83,9 +83,7 @@ unittest {
 // #region shiftInterfaces
 string shiftInterfaces(string returntype, string plural, string singular, string keyType) {
   return `
-    {returntype}[] shift{plural}({keyType}[] keys...);
     {returntype}[] shift{plural}({keyType}[] keys);
-
     {returntype} shift{singular}({keyType} key);
   `
   .replace("{returntype}", returntype)
@@ -154,10 +152,7 @@ unittest {
 string removeInterfaces(string returntype, string plural, string singular, string keyType) {
   return `
     {returntype} clear{plural}();
-
-    {returntype} remove{plural}({keyType}[] keys...);
     {returntype} remove{plural}({keyType}[] keys);
-
     {returntype} remove{singular}({keyType} key);
   `
   .replace("{returntype}", returntype)

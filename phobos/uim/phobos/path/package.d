@@ -9,10 +9,6 @@ import uim.phobos;
 @safe:
 
 // #region normalizePath
-auto normalizePath(string[] path...) {
-  return normalizePath(path.dup);
-}
-
 auto normalizePath(string[] path) {
   return buildNormalizedPath(path);
 }
@@ -26,7 +22,6 @@ unittest {
     assert(normalizePath(["C:", "Windows", "System32", "..", "..", "."]) == "C:\\");
 
     assert(normalizePath(["C:\\Windows\\System32\\"]) == "C:\\Windows\\System32");
-    assert(normalizePath("C:\\Windows\\System32\\") == "C:\\Windows\\System32");
   }
   version (Linux) {
     assert(normalizePath(["/", "usr", "bin"]) == "/usr/bin");
@@ -36,7 +31,6 @@ unittest {
     assert(normalizePath(["/", "usr", "bin", "..", "..", "."]) == "/");
 
     assert(normalizePath(["/usr/bin/"]) == "/usr/bin");
-    assert(normalizePath("/usr/bin/") == "/usr/bin");
   }
   version (MacOS) {
     assert(normalizePath(["/", "usr", "bin"]) == "/usr/bin");
@@ -46,7 +40,6 @@ unittest {
     assert(normalizePath(["/", "usr", "bin", "..", "..", "."]) == "/");
 
     assert(normalizePath(["/usr/bin/"]) == "/usr/bin");
-    assert(normalizePath("/usr/bin/") == "/usr/bin");
   }
 }
 // #endregion normalizePath

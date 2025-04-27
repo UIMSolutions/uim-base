@@ -10,10 +10,6 @@ import uim.core;
 @safe:
 
 // #region CREATE
-void createFoldersInPath(string path, string[] foldernames...) {
-  createFoldersInPath(path, foldernames.dup);
-}
-
 void createFoldersInPath(string path, string[] foldernames) {
   foldernames.each!(foldername => createFolderInPath(path, foldername));
 }
@@ -23,11 +19,7 @@ void createFolderInPath(string[] path, string foldername) {
 }
 
 void createFolderInPath(string path, string foldername) {
-  createFolder(normalizePath(path, foldername));
-}
-
-void createFolders(string[] foldernames...) {
-  createFolders(foldernames.dup);
+  createFolder(normalizePath([path, foldername]));
 }
 
 void createFolders(string[] foldernames) {
@@ -50,27 +42,14 @@ unittest {
   assert(!existsAnyFolders([
       tempDir ~ "test1", tempDir ~ "test2", tempDir ~ "test3"
     ]));
-
-  createFolders(tempDir ~ "test1", tempDir ~ "test2", tempDir ~ "test3");
-  assert(existsAllFolders(tempDir ~ "test1", tempDir ~ "test2", tempDir ~ "test3"));
-  removeFolders(tempDir ~ "test1", tempDir ~ "test2", tempDir ~ "test3");
-  assert(!existsAnyFolders(tempDir ~ "test1", tempDir ~ "test2", tempDir ~ "test3"));
 }
 // #endregion CREATE
 
 // #region READ
 // #region exists
 // Checks if the given path exists and is a symfolder.
-bool existsAllFolders(string[] folderpaths...) {
-  return existsAllFolders(folderpaths.dup);
-}
-
 bool existsAllFolders(string[] folderpaths) {
   return folderpaths.all!(path => existsFolder(path));
-}
-
-bool existsAnyFolders(string[] folderpaths...) {
-  return existsAnyFolders(folderpaths.dup);
 }
 
 bool existsAnyFolders(string[] folderpaths) {
@@ -108,20 +87,12 @@ unittest {
 // #endregion UPDATE
 
 // #region DELETE
-void removeFoldersInPath(string path, string[] foldernames...) {
-  removeFoldersInPath(path, foldernames.dup);
-}
-
 void removeFoldersInPath(string path, string[] foldernames) {
   foldernames.each!(foldername => removeFolderInPath(path, foldername));
 }
 
 void removeFolderInPath(string path, string foldername) {
-  removeFolder(normalizePath(path, foldername));
-}
-
-void removeFolders(string[] paths...) {
-  removeFolders(paths.dup);
+  removeFolder(normalizePath([path, foldername]));
 }
 
 void removeFolders(string[] foldernames) {
@@ -134,7 +105,7 @@ void removeFolder(string[] folderpath) {
 
 void removeFolder(string foldername) {
   if (foldername.isDir) {
-    rmdir(normalizePath(foldername));
+    rmdir(normalizePath([foldername]));
   }
 }
 

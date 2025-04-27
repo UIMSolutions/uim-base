@@ -160,9 +160,6 @@ unittest {
 
 // #region positions
 // Creates a associative array with all positions of a value in an array
-/* size_t[][T] positions(T)(T[] baseArray...) {
-  return positions(baseArray.dup);
-} */
 /// Creates a associative array with all positions of a value in an array
 size_t[][T] positions(T)(T[] baseArray) {
   size_t[][T] results;

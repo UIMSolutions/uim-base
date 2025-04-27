@@ -62,10 +62,6 @@ unittest {
 
 // #region update
 /*   // returns a updated map with new values
-  string[string] update(T)(string[string] items, T[string] others, string[] keys...) {
-    return update(items, others, keys.dup);
-  }
-
   // Returns a new map with updated values for existing keys
   string[string] update(T)(string[string] items, T[string] others, string[] keys = null) {
     keys.length == 0

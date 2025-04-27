@@ -19,7 +19,7 @@ void createFileInPath(string[] path, string filename) {
 }
 
 void createFileInPath(string path, string filename) {
-  createFile(normalizePath(path, filename));
+  createFile(normalizePath([path, filename]));
 }
 
 void createFiles(string[] filenames) {
@@ -73,8 +73,8 @@ bool existsFile(string[] path, string file, string ext) {
 bool existsFile(string path, string file = null, string ext = null) {
   return (file is null)
     ? exists(path) && isFile(path) : ((ext is null)
-        ? exists(normalizePath(path, file)) && isFile(normalizePath(path, file)) 
-        : exists(normalizePath(path, file ~ "." ~ ext)) && isFile(normalizePath(path, file ~ "." ~ ext)));
+        ? exists(normalizePath([path, file])) && isFile(normalizePath([path, file])) 
+        : exists(normalizePath([path, file ~ "." ~ ext])) && isFile(normalizePath([path, file ~ "." ~ ext])));
 }
 
 unittest {
@@ -122,7 +122,7 @@ void removeFilesInPath(string path, string[] filenames) {
 }
 
 void removeFileInPath(string path, string filename) {
-  removeFile(normalizePath(path, filename));
+  removeFile(normalizePath([path, filename]));
 }
 
 void removeFiles(string[] filenames) {
@@ -135,7 +135,7 @@ void removeFile(string[] filepath) {
 
 void removeFile(string filename) {
   if (filename.isFile) {
-    remove(normalizePath(filename));
+    remove(normalizePath([filename]));
   }
 }
 

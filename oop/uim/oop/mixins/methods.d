@@ -37,18 +37,10 @@ unittest {
 // #region hasMethods
 string hasMethods(string plural, string singular, string keyType) {
   return `
-    bool hasAll{plural}({keyType}[] keys...) {
-      return hasAll{plural}(keys.dup);
-    }
-
     bool hasAll{plural}({keyType}[] keys) {
       return keys.all!(key => has{singular}(key));
     }
 
-    bool hasAny{plural}({keyType}[] keys...) {
-      return hasAny{plural}(keys.dup);
-    }
-    
     bool hasAny{plural}({keyType}[] keys) {
       return keys.any!(key => has{singular}(key));
     }
@@ -70,10 +62,6 @@ unittest {
 // #region getMethods
 string getMethods(string returntype, string plural, string singular, string keyType) {
   return `
-    {returntype}[] get{plural}({keyType}[] keys...) {
-      return get{plural}(keys.dup);
-    }
-    
     {returntype}[] get{plural}({keyType}[] keys) {
       return keys.map!(key => get{singular}(key)).array;
     }
@@ -174,10 +162,6 @@ unittest {
 // #region removeMethods
 string removeMethods(string returntype, string plural, string singular, string keyType) {
   return `
-    {returntype} remove{plural}({keyType}[] keys...) {
-      return remove{plural}(keys.dup);
-    }
-    
     {returntype} remove{plural}({keyType}[] keys) {
       keys.each!(key => remove{singular}(key));
       return this;

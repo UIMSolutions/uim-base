@@ -123,10 +123,6 @@ unittest {
 }
 
 /// Remove keys from Json Object
-Json remove(Json json, string[] delKeys...) {
-  return remove(json, delKeys.dup);
-}
-
 Json remove(Json json, string[] delKeys) {
   auto result = json;
   delKeys.each!(k => result.remove(k));

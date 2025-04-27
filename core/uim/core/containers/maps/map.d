@@ -196,18 +196,8 @@ unittest {
 
 // #region hasKey(s)
   // Returns true if the map has all the specified keys
-  bool hasAllKeys(T)(T[string] base, string[] keys...) {
-    return base.hasAllKeys(keys.dup);
-  }
-
-  // Returns true if the map has all the specified keys
   bool hasAllKeys(T)(T[string] base, string[] keys) {
     return keys.all!(key => base.hasKey(key));
-  }
-
-  // Returns true if the map has any of the specified keys
-  bool hasAnyKey(T)(T[string] base, string[] keys...) {
-    return base.hasAnyKey(keys.dup);
   }
 
   // Returns true if the map has any of the specified keys
