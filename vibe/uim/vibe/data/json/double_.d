@@ -17,7 +17,7 @@ bool isDouble(Json value, bool strict = true) {
   if (!strict) {
     // check for boolean, integer, and string types
   }
-  return (value.type == Json.Type.double_);
+  return (value.type == Json.Type.float_);
 }
 
 unittest { // Json
@@ -106,3 +106,15 @@ unittest {
 
 // #region only
 // #endregion only
+
+// #region set  
+// #endregion set
+
+// #region remove
+// #endregion remove
+
+// #region clear
+// #endregion clear
+
+// #region to
+// #endregion to

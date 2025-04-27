@@ -564,52 +564,45 @@ Json toJsonObject(string[string] map, string[] excludeKeys = null) {
   return json;
 }
 
-// #region getter
-Json getJson(Json value, string key) {
-  if (value.isNull || !value.isObject) {
-    return Json(null);
-  }
-  
-  return value.hasKey(key)
+// #region get
+// #region json
+Json getJson(Json[string] map, string key, Json defaultValue = Json(null)) {
+  return map.get(key, defaultValue);
+}
+
+Json getJson(Json[] values, size_t index, Json defaultValue = Json(null)) {
+  return values.length > index
+    ? values[index] : defaultValue;
+}
+
+Json getJson(Json value, string key, Json defaultValue = Json(null)) {
+  return value.isObject && value.hasKey(key)
     ? value[key]
-    : value;
+    : defaultValue;
+}
+// #endregion json
+
+// #region map
+Json[string] getMap(Json[string] map, string key, Json[string] defaultValue = null) {
+  return key in map
+    ? map[key].getMap : defaultValue;
 }
 
+Json[string] getMap(Json[] values, size_t index, Json[string] defaultValue = null) {
+  return values.length > index
+    ? values[index].getMap : defaultValue;
+}
 
-// #region getArray
-Json[] getArray(Json value, string key) {
+Json[string] getMap(Json value, string key, Json[string] defaultValue = null) {
   return value.isObject && value.hasKey(key)
-    ? value[key].getArray : null;
+    ? value[key].getMap : defaultValue;
 }
 
-Json[] getArray(Json json) {
-  return json.isArray 
-    ? json.get!(Json[])
-    : null;
-} 
-
-unittest {
-  Json json = Json.emptyArray;
-  json ~= Json(2);
-  json ~= Json("3");
-  assert(json.getArray.length == 2);
-}
-// #endregion getArray
-
-Json[string] getMap(Json value, string key) {
-  return value.isObject && value.hasKey(key)
-    ? value[key].getMap : null;
-}
-
-Json[string] getMap(Json value) {
-  if (value.isNull) { // TODO required?
-    return null;
-  }
-
+Json[string] getMap(Json value, Json[string] defaultValue = null) {
   return value.isObject
-    ? value.get!(Json[string]) : null;
+    ? value.get!(Json[string]) : defaultValue;
 }
-// #endregion getter
+// #endregion map
 
 // #region set
 ref set(ref Json json, Json map) {

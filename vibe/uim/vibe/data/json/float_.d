@@ -61,3 +61,18 @@ unittest {
   assert(map.getFloat("Two") != 1.0);  
 }
 // #endregion get
+
+// #region only
+// #endregion only
+
+// #region set  
+// #endregion set
+
+// #region remove
+// #endregion remove
+
+// #region clear
+// #endregion clear
+
+// #region to
+// #endregion to

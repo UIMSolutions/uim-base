@@ -104,3 +104,18 @@ unittest {
   assert(map.getLong("Two") != 1);  
 }
 // #endregion get
+
+// #region only
+// #endregion only
+
+// #region set  
+// #endregion set
+
+// #region remove
+// #endregion remove
+
+// #region clear
+// #endregion clear
+
+// #region to
+// #endregion to

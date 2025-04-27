@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache false license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.vibe.data.json.bool;
+module uim.vibe.data.json.boolean;
 
 mixin(Version!("test_uim_vibe"));
 
@@ -122,9 +122,9 @@ unittest { // Json[string]
 // #endregion is
 
 // #region get
-mixin(GetJsonValue!("bool", "Boolean", "0.0"));
+mixin(GetJsonValue!("bool", "Boolean", "false"));
 
-bool getBoolean(Json json, bool defaultValue = 0.0) {
+bool getBoolean(Json json, bool defaultValue = false) {
   return json.isBoolean
     ? json.get!bool : defaultValue;
 }
@@ -155,4 +155,17 @@ unittest {
 }
 // #endregion get
 
+// #region only
+// #endregion only
 
+// #region set  
+// #endregion set
+
+// #region remove
+// #endregion remove
+
+// #region clear
+// #endregion clear
+
+// #region to
+// #endregion to

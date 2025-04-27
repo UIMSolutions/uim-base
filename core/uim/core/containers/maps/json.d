@@ -249,45 +249,7 @@ unittest {
 // #endregion ifNull
 
 
-// #region Getter
-Json getJson(Json[string] values, string key) {
-  key = key.strip;
-  
-  return values.hasKey(key)
-    ? values[key]
-    : Json(null);
-}
 
-unittest {
-  Json[string] map = ["a": Json("A"), "b": Json(true), "c": Json(1), "d": Json(1.1)];
-  assert(map.length == 4);
-
-  assert(map.getJson("a") == Json("A"));
-}
-
-bool getBoolean(Json[string] values, string key, bool defaultValue = false) {
-  auto json = getJson(values, key);
-  return !(json == Json(null))
-    ? json.get!bool : defaultValue;
-}
-unittest {
-  Json[string] map = ["a": Json("A"), "b": Json(true), "c": Json(1), "d": Json(1.1)];
-  assert(map.length == 4);
-
-  assert(map.getBoolean("b") == true);
-}
-
-int getInteger(Json[string] values, string key, int defaultValue = 0) {
-  auto json = getJson(values, key);
-  return !(json == Json(null))
-    ? json.get!int : defaultValue;
-}
-unittest {
-  Json[string] map = ["a": Json("A"), "b": Json(true), "c": Json(1), "d": Json(1.1)];
-  assert(map.length == 4);
-
-  assert(map.getInteger("c") == 1);
-}
 
 // #region getStringArray
 string[] getStringArray(Json[string] map, string[] keys) {

@@ -38,3 +38,4 @@ bool isEmpty(Json value, bool strict = true) {
   return false;
 }
 // #endregion is
+

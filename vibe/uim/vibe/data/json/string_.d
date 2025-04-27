@@ -187,6 +187,14 @@ unittest {
 // #region only
 // #endregion only
 
-// #region isString
+// #region set  
+// #endregion set
 
-// #endregion isString
+// #region remove
+// #endregion remove
+
+// #region clear
+// #endregion clear
+
+// #region to
+// #endregion to

@@ -12,7 +12,7 @@ import uim.vibe;
 // #region is
 mixin(CheckJsonIs!("Array"));
 
-Json[] isArray(Json json, Json[] strict = true) {
+bool isArray(Json json, bool strict = true) {
   if (json == Json(null)) {
     return false;
   }
@@ -36,11 +36,11 @@ unittest {
 // #endregion is
 
 // #region hasAll
-Json[] hasAll(T)(Json json, T[] values) {
+bool hasAll(T)(Json json, T[] values) {
   return json.hasAll(values.map!(value => value.toJson).array);
 }
 
-Json[] hasAll(Json json, Json[] values) {
+bool hasAll(Json json, Json[] values) {
   if (!json.isArray)
     return false;
 
@@ -49,11 +49,11 @@ Json[] hasAll(Json json, Json[] values) {
 // #endregion hasAll
 
 // #region hasAny
-Json[] hasAny(T)(Json json, T[] values) {
+bool hasAny(T)(Json json, T[] values) {
   return json.hasAny(values.map!(value => value.toJson).array);
 }
 
-Json[] hasAny(Json json, Json[] values) {
+bool hasAny(Json json, Json[] values) {
   if (!json.isArray)
     return false;
 
@@ -62,11 +62,11 @@ Json[] hasAny(Json json, Json[] values) {
 // #endregion hasAny
 
 // #region has
-Json[] has(T)(Json json, T value) {
+bool has(T)(Json json, T value) {
   return json.has(value.toJson);
 }
 
-Json[] has(Json json, Json value) {
+bool has(Json json, Json value) {
   if (!json.isArray)
     return false;
 
@@ -113,23 +113,28 @@ unittest {
   assert(json.getArray);
 
   json = Json.emptyArray;
-  json ~= true;
-  json ~= false;
-  assert(json.getArray(0) == true);
-  assert(json.getArray(1) != true);
+  auto a = Json.emptyArray;
+  a ~= 1; a ~= 2;
+  auto b = Json.emptyArray;
+  b ~= 1; b ~= 2; b ~= 3;
+  
+  json ~= a;
+  json ~= b;
+  assert(json.getArray(0).length == 2);
+  assert(json.getArray(1).length != 2);
 
   json = Json.emptyObject;
-  json["One"] = true;
-  json["Two"] = false;
-  assert(json.getArray("One") == true);
-  assert(json.getArray("Two") != true);
+  json["One"] = a;
+  json["Two"] = b;
+  assert(json.getArray("One").length == 2);
+  assert(json.getArray("Two").length != 2);
 
-  auto list = [Json(true), Json(false)];
-  assert(list.getArray(0) == true);
-  assert(list.getArray(1) != true);
+  auto list = [a, b];
+  assert(list.getArray(0).length == 2);
+  assert(list.getArray(1).length != 2);
 
-  auto map = ["One": Json(true), "Two": Json(false)];
-  assert(map.getArray("One") == true);  
-  assert(map.getArray("Two") != true);  
+  auto map = ["One": a, "Two": b];
+  assert(map.getArray("One").length == 2);
+  assert(map.getArray("Two").length != 2);
 }
 // #endregion get
