@@ -9,7 +9,7 @@ import uim.phobos;
 
 @safe:
 
-version (test_uim_core) {
+version (test_uim_phobos) {
   unittest {
     writeln("-----  ", __MODULE__, "\t  -----");
   }

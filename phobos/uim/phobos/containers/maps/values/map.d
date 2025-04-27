@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.phobos.containers.maps.values.map;
 
-mixin(Version!("test_uim_core"));
+mixin(Version!("test_uim_phobos"));
 
 import uim.phobos;
 @safe:

@@ -10,7 +10,7 @@ public {
     import uim.phobos.containers.maps.keys.string_;
 }
 
-version (test_uim_core) {
+version (test_uim_phobos) {
   unittest {
     import std.stdio;
     writeln("-----  ", __MODULE__, "\t  -----");

@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.phobos.containers.arrays.string_;
 
-mixin(Version!("test_uim_core"));
+mixin(Version!("test_uim_phobos"));
 
 import uim.phobos;
 @safe:

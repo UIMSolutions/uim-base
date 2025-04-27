@@ -1244,3 +1244,32 @@ T[string] update(T : Json, V)(T[string] items, string key, V value) if (!is(V ==
 string[string] merge(string[string] items, string key, Json value) {
   return items.merge(key, value.toString);
 }
+
+
+/* Json[string] setNull(Json[string] items, string[] path) {
+  return set(items, path, Json(null));
+}
+
+Json[string] setNull(Json[string] items, string key) {
+  return set(items, key, Json(null));
+}
+
+Json[string] setPath(T)(Json[string] items, string[] path, T value) {
+  set(items, path, Json(value));
+  return items;
+}
+
+Json[string] setPath(Json[string] items, string[] path, Json value) {
+  if (path.length == 0) {
+    return items;
+  }
+
+  if (path.length == 1) {
+    return set(items, path[0], value);
+  } */
+
+  /*   Json json = Json.emptyObject;
+  return set(items, path[0], json.set(path[1..$], value));                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ;
+ */
+/*   return null;
+} */
