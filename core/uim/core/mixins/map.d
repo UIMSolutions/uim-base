@@ -22,10 +22,6 @@ string mapUpdates(string keyType, string valueType, string updateType) {
     string mapType = valueType~`[`~keyType~`]`;
 
     return `
-  `~mapType~` update(`~mapType~` items, `~mapType~` merges, `~keyType~`[] keys...) {
-    return update(items, merges, keys.dup);
-  }
-
   // Returns a new map with updated values for existing keys
   `~mapType~` update(`~mapType~` items, `~mapType~` merges, `~keyType~`[] keys = null) {
     keys.isNull

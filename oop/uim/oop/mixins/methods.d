@@ -84,10 +84,6 @@ unittest {
 // #region shiftMethods
 string shiftMethods(string returntype, string plural, string singular, string keyType) {
   return `
-    {returntype}[] shift{plural}({keyType}[] keys...) {
-      return shift{plural}(keys.dup);
-    }
-    
     {returntype}[] shift{plural}({keyType}[] keys) {
       return keys.map!(key => shift{singular}(key)).array;
     }

@@ -241,10 +241,6 @@ unittest {
 // #endregion hasKey(s)
 
 // #region removeKey(s)
-  T[string] removeKeys(T)(ref T[string] items, string[] keys...) {
-    return removeKeys(items, keys.dup);
-  }
-
   T[string] removeKeys(T)(ref T[string] items, string[] keys) {
     keys.each!(key => removeKey(items, key));
     return items;
@@ -359,10 +355,6 @@ unittest {
   // Checks if values exist in base
   bool hasAllValues(T)(T[string] items, T[string] checkItems) {
     return items.hasAllValues(checkItems.values);
-  }
-
-  bool hasAllValues(T)(T[string] items, T[] values...) {
-    return items.hasAllValues(values.dup);
   }
 
   bool hasAllValues(T)(T[string] items, T[] values) {
@@ -717,10 +709,6 @@ unittest {
 // #endregion clear
 
 // #region shift
-T[] shift(T)(T[string] items, string[] keys...) {
-  return items.shift(keys.dup);
-}
-
 T[] shift(T)(T[string] items, string[] keys) {
   return keys
     .filter!(key => items.hasKey(key))

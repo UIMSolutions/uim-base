@@ -78,10 +78,6 @@ unittest {
   assert(80.transform(0, 100, 0, 10) == 8);
 }
 
-pure bool isLess(T)(T base, T[] values...) {
-  return isLess(base, values.dup);
-}
-
 pure bool isLess(T)(T base, T[] values) {
   return values.filter!(v => base >= v).count == 0;
 }
@@ -92,10 +88,6 @@ unittest {
 
   assert(8.isLess([10, 100]));
   assert(!80.isLess([10, 100]));
-}
-
-pure bool isGreater(T)(T base, T[] values...) {
-  return isGreater(base, values.dup);
 }
 
 pure bool isGreater(T)(T base, T[] values) {

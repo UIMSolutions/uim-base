@@ -59,10 +59,6 @@ abstract class DContainer(T : UIMObject) {
     return checkItems.all!(item => contains(item));
   }
 
-  bool containsAll(T[] checkItems...) {
-    return containsAll(checkItems.dup);
-  }
-
   bool containsAll(T[] checkItems) {
     return checkItems.all!(item => contains(item));
   }
@@ -70,10 +66,6 @@ abstract class DContainer(T : UIMObject) {
     // Returns true if this container contains all of the elements in the specified container.
   bool containsAny(DContainer!T checkItems) {
     return checkItems.any!(item => contains(item));
-  }
-
-  bool containsAny(T[] checkItems...) {
-    return containsAny(checkItems.dup);
   }
 
   bool containsAny(T[] checkItems) {

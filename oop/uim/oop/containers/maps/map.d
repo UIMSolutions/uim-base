@@ -49,9 +49,6 @@ class DMap(K, V) : IMap {
   }
 
   // #region removeKeys
-  bool removeKeys(K[] keys...) {
-    return removeKeys(keys.dup);
-  }
   bool removeKeys(K[] keys) {
     return keys.all!(key => _entries.removeKey(key));
   }

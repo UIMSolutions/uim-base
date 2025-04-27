@@ -161,7 +161,7 @@ string htmlSingleTag(string tag, string id) {
   return htmlStartTag(tag, id);
 }
 
-// #region htmlSingleTag (..Json[string]...)
+// #region htmlSingleTag - Json[string]
 string htmlSingleTag(string tag, Json[string] attributes) {
   return htmlStartTag(tag, null, null, attributes.toStringMap);
 }
@@ -177,9 +177,9 @@ string htmlSingleTag(string tag, string[] classes, Json[string] attributes) {
 string htmlSingleTag(string tag, string id, string[] classes, Json[string] attributes) {
   return htmlStartTag(tag, id, classes, attributes.toStringMap);
 }
-// #endregion htmlSingleTag (..Json[string]...)
+// #endregion htmlSingleTag - Json[string]
 
-// #region htmlSingleTag (..string[string]...)
+// #region htmlSingleTag - string[string]
 string htmlSingleTag(string tag, string[string] attributes) {
   return htmlStartTag(tag, null, null, attributes);
 }
@@ -195,7 +195,7 @@ string htmlSingleTag(string tag, string[] classes, string[string] attributes) {
 string htmlSingleTag(string tag, string id, string[] classes, string[string] attributes) {
   return htmlStartTag(tag, id, classes, attributes);
 }
-// #endregion htmlSingleTag (..string[string]...)
+// #endregion htmlSingleTag - string[string]
 // #endregion htmlSingleTag
 
 /**

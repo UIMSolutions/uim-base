@@ -78,18 +78,9 @@ unittest {
 
 // #region hasValue
 // Returns true if the map has all values
-bool hasAllValues(K, V)(ref V[K] items, V[] values...) {
-  return items.hasAllValues(values.dup);
-}
-
 // Returns true if the map has all values
 bool hasAllValues(K, V)(ref V[K] items, V[] values) {
   return values.all!(value => items.hasValue(value));
-}
-
-// Returns true if the map has any value
-bool hasAnyValue(K, V)(ref V[K] items, V[] values...) {
-  return items.hasAnyValue(values.dup);
 }
 
 // Returns true if the map has any value

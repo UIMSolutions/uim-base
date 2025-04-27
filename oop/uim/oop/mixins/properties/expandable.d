@@ -38,10 +38,11 @@ template XStringArray(string name) {
   string[] _"~name~";
   @safe auto "~name~"() { return _"~name~"; }
 
-  O "~name~"(this O)(string[] values...) { this."~name~"(values); return cast(O)this; }
-  O "~name~"(this O)(string[] values) { _"~name~" ~= values; return cast(O)this; }
-  
-  O remove"~Name~"(this O)(string[] values...) { this.remove"~Name~"(values); return cast(O)this; }  
+  O "~name~"(this O)(string[] values) { 
+    _"~name~" ~= values; 
+    return cast(O)this; 
+  }
+
   O remove"~Name~"(this O)(string[] values) {
     foreach(value; values) _"~name~" = _"~name~".sub(value); return cast(O)this; }  
   
@@ -73,7 +74,6 @@ template XStringAA(string name) {
   O "~name~"(this O)(string key, string value) { _"~name~"[key] = value; return cast(O)this; }
   O "~name~"(this O)(string[string] addValues) { foreach(kv; addValues.byKeyValue) _"~name~"[kv.key] = kv.value; return cast(O)this; }
   
-  O remove"~Name~"(this O)(string[] values...) { removeKey(values); return cast(O)this; }  
   O remove"~Name~"(this O)(string[] values) { foreach(value; values) _name = _"~name~".removeKey(value); return cast(O)this; }  
   
   O clear"~Name~"(this O)() { _"~name~" = null; return cast(O)this; }  

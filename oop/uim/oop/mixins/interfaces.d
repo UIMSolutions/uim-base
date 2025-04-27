@@ -35,12 +35,8 @@ unittest {
 // #region hasInterfaces
 string hasInterfaces(string plural, string singular, string keyType) {
   return `
-    bool hasAll{plural}({keyType}[] keys...);
     bool hasAll{plural}({keyType}[] keys);
-
-    bool hasAny{plural}({keyType}[] keys...);
     bool hasAny{plural}({keyType}[] keys);
-
     bool has{singular}({keyType} key);
   `
   .replace("{plural}", plural)
@@ -60,9 +56,7 @@ unittest {
 // #region getInterfaces
 string getInterfaces(string returntype, string plural, string singular, string keyType) {
   return `
-    {returntype}[] get{plural}({keyType}[] keys...);
     {returntype}[] get{plural}({keyType}[] keys);
-
     {returntype} get{singular}({keyType} key);
   `
   .replace("{returntype}", returntype)

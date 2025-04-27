@@ -14,16 +14,8 @@ import uim.core;
 // #region READ
   // #region Exists
     // Checks if the given path exists and is a symlink.
-    bool existsAllLinks(string[] paths...) {
-      return existsAllLinks(paths.dup);
-    }
-
     bool existsAllLinks(string[] paths) {
       return paths.all!(path => existsPath(path));
-    }
-
-    bool existsAnyLinks(string[] paths...) {
-      return existsAnyLinks(paths.dup);
     }
 
     bool existsAnyLinks(string[] paths) {

@@ -86,16 +86,8 @@ unittest {
 
 // #region contains
 // #region containsAll
-bool containsAll(string[] bases, string[] values...) {
-  return containsAll(bases, values.dup);
-}
-
 bool containsAll(string[] bases, string[] values) {
   return bases.all!(base => base.containsAll(values));
-}
-
-bool containsAll(string base, string[] values...) {
-  return containsAll(base, values.dup);
 }
 
 bool containsAll(string base, string[] values) {
@@ -104,16 +96,8 @@ bool containsAll(string base, string[] values) {
 // #endregion containsAll
 
 // #region containsAny
-bool containsAny(string[] bases, string[] values...) {
-  return containsAny(bases, values.dup);
-}
-
 bool containsAny(string[] bases, string[] values) {
   return bases.any!(base => base.containsAny(values));
-}
-
-bool containsAny(string base, string[] values...) {
-  return containsAny(base, values.dup);
 }
 
 bool containsAny(string base, string[] values) {
@@ -181,14 +165,6 @@ string quotes(string text, string left, string right) {
 
 // TODO
 /* 
-string[] toStrings(T...)(T someValues...){
-  return someValues.map!(value => "%s".format(value)).array;
-}
-unittest {
-  debug writeln(toStrings(1, 2));
-  debug writeln(toStrings(1, "a"));
-} */
-
 string indent(in string text, size_t indent = 2) {
   if (indent == 0) {
     return text;
@@ -422,18 +398,10 @@ unittest {
 
 // #region strip
 // #region stripText
-string[] stripText(string[] texts, string[] chars...) {
-  return stripText(texts, chars.dup);
-}
-
 string[] stripText(string[] texts, string[] chars) {
   return texts
     .map!(text => stripText(text, chars))
     .array;
-}
-
-string stripText(string text, string[] chars...) {
-  return stripText(text, chars.dup);
 }
 
 string stripText(string text, string[] chars) {
@@ -560,18 +528,10 @@ unittest {
 // #endregion stripTextLeft
 
 // #region stripTextRight
-string[] stripTextRight(string[] texts, string[] chars...) {
-  return stripTextRight(texts, chars.dup);
-}
-
 string[] stripTextRight(string[] texts, string[] chars) {
   return texts
     .map!(text => stripTextRight(text, chars))
     .array;
-}
-
-string stripTextRight(string text, string[] chars...) {
-  return stripTextRight(text, chars.dup);
 }
 
 string stripTextRight(string text, string[] chars) {
@@ -649,18 +609,6 @@ string[] split(string[] texts, string splitText = " ", int limit = 0) {
   return join(splitTexts);
 }
 
-unittest {
-  // TODO create test
-}
-
-string ifNull(string[] values...) {
-  foreach (value; values) {
-    if (!value.isNull) {
-      return value;
-    }
-  }
-  return null;
-}
 ///
 unittest {
   writeln("Testing ifNull()");
@@ -883,7 +831,7 @@ string delimit(string text, string delimiter = "_") {
       lastChar = c;
     }
   }
-  return result.lower;
+  return result.toLower;
 }
 
 unittest {
@@ -971,7 +919,7 @@ string classify(string tableName) {
   string result; // = _caching(__FUNCTION__, mytableName);
 
   if (result.isEmpty) {
-    result = tableName.singularize.camelize;
+    // TODO result = tableName.singularize.camelize;
     // _caching(__FUNCTION__, mytableName, result);
   }
   return result;
@@ -986,7 +934,7 @@ string variable(string stringToConvert) {
   string result; // = // _caching(__FUNCTION__, stringToConvert);
   if (result.isEmpty) {
     string camelized = stringToConvert.underscore.camelize;
-    string replaced = subString(camelized, 0, 1).lower;
+    string replaced = subString(camelized, 0, 1).toLower;
     result = replaced ~ subString(camelized, 1);
     // _caching(__FUNCTION__, stringToConvert, result);
   }
@@ -1055,7 +1003,7 @@ string _caching(string inflectionType, string originalValue, string inflectedVal
 }
 
 bool isBoolean(string value) {
-  return ["yes", "no", "true", "false", "0", "1", "on", "off"].hasValue(value.lower);
+  return ["yes", "no", "true", "false", "0", "1", "on", "off"].hasValue(value.toLower);
 }
 // #endregion longestText
 
