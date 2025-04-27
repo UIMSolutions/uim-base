@@ -3,9 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.phobos.containers.maps.map;
+module uim.phobos.containers.maps.map_;
 
-mixin(Version!("test_uim_core"));
+mixin(Version!("test_uim_phobos"));
 
 import uim.phobos;
 @safe:
@@ -403,10 +403,7 @@ unittest {
     return items;
   }
 
-  T[string] set(T : Json, V)(T[string] items, string key, V value) if (!is(V == T)) {
-    items.set(key, value.toJson);
-    return items;
-  }
+  
 
   T[string] set(T : string, V)(T[string] items, string key, V value) if (!is(V == T)) {
     items.set(key, value.toString);
@@ -468,10 +465,7 @@ unittest {
     return items;
   }
 
-  T[string] merge(T : Json, V)(T[string] items, string key, V value) if (!is(V == T)) {
-    items.merge(key, value.toJson);
-    return items;
-  }
+
 
   T[string] merge(T : string, V)(T[string] items, string key, V value) if (!is(V == T)) {
     items.merge(key, value.toString);
@@ -517,10 +511,6 @@ T[string] update(T, V)(T[string] items, V[string] newItems) {
     return items;
   }
 
-  T[string] update(T : Json, V)(T[string] items, string key, V value) if (!is(V == T)) {
-    items.update(key, value.toJson);
-    return items;
-  }
 
   T[string] update(T : string, V)(T[string] items, string key, V value) if (!is(V == T)) {
     items.update(key, value.toString);

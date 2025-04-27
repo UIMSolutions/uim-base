@@ -127,9 +127,7 @@ string[string] merge(string[string] items, string key, double value) {
   return items.merge(key, to!string(value));
 }
 
-string[string] merge(string[string] items, string key, Json value) {
-  return items.merge(key, value.toString);
-}
+
 
 string[string] merge(string[string] items, string key, string value) {
   if (!items.hasKey(key)) {

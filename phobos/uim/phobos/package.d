@@ -60,7 +60,7 @@ public {
   import uim.phobos.compiler;
   import uim.phobos.complex;
   import uim.phobos.concurrency;
-  import uim.phobos.container;
+  import uim.phobos.containers;
   import uim.phobos.conv;
   import uim.phobos.csv;
   import uim.phobos.datetime;

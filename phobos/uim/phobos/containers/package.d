@@ -10,7 +10,7 @@ public {
     import uim.phobos.containers.arrays;
     import uim.phobos.containers.binaryheap;
     import uim.phobos.containers.dlist;
-    import uim.phobos.containers.map;
+    import uim.phobos.containers.maps;
     import uim.phobos.containers.rbtree;
     import uim.phobos.containers.slist;
     import uim.phobos.containers.util;
