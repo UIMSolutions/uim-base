@@ -3,11 +3,11 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.core.containers.maps.keys;
+module uim.phobos.containers.maps.keys;
 
 public {
-    import uim.core.containers.maps.keys.json;
-    import uim.core.containers.maps.keys.string_;
+    import uim.phobos.containers.maps.keys.json;
+    import uim.phobos.containers.maps.keys.string_;
 }
 
 version (test_uim_core) {

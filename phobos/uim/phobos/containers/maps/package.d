@@ -3,15 +3,15 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.core.containers.maps;
+module uim.phobos.containers.maps;
 
 public {
-  import uim.core.containers.maps.map;
-  import uim.core.containers.maps.json;
-  import uim.core.containers.maps.string_;
+  import uim.phobos.containers.maps.map;
+  import uim.phobos.containers.maps.json;
+  import uim.phobos.containers.maps.string_;
 }
 
 public {
-  import uim.core.containers.maps.keys;
-  import uim.core.containers.maps.values;
+  import uim.phobos.containers.maps.keys;
+  import uim.phobos.containers.maps.values;
 }
