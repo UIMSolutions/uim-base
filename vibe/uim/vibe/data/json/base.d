@@ -1154,7 +1154,7 @@ unittest {
 
 // #region getStringMap
 string[string] getStringMap(Json[string] items, string[] keys) {
-  STRINGAA results;
+  string[string] results;
   keys.each!(key => results[key] = items.getString(key));
   return results;
 }
@@ -1226,25 +1226,83 @@ Json[string] onlyKeys(Json[string] values, string[] keys, string excludeKey) {
 }
  */
 
-T[string] set(T : Json, V)(T[string] items, string key, V value) if (!is(V == T)) {
-  items.set(key, value.toJson);
-  return items;
+// #region set
+Json[string] setValue(T)(Json[string] items, string key, T value) {
+  return setValue(items, key, value.toJson);
 }
 
-T[string] merge(T : Json, V)(T[string] items, string key, V value) if (!is(V == T)) {
-  items.merge(key, value.toJson);
-  return items;
+Json[string] setValue(T : Json)(Json[string] items, string key, Json value) {
+  auto results = items.dup;
+  if (key !in results) {
+    items[key] = value;
+  }
+  return results;
 }
 
-T[string] update(T : Json, V)(T[string] items, string key, V value) if (!is(V == T)) {
-  items.update(key, value.toJson);
-  return items;
+Json setValue(T)(Json json, string key, T value) {
+  return setValue(json, key, value.toJson);
 }
 
-string[string] merge(string[string] items, string key, Json value) {
-  return items.merge(key, value.toString);
+Json setValue(T : Json)(Json json, string key, Json value) {
+  auto results = json.dup;
+  if (results.isObject && key !in results) {
+    items[key] = value;
+  }
+  return results;
+}
+// #endregion set
+
+// #region update
+Json[string] updateValue(T)(Json[string] items, string key, T value) {
+  return updateValue(items, key, value.toJson);
 }
 
+Json[string] updateValue(T : Json)(Json[string] items, string key, Json value) {
+  auto results = items.dup;
+  if (results.isObject) {
+    items[key] = value;
+  }
+  return results;
+}
+
+Json updateValue(T)(Json json, string key, T value) {
+  return updateValue(json, key, value.toJson);
+}
+
+Json updateValue(T : Json)(Json json, string key, Json value) {
+  auto results = json.dup;
+  if (results.isObject && key in results) {
+    items[key] = value;
+  }
+  return results;
+}
+// #endregion update
+
+// #region merge
+Json[string] mergeValue(T)(Json[string] items, string key, T value) {
+  return mergeValue(items, key, value.toJson);
+}
+
+Json[string] mergeValue(T : Json)(Json[string] items, string key, Json value) {
+  auto results = items.dup;
+  if (key !in results) {
+    items[key] = value;
+  }
+  return results;
+}
+
+Json mergeValue(T)(Json json, string key, T value) {
+  return mergeValue(json, key, value.toJson);
+}
+
+Json mergeValue(T : Json)(Json json, string key, Json value) {
+  auto results = json.dup;
+  if (results.isObject && key !in results) {
+    items[key] = value;
+  }
+  return results;
+}
+// #endregion merge
 
 /* Json[string] setNull(Json[string] items, string[] path) {
   return set(items, path, Json(null));
@@ -1268,7 +1326,7 @@ Json[string] setPath(Json[string] items, string[] path, Json value) {
     return set(items, path[0], value);
   } */
 
-  /*   Json json = Json.emptyObject;
+/*   Json json = Json.emptyObject;
   return set(items, path[0], json.set(path[1..$], value));                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ;
  */
 /*   return null;

@@ -5,15 +5,10 @@
 *****************************************************************************************************************/
 module uim.phobos.containers.arrays.array_;
 
+mixin(Version!("test_uim_phobos"));
+
 import uim.phobos;
-
 @safe:
-
-version (test_uim_phobos) {
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
 
 // #region check
 // #region has

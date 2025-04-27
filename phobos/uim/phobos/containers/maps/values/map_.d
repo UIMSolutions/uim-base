@@ -3,31 +3,38 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.phobos.containers.maps.values.map;
+module uim.phobos.containers.maps.values.map_;
 
 mixin(Version!("test_uim_phobos"));
 
 import uim.phobos;
 @safe:
 
-// #region filterValues
-V[K] filterValues(K, V)(ref V[K] items) {
-  V[K] results;
+// #region getValues
+V[K] getValues(K, V)(auto ref V[K] items) {
+  V[K] values;
   items.byKeyValue
-    .filter!(item => !item.value.isNull)
-    .each!(item => results[item.key] = item.value);
+    .each!(item => values[item.key] = item.value);
 
-  return results;
+  return values;
 }
 
-V[K] filterValues(K, V)(ref V[K] items, bool delegate(string key, Json value) check) {
-  V[K] results;
+V[K] getValues(K, V)(auto ref V[K] items, K[] keys) {
+  V[K] values;
+  keys.filter!(key => key in items)
+    .each!(key => values[key] = item[key]);
+
+  return values;
+}
+
+V[K] getValues(K, V)(auto ref V[K] items, bool delegate(K key, V value) check) {
+  V[K] values;
   () @trusted {
     items.byKeyValue
       .filter!(item => check(item.key, item.value))
-      .each!(item => results[item.key] = item.value);
+      .each!(item => values[item.key] = item.value);
   }();
-  return results;
+  return values;
 }
 
 unittest {

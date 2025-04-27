@@ -6,7 +6,6 @@
 module uim.phobos.containers.maps.values;
 
 public {
-    import uim.phobos.containers.maps.values.json;
-    import uim.phobos.containers.maps.values.map;
+    import uim.phobos.containers.maps.values.map_;
     import uim.phobos.containers.maps.values.string_;
 }

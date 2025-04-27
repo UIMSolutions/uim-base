@@ -90,11 +90,11 @@ class UIMObject : IObject {
 
   Json[string] debugInfo(string[] showKeys = null, string[] hideKeys = null) {
     Json[string] info = null;
-    info
-      .set("name", name)
-      .set("classname", this.classname)
-      .set("classFullname", this.classFullname);
-    return info;
+    
+    return info
+      .setValue("name", name)
+      .setValue("classname", this.classname)
+      .setValue("classFullname", this.classFullname);
   }
 }
 
