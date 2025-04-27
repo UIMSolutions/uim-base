@@ -156,7 +156,14 @@ class DConfiguration : IConfiguration {
   // #endregion is
 
   // #region get
+    // #region boolean
     mixin(GetMethods!("bool", "BooleanEntries", "BooleanEntry", "string"));
+
+    bool getBooleanEntry(string key) {
+      return hasEntry(key) ? getEntry(key).getBoolean : false;
+    }
+    // #endregion boolean
+
     mixin(GetMethods!("long", "LongEntries", "LongEntry", "string"));
     mixin(GetMethods!("double", "DoubleEntries", "DoubleEntry", "string"));
     mixin(GetMethods!("string", "StringEntries", "StringEntry", "string"));
@@ -164,9 +171,6 @@ class DConfiguration : IConfiguration {
     mixin(GetMethods!("Json[string]", "MapEntries", "MapEntry", "string"));
     mixin(GetMethods!("Json", "Entries", "Entry", "string"));
 
-    bool getBooleanEntry(string key) {
-      return hasEntry(key) ? getEntry(key).getBoolean : false;
-    }
 
     long getLongEntry(string key) {
       return hasEntry(key) ? getEntry(key).getLong : 0;

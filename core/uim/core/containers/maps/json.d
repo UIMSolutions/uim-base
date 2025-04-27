@@ -289,42 +289,6 @@ unittest {
   assert(map.getInteger("c") == 1);
 }
 
-long getLong(Json[string] values, string key, long defaultValue = 0) {
-  auto json = getJson(values, key);
-  return !(json == Json(null))
-    ? json.get!long : defaultValue;
-}
-unittest {
-  Json[string] map = ["a": Json("A"), "b": Json(true), "c": Json(1), "d": Json(1.1)];
-  assert(map.length == 4);
-
-  assert(map.getLong("c") == 1);
-}
-
-double getDouble(Json[string] items, string key, double defaultValue = 0.0) {
-  auto json = items.get(key, Json(null));
-  return !(json == Json(null))
-    ? json.get!double : defaultValue;
-}
-unittest {
-  Json[string] map = ["a": Json("A"), "b": Json(true), "c": Json(1), "d": Json(1.1)];
-  assert(map.length == 4);
-
-  assert(map.getDouble("d") == 1.1);
-}
-
-string getString(Json[string] items, string key, string defaultValue = null) {
-  auto json = items.get(key, Json(null));
-  return !(json == Json(null))
-    ? json.get!string : defaultValue;
-}
-unittest {
-  Json[string] map = ["a": Json("A"), "b": Json(true), "c": Json(1), "d": Json(1.1)];
-  assert(map.length == 4);
-
-  assert(map.getString("a") == "A");
-}
-
 // #region getStringArray
 string[] getStringArray(Json[string] map, string[] keys) {
   return keys

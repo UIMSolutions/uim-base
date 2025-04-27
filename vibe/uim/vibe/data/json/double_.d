@@ -17,7 +17,7 @@ bool isDouble(Json value, bool strict = true) {
   if (!strict) {
     // check for boolean, integer, and string types
   }
-  return (value.type == Json.Type.float_);
+  return (value.type == Json.Type.double_);
 }
 
 unittest { // Json
@@ -71,26 +71,36 @@ unittest { // Json[string]
 // #endregion is
 
 // #region get
-double getDouble(Json value, string key, bool strict = true) {
-  return !value.isNull && value.isObject && value.hasKey(key)
-    ? value[key].getDouble(strict) : 0.0;
+mixin(GetJsonValue!("double", "Double", "0.0"));
+
+double getDouble(Json json, double defaultValue = 0.0) {
+  return json.isDouble
+    ? json.get!double : defaultValue;
 }
 
-double getDouble(Json value, bool strict = true) {
-  if (!strict) {
-    if (value.isBoolean) {
-      return value.get!bool ? 1.0 : 0.0;
-    }
-    if (value.isInteger) {
-      return to!double(value.get!int);
-    }
-    if (value.isString) {
-      return to!double(value.getString);
-    }
-  }
+unittest {
+  Json json = Json(1.0);
+  assert(json.getDouble == 1.0);
 
-  return !value.isNull && (value.isFloat || value.isDouble)
-    ? value.get!double : 0.0;
+  json = Json.emptyArray;
+  json ~= 1.0;
+  json ~= 2.0;
+  assert(json.getDouble(0) == 1.0);
+  assert(json.getDouble(1) != 1.0);
+
+  json = Json.emptyObject;
+  json["One"] = 1.0;
+  json["Two"] = 2.0;
+  assert(json.getDouble("One") == 1.0);
+  assert(json.getDouble("Two") != 1.0);
+
+  auto list = [Json(1.0), Json(2.0)];
+  assert(list.getDouble(0) == 1.0);
+  assert(list.getDouble(1) != 1.0);
+
+  auto map = ["One": Json(1.0), "Two": Json(2.0)];
+  assert(map.getDouble("One") == 1.0);  
+  assert(map.getDouble("Two") != 1.0);  
 }
 // #endregion get
 

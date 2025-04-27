@@ -12,13 +12,13 @@ import uim.vibe;
 // #region is
 mixin(CheckJsonIs!("Array"));
 
-bool isArray(Json json, bool strict = true) {
+Json[] isArray(Json json, Json[] strict = true) {
   if (json == Json(null)) {
     return false;
   }
 
   if (!strict) {
-    // TODO: Future: Add support for array boolean, integer, float, and string.
+    // TODO: Future: Add support for array Json[]ean, integer, float, and string.
   }
   return json != Json(null)
     ? (json.type == Json.Type.array) : false;
@@ -36,11 +36,11 @@ unittest {
 // #endregion is
 
 // #region hasAll
-bool hasAll(T)(Json json, T[] values) {
+Json[] hasAll(T)(Json json, T[] values) {
   return json.hasAll(values.map!(value => value.toJson).array);
 }
 
-bool hasAll(Json json, Json[] values) {
+Json[] hasAll(Json json, Json[] values) {
   if (!json.isArray)
     return false;
 
@@ -49,11 +49,11 @@ bool hasAll(Json json, Json[] values) {
 // #endregion hasAll
 
 // #region hasAny
-bool hasAny(T)(Json json, T[] values) {
+Json[] hasAny(T)(Json json, T[] values) {
   return json.hasAny(values.map!(value => value.toJson).array);
 }
 
-bool hasAny(Json json, Json[] values) {
+Json[] hasAny(Json json, Json[] values) {
   if (!json.isArray)
     return false;
 
@@ -62,11 +62,11 @@ bool hasAny(Json json, Json[] values) {
 // #endregion hasAny
 
 // #region has
-bool has(T)(Json json, T value) {
+Json[] has(T)(Json json, T value) {
   return json.has(value.toJson);
 }
 
-bool has(Json json, Json value) {
+Json[] has(Json json, Json value) {
   if (!json.isArray)
     return false;
 
@@ -99,3 +99,37 @@ unittest {
   assert(!json.hasAll([1, 12, 13]));
 }
 // #endregion has
+
+// #region get
+mixin(GetJsonValue!("Json[]", "Array", "null"));
+
+Json[] getArray(Json json, Json[] defaultValue = null) {
+  return json.isArray
+    ? json.get!(Json[]) : defaultValue;
+}
+
+unittest {
+  Json json = Json(true);
+  assert(json.getArray);
+
+  json = Json.emptyArray;
+  json ~= true;
+  json ~= false;
+  assert(json.getArray(0) == true);
+  assert(json.getArray(1) != true);
+
+  json = Json.emptyObject;
+  json["One"] = true;
+  json["Two"] = false;
+  assert(json.getArray("One") == true);
+  assert(json.getArray("Two") != true);
+
+  auto list = [Json(true), Json(false)];
+  assert(list.getArray(0) == true);
+  assert(list.getArray(1) != true);
+
+  auto map = ["One": Json(true), "Two": Json(false)];
+  assert(map.getArray("One") == true);  
+  assert(map.getArray("Two") != true);  
+}
+// #endregion get

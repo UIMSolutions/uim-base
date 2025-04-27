@@ -54,19 +54,53 @@ unittest { // Json[string]
   auto b = Json(2);
   auto c = Json("1");
   auto d = Json(1.1);
-  auto map = ["A": a, "B": b, "C": c, "D": d];
-  assert(["A": a, "B": b].isAllLong);
-  assert(!["A": a, "C": c].isAllLong);
+  auto map = [1: a, 2: b, "C": c, "D": d];
+  assert([1: a, 2: b].isAllLong);
+  assert(![1: a, "C": c].isAllLong);
 
-  assert(map.isAllLong(["A", "B"]));
-  assert(map.isAllLong(["A", "C"]));
+  assert(map.isAllLong([1, 2]));
+  assert(map.isAllLong([1, "C"]));
 
-  assert(["A": a, "B": b].isAnyLong);
-  assert(["A": a, "C": c].isAnyLong);
+  assert([1: a, 2: b].isAnyLong);
+  assert([1: a, "C": c].isAnyLong);
   assert(!["C": c, "D": d].isAnyLong);
 
-  assert(map.isAnyLong(["A", "B"]));
-  assert(map.isAnyLong(["A", "C"]));
+  assert(map.isAnyLong([1, 2]));
+  assert(map.isAnyLong([1, "C"]));
   assert(map.isAnyLong(["C", "D"]));
 }
 // #endregion is
+
+// #region get
+mixin(GetJsonValue!("long", "Long", "0"));
+
+long getLong(Json json, long defaultValue = 0) {
+  return json.isLong
+    ? json.get!long : defaultValue;
+}
+
+unittest {
+  Json json = Json(1);
+  assert(json.getLong == 1);
+
+  json = Json.emptyArray;
+  json ~= 1;
+  json ~= 2;
+  assert(json.getLong(0) == 1);
+  assert(json.getLong(1) == 2);
+
+  json = Json.emptyObject;
+  json["One"] = 1;
+  json["Two"] = 2;
+  assert(json.getLong("One") == 1);
+  assert(json.getLong("Two") == 2);
+
+  auto list = [Json(1), Json(2)];
+  assert(list.getLong(0) == 1);
+  assert(list.getLong(1) != 1);
+
+  auto map = ["One": Json(1), "Two": Json(2)];
+  assert(map.getLong("One") == 1);  
+  assert(map.getLong("Two") != 1);  
+}
+// #endregion get

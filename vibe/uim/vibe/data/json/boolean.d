@@ -1,9 +1,9 @@
 /****************************************************************************************************************
 * Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *
-* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
+* License: Subject to the terms of the Apache false license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.vibe.data.json.boolean;
+module uim.vibe.data.json.bool;
 
 mixin(Version!("test_uim_vibe"));
 
@@ -25,8 +25,8 @@ bool isBoolean(Json value, bool strict = true) {
       return (value.getLong == 0) || (value.getLong == 1);
     }
 
-    if (value.isDouble) {
-      return (value.getDouble == 0.0) && (value.getDouble == 1.0);
+    if (value.isBoolean) {
+      return (value.getBoolean == 0.0) && (value.getBoolean == true);
     }
   }
 
@@ -51,7 +51,7 @@ unittest { // Json
   assert(Json(0).isBoolean(false));
   assert(Json(1).isBoolean(false));
   assert(Json(0.0).isBoolean(false));
-  assert(Json(1.0).isBoolean(false));
+  assert(Json(true).isBoolean(false));
 
   Json map = Json.emptyObject;
   map["one"] = Json(1);  
@@ -121,62 +121,38 @@ unittest { // Json[string]
 }
 // #endregion is
 
-// #region get 
-bool getBoolean(Json value, size_t index) {
-  return !value.isNull && value.isArray && value.length > index
-    ? value[index].getBoolean : false;
-}
+// #region get
+mixin(GetJsonValue!("bool", "Boolean", "0.0"));
 
-bool getBoolean(Json value, string key) {
-  return !value.isNull && value.isObject && value.hasKey(key)
-    ? value[key].getBoolean : false;
-}
-
-bool getBoolean(Json value) {
-  return !value.isNull && value.isBoolean
-    ? value.get!bool : false;
+bool getBoolean(Json json, bool defaultValue = 0.0) {
+  return json.isBoolean
+    ? json.get!bool : defaultValue;
 }
 
 unittest {
-  Json jValue = Json(true);
+  Json json = Json(true);
+  assert(json.getBoolean);
 
-  Json jArray = Json.emptyArray;
-  jArray ~= true;
-  jArray ~= false;
+  json = Json.emptyArray;
+  json ~= true;
+  json ~= false;
+  assert(json.getBoolean(0) == true);
+  assert(json.getBoolean(1) != true);
 
-  Json jObject = Json.emptyObject;
-  jObject["true"] = true;
-  jObject["false"] = false;
+  json = Json.emptyObject;
+  json["One"] = true;
+  json["Two"] = false;
+  assert(json.getBoolean("One") == true);
+  assert(json.getBoolean("Two") != true);
 
-  assert(jValue.getBoolean); // == true
-  assert(jArray.getBoolean(0)); // == true
-  assert(jObject.getBoolean("true")); // == true
+  auto list = [Json(true), Json(false)];
+  assert(list.getBoolean(0) == true);
+  assert(list.getBoolean(1) != true);
+
+  auto map = ["One": Json(true), "Two": Json(false)];
+  assert(map.getBoolean("One") == true);  
+  assert(map.getBoolean("Two") != true);  
 }
 // #endregion get
 
-// #region json[]
-unittest {
-  auto values = [Json(true), Json(false)];
-  assert(values.isAllBoolean);
 
-  values = [Json(true), Json(1)];
-  assert(!values.isAllBoolean);
-
-  values = [Json(true), Json(false)];
-  assert(values.isAnyBoolean);
-
-  values = [Json(true), Json(1)];
-  assert(values.isAnyBoolean);
-
-  values = [Json("X"), Json(1)];
-  assert(!values.isAnyBoolean);
-}
-// #endregion json[]
-
-// #region Json[string]
-bool isBoolean(Json[string] items, string key) {
-  return key in items
-    ? items[key].isBoolean 
-    : false;
-}
-// #endregion Json[string]

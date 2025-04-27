@@ -119,35 +119,36 @@ bool isInteger(Json value, bool strict = true) {
 // #endregion is
 
 // #region get
-int getInteger(Json value, size_t index) {
-  return !value.isNull && value.isArray && value.length > index
-    ? value[index].getInteger : 0;
-}
+mixin(GetJsonValue!("int", "Integer", "0"));
 
-int getInteger(Json value, string key) {
-  return !value.isNull && value.isObject && value.hasKey(key)
-    ? value[key].getInteger : 0;
-}
-
-int getInteger(Json value) {
-  return !value.isNull && value.isInteger
-    ? value.get!int : 0;
+int getInteger(Json json, int defaultValue = 0) {
+  return json.isInteger
+    ? json.get!int : defaultValue;
 }
 
 unittest {
-  Json jValue = Json(1);
+  Json json = Json(1);
+  assert(json.getInteger == 1);
 
-  Json jArray = Json.emptyArray;
-  jArray ~= 1;
-  jArray ~= 2;
+  json = Json.emptyArray;
+  json ~= 1;
+  json ~= 2;
+  assert(json.getInteger(0) == 1);
+  assert(json.getInteger(1) != 1);
 
-  Json jObject = Json.emptyObject;
-  jObject["one"] = 1;
-  jObject["two"] = 2;
+  json = Json.emptyObject;
+  json["One"] = 1;
+  json["Two"] = 2;
+  assert(json.getInteger("One") == 1);
+  assert(json.getInteger("Two") != 1);
 
-  assert(jValue.getInteger == 1); // == true
-  assert(jArray.getInteger(0) == 1); // == true
-  assert(jObject.getInteger("one") == 1); // == true
+  auto list = [Json(1), Json(2)];
+  assert(list.getInteger(0) == 1);
+  assert(list.getInteger(1) != 1);
+
+  auto map = ["One": Json(1), "Two": Json(2)];
+  assert(map.getInteger("One") == 1);  
+  assert(map.getInteger("Two") != 1);  
 }
 // #endregion get
 

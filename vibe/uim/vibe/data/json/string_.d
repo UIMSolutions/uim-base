@@ -151,25 +151,13 @@ unittest {
 // #endregion is
 
 // #region get
-string getString(Json[string] map, string key) {
-  return key in map
-    ? map[key].getString : null;
-}
+mixin(GetJsonValue!("string", "String", "null"));
 
-string getString(Json[] values, size_t index) {
-  return values.length > index
-    ? values[index].getString : null;
-}
-
-string getString(Json json, string key) {
-  return json.isObject && json.hasKey(key)
-    ? json[key].getString : null;
-}
-
-string getString(Json json) {
+string getString(Json json, string defaultValue = null) {
   return json.isString
-    ? json.get!string : null;
+    ? json.get!string : defaultValue;
 }
+
 unittest {
   Json json = Json("text");
   assert(json.getString == "text");

@@ -110,3 +110,27 @@ bool is`~type~`(Json json, string key, bool strict = true) {
 // #endregion Json
 `;
 }
+
+template GetJsonValue(string type, string typeName, string defaultValue) {
+  const char[] GetJsonValue = `
+`~type~` get`~typeName~`(Json[string] map, string key, `~type~` defaultValue = `~defaultValue~`) {
+  return key in map
+    ? map[key].get`~typeName~` : defaultValue;
+}
+
+`~type~` get`~typeName~`(Json[] values, size_t index, `~type~` defaultValue = `~defaultValue~`) {
+  return values.length > index
+    ? values[index].get`~typeName~` : defaultValue;
+}
+
+`~type~` get`~typeName~`(Json json, size_t index, `~type~` defaultValue = `~defaultValue~`) {
+  return json.isArray && json.length > index
+    ? json[index].get`~typeName~` : defaultValue;
+}
+
+`~type~` get`~typeName~`(Json json, string key, `~type~` defaultValue = `~defaultValue~`) {
+  return json.isObject && json.hasKey(key)
+    ? json[key].get`~typeName~` : defaultValue;
+}
+  `;
+}
