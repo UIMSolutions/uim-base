@@ -199,8 +199,7 @@ size_t[] indexOfAll(string text, string searchTxt) {
   return results;
 }
 
-unittest {
-}
+*/ 
 
 // #region substring
 // subString() - returns a part of a string.
@@ -341,15 +340,14 @@ unittest {
   assert("a.b.c".lastElement(".") == "c");
 }
 
+// #region toPath
 string toPath(string[] pathItems, string separator = ".") {
-  return pathItems.stripText(" ", separator, " ")
+  return pathItems.stripText([" ", separator, " "])
     .filter!(item => item.length > 0)
     .join(separator);
 }
 
 unittest {
-  writeln("Testing toPath()");
-
   assert(toPath(["a", "b", "c"]) == "a.b.c");
   assert(toPath(["a ", ".b", "c."]) == "a.b.c");
   assert(toPath(["a ", "", ".b", "c."]) == "a.b.c");
@@ -358,6 +356,7 @@ unittest {
   assert(["a ", "/b", "c/"].toPath("/") == "a/b/c");
   assert(["a ", "", "/b", "c/"].toPath("/") == "a/b/c");
 }
+// #region toPath
 
 string lower(string text) {
   return text.toLower;

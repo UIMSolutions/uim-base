@@ -17,16 +17,8 @@ version (test_uim_core) {
 
 // #region check
 // #region has
-bool hasAllValues(T)(T[] items, in T[] values...) {
-  return hasAllValues(items, values.dup);
-}
-
 bool hasAllValues(T)(T[] items, in T[] values) {
   return values.all!(value => items.hasValue(value));
-}
-
-bool hasAnyValues(T)(T[] items, in T[] values...) {
-  return hasAnyValues(items, values.dup);
 }
 
 bool hasAnyValues(T)(T[] items, in T[] values) {
@@ -97,10 +89,6 @@ size_t size(T)(T[] values) {
 // #region size
 
 // #region duplicates
-size_t[T] countValues(T)(in T[] values...) {
-  return countValues(values.dup);
-}
-
 size_t[T] countValues(T)(in T[] someValues) {
   size_t[T] results;
   someValues
@@ -143,10 +131,6 @@ unittest {
 // #endregion firstPosition
 
 // #region filterValues
-T[] filterValues(T)(T[] values, T[] filterItems...) {
-  return filterValues(values, filterItems.dup);
-}
-
 T[] filterValues(T)(T[] values, T[] filterItems) {
   return values.filter!(v => filterItems.hasValue(v)).array;
 }
@@ -288,10 +272,6 @@ unittest {
 
 // #region filters
 // filters(T)(T[] lhs, T[] rhs, bool multiple = false)
-T[] filters(T)(T[] baseArray, T[] filterValues...) {
-  return filters(baseArray, filterValues);
-}
-
 unittest {
   assert([1, 2, 3].filters(2) == [2]);
   assert([1, 2, 3].filters() is null);
@@ -509,10 +489,6 @@ unittest {
 // #endregion shift
 
 // #region unshift
-T[] unshift(T)(auto ref T[] values, T[] newValues...) {
-  return unshift(values, newValues.dup);
-}
-
 T[] unshift(T)(auto ref T[] values, T[] newValues) {
   values = newValues ~ values;
   return values;
@@ -646,10 +622,6 @@ unittest {
 }
 
 // #region push
-T[] push(T)(auto ref T[] items, T[] values...) {
-  return push(items, values.dup);
-}
-
 T[] push(T)(auto ref T[] items, T[] values) {
   values.each!(value => items.push(value));
   return items;
@@ -702,10 +674,6 @@ unittest {
 // #endregion isIn
 
 // #region remove
-auto ref removeValues(T)(auto ref T[] values, T[] values...) {
-  return removeValues(values, values.dup);
-}
-
 auto ref removeValues(T)(auto ref T[] items, T[] values) {
   T[] items = values.filter!(v => !items.hasValue(v)).array;
   return results;

@@ -331,9 +331,6 @@ Json mergeJsonObject(Json baseJson, Json mergeJson) {
 
 // #region merge
 /// Merge jsons objects to one
-Json mergeJsons(Json[] jsons...) {
-  return mergeJsons(jsons.dup, true);
-}
 /// Merge jsons objects in array to one
 Json mergeJsons(Json[] jsons, bool shouldOverwrite = true) {
   Json result = Json.emptyObject;
@@ -441,10 +438,6 @@ unittest {
 
   assert(jsonWithMaxVersion(json3, json3, json2)["versionNumber"].get!size_t == 3);
   assert(jsonWithMaxVersion([json3, json3, json2])["versionNumber"].get!size_t == 3);
-}
-
-size_t maxVersionNumber(Json[] jsons...) {
-  return maxVersionNumber(jsons.dup);
 }
 
 size_t maxVersionNumber(Json[] jsons) {

@@ -100,10 +100,6 @@ V[string] lowerKeys(K : string, V)(ref V[string] items) {
   ;
 }
 
-V[string] lowerKeys(K, V)(ref V[string] items, K[] keys...) if (is(K == string)) {
-  return lowerKeys(items, keys.dup);
-}
-
 V[string] lowerKeys(K, V)(ref V[string] items, K[] keys) if (is(K == string)) {
   keys.each!(key => items.lowerKey(key));
   return items;
@@ -132,10 +128,6 @@ V[string] upperKeys(K, V)(ref V[string] items) if (is(K == string)) {
   items.keys.each!(key => items.upperKey(key));
   return items;
   ;
-}
-
-V[string] upperKeys(K, V)(ref V[string] items, K[] keys...) if (is(K == string)) {
-  return upperKeys(items, keys.dup);
 }
 
 V[string] upperKeys(K, V)(ref V[string] items, K[] keys) if (is(K == string)) {

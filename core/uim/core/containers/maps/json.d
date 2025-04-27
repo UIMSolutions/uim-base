@@ -13,11 +13,6 @@ import uim.core;
 alias JMAP = Json[string];
 
 // #region set
-  // returns a updated map with new values
-/*   ref set(K : string, V:Json, T:Json)(ref V[K] items, T[K] others, K[] keys...) if (is(typeof(T) == Json)) {
-    return set(items, others, keys.dup);
-  }
-
   // Returns a new map with updated values for existing keys
   ref set(K : string, V:Json, T:Json)(ref V[K] items, T[K] others, K[] keys = null) if (is(typeof(T) == Json)) {
     keys.length == 0
@@ -27,7 +22,7 @@ alias JMAP = Json[string];
       .each!(key => items.set(key, others[key]));
 
     return items;
-  } */
+  }
 
 /*   // Returns a new map with updated values for existing keys
   ref set(K : string, V:Json, T)(ref V[K] items, T[K] others, K[] keys = null) if (!is(typeof(T) == Json)) {
@@ -101,11 +96,6 @@ alias JMAP = Json[string];
 
 // #region update
 /*   // Returns a updated map with updated of existing keys and new values
-  ref update(K : string, V:
-    Json, T)(ref V[K] items, T[K] merges, K[] keys...) {
-    return update(items, merges, keys.dup);
-  }
-
   // Returns a new map with updated values for existing keys
   ref update(K : string, V:
     Json, T)(ref V[K] items, T[K] merges, K[] keys = null) {
@@ -140,7 +130,7 @@ alias JMAP = Json[string];
  */
   unittest {
     Json[string] map = ["a": Json("A"), "b": Json("B"), "c": Json("C")];
-    assert(map.length == 3 && map.hasAllKeys("a", "b", "c") && map["a"] == "A");
+    assert(map.length == 3 && map.hasAllKeys(["a", "b", "c"]) && map["a"] == "A");
 
     /* map.update("a", "x").update("d", "x").update("e", "x").update("f", "x");
     assert(map.length == 3 && !map.hasAnyKey("d", "e", "f") && map["a"] == Json("x"));
@@ -168,10 +158,7 @@ alias JMAP = Json[string];
 
 // #region merge
   // Returns a updated map with updated of existing keys and new values
-  /* ref merge(K : string, V:
-    Json, T)(ref V[K] items, T[K] merges, K[] keys...) if (!is(typeof(T) == Json)) {
-    return merge(items, merges, keys.dup);
-  }
+  /* 
 
   // Returns a new map with updated values for existing keys
   ref merge(K : string, V:

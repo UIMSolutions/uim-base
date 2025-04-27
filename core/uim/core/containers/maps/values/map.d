@@ -45,10 +45,6 @@ unittest {
 // #endregion filterValues
 
 // #region removeByValues
-V[K] removeByValues(K, V)(ref V[K] items, Json[] values...) {
-  return removeByValues(items, values.dup);
-}
-
 V[K] removeByValues(K, V)(ref V[K] items, Json[] values) {
   values.each!(value => removeByValue(items, value));
   return items;

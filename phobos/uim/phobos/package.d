@@ -26,16 +26,27 @@ public {
   import std.datetime;
   import std.demangle;
   import std.digest;
-  import std.logger;
+  import std.encoding;
+  import std.exception;
   import std.file;
   import std.format;
+  import std.file;
+  import std.format;
+  import std.getopt;
+  import std.logger;
   import std.math;
   import std.path;
   import std.range;
   import std.regex;
+  import std.stdint;
   import std.stdio;
   import std.string;
+  import std.traits;
+  import std.typecons;
   import std.uni;
+  import std.utf;
+  import std.uuid;
+  import std.zip;
 }
 
 public {

@@ -10,6 +10,7 @@ public {
   import uim.vibe.data.json.base;
   import uim.vibe.data.json.biginteger;
   import uim.vibe.data.json.boolean;
+  import uim.vibe.data.json.convert;
   import uim.vibe.data.json.double_;
   import uim.vibe.data.json.empty;
   import uim.vibe.data.json.float_;
