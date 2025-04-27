@@ -151,14 +151,48 @@ unittest {
 // #endregion is
 
 // #region get
-string getString(Json value, string key) {
-  return value.isObject && value.hasKey(key)
-    ? value[key].getString : null;
+string getString(Json[string] map, string key) {
+  return key in map
+    ? map[key].getString : null;
 }
 
-string getString(Json value) {
-  return value.isString
-    ? value.get!string : null;
+string getString(Json[] values, size_t index) {
+  return values.length > index
+    ? values[index].getString : null;
+}
+
+string getString(Json json, string key) {
+  return json.isObject && json.hasKey(key)
+    ? json[key].getString : null;
+}
+
+string getString(Json json) {
+  return json.isString
+    ? json.get!string : null;
+}
+unittest {
+  Json json = Json("text");
+  assert(json.getString == "text");
+
+  json = Json.emptyArray;
+  json ~= "a";
+  json ~= "b";
+  assert(json.getString(0) == "a");
+  assert(json.getString(1) == "b");
+
+  json = Json.emptyObject;
+  json["a"] = "A";
+  json["b"] = "B";
+  assert(json.getString("a") == "A");
+  assert(json.getString("b") == "B");
+
+  auto list = [Json("a"), Json("b")];
+  assert(list.getString(0) == "a");
+  assert(list.getString(1) != "a");
+
+  auto map = ["A": Json("a"), "B": Json("b")];
+  assert(map.getString("A") == "a");  
+  assert(map.getString("B") != "a");  
 }
 // #endregion get
 

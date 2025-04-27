@@ -20,12 +20,53 @@ bool isDouble(Json value, bool strict = true) {
   return (value.type == Json.Type.float_);
 }
 
-unittest {
-  writeln("bool isDouble(Json value)");
+unittest { // Json
   assert(!Json(true).isDouble);  
   assert(!Json(10).isDouble);  
   assert(Json(1.1).isDouble);  
   assert(!Json("text").isDouble);
+}
+
+unittest { // Json[]
+  auto a = Json(1.1);
+  auto b = Json(2.1);
+  auto c = Json(1);
+  auto d = Json("1.1");
+  auto list = [a, b, c, d];
+  assert([a, b].isAllDouble);
+  assert(![a, c].isAllDouble);
+
+  assert(list.isAllDouble([0, 1]));
+  assert(!list.isAllDouble([2, 3]));
+
+  assert([a, b].isAnyDouble);
+  assert([a, c].isAnyDouble);
+  assert(![c, d].isAnyDouble);
+
+  assert(list.isAnyDouble([0, 1]));
+  assert(list.isAnyDouble([1, 2]));
+  assert(!list.isAnyDouble([2, 3]));
+}
+
+unittest { // Json[string]
+  auto a = Json(1.1);
+  auto b = Json(2.1);
+  auto c = Json(1);
+  auto d = Json("1.1");
+  auto map = ["A": a, "B": b, "C": c, "D": d];
+  assert(["A": a, "B": b].isAllDouble);
+  assert(!["A": a, "C": c].isAllDouble);
+
+  assert(map.isAllDouble(["A", "B"]));
+  assert(map.isAllDouble(["A", "C"]));
+
+  assert(["A": a, "B": b].isAnyDouble);
+  assert(["A": a, "C": c].isAnyDouble);
+  assert(!["C": c, "D": d].isAnyDouble);
+
+  assert(map.isAnyDouble(["A", "B"]));
+  assert(map.isAnyDouble(["A", "C"]));
+  assert(map.isAnyDouble(["C", "D"]));
 }
 // #endregion is
 
