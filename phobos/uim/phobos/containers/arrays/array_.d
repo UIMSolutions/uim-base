@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.phobos.containers.arrays.array_;
 
-import uim.core;
+import uim.phobos;
 
 @safe:
 

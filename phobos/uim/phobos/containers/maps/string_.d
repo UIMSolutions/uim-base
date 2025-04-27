@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.phobos.containers.maps.string_;
 
-import uim.core;
+import uim.phobos;
 @safe:
 
 version (test_uim_core) {

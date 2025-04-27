@@ -7,7 +7,7 @@ module uim.phobos.containers.maps.keys.string_;
 
 mixin(Version!("test_uim_core"));
 
-import uim.core;
+import uim.phobos;
 @safe:
 
 /// Add prefix to key

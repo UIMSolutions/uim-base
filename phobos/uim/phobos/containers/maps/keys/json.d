@@ -7,5 +7,5 @@ module uim.phobos.containers.maps.keys.json;
 
 mixin(Version!("test_uim_core"));
 
-import uim.core;
+import uim.phobos;
 @safe:

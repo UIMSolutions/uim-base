@@ -7,7 +7,7 @@ module uim.phobos.containers.maps.map;
 
 mixin(Version!("test_uim_core"));
 
-import uim.core;
+import uim.phobos;
 @safe:
 
 enum SORTED = true;

@@ -7,7 +7,7 @@ module uim.phobos.containers.arrays.json;
 
 mixin(Version!("test_uim_core"));
 
-import uim.core;
+import uim.phobos;
 @safe:
 // to Json array
 

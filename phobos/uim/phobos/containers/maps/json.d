@@ -7,7 +7,7 @@ module uim.phobos.containers.maps.json;
 
 mixin(Version!("test_uim_core"));
 
-import uim.core;
+import uim.phobos;
 @safe:
 
 alias JMAP = Json[string];

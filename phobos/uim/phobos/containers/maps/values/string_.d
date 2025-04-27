@@ -7,7 +7,7 @@ module uim.phobos.containers.maps.values.string_;
 
 mixin(Version!("test_uim_core"));
 
-import uim.core;
+import uim.phobos;
 @safe:
 
 // #region set
