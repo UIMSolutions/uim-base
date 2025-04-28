@@ -8,6 +8,7 @@ module uim.oop.patterns.obj;
 mixin(Version!"test_uim_oop");
 
 import uim.oop;
+
 @safe:
 
 class UIMObject : IObject {
@@ -56,7 +57,7 @@ class UIMObject : IObject {
     return memberNames.hasValue(name);
   }
 
-/*   void opIndexAssign(T)(T value, string name) {
+  /*   void opIndexAssign(T)(T value, string name) {
     switch(name) {
       case "name": this.name(value.toString);
       default: break;
@@ -89,8 +90,8 @@ class UIMObject : IObject {
   }
 
   Json[string] debugInfo(string[] showKeys = null, string[] hideKeys = null) {
-    Json[string] info = null;
-    
+    Json[string] info;
+
     return info
       .setValue("name", name)
       .setValue("classname", this.classname)
@@ -113,5 +114,6 @@ class Test : UIMObject {
 }
 
 unittest {
-  // TODO 
+  auto obj = new IMObject;
+
 }

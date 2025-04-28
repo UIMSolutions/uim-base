@@ -1227,6 +1227,18 @@ Json[string] onlyKeys(Json[string] values, string[] keys, string excludeKey) {
  */
 
 // #region set
+Json[string] setValues(T)(Json[string] items, T[string] values) {
+  auto results = items.dup;
+  values.each!((key, value) => results = results.setValue(key, value));
+  return results;
+}
+
+Json[string] setValues(T)(Json[string] items, string[] keys, T value) {
+  auto results = items.dup;
+  keys.each!(key => results = results.setValue(key, value));
+  return results;
+}
+
 Json[string] setValue(T)(Json[string] items, string key, T value) {
   return setValue(items, key, value.toJson);
 }
@@ -1236,6 +1248,50 @@ Json[string] setValue(T : Json)(Json[string] items, string key, Json value) {
   if (key !in results) {
     items[key] = value;
   }
+  return results;
+}
+
+unittest {
+  Json[string] items = null;
+  items = items.setValue("a", Json("A"));
+  assert(items["a"] == Json("A"));
+  items = items.setValue("b", Json("B")).setValue("c", Json("C"));
+  assert(items.hasAllKeys("a", "b", "c"));
+  assert(items["a"] == Json("A") && items["b"] == Json("B") && items["c"] == Json("C"));
+
+  items = null;
+  items = items.setValue("a", "A");
+  assert(items["a"] == Json("A"));
+  items = items.setValue("b", "B").setValue("c", "C");
+  assert(items.hasAllKeys("a", "b", "c"));
+  assert(items["a"] == Json("A") && items["b"] == Json("B") && items["c"] == Json("C"));
+
+  items = null;
+  items = items.setValue("a", "A");
+  assert(items["a"] == Json("A"));
+  items = items.setValues(["b", "c"], "X");
+  assert(items.hasAllKeys("a", "b", "c"));
+  assert(items["a"] == Json("A") && items["b"] == Json("X") && items["c"] == Json("X"));
+
+  items = null;
+  items = items.setValue("a", "A");
+  assert(items["a"] == Json("A"));
+  items = items.setValues(["b": "B", "c": "C"]);
+  assert(items.hasAllKeys("a", "b", "c"));
+  assert(items["a"] == Json("A") && items["b"] == Json("B") && items["c"] == Json("C"));
+}
+// #endregion Json[string]
+
+// #region Json
+Json setValues(T)(Json items, T[string] values) {
+  auto results = items.dup;
+  values.each!((key, value) => results = results.setValue(key, value));
+  return results;
+}
+
+Json setValues(T)(Json items, string[] keys, T value) {
+  auto results = items.dup;
+  keys.each!(key => results = results.setValue(key, value));
   return results;
 }
 
@@ -1250,9 +1306,53 @@ Json setValue(T : Json)(Json json, string key, Json value) {
   }
   return results;
 }
+
+unittest {
+  auto json = Json.emptyObject;
+  json = json.setValue("a", Json("A"));
+  assert(json["a"] == Json("A"));
+  json = json.setValue("b", Json("B")).setValue("c", Json("C"));
+  assert(json.hasAllKeys("a", "b", "c"));
+  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
+
+  json = Json.emptyObject;
+  json = json.setValue("a", "A");
+  assert(json["a"] == Json("A"));
+  json = json.setValue("b", "B").setValue("c", "C");
+  assert(json.hasAllKeys("a", "b", "c"));
+  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
+
+  json = Json.emptyObject;
+  json = json.setValue("a", "A");
+  assert(json["a"] == Json("A"));
+  json = json.setValues(["b", "c"], "X");
+  assert(json.hasAllKeys("a", "b", "c"));
+  assert(json["a"] == Json("A") && json["b"] == Json("X") && json["c"] == Json("X"));
+
+  json = Json.emptyObject;
+  json = json.setValue("a", "A");
+  assert(json["a"] == Json("A"));
+  json = json.setValues(["b": "B", "c": "C"]);
+  assert(json.hasAllKeys("a", "b", "c"));
+  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
+}
+// #region Json
 // #endregion set
 
 // #region update
+// #endregion Json[string]
+Json[string] updateValues(T)(Json[string] items, T[string] values) {
+  auto results = items.dup;
+  values.each!((key, value) => results = results.updateValue(key, value));
+  return results;
+}
+
+Json[string] updateValues(T)(Json[string] items, string[] keys, T value) {
+  auto results = items.dup;
+  keys.each!(key => results = results.updateValue(key, value));
+  return results;
+}
+
 Json[string] updateValue(T)(Json[string] items, string key, T value) {
   return updateValue(items, key, value.toJson);
 }
@@ -1262,6 +1362,20 @@ Json[string] updateValue(T : Json)(Json[string] items, string key, Json value) {
   if (results.isObject) {
     items[key] = value;
   }
+  return results;
+}
+// #endregion Json[string]
+
+// #region Json
+Json updateValues(T)(Json items, T[string] values) {
+  auto results = items.dup;
+  values.each!((key, value) => results = results.updateValue(key, value));
+  return results;
+}
+
+Json updateValues(T)(Json items, string[] keys, T value) {
+  auto results = items.dup;
+  keys.each!(key => results = results.updateValue(key, value));
   return results;
 }
 
@@ -1276,9 +1390,23 @@ Json updateValue(T : Json)(Json json, string key, Json value) {
   }
   return results;
 }
+// #region Json
 // #endregion update
 
 // #region merge
+// #region Json[string]
+Json[string] mergeValues(T)(Json[string] items, T[string] values) {
+  auto results = items.dup;
+  values.each!((key, value) => results = results.mergeValue(key, value));
+  return results;
+}
+
+Json[string] mergeValues(T)(Json[string] items, string[] keys, T value) {
+  auto results = items.dup;
+  keys.each!(key => results = results.mergeValue(key, value));
+  return results;
+}
+
 Json[string] mergeValue(T)(Json[string] items, string key, T value) {
   return mergeValue(items, key, value.toJson);
 }
@@ -1288,6 +1416,20 @@ Json[string] mergeValue(T : Json)(Json[string] items, string key, Json value) {
   if (key !in results) {
     items[key] = value;
   }
+  return results;
+}
+// #endregion Json[string]
+
+// #region Json
+Json mergeValues(T)(Json items, T[string] values) {
+  auto results = items.dup;
+  values.each!((key, value) => results = results.mergeValue(key, value));
+  return results;
+}
+
+Json mergeValues(T)(Json items, string[] keys, T value) {
+  auto results = items.dup;
+  keys.each!(key => results = results.mergeValue(key, value));
   return results;
 }
 
@@ -1302,6 +1444,7 @@ Json mergeValue(T : Json)(Json json, string key, Json value) {
   }
   return results;
 }
+// #region Json
 // #endregion merge
 
 /* Json[string] setNull(Json[string] items, string[] path) {
