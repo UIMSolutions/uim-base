@@ -127,10 +127,8 @@ string[string] merge(string[string] items, string key, double value) {
   return items.merge(key, to!string(value));
 }
 
-
-
 string[string] merge(string[string] items, string key, string value) {
-  if (!items.hasKey(key)) {
+  if (key !in items) {
     items[key] = value;
   }
   return items;

@@ -2,7 +2,7 @@
 	"fileVersion": 1,
 	"versions": {
 		"colored": "0.0.33",
-		"diet-ng": "1.8.3",
+		"diet-ng": "1.8.4",
 		"eventcore": "0.9.35",
 		"mir-linux-kernel": "1.2.1",
 		"openssl": "3.3.4",
@@ -18,7 +18,7 @@
 		"vibe-core": "2.10.1",
 		"vibe-d": "0.10.2",
 		"vibe-http": "1.2.2",
-		"vibe-inet": "1.1.1",
+		"vibe-inet": "1.1.2",
 		"vibe-serialization": "1.1.0",
 		"vibe-stream": "1.1.1"
 	}

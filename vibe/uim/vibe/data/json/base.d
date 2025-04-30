@@ -1227,6 +1227,7 @@ Json[string] onlyKeys(Json[string] values, string[] keys, string excludeKey) {
  */
 
 // #region set
+// #region Json[string]
 Json[string] setValues(T)(Json[string] items, T[string] values) {
   auto results = items.dup;
   values.each!((key, value) => results = results.setValue(key, value));
@@ -1237,6 +1238,25 @@ Json[string] setValues(T)(Json[string] items, string[] keys, T value) {
   auto results = items.dup;
   keys.each!(key => results = results.setValue(key, value));
   return results;
+}
+
+Json[string] setValue(T)(Json[string] items, string[] path, T value) {
+  Json[string] result = items.dup;
+  if (path.length == 0) {
+    return result;
+  }
+
+  if (path.length == 1) {
+    return setValue(result, path[0], value);
+  }
+
+  if (!result.hasKey(path[0])) {
+    results[path[0]] = Json.emptyObject;
+  }
+
+  result[path[0]] = setValue(result[path[0]], path[1 .. $], value);
+
+  return result;
 }
 
 Json[string] setValue(T)(Json[string] items, string key, T value) {
@@ -1295,15 +1315,40 @@ Json setValues(T)(Json items, string[] keys, T value) {
   return results;
 }
 
+Json setValue(T)(Json json, string[] path, T value) {
+  Json result = json.dup;
+  if (path.length == 0) {
+    return result;
+  }
+
+  if (path.length == 1) {
+    return setValue(result, path[0], value);
+  }
+
+  if (!results.hasKey(path[0])) {
+    result[path[0]] = Json.emptyObject;
+  }
+
+  result[path[0]] = setValue(result[path[0]], path[1 .. $], value);
+
+  return result;
+}
+
 Json setValue(T)(Json json, string key, T value) {
   return setValue(json, key, value.toJson);
 }
 
 Json setValue(T : Json)(Json json, string key, Json value) {
   auto results = json.dup;
-  if (results.isObject && key !in results) {
-    items[key] = value;
+
+  if (results.isNull) {
+    results = Json.emptyObject;
   }
+
+  if (results.isObject) {
+    results[key] = value;
+  }
+
   return results;
 }
 
@@ -1321,6 +1366,12 @@ unittest {
   json = json.setValue("b", "B").setValue("c", "C");
   assert(json.hasAllKeys("a", "b", "c"));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
+
+  json = Json.emptyObject;
+  json["a"] = Json.emptyObject;
+  json["a"]["aa"] = "xx";
+  json = json.setValue(["a", "aa"], "A");
+  assert(json["a"]["aa"] == Json("A"));
 
   json = Json.emptyObject;
   json = json.setValue("a", "A");
@@ -1353,6 +1404,14 @@ Json[string] updateValues(T)(Json[string] items, string[] keys, T value) {
   return results;
 }
 
+Json updateValue(T)(Json[string] items, string[] path, T value) {
+  if (path.length == 0) {
+    return items;
+  }
+  return path.length == 1
+    ? updateValue(items, path[0], value) : updateValue(items, path[0], json[items[0]].updateValue(path[1 .. $], value));
+}
+
 Json[string] updateValue(T)(Json[string] items, string key, T value) {
   return updateValue(items, key, value.toJson);
 }
@@ -1363,6 +1422,35 @@ Json[string] updateValue(T : Json)(Json[string] items, string key, Json value) {
     items[key] = value;
   }
   return results;
+}
+
+unittest {
+  Json[string] items = null;
+  items = items.setValue("a", Json("A"));
+  assert(items["a"] == Json("A"));
+  items = items.updateValue("a", Json("B")).updateValue("a", Json("C"));
+  assert(items["a"] == Json("C"));
+
+  items = null;
+  items = items.setValue("a", Json("A"));
+  assert(items["a"] == "A");
+  items = items.updateValue("a", "B").updateValue("a", "C");
+  assert(items["a"] == "C");
+
+  json = Json.emptyObject;
+  json["a"] = Json.emptyObject;
+  json["a"]["aa"] = "xx";
+  json = json.updateValue(["a", "aa"], "A");
+  assert(json["a"]["aa"] == Json("A"));
+
+  items = ["a": Json("A"), "b": Json("B"), "c": Json("C")];
+  items = items.updateValue("a", "X");
+  items = items.updateValues(["b", "c"], "X");
+  assert(items["a"] == Json("X") && items["b"] == Json("X") && items["c"] == Json("X"));
+
+  items = ["a": Json("A"), "b": Json("B"), "c": Json("C")];
+  items = items.updateValues(["a": "X", "b": "X", "c": "X"]);
+  assert(items["a"] == Json("X") && items["b"] == Json("X") && items["c"] == Json("X"));
 }
 // #endregion Json[string]
 
@@ -1390,6 +1478,29 @@ Json updateValue(T : Json)(Json json, string key, Json value) {
   }
   return results;
 }
+
+unittest {
+  Json[string] items = null;
+  items = items.setValue("a", Json("A"));
+  assert(items["a"] == Json("A"));
+  items = items.updateValue("a", Json("B")).updateValue("a", Json("C"));
+  assert(items["a"] == Json("C"));
+
+  items = null;
+  items = items.setValue("a", Json("A"));
+  assert(items["a"] == "A");
+  items = items.updateValue("a", "B").updateValue("a", "C");
+  assert(items["a"] == "C");
+
+  items = ["a": Json("A"), "b": Json("B"), "c": Json("C")];
+  items = items.updateValue("a", "X");
+  items = items.updateValues(["b", "c"], "X");
+  assert(items["a"] == Json("X") && items["b"] == Json("X") && items["c"] == Json("X"));
+
+  items = ["a": Json("A"), "b": Json("B"), "c": Json("C")];
+  items = items.updateValues(["a": "X", "b": "X", "c": "X"]);
+  assert(items["a"] == Json("X") && items["b"] == Json("X") && items["c"] == Json("X"));
+}
 // #region Json
 // #endregion update
 
@@ -1407,6 +1518,14 @@ Json[string] mergeValues(T)(Json[string] items, string[] keys, T value) {
   return results;
 }
 
+Json mergeValue(T)(Json[string] items, string[] path, T value) {
+  if (path.length == 0) {
+    return items;
+  }
+  return path.length == 1
+    ? mergeValue(items, path[0], value) : mergeValue(items, path[0], json[items[0]].mergeValue(path[1 .. $], value));
+}
+
 Json[string] mergeValue(T)(Json[string] items, string key, T value) {
   return mergeValue(items, key, value.toJson);
 }
@@ -1417,6 +1536,56 @@ Json[string] mergeValue(T : Json)(Json[string] items, string key, Json value) {
     items[key] = value;
   }
   return results;
+}
+
+unittest {
+  Json json = Json.emptyObject;
+  json = json.mergeValue("a", Json("A"));
+  assert(json["a"] == Json("A"));
+  json = json.mergeValue("b", Json("B")).mergeValue("c", Json("C"));
+  assert(json.hasAllKeys("a", "b", "c"));
+  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
+  json = json.mergeValue("a", Json("X"));
+  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
+
+  json = Json.emptyObject;
+  json = json.mergeValue("a", "A");
+  assert(json["a"] == Json("A"));
+  json = json.mergeValue("b", "B").mergeValue("c", "C");
+  assert(json.hasAllKeys("a", "b", "c"));
+  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
+  json = json.mergeValue("a", "X");
+  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
+
+  json = Json.emptyObject;
+  json["a"] = Json.emptyObject;
+  json["a"]["aa"] = "X";
+  json = json.mergeValue(["a", "aa"], "A");
+  assert(json["a"]["aa"] == Json("X"));
+  json = json.mergeValue(["a", "bb"], "B");
+  assert(json["a"]["bb"] == Json("B"));
+
+  json = Json.emptyObject;
+  json = json.mergeValue("a", "A");
+  assert(json["a"] == Json("A"));
+  json = json.mergeValues(["b", "c"], "X");
+  assert(json.hasAllKeys("a", "b", "c"));
+  assert(json["a"] == Json("A") && json["b"] == Json("X") && json["c"] == Json("X"));
+  json = json.mergeValue("a", "X");
+  assert(json["a"] == Json("A") && json["b"] == Json("X") && json["c"] == Json("X"));
+  json = json.mergeValues(["b", "c"], "-");
+  assert(json["a"] == Json("A") && json["b"] == Json("X") && json["c"] == Json("X"));
+
+  json = Json.emptyObject;
+  json = json.mergeValue("a", "A");
+  assert(json["a"] == Json("A"));
+  json = json.mergeValues(["b": "B", "c": "C"]);
+  assert(json.hasAllKeys("a", "b", "c"));
+  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
+  json = json.mergeValue("a", "X");
+  assert(json["a"] == Json("A") && json["b"] == Json("X") && json["c"] == Json("X"));
+  json = json.mergeValues(["b": "X", "c": "X"]);
+  assert(json["a"] == Json("A") && json["b"] == Json("X") && json["c"] == Json("X"));
 }
 // #endregion Json[string]
 
@@ -1433,6 +1602,14 @@ Json mergeValues(T)(Json items, string[] keys, T value) {
   return results;
 }
 
+Json mergeValue(T)(Json json, string[] path, T value) {
+  if (path.length == 0) {
+    return json;
+  }
+  return path.length == 1
+    ? mergeValue(json, path[0], value) : mergeValue(json, path[0], json[path[0]].mergeValue(path[1 .. $], value));
+}
+
 Json mergeValue(T)(Json json, string key, T value) {
   return mergeValue(json, key, value.toJson);
 }
@@ -1445,6 +1622,47 @@ Json mergeValue(T : Json)(Json json, string key, Json value) {
   return results;
 }
 // #region Json
+unittest {
+  Json json = Json.emptyObject;
+  json = json.mergeValue("a", Json("A"));
+  assert(json["a"] == Json("A"));
+  json = json.mergeValue("b", Json("B")).mergeValue("c", Json("C"));
+  assert(json.hasAllKeys("a", "b", "c"));
+  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
+  json = json.mergeValue("a", Json("X"));
+  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
+
+  json = Json.emptyObject;
+  json = json.mergeValue("a", "A");
+  assert(json["a"] == Json("A"));
+  json = json.mergeValue("b", "B").mergeValue("c", "C");
+  assert(json.hasAllKeys("a", "b", "c"));
+  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
+  json = json.mergeValue("a", "X");
+  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
+
+  json = Json.emptyObject;
+  json = json.mergeValue("a", "A");
+  assert(json["a"] == Json("A"));
+  json = json.mergeValues(["b", "c"], "X");
+  assert(json.hasAllKeys("a", "b", "c"));
+  assert(json["a"] == Json("A") && json["b"] == Json("X") && json["c"] == Json("X"));
+  json = json.mergeValue("a", "X");
+  assert(json["a"] == Json("A") && json["b"] == Json("X") && json["c"] == Json("X"));
+  json = json.mergeValues(["b", "c"], "-");
+  assert(json["a"] == Json("A") && json["b"] == Json("X") && json["c"] == Json("X"));
+
+  json = Json.emptyObject;
+  json = json.mergeValue("a", "A");
+  assert(json["a"] == Json("A"));
+  json = json.mergeValues(["b": "B", "c": "C"]);
+  assert(json.hasAllKeys("a", "b", "c"));
+  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
+  json = json.mergeValue("a", "X");
+  assert(json["a"] == Json("A") && json["b"] == Json("X") && json["c"] == Json("X"));
+  json = json.mergeValues(["b": "X", "c": "X"]);
+  assert(json["a"] == Json("A") && json["b"] == Json("X") && json["c"] == Json("X"));
+}
 // #endregion merge
 
 /* Json[string] setNull(Json[string] items, string[] path) {

@@ -8,46 +8,42 @@ module uim.phobos.containers.maps.values.map_;
 mixin(Version!("test_uim_phobos"));
 
 import uim.phobos;
+
 @safe:
 
 // #region getValues
-V[K] getValues(K, V)(auto ref V[K] items) {
-  V[K] values;
-  items.byKeyValue
-    .each!(item => values[item.key] = item.value);
-
-  return values;
+V[] getValues(K, V)(auto ref V[K] items) {
+  return items.byValue.map!(value => value).array;
 }
 
-V[K] getValues(K, V)(auto ref V[K] items, K[] keys) {
-  V[K] values;
-  keys.filter!(key => key in items)
-    .each!(key => values[key] = item[key]);
-
-  return values;
+V[] getValues(K, V)(auto ref V[K] items, K[] keys) {
+  return keys
+    .filter!(key => key in items)
+    .map!(key => item[key])
+    .array;
 }
 
-V[K] getValues(K, V)(auto ref V[K] items, bool delegate(K key, V value) check) {
-  V[K] values;
+V[] getValues(K, V)(auto ref V[K] items, bool delegate(K key, V value) check) {
+  V[] values;
   () @trusted {
-    items.byKeyValue
+    values = items.byKeyValue
       .filter!(item => check(item.key, item.value))
-      .each!(item => values[item.key] = item.value);
+      .map!(item => item.value)
+      .array;
   }();
   return values;
 }
 
 unittest {
   auto testString = ["a": "1", "b": null, "c": "3"];
-  assert(testString.filterValues().length == 2);
-  writeln(testString.filterValues());
+  assert(testString.getValues().length == 2);
 
   auto testValues = ["a": 1, "b": 2, "c": 3];
   bool foo(string key, int value) {
     return value > 1;
   }
 
-/*   assert(testValues.filterValues(&foo).length == 2); */
+  /*   assert(testValues.filterValues(&foo).length == 2); */
 }
 // #endregion filterValues
 
@@ -97,34 +93,34 @@ bool hasValue(K, V)(ref V[K] items, V value) {
 }
 
 unittest {
-    string[string] test = ["a": "A", "b": "B", "c": "C"];
-    assert(test.hasValue("A"));
+  string[string] test = ["a": "A", "b": "B", "c": "C"];
+  assert(test.hasValue("A"));
 
-    assert(test.hasAnyValue(["A", "B", "C"]));
-    assert(test.hasAnyValue("A", "B", "C"));
-    assert(test.hasAnyValue(["A", "x", "C"]));
-    assert(test.hasAnyValue("A", "x", "C"));
-    assert(!test.hasAnyValue(["x", "y", "z"]));
-    assert(!test.hasAnyValue("x", "y", "z"));
+  assert(test.hasAnyValue(["A", "B", "C"]));
+  assert(test.hasAnyValue("A", "B", "C"));
+  assert(test.hasAnyValue(["A", "x", "C"]));
+  assert(test.hasAnyValue("A", "x", "C"));
+  assert(!test.hasAnyValue(["x", "y", "z"]));
+  assert(!test.hasAnyValue("x", "y", "z"));
 
-    assert(test.hasAllValues(["A", "B", "C"]));
-    assert(test.hasAllValues("A", "B", "C"));
-    assert(!test.hasAllValues(["A", "X", "C"]));
-    assert(!test.hasAllValues("A", "X", "C"));
+  assert(test.hasAllValues(["A", "B", "C"]));
+  assert(test.hasAllValues("A", "B", "C"));
+  assert(!test.hasAllValues(["A", "X", "C"]));
+  assert(!test.hasAllValues("A", "X", "C"));
 
-    Json[string] test2 = ["a": Json("A"), "b": Json("B"), "c": Json("C")];
-    assert(test2.hasValue(Json("A")));
+  Json[string] test2 = ["a": Json("A"), "b": Json("B"), "c": Json("C")];
+  assert(test2.hasValue(Json("A")));
 
-    assert(test2.hasAnyValue([Json("A"), Json("B"), Json("C")]));
-    assert(test2.hasAnyValue(Json("A"), Json("B"), Json("C")));
-    assert(test2.hasAnyValue([Json("A"), Json("y"), Json("C")]));
-    assert(test2.hasAnyValue(Json("A"), Json("y"), Json("C")));
-    assert(!test2.hasAnyValue([Json("x"), Json("y"), Json("z")]));
-    assert(!test2.hasAnyValue(Json("x"), Json("y"), Json("z")));
+  assert(test2.hasAnyValue([Json("A"), Json("B"), Json("C")]));
+  assert(test2.hasAnyValue(Json("A"), Json("B"), Json("C")));
+  assert(test2.hasAnyValue([Json("A"), Json("y"), Json("C")]));
+  assert(test2.hasAnyValue(Json("A"), Json("y"), Json("C")));
+  assert(!test2.hasAnyValue([Json("x"), Json("y"), Json("z")]));
+  assert(!test2.hasAnyValue(Json("x"), Json("y"), Json("z")));
 
-    assert(test2.hasAllValues([Json("A"), Json("B"), Json("C")]));
-    assert(test2.hasAllValues(Json("A"), Json("B"), Json("C")));
-    assert(!test2.hasAllValues([Json("A"), Json("X"), Json("C")]));
-    assert(!test2.hasAllValues(Json("A"), Json("X"), Json("C")));
+  assert(test2.hasAllValues([Json("A"), Json("B"), Json("C")]));
+  assert(test2.hasAllValues(Json("A"), Json("B"), Json("C")));
+  assert(!test2.hasAllValues([Json("A"), Json("X"), Json("C")]));
+  assert(!test2.hasAllValues(Json("A"), Json("X"), Json("C")));
 }
 // #endregion hasAllValues

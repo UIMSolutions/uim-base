@@ -990,14 +990,14 @@ string _caching(string inflectionType, string originalValue, string inflectedVal
   originalValue = "_" ~ originalValue;
   inflectionType = "_" ~ inflectionType;
   if (!inflectedValue.isEmpty) {
-    if (!_cache.hasKey(inflectionType)) {
+    if (inflectionType !in _cache) {
       _cache[inflectionType] = null;
     }
     _cache[inflectionType][originalValue] = inflectedValue;
     return inflectedValue;
   }
 
-  return _cache.hasKey(inflectionType) && _cache[inflectionType].hasKey(originalValue)
+  return inflectionType in _cache && originalValue in _cache[inflectionType]
     ? _cache[inflectionType][originalValue] : null;
 }
 

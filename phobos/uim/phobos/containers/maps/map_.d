@@ -194,7 +194,7 @@ unittest {
 }
 // #endregion renameKey(s)
 
-// #region hasKey(s)
+// #region hasKey
   // Returns true if the map has all the specified keys
   bool hasAllKeys(T)(T[string] base, string[] keys) {
     return keys.all!(key => base.hasKey(key));
@@ -237,8 +237,8 @@ unittest {
 
     assert(jsonMap.hasAllKeys(["a", "b"]) && !jsonMap.hasAllKeys(["a", "x"]));
     assert(jsonMap.hasAllKeys("a", "b") && !jsonMap.hasAllKeys("a", "x"));
-  }
-// #endregion hasKey(s)
+  } 
+// #endregion hasKey
 
 // #region removeKey(s)
   T[string] removeKeys(T)(ref T[string] items, string[] keys) {
