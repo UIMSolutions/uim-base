@@ -131,13 +131,31 @@ Json update(V)(Json json, string key, V value) {
 // #endregion update
 
 // #region merge
+// #region Json[string]
+// #endregion Json[string]
+
+// #region Json[]
+// #endregion Json[]
+
+// #region Json
+// #endregion Json
 // #endregion merge
 
 // #region remove
-V[string] removeKey(V : Json)(V[string] items, string key) {
-  if (hasKey(items, key)) {
-    items.remove(key);
-  }
-  return items;
+// #region Json[string]
+// #endregion Json[string]
+
+// #region Json[]
+// #endregion Json[]
+
+// #region Json
+V[K] removeKey(K: string, V : Json)(V[K] items, K key) {
+  return key in items, key
+    ? (items.remove(key))
+    : items;
 }
+unittest {
+  // TODO: Add unittest for removeKey
+}
+// #endregion Json
 // #endregion remove
