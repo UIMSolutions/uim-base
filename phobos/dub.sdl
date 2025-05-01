@@ -14,8 +14,6 @@ dependency "vibe-d" version="~>0.10.2"
 dependency "unit-threaded" version="~>2.2.2"
 dependency "colored" version="~>0.0.31"
 
-sourcePaths "."
-importPaths "."
 
 // configuration "default" {}
 

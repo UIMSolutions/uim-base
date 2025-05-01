@@ -16,9 +16,6 @@ dependency "colored" version="~>0.0.31"
 
 dependency "uim-base:phobos" version="*"
 
-sourcePaths "."
-importPaths "."
-
 configuration "test_uim_vibe" {
 	targetType "library"
 	versions "test_uim_vibe"
