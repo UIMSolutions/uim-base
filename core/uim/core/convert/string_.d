@@ -46,21 +46,6 @@ unittest {
 // #endregion toStrings
 
 // #region toString
-string toString(Json json, string[] keys = null) {
-  if (!json.isObject) return json.toString; 
-  
-  if (keys.length == 0) keys = json.keys;
-  Json result = Json.emptyObject;
-  keys
-    .filter!(key => json.hasKey(key))
-    .each!(key => result[key] = json[key]);
-  return result.toString; 
-}
-
-string toString(Json[] jsons) {
-  return Json(jsons).toString;
-}
-
 string toString(UUID[] uuids) {
   return uuids.map!("a.toString").array.toString;
 }

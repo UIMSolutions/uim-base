@@ -196,23 +196,26 @@ unittest {
 
 // #region hasKey
   // Returns true if the map has all the specified keys
-  bool hasAllKeys(T)(T[string] base, string[] keys) {
-    return keys.all!(key => base.hasKey(key));
+  bool hasAllKeys(K, V)(V[K] map, K[] keys) {
+    return keys.all!(key => map.hasKey(key));
   }
 
   // Returns true if the map has any of the specified keys
-  bool hasAnyKey(T)(T[string] base, string[] keys) {
-    return keys.any!(key => base.hasKey(key));
+  bool hasAnyKeys(K, V)(V[K] map, K[] keys) {
+    return keys.any!(key => map.hasKey(key));
   }
 
   // Returns true if the map has the specified key
-  bool hasKey(T)(T[string] map, string key) {
+  bool hasKey(K, V)(V[K] map, K key) {
     return (key in map) ? true : false;
   }
 
   unittest {
     auto testMap = ["a": 1, "b": 2, "c": 3, "d": 4];
     assert(testMap.hasKey("a") && !testMap.hasKey("x"));
+
+    auto testMap2 = [1: "a", 2: "b", 3: "c", 4: "d"];
+    assert(testMap2.hasKey(1) && !testMap.hasKey(5));
 
     assert(testMap.hasAnyKey(["a", "b"]) && testMap.hasAnyKey(["a", "x"]));
     assert(testMap.hasAnyKey("a", "b") && testMap.hasAnyKey("a", "x"));

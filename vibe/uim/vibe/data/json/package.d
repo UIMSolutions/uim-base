@@ -16,6 +16,7 @@ public {
   import uim.vibe.data.json.float_;
   import uim.vibe.data.json.integer;
   import uim.vibe.data.json.integral;
+  import uim.vibe.data.json.json;
   import uim.vibe.data.json.keys;
   import uim.vibe.data.json.long_;
   import uim.vibe.data.json.map;

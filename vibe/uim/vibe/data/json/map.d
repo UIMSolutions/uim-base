@@ -38,36 +38,6 @@ import uim.vibe;
   assert(json["A"] == Json("x") && json["B"] == Json("x") && json["C"] == Json("x"));
 }
  */// #endregion set multi
-
-// #region set single 
-ref setNull(ref Json json, string key) {
-  return json.set(key, Json(null));
-}
-ref set(T)(ref Json map, string key, T value) {
-  return map.set(key, value.toJson);
-}
-ref set(T)(ref Json json, string key, T[] value) {
-  return map.set(key, value.toJson);
-}
-ref set(T)(ref Json json, string key, T[string] value) {
-  return map.set(key, value.toJson);
-}
-ref set(T:Json)(ref Json map, string key, T value) {
-  map[key] = value;
-  return map;
-}
-/* unittest {
-  Json json = Json.emptyObject;
-  assert(json.set("bool", true).getBoolean("bool"));
-  assert(json.set("bool", true).getBoolean("bool"));
-  assert(json.set("long", 1).getLong("long") == 1);
-  assert(json.set("double", 0.1).getDouble("double") == 0.1);
-  assert(json.set("string", "A").getString("string") == "A");
-  assert(json.set("strings", ["x": "X", "y": "Y", "z": "Z"]) != Json(null));
-  writeln(json);
-} */
-// # endregion set single 
-
 /* unittest {
   Json map = Json.emptyObject;
   map["a"] = "A";

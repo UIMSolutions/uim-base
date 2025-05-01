@@ -48,7 +48,7 @@ bool hasPath(Json json, string[] path) {
     return false;
   }
 
-  if (!json.hasKey(path[0])) {
+  if (!json.hasKey(path[0], false)) {
     return false;
   }
 
@@ -94,7 +94,7 @@ Json reduceKeys(Json json, string[] keys) {
   if (json.isObject) {
     Json result = Json.emptyObject;
     keys
-      .filter!(key => json.hasKey(key))
+      .filter!(key => json.hasKey(key, false))
       .each!(key => result[key] = json[key]);
 
     return result;
@@ -149,25 +149,6 @@ unittest {
   assert(json.hasKey("a"));
 }
 
-Json readJson(Json target, Json source, bool shouldOverwrite = true) {
-  if (!target.isObject || !source.isObject) {
-    return target;
-  }
-
-  auto result = target;
-  source.byKeyValue.each!((kv) {
-    if (shouldOverwrite) {
-      result[kv.key] = kv.value;
-    } else {
-      if (!result.hasKey(kv.key)) {
-        result[kv.key] = kv.value;
-      }
-    }
-  });
-
-  return result;
-}
-
 /// Load existing json files in directories
 Json[] loadJsonsFromDirectories(string[] dirNames) {
   return dirNames
@@ -220,7 +201,7 @@ T minValue(T)(Json[] jsons, string key) {
     if (key !in j)
       continue;
 
-    T value = j[key].get!T;
+    V value = j[key].get!T;
     result = value;
     break;
   } // found value
@@ -228,7 +209,7 @@ T minValue(T)(Json[] jsons, string key) {
   jsons
     .filter!(json => key in json)
     .each!((json) {
-      T value = json[key].get!T;
+      V value = json[key].get!T;
       if (value < result)
         result = value;
     });
@@ -261,7 +242,7 @@ T maxValue(T)(Json[] jsons, string key) {
       continue;
     }
 
-    T value = json[key].get!T;
+    V value = json[key].get!T;
     if (value > result)
       result = value;
   }
@@ -280,7 +261,7 @@ unittest {
 }
 
 Json firstWithKey(Json[] jsons, string key) {
-  Json[] results = jsons.filter!(json => json.hasKey(key)).array;
+  Json[] results = jsons.filter!(json => json.hasKey(key, false)).array;
   return results.length > 0
     ? results[0] : Json(null);
 }
@@ -313,51 +294,6 @@ Json mergeJsonObject(Json baseJson, Json mergeJson) {
   // TODO not finished
   return result;
 }
-
-// #region merge
-/// Merge jsons objects to one
-/// Merge jsons objects in array to one
-Json mergeJsons(Json[] jsons, bool shouldOverwrite = true) {
-  Json result = Json.emptyObject;
-
-  jsons
-    .filter!(json => json.isObject)
-    .each!(json => result = result.mergeJsonObjects(json, shouldOverwrite));
-
-  return result;
-}
-///
-/* unittest {
-  auto json0 = parseJsonString(`{"a": "b", "c": {"d": 1}}`);
-  auto json1 = parseJsonString(`{"e": ["f", {"g": "h"}]}`);
-  auto mergeJson = mergeJsons(json0, json1);
-  assert(mergeJson.hasKey("a") && mergeJson.hasKey("e"), mergeJson.toString);
-} */
-
-Json mergeJsonObjects(Json baseJson, Json mergeJson, bool shouldOverwrite = true) {
-  Json result = Json.emptyObject;
-  if (baseJson.isNull && !baseJson.isObject) {
-    return result;
-  }
-  result = result.readJson(baseJson, shouldOverwrite);
-
-  if (mergeJson.isNull && !mergeJson.isObject) {
-    return result;
-  }
-  result = result.readJson(mergeJson, shouldOverwrite);
-
-  // Out
-  return result;
-}
-
-///
-unittest {
-  auto json0 = parseJsonString(`{"a": "b", "c": {"d": 1}}`);
-  auto json1 = parseJsonString(`{"e": ["f", {"g": "h"}]}`);
-  auto mergeJson = mergeJsonObjects(json0, json1);
-  assert(mergeJson.hasKey("a") && mergeJson.hasKey("e"), mergeJson.toString);
-}
-// #endregion merge
 
 Json jsonWithMinVersion(Json[] jsons) {
   if (jsons.length == 0) {
@@ -550,7 +486,7 @@ Json getJson(Json[] values, size_t index, Json defaultValue = Json(null)) {
 }
 
 Json getJson(Json value, string key, Json defaultValue = Json(null)) {
-  return value.isObject && value.hasKey(key)
+  return value.isObject && value.hasKey(key, false)
     ? value[key] : defaultValue;
 }
 // #endregion json
@@ -567,7 +503,7 @@ Json[string] getMap(Json[] values, size_t index, Json[string] defaultValue = nul
 }
 
 Json[string] getMap(Json value, string key, Json[string] defaultValue = null) {
-  return value.isObject && value.hasKey(key)
+  return value.isObject && value.hasKey(key, false)
     ? value[key].getMap : defaultValue;
 }
 
@@ -578,12 +514,8 @@ Json[string] getMap(Json value, Json[string] defaultValue = null) {
 // #endregion map
 
 // #region set
-ref set(ref Json json, Json map) {
-  if (!json.isObject) {
-    return json;
-  }
-
-  if (!map.isObject) {
+Json set(Json json, Json map) {
+  if (!json.isObject || !map.isObject) {
     return json;
   }
 
@@ -591,7 +523,7 @@ ref set(ref Json json, Json map) {
   return json;
 }
 
-ref set(T)(ref Json json, T[string] values) {
+Json set(V)(Json json, V[string] values) {
   if (!json.isObject) {
     return json;
   }
@@ -600,7 +532,7 @@ ref set(T)(ref Json json, T[string] values) {
   return json;
 }
 
-ref set(T)(ref Json json, string[] keys, T value) {
+Json set(V)(Json json, string[] keys, V value) {
   if (!json.isObject) {
     return json;
   }
@@ -610,7 +542,13 @@ ref set(T)(ref Json json, string[] keys, T value) {
 }
 
 // 
-ref set(T)(ref Json json, string key, T value) {
+Json set(V)(Json json, string key, V value) {
+  return json.isObject
+    ? set(json, value.toJson)
+    : json;
+}
+
+Json set(V:Json)(Json json, string key, V value) {
   if (!json.isObject) {
     return json;
   }
@@ -658,7 +596,7 @@ unittest {
 // #endregion set
 
 // #region merge
-ref merge(ref Json json, Json map) {
+Json merge(Json json, Json map) {
   if (!json.isObject) {
     return json;
   }
@@ -667,35 +605,47 @@ ref merge(ref Json json, Json map) {
     return json;
   }
 
-  map.byKeyValue.each!(kv => json.merge(kv.key, kv.value));
+  foreach(key, value; map.byKeyValue) {
+    json = json.merge(key, value);
+  }
   return json;
 }
 
-ref merge(T)(ref Json json, T[string] values) {
+Json merge(V)(Json json, V[string] values) {
   if (!json.isObject) {
     return json;
   }
 
-  values.each!((key, value) => json.merge(key, value));
+  values.each!((key, value) => json = json.merge(key, value));
   return json;
 }
 
-ref merge(T)(ref Json json, string[] keys, T value) {
+Json merge(V)(Json json, string[] keys, V value) {
   if (!json.isObject) {
     return json;
   }
 
-  keys.each!(key => json.merge(key, value));
+  keys.each!(key => json = json.merge(key, value));
   return json;
 }
 
-// 
-ref merge(T)(ref Json json, string key, T value) {
+Json merge(V)(Json json, string key, V value) {
   if (!json.isObject) {
     return json;
   }
 
-  if (!json.hasKey(key))
+  if (!json.hasKey(key, false))
+    json[key] = value.toJson;
+
+  return json;
+}
+
+Json merge(V:Json)(Json json, string key, V value) {
+  if (!json.isObject) {
+    return json;
+  }
+
+  if (!json.hasKey(key, false))
     json[key] = value;
 
   return json;
@@ -739,89 +689,6 @@ ref merge(T)(ref Json json, string key, T value) {
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 }
  */ // #endregion merge
-
-// #region update
-ref update(ref Json json, Json map) {
-  if (!json.isObject) {
-    return json;
-  }
-
-  if (!map.isObject) {
-    return json;
-  }
-
-  map.byKeyValue.each!(kv => json.update(kv.key, kv.value));
-  return json;
-}
-
-ref update(T)(ref Json json, T[string] values) {
-  if (!json.isObject) {
-    return json;
-  }
-
-  values.each!((key, value) => json.update(key, value));
-  return json;
-}
-
-ref update(T)(ref Json json, string[] keys, T value) {
-  if (!json.isObject) {
-    return json;
-  }
-
-  keys.each!(key => json.update(key, value));
-  return json;
-}
-
-// 
-ref update(T)(ref Json json, string key, T value) {
-  if (!json.isObject) {
-    return json;
-  }
-
-  if (json.hasKey(key))
-    json[key] = value;
-
-  return json;
-}
-
-// TODO
-/* unittest {
-  auto json = Json.emptyObject;
-  json.update("a", "A");
-  json.update("b", "B").update("c", "C");
-  assert(json.hasAllKeys("a", "b", "c"));
-  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
-
-  json = Json.emptyObject;
-  json.update("a", Json("A"));
-  json.update("b", Json("B")).update("c", Json("C"));
-  assert(json.hasAllKeys("a", "b", "c"));
-  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
-
-  json.update(["a", "b", "c"], "x");
-  assert(json["a"] == Json("x") && json["b"] == Json("x") && json["c"] == Json("x"));
-
-  json = Json.emptyObject;
-  json.update(["a", "b", "c"], Json("x"));
-  assert(json.hasAllKeys("a", "b", "c"));
-  assert(json["a"] == Json("x") && json["b"] == Json("x") && json["c"] == Json("x"));
-
-  json = Json.emptyObject;
-  json.update(["a": "A", "b": "B", "c": "C"]);
-  assert(json.hasAllKeys("a", "b", "c"));
-  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
-
-  json = Json.emptyObject;
-  json.update(["a": Json("A"), "b": Json("B"), "c": Json("C")]);
-  assert(json.hasAllKeys("a", "b", "c"));
-  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
-
-  auto newJson = Json.emptyObject;
-  newJson.update(json);
-  assert(json.hasAllKeys("a", "b", "c"));
-  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
-}
- */ // #endregion update
 
 Json match(K)(Json[K] matchValues, K key, Json defaultValue = Json(null)) {
   return key in matchValues
@@ -890,7 +757,7 @@ Json onlyKeys(Json json, string[] keys) {
 
   auto result = Json.emptyObject;
   keys
-    .filter!(key => json.hasKey(key))
+    .filter!(key => json.hasKey(key, false))
     .each!(key => result[key] = json[key]);
 
   return result;
@@ -948,7 +815,7 @@ ref set(K : string, V:
 
   // returns a updated map with new values
   ref set(K : string, V:
-    Json, T)(ref V[K] items, K[] keys, T value) {
+    Json, T)(ref V[K] items, K[] keys, V value) {
     keys.each!(key => items.set(key, value));
     return items;
   } */
@@ -1021,7 +888,7 @@ unittest {
 
   // Returns a new map with updated values for existing keys
   ref update(K : string, V:
-    Json, T)(ref V[K] items, K[] keys, T value) {
+    Json, T)(ref V[K] items, K[] keys, V value) {
     keys
       .each!(key => items.update(key, value));
     return items;
@@ -1029,13 +896,13 @@ unittest {
  */
 // Returns a new map with updated values for existing keys
 /*  ref update(K : string, V:
-    Json, T)(ref V[K] items, K key, T value) if (!is(typeof(value) == Json)) {
+    Json, T)(ref V[K] items, K key, V value) if (!is(typeof(value) == Json)) {
     return items.update(key, Json(value));
   }
 
   // Returns a new map with updated values for existing keys
   ref update(K : string, V:
-    Json, T)(ref V[K] items, K key, T value) if (!is(typeof(V) == typeof(T))) {
+    Json, T)(ref V[K] items, K key, V value) if (!is(typeof(V) == typeof(T))) {
       return items.update(key, Json(value));
   }
  */
@@ -1085,7 +952,7 @@ unittest {
 
   // Returns a new map with updated values for existing keys
   ref merge(K : string, V:
-    Json, T)(ref V[K] items, K[] keys, T value) {
+    Json, T)(ref V[K] items, K[] keys, V value) {
     keys
       .each!(key => items.merge(key, value));
     return items;
@@ -1093,13 +960,13 @@ unittest {
 
   // Returns a new map with updated values for existing keys
   ref merge(K : string, V:
-    Json, T)(ref V[K] items, K key, T value) if (!is(typeof(value) == Json)) {
+    Json, T)(ref V[K] items, K key, V value) if (!is(typeof(value) == Json)) {
     return items.merge(key, Json(value));
   }
 
   // Returns a new map with updated values for existing keys
   ref merge(K : string, V:
-    Json, T)(ref V[K] items, K key, T value) if (!is(typeof(V) == typeof(T))) {
+    Json, T)(ref V[K] items, K key, V value) if (!is(typeof(V) == typeof(T))) {
     return items.merge(key, Json(value));
   } */
 
@@ -1234,13 +1101,13 @@ Json[string] setValues(T)(Json[string] items, T[string] values) {
   return results;
 }
 
-Json[string] setValues(T)(Json[string] items, string[] keys, T value) {
+Json[string] setValues(T)(Json[string] items, string[] keys, V value) {
   auto results = items.dup;
   keys.each!(key => results = results.setValue(key, value));
   return results;
 }
 
-Json[string] setValue(T)(Json[string] items, string[] path, T value) {
+Json[string] setValue(T)(Json[string] items, string[] path, V value) {
   Json[string] result = items.dup;
   if (path.length == 0) {
     return result;
@@ -1259,11 +1126,11 @@ Json[string] setValue(T)(Json[string] items, string[] path, T value) {
   return result;
 }
 
-Json[string] setValue(T)(Json[string] items, string key, T value) {
+Json[string] setValue(V)(Json[string] items, string key, V value) {
   return setValue(items, key, value.toJson);
 }
 
-Json[string] setValue(T : Json)(Json[string] items, string key, Json value) {
+Json[string] setValue(V : Json)(Json[string] items, string key, V value) {
   auto results = items.dup;
   if (key !in results) {
     items[key] = value;
@@ -1309,13 +1176,13 @@ Json setValues(T)(Json items, T[string] values) {
   return results;
 }
 
-Json setValues(T)(Json items, string[] keys, T value) {
+Json setValues(T)(Json items, string[] keys, V value) {
   auto results = items.dup;
   keys.each!(key => results = results.setValue(key, value));
   return results;
 }
 
-Json setValue(T)(Json json, string[] path, T value) {
+Json setValue(T)(Json json, string[] path, V value) {
   Json result = json.dup;
   if (path.length == 0) {
     return result;
@@ -1334,7 +1201,7 @@ Json setValue(T)(Json json, string[] path, T value) {
   return result;
 }
 
-Json setValue(T)(Json json, string key, T value) {
+Json setValue(T)(Json json, string key, V value) {
   return setValue(json, key, value.toJson);
 }
 
@@ -1398,13 +1265,13 @@ Json[string] updateValues(T)(Json[string] items, T[string] values) {
   return results;
 }
 
-Json[string] updateValues(T)(Json[string] items, string[] keys, T value) {
+Json[string] updateValues(T)(Json[string] items, string[] keys, V value) {
   auto results = items.dup;
   keys.each!(key => results = results.updateValue(key, value));
   return results;
 }
 
-Json updateValue(T)(Json[string] items, string[] path, T value) {
+Json updateValue(T)(Json[string] items, string[] path, V value) {
   if (path.length == 0) {
     return items;
   }
@@ -1412,7 +1279,7 @@ Json updateValue(T)(Json[string] items, string[] path, T value) {
     ? updateValue(items, path[0], value) : updateValue(items, path[0], json[items[0]].updateValue(path[1 .. $], value));
 }
 
-Json[string] updateValue(T)(Json[string] items, string key, T value) {
+Json[string] updateValue(T)(Json[string] items, string key, V value) {
   return updateValue(items, key, value.toJson);
 }
 
@@ -1461,13 +1328,13 @@ Json updateValues(T)(Json items, T[string] values) {
   return results;
 }
 
-Json updateValues(T)(Json items, string[] keys, T value) {
+Json updateValues(T)(Json items, string[] keys, V value) {
   auto results = items.dup;
   keys.each!(key => results = results.updateValue(key, value));
   return results;
 }
 
-Json updateValue(T)(Json json, string key, T value) {
+Json updateValue(T)(Json json, string key, V value) {
   return updateValue(json, key, value.toJson);
 }
 
@@ -1512,13 +1379,13 @@ Json[string] mergeValues(T)(Json[string] items, T[string] values) {
   return results;
 }
 
-Json[string] mergeValues(T)(Json[string] items, string[] keys, T value) {
+Json[string] mergeValues(T)(Json[string] items, string[] keys, V value) {
   auto results = items.dup;
   keys.each!(key => results = results.mergeValue(key, value));
   return results;
 }
 
-Json mergeValue(T)(Json[string] items, string[] path, T value) {
+Json mergeValue(T)(Json[string] items, string[] path, V value) {
   if (path.length == 0) {
     return items;
   }
@@ -1526,7 +1393,7 @@ Json mergeValue(T)(Json[string] items, string[] path, T value) {
     ? mergeValue(items, path[0], value) : mergeValue(items, path[0], json[items[0]].mergeValue(path[1 .. $], value));
 }
 
-Json[string] mergeValue(T)(Json[string] items, string key, T value) {
+Json[string] mergeValue(T)(Json[string] items, string key, V value) {
   return mergeValue(items, key, value.toJson);
 }
 
@@ -1596,13 +1463,13 @@ Json mergeValues(T)(Json items, T[string] values) {
   return results;
 }
 
-Json mergeValues(T)(Json items, string[] keys, T value) {
+Json mergeValues(T)(Json items, string[] keys, V value) {
   auto results = items.dup;
   keys.each!(key => results = results.mergeValue(key, value));
   return results;
 }
 
-Json mergeValue(T)(Json json, string[] path, T value) {
+Json mergeValue(T)(Json json, string[] path, V value) {
   if (path.length == 0) {
     return json;
   }
@@ -1610,7 +1477,7 @@ Json mergeValue(T)(Json json, string[] path, T value) {
     ? mergeValue(json, path[0], value) : mergeValue(json, path[0], json[path[0]].mergeValue(path[1 .. $], value));
 }
 
-Json mergeValue(T)(Json json, string key, T value) {
+Json mergeValue(T)(Json json, string key, V value) {
   return mergeValue(json, key, value.toJson);
 }
 
@@ -1673,7 +1540,7 @@ Json[string] setNull(Json[string] items, string key) {
   return set(items, key, Json(null));
 }
 
-Json[string] setPath(T)(Json[string] items, string[] path, T value) {
+Json[string] setPath(T)(Json[string] items, string[] path, V value) {
   set(items, path, Json(value));
   return items;
 }

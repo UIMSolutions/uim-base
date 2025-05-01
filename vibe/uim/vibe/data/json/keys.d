@@ -79,7 +79,7 @@ bool hasKey(Json json, string key, bool deepSearch) {
       return true;
     }
     if (deepSearch) {
-      if (kv.value.hasKey(key))
+      if (kv.value.hasKey(key, false))
         return true;
     }
   }

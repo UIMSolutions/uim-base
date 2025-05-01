@@ -5,22 +5,17 @@
 *****************************************************************************************************************/
 module uim.vibe.data.json.values;
 
+mixin(Version!("test_uim_vibe"));
+
 import uim.vibe;
-
 @safe:
-
-version (test_uim_core) {
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
 
 // #region values
 // Get values from json object
 Json[] values(Json json, string[] keys) {
   return json.isObject
     ? keys
-      .filter!(key => json.hasKey(key))
+      .filter!(key => json.hasKey(key, false))
       .map!(key => json[key]).array 
     : null;
 }

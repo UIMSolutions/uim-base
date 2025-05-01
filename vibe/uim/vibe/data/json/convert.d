@@ -196,3 +196,26 @@ unittest {
   // assert(["a": "A", "b": "B"].toJsonMap(["b"]).getString("a") == "A");
 }
 // #endregion toJsonMap
+
+// #region toString
+string toString(Json json, string[] keys = null) {
+  if (!json.isObject) return json.toString; 
+  
+  if (keys.length == 0) keys = json.keys;
+  Json result = Json.emptyObject;
+  keys
+    .filter!(key => json.hasKey(key, false))
+    .each!(key => result[key] = json[key]);
+  return result.toString; 
+}
+
+string toString(Json[] jsons) {
+  return Json(jsons).toString;
+}
+unittest {
+  auto jsons = [Json(1), Json("x"), Json(true)];
+  assert(jsons.toString == ["1", "\"x\"", "true"]);
+
+  // TODO: More tests
+}
+// #endregion toString
