@@ -9,7 +9,15 @@ license "Apache-2.0"
 targetName "uim_core"
 targetType "library"
 
+// Exteral dependencies
+dependency "vibe-d" version="~>0.10.2"
+dependency "unit-threaded" version="~>2.2.2"
+dependency "colored" version="~>0.0.31"
+
 dependency "uim-base:vibe" version="*"
+
+sourcePaths "."
+importPaths "."
 
 // configuration "default" {}
 
