@@ -45,53 +45,6 @@ unittest {
 }
 // #endregion toStrings
 
-// #region toString
-string toString(UUID[] uuids) {
-  return uuids.map!("a.toString").array.toString;
-}
-
-string toString(string[] values) {
-  return "\"["~values.map!(value => `\"%s\"`.format(value)).join(",")~"]\"";
-}
-
-string toString(string[string] items) {
-  Json json = Json.emptyObject;
-  items.each!((key, value) => json[key] = value);
-  return json.toString;
-}
-
-string toString(Json[string] items, string[] keys = null) {
-  if (keys.length == 0) keys = items.keys;
-
-  Json json = Json.emptyObject;
-  keys
-    .filter!(key => items.hasKey(key))
-    .each!(key => json[key] = items[key]);
-  return json.toString; 
-}
-
-/* string toString(T)(T value, size_t length = 0, string fillTxt = "0") {
-//    if (isFloatingPoint!T) {
-  string result = fill(length, fillTxt);
-
-  import std.conv;
-
-  string convert = to!string(value);
-  result = convert.length < length
-    ? result[0 .. $ - convert.length] ~ convert : convert;
-
-  return result;
-} */
-
-unittest {
-  // TODO
-  // writeln((1.01).toString);
-  //   assert((1.0).toString == "1.0");
-  //   assert((1.0).toString == "1.0");
-  //   assert((1.0).toString(10, "X") == "XXXXXXX1.0");
-}
-
-// #endregion toString
 
 unittest {
 /*   auto jsons = [Json(1), Json("x"), Json(true)];

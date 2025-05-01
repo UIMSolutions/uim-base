@@ -46,16 +46,18 @@ unittest {
 // #endregion value to Json
 
 // #region array to Json
-Json toJson(T)(T[] values) {
+Json toJson(V)(V[] values) {
   Json json = Json.emptyArray;
   values.each!(value => json ~= value.toJson);
   return json;
 }
-Json toJson(T:UUID)(UUID[] uuids) {
+
+Json toJson(V:UUID)(V[] uuids) {
   Json result = Json.emptyArray;
   uuids.each!(uuid => result ~= uuid.toJson);
   return result;
 }
+
 unittest {
   assert([true, true, false].toJson.length == 3);
   assert([true, true, false].toJson[0].getBoolean);
@@ -70,7 +72,7 @@ unittest {
 // #endregion array to Json
 
 // #region map to Json
-Json toJson(T)(T[string] map) {
+Json toJson(V)(V[string] map) {
   Json json = Json.emptyObject;
   map.each!((key, value) => json[key] = value.toJson);
   return json;
@@ -198,7 +200,31 @@ unittest {
 // #endregion toJsonMap
 
 // #region toString
-string toString(Json json, string[] keys = null) {
+
+// #region Json[string]
+string toString(Json[string] items) {
+  return Json(items).toString;
+}
+
+string toString(Json[string] items, string[] keys) {
+  if (keys.length == 0) keys = items.keys;
+
+  Json json = Json.emptyObject;
+  keys
+    .filter!(key => items.hasKey(key, false))
+    .each!(key => json[key] = items[key]);
+  return json.toString; 
+}
+// #region Json[string]
+
+// #region Json[]
+string toString(Json[] jsons) {
+  return Json(jsons).toString;
+}
+// #endregion Json[]
+
+// #region Json
+string toString(Json json, string[] keys) {
   if (!json.isObject) return json.toString; 
   
   if (keys.length == 0) keys = json.keys;
@@ -208,10 +234,8 @@ string toString(Json json, string[] keys = null) {
     .each!(key => result[key] = json[key]);
   return result.toString; 
 }
+// #endregion Json
 
-string toString(Json[] jsons) {
-  return Json(jsons).toString;
-}
 unittest {
   auto jsons = [Json(1), Json("x"), Json(true)];
   assert(jsons.toString == ["1", "\"x\"", "true"]);

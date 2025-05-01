@@ -61,7 +61,7 @@ public {
   import uim.phobos.complex;
   import uim.phobos.concurrency;
   import uim.phobos.containers;
-  import uim.phobos.conv;
+  import uim.phobos.convert;
   import uim.phobos.csv;
   import uim.phobos.datetime;
   import uim.phobos.demangle;

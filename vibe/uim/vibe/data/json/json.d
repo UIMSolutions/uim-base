@@ -8,6 +8,7 @@ module uim.vibe.data.json.json;
 mixin(Version!("test_uim_vibe"));
 
 import uim.vibe;
+
 @safe:
 
 // #region create
@@ -18,16 +19,20 @@ import uim.vibe;
 Json setNull(Json json, string key) {
   return json.set(key, Json(null));
 }
+
 Json set(V)(Json map, string key, V value) {
   return map.set(key, value.toJson);
 }
+
 Json set(V)(Json json, string key, V[] value) {
   return map.set(key, value.toJson);
 }
+
 Json set(V)(Json json, string key, V[string] value) {
   return map.set(key, value.toJson);
 }
-Json set(V:Json)(Json map, string key, V value) {
+
+Json set(V : Json)(Json map, string key, V value) {
   map[key] = value;
   return map;
 }
@@ -52,7 +57,7 @@ Json update(Json json, Json map) {
     return json;
   }
 
-  foreach(key, value; map.byKeyValue) {
+  foreach (key, value; map.byKeyValue) {
     json = json.update(key, value);
   }
   return json;
@@ -63,8 +68,8 @@ Json update(V)(Json json, V[string] values) {
     return json;
   }
 
-  foreach(key, value; values.byKeyValue) {
-   json = json.update(key, value);
+  foreach (key, value; values.byKeyValue) {
+    json = json.update(key, value);
   }
 
   return json;
@@ -81,8 +86,7 @@ Json update(V)(Json json, string[] keys, V value) {
 
 Json update(V)(Json json, string key, V value) {
   return json.isObject && json.hasKey(key, false)
-    ? json.set(key, value)
-    : json;
+    ? json.set(key, value) : json;
 }
 
 // TODO
@@ -122,7 +126,7 @@ Json update(V)(Json json, string key, V value) {
   assert(json.hasAllKeys("a", "b", "c"));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 }
- */ 
+ */
 // #endregion Json
 // #endregion update
 
@@ -130,4 +134,10 @@ Json update(V)(Json json, string key, V value) {
 // #endregion merge
 
 // #region remove
+V[string] removeKey(V : Json)(V[string] items, string key) {
+  if (hasKey(items, key, false)) {
+    items.remove(key);
+  }
+  return items;
+}
 // #endregion remove

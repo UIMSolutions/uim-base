@@ -6,13 +6,5 @@
 module uim.phobos.containers.maps.keys;
 
 public {
-    import uim.phobos.containers.maps.keys.json;
     import uim.phobos.containers.maps.keys.string_;
-}
-
-version (test_uim_phobos) {
-  unittest {
-    import std.stdio;
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
 }

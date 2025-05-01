@@ -38,7 +38,7 @@ class DMemoryConfiguration : DConfiguration {
   
   // #region has
     override bool hasEntry(string key) {
-      return _entries.hasKey(key);
+      return _entries.hasKey(key, false);
     }
       
     alias hasEntryValue = DConfiguration.hasEntryValue;
