@@ -12,9 +12,6 @@ targetType "library"
 // Exteral dependencies
 dependency "uim-base:phobos" version="*"
 
-sourcePaths "."
-importPaths "."
-
 // configuration "default" {}
 
 configuration "test_uim_dyaml" {
