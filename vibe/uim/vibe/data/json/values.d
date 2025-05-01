@@ -15,7 +15,7 @@ import uim.vibe;
 Json[] values(Json json, string[] keys) {
   return json.isObject
     ? keys
-      .filter!(key => json.hasKey(key, false))
+      .filter!(key => json.hasKey(key))
       .map!(key => json[key]).array 
     : null;
 }
@@ -30,7 +30,7 @@ unittest {
 
 bool hasAllValues(Json json, Json[] values, bool deepSearch = false) {
   foreach (value; values)
-    if (!hasValue(json, value, deepSearch)) {
+    if (!hasValue(json, value)) {
       return false;
     }
   return true;
@@ -45,7 +45,7 @@ unittest {
 
 // Search if jsonData has any of the values
 bool hasAnyValue(Json jsonData, Json[] values, bool deepSearch = false) {
-  return values.any!(value => hasValue(jsonData, value, deepSearch));
+  return values.any!(value => hasValue(jsonData, value));
 }
 ///
 
@@ -63,7 +63,7 @@ bool hasValue(Json jsonData, Json value, bool deepSearch = false) {
         return true;
       }
       if (deepSearch) {
-        auto result = kv.value.hasValue(value, deepSearch);
+        auto result = kv.value.hasValue(value);
         if (result) {
           return true;
         }
@@ -74,7 +74,7 @@ bool hasValue(Json jsonData, Json value, bool deepSearch = false) {
   if (deepSearch) {
     if (jsonData.isArray) {
       for (size_t i = 0; i < jsonData.length; i++) {
-        const result = jsonData[i].hasValue(value, deepSearch);
+        const result = jsonData[i].hasValue(value);
         if (result) {
           return true;
         }

@@ -48,7 +48,7 @@ bool hasPath(Json json, string[] path) {
     return false;
   }
 
-  if (!json.hasKey(path[0], false)) {
+  if (!json.hasKey(path[0])) {
     return false;
   }
 
@@ -94,7 +94,7 @@ Json reduceKeys(Json json, string[] keys) {
   if (json.isObject) {
     Json result = Json.emptyObject;
     keys
-      .filter!(key => json.hasKey(key, false))
+      .filter!(key => json.hasKey(key))
       .each!(key => result[key] = json[key]);
 
     return result;
@@ -261,7 +261,7 @@ unittest {
 }
 
 Json firstWithKey(Json[] jsons, string key) {
-  Json[] results = jsons.filter!(json => json.hasKey(key, false)).array;
+  Json[] results = jsons.filter!(json => json.hasKey(key)).array;
   return results.length > 0
     ? results[0] : Json(null);
 }
@@ -486,7 +486,7 @@ Json getJson(Json[] values, size_t index, Json defaultValue = Json(null)) {
 }
 
 Json getJson(Json value, string key, Json defaultValue = Json(null)) {
-  return value.isObject && value.hasKey(key, false)
+  return value.isObject && value.hasKey(key)
     ? value[key] : defaultValue;
 }
 // #endregion json
@@ -503,7 +503,7 @@ Json[string] getMap(Json[] values, size_t index, Json[string] defaultValue = nul
 }
 
 Json[string] getMap(Json value, string key, Json[string] defaultValue = null) {
-  return value.isObject && value.hasKey(key, false)
+  return value.isObject && value.hasKey(key)
     ? value[key].getMap : defaultValue;
 }
 
@@ -633,7 +633,7 @@ Json merge(V)(Json json, string key, V value) {
     return json;
   }
 
-  if (!json.hasKey(key, false))
+  if (!json.hasKey(key))
     json[key] = value.toJson;
 
   return json;
@@ -644,7 +644,7 @@ Json merge(V : Json)(Json json, string key, V value) {
     return json;
   }
 
-  if (!json.hasKey(key, false))
+  if (!json.hasKey(key))
     json[key] = value;
 
   return json;
@@ -756,7 +756,7 @@ Json onlyKeys(Json json, string[] keys) {
 
   auto result = Json.emptyObject;
   keys
-    .filter!(key => json.hasKey(key, false))
+    .filter!(key => json.hasKey(key))
     .each!(key => result[key] = json[key]);
 
   return result;
@@ -853,7 +853,7 @@ unittest {
     map = ["a": Json(true), "b": Json(false), "c": Json(true)]; // Reset map
     assert(map.length == 3);
 
-    map.set("d", false);
+    map.set("d");
     assert(map.length == 4 && map.hasKey("d"));
 
     map = ["a": Json(true), "b": Json(false), "c": Json(true)]; // Reset map
@@ -1000,7 +1000,7 @@ unittest {
 // #region getStringArray
 string[] getStringArray(Json[string] map, string[] keys) {
   return keys
-    .filter!(key => map.hasKey(key, false))
+    .filter!(key => map.hasKey(key))
     .map!(key => map.getString(key))
     .array;
 }
@@ -1046,7 +1046,7 @@ Json[string] copy(Json[string] values, string[] keys = null) {
 
   Json[string] results;
   keys
-    .filter!(key => values.hasKey(key, false))
+    .filter!(key => values.hasKey(key))
     .each!(key => results[key] = values[key]);
 
   return results;

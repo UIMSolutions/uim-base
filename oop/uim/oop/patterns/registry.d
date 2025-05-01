@@ -45,7 +45,7 @@ class DObjectRegistry(T : UIMObject) {
   }
 
   bool hasPath(string[] path) {
-    return _objects.hasKey(correctKey(path));
+    return hasKey(correctKey(path));
   }
 
   bool hasAllKeys(string[] keys) {
@@ -57,7 +57,7 @@ class DObjectRegistry(T : UIMObject) {
   }
 
   bool hasKey(string key) {
-    return _objects.hasKey(correctKey(key));
+    return correctKey(key) in _objects ? true : false;
   }
 
   string correctKey(string[] path) {

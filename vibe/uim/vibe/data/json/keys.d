@@ -27,50 +27,50 @@ unittest {
 
 // #region hasKeySearch
 // #region Json[string]
-bool hasAllKeys(Json[string] items, string[] keys, bool deepSearch) {
-  return keys.all!(key => hasKey(items, key, deepSearch));
+bool hasAllKeys(Json[string] items, string[] keys) {
+  return keys.all!(key => hasKey(items, key));
 }
 
-bool hasAnyKeys(Json[string] items, string[] keys, bool deepSearch) {
-  return keys.any!(key => hasKey(items, key, deepSearch));
+bool hasAnyKeys(Json[string] items, string[] keys) {
+  return keys.any!(key => hasKey(items, key));
 }
 
-bool hasKey(Json[string] items, string key, bool deepSearch) {
+bool hasKey(Json[string] items, string key) {
   if (items.length == 0)
     return false;
 
   return key in items
-    ? true : hasKey(items.getValues, key, deepSearch);
+    ? true : hasKey(items.getValues, key);
 }
 // #endregion Json[string]
 
 // #region Json[]
-bool hasAllKeys(Json[] items, string[] keys, bool deepSearch) {
-  return keys.all!(key => hasKey(items, key, deepSearch));
+bool hasAllKeys(Json[] items, string[] keys) {
+  return keys.all!(key => hasKey(items, key));
 }
 
-bool hasAnyKeys(Json[] items, string[] keys, bool deepSearch) {
-  return keys.any!(key => hasKey(items, key, deepSearch));
+bool hasAnyKeys(Json[] items, string[] keys) {
+  return keys.any!(key => hasKey(items, key));
 }
 
-bool hasKey(Json[] items, string key, bool deepSearch) {
-  return items.any!(item => item.hasKey(key, deepSearch));
+bool hasKey(Json[] items, string key) {
+  return items.any!(item => item.hasKey(key));
 }
 // #endregion Json[]
 
 // #region Json
 // Check if json has key
-bool hasAllKeys(Json json, string[] keys, bool deepSearch) {
-  return keys.all!(key => hasKey(json, key, deepSearch));
+bool hasAllKeys(Json json, string[] keys) {
+  return keys.all!(key => hasKey(json, key));
 }
 
 /// Check if Json has key
-bool hasAnyKeys(Json json, string[] keys, bool deepSearch) {
-  return keys.any!(key => hasKey(json, key, deepSearch));
+bool hasAnyKeys(Json json, string[] keys) {
+  return keys.any!(key => hasKey(json, key));
 }
 
 /// Searching key in json, if depth = true also in subnodes  
-bool hasKey(Json json, string key, bool deepSearch) {
+bool hasKey(Json json, string key) {
   if (!json.isObject)
     return false;
 
@@ -78,11 +78,11 @@ bool hasKey(Json json, string key, bool deepSearch) {
     if (kv.key == key) {
       return true;
     }
-    if (deepSearch) {
-      if (kv.value.hasKey(key, false))
+/*     if (deepSearch) {
+      if (kv.value.hasKey(key))
         return true;
     }
-  }
+ */  }
 
   return false;
 }

@@ -85,7 +85,7 @@ Json update(V)(Json json, string[] keys, V value) {
 }
 
 Json update(V)(Json json, string key, V value) {
-  return json.isObject && json.hasKey(key, false)
+  return json.isObject && json.hasKey(key)
     ? json.set(key, value) : json;
 }
 
@@ -135,7 +135,7 @@ Json update(V)(Json json, string key, V value) {
 
 // #region remove
 V[string] removeKey(V : Json)(V[string] items, string key) {
-  if (hasKey(items, key, false)) {
+  if (hasKey(items, key)) {
     items.remove(key);
   }
   return items;

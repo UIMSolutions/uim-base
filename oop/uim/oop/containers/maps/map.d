@@ -49,11 +49,11 @@ class DMap(K, V) : IMap {
   }
 
   // #region removeKeys
-  bool removeKeys(K[] keys) {
-    return keys.all!(key => _entries.removeKey(key));
+  void removeKeys(K[] keys) {
+    keys.each!(key => this.removeKey(key));
   }
-  bool removeKey(K key) {
-    return _entries.remove(key);
+  void removeKey(K key) {
+    _entries.remove(key);
   }
   // #endregion removeKeys
 

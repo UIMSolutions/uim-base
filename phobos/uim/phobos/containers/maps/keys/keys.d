@@ -58,3 +58,71 @@ import uim.phobos;
     assert(jsonMap.hasAllKeys("a", "b") && !jsonMap.hasAllKeys("a", "x"));
   } 
 // #endregion has
+
+// #region removeKey(s)
+  V[K] removeKeys(K, V)(V[K] items, K[] keys) {
+    keys.each!(key => removeKey(items, key));
+    return items;
+  }
+
+  V[K] removeKey(K, V)(V[K] items, K key) {
+    if (hasKey(items, key)) {
+      items.remove(key);
+    }
+    return items;
+  }
+
+  V[K] removeKey(K: string, V: string)(V[K] items, K key) {
+    if (key in items) {
+      items.remove(key);
+    }
+    return items;
+  }
+
+  unittest {
+    auto testMap = ["a": 1, "b": 2, "c": 3, "d": 4];
+    assert(testMap.hasAllKeys("a", "b", "c", "d"));
+    testMap.removeKey("a");
+    assert(testMap.hasAllKeys("b", "c", "d") && !testMap.hasKey("a"));
+    
+    testMap = ["a": 1, "b": 2, "c": 3, "d": 4];
+    assert(testMap.hasAllKeys("a", "b", "c", "d"));
+    testMap.removeKeys(["b", "c"]);
+    assert(testMap.hasAllKeys("a", "d") && !testMap.hasAnyKey("b", "c"));
+
+    testMap = ["a": 1, "b": 2, "c": 3, "d": 4];
+    assert(testMap.hasAllKeys("a", "b", "c", "d"));
+    testMap.removeKeys("b", "c");
+    assert(testMap.hasAllKeys("a", "d") && !testMap.hasAnyKey("b", "c"));
+
+    auto stringMap = ["a": "1", "b": "2", "c": "3", "d": "4"];
+    assert(stringMap.hasAllKeys("a", "b", "c", "d"));
+    stringMap.removeKey("a");
+    assert(stringMap.hasAllKeys("b", "c", "d") && !stringMap.hasKey("a"));
+
+    stringMap = ["a": "1", "b": "2", "c": "3", "d": "4"];
+    assert(stringMap.hasAllKeys("a", "b", "c", "d"));
+    stringMap.removeKeys(["b", "c"]);
+    assert(stringMap.hasAllKeys("a", "d") && !stringMap.hasAnyKey("b", "c"));
+
+    stringMap = ["a": "1", "b": "2", "c": "3", "d": "4"];
+    assert(stringMap.hasAllKeys("a", "b", "c", "d"));
+    stringMap.removeKeys("b", "c");
+    assert(stringMap.hasAllKeys("a", "d") && !stringMap.hasAnyKey("b", "c"));
+
+    auto jsonMap = ["a": Json(1), "b": Json(2), "c": Json(3), "d": Json(4)];
+    assert(jsonMap.hasAllKeys("a", "b", "c", "d"));
+    jsonMap.removeKey("a");
+    assert(jsonMap.hasAllKeys("b", "c", "d") && !jsonMap.hasKey("a"));
+
+    jsonMap = ["a": Json(1), "b": Json(2), "c": Json(3), "d": Json(4)];
+    assert(jsonMap.hasAllKeys("a", "b", "c", "d"));
+    jsonMap.removeKeys(["b", "c"]);
+    assert(jsonMap.hasAllKeys("a", "d") && !jsonMap.hasAnyKey("b", "c"));
+
+    jsonMap = ["a": Json(1), "b": Json(2), "c": Json(3), "d": Json(4)];
+    assert(jsonMap.hasAllKeys("a", "b", "c", "d"));
+    jsonMap.removeKeys("b", "c");
+    assert(jsonMap.hasAllKeys("a", "d") && !jsonMap.hasAnyKey("b", "c"));
+  }
+// #endregion removeKey(s)

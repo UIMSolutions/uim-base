@@ -101,7 +101,7 @@ bool is`~type~`(Json json, string[] path, bool strict = true) {
 
   auto key = path[0];
   return path.length == 1
-    ? json.is`~type~`(key, strict) : json.hasKey(key, false) && json[key].is`~type~`(path[1 .. $], strict);
+    ? json.is`~type~`(key, strict) : json.hasKey(key) && json[key].is`~type~`(path[1 .. $], strict);
 }
 
 bool is`~type~`(Json json, string key, bool strict = true) {
@@ -129,7 +129,7 @@ template GetJsonValue(string type, string typeName, string defaultValue) {
 }
 
 `~type~` get`~typeName~`(Json json, string key, `~type~` defaultValue = `~defaultValue~`) {
-  return json.isObject && json.hasKey(key, false)
+  return json.isObject && json.hasKey(key)
     ? json[key].get`~typeName~` : defaultValue;
 }
   `;
