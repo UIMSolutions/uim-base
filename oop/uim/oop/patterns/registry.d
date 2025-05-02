@@ -33,8 +33,17 @@ class DObjectRegistry(T : UIMObject) {
 
   // #region keys
   }
-  string[] keys(bool sorted = false) {
-    return sorted ? _objects.keys.sort("a < b") : _objects.keys;
+  string[] keys(SORTORDERS sortorder = NOSORT) {
+    if (_objects is null) {
+      return null;
+    }
+    
+    if (sortorder == ASCENDING) {
+      return _objects.keys.sort("a < b");
+    } else if (sortorder == DESCENDING) {
+      return _objects.keys.sort("a > b");
+    }
+    return _objects.keys;
   }
 
   bool hasAnyPaths(string[][] paths) {

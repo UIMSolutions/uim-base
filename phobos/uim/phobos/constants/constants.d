@@ -1,0 +1,8 @@
+module uim.phobos.constants.constants;
+
+import uim.phobos;
+@safe:
+
+const SORTORDERS NOSORT = SORTORDERS.NONE;
+const SORTORDERS ASCENDING = SORTORDERS.ASCENDING;
+const SORTORDERS DESCENDING = SORTORDERS.DESCENDING;

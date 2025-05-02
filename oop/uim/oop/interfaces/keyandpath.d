@@ -22,7 +22,7 @@ interface IKeyAndPath {
   // #endregion paths
 
     // #region keys
-    string[] keys(bool sorted = false) {
+    string[] keys(SORTORDERS sortorder = NOSORT) {
 
     bool hasAllKeys(string[] keys);
 

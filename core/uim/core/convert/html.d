@@ -21,13 +21,19 @@ unittest {
 }
  */
 
- string toHTML(T)(T[string] items, bool sorted = NOTSORTED) {
-  return items.sortKeys(sorted ? "ASC" : "NONE")
-    .map!(key => `%s="%s"`.format(key, items[key]))
+ string toHTML(K, V)(V[K] items, SORTORDERS sortorder = SORTORDERS.NONE) {
+  auto keys = items.keys;
+  if (keys.length == 0) {
+    return "";
+  }
+  if (sortorder == SORTORDERS.ASCENDING) keys.sort!("a < b");
+  if (sortorder == SORTORDERS.DESCENDING) keys.sort!("b < a");
+
+  return keys
+    .map!(key => `%s="%s"`.format(key.toString, items[key].toString))
     .join(" ");
 }
 
 unittest {
-  writeln(__FILE__, "/", __LINE__);
-  // assert(["a": 1, "b": 2].toHTML(SORTED) == `a="1" b="2"`);
+  assert(["a": 1, "b": 2].toHTML(SORTORDERS.ASCENDING) == `a="1" b="2"`);
 }

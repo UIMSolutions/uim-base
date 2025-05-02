@@ -215,8 +215,18 @@ unittest {
 }
 // #endregion positions
 
-string toSqlUpdate(T)(T[string] items, bool sorted = NOTSORTED) {
-  return items.sortKeys
+string toSqlUpdate(T)(T[string] items, SORTORDERS sortorder = NOSORT) {
+  if (items.length == 0) {
+    return "";
+  }
+
+  auto keys = items.keys;
+  if (sortorder == ASCENDING) {
+    keys.sort!("a < b");
+  } else if (sortorder == DESCENDING) {
+    keys.sort!("a > b");
+  }
+  return keys
     .map!(key => `%s=%s`.format(key, items[key]))
     .join(",");
 }

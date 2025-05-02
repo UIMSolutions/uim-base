@@ -28,10 +28,13 @@ class DMap(K, V) : IMap {
 
   // #region keys
   // Retrieve all the names of the object's own enumerable properties.
-  K[] keys(bool sorted = false) {
-    return sorted 
-      ? _entries.keys.sort!("a < b") 
-      : _entries.keys;
+  K[] keys(SORTORDERS sortorder = NOSORT) {
+    if (sortorder == ASCENDING) {
+      return _entries.keys.sort!("a < b");
+    } else if (sortorder == DESCENDING) {
+      return _entries.keys.sort!("a > b");
+    }
+    return _entries.keys;
   }
   // #endregion keys
 

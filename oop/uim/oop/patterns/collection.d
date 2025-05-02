@@ -57,10 +57,13 @@ class DCollection(T : UIMObject) : UIMObject, IKeyAndPath, ICollection!T {
   // #endregion paths
 
   // #region keys
-  string[] keys(bool sorted = false) {
-    return sorted 
-      ? _items.keys.sort!("a < b") 
-      : _items.keys;
+  string[] keys(SORTORDERS sortorder = NOSORT) {
+    if (sortorder == ASCENDING) {
+      return _items.keys.sort!("a < b");
+    } else if (sortorder == DESCENDING) {
+      return _items.keys.sort!("a > b");
+    }
+    return _items.keys;
   }
 
   bool hasAllKeys(string[] keys) {

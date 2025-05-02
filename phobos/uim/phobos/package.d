@@ -60,12 +60,14 @@ public {
   import uim.phobos.compiler;
   import uim.phobos.complex;
   import uim.phobos.concurrency;
+  import uim.phobos.constants;
   import uim.phobos.containers;
   import uim.phobos.convert;
   import uim.phobos.csv;
   import uim.phobos.datetime;
   import uim.phobos.demangle;
   import uim.phobos.digest;
+  import uim.phobos.enumerations;
   import uim.phobos.logger;
   import uim.phobos.file;
   import uim.phobos.format;
