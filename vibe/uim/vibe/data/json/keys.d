@@ -13,7 +13,7 @@ import uim.vibe;
 
 // #region keys
 // Get keys from json object
-string[] keys(Json json) {
+string[] keys(Json json, bool sorted = false) {
   return json.isObject
     ? json.byKeyValue.map!(kv => kv.key).array : null;
 }

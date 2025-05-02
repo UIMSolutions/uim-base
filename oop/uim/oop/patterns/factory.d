@@ -70,8 +70,10 @@ class DFactory(T : UIMObject) : UIMObject, IKeyAndPath {
   // #endregion paths
 
   // #region keys
-  string[] keys() {
-    return _workers.keys;
+  string[] keys(bool sorted = false) {
+    return sorted 
+      ? _workers.keys.sort!("a < b") 
+      : _workers.keys;
   }
 
   bool hasAllKeys(string[] keys) {

@@ -32,8 +32,9 @@ class DObjectRegistry(T : UIMObject) {
   }
 
   // #region keys
-  string[] keys() {
-    return _objects.keys;
+  }
+  string[] keys(bool sorted = false) {
+    return sorted ? _objects.keys.sort("a < b") : _objects.keys;
   }
 
   bool hasAnyPaths(string[][] paths) {
