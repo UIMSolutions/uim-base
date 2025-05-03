@@ -8,42 +8,40 @@ module uim.oop.interfaces.keyandpath;
 mixin(Version!"test_uim_oop");
 
 import uim.oop;
+
 @safe:
 
 interface IKeyAndPath {
   // #region paths
-    string[][] paths();
+  string[][] paths();
 
-    bool hasAnyPaths(string[][] paths);
+  mixin(HasInterfaces!("Paths", "Path", "string[]"));
 
-    bool hasAllPaths(string[][] paths);
-
-    bool hasPath(string[] path);
+  bool hasPath(string[] path);
   // #endregion paths
 
-    // #region keys
-    string[] keys(SORTORDERS sortorder = NOSORT) {
+  // #region keys
+  string[] keys(SORTORDERS sortorder = NOSORT);
 
-    bool hasAllKeys(string[] keys);
+  mixin(HasInterfaces!("Keys", "Key", "string"));
 
-    bool hasAnyKeys(string[] keys);
+  bool hasKey(string key);
 
-    bool hasKey(string key);
+  string correctKey(string[] path);
 
-        string correctKey(string[] path);
-
-    string correctKey(string key);
+  string correctKey(string key);
   // #endregion keys
 
   // #region remove
-    bool removePaths(string[][] paths); 
+  bool removePaths(string[][] paths);
 
-    bool removePath(string[] path); 
+  bool removePath(string[] path);
 
-    bool removeKeys(string[] keys); 
+  bool removeKeys(string[] keys);
 
-    bool removeKey(string key); 
+  bool removeKey(string key);
 
-    void clear(); 
+  void clear();
   // #endregion remove
 }
+

@@ -56,14 +56,8 @@ class DFactory(T : UIMObject) : UIMObject, IKeyAndPath {
     return _workers.keys.map!(key => key.split(_pathSeparator)).array;
   }
 
-  bool hasAllPaths(string[][] paths) {
-    return paths.all!(path => hasPath(path));
-  }
-
-  bool hasAnyPaths(string[][] paths) {
-    return paths.any!(path => hasPath(path));
-  }
-
+  mixin(HasMethods!("Paths", "Path", "string[]"));
+  
   bool hasPath(string[] path) {
     return hasKey(path.join(_pathSeparator));
   }
@@ -71,29 +65,27 @@ class DFactory(T : UIMObject) : UIMObject, IKeyAndPath {
 
   // #region keys
   string[] keys(SORTORDERS sortorder = NOSORT) {
-    if (_workers is null) {
+    auto keys = _workers.keys;
+    if (keys is null) {
       return null;
     }
     if (sortorder == ASCENDING) {
-      return _workers.keys.sort!("a < b");
+      keys.sort!("a < b");
     } else if (sortorder == DESCENDING) {
-      return _workers.keys.sort!("a > b");
+      keys.sort!("a > b");
     }
-    return _workers.keys;
+    return keys;
   }
 
-  bool hasAllKeys(string[] keys) {
-    return keys.all!(key => hasKey(key));
-  }
-
-  bool hasAnyKeys(string[] keys) {
-    return keys.any!(key => hasKey(key));
-  }
+  // #region has
+  mixin(HasMethods!("Keys", "Key", "string"));
 
   bool hasKey(string key) {
     return key in _workers ? true : false;
   }
+  // #endregion has
 
+  // #region correct
   string correctKey(string[] path) {
     return correctKey(path.join(_pathSeparator));
   }
@@ -101,6 +93,7 @@ class DFactory(T : UIMObject) : UIMObject, IKeyAndPath {
   string correctKey(string key) {
     return key.strip;
   }
+  // #endregion correct
   // #endregion keys
 
   void set(string workerName, T delegate(Json[string] options = null) @safe workFunc) {

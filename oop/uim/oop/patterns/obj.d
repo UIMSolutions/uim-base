@@ -45,13 +45,7 @@ class UIMObject : IObject {
     return [__traits(allMembers, typeof(this))];
   }
 
-  bool hasAllMembers(string[] names) {
-    return memberNames.hasAllValues(names);
-  }
-
-  bool hasAnyMembers(string[] names) {
-    return memberNames.hasAnyValues(names);
-  }
+  mixin(HasMethods!("Members", "Member", "string"));
 
   bool hasMember(string name) {
     return memberNames.hasValue(name);

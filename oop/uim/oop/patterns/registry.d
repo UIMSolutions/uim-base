@@ -6,20 +6,20 @@
 module uim.oop.patterns.registry;
 
 import uim.oop;
+
 @safe:
 
 version (test_uim_oop) {
-    unittest {
-        writeln("-----  ", __MODULE__, "\t  -----");
-    }
+  unittest {
+    writeln("-----  ", __MODULE__, "\t  -----");
+  }
 }
 class DObjectRegistry(T : UIMObject) {
   // #region Singleton
   protected static DObjectRegistry!T _registration;
   public static DObjectRegistry!T registration() {
-    return (_registration is null) 
-      ? _registration = new DObjectRegistry!T
-      : _registration;
+    return (_registration is null)
+      ? _registration = new DObjectRegistry!T : _registration;
   }
   // #endregion Singleton
 
@@ -32,44 +32,53 @@ class DObjectRegistry(T : UIMObject) {
   }
 
   // #region keys
-  }
+
   string[] keys(SORTORDERS sortorder = NOSORT) {
-    if (_objects is null) {
+    auto keys = _objects.keys;
+    if (keys is null) {
       return null;
     }
-    
+
     if (sortorder == ASCENDING) {
-      return _objects.keys.sort("a < b");
+      keys.sort!("a < b");
     } else if (sortorder == DESCENDING) {
-      return _objects.keys.sort("a > b");
+      keys.sort!("a > b");
     }
-    return _objects.keys;
+
+    return keys;
   }
 
-  bool hasAnyPaths(string[][] paths) {
-    return paths.any!(path => hasPath(path));
-  }
-
-  bool hasAllPaths(string[][] paths) {
-    return paths.all!(path => hasPath(path));
-  }
+  // #region has
+  mixin(HasMethods!("Paths", "Path", "string[]"));
 
   bool hasPath(string[] path) {
     return hasKey(correctKey(path));
   }
-
-  bool hasAllKeys(string[] keys) {
-    return keys.all!(key => hasKey(key));
+  unittest {
+    auto registry = new DObjectRegistry!string;
+    registry.register("a.b.c", "value");
+    assert(registry.hasPath(["a", "b", "c"]));
+    assert(!registry.hasPath(["a", "b", "x"]));
   }
+  // #endregion has
 
-  bool hasAnyKeys(string[] keys) {
-    return keys.any!(key => hasKey(key));
-  }
+  // #region keys
+  // #region has
+  // Check if the key is in the object
+  mixin(HasMethods!("Keys", "Key", "string"));
 
   bool hasKey(string key) {
     return correctKey(key) in _objects ? true : false;
   }
+  unittest {
+    auto registry = new DObjectRegistry!string;
+    registry.register("a.b.c", "value");
+    assert(registry.hasKey("a.b.c"));
+    assert(!registry.hasKey("a.b.x"));
+  }
+  // #endregion has
 
+  // #region correct
   string correctKey(string[] path) {
     return correctKey(path.join(_pathSeparator));
   }
@@ -77,6 +86,7 @@ class DObjectRegistry(T : UIMObject) {
   string correctKey(string key) {
     return key.strip;
   }
+  // #endregion correct
   // #endregion keys
 
   // #region objects
@@ -84,13 +94,8 @@ class DObjectRegistry(T : UIMObject) {
     return _objects.values;
   }
 
-  bool hasAnyObjects(T[] objects) {
-    return objects.any!(obj => hasObject(obj));
-  }
-
-  bool hasAllObjects(T[] objects) {
-    return objects.all!(obj => hasObject(obj));
-  }
+  // #region has
+  mixin(HasMethods!("Objects", "Object", "T"));
 
   // TODO
   bool hasObject(T object) {
@@ -99,6 +104,7 @@ class DObjectRegistry(T : UIMObject) {
     }
     return false;
   }
+  // #endregion has
 
   T get(string[] path) {
     return get(correctKey(path));
@@ -144,9 +150,7 @@ class DObjectRegistry(T : UIMObject) {
   T create(string key) {
     T createdObject;
     if (auto registerdObject = get(correctKey(key))) {
-      () @trusted {
-        createdObject = cast(T) factory(registerdObject.classname);
-      }();
+      () @trusted { createdObject = cast(T) factory(registerdObject.classname); }();
     }
     return createdObject;
   }
@@ -155,22 +159,22 @@ class DObjectRegistry(T : UIMObject) {
   // #region remove
   O removeKeys(this O)(string[] keys) {
     keys.all!(reg => removeKey(reg));
-    return cast(O)this;
+    return cast(O) this;
   }
 
   O removeKey(this O)(string key) {
     _objects.removeKey(key);
-    return cast(O)this;
+    return cast(O) this;
   }
 
   O removeKey(this O)(string key) {
     _objects.removeKey(key);
-    return cast(O)this;
+    return cast(O) this;
   }
 
   O clearAll(this O)() {
     _objects = null;
-    return cast(O)this;
+    return cast(O) this;
   }
   // #endregion remove
 

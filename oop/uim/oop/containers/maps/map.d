@@ -29,12 +29,21 @@ class DMap(K, V) : IMap {
   // #region keys
   // Retrieve all the names of the object's own enumerable properties.
   K[] keys(SORTORDERS sortorder = NOSORT) {
+    auto keys = _entries.keys;
+
     if (sortorder == ASCENDING) {
-      return _entries.keys.sort!("a < b");
+      keys.sort!("a < b");
     } else if (sortorder == DESCENDING) {
-      return _entries.keys.sort!("a > b");
+      keys.sort!("a > b");
     }
-    return _entries.keys;
+    return keys;
+  }
+  unittest {
+    auto map = new DMap!(string, int);
+    map.entries = ["a": 1, "b": 2, "c": 3];
+    assert(map.keys() == ["a", "b", "c"]);
+    assert(map.keys(ASCENDING) == ["a", "b", "c"]);
+    assert(map.keys(DESCENDING) == ["c", "b", "a"]);
   }
   // #endregion keys
 

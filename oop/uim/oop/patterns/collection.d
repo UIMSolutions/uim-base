@@ -43,41 +43,42 @@ class DCollection(T : UIMObject) : UIMObject, IKeyAndPath, ICollection!T {
     return _items.keys.map!(key => key.split(_pathSeparator)).array;
   }
 
-  bool hasAllPaths(string[][] paths) {
-    return paths.all!(path => hasPath(path));
-  }
-
-  bool hasAnyPaths(string[][] paths) {
-    return paths.any!(path => hasPath(path));
-  }
-
+  mixin(HasMethods!("Paths", "Path", "string[]"));
+  
   bool hasPath(string[] path) {
     return hasKey(path.join(_pathSeparator));
+  }
+
+  unittest {
+    auto collection = new DCollection!string;
+    collection.set("a.b.c", "value");
+    assert(collection.hasPath(["a", "b", "c"]));
+    assert(!collection.hasPath(["a", "b", "x"]));
   }
   // #endregion paths
 
   // #region keys
   string[] keys(SORTORDERS sortorder = NOSORT) {
-    if (sortorder == ASCENDING) {
-      return _items.keys.sort!("a < b");
-    } else if (sortorder == DESCENDING) {
-      return _items.keys.sort!("a > b");
+    auto keys = _items.keys;
+    if (_items is null) {
+      return null;
     }
-    return _items.keys;
+
+    if (sortorder == ASCENDING) {
+      keys.sort!("a < b");
+    } else if (sortorder == DESCENDING) {
+      keys.sort!("a > b");
+    }
+    return keys;
   }
 
-  bool hasAllKeys(string[] keys) {
-    return keys.all!(key => hasKey(key));
-  }
-
-  bool hasAnyKeys(string[] keys) {
-    return keys.any!(key => hasKey(key));
-  }
+  mixin(HasMethods!("Keys", "Key", "string"));
 
   bool hasKey(string key) {
     return key in _items ? true : false;
   }
 
+  // #region correct
   string correctKey(string[] path) {
     return correctKey(path.join(_pathSeparator));
   }
@@ -85,6 +86,7 @@ class DCollection(T : UIMObject) : UIMObject, IKeyAndPath, ICollection!T {
   string correctKey(string key) {
     return key.strip;
   }
+  // #endregion correct
   // #endregion keys
 
   // #region items
@@ -92,19 +94,21 @@ class DCollection(T : UIMObject) : UIMObject, IKeyAndPath, ICollection!T {
     return _items.values;
   }
 
-  bool hasAnyItems(T[] items) {
-    return items.any!(obj => hasItem(obj));
-  }
-
-  bool hasAllItems(T[] items) {
-    return items.all!(obj => hasItem(obj));
-  }
+  mixin(HasMethods!("Items", "Item", "T"));
 
   bool hasItem(T item) {
     foreach (obj; _items.values) {
       // if (obj.isEquals(item)) { return true; }
     }
     return false;
+  }
+  unittest {
+    auto collection = new DCollection!string;
+    collection.set("a", "valueA");
+    collection.set("b", "valueB");
+    collection.set("c", "valueC");
+    assert(collection.hasItem("valueA"));
+    assert(!collection.hasItem("nonexistent"));
   }
   // #endregion items
 
