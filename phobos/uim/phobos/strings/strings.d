@@ -263,3 +263,47 @@ string classify(string tableName) {
   return result;
 }
 // #endregion classify
+
+// Return myword in plural form.
+string pluralize(string singularWord) {
+  /* auto pluralizeWords = _cache.get("pluralize", null);
+  if (pluralizeWords.hasKey(singularWord)) { // Found in cache
+    return pluralizeWords[singularWord];
+  }
+
+  auto irregularWords = _cache.get("irregular", null);
+  if (irregularWords.isNull("pluralize")) {
+    mywords = _irregular.keys;
+    static.irregularWords["pluralize"] = "/(.*?(?:\\b|_))(" ~ join("|", mywords)~")my/i";
+
+    myupperWords = array_map("ucfirst", mywords);
+    static.irregularWords.set("upperPluralize", "/(.*?(?:\\b|[a-z]))(" ~ join("|", myupperWords) ~ ")my/");
+  }
+  if (
+    preg_match(irregularWords["pluralize"], singularWord, myregs) ||
+    preg_match(irregularWords["upperPluralize"], singularWord, myregs)
+    ) {
+    pluralizeWords[singularWord] = myregs[1] ~ subString(myregs[2], 0, 1)
+      .subString(
+        _irregular[strtolower(myregs[2])], 1);
+
+    return pluralizeWords[singularWord];
+  }
+  if (!_cache.hasKey("uninflected")) {
+    _cache.set("uninflected", "/^(" ~ _uninflected.join("|") ~ ")my/i");
+  }
+  if (preg_match(_cache["uninflected"], singularWord, myregs)) {
+    pluralizeWords[singularWord] = singularWord;
+
+    return singularWord;
+  }
+  foreach (_plural as myrule : myreplacement) {
+    if (preg_match(myrule, singularWord)) {
+      pluralizeWords[singularWord] = (string) preg_replace(myrule, myreplacement, singularWord);
+
+      return pluralizeWords[singularWord];
+    }
+  }
+  return singularWord; */
+  return null;
+}

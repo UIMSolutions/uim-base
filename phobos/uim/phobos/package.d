@@ -75,6 +75,8 @@ public {
   import uim.phobos.stdio;
   import uim.phobos.strings;
   import uim.phobos.uni;
+  import uim.phobos.uuids;
+  import uim.phobos.variants;
   import uim.phobos.windows;
 }
 
