@@ -1,14 +1,10 @@
 module uim.errors.classes.errors.error;
 
-import uim.errors;
+mixin(Version!("test_uim_errors"));
 
+import uim.errors;
 @safe:
 
-version (test_uim_errors) {
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
 
 // This class is used to represent errors in UIM applications.
 class DError : UIMObject, IError {

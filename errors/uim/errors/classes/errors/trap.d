@@ -5,15 +5,10 @@
 *****************************************************************************************************************/
 module uim.errors.classes.errors.trap;
 
-import uim.errors;
-
-@safe:
-
-mixin(Version!"test_uim_errors");
+mixin(Version!("test_uim_errors"));
 
 import uim.errors;
 @safe:
-
 
 /**
  * Entry point to UIM`s error handling.

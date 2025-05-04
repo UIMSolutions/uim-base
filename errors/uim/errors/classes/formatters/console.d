@@ -5,13 +5,11 @@
 *****************************************************************************************************************/
 module uim.errors.classes.formatters.console;
 
-import uim.errors;
-@safe:
-
-mixin(Version!"test_uim_errors");
+mixin(Version!("test_uim_errors"));
 
 import uim.errors;
 @safe:
+
 
 
 // Debugger formatter for generating output with ANSI escape codes

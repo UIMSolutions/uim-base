@@ -5,14 +5,10 @@
 *****************************************************************************************************************/
 module uim.errors.classes.formatters.html;
 
-import uim.errors;
-@safe:
-
-mixin(Version!"test_uim_errors");
+mixin(Version!("test_uim_errors"));
 
 import uim.errors;
 @safe:
-
 
 /**
  * A Debugger formatter for generating interactive styled HTML output.

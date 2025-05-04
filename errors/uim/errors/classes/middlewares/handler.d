@@ -1,13 +1,9 @@
 module uim.errors.classes.middlewares.handler;
 
-import uim.errors;
-@safe:
-
-mixin(Version!"test_uim_errors");
+mixin(Version!("test_uim_errors"));
 
 import uim.errors;
 @safe:
-
 
 /**
  * Error handling middleware.

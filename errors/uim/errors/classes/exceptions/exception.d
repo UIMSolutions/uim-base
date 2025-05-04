@@ -5,9 +5,11 @@
 *****************************************************************************************************************/
 module uim.errors.classes.exceptions.exception;
 
-import uim.errors;
+mixin(Version!("test_uim_errors"));
 
+import uim.errors;
 @safe:
+
 class DException : UIMObject, IException {
   mixin(ExceptionThis!());
 

@@ -5,8 +5,11 @@
 *****************************************************************************************************************/
 module uim.errors.classes.exceptions.renderer;
 
-@safe:
+mixin(Version!("test_uim_errors"));
+
 import uim.errors;
+@safe:
+
 
 /**
  * Exception Renderer.

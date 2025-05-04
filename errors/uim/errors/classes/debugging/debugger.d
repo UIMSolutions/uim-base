@@ -5,15 +5,11 @@
 *****************************************************************************************************************/
 module uim.errors.classes.debugging.debugger;
 
-import uim.errors;
-
-@safe:
-
-mixin(Version!"test_uim_errors");
+mixin(Version!("test_uim_errors"));
 
 import uim.errors;
-
 @safe:
+
 
 // Provide custom logging and error handling.
 class DDebugger : UIMObject, IErrorDebugger {

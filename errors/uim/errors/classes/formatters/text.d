@@ -5,13 +5,10 @@
 *****************************************************************************************************************/
 module uim.errors.classes.formatters.text;
 
+mixin(Version!("test_uim_errors"));
+
 import uim.errors;
-
 @safe:
-
-unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-}
 
 /**
  * A Debugger formatter for generating unstyled plain text output.
