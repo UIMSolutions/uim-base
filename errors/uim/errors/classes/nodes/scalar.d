@@ -5,14 +5,10 @@
 *****************************************************************************************************************/
 module uim.errors.classes.nodes.scalar;
 
-import uim.errors;
-@safe:
-
-mixin(Version!"test_uim_errors");
+mixin(Version!("test_uim_errors"));
 
 import uim.errors;
 @safe:
-
 
 // Dump node for scalar values.
 class DScalarErrorNode : DErrorNode {

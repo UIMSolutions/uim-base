@@ -5,14 +5,10 @@
 *****************************************************************************************************************/
 module uim.errors.classes.renderers.web.error;
 
-import uim.errors;
-@safe:
-
-mixin(Version!"test_uim_errors");
+mixin(Version!("test_uim_errors"));
 
 import uim.errors;
 @safe:
-
 
 class DWebErrorRenderer : DErrorRenderer {
     mixin(ErrorRendererThis!("Web"));

@@ -5,8 +5,9 @@
 *****************************************************************************************************************/
 module uim.errors.classes.nodes.class_;
 
-import uim.errors;
+mixin(Version!("test_uim_errors"));
 
+import uim.errors;
 @safe:
 
 // Dump node for objects/class instances.

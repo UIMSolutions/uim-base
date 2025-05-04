@@ -5,14 +5,10 @@
 *****************************************************************************************************************/
 module uim.errors.classes.nodes.property; 
 
-import uim.errors;
-@safe:
-
-mixin(Version!"test_uim_errors");
+mixin(Version!("test_uim_errors"));
 
 import uim.errors;
 @safe:
-
 
 // Dump node for object properties.
 class DPropertyErrorNode : DErrorNode {

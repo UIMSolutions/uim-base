@@ -5,14 +5,10 @@
 *****************************************************************************************************************/
 module uim.errors.classes.renderers.exception;
 
-import uim.errors;
-@safe:
-
-mixin(Version!"test_uim_errors");
+mixin(Version!("test_uim_errors"));
 
 import uim.errors;
 @safe:
-
 
 /**
  * Exception Renderer.

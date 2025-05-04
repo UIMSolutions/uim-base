@@ -5,14 +5,10 @@
 *****************************************************************************************************************/
 module uim.errors.classes.renderers.error;
 
-import uim.errors;
-@safe:
-
-mixin(Version!"test_uim_errors");
+mixin(Version!("test_uim_errors"));
 
 import uim.errors;
 @safe:
-
 
 class DErrorRenderer : UIMObject, IErrorRenderer {
     mixin(ErrorRendererThis!());

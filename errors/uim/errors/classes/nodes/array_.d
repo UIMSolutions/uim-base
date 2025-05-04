@@ -5,8 +5,11 @@
 *****************************************************************************************************************/
 module uim.errors.classes.nodes.array_;
 
-@safe:
+mixin(Version!("test_uim_errors"));
+
 import uim.errors;
+@safe:
+
 
 // Dump node for Array values.
 class DArrayErrorNode : DErrorNode {

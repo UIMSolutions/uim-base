@@ -5,8 +5,9 @@
 *****************************************************************************************************************/
 module uim.errors.classes.nodes.special;
 
-import uim.errors;
+mixin(Version!("test_uim_errors"));
 
+import uim.errors;
 @safe:
 
 // Debug node for special messages like errors or recursion warnings.

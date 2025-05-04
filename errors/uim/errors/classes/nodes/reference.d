@@ -5,8 +5,11 @@
 *****************************************************************************************************************/
 module uim.errors.classes.nodes.reference;
 
-@safe:
+mixin(Version!("test_uim_errors"));
+
 import uim.errors;
+@safe:
+
 
 // <b>Dump nodes for class references</b> to prevent cyclic references from being emitted multiple times.
 // A reference node can be used after an object has been emitted in the first.
