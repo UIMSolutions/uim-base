@@ -5,10 +5,6 @@
 *****************************************************************************************************************/
 module uim.phobos;
 
-
-/* mixin(ImportPhobos!());
-public import vibe.d; */
-
 public {
   import std.algorithm;
   import std.array;

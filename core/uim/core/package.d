@@ -5,8 +5,6 @@
 *****************************************************************************************************************/
 module uim.core;
 
-mixin(ImportPhobos!());
-
 public {
   import uim.phobos;
   import uim.vibe;
