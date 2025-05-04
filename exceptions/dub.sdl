@@ -6,14 +6,17 @@ copyright "Copyright © 2018-2025, Ozan Nurettin Süel"
 license "Apache-2.0"
 
 // target
-targetName "uim_dyaml"
+targetName "uim-exceptions"
 targetType "library"
 
 // Exteral dependencies
-dependency "uim-base:phobos" version="*"
+dependency "uim-base:oop" version="*"
+
+sourcePaths "."
+importPaths "."
 
 // configuration "default" {}
 
-configuration "test_uim_dyaml" {
-	versions "test_uim_dyaml"
+configuration "test_uim_exceptions" {
+	versions "test_uim_exceptions"
 }

@@ -411,7 +411,6 @@ unittest {
 T[string] update(T, V)(T[string] items, V[string] newItems) {
   foreach (key, value; newItems) {
     items = items.update(key, value);
-
   }
   return items;
 }
@@ -421,16 +420,17 @@ T[string] update(T, V)(T[string] items, string[] keys, V value) {
   return items;
 }
 
-T[string] update(T : string, V)(T[string] items, string key, V value)
-    if (!is(V == T)) {
-  items = items.update(key, value.toString);
+T[string] update(T : string, V)(T[string] items, string key, V value) {
+  if (!is(V == T)) {
+    items = items.update(key, value.toString);
+  }
+
   return items;
 }
 
 T[string] update(T, V)(T[string] items, string key, V value) if (is(V == T)) {
-  if (key in items)
-    items = items.set(key, value);
-  return items;
+  return key in items
+    ? items.set(key, value) : items;
 }
 
 unittest {

@@ -7,22 +7,28 @@ license "Apache-2.0"
 
 // Target
 targetType "library"
-targetName "uim_base"
+targetName "uim-base"
 
 // External dependencies
 dependency "dlib" version="~>1.3.2"
+dependency "uim-base:errors" version="*"
 dependency "colored" version="~>0.0.31"
 dependency "vibe-d" version="~>0.10.2"
-dependency "unit-threaded" version="~>2.2.2"
+dependency "dyaml" version="~>0.10.0"
 
-// External dependencies
+// uim dependencies
 dependency "uim-base:vibe" version="*"
 dependency "uim-base:phobos" version="*"
 dependency "uim-base:core" version="*"
+dependency "uim-base:exceptions" version="*"
+dependency "unit-threaded" version="*"
 dependency "uim-base:oop" version="*"
-dependency "uim-base:errors" version="*"
 
 sourceFiles "./source/uim/base.d"
+configuration "test_all" {
+	targetType "library"
+	versions "test_uim_phobos" "test_uim_vibe" "test_uim_core" "test_uim_oop"  "test_uim_errors" "test_uim_exceptions"
+}
 
 // Subpackages
 subPackage "phobos"
@@ -30,3 +36,4 @@ subPackage "vibe"
 subPackage "core"
 subPackage "oop"
 subPackage "errors"
+subPackage "exceptions"
