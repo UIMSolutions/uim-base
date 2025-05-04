@@ -5,3 +5,13 @@
 *****************************************************************************************************************/
 module uim.exceptions;
 
+public {
+  import uim.exceptions.classes;
+  import uim.exceptions.constants;
+  import uim.exceptions.enumerations;
+  import uim.exceptions.factories;
+  import uim.exceptions.interfaces;
+  import uim.exceptions.helpers;
+  import uim.exceptions.registries;
+  import uim.exceptions.tests;
+}
