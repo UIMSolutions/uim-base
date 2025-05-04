@@ -35,42 +35,25 @@ unittest {
 }
 // #endregion is
 
-// #region hasAll
-bool hasAll(T)(Json json, T[] values) {
-  return json.hasAll(values.map!(value => value.toJson).array);
+// #region has Value
+bool hasAllValues(T)(Json json, T[] values) {
+  return json.all!(value => json.hasValue(value));
 }
 
-bool hasAll(Json json, Json[] values) {
-  if (!json.isArray)
-    return false;
-
-  return values.all!(value => json.has(value));
-}
-// #endregion hasAll
-
-// #region hasAny
-bool hasAny(T)(Json json, T[] values) {
-  return json.hasAny(values.map!(value => value.toJson).array);
+bool hasAnyValues(T)(Json json, T[] values) {
+  return json.any!(value => json.hasValue(value));
 }
 
-bool hasAny(Json json, Json[] values) {
-  if (!json.isArray)
-    return false;
-
-  return values.any!(value => json.has(value));
-}
-// #endregion hasAny
-
-// #region has
-bool has(T)(Json json, T value) {
+bool hasValue(T)(Json json, T value) {
   return json.has(value.toJson);
 }
 
-bool has(Json json, Json value) {
-  if (!json.isArray)
-    return false;
-
-  return json.byValue.any!(v => v == value);
+bool hasValue(T:Json)(Json json, T value) {
+  auto jsonValue = value.toJson;
+  if (json.isArray || json.isObject) {
+    return json.byValue.any!(value => value == jsonValue);
+  }
+  return json == jsonValue;
 }
 
 unittest {
