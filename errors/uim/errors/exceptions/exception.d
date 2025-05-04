@@ -5,9 +5,11 @@
 *****************************************************************************************************************/
 module uim.errors.exceptions.exception;
 
-import uim.errors;
+mixin(Version!("test_uim_errors"));
 
+import uim.errors;
 @safe:
+
 
 // Base error exception.
 class DErrorsException : DException {

@@ -5,9 +5,11 @@
 *****************************************************************************************************************/
 module uim.errors.mixins.exceptions.renderer;
 
-import uim.errors;
+mixin(Version!("test_uim_errors"));
 
+import uim.errors;
 @safe:
+
 string exceptionRendererThis(string name = null) {
     string fullName = name ~ "ExceptionRenderer";
     return objThis(fullName);

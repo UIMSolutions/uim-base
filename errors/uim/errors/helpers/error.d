@@ -6,14 +6,10 @@
 *****************************************************************************************************************/
 module uim.errors.helpers.error;
 
-import uim.errors;
-@safe:
-
-mixin(Version!"test_uim_errors");
+mixin(Version!("test_uim_errors"));
 
 import uim.errors;
 @safe:
-
 
 class ErrorHelper {
 

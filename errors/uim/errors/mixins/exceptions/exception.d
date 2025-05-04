@@ -5,9 +5,11 @@
 *****************************************************************************************************************/
 module uim.errors.mixins.exceptions.exception;
 
-import uim.errors;
+mixin(Version!("test_uim_errors"));
 
+import uim.errors;
 @safe:
+
 string exceptionThis(string name = null) {
     string fullName = name ~ "Exception";
     return objThis(fullName);

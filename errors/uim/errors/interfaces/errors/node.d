@@ -5,14 +5,10 @@
 *****************************************************************************************************************/
 module uim.errors.interfaces.errors.node;
 
-import uim.errors;
-@safe:
-
-mixin(Version!"test_uim_errors");
+mixin(Version!("test_uim_errors"));
 
 import uim.errors;
 @safe:
-
 
 // Interface for Error Nodes
 // Provides methods to look at the contained value and iterate on child nodes in the error tree.

@@ -5,14 +5,10 @@
 *****************************************************************************************************************/
 module uim.errors.interfaces.errors.logger;
 
-import uim.errors;
-@safe:
-
-mixin(Version!"test_uim_errors");
+mixin(Version!("test_uim_errors"));
 
 import uim.errors;
 @safe:
-
 
 // Used by the ErrorHandlerMiddleware and global error handlers to log exceptions and errors.
 interface IErrorLogger {

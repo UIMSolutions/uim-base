@@ -5,8 +5,9 @@
 *****************************************************************************************************************/
 module uim.errors.exceptions.trap;
 
-import uim.errors;
+mixin(Version!("test_uim_core"));
 
+import uim.errors;
 @safe:
 
 /**

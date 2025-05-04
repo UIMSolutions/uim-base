@@ -5,14 +5,10 @@
 *****************************************************************************************************************/
 module uim.errors.interfaces.errors.renderer;
 
-import uim.errors;
-@safe:
-
-mixin(Version!"test_uim_errors");
+mixin(Version!("test_uim_errors"));
 
 import uim.errors;
 @safe:
-
 
 /**
  * Interface for UIM error rendering implementations

@@ -5,15 +5,10 @@
 *****************************************************************************************************************/
 module uim.errors.helpers.functions;
 
-import uim.errors;
-
-@safe:
-
-mixin(Version!"test_uim_errors");
+mixin(Version!("test_uim_errors"));
 
 import uim.errors;
 @safe:
-
 
 /**
  * Prints out debug information about given variable and returns the

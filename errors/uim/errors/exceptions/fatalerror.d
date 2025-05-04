@@ -5,7 +5,11 @@
 *****************************************************************************************************************/
 module uim.errors.exceptions.fatalerror;
 
+mixin(Version!("test_uim_errors"));
+
 import uim.errors;
+@safe:
+
 
 // Represents a fatal error
 class DFatalErrorException : DErrorsException {
