@@ -37,7 +37,7 @@ unittest {
 
 // #region has Value
 bool hasAllValues(T)(Json json, T[] values) {
-  return values.isAll!(value => json.hasValue(value));
+  return values.all!(value => json.hasValue(value));
 }
 
 bool hasAnyValues(T)(Json json, T[] values) {

@@ -115,7 +115,7 @@ class DFactory(T : UIMObject) : UIMObject, IKeyAndPath {
 
   // #region remove
   bool removePaths(string[][] paths) {
-    return paths.isAll!(path => removePath(path));
+    return paths.all!(path => removePath(path));
   }
 
   bool removePath(string[] path) {
@@ -123,7 +123,7 @@ class DFactory(T : UIMObject) : UIMObject, IKeyAndPath {
   }
 
   bool removeKeys(string[] keys) {
-    return keys.isAll!(key => removeKey(key));
+    return keys.all!(key => removeKey(key));
   }
 
   bool removeKey(string key) {

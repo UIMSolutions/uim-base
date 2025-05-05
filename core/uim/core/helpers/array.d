@@ -262,7 +262,7 @@ class ArrayHelper {
   }
 
   static V[] all(V)(V[] values, bool delegate(V value) check) {
-    return values.isAll!(v => check(v));
+    return values.all!(v => check(v));
   }
 
   unittest {

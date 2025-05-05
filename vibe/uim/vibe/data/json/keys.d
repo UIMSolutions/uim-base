@@ -28,7 +28,7 @@ unittest {
 // #region hasKeySearch
 // #region Json[string]
 bool hasAllKeys(Json[string] items, string[] keys) {
-  return keys.isAll!(key => hasKey(items, key));
+  return keys.all!(key => hasKey(items, key));
 }
 
 bool hasAnyKeys(Json[string] items, string[] keys) {
@@ -46,7 +46,7 @@ bool hasKey(Json[string] items, string key) {
 
 // #region Json[]
 bool hasAllKeys(Json[] items, string[] keys) {
-  return keys.isAll!(key => hasKey(items, key));
+  return keys.all!(key => hasKey(items, key));
 }
 
 bool hasAnyKeys(Json[] items, string[] keys) {
@@ -61,7 +61,7 @@ bool hasKey(Json[] items, string key) {
 // #region Json
 // Check if json has key
 bool hasAllKeys(Json json, string[] keys) {
-  return keys.isAll!(key => hasKey(json, key));
+  return keys.all!(key => hasKey(json, key));
 }
 
 /// Check if Json has key

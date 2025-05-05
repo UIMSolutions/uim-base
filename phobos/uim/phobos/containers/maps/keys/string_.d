@@ -71,7 +71,7 @@ unittest {
 
 // #region keysEndsWith
 bool allKeysEndsWith(K, V)(ref V[string] items, K postfix) if (is(K == string)) { // right will overright left
-  return items.byKeyValue.isAll!(item => endsWith(item.key, postfix));
+  return items.byKeyValue.all!(item => endsWith(item.key, postfix));
 }
 
 bool anyKeysEndsWith(K, V)(ref V[string] items, K postfix) if (is(K == string)) { // right will overright left

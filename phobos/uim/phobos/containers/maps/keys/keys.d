@@ -13,7 +13,7 @@ import uim.phobos;
 // #region has
   // Returns true if the map has all the specified keys
   bool hasAllKeys(K, V)(V[K] map, K[] keys) {
-    return keys.isAll!(key => map.hasKey(key));
+    return keys.all!(key => map.hasKey(key));
   }
 
   // Returns true if the map has any of the specified keys

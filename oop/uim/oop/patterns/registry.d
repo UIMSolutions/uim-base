@@ -158,7 +158,7 @@ class DObjectRegistry(T : UIMObject) {
 
   // #region remove
   O removeKeys(this O)(string[] keys) {
-    keys.isAll!(reg => removeKey(reg));
+    keys.all!(reg => removeKey(reg));
     return cast(O) this;
   }
 

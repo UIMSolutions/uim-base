@@ -84,11 +84,11 @@ unittest {
 // #region contains
 // #region containsAll
 bool containsAll(string[] bases, string[] values) {
-  return bases.isAll!(base => base.containsAll(values));
+  return bases.all!(base => base.containsAll(values));
 }
 
 bool containsAll(string base, string[] values) {
-  return values.isAll!(value => base.contains(value));
+  return values.all!(value => base.contains(value));
 }
 // #endregion containsAll
 

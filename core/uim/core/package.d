@@ -103,7 +103,7 @@ unittest {
 
 // all values in array are not equal to value
 bool nallEqual(T)(T aValue, T[] values) {
-  return values.isAll!(value => aValue != value);
+  return values.all!(value => aValue != value);
 }
 /// 
 unittest {
@@ -112,7 +112,7 @@ unittest {
 
 // all values in array are greater then value
 bool greaterThenAll(T)(T[] baseValues, T value) if (isNumeric!T) {
-  return baseValues.isAll!(base => greaterThen(base, value));
+  return baseValues.all!(base => greaterThen(base, value));
 }
 /// 
 unittest {
@@ -136,7 +136,7 @@ bool greaterThen(T)(T base, T value) if (isNumeric!T) {
 
 // all values in array are greater equal value
 bool allGreaterEqual(T)(T checkValue, T[] values) if (isNumeric!T) {
-  return values.isAll!(value => checkValue >= value);
+  return values.all!(value => checkValue >= value);
 }
 unittest {
   assert(3.isAllGreaterEqual([1, 2, 3]));

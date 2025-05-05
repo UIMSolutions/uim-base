@@ -49,7 +49,7 @@ unittest {
 bool existsAllFiles(string[] paths) {
   return paths.length == 0
     ? false  // Empty array, no files to check
-     : paths.isAll!(path => existsFile(path));
+     : paths.all!(path => existsFile(path));
 }
 
 bool existsAnyFiles(string[] paths) {
