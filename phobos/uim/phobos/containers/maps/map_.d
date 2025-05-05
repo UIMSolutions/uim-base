@@ -258,7 +258,7 @@ bool hasAnyValue(T)(T[string] items, T[string] checkItems) {
 }
 
 bool hasAnyValue(T)(T[string] items, T[] values) {
-  return values.isAny!(value => items.hasValue(value));
+  return values.any!(value => items.hasValue(value));
 }
 
 bool hasValue(T)(T[string] items, T check) {

@@ -439,7 +439,7 @@ unittest {
 Json toJsonObject(Json[string] items, string[] excludeKeys = null) {
   auto json = Json.emptyObject;
   items.byKeyValue
-    .filter!(item => !excludeKeys.isAny!(key => key == item.key))
+    .filter!(item => !excludeKeys.any!(key => key == item.key))
     .each!(item => json[item.key] = item.value);
   return json;
 }
@@ -447,7 +447,7 @@ Json toJsonObject(Json[string] items, string[] excludeKeys = null) {
 Json toJsonObject(string[string] map, string[] excludeKeys = null) {
   auto json = Json.emptyObject;
   map.byKeyValue
-    .filter!(kv => !excludeKeys.isAny!(key => key == kv.key))
+    .filter!(kv => !excludeKeys.any!(key => key == kv.key))
     .each!(kv => json[kv.key] = Json(kv.value));
   return json;
 }
@@ -675,7 +675,7 @@ Json match(K)(Json[K] matchValues, K key, Json defaultValue = Json(null)) {
 // #region isSet
 bool isSet(Json json, string key) {
   return json.isObject
-    ? json.byKeyValue.isAny!(kv => kv.key == key) : false;
+    ? json.byKeyValue.any!(kv => kv.key == key) : false;
 }
 // #endregion isSet
 

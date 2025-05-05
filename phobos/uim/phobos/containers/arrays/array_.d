@@ -17,7 +17,7 @@ bool hasAllValues(T)(T[] items, in T[] values) {
 }
 
 bool hasAnyValues(T)(T[] items, in T[] values) {
-  return values.isAny!(value => items.hasValue(value));
+  return values.any!(value => items.hasValue(value));
 }
 
 bool hasValue(T)(T[] items, in T value) {
@@ -590,7 +590,7 @@ unittest {
 
 // #region isIn
 bool isIn(T)(T value, T[] values) {
-  return values.isAny!(v => v == value);
+  return values.any!(v => v == value);
 }
 /// 
 unittest {

@@ -82,12 +82,12 @@ bool hasAllValues(K, V)(ref V[K] items, V[] values) {
 
 // Returns true if the map has any value
 bool hasAnyValue(K, V)(ref V[K] items, V[] values) {
-  return values.isAny!(value => items.hasValue(value));
+  return values.any!(value => items.hasValue(value));
 }
 
 // Returns true if the map has the value
 bool hasValue(K, V)(ref V[K] items, V value) {
-  return items.byKeyValue.isAny!(item => item.value == value);
+  return items.byKeyValue.any!(item => item.value == value);
 }
 
 unittest {

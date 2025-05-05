@@ -77,7 +77,7 @@ bool isAny`~type~`(Json json, bool strict = true) {
 }
 
 bool isAny`~type~`(Json json, string[] keys, bool strict = true) {
-  return keys.isAny!(key => json.is`~type~`(key, strict));
+  return keys.any!(key => json.is`~type~`(key, strict));
 }
 
 bool is`~type~`(Json json, string[] path, bool strict = true) { 

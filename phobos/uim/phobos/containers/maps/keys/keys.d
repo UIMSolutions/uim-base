@@ -18,7 +18,7 @@ import uim.phobos;
 
   // Returns true if the map has any of the specified keys
   bool hasAnyKeys(K, V)(V[K] map, K[] keys) {
-    return keys.isAny!(key => map.hasKey(key));
+    return keys.any!(key => map.hasKey(key));
   }
 
   // Returns true if the map has the specified key

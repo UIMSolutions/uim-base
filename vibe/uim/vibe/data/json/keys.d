@@ -32,7 +32,7 @@ bool hasAllKeys(Json[string] items, string[] keys) {
 }
 
 bool hasAnyKeys(Json[string] items, string[] keys) {
-  return keys.isAny!(key => hasKey(items, key));
+  return keys.any!(key => hasKey(items, key));
 }
 
 bool hasKey(Json[string] items, string key) {
@@ -50,11 +50,11 @@ bool hasAllKeys(Json[] items, string[] keys) {
 }
 
 bool hasAnyKeys(Json[] items, string[] keys) {
-  return keys.isAny!(key => hasKey(items, key));
+  return keys.any!(key => hasKey(items, key));
 }
 
 bool hasKey(Json[] items, string key) {
-  return items.isAny!(item => item.hasKey(key));
+  return items.any!(item => item.hasKey(key));
 }
 // #endregion Json[]
 
@@ -66,7 +66,7 @@ bool hasAllKeys(Json json, string[] keys) {
 
 /// Check if Json has key
 bool hasAnyKeys(Json json, string[] keys) {
-  return keys.isAny!(key => hasKey(json, key));
+  return keys.any!(key => hasKey(json, key));
 }
 
 /// Searching key in json, if depth = true also in subnodes  

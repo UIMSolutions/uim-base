@@ -41,7 +41,7 @@ bool hasAllValues(T)(Json json, T[] values) {
 }
 
 bool hasAnyValues(T)(Json json, T[] values) {
-  return values.isAny!(value => json.hasValue(value));
+  return values.any!(value => json.hasValue(value));
 }
 
 bool hasValue(T)(Json json, T value) {
@@ -50,7 +50,7 @@ bool hasValue(T)(Json json, T value) {
 
 bool hasValue(T:Json)(Json json, T value) {
   return json.isArray || json.isObject
-    ? json.byValue.isAny!(v => v == value)
+    ? json.byValue.any!(v => v == value)
     : json == value;
 }
 
