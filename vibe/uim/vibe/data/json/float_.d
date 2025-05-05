@@ -29,7 +29,27 @@ unittest {
 // #region is   
 
 // #region get
-mixin(GetJsonValue!("float", "Float", "0.0"));
+float getFloat(Json json, size_t index, float defaultValue = 0.0) {
+  return json.isArray 
+    ? getFloat(json.get!(Json[]), index, defaultValue)
+    : defaultValue;
+}
+
+float getFloat(Json json, string key, float defaultValue = 0.0) {
+  return json.isObject
+    ? getFloat(json.get!(Json[string]), key, defaultValue)
+    : defaultValue;
+}
+
+float getFloat(Json[string] map, string key, float defaultValue = 0.0) {
+  return key in map
+    ? map[key].getFloat : defaultValue;
+}
+
+float getFloat(Json[] values, size_t index, float defaultValue = 0.0) {
+  return values.length > index
+    ? values[index].getFloat : defaultValue;
+}
 
 float getFloat(Json json, float defaultValue = 0.0) {
   return json.isFloat
@@ -43,8 +63,8 @@ unittest {
   json = Json.emptyArray;
   json ~= 1.0;
   json ~= 2.0;
-  assert(json.getFloat(0) == 1.0);
-  assert(json.getFloat(1) != 1.0);
+  assert(json.getFloat(0, 0.0) == 1.0);
+  assert(json.getFloat(1, 0.0) != 1.0);
 
   json = Json.emptyObject;
   json["One"] = 1.0;

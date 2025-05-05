@@ -8,10 +8,105 @@ module uim.vibe.data.json.integer;
 mixin(Version!("test_uim_vibe"));
 
 import uim.vibe;
+
 @safe:
 
 // #region isInteger
-mixin(CheckJsonIs!("Integer"));
+// #region Json[string]
+bool isAllInteger(Json[string] map, bool strict = true) {
+  return map.byValue.all!(value => value.isInteger(strict));
+}
+
+bool isAllInteger(Json[string] map, string[] keys, bool strict = true) {
+  return keys.all!(key => map.isInteger(key, strict));
+}
+
+bool isAnyInteger(Json[string] map, bool strict = true) {
+  return map.byValue.any!(value => value.isInteger(strict));
+}
+
+bool isAnyInteger(Json[string] map, string[] keys, bool strict = true) {
+  return keys.any!(index => map.isInteger(index));
+}
+
+bool isInteger(Json[string] map, string key, bool strict = true) {
+  return key in map && map[key].isInteger(strict);
+}
+// #endregion Json[string]
+
+// #region Json[]
+bool isAllInteger(Json[] values, bool strict = true) {
+  return values.all!(value => value.isInteger(strict));
+}
+
+bool isAllInteger(Json[] values, size_t[] indices, bool strict = true) {
+  return indices.all!(index => values.isInteger(index, strict));
+}
+
+bool isAnyInteger(Json[] values, bool strict = true) {
+  return values.any!(value => value.isInteger(strict));
+}
+
+bool isAnyInteger(Json[] values, size_t[] indices, bool strict = true) {
+  return indices.any!(index => values.isInteger(index, strict));
+}
+
+bool isInteger(Json[] values, size_t index, bool strict = true) {
+  return values.length > index && values[index].isInteger(strict);
+}
+// #endregion Json[]
+
+// #region Json
+bool isAllInteger(Json json, bool strict = true) {
+  if (json.isObject) {
+    return isAllInteger(json.to!(Json[string]), strict);
+  }
+  if (json.isArray) {
+    return isAllInteger(json.to!(Json[]), strict);
+  }
+  return json.isInteger(strict);
+}
+
+bool isAllInteger(Json json, string[] keys, bool strict = true) {
+  return keys.isAllInteger!(key => json.isInteger(key, strict));
+}
+
+bool isAnyInteger(Json json, bool strict = true) {
+  if (json.isObject) {
+    return isAnyInteger(json.to!(Json[string]), strict);
+  }
+  if (json.isArray) {
+    return isAnyInteger(json.to!(Json[]), strict);
+  }
+  return json.isInteger(strict);
+}
+
+bool isAnyInteger(Json json, string[] keys, bool strict = true) {
+  return keys.any!(key => json.isInteger(key, strict));
+}
+
+bool isInteger(Json json, string[] path, bool strict = true) {
+  if (json.isNull) {
+    return true;
+  }
+
+  if (path.length == 0 && json == Json(null)) {
+    return true;
+  }
+
+  if (path.length == 0 && json == Json(null)) {
+    return false;
+  }
+
+  auto key = path[0];
+  return path.length == 1
+    ? json.isInteger(key, strict) : json.hasKey(key) && json[key].isInteger(path[1 .. $], strict);
+}
+
+bool isInteger(Json json, string key, bool strict = true) {
+  return key in json && json[key].isInteger(strict);
+}
+// #endregion Json
 
 unittest {
   assert(!Json(true).isInteger);
@@ -147,8 +242,8 @@ unittest {
   assert(list.getInteger(1) != 1);
 
   auto map = ["One": Json(1), "Two": Json(2)];
-  assert(map.getInteger("One") == 1);  
-  assert(map.getInteger("Two") != 1);  
+  assert(map.getInteger("One") == 1);
+  assert(map.getInteger("Two") != 1);
 }
 // #endregion get
 

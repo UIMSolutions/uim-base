@@ -99,10 +99,10 @@ unittest {
   assert(!list.isAnyBoolean([2, 3]));
 
   // Json[string]
-  auto a = Json(true);
-  auto b = Json(false);
-  auto c = Json(1);
-  auto d = Json(1.1);
+  a = Json(true);
+  b = Json(false);
+  c = Json(1);
+  d = Json(1.1);
   auto map = ["A": a, "B": b, "C": c, "D": d];
   assert(["A": a, "B": b].isAllBoolean);
   assert(!["A": a, "C": c].isAllBoolean);

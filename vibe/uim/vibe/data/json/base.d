@@ -1454,7 +1454,7 @@ unittest {
 
 // #region Json
 Json mergeValues(V)(Json items, V[string] values) {
-  auto results = items.dup;
+  auto results = items;
   values.each!((key, value) => results = results.mergeValue(key, value));
   return results;
 }
