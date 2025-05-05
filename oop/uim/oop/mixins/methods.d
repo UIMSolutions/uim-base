@@ -17,7 +17,7 @@ string isMethods(string plural, string singular, string keyType) {
     }
 
     bool isAny{plural}({keyType}[] keys) {
-      return keys.isAny!(key => is{singular}(key));
+      return keys.any!(key => is{singular}(key));
     }
   `
     .replace("{plural}", plural)
@@ -42,7 +42,7 @@ string hasMethods(string plural, string singular, string keyType) {
     }
 
     bool hasAny{plural}({keyType}[] keys) {
-      return keys.isAny!(key => has{singular}(key));
+      return keys.any!(key => has{singular}(key));
     }
   `
     .replace("{plural}", plural)

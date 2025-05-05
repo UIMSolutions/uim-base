@@ -53,7 +53,7 @@ bool existsAllFolders(string[] folderpaths) {
 }
 
 bool existsAnyFolders(string[] folderpaths) {
-  return folderpaths.isAny!(path => existsPath(path));
+  return folderpaths.any!(path => existsPath(path));
 }
 
 bool existsFolder(string[] path) {

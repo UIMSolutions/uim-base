@@ -55,7 +55,7 @@ bool existsAllFiles(string[] paths) {
 bool existsAnyFiles(string[] paths) {
   return paths.length == 0
     ? false  // Empty array, no files to check 
-     : paths.isAny!(path => existsFile(path));
+     : paths.any!(path => existsFile(path));
 }
 
 bool existsFile(string[] path) {

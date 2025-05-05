@@ -43,7 +43,7 @@ class DMemoryConfiguration : DConfiguration {
       
     alias hasEntryValue = DConfiguration.hasEntryValue;
     override bool hasEntryValue(Json value) {
-      return _entries.values.isAny!(v => v == value);
+      return _entries.values.any!(v => v == value);
     }
   // #endregion has
 

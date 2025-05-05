@@ -71,7 +71,7 @@ bool endsWith(string text, string[] endings) {
   }
 
   return endings.length > 0
-    ? endings.isAny!(ending => ending.length > 0 && text[$ - ending.length .. $] == ending) : false;
+    ? endings.any!(ending => ending.length > 0 && text[$ - ending.length .. $] == ending) : false;
 }
 ///
 unittest {
@@ -94,11 +94,11 @@ bool containsAll(string base, string[] values) {
 
 // #region containsAny
 bool containsAny(string[] bases, string[] values) {
-  return bases.isAny!(base => base.containsAny(values));
+  return bases.any!(base => base.containsAny(values));
 }
 
 bool containsAny(string base, string[] values) {
-  return values.isAny!(value => base.contains(value));
+  return values.any!(value => base.contains(value));
 }
 // #endregion containsAny
 
@@ -138,7 +138,7 @@ bool startsWith(string text, string[] startings) {
   }
 
   return startings.length > 0
-    ? startings.isAny!(starting => starting.length > 0 && text.indexOf(starting) == 0) : false;
+    ? startings.any!(starting => starting.length > 0 && text.indexOf(starting) == 0) : false;
 }
 
 unittest {

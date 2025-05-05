@@ -19,7 +19,7 @@ import uim.core;
     }
 
     bool existsAnyLinks(string[] paths) {
-      return paths.isAny!(path => existsPath(path));
+      return paths.any!(path => existsPath(path));
     }
 
     bool existsLink(string[] path) {

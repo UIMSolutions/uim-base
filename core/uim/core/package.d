@@ -121,7 +121,7 @@ unittest {
 }
 
 bool greaterThenAny(T)(T[] baseValues, T value) if (isNumeric!T) {
-  return baseValues.isAny!(base => greaterThen(base, value));
+  return baseValues.any!(base => greaterThen(base, value));
 }
 
 unittest {
