@@ -49,11 +49,11 @@ unittest {
 // #region exists
 // Checks if the given path exists and is a symfolder.
 bool existsAllFolders(string[] folderpaths) {
-  return folderpaths.all!(path => existsFolder(path));
+  return folderpaths.isAll!(path => existsFolder(path));
 }
 
 bool existsAnyFolders(string[] folderpaths) {
-  return folderpaths.any!(path => existsPath(path));
+  return folderpaths.isAny!(path => existsPath(path));
 }
 
 bool existsFolder(string[] path) {

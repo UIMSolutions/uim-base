@@ -27,21 +27,21 @@ unittest {
   assert(map.isInteger("a") && map.isInteger("b"));
   assert(!map.isInteger("c"));
 
-  assert(map.allInteger(["a", "b"]));
-  assert(map.anyInteger(["a", "b"]));
+  assert(map.isAllInteger(["a", "b"]));
+  assert(map.isAnyInteger(["a", "b"]));
 
   map["b"] = Json("B");
   assert(map.isInteger("a"));
   assert(!map.isInteger("b") && !map.isInteger("c"));
 
-  assert(!map.allInteger(["a", "b"]));
-  assert(map.anyInteger(["a", "b"]));
+  assert(!map.isAllInteger(["a", "b"]));
+  assert(map.isAnyInteger(["a", "b"]));
 
   map["a"] = Json("A");
   assert(!map.isInteger("a") && !map.isInteger("b") && !map.isInteger("c"));
 
-  assert(!map.allInteger(["a", "b"]));
-  assert(!map.anyInteger(["a", "b"]));
+  assert(!map.isAllInteger(["a", "b"]));
+  assert(!map.isAnyInteger(["a", "b"]));
 
   // Json[]
   auto a = Json(1);

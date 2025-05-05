@@ -37,23 +37,21 @@ unittest {
 
 // #region has Value
 bool hasAllValues(T)(Json json, T[] values) {
-  return json.all!(value => json.hasValue(value));
+  return values.all!(value => json.hasValue(value));
 }
 
 bool hasAnyValues(T)(Json json, T[] values) {
-  return json.any!(value => json.hasValue(value));
+  return values.any!(value => json.hasValue(value));
 }
 
 bool hasValue(T)(Json json, T value) {
-  return json.has(value.toJson);
+  return json.hasValue(value.toJson);
 }
 
 bool hasValue(T:Json)(Json json, T value) {
-  auto jsonValue = value.toJson;
-  if (json.isArray || json.isObject) {
-    return json.byValue.any!(value => value == jsonValue);
-  }
-  return json == jsonValue;
+  return json.isArray || json.isObject
+    ? json.byValue.any!(v => v == value)
+    : json == value;
 }
 
 unittest {
@@ -63,23 +61,23 @@ unittest {
   json ~= Json(3);
 
   writeln(json.toString);
-  assert(json.has(Json(1)));
-  assert(!json.has(Json("1")));
+  assert(json.hasValue(Json(1)));
+  assert(!json.hasValue(Json("1")));
 
-  assert(json.has(1));
-  assert(!json.has("1"));
+  assert(json.hasValue(1));
+  assert(!json.hasValue("1"));
 
-  assert(json.hasAny([Json(1), Json(2), Json(10)]));
-  assert(!json.hasAny([Json(10), Json(12), Json(13)]));
+  assert(json.hasAnyValues([Json(1), Json(2), Json(10)]));
+  assert(!json.hasAnyValues([Json(10), Json(12), Json(13)]));
 
-  assert(json.hasAny([1, 2, 10]));
-  assert(!json.hasAny([10, 12, 13]));
+  assert(json.hasAnyValues([1, 2, 10]));
+  assert(!json.hasAnyValues([10, 12, 13]));
 
-  assert(json.hasAll([Json(1), Json(2), Json(3)]));
-  assert(!json.hasAll([Json(1), Json(12), Json(13)]));
+  assert(json.hasAllValues([Json(1), Json(2), Json(3)]));
+  assert(!json.hasAllValues([Json(1), Json(12), Json(13)]));
 
-  assert(json.hasAll([1, 2, 3]));
-  assert(!json.hasAll([1, 12, 13]));
+  assert(json.hasAllValues([1, 2, 3]));
+  assert(!json.hasAllValues([1, 12, 13]));
 }
 // #endregion has
 

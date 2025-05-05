@@ -145,7 +145,7 @@ class DCollection(T : UIMObject) : UIMObject, IKeyAndPath, ICollection!T {
 
   // #region remove
   bool removePaths(string[][] paths) {
-    return paths.all!(path => removePath(path));
+    return paths.isAll!(path => removePath(path));
   }
 
   bool removePath(string[] path) {
@@ -153,7 +153,7 @@ class DCollection(T : UIMObject) : UIMObject, IKeyAndPath, ICollection!T {
   }
 
   bool removeKeys(string[] keys) {
-    return keys.all!(key => removeKey(key));
+    return keys.isAll!(key => removeKey(key));
   }
 
   bool removeKey(string key) {

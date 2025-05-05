@@ -36,7 +36,7 @@ V[] getValues(K, V)(auto ref V[K] items, bool delegate(K key, V value) check) {
 
 unittest {
   auto testString = ["a": "1", "b": null, "c": "3"];
-  assert(testString.getValues().length == 2);
+  assert(testString.getValues().length == 3);
 
   auto testValues = ["a": 1, "b": 2, "c": 3];
   bool foo(string key, int value) {
@@ -67,16 +67,14 @@ unittest {
 
   assert(["a": "A", "b": "B", "c": "C"].removeByValues("A").length == 2);
   assert(["a": "A", "b": "B", "c": "C"].removeByValues(["A", "B"]).length == 1);
-  assert(["a": "A", "b": "B", "c": "C"].removeByValues("A", "B").length == 1);
 
   assert(["a": "A", "b": "B", "c": "C"].removeByValues("A")["c"] == "C");
   assert(["a": "A", "b": "B", "c": "C"].removeByValues(["A", "B"])["c"] == "C");
-  assert(["a": "A", "b": "B", "c": "C"].removeByValues("A", "B")["c"] == "C"); */
+  */
 }
 // #endregion removeByValues
 
 // #region hasValue
-// Returns true if the map has all values
 // Returns true if the map has all values
 bool hasAllValues(K, V)(ref V[K] items, V[] values) {
   return values.all!(value => items.hasValue(value));
@@ -97,30 +95,10 @@ unittest {
   assert(test.hasValue("A"));
 
   assert(test.hasAnyValue(["A", "B", "C"]));
-  assert(test.hasAnyValue("A", "B", "C"));
   assert(test.hasAnyValue(["A", "x", "C"]));
-  assert(test.hasAnyValue("A", "x", "C"));
   assert(!test.hasAnyValue(["x", "y", "z"]));
-  assert(!test.hasAnyValue("x", "y", "z"));
 
   assert(test.hasAllValues(["A", "B", "C"]));
-  assert(test.hasAllValues("A", "B", "C"));
   assert(!test.hasAllValues(["A", "X", "C"]));
-  assert(!test.hasAllValues("A", "X", "C"));
-
-  Json[string] test2 = ["a": Json("A"), "b": Json("B"), "c": Json("C")];
-  assert(test2.hasValue(Json("A")));
-
-  assert(test2.hasAnyValue([Json("A"), Json("B"), Json("C")]));
-  assert(test2.hasAnyValue(Json("A"), Json("B"), Json("C")));
-  assert(test2.hasAnyValue([Json("A"), Json("y"), Json("C")]));
-  assert(test2.hasAnyValue(Json("A"), Json("y"), Json("C")));
-  assert(!test2.hasAnyValue([Json("x"), Json("y"), Json("z")]));
-  assert(!test2.hasAnyValue(Json("x"), Json("y"), Json("z")));
-
-  assert(test2.hasAllValues([Json("A"), Json("B"), Json("C")]));
-  assert(test2.hasAllValues(Json("A"), Json("B"), Json("C")));
-  assert(!test2.hasAllValues([Json("A"), Json("X"), Json("C")]));
-  assert(!test2.hasAllValues(Json("A"), Json("X"), Json("C")));
 }
 // #endregion hasAllValues

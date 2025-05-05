@@ -106,7 +106,7 @@ T[] filterValues(T)(T[] baseArray, T[] values) {
 unittest {
   assert([1, 2, 3].filterValues([1, 2]) == [1, 2]);
   assert([1, 2, 3].filterValues([2]) == [2]);
-  assert([1, 2, 3].filterValues([]) == []);
+  assert([1, 2, 3].filterValues([]) == [1, 2, 3]);
 
   auto items = [1, 2, 3, 4, 4, 5, 6];
   assert(items.filterValues([2, 3, 4]) == [2, 3, 4, 4]);

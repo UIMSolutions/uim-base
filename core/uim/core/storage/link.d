@@ -15,11 +15,11 @@ import uim.core;
   // #region Exists
     // Checks if the given path exists and is a symlink.
     bool existsAllLinks(string[] paths) {
-      return paths.all!(path => existsPath(path));
+      return paths.isAll!(path => existsPath(path));
     }
 
     bool existsAnyLinks(string[] paths) {
-      return paths.any!(path => existsPath(path));
+      return paths.isAny!(path => existsPath(path));
     }
 
     bool existsLink(string[] path) {

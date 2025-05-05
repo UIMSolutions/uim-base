@@ -13,11 +13,11 @@ import uim.oop;
 string isMethods(string plural, string singular, string keyType) {
   return `
     bool isAll{plural}({keyType}[] keys) {
-      return keys.all!(key => is{singular}(key));
+      return keys.isAll!(key => is{singular}(key));
     }
 
     bool isAny{plural}({keyType}[] keys) {
-      return keys.any!(key => is{singular}(key));
+      return keys.isAny!(key => is{singular}(key));
     }
   `
     .replace("{plural}", plural)
@@ -38,11 +38,11 @@ unittest {
 string hasMethods(string plural, string singular, string keyType) {
   return `
     bool hasAll{plural}({keyType}[] keys) {
-      return keys.all!(key => has{singular}(key));
+      return keys.isAll!(key => has{singular}(key));
     }
 
     bool hasAny{plural}({keyType}[] keys) {
-      return keys.any!(key => has{singular}(key));
+      return keys.isAny!(key => has{singular}(key));
     }
   `
     .replace("{plural}", plural)

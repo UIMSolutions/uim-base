@@ -45,8 +45,8 @@ string[] capitalize(string[] texts) {
 }
 
 unittest {
-  assert("hello".upper == "Hello");
-  assert(["hello", "ciao", "bonjour"].upper.equal(["Hello", "Ciao", "Bonjour"]));
+  assert("hello".upper == "HELLO");
+  assert(["hello", "ciao", "bonjour"].upper.equal(["HELLO", "CIAO", "BONJOUR"]));
 }
 // #endregion capitalize
 

@@ -70,7 +70,7 @@ class DDebugContext : UIMObject {
 
     // Check whether an object has been seen before.
     bool hasReference(UIMObject referenceObject) {
-        // return _refObjects.any!(obj => obj == referenceObject);
+        // return _refObjects.isAny!(obj => obj == referenceObject);
         return true;
     }
 }

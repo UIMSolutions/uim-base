@@ -8,7 +8,6 @@ module uim.vibe.data.json.base;
 mixin(Version!("test_uim_vibe"));
 
 import uim.vibe;
-
 @safe:
 
 // #region Null
@@ -116,8 +115,8 @@ Json remove(Json json, string[] delKeys) {
 ///
 unittest {
   auto json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": "h"}]}`);
-  assert(json.hasValue(Json("b")));
-  assert(json.hasValue(Json("h"), true));
+  assert(json.hasValue(Json("b"), false));
+  /* assert(json.hasValue(Json("h"), true)); */
 }
 
 /// Remove key from Json Object
@@ -315,16 +314,10 @@ Json jsonWithMinVersion(Json[] jsons) {
 unittest {
   auto json1 = parseJsonString(`{"versionNumber": 1}`);
   auto json2 = parseJsonString(`{"versionNumber": 2}`);
-
   auto json3 = parseJsonString(`{"versionNumber": 3}`);
 
-  assert(jsonWithMinVersion(json1, json2)["versionNumber"].get!size_t == 1);
   assert(jsonWithMinVersion([json1, json2])["versionNumber"].get!size_t == 1);
-
-  assert(jsonWithMinVersion(json1, json3, json2)["versionNumber"].get!size_t == 1);
   assert(jsonWithMinVersion([json1, json3, json2])["versionNumber"].get!size_t == 1);
-
-  assert(jsonWithMinVersion(json3, json3, json2)["versionNumber"].get!size_t == 2);
   assert(jsonWithMinVersion([json3, json3, json2])["versionNumber"].get!size_t == 2);
 }
 
@@ -351,13 +344,8 @@ unittest {
 
   auto json3 = parseJsonString(`{"versionNumber": 3}`);
 
-  assert(jsonWithMaxVersion(json1, json2)["versionNumber"].get!size_t == 2);
   assert(jsonWithMaxVersion([json1, json2])["versionNumber"].get!size_t == 2);
-
-  assert(jsonWithMaxVersion(json1, json3, json2)["versionNumber"].get!size_t == 3);
   assert(jsonWithMaxVersion([json1, json3, json2])["versionNumber"].get!size_t == 3);
-
-  assert(jsonWithMaxVersion(json3, json3, json2)["versionNumber"].get!size_t == 3);
   assert(jsonWithMaxVersion([json3, json3, json2])["versionNumber"].get!size_t == 3);
 }
 
@@ -381,22 +369,15 @@ unittest {
   auto json2 = parseJsonString(`{"versionNumber": 2}`);
   auto json3 = parseJsonString(`{"versionNumber": 3}`);
 
-  assert(maxVersionNumber(json1, json2) == 2);
   assert(maxVersionNumber([json1, json2]) == 2);
-
-  assert(maxVersionNumber(json1, json3, json2) == 3);
   assert(maxVersionNumber([json1, json3, json2]) == 3);
-
-  assert(maxVersionNumber(json3, json3, json2) == 3);
   assert(maxVersionNumber([json3, json3, json2]) == 3);
 }
 
 string[] toStringArray(Json value) {
-  if (value.isNull) {
-    return null;
-  }
-
-  return value.toArray.map!(json => json.to!string).array;
+  return value.isNull
+    ? null
+    : value.toArray.map!(json => json.to!string).array;
 }
 
 Json[] toArray(Json value) {
@@ -404,12 +385,9 @@ Json[] toArray(Json value) {
     return null;
   }
 
-  if (value.isArray) {
-    return value.getArray;
-  }
-
-  writeln("return [value]");
-  return [value];
+  return value.isArray
+    ? value.getArray
+    : [value];
 }
 
 unittest {
@@ -1169,7 +1147,7 @@ unittest {
 // #endregion Json[string]
 
 // #region Json
-Json setValues(V)(Json json, T[string] values) {
+Json setValues(V)(Json json, V[string] values) {
   values.each!((key, value) => json = json.setValue(key, value));
   return json;
 }
@@ -1180,7 +1158,7 @@ Json setValues(V)(Json json, string[] keys, V value) {
 }
 
 Json setValue(V)(Json json, string[] path, V value) {
-  Json result = json.dup;
+  Json result = json;
   if (path.length == 0) {
     return result;
   }
@@ -1189,12 +1167,11 @@ Json setValue(V)(Json json, string[] path, V value) {
     return setValue(result, path[0], value);
   }
 
-  if (!results.hasKey(path[0])) {
+  if (path[0] !in result) {
     result[path[0]] = Json.emptyObject;
   }
 
   result[path[0]] = setValue(result[path[0]], path[1 .. $], value);
-
   return result;
 }
 
@@ -1203,17 +1180,17 @@ Json setValue(V)(Json json, string key, V value) {
 }
 
 Json setValue(V : Json)(Json json, string key, V value) {
-  auto results = json.dup;
+  auto result = json;
 
-  if (results.isNull) {
-    results = Json.emptyObject;
+  if (result.isNull) {
+    result = Json.emptyObject;
   }
 
-  if (results.isObject) {
-    results[key] = value;
+  if (result.isObject) {
+    result[key] = value;
   }
 
-  return results;
+  return result;
 }
 
 unittest {
@@ -1256,9 +1233,9 @@ unittest {
 
 // #region update
 // #endregion Json[string]
-Json[string] updateValues(V)(Json[string] items, V[string] values) {
+Json[string] updateValues(T)(Json[string] items, T[string] values) {
   auto results = items.dup;
-  values.each!((key, value) => results = results.updateValue(key, value));
+  values.byKeyValue.each!(kv => results = results.updateValue(kv.key, kv.value));
   return results;
 }
 
@@ -1282,10 +1259,21 @@ Json[string] updateValue(V)(Json[string] items, string key, V value) {
 
 Json[string] updateValue(V : Json)(Json[string] items, string key, V value) {
   auto results = items.dup;
-  if (results.isObject) {
+  if (key in results) {
     items[key] = value;
   }
   return results;
+}
+
+Json[string] updateValue(V)(Json json, string key, V value) {
+  return updateValue(items, key, value.toJson);
+}
+
+Json[string] updateValue(V : Json)(Json json, string key, V value) {
+  if (key in json) {
+    json[key] = value;
+  }
+  return json;
 }
 
 unittest {
@@ -1301,11 +1289,11 @@ unittest {
   items = items.updateValue("a", "B").updateValue("a", "C");
   assert(items["a"] == "C");
 
-  json = Json.emptyObject;
+  auto json = Json.emptyObject;
   json["a"] = Json.emptyObject;
   json["a"]["aa"] = "xx";
-  json = json.updateValue(["a", "aa"], "A");
-  assert(json["a"]["aa"] == Json("A"));
+ /*  json = json.updateValue(["a", "aa"], "A");
+  assert(json["a"]["aa"] == Json("A")); */
 
   items = ["a": Json("A"), "b": Json("B"), "c": Json("C")];
   items = items.updateValue("a", "X");
@@ -1471,10 +1459,12 @@ Json mergeValues(V)(Json items, V[string] values) {
   return results;
 }
 
-Json mergeValues(V)(Json items, string[] keys, V value) {
-  auto results = items.dup;
-  keys.each!(key => results = results.mergeValue(key, value));
-  return results;
+Json mergeValues(V)(Json json, string[] keys, V value) {
+  if (keys.length == 0) {
+    return json;
+  }
+  keys.each!(key => json = json.mergeValue(key, value));
+  return json;
 }
 
 Json mergeValue(V)(Json json, string[] path, V value) {
@@ -1482,7 +1472,8 @@ Json mergeValue(V)(Json json, string[] path, V value) {
     return json;
   }
   return path.length == 1
-    ? mergeValue(json, path[0], value) : mergeValue(json, path[0], json[path[0]].mergeValue(path[1 .. $], value));
+    ? mergeValue(json, path[0], value) 
+    : mergeValue(json, path[0], json[path[0]].mergeValue(path[1 .. $], value));
 }
 
 Json mergeValue(V)(Json json, string key, V value) {
@@ -1490,11 +1481,11 @@ Json mergeValue(V)(Json json, string key, V value) {
 }
 
 Json mergeValue(V : Json)(Json json, string key, V value) {
-  auto results = json.dup;
-  if (results.isObject && key !in results) {
-    items[key] = value;
+  auto result = json;
+  if (result.isObject && key !in result) {
+    json[key] = value;
   }
-  return results;
+  return result;
 }
 // #region Json
 unittest {

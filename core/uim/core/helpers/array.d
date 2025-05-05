@@ -92,7 +92,7 @@ class ArrayHelper {
   }
 
   static V[] without(V)(V[] values, V[] others) {
-    return values.filter!(v => !others.any!(o => o == v)).array;
+    return values.filter!(v => !others.isAny!(o => o == v)).array;
   }
 
   unittest {
@@ -119,7 +119,7 @@ class ArrayHelper {
   }
 
   static V[] intersection(V)(V[] values, V[] others) {
-    return values.filter!(v => others.any!(o => o == v));
+    return values.filter!(v => others.isAny!(o => o == v));
   }
 
   unittest {
@@ -129,7 +129,7 @@ class ArrayHelper {
   }
 
   static V[] difference(V)(V[] values, V[] others) {
-    // return values.filter!(v => !others.any!(o => o == v));
+    // return values.filter!(v => !others.isAny!(o => o == v));
     return values;
   }
 
@@ -246,7 +246,7 @@ class ArrayHelper {
   }
 
   static V[] has(V)(V[] values, V value) {
-    return values.any!(v => v == value);
+    return values.isAny!(v => v == value);
   }
 
   unittest {
@@ -254,18 +254,18 @@ class ArrayHelper {
   }
 
   static V[] any(V)(V[] values, bool delegate(V value) check) {
-    return values.any!(v => check(v));
+    return values.isAny!(v => check(v));
   }
 
   unittest {
-    // assert(["c", "b", "x"].any!(v => v > "b"));
+    // assert(["c", "b", "x"].isAny!(v => v > "b"));
   }
 
   static V[] all(V)(V[] values, bool delegate(V value) check) {
-    return values.all!(v => check(v));
+    return values.isAll!(v => check(v));
   }
 
   unittest {
-    /*         // assert(["c", "b", "x"].all(v => v < "z")); */
+    /*         // assert(["c", "b", "x"].isAll(v => v < "z")); */
   }
 }

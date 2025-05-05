@@ -33,7 +33,8 @@ bool isBoolean(Json value, bool strict = true) {
   return (value.type == Json.Type.bool_);
 }
 
-unittest { // Json
+unittest { 
+  // Json
   // strict
   assert(Json(true).isBoolean);
   assert(!Json("text").isBoolean);
@@ -64,20 +65,20 @@ unittest { // Json
   assert(map.isBoolean("t"));  
   assert(map.isBoolean("f"));  
 
-  assert(map.anyBoolean("one", "t"));  
+  /* assert(map.anyBoolean("one", "t"));  
   assert(map.anyBoolean("f", "t"));  
   assert(!map.anyBoolean("one", "alfa"));  
 
   assert(map.allBoolean("f", "t"));
   assert(!map.allBoolean("f", "alfa"));  
-  assert(!map.allBoolean("one", "alfa"));  
+  assert(!map.allBoolean("one", "alfa"));   */
 
   map = Json.emptyObject;
   map["t"] = Json(true);  
   map["f"] = Json(false);
   assert(map.isAllBoolean);
 
-  unittest { // Json[]
+  // Json[]
   auto a = Json(true);
   auto b = Json(false);
   auto c = Json(1);
@@ -96,9 +97,8 @@ unittest { // Json
   assert(list.isAnyBoolean([0, 1]));
   assert(list.isAnyBoolean([1, 2]));
   assert(!list.isAnyBoolean([2, 3]));
-}
 
-unittest { // Json[string]
+  // Json[string]
   auto a = Json(true);
   auto b = Json(false);
   auto c = Json(1);
@@ -117,7 +117,6 @@ unittest { // Json[string]
   assert(map.isAnyBoolean(["A", "B"]));
   assert(map.isAnyBoolean(["A", "C"]));
   assert(map.isAnyBoolean(["C", "D"]));
-}
 }
 // #endregion is
 

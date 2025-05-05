@@ -613,7 +613,7 @@ unittest {
 
   map = ["1": 1, "2": 2, "3": 3];
   assert(map.length == 3);
-  assert(map.shift("2", "1", "3") == [2, 1, 3]);
+  assert(map.shift(["2", "1", "3"]) == [2, 1, 3]);
   assert(map.length == 0);
 }
 // #endregion shift
