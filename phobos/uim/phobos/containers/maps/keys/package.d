@@ -6,5 +6,6 @@
 module uim.phobos.containers.maps.keys;
 
 public {
+    import uim.phobos.containers.maps.keys.keys;
     import uim.phobos.containers.maps.keys.string_;
 }

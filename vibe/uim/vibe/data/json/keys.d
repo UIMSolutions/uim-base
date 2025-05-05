@@ -94,12 +94,12 @@ unittest {
   assert(!json.hasKey("x"));
   assert(json.hasAnyKeys(["y", "c"]));
   assert(json.hasAnyKeys(["y", "d"]));
-  assert(json.hasAnyKeys("y", "c"));
-  assert(!json.hasAnyKeys("x", "y"));
+  assert(json.hasAnyKeys(["y", "c"]));
+  assert(!json.hasAnyKeys(["x", "y"]));
   assert(json.hasAllKeys(["a", "c"]));
   assert(json.hasAllKeys(["a", "d"]));
-  assert(json.hasAllKeys("a", "c"));
-  assert(!json.hasAllKeys("x", "c"));
+  assert(json.hasAllKeys(["a", "c"]));
+  assert(!json.hasAllKeys(["x", "c"]));
 }
 // #endregion Json
 // #endregion hasKeySearch

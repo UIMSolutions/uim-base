@@ -116,7 +116,7 @@ V[string] concatPrefixInKeys(V)(V[string] leftValues, string preValue) { // righ
 }
 
 unittest {
-  assert(["a": "b"].concatPrefixInKeys("abc") == ["abca": "b"]);
+  assert(["a": "b"].concatPrefixInKeys(["abc"]) == ["abca": "b"]);
 }
 
 /// Concat rightValues to leftValues   
@@ -128,7 +128,7 @@ V[K] concatPostfixInKeys(V, K)(V[K] leftValues, V postValue) { // right will ove
 }
 
 unittest {
-  assert(["a": "b"].concatPostfixInKeys("abc") == ["aabc": "b"]);
+  assert(["a": "b"].concatPostfixInKeys(["abc"]) == ["aabc": "b"]);
 }
 
 // #region toogle

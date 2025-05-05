@@ -7,4 +7,5 @@ module uim.core.containers;
 
 public {
   import uim.core.containers.general;
+  import uim.core.containers.map_;
 }

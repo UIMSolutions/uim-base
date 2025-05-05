@@ -177,8 +177,7 @@ unittest {
     assert(Factory.hasAnyPaths([["testWorker", "two"], ["unknown"]]));
     assert(Factory.hasAllPaths([["testWorker", "two"], ["testWorker", "and", "three"]]));
 
-    assert(Factory.hasAnyKeys("testWorker.two", "unknown"));
     assert(Factory.hasAnyKeys(["testWorker.two", "unknown"]));
-    assert(Factory.hasAllKeys("testWorker.two", "testWorkerOne"));
-    assert(Factory.hasAllKeys(["testWorker.two", "testWorkerOne"])); */
+    assert(Factory.hasAllKeys(["testWorker.two", "testWorkerOne"])); 
+    */
 }

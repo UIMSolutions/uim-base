@@ -261,8 +261,8 @@ class DDebugger : UIMObject, IErrorDebugger {
       // Frames without file/line are never equal to another frame.
       isEqual = (
         (
-          tail.hasAllKeys("file", "line") &&
-          parentTail.hasAllKeys("file", "line")
+          tail.hasAllKeys(["file", "line"]) &&
+          parentTail.hasAllKeys(["file", "line"])
       ) &&
         (tail["file"] == parentTail["file"]) &&
         (tail["line"] == parentTail["line"])

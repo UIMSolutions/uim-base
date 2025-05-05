@@ -87,26 +87,26 @@ unittest {
 
 /* unittest {
     string[string] test = ["a": "A", "b": "B", "c": "C"];
-    assert(test.length == 3 && test.hasAllKeys("a", "b", "c") && test["a"] == "A");
+    assert(test.length == 3 && test.hasAllKeys(["a", "b", "c"]) && test["a"] == "A");
 
     test.update("a", "x").update("d", "x").update("e", "x").update("f", "x");
-    assert(test.length == 3 && !test.hasAnyKey("d", "e", "f") && test["a"] == "x");
+    assert(test.length == 3 && !test.hasAnyKeys(["d", "e", "f"]) && test["a"] == "x");
 
     test = ["a": "A", "b": "B", "c": "C"]; // Reset map
     update(test, ["c", "d", "e"], "x");
-    assert(test.length == 3 && !test.hasAnyKey("d", "e", "f") && test["a"] != "x" && test["c"] == "x");
+    assert(test.length == 3 && !test.hasAnyKeys(["d", "e", "f"]) && test["a"] != "x" && test["c"] == "x");
 
     test = ["a": "A", "b": "B", "c": "C"]; // Reset map
     test.update(["a", "b", "c"], "x").update(["d", "e", "f"], "x");
-    assert(test.length == 3 && !test.hasAnyKey("d", "e", "f") && test["a"] == "x" && test["c"] == "x");
+    assert(test.length == 3 && !test.hasAnyKeys(["d", "e", "f"]) && test["a"] == "x" && test["c"] == "x");
 
     test = ["a": "A", "b": "B", "c": "C"]; // Reset map
     test.update(["c": "x", "d": "x", "e": "x"]);
-    assert(test.length == 3 && !test.hasAnyKey("d", "e", "f") && test["a"] != "x" && test["c"] == "x");
+    assert(test.length == 3 && !test.hasAnyKeys(["d", "e", "f"]) && test["a"] != "x" && test["c"] == "x");
 
     test = ["a": "A", "b": "B", "c": "C"]; // Reset map
     test.update(["c": "x", "d": "x", "e": "x"], "c", "e");
-    assert(test.length == 3 && !test.hasAnyKey("d", "e", "f") && test["a"] != "x" && test["c"] == "x"); 
+    assert(test.length == 3 && !test.hasAnyKeys(["d", "e", "f"]) && test["a"] != "x" && test["c"] == "x"); 
 } */
 // #endregion update
 
@@ -140,14 +140,14 @@ unittest {
   assert(testmap.merge("x", true)["x"] == "true");
   assert(testmap.merge("y", 1)["y"] == "1");
   assert(testmap.merge("z", 1.1)["z"] == "1.1");  
-  assert(!testmap.hasAnyKey("a", "x", "y", "z"));
+  assert(!testmap.hasAnyKeys(["a", "x", "y", "z"]));
 
   testmap = ["0": ""];
   assert(testmap.merge("a", "A")["a"] == "A");
   assert(testmap.merge("x", true)["x"] == "true");
   assert(testmap.merge("y", 1)["y"] == "1");
   assert(testmap.merge("z", 1.1)["z"] == "1.1");  
-  assert(testmap.hasAllKeys("a", "x", "y", "z"));
-  assert(!testmap.hasAllKeys("a", "x", "-", "z"));
+  assert(testmap.hasAllKeys(["a", "x", "y", "z"]));
+  assert(!testmap.hasAllKeys(["a", "x", "-", "z"]));
  }
 // #endregion merge

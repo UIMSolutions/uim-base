@@ -501,7 +501,7 @@ mixin template TIntegrationTest() {
                 }
 
                 if (kv.value.isArray) {
-                    auto looksLikeFile = kv.value.hasKeys("error", "tmp_name", "size");
+                    auto looksLikeFile = kv.value.hasKeys(["error", "tmp_name", "size"]);
                     if (looksLikeFile) {
                         continue;
                     }

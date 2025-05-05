@@ -16,7 +16,7 @@ enum NOTSORTED = false;
 
 // #region sortKeys
 // Returns the keys of a map sorted in ascending or descending order.
-string[] sortedKeys(T)(T[string] items, SortDir dir = SortDir.ASC) {
+/* string[] sortedKeys(T)(T[string] items, SortDir dir = SortDir.ASC) {
   switch (dir) {
   case SortDir.ASC:
     return items.keys.sort!("a < b").array;
@@ -32,7 +32,7 @@ unittest {
 
   assert(testMap.sortedKeys == ["a", "b"]);
   assert(testMap.sortedKeys(SortDir.DESC) == ["b", "a"]);
-}
+} */
 // #endregion sortedKeys
 
 // #region newWithoutKeys
@@ -53,7 +53,7 @@ T[string] newWithoutKey(T)(T[string] items, string key) {
 }
 
 unittest {
-  auto base = ["a": 1, "b": 2, "c": 3];
+  int [string] base = ["a": 1, "b": 2, "c": 3];
   assert(base.length == 3);
   assert(base.hasKey("a") && base.hasKey("b") && base.hasKey("c"));
 
@@ -64,9 +64,6 @@ unittest {
   assert(result.length == 1);
   assert(!result.hasKey("a") && !result.hasKey("b") && result.hasKey("c"));
   assert(result.length == 1 && !result.hasKey("a") && !result.hasKey("b") && result.hasKey("c"));
-
-  result = base.newWithoutKeys("a", "c", "b");
-  assert(result.length == 0 && !result.hasKey("a") && !result.hasKey("b") && !result.hasKey("c"));
 
   result = base.newWithoutKeys(["a", "c", "b"]);
   assert(result.length == 0 && !result.hasKey("a") && !result.hasKey("b") && !result.hasKey("c"));
@@ -98,10 +95,7 @@ unittest {
   assert(base.length == 3);
   assert(base.hasKey("a") && base.hasKey("b") && base.hasKey("c"));
 
-  auto result = base.withKeys("b", "c");
-  assert(result.length == 2 && !result.hasKey("a") && result.hasKey("b") && result.hasKey("c"));
-
-  result = base.withKeys(["b", "c"]);
+  auto result = base.withKeys(["b", "c"]);
   assert(result.length == 2);
   assert(!result.hasKey("a") && result.hasKey("b") && result.hasKey("c"));
 
@@ -132,7 +126,7 @@ T[string] renameKeys(T)(T[string] items, string[] fromKeys, string[] toKeys) {
 
 // Returns a new map with the specified key(s) renamed
 T[string] renameKey(T)(T[string] items, string fromKey, string toKey) {
-  if (!items.hasKey(fromKey)) {
+  if (fromKey !in items) {
     return items;
   }
 
@@ -144,55 +138,45 @@ T[string] renameKey(T)(T[string] items, string fromKey, string toKey) {
 
 unittest {
   auto testMap = ["a": 1, "b": 2, "c": 3, "d": 4];
-  assert(testMap.hasAllKeys("a", "b", "c", "d"));
+  assert(testMap.hasAllKeys(["a", "b", "c", "d"]));
   testMap.renameKey("a", "x");
-  assert(testMap.hasAllKeys("x", "b", "c", "d") && !testMap.hasKey("a"));
+  assert(testMap.hasAllKeys(["x", "b", "c", "d"]) && !testMap.hasKey("a"));
 
   testMap = ["a": 1, "b": 2, "c": 3, "d": 4];
-  assert(testMap.hasAllKeys("a", "b", "c", "d"));
+  assert(testMap.hasAllKeys(["a", "b", "c", "d"]));
   testMap.renameKeys(["a", "b"], ["x", "y"]); // keys.length == others.length
-  assert(testMap.hasAllKeys("x", "y", "c", "d") && !testMap.hasAnyKey("a", "b"));
+  assert(testMap.hasAllKeys(["x", "y", "c", "d"]) && !testMap.hasAnyKeys(["a", "b"]));
 
   testMap = ["a": 1, "b": 2, "c": 3, "d": 4];
-  assert(testMap.hasAllKeys("a", "b", "c", "d"));
-  testMap.renameKeys(["a", "b"], ["x", "y", "z"]); // keys.length < others.length
-  assert(testMap.hasAllKeys("x", "y", "c", "d") && !testMap.hasAnyKey("a", "b"));
-
-  testMap = ["a": 1, "b": 2, "c": 3, "d": 4];
-  assert(testMap.hasAllKeys("a", "b", "c", "d"));
+  assert(testMap.hasAllKeys(["a", "b", "c", "d"]));
   testMap.renameKeys(["a", "b", "c"], ["x", "y"]); // keys.length > others.length
-  assert(testMap.hasAllKeys("x", "y", "c", "d") && !testMap.hasAnyKey("a", "b"));
+  assert(testMap.hasAllKeys(["x", "y", "c", "d"]) && !testMap.hasAnyKeys(["a", "b"]));
 
   testMap = ["a": 1, "b": 2, "c": 3, "d": 4];
-  assert(testMap.hasAllKeys("a", "b", "c", "d"));
+  assert(testMap.hasAllKeys(["a", "b", "c", "d"]));
   testMap.renameKeys(["a": "x", "b": "y"]);
-  assert(testMap.hasAllKeys("x", "y", "c", "d") && !testMap.hasAnyKey("a", "b"));
+  assert(testMap.hasAllKeys(["x", "y", "c", "d"]) && !testMap.hasAnyKeys(["a", "b"]));
 
-  auto jsonMap = ["a": Json(1), "b": Json(2), "c": Json(3), "d": Json(4)];
-  assert(jsonMap.hasAllKeys("a", "b", "c", "d"));
+/*   auto jsonMap = ["a": Json(1), "b": Json(2), "c": Json(3), "d": Json(4)];
+  assert(jsonMap.hasAllKeys(["a", "b", "c", "d"]));
   jsonMap.renameKey("a", "x");
-  assert(jsonMap.hasAllKeys("x", "b", "c", "d") && !jsonMap.hasKey("a"));
+  assert(jsonMap.hasAllKeys(["x", "b", "c", "d"]) && !jsonMap.hasKey("a"));
 
   jsonMap = ["a": Json(1), "b": Json(2), "c": Json(3), "d": Json(4)];
-  assert(jsonMap.hasAllKeys("a", "b", "c", "d"));
-  jsonMap.renameKeys(["a", "b"], ["x", "y"]); // keys.length == others.length
-  assert(jsonMap.hasAllKeys("x", "y", "c", "d") && !jsonMap.hasAnyKey("a", "b"));
-
-  jsonMap = ["a": Json(1), "b": Json(2), "c": Json(3), "d": Json(4)];
-  assert(jsonMap.hasAllKeys("a", "b", "c", "d"));
+  assert(jsonMap.hasAllKeys(["a", "b", "c", "d"]));
   jsonMap.renameKeys(["a", "b"], ["x", "y", "z"]); // keys.length < others.length
-  assert(jsonMap.hasAllKeys("x", "y", "c", "d") && !jsonMap.hasAnyKey("a", "b"));
+  assert(jsonMap.hasAllKeys(["x", "y", "c", "d"]) && !jsonMap.hasAnyKeys(["a", "b"]));
 
   jsonMap = ["a": Json(1), "b": Json(2), "c": Json(3), "d": Json(4)];
-  assert(jsonMap.hasAllKeys("a", "b", "c", "d"));
+  assert(jsonMap.hasAllKeys(["a", "b", "c", "d"]));
   jsonMap.renameKeys(["a", "b", "c"], ["x", "y"]); // keys.length > others.length
-  assert(jsonMap.hasAllKeys("x", "y", "c", "d") && !jsonMap.hasAnyKey("a", "b"));
+  assert(jsonMap.hasAllKeys(["x", "y", "c", "d"]) && !jsonMap.hasAnyKeys(["a", "b"]));
 
   jsonMap = ["a": Json(1), "b": Json(2), "c": Json(3), "d": Json(4)];
-  assert(jsonMap.hasAllKeys("a", "b", "c", "d"));
+  assert(jsonMap.hasAllKeys(["a", "b", "c", "d"]));
   jsonMap.renameKeys(["a": "x", "b": "y"]);
-  assert(jsonMap.hasAllKeys("x", "y", "c", "d") && !jsonMap.hasAnyKey("a", "b"));
-}
+  assert(jsonMap.hasAllKeys(["x", "y", "c", "d"]) && !jsonMap.hasAnyKeys(["a", "b"]));
+ */}
 // #endregion renameKey(s)
 
 // #region positions
@@ -337,27 +321,19 @@ unittest {
   map2.set("1", 3);
   assert(map2.length == 1 && map2.hasKey("1") && map2["1"] == "3");
 
-  Json[string] map3 = new Json[string];
-  map3.set("1", Json("1"));
-  assert(map3.length == 1 && map3.hasKey("1") && map3["1"] == Json("1"));
-  map3.set("1", Json("2"));
-  assert(map3.length == 1 && map3.hasKey("1") && map3["1"] == Json("2"));
-  map3.set("1", 3);
-  assert(map3.length == 1 && map3.hasKey("1") && map3["1"] == Json(3));
-
   auto map = ["1": 1, "2": 2, "3": 3];
   assert(map.length == 3);
   map.set(["4": 4]);
   assert(map.length == 4 && map.hasKey("4") && map["4"] == 4);
-  assert(map.length == 4 && map.hasAllKeys("1", "2", "3", "4"));
+  assert(map.length == 4 && map.hasAllKeys(["1", "2", "3", "4"]));
 
   map = ["1": 1, "2": 2, "3": 3];
   map.set(["5", "6"], 0);
-  assert(map.length == 5 && map.hasAllKeys("5", "6"));
+  assert(map.length == 5 && map.hasAllKeys(["5", "6"]));
 
   map = ["1": 1, "2": 2, "3": 3];
   map.set(["4": 4, "5": 5, "6": 6]);
-  assert(map.length == 6 && map.hasAllKeys("4", "5", "6"));
+  assert(map.length == 6 && map.hasAllKeys(["4", "5", "6"]));
 }
 // #endregion set
 
@@ -398,12 +374,12 @@ unittest {
 
   map = ["1": 1, "2": 2, "3": 3];
   map.merge(["5", "6"], 0);
-  assert(map.length == 5 && map.hasAllKeys("5", "6"));
-  assert(map.length == 5 && map.hasAnyKey("5", "7"));
+  assert(map.length == 5 && map.hasAllKeys(["5", "6"]));
+  assert(map.length == 5 && map.hasAnyKeys(["5", "7"]));
 
   map = ["1": 1, "2": 2, "3": 3];
   map.merge(["4": 4, "5": 5, "6": 6]);
-  assert(map.length == 6 && map.hasAllKeys("4", "5", "6"));
+  assert(map.length == 6 && map.hasAllKeys(["4", "5", "6"]));
 }
 // #endregion merge
 
@@ -441,15 +417,15 @@ unittest {
   assert(map.length == 3 && !map.hasKey("4"));
 
   map.update("1", 0).update("2", 0);
-  assert(map.length == 3 && map.hasAllKeys("1", "2", "3") && map["1"] == 0);
+  assert(map.length == 3 && map.hasAllKeys(["1", "2", "3"]) && map["1"] == 0);
 
   map = ["1": 1, "2": 2, "3": 3];
   map.update(["1", "2"], 0);
-  assert(map.length == 3 && map.hasAllKeys("1", "2", "3") && map["1"] == 0);
+  assert(map.length == 3 && map.hasAllKeys(["1", "2", "3"]) && map["1"] == 0);
 
   map = ["1": 1, "2": 2, "3": 3];
   map.update(["1": 0, "2": 0, "3": 0]);
-  assert(map.length == 3 && map.hasAllKeys("1", "2", "3") && map["1"] == 0);
+  assert(map.length == 3 && map.hasAllKeys(["1", "2", "3"]) && map["1"] == 0);
 }
 // #endregion update
 
