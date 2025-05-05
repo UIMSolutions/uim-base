@@ -48,19 +48,19 @@ unittest {
   auto b = Json(2);
   assert(a.isInteger("a") && b.isInteger("b"));
 
-  assert(map.allInteger([a, b]));
-  assert(map.anyInteger([a, b]));
+  assert(map.isAllInteger([a, b]));
+  assert(map.isAnyInteger([a, b]));
 
   b = Json(2.0);
   assert(a.isInteger("a") && !b.isInteger("b"));
 
-  assert(!map.allInteger([a, b]));
-  assert(map.anyInteger([a, b]));
+  assert(!map.isAllInteger([a, b]));
+  assert(map.isAnyInteger([a, b]));
 
   a = Json(1.0);
   assert(!a.isInteger("a") && !b.isInteger("b"));
-  assert(!map.allInteger([a, b]));
-  assert(!map.anyInteger([a, b]));
+  assert(!map.isAllInteger([a, b]));
+  assert(!map.isAnyInteger([a, b]));
 }
 // #region Json[]
 unittest {

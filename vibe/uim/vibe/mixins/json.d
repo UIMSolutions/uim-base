@@ -9,19 +9,19 @@ template CheckJsonIs(string type) {
   const char[] CheckJsonIs = `
 // #region Json[string]
 bool isAll`~type~`(Json[string] map, bool strict = true) {
-  return map.byValue.all!(value => value.is`~type~`(strict));
+  return map.byValue.isAll`~type~`!(value => value.is`~type~`(strict));
 }
 
 bool isAll`~type~`(Json[string] map, string[] keys, bool strict = true) {
-  return keys.all!(key => map.is`~type~`(key, strict));
+  return keys.isAll`~type~`!(key => map.is`~type~`(key, strict));
 }
 
 bool isAny`~type~`(Json[string] map, bool strict = true) {
-  return map.byValue.any!(value => value.is`~type~`(strict));
+  return map.byValue.isAny`~type~`!(value => value.is`~type~`(strict));
 }
 
 bool isAny`~type~`(Json[string] map, string[] keys, bool strict = true) {
-  return keys.any!(index => map.is`~type~`(index));
+  return keys.isAn`~type~`!(index => map.is`~type~`(index));
 }
 
 bool is`~type~`(Json[string] map, string key, bool strict = true) {
@@ -31,19 +31,19 @@ bool is`~type~`(Json[string] map, string key, bool strict = true) {
 
 // #region Json[]
 bool isAll`~type~`(Json[] values, bool strict = true) {
-  return values.all!(value => value.is`~type~`(strict));
+  return values.isAll`~type~`!(value => value.is`~type~`(strict));
 }
 
 bool isAll`~type~`(Json[] values, size_t[] indices, bool strict = true) {
-  return indices.all!(index => values.is`~type~`(index, strict));
+  return indices.isAll`~type~`!(index => values.is`~type~`(index, strict));
 }
 
 bool isAny`~type~`(Json[] values, bool strict = true) {
-  return values.any!(value => value.is`~type~`(strict));
+  return values.isAny`~type~`!(value => value.is`~type~`(strict));
 }
 
 bool isAny`~type~`(Json[] values, size_t[] indices, bool strict = true) {
-  return indices.any!(index => values.is`~type~`(index, strict));
+  return indices.isAny`~type~`!(index => values.is`~type~`(index, strict));
 }
 
 bool is`~type~`(Json[] values, size_t index, bool strict = true) {
@@ -63,7 +63,7 @@ bool isAll`~type~`(Json json, bool strict = true) {
 }
 
 bool isAll`~type~`(Json json, string[] keys, bool strict = true) {
-  return keys.all!(key => json.is`~type~`(key, strict));
+  return keys.isAll`~type~`!(key => json.is`~type~`(key, strict));
 }
 
 bool isAny`~type~`(Json json, bool strict = true) {
@@ -77,7 +77,7 @@ bool isAny`~type~`(Json json, bool strict = true) {
 }
 
 bool isAny`~type~`(Json json, string[] keys, bool strict = true) {
-  return keys.any!(key => json.is`~type~`(key, strict));
+  return keys.isAny!(key => json.is`~type~`(key, strict));
 }
 
 bool is`~type~`(Json json, string[] path, bool strict = true) { 

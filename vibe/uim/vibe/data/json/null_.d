@@ -66,9 +66,9 @@ unittest {
   assert(!json.isNull(["c", "d"]));
   assert(json.isNull(["c", "d", "x"]));
 
-  assert(json.allNull(["x", "y"]));
-  assert(!json.allNull(["a", "y"]));
-  assert(json.anyNull(["x", "y"]));
-  assert(!json.anyNull(["a", "c"]));
+  assert(json.isAllNull(["x", "y"]));
+  assert(!json.isAllNull(["a", "y"]));
+  assert(json.isAnyNull(["x", "y"]));
+  assert(!json.isAnyNull(["a", "c"]));
 }
 // #endregion is

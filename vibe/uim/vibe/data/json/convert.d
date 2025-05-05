@@ -141,7 +141,7 @@ unittest {
 Json toJson(string[string] map, string[] excludeKeys = null) {
   Json json = Json.emptyObject;
   map.byKeyValue
-    .filter!(kv => !excludeKeys.any!(key => key == kv.key))
+    .filter!(kv => !excludeKeys.isAny!(key => key == kv.key))
     .each!(kv => json[kv.key] = kv.value);
   return json;
 }
@@ -162,7 +162,7 @@ Json toJson(Json[string] map) {
 Json[string] toJsonMap(bool[string] values, string[] excludeKeys = null) {
   Json[string] result;
   values.byKeyValue
-    .filter!(kv => !excludeKeys.any!(key => key in values))
+    .filter!(kv => !excludeKeys.isAny!(key => key in values))
     .each!(kv => result[kv.key] = Json(kv.value));
   return result;
 }
@@ -170,7 +170,7 @@ Json[string] toJsonMap(bool[string] values, string[] excludeKeys = null) {
 Json[string] toJsonMap(long[string] values, string[] excludeKeys = null) {
   Json[string] result;
   values.byKeyValue
-    .filter!(kv => !excludeKeys.any!(key => key in values))
+    .filter!(kv => !excludeKeys.isAny!(key => key in values))
     .each!(kv => result[kv.key] = Json(kv.value));
   return result;
 }
@@ -178,7 +178,7 @@ Json[string] toJsonMap(long[string] values, string[] excludeKeys = null) {
 Json[string] toJsonMap(double[string] values, string[] excludeKeys = null) {
   Json[string] result;
   values.byKeyValue
-    .filter!(kv => !excludeKeys.any!(key => key in values))
+    .filter!(kv => !excludeKeys.isAny!(key => key in values))
     .each!(kv => result[kv.key] = Json(kv.value));
   return result;
 }

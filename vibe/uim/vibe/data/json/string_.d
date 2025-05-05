@@ -20,15 +20,15 @@ unittest {
   map["a"] = Json("a");
   map["b"] = Json("b");
 
-  assert(map.allString(["a", "b"]));
-  assert(map.anyString(["a", "b"]));
+  assert(map.isAllString(["a", "b"]));
+  assert(map.isAnyString(["a", "b"]));
 
   map["b"] = Json(8);
-  assert(!map.allString(["a", "b"]));
-  assert(map.anyString(["a", "b"]));
+  assert(!map.isAllString(["a", "b"]));
+  assert(map.isAnyString(["a", "b"]));
 
   map["a"] = Json(true);
-  assert(!map.allString(["a", "b"]));
+  assert(!map.isAllString(["a", "b"]));
   assert(!map.isAnyString(["a", "b"]));
 }
 // #endregion Json[string]
@@ -141,8 +141,8 @@ unittest {
   assert(json.isString("a"));
   assert(!json.isString("x"));
 
-  assert(json.allString(["c", "x"]));
-  assert(!json.allString(["c", "d"]));
+  assert(json.isAllString(["c", "x"]));
+  assert(!json.isAllString(["c", "d"]));
 
   assert(json.String(["c", "d", "x"]));
   assert(!json.isString(["c", "d", "e"]));

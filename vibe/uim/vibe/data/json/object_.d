@@ -38,11 +38,11 @@ unittest {
 
   assert(json.isObject("a") && json.isObject("b") && !json.isObject("c"));  
 
-  assert(json.anyObject(["a", "b"]) && json.anyObject(["a", "c"]) && !json.anyObject(["c", "d"]));
-  assert(json.anyObject("a", "b") && json.anyObject("a", "c") && !json.anyObject("c", "d"));
+  assert(json.isAnyObject(["a", "b"]) && json.isAnyObject(["a", "c"]) && !json.isAnyObject(["c", "d"]));
+  assert(json.isAnyObject("a", "b") && json.isAnyObject("a", "c") && !json.isAnyObject("c", "d"));
   
-  assert(json.allObject(["a", "b"]) && !json.allObject(["a", "c"]));
-  assert(json.allObject("a", "b") && !json.allObject("a", "c"));
+  assert(json.isAllObject(["a", "b"]) && !json.isAllObject(["a", "c"]));
+  assert(json.isAllObject("a", "b") && !json.isAllObject("a", "c"));
 
   auto a = Json.emptyObject;
   auto b = Json.emptyObject;
@@ -51,11 +51,11 @@ unittest {
 
   assert(a.isObject && b.isObject && !c.isObject && !d.isObject);  
 
-  assert(json.anyObject([a, b]) && json.anyObject([a, c]) && !json.anyObject([c, d]));
-  assert(json.anyObject(a, b) && json.anyObject(a, c) && !json.anyObject(c, d));
+  assert(json.isAnyObject([a, b]) && json.isAnyObject([a, c]) && !json.isAnyObject([c, d]));
+  assert(json.isAnyObject(a, b) && json.isAnyObject(a, c) && !json.isAnyObject(c, d));
 
-  assert(json.allObject([a, b]) && !json.allObject([a, c]));
-  assert(json.allObject(a, b) && !json.allObject(a, c));
+  assert(json.isAllObject([a, b]) && !json.isAllObject([a, c]));
+  assert(json.isAllObject(a, b) && !json.isAllObject(a, c));
 }
 // #endregion is
 

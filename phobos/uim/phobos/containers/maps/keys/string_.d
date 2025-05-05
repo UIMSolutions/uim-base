@@ -50,7 +50,7 @@ V[string] allKeysStartsWith(K : string, V)(V[string] items, K prefix) {
 
 unittest {
   assert(allKeysStartsWith(["preA": "a", "b": "b"], "pre") == ["preA": "a"]);
-  assert(["preA": "a", "b": "b"].allKeysStartsWith("pre") == ["preA": "a"]);
+  assert(["preA": "a", "b": "b"].isAllKeysStartsWith("pre") == ["preA": "a"]);
 }
 
 // #region keysStartsNotWith
@@ -71,25 +71,25 @@ unittest {
 
 // #region keysEndsWith
 bool allKeysEndsWith(K, V)(ref V[string] items, K postfix) if (is(K == string)) { // right will overright left
-  return items.byKeyValue.all!(item => endsWith(item.key, postfix));
+  return items.byKeyValue.isAll!(item => endsWith(item.key, postfix));
 }
 
 bool anyKeysEndsWith(K, V)(ref V[string] items, K postfix) if (is(K == string)) { // right will overright left
-  return items.byKeyValue.any!(item => endsWith(item.key, postfix));
+  return items.byKeyValue.isAny!(item => endsWith(item.key, postfix));
 }
 
 unittest {
 /*   assert(allKeysEndsWith(["aPre": "a", "bPre": "b"], "Pre"));
-  assert(["aPre": "a", "bPre": "b"].allKeysEndsWith("Pre"));
+  assert(["aPre": "a", "bPre": "b"].isAllKeysEndsWith("Pre"));
 
   assert(!allKeysEndsWith(["a": "a", "bPre": "b"], "Pre"));
-  assert(!["aPre": "a", "b": "b"].allKeysEndsWith("Pre"));
+  assert(!["aPre": "a", "b": "b"].isAllKeysEndsWith("Pre"));
 
   assert(anyKeysEndsWith(["aPre": "a", "b": "b"], "Pre"));
-  assert(["aPre": "a", "b": "b"].anyKeysEndsWith("Pre"));
+  assert(["aPre": "a", "b": "b"].isAnyKeysEndsWith("Pre"));
 
   assert(!anyKeysEndsWith(["a": "a", "b": "b"], "Pre"));
-  assert(!["a": "a", "b": "b"].anyKeysEndsWith("Pre")); */
+  assert(!["a": "a", "b": "b"].isAnyKeysEndsWith("Pre")); */
 }
 // #endregion keysEndsWith
 

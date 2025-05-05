@@ -250,7 +250,7 @@ bool hasAllValues(T)(T[string] items, T[string] checkItems) {
 }
 
 bool hasAllValues(T)(T[string] items, T[] values) {
-  return values.all!(value => items.hasValue(value));
+  return values.isAll!(value => items.hasValue(value));
 }
 
 bool hasAnyValue(T)(T[string] items, T[string] checkItems) {
@@ -258,7 +258,7 @@ bool hasAnyValue(T)(T[string] items, T[string] checkItems) {
 }
 
 bool hasAnyValue(T)(T[string] items, T[] values) {
-  return values.any!(value => items.hasValue(value));
+  return values.isAny!(value => items.hasValue(value));
 }
 
 bool hasValue(T)(T[string] items, T check) {

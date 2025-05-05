@@ -13,11 +13,11 @@ import uim.phobos;
 // #region check
 // #region has
 bool hasAllValues(T)(T[] items, in T[] values) {
-  return values.all!(value => items.hasValue(value));
+  return values.isAll!(value => items.hasValue(value));
 }
 
 bool hasAnyValues(T)(T[] items, in T[] values) {
-  return values.any!(value => items.hasValue(value));
+  return values.isAny!(value => items.hasValue(value));
 }
 
 bool hasValue(T)(T[] items, in T value) {
@@ -590,7 +590,7 @@ unittest {
 
 // #region isIn
 bool isIn(T)(T value, T[] values) {
-  return values.any!(v => v == value);
+  return values.isAny!(v => v == value);
 }
 /// 
 unittest {

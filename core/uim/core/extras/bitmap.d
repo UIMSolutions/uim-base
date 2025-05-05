@@ -165,7 +165,7 @@ Image!RGB loadPPM6(ref DImage!RGB img, in string fileName) {
     } while (line.length && line[0] == '#'); // Skip comments.
     const size = line.split;
     enforce(size.length == 2);
-    img.allocate(size[0].to!uint, size[1].to!uint);
+    img.isAllocate(size[0].to!uint, size[1].to!uint);
     enforce(f.readln().strip() == "255");
     auto l = new ubyte[img.nx * 3];
     size_t i = 0;

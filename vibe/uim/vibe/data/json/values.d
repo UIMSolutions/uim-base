@@ -47,7 +47,7 @@ unittest {
 
 // Search if jsonData has any of the values
 bool hasAnyValue(Json jsonData, Json[] values, bool deepSearch = false) {
-  return values.any!(value => hasValue(jsonData, value));
+  return values.isAny!(value => hasValue(jsonData, value));
 }
 ///
 
