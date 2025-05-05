@@ -8,17 +8,10 @@ module uim.phobos.convert.convert;
 mixin(Version!("test_uim_phobos"));
 
 import uim.phobos;
+
 @safe:
 
 // #region toString
-string toString(UUID[] uuids) {
-  return uuids.map!("a.toString").array.toString;
-}
-
-string toString(string[] values) {
-  return "\"["~values.map!(value => `\"%s\"`.format(value)).join(",")~"]\"";
-}
-
 /* string toString(T)(T value, size_t length = 0, string fillTxt = "0") {
 //    if (isFloatingPoint!T) {
   string result = fill(length, fillTxt);
@@ -41,3 +34,47 @@ unittest {
 }
 
 // #endregion toString
+
+string toString(short value) {
+  return to!string(value);
+}
+
+string toString(ushort value) {
+  return to!string(value);
+}
+
+string toString(int value) {
+  return to!string(value);
+}
+
+string toString(uint value) {
+  return to!string(value);
+}
+
+string toString(long value) {
+  return to!string(value);
+}
+
+string toString(ulong value) {
+  return to!string(value);
+}
+
+string toString(float value) {
+  return to!string(value);
+}
+
+string toString(double value) {
+  return to!string(value);
+}
+
+string toString(T)(T[] values) {
+  return "[" ~ values.map!(value => value.toString).join(",") ~ "]";
+}
+
+string toString(T : string)(T[] values) {
+  return "[" ~ values.map!(value => `"` ~ value ~ `"`).join(",") ~ "]";
+}
+
+unittest {
+  writeln([1, 2, 3].toString);
+}

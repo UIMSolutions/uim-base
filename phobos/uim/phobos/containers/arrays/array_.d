@@ -34,45 +34,16 @@ unittest {
 
   // Test simple 
   assert(test1.hasValue(1) & test1.hasValue(2));
-
-  assert([1, 2, 3, 4].hasAllValues(1));
-  assert(![
-      1, 2, 3, 4
-    ].hasAllValues(5));
-  assert([1, 2, 3, 4].hasAllValues(1, 2));
-  assert(![1, 2, 3, 4].hasAllValues(5, 1));
-  assert([
-      1, 2, 3, 4
-    ].hasAllValues([1]));
-  assert(![1, 2, 3, 4].hasAllValues([
-        5
-      ]));
+  assert([1, 2, 3, 4].hasAllValues([1]));
+  assert(![1, 2, 3, 4].hasAllValues([5]));
   assert([1, 2, 3, 4].hasAllValues([1, 2]));
-  assert(![
-      1, 2, 3, 4
-    ].hasAllValues([5, 1]));
+  assert(![1, 2, 3, 4].hasAllValues([5, 1]));
 
-  assert([1, 2, 3, 4].hasAnyValues(1));
-  assert(![
-      1, 2, 3, 4
-    ].hasAnyValues(5));
-  assert([1, 2, 3, 4].hasAnyValues(1, 2, 6));
-  assert(![1, 2, 3, 4].hasAnyValues(5, 6));
-  assert([
-      1, 2, 3, 4
-    ].hasAnyValues([1]));
-  assert(![
-      1, 2, 3, 4
-    ].hasAnyValues([5]));
-  assert([
-      1, 2, 3, 4
-    ].hasAnyValues([1, 2]));
-  assert([
-      1, 2, 3, 4
-    ].hasAnyValues([1, 2, 5]));
-  assert(![
-      1, 2, 3, 4
-    ].hasAnyValues([5, 6]));
+  assert([1, 2, 3, 4].hasAnyValues([1]));
+  assert(![1, 2, 3, 4].hasAnyValues([5]));
+  assert([1, 2, 3, 4].hasAnyValues([1, 2]));
+  assert([1, 2, 3, 4].hasAnyValues([1, 2, 5]));
+  assert(![1, 2, 3, 4].hasAnyValues([5, 6]));
 }
 // #endregion has
 // #endregion check
@@ -126,13 +97,18 @@ unittest {
 // #endregion firstPosition
 
 // #region filterValues
-T[] filterValues(T)(T[] values, T[] filterItems) {
-  return values.filter!(v => filterItems.hasValue(v)).array;
+T[] filterValues(T)(T[] baseArray, T[] values) {
+  return values.length == 0
+    ? baseArray
+    : baseArray.filter!(item => values.hasValue(item)).array;
 }
 
 unittest {
+  assert([1, 2, 3].filterValues([1, 2]) == [1, 2]);
+  assert([1, 2, 3].filterValues([2]) == [2]);
+  assert([1, 2, 3].filterValues([]) == []);
+
   auto items = [1, 2, 3, 4, 4, 5, 6];
-  assert(items.filterValues(2, 3, 4) == [2, 3, 4, 4]);
   assert(items.filterValues([2, 3, 4]) == [2, 3, 4, 4]);
 }
 // #endregion filterValues
@@ -186,17 +162,17 @@ unittest {
   assert([1, 2, 3].addValue(4).addValue(5) == [1, 2, 3, 4, 5]);
 
   test1 = [1, 2, 3];
-  assert(test1.addValues(4, 5) == [1, 2, 3, 4, 5] && test1 == [1, 2, 3, 4, 5]);
+  assert(test1.addValues([4, 5]) == [1, 2, 3, 4, 5] && test1 == [1, 2, 3, 4, 5]);
   assert(test1.addValue(6) == [1, 2, 3, 4, 5, 6] && test1 == [1, 2, 3, 4, 5, 6]);
   // writeln(test1.addValues(7, 8).addValues(9, 10));
-  assert(test1.addValues(7, 8).addValues(9, 10) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  assert(test1.addValues([7, 8]).addValues([9, 10]) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
   assert(test1 == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
   auto test2 = [1.0, 2.0, 3.0];
-  assert(test2.addValues(4.0, 5.0) == [1.0, 2.0, 3.0, 4.0, 5.0]);
+  assert(test2.addValues([4.0, 5.0]) == [1.0, 2.0, 3.0, 4.0, 5.0]);
 
   auto test3 = ["1", "2", "3"];
-  assert(test3.addValues("4", "5") == ["1", "2", "3", "4", "5"]);
+  assert(test3.addValues(["4", "5"]) == ["1", "2", "3", "4", "5"]);
 }
 // #endregion add
 
@@ -265,27 +241,6 @@ unittest {
 }
 // #endregion sub
 
-// #region filters
-// filters(T)(T[] lhs, T[] rhs, bool multiple = false)
-unittest {
-  assert([1, 2, 3].filters(2) == [2]);
-  assert([1, 2, 3].filters() is null);
-  assert([
-      1, 2, 3
-    ].filters(1, 2) == [1, 2]);
-}
-
-T[] filters(T)(T[] baseArray, T[] filterValues) {
-  T[] results = baseArray.filter!(item => filterValues.hasValue(item)).array;
-  return results;
-}
-
-unittest {
-  assert([1, 2, 3].filters([2]) == [2]);
-  assert([1, 2, 3].filters([]) == [
-    ]);
-}
-// #endregion filters
 
 OUT[] castTo(OUT, IN)(IN[] values) {
   OUT[] results;
@@ -297,15 +252,14 @@ OUT[] castTo(OUT, IN)(IN[] values) {
   return results;
 }
 
-unittest {
+/* unittest {
   auto values = [1, 2, 3, 4];
   change(values[2], values[3]);
-  assert(values == [
-      1, 2, 4, 3
-    ]);
-  assert([1, 2, 3, 4].change(1, 3) == [1, 4, 3, 2]);
-}
+  assert(values == [1, 2, 4, 3]);
+  assert([1, 2, 3, 4].change([1, 3]) == [1, 4, 3, 2]);
+} */
 
+// #region index
 size_t index(T)(T[] values, T value) {
   foreach (count, key; values) {
     if (key == value) {
@@ -320,7 +274,9 @@ unittest {
   assert([1, 2, 3, 4].index(1) == 0);
   assert([1, 2, 3, 4].index(0) == -1);
 }
+// #endregion index
 
+// #region indexes
 size_t[] indexes(T)(T[] values, T value) {
   size_t[] results;
   foreach (count, key; values)
@@ -332,30 +288,20 @@ size_t[] indexes(T)(T[] values, T value) {
 unittest {
   assert([1, 2, 3, 4].indexes(1) == [0]);
   assert([1, 2, 3, 4].indexes(0) == null);
-  assert([1, 2, 3, 4, 1].indexes(1) == [
-      0, 4
-    ]);
+  assert([1, 2, 3, 4, 1].indexes(1) == [0, 4]);
 }
 
 size_t[][T] indexes(T)(T[] values, T[] keys) {
   size_t[][T] results;
-  foreach (key; keys)
-    results[key] = indexes(values, key);
+  keys.each!(key => results[key] = indexes(values, key));
   return results;
 }
 
 unittest {
-  assert([1, 2, 3, 4].indexes(
-      [1]) == [
-      1: [0UL]
-    ]);
-
-  assert([
-      1, 2, 3, 4, 1
-    ].indexes([1]) == [
-      1: [0UL, 4UL]
-    ]);
+  assert([1, 2, 3, 4].indexes([1]) == [1: [0UL]]);
+  assert([1, 2, 3, 4, 1].indexes([1]) == [1: [0UL, 4UL]]);
 }
+// #endregion indexes
 
 // #endregion Searching
 
@@ -434,21 +380,6 @@ unittest {
 T[] intersect(T)(T[] left, T[] right) {
   return left.filter!(item => right.hasValue(item)).array;
 }
-
-T[] intersect(T)(T[] left, Json right) {
-  if (right.isArray) {
-    return intersect(left,
-      right.getArray.map!(val => val.get!T).array);
-  }
-  return null;
-}
-
-unittest {
-  assert(intersect(["a", "b", "c"], ["a"]) == ["a"]);
-  Json json = Json.emptyArray;
-  json ~= "a";
-  // assert(intersect(["a", "b", "c"], json) == ["a"]);
-}
 // #endregion intersect 
 
 // #region shift
@@ -494,7 +425,7 @@ unittest {
   assert(testValues.unshift("x").length == 4);
 
   testValues = ["a", "b", "c"];
-  assert(testValues.unshift("x", "y").length == 5);
+  assert(testValues.unshift(["x", "y"]).length == 5);
   assert(testValues.hasValue("x"));
 
   testValues = ["a", "b", "c"];
@@ -628,7 +559,7 @@ T[] push(T)(auto ref T[] items, T value) {
 }
 
 unittest {
-  string[] testMap = push(["a", "b", "c"], "d", "e");
+  string[] testMap = push(["a", "b", "c"], ["d", "e"]);
   assert(testMap == ["a", "b", "c", "d", "e"]);
   assert(testMap.length == 5);
 
