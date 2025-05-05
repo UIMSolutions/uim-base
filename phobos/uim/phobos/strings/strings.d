@@ -1,7 +1,6 @@
 module uim.phobos.strings.strings;
 
 import uim.phobos;
-
 @safe:
 
 // #region lower

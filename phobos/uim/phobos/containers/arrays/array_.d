@@ -422,7 +422,7 @@ T[] unshift(T)(auto ref T[] values, T[] newValues) {
 
 unittest {
   string[] testValues = ["a", "b", "c"];
-  assert(testValues.unshift("x").length == 4);
+  assert(testValues.unshift(["x"]).length == 4);
 
   testValues = ["a", "b", "c"];
   assert(testValues.unshift(["x", "y"]).length == 5);

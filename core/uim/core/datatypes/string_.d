@@ -10,9 +10,6 @@ mixin(Version!("test_uim_core"));
 import uim.core;
 @safe:
 
-V Null(V : string)() {
-  return null;
-}
 
 string toJSONString(T)(T[string] values, bool sorted = NOTSORTED) {
   string result = "{" ~ MapHelper.sortedKeys(values)

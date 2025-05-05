@@ -7,5 +7,6 @@ module uim.phobos.convert;
 
 public {
     import uim.phobos.convert.convert;
+    import uim.phobos.convert.null_;
     import uim.phobos.convert.uuid;
 }

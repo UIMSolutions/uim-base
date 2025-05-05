@@ -15,13 +15,6 @@ version (test_uim_core) {
   }
 }
 
-V Null(V : float)() {
-  return 0.0;
-}
-
-V Null(V : double)() {
-  return 0.0;
-}
 
 // #region fuzzy
 T fuzzy(T)(double fuzzyValue, T minValue, T maxValue, T minFuzzy = 0, T maxFuzzy = 1)

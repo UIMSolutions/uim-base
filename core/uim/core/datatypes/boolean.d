@@ -10,15 +10,6 @@ mixin(Version!("test_uim_core"));
 import uim.core;
 @safe:
 
-V Null(V : bool)() {
-  return false;
-}
-
-unittest {
-  assert(Null!bool == false);
-  assert(Null!bool != true);
-}
-
 // char[] BOOL(bool toogleValue) { return cast(char[])((toogleValue) ? `true`:`false`); }
 
 // #region toogle

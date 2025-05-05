@@ -10,14 +10,6 @@ mixin(Version!("test_uim_core"));
 import uim.core;
 @safe:
 
-V Null(V : int)() {
-  return 0;
-}
-
-V Null(V : long)() {
-  return 0;
-}
-
 /// convert integral values to string with defined length
 string toString(T)(T value, size_t length = 0, string fillTxt = "0")
     if (isIntegral!T) {

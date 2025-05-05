@@ -10,10 +10,6 @@ mixin(Version!("test_uim_core"));
 import uim.core;
 @safe:
 
-V Null(V:Object)(){
-  return null; 
-}
-
 T ifNull(T:Object)(T value, T defaultValue = null) {
   return value !is null ? value : defaultValue;
 }

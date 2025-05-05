@@ -31,23 +31,20 @@ import uim.phobos;
     assert(testMap.hasKey("a") && !testMap.hasKey("x"));
 
     auto testMap2 = [1: "a", 2: "b", 3: "c", 4: "d"];
-    assert(testMap2.hasKey(1) && !testMap.hasKey(5));
+    assert(testMap2.hasKey(1) && !testMap2.hasKey(5));
 
-    assert(testMap.hasAnyKey(["a", "b"]) && testMap.hasAnyKey(["a", "x"]));
+    assert(testMap.hasAnyKeys(["a", "b"]) && testMap.hasAnyKeys(["a", "x"]));
     assert(testMap.hasAllKeys(["a", "b"]) && !testMap.hasAllKeys(["a", "x"]));
 
     auto stringMap = ["a": "1", "b": "2", "c": "3", "d": "4"];
     assert(stringMap.hasKey("a") && !stringMap.hasKey("x"));
 
-    assert(stringMap.hasAnyKey(["a", "b"]) && stringMap.hasAnyKey(["a", "x"]));
-    assert(stringMap.hasAnyKey("a", "b") && stringMap.hasAnyKey("a", "x"));
-
+    assert(stringMap.hasAnyKeys(["a", "b"]) && stringMap.hasAnyKeys(["a", "x"]));
     assert(stringMap.hasAllKeys(["a", "b"]) && !stringMap.hasAllKeys(["a", "x"]));
 
     auto jsonMap = ["a": Json(1), "b": Json(2), "c": Json(3), "d": Json(4)];
     assert(jsonMap.hasKey("a") && !jsonMap.hasKey("x"));
-
-    assert(jsonMap.hasAnyKey(["a", "b"]) && jsonMap.hasAnyKey(["a", "x"]));
+    assert(jsonMap.hasAnyKeys(["a", "b"]) && jsonMap.hasAnyKeys(["a", "x"]));
     assert(jsonMap.hasAllKeys(["a", "b"]) && !jsonMap.hasAllKeys(["a", "x"]));
   } 
 // #endregion has
@@ -74,15 +71,10 @@ import uim.phobos;
 
   unittest {
     auto testMap = ["a": 1, "b": 2, "c": 3, "d": 4];
-    assert(testMap.hasAllKeys("a", "b", "c", "d"));
+    assert(testMap.hasAllKeys(["a", "b", "c", "d"]));
     testMap.removeKey("a");
     assert(testMap.hasAllKeys(["b", "c", "d"]) && !testMap.hasKey("a"));
     
-    testMap = ["a": 1, "b": 2, "c": 3, "d": 4];
-    assert(testMap.hasAllKeys(["a", "b", "c", "d"]));
-    testMap.removeKeys(["b", "c"]);
-    assert(testMap.hasAllKeys(["a", "d"]) && !testMap.hasAnyKey(["b", "c"]));
-
     testMap = ["a": 1, "b": 2, "c": 3, "d": 4];
     assert(testMap.hasAllKeys(["a", "b", "c", "d"]));
     testMap.removeKeys(["b", "c"]);
@@ -98,20 +90,10 @@ import uim.phobos;
     stringMap.removeKeys(["b", "c"]);
     assert(stringMap.hasAllKeys(["a", "d"]) && !stringMap.hasAnyKey(["b", "c"]));
 
-    stringMap = ["a": "1", "b": "2", "c": "3", "d": "4"];
-    assert(stringMap.hasAllKeys(["a", "b", "c", "d"]));
-    stringMap.removeKeys(["b", "c"]);
-    assert(stringMap.hasAllKeys(["a", "d"]) && !stringMap.hasAnyKey(["b", "c"]));
-
     auto jsonMap = ["a": Json(1), "b": Json(2), "c": Json(3), "d": Json(4)];
     assert(jsonMap.hasAllKeys(["a", "b", "c", "d"]));
     jsonMap.removeKey("a");
     assert(jsonMap.hasAllKeys(["b", "c", "d"]) && !jsonMap.hasKey("a"));
-
-    jsonMap = ["a": Json(1), "b": Json(2), "c": Json(3), "d": Json(4)];
-    assert(jsonMap.hasAllKeys(["a", "b", "c", "d"]));
-    jsonMap.removeKeys(["b", "c"]);
-    assert(jsonMap.hasAllKeys(["a", "d"]) && !jsonMap.hasAnyKey(["b", "c"]));
 
     jsonMap = ["a": Json(1), "b": Json(2), "c": Json(3), "d": Json(4)];
     assert(jsonMap.hasAllKeys(["a", "b", "c", "d"]));
