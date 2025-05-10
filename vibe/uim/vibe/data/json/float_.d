@@ -11,7 +11,7 @@ import uim.vibe;
 @safe:
 
 // #region is   
-mixin(CheckJsonIs!("Float"));
+mixin(IsJsonFunctions!("Float"));
 
 bool isFloat(Json value, bool strict = true) {
   if (!strict) {  

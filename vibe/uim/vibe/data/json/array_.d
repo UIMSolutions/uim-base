@@ -10,7 +10,7 @@ import uim.vibe;
 @safe:
 
 // #region is
-mixin(CheckJsonIs!("Array"));
+mixin(IsJsonFunctions!("Array"));
 
 bool isArray(Json json, bool strict = true) {
   if (json == Json(null)) {

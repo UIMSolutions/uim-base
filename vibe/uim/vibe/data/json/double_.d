@@ -11,7 +11,7 @@ import uim.vibe;
 @safe:
 
 // #region is
-mixin(CheckJsonIs!("Double"));
+mixin(IsJsonFunctions!("Double"));
 
 bool isDouble(Json value, bool strict = true) {
   if (!strict) {

@@ -12,7 +12,7 @@ import uim.vibe;
 @safe:
 
 // #region is
-mixin(CheckJsonIs!("String"));
+mixin(IsJsonFunctions!("String"));
 
 // #region Json[string]
 unittest {

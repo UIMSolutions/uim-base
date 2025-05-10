@@ -12,7 +12,7 @@ import uim.vibe;
 @safe:
 
 // #region is
-mixin(CheckJsonIs!("Scalar"));
+mixin(IsJsonFunctions!("Scalar"));
 
 bool isScalar(Json value, bool strict = true) {
   if (!strict) {

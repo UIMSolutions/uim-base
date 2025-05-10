@@ -11,7 +11,7 @@ import uim.vibe;
 @safe:
 
 // #region is
-mixin(CheckJsonIs!("Object"));
+mixin(IsJsonFunctions!("Object"));
 
 // Check if the JSON value is an object
 bool isObject(Json json, bool strict = true) {
@@ -38,11 +38,8 @@ unittest {
 
   assert(json.isObject("a") && json.isObject("b") && !json.isObject("c"));  
 
-  assert(json.isAnyObject(["a", "b"]) && json.isAnyObject(["a", "c"]) && !json.isAnyObject(["c", "d"]));
-  assert(json.isAnyObject("a", "b") && json.isAnyObject("a", "c") && !json.isAnyObject("c", "d"));
-  
-  assert(json.isAllObject(["a", "b"]) && !json.isAllObject(["a", "c"]));
-  assert(json.isAllObject("a", "b") && !json.isAllObject("a", "c"));
+  assert(json.isAnyObjects(["a", "b"]) && json.isAnyObjects(["a", "c"]) && !json.isAnyObjects(["c", "d"]));
+  assert(json.isAllObjects(["a", "b"]) && !json.isAllObjects(["a", "c"]));
 
   auto a = Json.emptyObject;
   auto b = Json.emptyObject;
@@ -51,24 +48,21 @@ unittest {
 
   assert(a.isObject && b.isObject && !c.isObject && !d.isObject);  
 
-  assert(json.isAnyObject([a, b]) && json.isAnyObject([a, c]) && !json.isAnyObject([c, d]));
-  assert(json.isAnyObject(a, b) && json.isAnyObject(a, c) && !json.isAnyObject(c, d));
-
-  assert(json.isAllObject([a, b]) && !json.isAllObject([a, c]));
-  assert(json.isAllObject(a, b) && !json.isAllObject(a, c));
+  assert(json.isAnyObjects([a, b]) && json.isAnyObjects([a, c]) && !json.isAnyObjects([c, d]));
+  assert(json.isAllObjects([a, b]) && !json.isAllObjects([a, c]));
 }
 // #endregion is
 
 // #region get
+Json[string] getObject(Json json) {
+  return json.isObject
+    ? json.to!(Json[string])
+    : null;
+}
 // #endregion get
 
 // #region only
 // #endregion only
 
 // #region to
-Json[string] getObject(Json json) {
-  return json.isObject
-    ? json.to!(Json[string])
-    : null;
-}
 // #endregion to

@@ -11,7 +11,7 @@ import uim.vibe;
 @safe:
 
 // #region is
-mixin(CheckJsonIs!("BigInteger"));
+mixin(IsJsonFunctions!("BigInteger"));
 
 bool isBigInteger(Json json, bool strict = true) {
   if (!strict) {

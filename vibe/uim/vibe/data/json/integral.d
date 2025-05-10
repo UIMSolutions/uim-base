@@ -11,7 +11,7 @@ import uim.vibe;
 @safe:
 
 // #region is
-mixin(CheckJsonIs!("Integral"));
+mixin(IsJsonFunctions!("Integral"));
 
 bool isIntegral(Json value, bool strict = true) {
   if (!strict) {

@@ -11,7 +11,7 @@ import uim.vibe;
 @safe:
 
 // #region is
-mixin(CheckJsonIs!("Undefined"));
+mixin(IsJsonFunctions!("Undefined"));
 
 bool isUndefined(Json value, bool strict = true) {
   if (!strict) {

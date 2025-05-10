@@ -12,7 +12,7 @@ import uim.vibe;
 
 // #region is
 // Check if json value is null
-mixin(CheckJsonIs!("Null"));
+mixin(IsJsonFunctions!("Null"));
 
 bool isNull(Json json, string[] path) {
   if (json.isNull) {

@@ -11,7 +11,7 @@ import uim.vibe;
 @safe:
 
 // #region is
-mixin(CheckJsonIs!("Boolean"));
+mixin(IsJsonFunctions!("Booleans", "Boolean"));
 
 bool isBoolean(Json value, bool strict = true) {
   if (!strict) {
@@ -103,20 +103,21 @@ unittest {
   b = Json(false);
   c = Json(1);
   d = Json(1.1);
-  auto map = ["A": a, "B": b, "C": c, "D": d];
+
+  auto map2 = ["A": a, "B": b, "C": c, "D": d];
   assert(["A": a, "B": b].isAllBoolean);
   assert(!["A": a, "C": c].isAllBoolean);
 
-  assert(map.isAllBoolean(["A", "B"]));
-  assert(map.isAllBoolean(["A", "C"]));
+  assert(map2.isAllBoolean(["A", "B"]));
+  assert(map2.isAllBoolean(["A", "C"]));
 
   assert(["A": a, "B": b].isAnyBoolean);
   assert(["A": a, "C": c].isAnyBoolean);
   assert(!["C": c, "D": d].isAnyBoolean);
 
-  assert(map.isAnyBoolean(["A", "B"]));
-  assert(map.isAnyBoolean(["A", "C"]));
-  assert(map.isAnyBoolean(["C", "D"]));
+  assert(map2.isAnyBoolean(["A", "B"]));
+  assert(map2.isAnyBoolean(["A", "C"]));
+  assert(map2.isAnyBoolean(["C", "D"]));
 }
 // #endregion is
 

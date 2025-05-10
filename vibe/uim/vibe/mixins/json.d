@@ -5,145 +5,109 @@
 *****************************************************************************************************************/
 module uim.vibe.mixins.json;
 
-template CheckJsonIs(string type) {
-  const char[] CheckJsonIs = `
+string isJsonFunctions(string target) {
+  return `
 // #region Json[string]
-bool isAll`
-    ~ type ~ `(Json[string] map, bool strict = true) {
-  return map.byValue.all!(value => value.is`
-    ~ type ~ `(strict));
+bool isAlltarget(Json[string] map, bool strict = true) {
+  return map.byValue.all!(value => value.is{target}(strict));
 }
 
-bool isAll`
-    ~ type ~ `(Json[string] map, string[] keys, bool strict = true) {
-  return keys.all!(key => map.is`
-    ~ type ~ `(key, strict));
+bool isAlltarget(Json[string] map, string[] keys, bool strict = true) {
+  return keys.all!(key => map.is{target}(key, strict));
 }
 
-bool isAny`
-    ~ type ~ `(Json[string] map, bool strict = true) {
-  return map.byValue.any!(value => value.is`
-    ~ type ~ `(strict));
+bool isAnytarget(Json[string] map, bool strict = true) {
+  return map.byValue.any!(value => value.is{target}(strict));
 }
 
-bool isAny`
-    ~ type ~ `(Json[string] map, string[] keys, bool strict = true) {
-  return keys.any!(index => map.is`
-    ~ type ~ `(index));
+bool isAnytarget(Json[string] map, string[] keys, bool strict = true) {
+  return keys.any!(index => map.is{target}(index));
 }
 
-bool is`
-    ~ type ~ `(Json[string] map, string key, bool strict = true) {
-  return key in map && map[key].is`
-    ~ type ~ `(strict);
-}
+bool is{target}(Json[string] map, string key, bool strict = true) {
+  return key in map && map[key].is{target}(strict);
+};
 // #endregion Json[string]
 
 // #region Json[]
-bool isAll`
-    ~ type ~ `(Json[] values, bool strict = true) {
-  return values.all!(value => value.is`
-    ~ type ~ `(strict));
+bool isAll{target}(Json[] values, bool strict = true) {
+  return values.all!(value => value.is{target}(strict));
 }
 
-bool isAll`
-    ~ type ~ `(Json[] values, size_t[] indices, bool strict = true) {
-  return indices.all!(index => values.is`
-    ~ type ~ `(index, strict));
+bool isAll{target}(Json[] values, size_t[] indices, bool strict = true) {
+  return indices.all!(index => values.is{target}(index, strict));
 }
 
-bool isAny`
-    ~ type ~ `(Json[] values, bool strict = true) {
-  return values.any!(value => value.is`
-    ~ type ~ `(strict));
+bool isAny{target}(Json[] values, bool strict = true) {
+  return values.any!(value => value.is{target}(strict));
 }
 
-bool isAny`
-    ~ type ~ `(Json[] values, size_t[] indices, bool strict = true) {
-  return indices.any!(index => values.is`
-    ~ type ~ `(index, strict));
+bool isAny{target}(Json[] values, size_t[] indices, bool strict = true) {
+  return indices.any!(index => values.is{target}(index, strict));
 }
 
-bool is`
-    ~ type ~ `(Json[] values, size_t index, bool strict = true) {
-  return values.length > index && values[index].is`
-    ~ type ~ `(strict);
+bool is{target}(Json[] values, size_t index, bool strict = true) {
+  return values.length > index && values[index].is{target}(strict);
 }
 // #endregion Json[]
 
 // #region Json
-bool isAll`
-    ~ type ~ `(Json json, bool strict = true) {
+bool isAll{target}(Json json, bool strict = true) {
   if (json.isObject) {
-    return isAll`
-    ~ type ~ `(json.to!(Json[string]), strict); 
+    return isAll{target}(json.to!(Json[string]), strict); 
   }
+
   if (json.isArray) {
-    return isAll`
-    ~ type ~ `(json.to!(Json[]), strict); 
+    return isAll{target}(json.to!(Json[]), strict); 
   }
-  return json.is`
-    ~ type ~ `(strict); 
+
+  return json.is{target}(strict); 
 }
 
-bool isAll`
-    ~ type ~ `(Json json, string[] keys, bool strict = true) {
-  return keys.isAll`
-    ~ type ~ `!(key => json.is` ~ type ~ `(key, strict));
+bool isAll{target}(Json json, string[] keys, bool strict = true) {
+  return keys.all!(key => json.is{target}(key, strict));
 }
 
-bool isAny`
-    ~ type ~ `(Json json, bool strict = true) {
+bool isAny{target}(Json json, bool strict = true) {
   if (json.isObject) {
-    return isAny`
-    ~ type ~ `(json.to!(Json[string]), strict); 
+    return isAny{target}(Json json, bool strict = true) {
   }
+
   if (json.isArray) {
-    return isAny`
-    ~ type ~ `(json.to!(Json[]), strict); 
-  }
-  return json.is`
-    ~ type ~ `(strict); 
-}
-
-bool isAny`
-    ~ type ~ `(Json json, string[] keys, bool strict = true) {
-  return keys.any!(key => json.is`
-    ~ type ~ `(key, strict));
-}
-
-bool is`
-    ~ type ~ `(Json json, string[] path, bool strict = true) { 
-  `
-    ~ (type == "Null"
-        ? "if (json.isNull) {
-    return true;
+    return isAny{target}(Json json, bool strict = true) {
   }
 
-  if (path.length == 0 && json == Json(null)) {
-    return true;
-  }" : "if (json.isNull) {
+  return json.is{target}(strict); 
+}
+
+bool isAny{target}(Json json, string[] keys, bool strict = true) {
+  return keys.any!(key => json.is{target}(key, strict));
+}
+
+bool is{target}(Json json, string[] path, bool strict = true) { 
+  if (!json.isObject) {
     return false;
   }
 
-  if (path.length == 0 && json == Json(null)) {
-    return false;
-  }")
-    ~ `
-
+  if (path.length == 0) {
+    return json.is{target}(strict);
+  }
+    
   auto key = path[0];
   return path.length == 1
-    ? json.is`
-    ~ type ~ `(key, strict) : json.hasKey(key) && json[key].is` ~ type ~ `(path[1 .. $], strict);
+    ? json.is{target}(key, strict) 
+    : json.hasKey(key) && json[key].is{target}(path[1 .. $], strict);
 }
 
-bool is`
-    ~ type ~ `(Json json, string key, bool strict = true) {
-  return key in json && json[key].is`
-    ~ type ~ `(strict);
+bool is{target}(Json json, string key, bool strict = true) {
+  return key in json && json[key].is{target}(strict);
 }
 // #endregion Json
 `;
+}
+
+template IsJsonFunctions(string target) {
+  const char[] IsJsonFunctions = isJsonFunctions(target);
 }
 
 template GetJsonValue(string type, string typeName, string defaultValue) {

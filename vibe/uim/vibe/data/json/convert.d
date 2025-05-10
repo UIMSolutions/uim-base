@@ -238,7 +238,7 @@ string toString(Json json, string[] keys) {
 
 unittest {
   auto jsons = [Json(1), Json("x"), Json(true)];
-  assert(jsons.toString == ["1", "\"x\"", "true"]);
+  assert(jsons.toStrings == ["1", "\"x\"", "true"]);
 
   // TODO: More tests
 }
