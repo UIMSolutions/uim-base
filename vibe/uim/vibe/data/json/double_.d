@@ -85,8 +85,8 @@ unittest {
   json = Json.emptyArray;
   json ~= 1.0;
   json ~= 2.0;
-  assert(json.getDouble(0) == 1.0);
-  assert(json.getDouble(1) != 1.0);
+  assert(json.getDoubleAt(0) == 1.0);
+  assert(json.getDoubleAt(1) != 1.0);
 
   json = Json.emptyObject;
   json["One"] = 1.0;
@@ -95,8 +95,8 @@ unittest {
   assert(json.getDouble("Two") != 1.0);
 
   auto list = [Json(1.0), Json(2.0)];
-  assert(list.getDouble(0) == 1.0);
-  assert(list.getDouble(1) != 1.0);
+  assert(list.getDoubleAt(0) == 1.0);
+  assert(list.getDoubleAt(1) != 1.0);
 
   auto map = ["One": Json(1.0), "Two": Json(2.0)];
   assert(map.getDouble("One") == 1.0);  

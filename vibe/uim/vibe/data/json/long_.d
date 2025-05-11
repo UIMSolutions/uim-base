@@ -170,28 +170,7 @@ unittest { // Json[string]
 // #endregion is
 
 // #region get
-long getLong(Json json, size_t index, long defaultValue = 0) {
-  return json.isArray 
-    ? getLong(json.get!(Json[]), index, defaultValue)
-    : defaultValue;
-}
-
-long getLong(Json json, string key, long defaultValue = 0) {
-  return json.isObject
-    ? getLong(json.get!(Json[string]), index, defaultValue)
-    : defaultValue;
-}
-
-long getLong(Json[string] map, string key, long defaultValue = 0) {
-  return key in map
-    ? map[key].getLong : defaultValue;
-}
-
-long getLong(Json[] values, size_t index, long defaultValue = 0) {
-  return values.length > index
-    ? values[index].getLong : defaultValue;
-}
-
+mixin(GetJsonValue!("long", "Long", "0"));
 
 long getLong(Json json, long defaultValue = 0) {
   return json.isLong
@@ -205,8 +184,8 @@ unittest {
   json = Json.emptyArray;
   json ~= 1;
   json ~= 2;
-  assert(json.getLong(0) == 1);
-  assert(json.getLong(1) == 2);
+  assert(json.getLongAt(0) == 1);
+  assert(json.getLongAt(1) == 2);
 
   json = Json.emptyObject;
   json["One"] = 1;
@@ -215,8 +194,8 @@ unittest {
   assert(json.getLong("Two") == 2);
 
   auto list = [Json(1), Json(2)];
-  assert(list.getLong(0) == 1);
-  assert(list.getLong(1) != 1);
+  assert(list.getLongAt(0) == 1);
+  assert(list.getLongAt(1) != 1);
 
   auto map = ["One": Json(1), "Two": Json(2)];
   assert(map.getLong("One") == 1);

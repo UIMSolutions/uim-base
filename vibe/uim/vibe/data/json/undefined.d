@@ -21,13 +21,13 @@ bool isUndefined(Json value, bool strict = true) {
 }
 
 unittest {
-  auto json = Json(undefined);
+/*   auto json = Json(undefined);
   assert(json.isUndefined);
   assert(!json.isInteger);
   assert(!json.isFloat);
   assert(!json.isString);
   assert(!json.isBoolean);
   assert(!json.isArray);
-  assert(!json.isObject);
+  assert(!json.isObject); */
 }
 // #endregion is

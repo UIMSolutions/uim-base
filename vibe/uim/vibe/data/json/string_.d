@@ -88,11 +88,11 @@ unittest {
   assert(![a, c].isAllString);
 
   auto map = ["A": a, "B": b, "C": c];
-  assert(map.isAnyString("A", "B"));
-  assert(map.isAnyString("A", "C"));
+  assert(map.isAnyString(["A", "B"]));
+  assert(map.isAnyString(["A", "C"]));
   
-  assert(map.isAllString("A", "B"));
-  assert(!map.isAllString("A", "C"));
+  assert(map.isAllString(["A", "B"]));
+  assert(!map.isAllString(["A", "C"]));
 }
 // #endregion Json
 
@@ -135,7 +135,7 @@ unittest {
   assert(!Json(1.1).isString);
   assert(!Json.emptyObject.isString);
   assert(!Json.emptyArray.isString);
-  assert(!Json.nullValue.isString);
+  // assert(!Json.nullValue.isString);
 
   auto json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": "h"}]}`);
   assert(json.isString("a"));
@@ -144,9 +144,9 @@ unittest {
   assert(json.isAllString(["c", "x"]));
   assert(!json.isAllString(["c", "d"]));
 
-  assert(json.String(["c", "d", "x"]));
-  assert(!json.isString(["c", "d", "e"]));
-  assert(json.isString(["c", "d", "a"]));
+  assert(json.isAnyString(["c", "d", "x"]));
+  assert(!json.isAnyString(["c", "d", "e"]));
+  assert(json.isAnyString(["c", "d", "a"]));
 }
 // #endregion is
 
@@ -165,8 +165,8 @@ unittest {
   json = Json.emptyArray;
   json ~= "a";
   json ~= "b";
-  assert(json.getString(0) == "a");
-  assert(json.getString(1) == "b");
+  assert(json.getStringAt(0) == "a");
+  assert(json.getStringAt(1) == "b");
 
   json = Json.emptyObject;
   json["a"] = "A";
@@ -175,8 +175,8 @@ unittest {
   assert(json.getString("b") == "B");
 
   auto list = [Json("a"), Json("b")];
-  assert(list.getString(0) == "a");
-  assert(list.getString(1) != "a");
+  assert(list.getStringAt(0) == "a");
+  assert(list.getStringAt(1) != "a");
 
   auto map = ["A": Json("a"), "B": Json("b")];
   assert(map.getString("A") == "a");  

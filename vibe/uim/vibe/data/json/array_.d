@@ -101,8 +101,8 @@ unittest {
   
   json ~= a;
   json ~= b;
-  assert(json.getArray(0).length == 2);
-  assert(json.getArray(1).length != 2);
+  assert(json.getArrayAt(0).length == 2);
+  assert(json.getArrayAt(1).length != 2);
 
   json = Json.emptyObject;
   json["One"] = a;
@@ -111,8 +111,8 @@ unittest {
   assert(json.getArray("Two").length != 2);
 
   auto list = [a, b];
-  assert(list.getArray(0).length == 2);
-  assert(list.getArray(1).length != 2);
+  assert(list.getArrayAt(0).length == 2);
+  assert(list.getArrayAt(1).length != 2);
 
   auto map = ["One": a, "Two": b];
   assert(map.getArray("One").length == 2);

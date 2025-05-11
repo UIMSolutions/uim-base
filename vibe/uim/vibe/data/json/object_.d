@@ -38,18 +38,31 @@ unittest {
 
   assert(json.isObject("a") && json.isObject("b") && !json.isObject("c"));  
 
-  assert(json.isAnyObjects(["a", "b"]) && json.isAnyObjects(["a", "c"]) && !json.isAnyObjects(["c", "d"]));
-  assert(json.isAllObjects(["a", "b"]) && !json.isAllObjects(["a", "c"]));
+  assert(json.isAnyObject(["a", "b"]) && json.isAnyObject(["a", "c"]) && !json.isAnyObject(["c", "d"]));
+  assert(json.isAllObject(["a", "b"]) && !json.isAllObject(["a", "c"]));
 
+  // Json[]  
   auto a = Json.emptyObject;
   auto b = Json.emptyObject;
   auto c = Json.emptyArray;
   auto d = Json.emptyArray;
+  auto list = [Json.emptyObject, Json.emptyObject];
+  assert(list[0].isObject && list[1].isObject);  
 
-  assert(a.isObject && b.isObject && !c.isObject && !d.isObject);  
+  assert(list.isAnyObject);
+  assert(list.isAllObject);
 
-  assert(json.isAnyObjects([a, b]) && json.isAnyObjects([a, c]) && !json.isAnyObjects([c, d]));
-  assert(json.isAllObjects([a, b]) && !json.isAllObjects([a, c]));
+  list[0] = Json.emptyArray;
+  assert(!list[0].isObject && list[1].isObject);  
+
+  assert(list.isAnyObject);
+  assert(!list.isAllObject);
+
+  list[1] = Json.emptyArray;
+  assert(!list[0].isObject && !list[1].isObject);  
+
+  assert(!list.isAnyObject);
+  assert(!list.isAllObject);
 }
 // #endregion is
 

@@ -11,26 +11,26 @@ import uim.vibe;
 @safe:
 
 // #region is
-mixin(IsJsonFunctions!("Booleans", "Boolean"));
+mixin(IsJsonFunctions!("Boolean"));
 
-bool isBoolean(Json value, bool strict = true) {
+bool isBoolean(Json json, bool strict = true) {
   if (!strict) {
-    if (value.isString) {
-      auto val = value.getString.toLower;
+    if (json.isString) {
+      auto val = json.getString.toLower;
       return (val == "false") || (val == "no") || (val == "0") ||
         (val == "true") || (val == "yes") || (val == "1");
     }
 
-    if (value.isLong || value.isInteger) {
-      return (value.getLong == 0) || (value.getLong == 1);
+    if (json.isLong || json.isInteger) {
+      return (json.getLong == 0) || (json.getLong == 1);
     }
 
-    if (value.isBoolean) {
-      return (value.getBoolean == 0.0) && (value.getBoolean == true);
+    if (json.isBoolean) {
+      return (json.getBoolean == 0.0) && (json.getBoolean == true);
     }
   }
 
-  return (value.type == Json.Type.bool_);
+  return (json.type == Json.Type.bool_);
 }
 
 unittest { 
@@ -136,8 +136,8 @@ unittest {
   json = Json.emptyArray;
   json ~= true;
   json ~= false;
-  assert(json.getBoolean(0) == true);
-  assert(json.getBoolean(1) != true);
+  assert(json.getBooleanAt(0) == true);
+  assert(json.getBooleanAt(1) != true);
 
   json = Json.emptyObject;
   json["One"] = true;
@@ -146,8 +146,8 @@ unittest {
   assert(json.getBoolean("Two") != true);
 
   auto list = [Json(true), Json(false)];
-  assert(list.getBoolean(0) == true);
-  assert(list.getBoolean(1) != true);
+  assert(list.getBooleanAt(0) == true);
+  assert(list.getBooleanAt(1) != true);
 
   auto map = ["One": Json(true), "Two": Json(false)];
   assert(map.getBoolean("One") == true);  

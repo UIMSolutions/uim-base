@@ -97,7 +97,9 @@ unittest {
 
 // #region set
 Json[string] setValues(Json[string] map, Json[string] values) {
-  keys.each!((key, value) => map = map.setValue(key, value));
+  foreach(kv; values.byKeyValue) {
+    map = map.setValue(kv.key, kv.value);
+  }
   return map;
 }
 
@@ -112,7 +114,9 @@ Json[string] setValue(Json[string] map, string key, Json value) {
 }
 
 Json setValues(Json json, Json[string] map) {
-  keys.each!((key, value) => json = json.setValue(key, value));
+  foreach(kv; map.byKeyValue) {
+    json = json.setValue(kv.key, kv.value);
+  }
   return json;
 }
 
@@ -130,11 +134,12 @@ Json setValue(Json json, string[] path, Json value) {
     return json.setValue(path[0], value);
   }
 
-  if (path[0] !in json) {
-    json[path[0]] = Json.emptyObject;
+  auto key = path[0];
+  if (key !in json) {
+    json[key] = Json.emptyObject;
   }
 
-  json[key] = json[path[0]].setValue(path[1..$], value);
+  json[key] = json[key].setValue(path[1..$], value);
   return json;
 }
 
