@@ -14,27 +14,91 @@ import uim.vibe;
 // #region create
 // #endregion create
 
+// #region json
+mixin(GetJsonValue!("Json", "Json", "Json(null)"));
+
+Json getJson(Json json, Json defaultValue = Json(null)) {
+  return json;
+}
+// #endregion json
+
 // #region set
+// #region Json[string]
+Json[string] setNull(Json[string] map, string key) {
+  return map.set(key, Json(null));
+}
+
+Json[string] set(T)(Json[string] map, string key, T value) {
+  return map.set(key, value.toJson);
+}
+
+Json[string] set(T:string)(Json[string] map, string key, T value) {
+  return map.set(key, value.toJson);
+}
+
+Json[string] set(T)(Json[string] map, string key, T[] value) {
+  return map.set(key, value.toJson);
+}
+
+Json[string] set(T:string)(Json[string] map, string key, T[] value) {
+  return map.set(key, value.toJson);
+}
+
+Json[string] set(T)(Json[string] map, string key, T[string] value) {
+  return map.set(key, value.toJson);
+}
+
+Json[string] set(T:string)(Json[string] map, string key, T[string] value) {
+  return map.set(key, value.toJson);
+}
+
+Json[string] set(T : Json)(Json[string] map, string key, T value) {
+  map[key] = value;
+  return map;
+}
+
+unittest {
+  Json[string] map;
+  assert(map.set("bool", true).getBoolean("bool"));
+  assert(map.set("bool", true).getBoolean("bool"));
+  assert(map.set("long", 1).getLong("long") == 1);
+  assert(map.set("double", 0.1).getDouble("double") == 0.1);
+  assert(map.set("string", "A").getString("string") == "A");
+  assert(map.set("strings", ["x": "X", "y": "Y", "z": "Z"]) !is null);
+}
+// #endregion Json
+
 // #region Json
 Json setNull(Json json, string key) {
   return json.set(key, Json(null));
 }
 
-Json set(V)(Json map, string key, V value) {
-  return map.set(key, value.toJson);
+Json set(T)(Json json, string key, T[] value) {
+  return json.set(key, value.toJson);
 }
 
-Json set(V)(Json json, string key, V[] value) {
-  return map.set(key, value.toJson);
+Json set(T:string)(Json json, string key, T[] value) {
+  return json.set(key, value.toJson);
 }
 
-Json set(V)(Json json, string key, V[string] value) {
-  return map.set(key, value.toJson);
+Json set(T)(Json json, string key, T[string] value) {
+  return json.set(key, value.toJson);
 }
 
-Json set(V : Json)(Json map, string key, V value) {
-  map[key] = value;
-  return map;
+Json set(T:string)(Json json, string key, T[string] value) {
+  return json.set(key, value.toJson);
+}
+
+Json set(T)(Json json, string key, T value) {
+  return json.set(key, value.toJson);
+}
+
+Json set(T : Json)(Json json, string key, T value) {
+  if (json.isNull) {
+    json = Json.emptyObject;
+  }
+  json[key] = value;
+  return json;
 }
 /* unittest {
   Json json = Json.emptyObject;
@@ -44,7 +108,6 @@ Json set(V : Json)(Json map, string key, V value) {
   assert(json.set("double", 0.1).getDouble("double") == 0.1);
   assert(json.set("string", "A").getString("string") == "A");
   assert(json.set("strings", ["x": "X", "y": "Y", "z": "Z"]) != Json(null));
-  writeln(json);
 } */
 // #endregion Json
 

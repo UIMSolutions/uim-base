@@ -216,7 +216,7 @@ bool isInteger(Json value, bool strict = true) {
 // #region get
 mixin(GetJsonValue!("int", "Integer", "0"));
 
-int getInteger(Json json, int defaultValue = 0) {
+int getInteger(Json json) {
   return json.isInteger
     ? json.get!int : defaultValue;
 }

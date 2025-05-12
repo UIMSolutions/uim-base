@@ -83,14 +83,14 @@ unittest {
 
   assert([a, b].isAnyString);
   assert([a, c].isAnyString);
-  
+
   assert([a, b].isAllString);
   assert(![a, c].isAllString);
 
   auto map = ["A": a, "B": b, "C": c];
   assert(map.isAnyString(["A", "B"]));
   assert(map.isAnyString(["A", "C"]));
-  
+
   assert(map.isAllString(["A", "B"]));
   assert(!map.isAllString(["A", "C"]));
 }
@@ -137,11 +137,11 @@ unittest {
   assert(!Json.emptyArray.isString);
   // assert(!Json.nullValue.isString);
 
-  auto json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": "h"}]}`);
+  auto json = parseJsonString(`{"a": "b", "x": "y", "c": {"d": 1}, "e": ["f", {"g": "h"}]}`);
   assert(json.isString("a"));
-  assert(!json.isString("x"));
+  assert(!json.isString("c"));
 
-  assert(json.isAllString(["c", "x"]));
+  assert(json.isAllString(["a", "x"]));
   assert(!json.isAllString(["c", "d"]));
 
   assert(json.isAnyString(["c", "d", "x"]));
@@ -153,9 +153,11 @@ unittest {
 // #region get
 mixin(GetJsonValue!("string", "String", "null"));
 
-string getString(Json json, string defaultValue = null) {
+string getString(Json json) {
+  // writeln("getString(Json json, string defaultValue = null): ", json.toString);
+
   return json.isString
-    ? json.get!string : defaultValue;
+    ? json.get!string : null;
 }
 
 unittest {
@@ -171,6 +173,11 @@ unittest {
   json = Json.emptyObject;
   json["a"] = "A";
   json["b"] = "B";
+  // writeln(json.toString);
+  // writeln(json["a"].toString, " - ", json["a"].length);
+  // writeln(" --------------- ");
+  // writeln(json["a"].getString, " - ", json.getString("a"), " - ", json.getString("a").length);
+
   assert(json.getString("a") == "A");
   assert(json.getString("b") == "B");
 
@@ -179,8 +186,8 @@ unittest {
   assert(list.getStringAt(1) != "a");
 
   auto map = ["A": Json("a"), "B": Json("b")];
-  assert(map.getString("A") == "a");  
-  assert(map.getString("B") != "a");  
+  assert(map.getString("A") == "a");
+  assert(map.getString("B") != "a");
 }
 // #endregion get
 

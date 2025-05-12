@@ -35,14 +35,20 @@ bool isNull(Json json, string[] path) {
 
 bool isNull(Json value, bool strict = true) {
   if (!strict) {
+    if (value.isNull) {
+      return true;
+    }
+
     if (value.isString) {
       auto val = value.getString.toLower;
       return (val == "null") || (val == "none") || (val == "nil") ||
         (val == "undefined") || (val == "empty") || (val == "void");
     }
+
     if (value.isInteger) {
       return value.get!int == 0;
     }
+    
     if (value.isDouble) {
       return value.get!double == 0.0;
     }

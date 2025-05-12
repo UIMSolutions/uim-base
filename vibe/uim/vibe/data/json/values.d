@@ -125,7 +125,11 @@ Json setValues(Json json, string[] keys, Json value) {
   return json;
 }
 
-Json setValue(Json json, string[] path, Json value) {
+Json setValue(T)(Json json, string[] path, T value) {
+  return setValue(json, path, Json(value));
+}
+
+Json setValue(T:Json)(Json json, string[] path, T value) {
   if (path.length == 0) {
     return json;
   }
@@ -143,7 +147,11 @@ Json setValue(Json json, string[] path, Json value) {
   return json;
 }
 
-Json setValue(Json json, string key, Json value) {
+Json setValue(T)(Json json, string key, T value) {
+  return json.setValue(key, Json(value));
+}
+
+Json setValue(T:Json)(Json json, string key, T value) {
   if (json.isObject) {
     json[key] = value;
   }
@@ -152,10 +160,15 @@ Json setValue(Json json, string key, Json value) {
 
 unittest {
   auto json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": "h"}]}`);
-  assert(json.setValue("a", Json("A"))["a"] == Json("A"));
-  assert(json.setValues(["a", "b"], Json("B"))["a"] == Json("B"));
-  assert(json.setValues(["a", "b"], Json("B"))["b"] == Json("B"));
-  assert(json.setValues(["a", "b"], Json("B"))["c"] == Json("C"));
+
+  json = json.setValue("a", Json("A"));
+  assert(json["a"] == Json("A"));
+
+  json = json.setValues(["a", "b"], Json("B"));
+  assert(json["a"] == Json("B"));
+
+  json = json.setValues(["c"], Json("C"));
+  assert(json["c"] == Json("C"));
 }
 // #endregion set
 
@@ -176,8 +189,14 @@ Json mergeValue(Json json, string key, Json value) {
 
 unittest {
   auto json = Json.emptyObject;
-  assert(json.mergeValue("a", Json("A"))["a"] == Json("A"));
-  assert(json.mergeValue("b", Json("B"))["b"] == Json("B"));
-  assert(json.mergeValue("c", Json("C"))["c"] == Json("C"));
+
+  json = json.mergeValue("a", Json("A"));
+  assert(json["a"] == Json("A"));
+  
+  json = json.mergeValue("b", Json("B"));
+  assert(json["b"] == Json("B"));
+  
+  json = json.mergeValue("c", Json("C"));
+  assert(json["c"] == Json("C"));
 }
 // #region merge

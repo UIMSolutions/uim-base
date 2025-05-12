@@ -117,10 +117,10 @@ Json toJson(UUID id, size_t versionNumber) {
 
 unittest {
   auto id = randomUUID;
-  assert(toJson(id, 0).getString("id") == id.toString);
-  assert("versionNumber" in toJson(id, 0));
-  assert(toJson(id, 1)["id"].get!string == id.toString);
-  assert(toJson(id, 1)["versionNumber"].get!size_t == 1);
+  auto json = toJson(id, 1);
+  assert(json.getString("id") == id.toString && json.getInteger("versionNumber") == 1);
+  assert(json["id"].get!string == id.toString);
+  assert(json["versionNumber"].get!size_t == 1);
 }
 // #endregion
 

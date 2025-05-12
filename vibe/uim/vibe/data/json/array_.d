@@ -84,23 +84,28 @@ unittest {
 // #region get
 mixin(GetJsonValue!("Json[]", "Array", "null"));
 
-Json[] getArray(Json json, Json[] defaultValue = null) {
+Json[] getArray(Json json) {
   return json.isArray
-    ? json.get!(Json[]) : defaultValue;
+    ? json.get!(Json[]) : null;
 }
 
 unittest {
-  Json json = Json(true);
-  assert(json.getArray);
-
-  json = Json.emptyArray;
   auto a = Json.emptyArray;
   a ~= 1; a ~= 2;
+  assert(a.length == 2);
+  assert(a.getIntegerAt(0) == 1 && a.getIntegerAt(1) == 2);
+  assert(a.getIntegerAt(0) != 2 && a.getIntegerAt(1) != 1);
+
   auto b = Json.emptyArray;
   b ~= 1; b ~= 2; b ~= 3;
-  
-  json ~= a;
-  json ~= b;
+  assert(b.length == 3);
+  assert(b.getIntegerAt(0) == 1 && b.getIntegerAt(1) == 2);
+  assert(b.getIntegerAt(2) == 3 && b.getIntegerAt(0) != 2);
+
+  Json json = Json.emptyArray;
+  json = [a, b];
+  assert(json.length == 2);
+
   assert(json.getArrayAt(0).length == 2);
   assert(json.getArrayAt(1).length != 2);
 

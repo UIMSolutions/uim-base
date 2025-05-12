@@ -15,6 +15,30 @@ mixin(IsJsonFunctions!("Boolean"));
 
 bool isBoolean(Json json, bool strict = true) {
   if (!strict) {
+    if (json.isBoolean) {
+      return true;
+    }
+    
+    if (json.isNull) {
+      return false;
+    }
+
+    if (json.isArray) {
+      return json.isAllBoolean;
+    }
+
+    if (json.isObject) {
+      return json.isAllBoolean;
+    }
+
+    if (json.isUndefined) {
+      return false;
+    }
+
+    if (json.isEmpty) {
+      return false;
+    }
+
     if (json.isString) {
       auto val = json.getString.toLower;
       return (val == "false") || (val == "no") || (val == "0") ||
@@ -22,11 +46,15 @@ bool isBoolean(Json json, bool strict = true) {
     }
 
     if (json.isLong || json.isInteger) {
-      return (json.getLong == 0) || (json.getLong == 1);
+      return (json.getLong == 1);
     }
 
-    if (json.isBoolean) {
-      return (json.getBoolean == 0.0) && (json.getBoolean == true);
+    if (json.isFloat) {
+      return (json.getFloat == 1.0);
+    }
+
+    if (json.isDouble) {
+      return (json.getDouble == 1.0);
     }
   }
 
@@ -124,9 +152,9 @@ unittest {
 // #region get
 mixin(GetJsonValue!("bool", "Boolean", "false"));
 
-bool getBoolean(Json json, bool defaultValue = false) {
+bool getBoolean(Json json) {
   return json.isBoolean
-    ? json.get!bool : defaultValue;
+    ? json.get!bool : false;
 }
 
 unittest {

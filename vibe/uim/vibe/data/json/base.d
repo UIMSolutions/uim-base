@@ -432,7 +432,8 @@ unittest {
   Json json = Json.emptyObject;
   json["a"] = "hallo";
   assert(json["a"].get!string == "hallo");
-  json = json.set(["a": "world"]);
+  json = json.setValue("a", "world");
+  writeln(json["a"].get!string);
   assert(json["a"].get!string == "world");
 }
 
@@ -453,21 +454,6 @@ Json toJsonObject(string[string] map, string[] excludeKeys = null) {
 }
 
 // #region get
-// #region json
-Json getJson(Json[string] map, string key, Json defaultValue = Json(null)) {
-  return map.get(key, defaultValue);
-}
-
-Json getJson(Json[] values, size_t index, Json defaultValue = Json(null)) {
-  return values.length > index
-    ? values[index] : defaultValue;
-}
-
-Json getJson(Json value, string key, Json defaultValue = Json(null)) {
-  return value.isObject && value.hasKey(key)
-    ? value[key] : defaultValue;
-}
-// #endregion json
 
 // #region map
 Json[string] getMap(Json[string] map, string key, Json[string] defaultValue = null) {
@@ -536,37 +522,37 @@ Json set(V : Json)(Json json, string key, V value) {
 
 unittest {
   auto json = Json.emptyObject;
-  json.set("a", "A");
-  json.set("b", "B").set("c", "C");
-  assert(json.hasAllKeys(["a", "b", "c"]));
+  json = json.set("a", "A").set("b", "B").set("c", "C");
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
+
+  writeln(json.toString);
+  assert(json.hasAllKeys(["a", "b", "c"]));
 
   json = Json.emptyObject;
-  json.set("a", Json("A"));
-  json.set("b", Json("B")).set("c", Json("C"));
+  json = json.set("a", Json("A")).set("b", Json("B")).set("c", Json("C"));
   assert(json.hasAllKeys(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 
-  json.set(["a", "b", "c"], "x");
+  json = json.set(["a", "b", "c"], "x");
   assert(json["a"] == Json("x") && json["b"] == Json("x") && json["c"] == Json("x"));
 
   json = Json.emptyObject;
-  json.set(["a", "b", "c"], Json("x"));
+  json = json.set(["a", "b", "c"], Json("x"));
   assert(json.hasAllKeys(["a", "b", "c"]));
   assert(json["a"] == Json("x") && json["b"] == Json("x") && json["c"] == Json("x"));
 
   json = Json.emptyObject;
-  json.set(["a": "A", "b": "B", "c": "C"]);
+  json = json.set(["a": "A", "b": "B", "c": "C"]);
   assert(json.hasAllKeys(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 
   json = Json.emptyObject;
-  json.set(["a": Json("A"), "b": Json("B"), "c": Json("C")]);
+  json = json.set(["a": Json("A"), "b": Json("B"), "c": Json("C")]);
   assert(json.hasAllKeys(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 
-  auto newJson = Json.emptyObject;
-  newJson.set(json);
+  json = Json.emptyObject;
+  json = json.set(json);
   assert(json.hasAllKeys(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 }
@@ -585,6 +571,7 @@ Json merge(Json json, Json map) {
   foreach (key, value; map.byKeyValue) {
     json = json.merge(key, value);
   }
+
   return json;
 }
 
@@ -611,8 +598,9 @@ Json merge(V)(Json json, string key, V value) {
     return json;
   }
 
-  if (!json.hasKey(key))
+  if (!json.hasKey(key)) {
     json[key] = value.toJson;
+  }
 
   return json;
 }
@@ -622,14 +610,16 @@ Json merge(V : Json)(Json json, string key, V value) {
     return json;
   }
 
-  if (!json.hasKey(key))
+  if (!json.hasKey(key)) {
     json[key] = value;
+  }
 
   return json;
 }
 
 // TODO
-/* unittest {
+unittest {
+/* 
   auto json = Json.emptyObject;
   json.merge("a", "A");
   json.merge("b", "B").merge("c", "C");
@@ -664,8 +654,9 @@ Json merge(V : Json)(Json json, string key, V value) {
   newJson.merge(json);
   assert(json.hasAllKeys(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
+ */ 
 }
- */ // #endregion merge
+// #endregion merge
 
 Json match(K)(Json[K] matchValues, K key, Json defaultValue = Json(null)) {
   return key in matchValues

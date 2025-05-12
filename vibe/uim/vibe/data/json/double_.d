@@ -73,9 +73,9 @@ unittest { // Json[string]
 // #region get
 mixin(GetJsonValue!("double", "Double", "0.0"));
 
-double getDouble(Json json, double defaultValue = 0.0) {
+double getDouble(Json json) {
   return json.isDouble
-    ? json.get!double : defaultValue;
+    ? json.get!double : 0.0;
 }
 
 unittest {

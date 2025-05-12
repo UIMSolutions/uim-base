@@ -172,9 +172,9 @@ unittest { // Json[string]
 // #region get
 mixin(GetJsonValue!("long", "Long", "0"));
 
-long getLong(Json json, long defaultValue = 0) {
+long getLong(Json json) {
   return json.isLong
-    ? json.get!long : defaultValue;
+    ? json.get!long : 0;
 }
 
 unittest {

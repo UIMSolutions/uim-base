@@ -131,14 +131,15 @@ template GetJsonValue(string type, string typeName, string defaultValue) {
 // #endregion Json[]
 
 {type} get{typeName}At(Json json, size_t index, {type} defaultValue = {defaultValue}) {
-  return json.isArray 
-    ? get{typeName}At(json.get!(Json[]), index, defaultValue)
+  return json.isArray && index < json.length
+    ? json[index].get{typeName}
     : defaultValue;
 }
 
 {type} get{typeName}(Json json, string key, {type} defaultValue = {defaultValue}) {
-  return json.isObject
-    ? get{typeName}(json.get!(Json[string]), key, defaultValue)
+  debug writeln("get{typeName}:\t", json.toString, " - ", key, " - ", defaultValue);
+  return json.isObject && key in json
+    ? json[key].get{typeName}
     : defaultValue;
 }
   `.replace("{type}", type).replace("{typeName}", typeName).replace("{defaultValue}", defaultValue);
