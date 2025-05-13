@@ -22,9 +22,11 @@ bool isScalar(Json value, bool strict = true) {
     if (value.isInteger) {
       return true;
     }
-    if (value.isFloat) {
+
+    if (value.isDouble) {
       return true;
     }
+    
     if (value.isString) {
       return true;
     }

@@ -13,7 +13,6 @@ public {
   import uim.vibe.data.json.convert;
   import uim.vibe.data.json.double_;
   import uim.vibe.data.json.empty;
-  import uim.vibe.data.json.float_;
   import uim.vibe.data.json.integer;
   import uim.vibe.data.json.integral;
   import uim.vibe.data.json.json;
@@ -23,6 +22,7 @@ public {
   import uim.vibe.data.json.null_;
   import uim.vibe.data.json.object_;
   import uim.vibe.data.json.scalar;
+  import uim.vibe.data.json.set;
   import uim.vibe.data.json.string_;
   import uim.vibe.data.json.undefined;
   import uim.vibe.data.json.values;

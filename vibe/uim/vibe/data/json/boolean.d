@@ -46,15 +46,11 @@ bool isBoolean(Json json, bool strict = true) {
     }
 
     if (json.isLong || json.isInteger) {
-      return (json.getLong == 1);
-    }
-
-    if (json.isFloat) {
-      return (json.getFloat == 1.0);
+      return (json.getLong == 0) || (json.getLong == 1);
     }
 
     if (json.isDouble) {
-      return (json.getDouble == 1.0);
+      return (json.getDouble == 0.0) || (json.getDouble == 1.0);
     }
   }
 
@@ -137,7 +133,7 @@ unittest {
   assert(!["A": a, "C": c].isAllBoolean);
 
   assert(map2.isAllBoolean(["A", "B"]));
-  assert(map2.isAllBoolean(["A", "C"]));
+  assert(!map2.isAllBoolean(["A", "C"]));
 
   assert(["A": a, "B": b].isAnyBoolean);
   assert(["A": a, "C": c].isAnyBoolean);
@@ -145,7 +141,7 @@ unittest {
 
   assert(map2.isAnyBoolean(["A", "B"]));
   assert(map2.isAnyBoolean(["A", "C"]));
-  assert(map2.isAnyBoolean(["C", "D"]));
+  assert(!map2.isAnyBoolean(["C", "D"]));
 }
 // #endregion is
 

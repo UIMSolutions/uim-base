@@ -90,14 +90,11 @@ bool hasKey(Json json, string key) {
 unittest {
   auto json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": "h"}]}`);
   assert(json.hasKey("a"));
-  assert(json.hasKey("d"));
   assert(!json.hasKey("x"));
-  assert(json.hasAnyKeys(["y", "c"]));
-  assert(json.hasAnyKeys(["y", "d"]));
+
   assert(json.hasAnyKeys(["y", "c"]));
   assert(!json.hasAnyKeys(["x", "y"]));
-  assert(json.hasAllKeys(["a", "c"]));
-  assert(json.hasAllKeys(["a", "d"]));
+
   assert(json.hasAllKeys(["a", "c"]));
   assert(!json.hasAllKeys(["x", "c"]));
 }

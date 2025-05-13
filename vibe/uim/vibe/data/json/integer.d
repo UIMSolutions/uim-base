@@ -218,7 +218,7 @@ mixin(GetJsonValue!("int", "Integer", "0"));
 
 int getInteger(Json json) {
   return json.isInteger
-    ? json.get!int : defaultValue;
+    ? json.get!int : 0;
 }
 
 unittest {

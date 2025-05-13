@@ -173,14 +173,14 @@ unittest {
 // #endregion set
 
 // #region merge
-Json[string] mergeValue(Json[string] map, string key, Json value) {
+Json[string] merge(Json[string] map, string key, Json value) {
   if (key !in map) {
     map[key] = value;
   }
   return map;
 }
 
-Json mergeValue(Json json, string key, Json value) {
+Json merge(Json json, string key, Json value) {
   if (json.isObject && key !in json) {
     json[key] = value;
   }
@@ -190,13 +190,13 @@ Json mergeValue(Json json, string key, Json value) {
 unittest {
   auto json = Json.emptyObject;
 
-  json = json.mergeValue("a", Json("A"));
+  json = json.merge("a", Json("A"));
   assert(json["a"] == Json("A"));
   
-  json = json.mergeValue("b", Json("B"));
+  json = json.merge("b", Json("B"));
   assert(json["b"] == Json("B"));
   
-  json = json.mergeValue("c", Json("C"));
+  json = json.merge("c", Json("C"));
   assert(json["c"] == Json("C"));
 }
 // #region merge

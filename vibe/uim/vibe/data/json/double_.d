@@ -58,7 +58,7 @@ unittest { // Json[string]
   assert(!["A": a, "C": c].isAllDouble);
 
   assert(map.isAllDouble(["A", "B"]));
-  assert(map.isAllDouble(["A", "C"]));
+  assert(!map.isAllDouble(["A", "C"]));
 
   assert(["A": a, "B": b].isAnyDouble);
   assert(["A": a, "C": c].isAnyDouble);
@@ -66,7 +66,7 @@ unittest { // Json[string]
 
   assert(map.isAnyDouble(["A", "B"]));
   assert(map.isAnyDouble(["A", "C"]));
-  assert(map.isAnyDouble(["C", "D"]));
+  assert(!map.isAnyDouble(["C", "D"]));
 }
 // #endregion is
 
