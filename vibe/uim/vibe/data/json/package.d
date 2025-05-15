@@ -13,17 +13,20 @@ public {
   import uim.vibe.data.json.convert;
   import uim.vibe.data.json.double_;
   import uim.vibe.data.json.empty;
+  import uim.vibe.data.json.get;
   import uim.vibe.data.json.integer;
   import uim.vibe.data.json.integral;
   import uim.vibe.data.json.json;
   import uim.vibe.data.json.keys;
   import uim.vibe.data.json.long_;
   import uim.vibe.data.json.map;
+  import uim.vibe.data.json.merge;
   import uim.vibe.data.json.null_;
   import uim.vibe.data.json.object_;
   import uim.vibe.data.json.scalar;
   import uim.vibe.data.json.set;
   import uim.vibe.data.json.string_;
   import uim.vibe.data.json.undefined;
+  import uim.vibe.data.json.update;
   import uim.vibe.data.json.values;
 }

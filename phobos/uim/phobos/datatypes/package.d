@@ -5,6 +5,9 @@
 *****************************************************************************************************************/
 module uim.phobos.datatypes;
 
+import uim.phobos;
+@safe:
+
 // #region hasFunctions
 string HasFunctions(string plural, string singular, string keyType) {
   return `

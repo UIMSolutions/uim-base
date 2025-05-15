@@ -88,7 +88,7 @@ Json[string] set(V:Json, T)(V[string] items, string key, T value) if (!is(V == T
 Json[string] set(Json[string] items, string key, Json value) {
   auto results = items.dup;
   if (key !in results) {
-    items[key] = value;
+    results[key] = value;
   }
   return results;
 }
@@ -238,11 +238,6 @@ unittest {
 
   json = Json.emptyObject;
   json = json.set(["a": Json("A"), "b": Json("B"), "c": Json("C")]);
-  assert(json.hasAllKeys(["a", "b", "c"]));
-  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
-
-  json = Json.emptyObject;
-  json = json.set(json);
   assert(json.hasAllKeys(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 }

@@ -5,8 +5,9 @@
 *****************************************************************************************************************/
 module uim.vibe.data.json.array_;
 
-import uim.vibe;
+mixin(Version!("test_uim_vibe"));
 
+import uim.vibe;
 @safe:
 
 // #region is

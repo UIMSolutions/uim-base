@@ -36,11 +36,7 @@ bool hasAnyKeys(Json[string] items, string[] keys) {
 }
 
 bool hasKey(Json[string] items, string key) {
-  if (items.length == 0)
-    return false;
-
-  return key in items
-    ? true : hasKey(items.getValues, key);
+  return key in items ? true : false;
 }
 // #endregion Json[string]
 
