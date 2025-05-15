@@ -17,12 +17,12 @@ dependency "dyaml" version="~>0.10.0"
 dependency "unit-threaded" version="*"
 
 // uim dependencies
-dependency "uim-base:vibe" version="*"
-dependency "uim-base:phobos" version="*"
-dependency "uim-base:core" version="*"
-dependency "uim-base:exceptions" version="*"
-dependency "uim-base:errors" version="*"
-dependency "uim-base:oop" version="*"
+dependency "*:vibe" version="*"
+dependency "*:phobos" version="*"
+dependency "*:core" version="*"
+dependency "*:exceptions" version="*"
+dependency "*:errors" version="*"
+dependency "*:oop" version="*"
 
 sourceFiles "./source/uim/base.d"
 configuration "test_all" {

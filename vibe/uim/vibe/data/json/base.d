@@ -8,6 +8,7 @@ module uim.vibe.data.json.base;
 mixin(Version!("test_uim_vibe"));
 
 import uim.vibe;
+import uim.vibe.data.json.set;
 @safe:
 
 // #region Null
@@ -429,11 +430,12 @@ Json updateKey(Json origin, string[string] additional) {
 }
 
 unittest {
+  import uim.vibe.data.json.set;
   Json json = Json.emptyObject;
   json["a"] = "hallo";
   assert(json["a"].get!string == "hallo");
 
-  json = json.set("a", "world");
+  json = set(json, "a", "world");
   assert(json["a"].get!string == "world");
 }
 
@@ -476,89 +478,6 @@ Json[string] getMap(Json value, Json[string] defaultValue = null) {
     ? value.get!(Json[string]) : defaultValue;
 }
 // #endregion map
-
-// #region set
-// #region Json
-Json set(Json json, Json map) {
-  if (!json.isObject || !map.isObject) {
-    return json;
-  }
-
-  map.byKeyValue.each!(kv => json.set(kv.key, kv.value));
-  return json;
-}
-
-Json set(T)(Json json, T[string] values) {
-  if (!json.isObject) {
-    return json;
-  }
-
-  values.each!((key, value) => json.set(key, value));
-  return json;
-}
-
-Json set(T)(Json json, string[] keys, T value) {
-  if (!json.isObject) {
-    return json;
-  }
-
-  keys.each!(key => json.set(key, value));
-  return json;
-}
-
-// 
-Json set(V)(Json json, string key, V value) {
-  return json.isObject
-    ? set(json, value.toJson) : json;
-}
-
-Json set(V : Json)(Json json, string key, V value) {
-  if (!json.isObject) {
-    return json;
-  }
-
-  json[key] = value;
-  return json;
-}
-// #endregion Json
-
-unittest {
-  auto json = Json.emptyObject;
-  json = json.set("a", "A").set("b", "B").set("c", "C");
-  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
-
-  writeln(json.toString);
-  assert(json.hasAllKeys(["a", "b", "c"]));
-
-  json = Json.emptyObject;
-  json = json.set("a", Json("A")).set("b", Json("B")).set("c", Json("C"));
-  assert(json.hasAllKeys(["a", "b", "c"]));
-  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
-
-  json = json.set(["a", "b", "c"], "x");
-  assert(json["a"] == Json("x") && json["b"] == Json("x") && json["c"] == Json("x"));
-
-  json = Json.emptyObject;
-  json = json.set(["a", "b", "c"], Json("x"));
-  assert(json.hasAllKeys(["a", "b", "c"]));
-  assert(json["a"] == Json("x") && json["b"] == Json("x") && json["c"] == Json("x"));
-
-  json = Json.emptyObject;
-  json = json.set(["a": "A", "b": "B", "c": "C"]);
-  assert(json.hasAllKeys(["a", "b", "c"]));
-  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
-
-  json = Json.emptyObject;
-  json = json.set(["a": Json("A"), "b": Json("B"), "c": Json("C")]);
-  assert(json.hasAllKeys(["a", "b", "c"]));
-  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
-
-  json = Json.emptyObject;
-  json = json.set(json);
-  assert(json.hasAllKeys(["a", "b", "c"]));
-  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
-}
-// #endregion set
 
 // #region merge
 Json merge(Json json, Json map) {
@@ -758,37 +677,6 @@ unittest {
 
 alias JMAP = Json[string];
 
-// #region set
-// Returns a new map with updated values for existing keys
-ref set(K : string, V:
-  Json, T:
-  Json)(ref V[K] items, T[K] others, K[] keys = null) if (is(typeof(T) == Json)) {
-  keys.length == 0
-    ? others
-    .each!((key, value) => items.set(key, value)) : keys
-    .filter!(key => key in others)
-    .each!(key => items.set(key, others[key]));
-
-  return items;
-}
-
-/*   // Returns a new map with updated values for existing keys
-  ref set(K : string, V:Json, T)(ref V[K] items, T[K] others, K[] keys = null) if (!is(typeof(T) == Json)) {
-    keys.length == 0
-      ? others
-      .each!((key, value) => items.set(key, value)) : keys
-      .filter!(key => key in others)
-      .each!(key => items.set(key, others[key]));
-
-    return items;
-  }
-
-  // returns a updated map with new values
-  ref set(K : string, V:
-    Json, T)(ref V[K] items, K[] keys, V value) {
-    keys.each!(key => items.set(key, value));
-    return items;
-  } */
 
 // returns a updated map with new values
 // returns a updated map with new values
@@ -1063,122 +951,10 @@ Json[string] onlyKeys(Json[string] values, string[] keys, string excludeKey) {
 }
  */
 
-// #region set
-// #region Json[string]
-Json[string] set(T)(Json[string] items, T[string] values) {
-  auto results = items.dup;
-  values.each!((key, value) => results = results.set(key, value));
-  return results;
-}
 
-Json[string] set(T)(Json[string] items, string[] keys, T value) {
-  auto results = items.dup;
-  keys.each!(key => results = results.set(key, value));
-  return results;
-}
-
-Json[string] setPath(T)(Json[string] items, string[] path, T value) {
-  Json[string] result = items.dup;
-  if (path.length == 0) {
-    return result;
-  }
-
-  if (path.length == 1) {
-    return set(result, path[0], value);
-  }
-
-  if (!result.hasKey(path[0])) {
-    results[path[0]] = Json.emptyObject;
-  }
-
-  result[path[0]] = set(result[path[0]], path[1 .. $], value);
-
-  return result;
-}
-
-Json[string] set(V)(Json[string] items, string key, V value) {
-  return set(items, key, value.toJson);
-}
-
-Json[string] set(V : Json)(Json[string] items, string key, V value) {
-  auto results = items.dup;
-  if (key !in results) {
-    items[key] = value;
-  }
-  return results;
-}
-
-unittest {
-  Json[string] items = null;
-  items = items.set("a", Json("A"));
-  assert(items["a"] == Json("A"));
-  items = items.set("b", Json("B")).set("c", Json("C"));
-  assert(items.hasAllKeys(["a", "b", "c"]));
-  assert(items["a"] == Json("A") && items["b"] == Json("B") && items["c"] == Json("C"));
-
-  items = null;
-  items = items.set("a", "A");
-  assert(items["a"] == Json("A"));
-  items = items.set("b", "B").set("c", "C");
-  assert(items.hasAllKeys(["a", "b", "c"]));
-  assert(items["a"] == Json("A") && items["b"] == Json("B") && items["c"] == Json("C"));
-
-  items = null;
-  items = items.set("a", "A");
-  assert(items["a"] == Json("A"));
-  items = items.set(["b", "c"], "X");
-  assert(items.hasAllKeys(["a", "b", "c"]));
-  assert(items["a"] == Json("A") && items["b"] == Json("X") && items["c"] == Json("X"));
-
-  items = null;
-  items = items.set("a", "A");
-  assert(items["a"] == Json("A"));
-  items = items.set(["b": "B", "c": "C"]);
-  assert(items.hasAllKeys(["a", "b", "c"]));
-  assert(items["a"] == Json("A") && items["b"] == Json("B") && items["c"] == Json("C"));
-}
-// #endregion Json[string]
-
-unittest {
-  auto json = Json.emptyObject;
-  json = json.set("a", Json("A"));
-  assert(json["a"] == Json("A"));
-  json = json.set("b", Json("B")).set("c", Json("C"));
-  assert(json.hasAllKeys(["a", "b", "c"]));
-  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
-
-  json = Json.emptyObject;
-  json = json.set("a", "A");
-  assert(json["a"] == Json("A"));
-  json = json.set("b", "B").set("c", "C");
-  assert(json.hasAllKeys(["a", "b", "c"]));
-  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
-
-  json = Json.emptyObject;
-  json["a"] = Json.emptyObject;
-  json["a"]["aa"] = "xx";
-  json = json.set(["a", "aa"], "A");
-  assert(json["a"]["aa"] == Json("A"));
-
-  json = Json.emptyObject;
-  json = json.set("a", "A");
-  assert(json["a"] == Json("A"));
-  json = json.set(["b", "c"], "X");
-  assert(json.hasAllKeys(["a", "b", "c"]));
-  assert(json["a"] == Json("A") && json["b"] == Json("X") && json["c"] == Json("X"));
-
-  json = Json.emptyObject;
-  json = json.set("a", "A");
-  assert(json["a"] == Json("A"));
-  json = json.set(["b": "B", "c": "C"]);
-  assert(json.hasAllKeys(["a", "b", "c"]));
-  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
-}
-// #region Json
-// #endregion set
 
 // #region update
-// #endregion Json[string]
+// #region Json[string]
 Json[string] updateValues(T)(Json[string] items, T[string] values) {
   auto results = items.dup;
   values.byKeyValue.each!(kv => results = results.updateValue(kv.key, kv.value));
@@ -1455,31 +1231,3 @@ unittest {
   assert(json["a"] == Json("A") && json["b"] == Json("X") && json["c"] == Json("X"));
 }
 // #endregion merge
-
-/* Json[string] setNull(Json[string] items, string[] path) {
-  return set(items, path, Json(null));
-}
-
-Json[string] setNull(Json[string] items, string key) {
-  return set(items, key, Json(null));
-}
-
-Json[string] setPath(T)(Json[string] items, string[] path, V value) {
-  set(items, path, Json(value));
-  return items;
-}
-
-Json[string] setPath(Json[string] items, string[] path, Json value) {
-  if (path.length == 0) {
-    return items;
-  }
-
-  if (path.length == 1) {
-    return set(items, path[0], value);
-  } */
-
-/*   Json json = Json.emptyObject;
-  return set(items, path[0], json.set(path[1..$], value));                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ;
- */
-/*   return null;
-} */

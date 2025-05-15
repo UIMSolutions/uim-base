@@ -17,12 +17,12 @@
 		"uim-phobos": {"path":"phobos"},
 		"uim-vibe": {"path":"vibe"},
 		"unit-threaded": "2.2.3",
-		"vibe-container": "1.6.1",
-		"vibe-core": "2.10.1",
+		"vibe-container": "1.6.2",
+		"vibe-core": "2.11.0",
 		"vibe-d": "0.10.2",
 		"vibe-http": "1.2.2",
 		"vibe-inet": "1.1.2",
-		"vibe-serialization": "1.1.0",
+		"vibe-serialization": "1.1.1",
 		"vibe-stream": "1.1.1"
 	}
 }
