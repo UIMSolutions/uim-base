@@ -18,21 +18,3 @@ public {
   import uim.core.datatypes.uuid;
 }
 
-T rotate(T)(T value, T[] values, bool directionRight = true) {
-  if (values.length > 0)
-    foreach (index, val; values) {
-      if (val == value) {
-        return directionRight
-          ? (index == values.length - 1
-              ? values[0] : values[index + 1]
-          ) : (index == 0
-              ? values[$ - 1] : values[index - 1]
-          );
-      }
-    }
-  return value;
-}
-
-unittest {
-  assert(1.rotate([2, 3, 1, 4, 5]) == 4);
-}

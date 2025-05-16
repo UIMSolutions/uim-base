@@ -1,6 +1,7 @@
 module uim.phobos.strings.strings;
 
 import uim.phobos;
+
 @safe:
 
 // #region lower
@@ -57,6 +58,7 @@ string[] md5(string[] values) {
 
 string md5(string value) {
   import std.digest.md;
+
   return toHexString(md5Of(value).dup);
 }
 
@@ -139,7 +141,7 @@ string underscore(string text) {
   return delimit(std.string.replace(text, "-", "_"), "_");
 }
 
-unittest { 
+unittest {
   writeln(underscore("camel-cased-input-string") == "camel_cased_input_string");
   writeln(underscore("  camel-cased-input-string  ") == "  camel_cased_input_string  ");
 
@@ -306,3 +308,82 @@ string pluralize(string singularWord) {
   return singularWord; */
   return null;
 }
+
+// #region endsWith
+bool allEndsWith(string[] values, string text) {
+  if (text.length == 0 || values.length == 0) {
+    return false;
+  }
+
+  return values.all!(value => endsWith(value, text));
+}
+
+bool anyEndsWith(string[] values, string text) {
+  if (text.length == 0 || values.length == 0) {
+    return false;
+  }
+
+  return values.any!(value => endsWith(value, text));
+}
+
+unittest { // bool anyEndsWith(string[] values, string text)
+  assert(anyEndsWith(["hello", "world"], "ld") == true, "Test case 1 failed");
+  assert(anyEndsWith(["hello", "world"], "lo") == true, "Test case 2 failed");
+  assert(anyEndsWith(["hello", "world"], "z") == false, "Test case 3 failed");
+  assert(anyEndsWith(["hello", "world"], "") == false, "Test case 4 failed");
+  assert(anyEndsWith([], "ld") == false, "Test case 5 failed");
+  assert(anyEndsWith(["hello", "world"], "world") == true, "Test case 6 failed");
+  assert(anyEndsWith(["hello", "world"], "abc") == false, "Test case 7 failed");
+}
+
+unittest { // bool allEndsWith(string[] values, string text)
+  assert(allEndsWith(["hello", "world"], "ld") == false, "Test case 1 failed");
+  assert(allEndsWith(["hello", "world"], "lo") == false, "Test case 2 failed");
+  assert(allEndsWith(["hello", "world"], "z") == false, "Test case 3 failed");
+  assert(allEndsWith(["hello", "world"], "") == false, "Test case 4 failed");
+  assert(allEndsWith([], "ld") == false, "Test case 5 failed");
+  assert(allEndsWith(["world", "wild"], "ld") == true, "Test case 6 failed");
+  assert(allEndsWith(["hello", "world"], "world") == false, "Test case 7 failed");
+}
+// #endregion endsWith
+
+// #region startsWith
+bool allStartsWith(string[] values, string text) {
+  if (text.length == 0 || values.length == 0) {
+    return false;
+  }
+
+  return values.all!(value => startsWith(value, text));
+}
+
+bool anyStartsWith(string[] values, string text) {
+  if (text.length == 0 || values.length == 0) {
+    return false;
+  }
+
+  return values.any!(value => startsWith(value, text));
+}
+
+unittest { // bool anyStartsWith(string[] values, string text)
+  assert(anyStartsWith(["hello", "world"], "he") == true, "Test case 1 failed");
+  assert(anyStartsWith(["hello", "world"], "wo") == true, "Test case 2 failed");
+  assert(anyStartsWith(["hello", "world"], "z") == false, "Test case 3 failed");
+  assert(anyStartsWith(["hello", "world"], "") == false, "Test case 4 failed");
+  assert(anyStartsWith([], "he") == false, "Test case 5 failed");
+  assert(anyStartsWith(["hello", "world"], "hello") == true, "Test case 6 failed");
+  assert(anyStartsWith(["hello", "world"], "world") == true, "Test case 7 failed");
+  writeln("All anyStartsWith tests passed!");
+}
+
+unittest { // bool allStartsWith(string[] values, string text)
+  assert(allStartsWith(["hello", "world"], "he") == false, "Test case 1 failed");
+  assert(allStartsWith(["hello", "world"], "wo") == false, "Test case 2 failed");
+  assert(allStartsWith(["hello", "world"], "z") == false, "Test case 3 failed");
+  assert(allStartsWith(["hello", "world"], "") == false, "Test case 4 failed");
+  assert(allStartsWith([], "he") == false, "Test case 5 failed");
+  assert(allStartsWith(["hello", "hi"], "h") == true, "Test case 6 failed");
+  assert(!allStartsWith(["world", "wild"], "wi") == true, "Test case 7 failed");
+
+  writeln("All allStartsWith tests passed!");
+}
+// #endregion startsWith

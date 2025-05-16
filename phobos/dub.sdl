@@ -17,7 +17,20 @@ dependency "colored" version="~>0.0.31"
 sourcePaths "."
 importPaths "."
 
-// configuration "default" {}
+configuration "default" {
+	// sourcePaths "src"
+	// importPaths "src"
+	// targetType "library"
+	// preBuildCommands "$DUB run --compiler=$$DC unit-threaded -c gen_ut_main -- -f bin/ut.d -d $DUB"
+}
+
+configuration "unittest" {
+    dependency "unit-threaded" version="*"
+    // mainSourceFile "bin/ut.d"
+    // excludedSourceFiles "src/main.d"
+    // targetType "executable"
+    // preBuildCommands "$DUB run --compiler=$$DC unit-threaded -c gen_ut_main -- -f bin/ut.d -d $DUB"
+}
 
 configuration "test_uim_phobos" {
 	versions "test_uim_phobos"

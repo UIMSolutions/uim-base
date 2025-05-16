@@ -578,50 +578,51 @@ unittest { // T[] unshift(T)(ref T[] values, T newValue)
 }
 
 unittest { // T[] unshift(T)(ref T[] values, T[] newValues)
-    // Test 1: Unshift multiple elements into a non-empty array
-    int[] values = [3, 4, 5];
-    auto result = unshift(values, [1, 2]);
-    assert(result.equal([1, 2, 3, 4, 5]), "Test 1 failed: Expected [1, 2, 3, 4, 5]");
-    assert(values.equal([1, 2, 3, 4, 5]), "Test 1 failed: Expected [1, 2, 3, 4, 5]");
+  // Test 1: Unshift multiple elements into a non-empty array
+  int[] values = [3, 4, 5];
+  auto result = unshift(values, [1, 2]);
+  assert(result.equal([1, 2, 3, 4, 5]), "Test 1 failed: Expected [1, 2, 3, 4, 5]");
+  assert(values.equal([1, 2, 3, 4, 5]), "Test 1 failed: Expected [1, 2, 3, 4, 5]");
 
-    // Test 2: Unshift multiple elements into an empty array
-    int[] emptyValues;
-    result = unshift(emptyValues, [10, 20]);
-    assert(result.equal([10, 20]), "Test 2 failed: Expected [10, 20]");
-    assert(emptyValues.equal([10, 20]), "Test 2 failed: Expected [10, 20]");
+  // Test 2: Unshift multiple elements into an empty array
+  int[] emptyValues;
+  result = unshift(emptyValues, [10, 20]);
+  assert(result.equal([10, 20]), "Test 2 failed: Expected [10, 20]");
+  assert(emptyValues.equal([10, 20]), "Test 2 failed: Expected [10, 20]");
 
-    // Test 3: Unshift multiple elements into a null array
-    int[] nullValues = null;
-    result = unshift(nullValues, [7, 8, 9]);
-    assert(result.equal([7, 8, 9]), "Test 3 failed: Expected [7, 8, 9]");
-    assert(nullValues.equal([7, 8, 9]), "Test 3 failed: Expected [7, 8, 9]");
+  // Test 3: Unshift multiple elements into a null array
+  int[] nullValues = null;
+  result = unshift(nullValues, [7, 8, 9]);
+  assert(result.equal([7, 8, 9]), "Test 3 failed: Expected [7, 8, 9]");
+  assert(nullValues.equal([7, 8, 9]), "Test 3 failed: Expected [7, 8, 9]");
 
-    // Test 4: Unshift null into a non-empty array
-    int[] nonEmptyValues = [4, 5, 6];
-    result = unshift(nonEmptyValues, null);
-    assert(result.equal([4, 5, 6]), "Test 4 failed: Expected [4, 5, 6]");
-    assert(nonEmptyValues.equal([4, 5, 6]), "Test 4 failed: Expected [4, 5, 6]");
+  // Test 4: Unshift null into a non-empty array
+  int[] nonEmptyValues = [4, 5, 6];
+  result = unshift(nonEmptyValues, null);
+  assert(result.equal([4, 5, 6]), "Test 4 failed: Expected [4, 5, 6]");
+  assert(nonEmptyValues.equal([4, 5, 6]), "Test 4 failed: Expected [4, 5, 6]");
 
-    // Test 5: Unshift multiple strings into a string array
-    string[] strValues = ["c", "d"];
-    auto strResult = unshift(strValues, ["a", "b"]);
-    assert(strResult.equal(["a", "b", "c", "d"]), "Test 5 failed: Expected ['a', 'b', 'c', 'd']");
-    assert(strValues.equal(["a", "b", "c", "d"]), "Test 5 failed: Expected ['a', 'b', 'c', 'd']");
+  // Test 5: Unshift multiple strings into a string array
+  string[] strValues = ["c", "d"];
+  auto strResult = unshift(strValues, ["a", "b"]);
+  assert(strResult.equal(["a", "b", "c", "d"]), "Test 5 failed: Expected ['a', 'b', 'c', 'd']");
+  assert(strValues.equal(["a", "b", "c", "d"]), "Test 5 failed: Expected ['a', 'b', 'c', 'd']");
 
-    // Test 6: Unshift multiple elements into an array of structs
-    struct Point {
-        int x, y;
-    }
-    Point[] points = [Point(3, 4), Point(5, 6)];
-    auto pointResult = unshift(points, [Point(1, 2)]);
-    assert(pointResult.equal([Point(1, 2), Point(3, 4), Point(5, 6)]), "Test 6 failed: Expected [Point(1, 2), Point(3, 4), Point(5, 6)]");
-    assert(points.equal([Point(1, 2), Point(3, 4), Point(5, 6)]), "Test 6 failed: Expected [Point(1, 2), Point(3, 4), Point(5, 6)]");
+  // Test 6: Unshift multiple elements into an array of structs
+  struct Point {
+    int x, y;
+  }
 
-    // Test 7: Unshift multiple boolean values
-    bool[] boolValues = [false, true];
-    auto boolResult = unshift(boolValues, [true, false]);
-    assert(boolResult.equal([true, false, false, true]), "Test 7 failed: Expected [true, false, false, true]");
-    assert(boolValues.equal([true, false, false, true]), "Test 7 failed: Expected [true, false, false, true]");
+  Point[] points = [Point(3, 4), Point(5, 6)];
+  auto pointResult = unshift(points, [Point(1, 2)]);
+  assert(pointResult.equal([Point(1, 2), Point(3, 4), Point(5, 6)]), "Test 6 failed: Expected [Point(1, 2), Point(3, 4), Point(5, 6)]");
+  assert(points.equal([Point(1, 2), Point(3, 4), Point(5, 6)]), "Test 6 failed: Expected [Point(1, 2), Point(3, 4), Point(5, 6)]");
+
+  // Test 7: Unshift multiple boolean values
+  bool[] boolValues = [false, true];
+  auto boolResult = unshift(boolValues, [true, false]);
+  assert(boolResult.equal([true, false, false, true]), "Test 7 failed: Expected [true, false, false, true]");
+  assert(boolValues.equal([true, false, false, true]), "Test 7 failed: Expected [true, false, false, true]");
 }
 // #endregion unshift
 
@@ -649,7 +650,7 @@ T[] unshiftLast(T)(ref T[] values, T[] newValues) {
   if (values is null) {
     values = newValues.dup;
   } else {
-    values = values~newValues;
+    values = values ~ newValues;
   }
   return values;
 }
@@ -678,93 +679,93 @@ T[] unshiftLast(T)(ref T[] values, T newValue) {
 }
 
 unittest { // T[] unshiftLast(T)(ref T[] values, T newValue)
-    // Test 1: UnshiftLast into a non-empty array
-    int[] values = [2, 3, 4];
-    auto result = unshiftLast(values, 5);
-    assert(result.equal([2, 3, 4, 5]), "Test 1 failed: Expected [2, 3, 4, 5]");
-    assert(values.equal([2, 3, 4, 5]), "Test 1 failed: Expected [2, 3, 4, 5]");
+  // Test 1: UnshiftLast into a non-empty array
+  int[] values = [2, 3, 4];
+  auto result = unshiftLast(values, 5);
+  assert(result.equal([2, 3, 4, 5]), "Test 1 failed: Expected [2, 3, 4, 5]");
+  assert(values.equal([2, 3, 4, 5]), "Test 1 failed: Expected [2, 3, 4, 5]");
 
-    // Test 2: UnshiftLast into an empty array
-    int[] emptyValues;
-    result = unshiftLast(emptyValues, 42);
-    assert(result.equal([42]), "Test 2 failed: Expected [42]");
-    assert(emptyValues.equal([42]), "Test 2 failed: Expected [42]");
+  // Test 2: UnshiftLast into an empty array
+  int[] emptyValues;
+  result = unshiftLast(emptyValues, 42);
+  assert(result.equal([42]), "Test 2 failed: Expected [42]");
+  assert(emptyValues.equal([42]), "Test 2 failed: Expected [42]");
 
-    // Test 3: UnshiftLast into a null array
-    int[] nullValues = null;
-    result = unshiftLast(nullValues, 99);
-    assert(result.equal([99]), "Test 3 failed: Expected [99]");
-    assert(nullValues.equal([99]), "Test 3 failed: Expected [99]");
+  // Test 3: UnshiftLast into a null array
+  int[] nullValues = null;
+  result = unshiftLast(nullValues, 99);
+  assert(result.equal([99]), "Test 3 failed: Expected [99]");
+  assert(nullValues.equal([99]), "Test 3 failed: Expected [99]");
 
-    // Test 4: UnshiftLast a string into a string array
-    string[] strValues = ["a", "b"];
-    auto strResult = unshiftLast(strValues, "c");
-    assert(strResult.equal(["a", "b", "c"]), "Test 4 failed: Expected ['a', 'b', 'c']");
-    assert(strValues.equal(["a", "b", "c"]), "Test 4 failed: Expected ['a', 'b', 'c']");
+  // Test 4: UnshiftLast a string into a string array
+  string[] strValues = ["a", "b"];
+  auto strResult = unshiftLast(strValues, "c");
+  assert(strResult.equal(["a", "b", "c"]), "Test 4 failed: Expected ['a', 'b', 'c']");
+  assert(strValues.equal(["a", "b", "c"]), "Test 4 failed: Expected ['a', 'b', 'c']");
 
-    // Test 5: UnshiftLast into an array of structs
-    struct Point {
-        int x, y;
-    }
+  // Test 5: UnshiftLast into an array of structs
+  struct Point {
+    int x, y;
+  }
 
-    Point[] points = [Point(1, 2), Point(3, 4)];
-    auto pointResult = unshiftLast(points, Point(5, 6));
-    assert(pointResult.equal([Point(1, 2), Point(3, 4), Point(5, 6)]), "Test 5 failed: Expected [Point(1, 2), Point(3, 4), Point(5, 6)]");
-    assert(points.equal([Point(1, 2), Point(3, 4), Point(5, 6)]), "Test 5 failed: Expected [Point(1, 2), Point(3, 4), Point(5, 6)]");
+  Point[] points = [Point(1, 2), Point(3, 4)];
+  auto pointResult = unshiftLast(points, Point(5, 6));
+  assert(pointResult.equal([Point(1, 2), Point(3, 4), Point(5, 6)]), "Test 5 failed: Expected [Point(1, 2), Point(3, 4), Point(5, 6)]");
+  assert(points.equal([Point(1, 2), Point(3, 4), Point(5, 6)]), "Test 5 failed: Expected [Point(1, 2), Point(3, 4), Point(5, 6)]");
 
-    // Test 6: UnshiftLast a boolean value
-    bool[] boolValues = [true, false];
-    auto boolResult = unshiftLast(boolValues, true);
-    assert(boolResult.equal([true, false, true]), "Test 6 failed: Expected [true, false, true]");
-    assert(boolValues.equal([true, false, true]), "Test 6 failed: Expected [true, false, true]");
+  // Test 6: UnshiftLast a boolean value
+  bool[] boolValues = [true, false];
+  auto boolResult = unshiftLast(boolValues, true);
+  assert(boolResult.equal([true, false, true]), "Test 6 failed: Expected [true, false, true]");
+  assert(boolValues.equal([true, false, true]), "Test 6 failed: Expected [true, false, true]");
 }
 
 unittest { // T[] unshiftLast(T)(ref T[] values, T[] newValues)
-    // Test 1: UnshiftLast multiple elements into a non-empty array
-    int[] values = [2, 3, 4];
-    auto result = unshiftLast(values, [5, 6]);
-    assert(result.equal([2, 3, 4, 5, 6]), "Test 1 failed: Expected [2, 3, 4, 5, 6]");
-    assert(values.equal([2, 3, 4, 5, 6]), "Test 1 failed: Expected [2, 3, 4, 5, 6]");
+  // Test 1: UnshiftLast multiple elements into a non-empty array
+  int[] values = [2, 3, 4];
+  auto result = unshiftLast(values, [5, 6]);
+  assert(result.equal([2, 3, 4, 5, 6]), "Test 1 failed: Expected [2, 3, 4, 5, 6]");
+  assert(values.equal([2, 3, 4, 5, 6]), "Test 1 failed: Expected [2, 3, 4, 5, 6]");
 
-    // Test 2: UnshiftLast multiple elements into an empty array
-    int[] emptyValues;
-    result = unshiftLast(emptyValues, [42, 43]);
-    assert(result.equal([42, 43]), "Test 2 failed: Expected [42, 43]");
-    assert(emptyValues.equal([42, 43]), "Test 2 failed: Expected [42, 43]");
+  // Test 2: UnshiftLast multiple elements into an empty array
+  int[] emptyValues;
+  result = unshiftLast(emptyValues, [42, 43]);
+  assert(result.equal([42, 43]), "Test 2 failed: Expected [42, 43]");
+  assert(emptyValues.equal([42, 43]), "Test 2 failed: Expected [42, 43]");
 
-    // Test 3: UnshiftLast multiple elements into a null array
-    int[] nullValues = null;
-    result = unshiftLast(nullValues, [99, 100]);
-    assert(result.equal([99, 100]), "Test 3 failed: Expected [99, 100]");
-    assert(nullValues.equal([99, 100]), "Test 3 failed: Expected [99, 100]");
+  // Test 3: UnshiftLast multiple elements into a null array
+  int[] nullValues = null;
+  result = unshiftLast(nullValues, [99, 100]);
+  assert(result.equal([99, 100]), "Test 3 failed: Expected [99, 100]");
+  assert(nullValues.equal([99, 100]), "Test 3 failed: Expected [99, 100]");
 
-    // Test 4: UnshiftLast null into a non-empty array
-    int[] nonEmptyValues = [4, 5, 6];
-    result = unshiftLast(nonEmptyValues, null);
-    assert(result.equal([4, 5, 6]), "Test 4 failed: Expected [4, 5, 6]");
-    assert(nonEmptyValues.equal([4, 5, 6]), "Test 4 failed: Expected [4, 5, 6]");
+  // Test 4: UnshiftLast null into a non-empty array
+  int[] nonEmptyValues = [4, 5, 6];
+  result = unshiftLast(nonEmptyValues, null);
+  assert(result.equal([4, 5, 6]), "Test 4 failed: Expected [4, 5, 6]");
+  assert(nonEmptyValues.equal([4, 5, 6]), "Test 4 failed: Expected [4, 5, 6]");
 
-    // Test 5: UnshiftLast multiple strings into a string array
-    string[] strValues = ["a", "b"];
-    auto strResult = unshiftLast(strValues, ["c", "d"]);
-    assert(strResult.equal(["a", "b", "c", "d"]), "Test 5 failed: Expected ['a', 'b', 'c', 'd']");
-    assert(strValues.equal(["a", "b", "c", "d"]), "Test 5 failed: Expected ['a', 'b', 'c', 'd']");
+  // Test 5: UnshiftLast multiple strings into a string array
+  string[] strValues = ["a", "b"];
+  auto strResult = unshiftLast(strValues, ["c", "d"]);
+  assert(strResult.equal(["a", "b", "c", "d"]), "Test 5 failed: Expected ['a', 'b', 'c', 'd']");
+  assert(strValues.equal(["a", "b", "c", "d"]), "Test 5 failed: Expected ['a', 'b', 'c', 'd']");
 
-    // Test 6: UnshiftLast multiple elements into an array of structs
-    struct Point {
-        int x, y;
-    }
+  // Test 6: UnshiftLast multiple elements into an array of structs
+  struct Point {
+    int x, y;
+  }
 
-    Point[] points = [Point(1, 2), Point(3, 4)];
-    auto pointResult = unshiftLast(points, [Point(5, 6), Point(7, 8)]);
-    assert(pointResult.equal([Point(1, 2), Point(3, 4), Point(5, 6), Point(7, 8)]), "Test 6 failed: Expected [Point(1, 2), Point(3, 4), Point(5, 6), Point(7, 8)]");
-    assert(points.equal([Point(1, 2), Point(3, 4), Point(5, 6), Point(7, 8)]), "Test 6 failed: Expected [Point(1, 2), Point(3, 4), Point(5, 6), Point(7, 8)]");
+  Point[] points = [Point(1, 2), Point(3, 4)];
+  auto pointResult = unshiftLast(points, [Point(5, 6), Point(7, 8)]);
+  assert(pointResult.equal([Point(1, 2), Point(3, 4), Point(5, 6), Point(7, 8)]), "Test 6 failed: Expected [Point(1, 2), Point(3, 4), Point(5, 6), Point(7, 8)]");
+  assert(points.equal([Point(1, 2), Point(3, 4), Point(5, 6), Point(7, 8)]), "Test 6 failed: Expected [Point(1, 2), Point(3, 4), Point(5, 6), Point(7, 8)]");
 
-    // Test 7: UnshiftLast multiple boolean values
-    bool[] boolValues = [true, false];
-    auto boolResult = unshiftLast(boolValues, [false, true]);
-    assert(boolResult.equal([true, false, false, true]), "Test 7 failed: Expected [true, false, false, true]");
-    assert(boolValues.equal([true, false, false, true]), "Test 7 failed: Expected [true, false, false, true]");
+  // Test 7: UnshiftLast multiple boolean values
+  bool[] boolValues = [true, false];
+  auto boolResult = unshiftLast(boolValues, [false, true]);
+  assert(boolResult.equal([true, false, false, true]), "Test 7 failed: Expected [true, false, false, true]");
+  assert(boolValues.equal([true, false, false, true]), "Test 7 failed: Expected [true, false, false, true]");
 }
 // #region unshiftLast
 
@@ -799,39 +800,345 @@ T[] slice(T)(T[] values, size_t start, size_t end) {
   }
   return values[start .. end];
 }
+
 unittest { // T[] slice(T)(T[] values, size_t start, size_t end)
-    // Test 1: Slice within bounds
-    int[] values = [1, 2, 3, 4, 5];
-    auto result = slice(values, 1, 4);
-    assert(result.equal([2, 3, 4]), "Test 1 failed: Expected [2, 3, 4]");
+  // Test 1: Slice within bounds
+  int[] values = [1, 2, 3, 4, 5];
+  auto result = slice(values, 1, 4);
+  assert(result.equal([2, 3, 4]), "Test 1 failed: Expected [2, 3, 4]");
 
-    // Test 2: Slice with start index equal to array length
-    result = slice(values, 5, 7);
-    assert(result.length == 0, "Test 2 failed: Expected []");
+  // Test 2: Slice with start index equal to array length
+  result = slice(values, 5, 7);
+  assert(result.length == 0, "Test 2 failed: Expected []");
 
-    // Test 3: Slice with end index greater than array length
-    result = slice(values, 3, 10);
-    assert(result.equal([4, 5]), "Test 3 failed: Expected [4, 5]");
+  // Test 3: Slice with end index greater than array length
+  result = slice(values, 3, 10);
+  assert(result.equal([4, 5]), "Test 3 failed: Expected [4, 5]");
 
-    // Test 4: Slice with start index greater than end index
-    result = slice(values, 4, 2);
-    assert(result.length == 0, "Test 4 failed: Expected []");
+  // Test 4: Slice with start index greater than end index
+  result = slice(values, 4, 2);
+  assert(result.length == 0, "Test 4 failed: Expected []");
 
-    // Test 5: Slice with start index out of bounds
-    result = slice(values, 10, 12);
-    assert(result.length == 0, "Test 5 failed: Expected []");
+  // Test 5: Slice with start index out of bounds
+  result = slice(values, 10, 12);
+  assert(result.length == 0, "Test 5 failed: Expected []");
 
-    // Test 6: Slice the entire array
-    result = slice(values, 0, values.length);
-    assert(result.equal([1, 2, 3, 4, 5]), "Test 6 failed: Expected [1, 2, 3, 4, 5]");
+  // Test 6: Slice the entire array
+  result = slice(values, 0, values.length);
+  assert(result.equal([1, 2, 3, 4, 5]), "Test 6 failed: Expected [1, 2, 3, 4, 5]");
 
-    // Test 7: Slice an empty array
-    int[] emptyValues;
-    result = slice(emptyValues, 0, 2);
-    assert(result.length == 0, "Test 7 failed: Expected []");
+  // Test 7: Slice an empty array
+  int[] emptyValues;
+  result = slice(emptyValues, 0, 2);
+  assert(result.length == 0, "Test 7 failed: Expected []");
 
-    // Test 8: Slice with negative indices (not applicable in D, but ensure no crash)
-    result = slice(values, cast(size_t)-1, cast(size_t)-3);
-    assert(result.length == 0, "Test 8 failed: Expected []");
+  // Test 8: Slice with negative indices (not applicable in D, but ensure no crash)
+  result = slice(values, cast(size_t)-1, cast(size_t)-3);
+  assert(result.length == 0, "Test 8 failed: Expected []");
 }
 // #endregion slice
+
+// #region concatPrefix
+V[string] concatPrefix(V)(V[string] map, string[string] prefixMap) {
+  prefixMap.byKeyValue.each!(kv => map.concatPrefix(kv.key, kv.value));
+  return map;
+}
+
+V[string] concatPrefix(V)(V[string] map, string prefix) {
+  return map.concatPrefix(map.keys, prefix);
+}
+
+V[string] concatPrefix(V)(V[string] map, string[] keys, string prefix) {
+  keys.each!(key => map.concatPrefix(key, prefix));
+  return map;
+}
+
+V[string] concatPrefix(V)(V[string] map, string key, string prefix) {
+  if (key !in map) {
+    return map;
+  }
+
+  V value = map[key];
+  map.remove(key);
+  map[prefix ~ key] = value;
+
+  return map;
+}
+
+unittest {
+  auto test = ["a": "b", "c": "d", "e": "f"];
+  test.concatPrefix("a", "xx");
+  assert("xxa" in test);
+
+  test = ["a": "b", "c": "d", "e": "f"];
+  test.concatPrefix(["a", "c"], "xx");
+  assert("xxa" in test && "xxc" in test && "e" in test);
+
+  test = ["a": "b", "c": "d", "e": "f"];
+  test.concatPrefix(["a": "xx", "c": "yy"]);
+  assert("xxa" in test && "yyc" in test && "e" in test);
+
+  test = ["a": "b", "c": "d", "e": "f"];
+  test.concatPrefix("xx");
+  assert("xxa" in test && "xxc" in test && "xxe" in test);
+}
+// #endregion concatPrefix
+
+// #region concatPostfix
+V[string] concatPostfix(V)(V[string] map, string[string] postfixMap) {
+  postfixMap.byKeyValue.each!(kv => map.concatPostfix(kv.key, kv.value));
+  return map;
+}
+
+V[string] concatPostfix(V)(V[string] map, string postfix) {
+  return map.concatPostfix(map.keys, postfix);
+}
+
+V[string] concatPostfix(V)(V[string] map, string[] keys, string postfix) {
+  keys.each!(key => map.concatPostfix(key, postfix));
+  return map;
+}
+
+V[string] concatPostfix(V)(V[string] map, string key, string postfix) {
+  if (key !in map) {
+    return map;
+  }
+
+  V value = map[key];
+  map.remove(key);
+  map[key ~ postfix] = value;
+
+  return map;
+}
+
+unittest {
+  auto test = ["a": "b", "c": "d", "e": "f"];
+  test.concatPostfix("a", "xx");
+  assert("axx" in test);
+
+  test = ["a": "b", "c": "d", "e": "f"];
+  test.concatPostfix(["a", "c"], "xx");
+  assert("axx" in test && "cxx" in test && "e" in test);
+
+  test = ["a": "b", "c": "d", "e": "f"];
+  test.concatPostfix(["a": "xx", "c": "yy"]);
+  assert("axx" in test && "cyy" in test && "e" in test);
+
+  test = ["a": "b", "c": "d", "e": "f"];
+  test.concatPostfix("xx");
+  assert("axx" in test && "cxx" in test && "exx" in test);
+}
+// #endregion concatPostfix
+
+// #region rotate
+/**
+ * Rotates an element in an array to the next or previous position.
+ *
+ * This function rotates the specified value in the array to the next or
+ * previous position based on the direction specified. If the value is not
+ * found in the array, it returns the original value.
+ *
+ * Params:
+ *     value = The value to be rotated.
+ *     values = The array containing the values.
+ *     directionRight = If true, rotates to the right; otherwise, rotates to the left.
+ *
+ * Returns:
+ *     The rotated value.
+ */
+T rotate(T)(T value, T[] values, bool directionRight = true) {
+  if (values.length == 0) {
+    return value;
+  }
+
+  foreach (index, val; values) {
+    if (val == value) {
+      return directionRight
+        ? rotateRight(value, values)
+        : rotateLeft(value,values);
+    }
+  }
+  return value;
+}
+
+T rotateLeft(T)(T value, T[] values) {
+  if (values.length == 0) {
+    return value;
+  }
+
+  foreach (index, val; values) {
+    if (val == value) { // Found value
+      return index == 0 // Index on first element
+      ? values[$ - 1] // Wrap around to last element
+         : values[index - 1]; // Move to previous element
+    }
+  }
+  return value;
+}
+
+T rotateRight(T)(T value, T[] values) {
+  if (values.length == 0) {
+    return value;
+  }
+
+  foreach (index, val; values) {
+    if (val == value) { // Found value
+      return index == values.length - 1 // Index on last element
+      ? values[0] // Wrap around to first element
+         : values[index + 1]; // Move to next element
+    }
+  }
+  return value;
+}
+
+unittest { // T rotateRight(T)(T value, T[] values)
+    // Test 1: Rotate right in a non-empty array
+    int[] values = [1, 2, 3, 4, 5];
+    auto result = rotateRight(3, values);
+    assert(result == 4, "Test 1 failed: Expected 4");
+
+    // Test 2: Rotate right on the last element
+    result = rotateRight(5, values);
+    assert(result == 1, "Test 2 failed: Expected 1");
+
+    // Test 3: Rotate right on the first element
+    result = rotateRight(1, values);
+    assert(result == 2, "Test 3 failed: Expected 2");
+
+    // Test 4: Rotate right on an element not in the array
+    result = rotateRight(6, values);
+    assert(result == 6, "Test 4 failed: Expected 6");
+
+    // Test 5: Rotate right on an empty array
+    int[] emptyValues;
+    result = rotateRight(1, emptyValues);
+    assert(result == 1, "Test 5 failed: Expected 1");
+
+    // Test 6: Rotate right on a single-element array
+    int[] singleValue = [42];
+    result = rotateRight(42, singleValue);
+    assert(result == 42, "Test 6 failed: Expected 42");
+
+    // Test 7: Rotate right on a string array
+    string[] strValues = ["a", "b", "c"];
+    auto strResult = rotateRight("b", strValues);
+    assert(strResult == "c", "Test 7 failed: Expected 'c'");
+
+    // Test 8: Rotate right on the last string element
+    strResult = rotateRight("c", strValues);
+    assert(strResult == "a", "Test 8 failed: Expected 'a'");
+
+    // Test 9: Rotate right on an element not in the string array
+    strResult = rotateRight("z", strValues);
+    assert(strResult == "z", "Test 9 failed: Expected 'z'");
+}
+
+unittest { // T rotateLeft(T)(T value, T[] values)
+    // Test 1: Rotate left in a non-empty array
+    int[] values = [1, 2, 3, 4, 5];
+    auto result = rotateLeft(3, values);
+    assert(result == 2, "Test 1 failed: Expected 2");
+
+    // Test 2: Rotate left on the first element
+    result = rotateLeft(1, values);
+    assert(result == 5, "Test 2 failed: Expected 5");
+
+    // Test 3: Rotate left on the last element
+    result = rotateLeft(5, values);
+    assert(result == 4, "Test 3 failed: Expected 4");
+
+    // Test 4: Rotate left on an element not in the array
+    result = rotateLeft(6, values);
+    assert(result == 6, "Test 4 failed: Expected 6");
+
+    // Test 5: Rotate left on an empty array
+    int[] emptyValues;
+    result = rotateLeft(1, emptyValues);
+    assert(result == 1, "Test 5 failed: Expected 1");
+
+    // Test 6: Rotate left on a single-element array
+    int[] singleValue = [42];
+    result = rotateLeft(42, singleValue);
+    assert(result == 42, "Test 6 failed: Expected 42");
+
+    // Test 7: Rotate left on a string array
+    string[] strValues = ["a", "b", "c"];
+    auto strResult = rotateLeft("b", strValues);
+    assert(strResult == "a", "Test 7 failed: Expected 'a'");
+
+    // Test 8: Rotate left on the first string element
+    strResult = rotateLeft("a", strValues);
+    assert(strResult == "c", "Test 8 failed: Expected 'c'");
+
+    // Test 9: Rotate left on an element not in the string array
+    strResult = rotateLeft("z", strValues);
+    assert(strResult == "z", "Test 9 failed: Expected 'z'");
+}
+// #endregion rotate
+
+// #region toogle
+bool toggle(bool value) {
+  return !value;
+}
+
+T toggle(T)(T value, T firstValue, T secondValue) {
+  if (value == firstValue) {
+    return secondValue;
+  }
+  if (value == secondValue) {
+    return firstValue;
+  }
+  return value;
+}
+
+unittest { // T toggle(T)(T value, T firstValue, T secondValue) 
+    // Test 1: Toggle between two integers
+    assert(toggle(1, 1, 2) == 2, "Test 1 failed: Expected 2");
+    assert(toggle(2, 1, 2) == 1, "Test 1 failed: Expected 1");
+    assert(toggle(3, 1, 2) == 3, "Test 1 failed: Expected 3");
+
+    // Test 2: Toggle between two strings
+    assert(toggle("Yes", "Yes", "No") == "No", "Test 2 failed: Expected 'No'");
+    assert(toggle("No", "Yes", "No") == "Yes", "Test 2 failed: Expected 'Yes'");
+    assert(toggle("Maybe", "Yes", "No") == "Maybe", "Test 2 failed: Expected 'Maybe'");
+
+    // Test 3: Toggle between two characters
+    assert(toggle('a', 'a', 'b') == 'b', "Test 3 failed: Expected 'b'");
+    assert(toggle('b', 'a', 'b') == 'a', "Test 3 failed: Expected 'a'");
+    assert(toggle('c', 'a', 'b') == 'c', "Test 3 failed: Expected 'c'");
+
+    // Test 4: Toggle between two booleans
+    assert(toggle(true, true, false) == false, "Test 4 failed: Expected false");
+    assert(toggle(false, true, false) == true, "Test 4 failed: Expected true");
+
+    // Test 5: Toggle with identical first and second values
+    assert(toggle(1, 1, 1) == 1, "Test 5 failed: Expected 1");
+
+    // Test 6: Toggle with null values
+    string nullValue = null;
+    assert(toggle(nullValue, null, "NonNull") == "NonNull", "Test 6 failed: Expected 'NonNull'");
+    assert(toggle("NonNull", null, "NonNull") == null, "Test 6 failed: Expected null");
+
+    // Test 7: Toggle with floating-point numbers
+    assert(toggle(1.5, 1.5, 2.5) == 2.5, "Test 7 failed: Expected 2.5");
+    assert(toggle(2.5, 1.5, 2.5) == 1.5, "Test 7 failed: Expected 1.5");
+    assert(toggle(3.5, 1.5, 2.5) == 3.5, "Test 7 failed: Expected 3.5");
+}
+
+unittest { // bool toggle(bool value)
+    // Test 1: Toggle a true value
+    bool value = true;
+    auto result = toggle(value);
+    assert(result == false, "Test 1 failed: Expected false");
+
+    // Test 2: Toggle a false value
+    value = false;
+    result = toggle(value);
+    assert(result == true, "Test 2 failed: Expected true");
+
+    // Test 3: Toggle multiple times
+    value = true;
+    result = toggle(toggle(value));
+    assert(result == value, "Test 3 failed: Expected the original value after two toggles");
+}
+// #endregion toogle
