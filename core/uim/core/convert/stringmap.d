@@ -1,11 +1,9 @@
 module uim.core.convert.stringmap;
 
+mixin(Version!("test_uim_core"));
+
 import uim.core;
-
 @safe:
-
-// toStringMap
-
 
 STRINGAA toStringMap(Json[string] map) {
   STRINGAA stringMap;

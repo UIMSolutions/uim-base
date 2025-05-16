@@ -5,24 +5,8 @@
 *****************************************************************************************************************/
 module uim.core.convert.string_;
 
+mixin(Version!("test_uim_core"));
+
 import uim.core;
 @safe:
 
-version (test_uim_core) {
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
-
-
-
-unittest {
-/*   auto jsons = [Json(1), Json("x"), Json(true)];
-  auto txt = jsons.toString;
-  assert(jsons.toStrings == ["1", "\"x\"", "true"]);
-
-  assert(jsons.toJson.toStrings == ["1", "\"x\"", "true"]);
-
-  writeln("UUIDs:", [randomUUID, randomUUID, randomUUID].toStrings);
-  writeln("UUIDs:", [randomUUID, randomUUID, randomUUID].toString); */
-}

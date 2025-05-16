@@ -54,34 +54,7 @@ size_t size(T)(T[] values) {
 }
 // #region size
 
-// #region duplicates
-size_t[T] countValues(T)(in T[] someValues) {
-  size_t[T] results;
-  someValues
-    .each!(value => results[value] = value in results ? results[value] + 1 : 1);
 
-  return results;
-}
-
-size_t countValue(T)(T[] someValues, T value) {
-  return someValues.filter!(v => v == value).count;
-}
-
-unittest {
-  /*   assert([1, 2, 3].countValue(2) == 1);
-  assert([1, 2, 3].countValue(4) == 0);
-  assert([1, 2, 2].countValue(2) == 2);
-
-  assert(countValues([1]) == [1: 1uL]);
-  assert(countValues([1, 1]) == [1: 2uL]);
-  assert(countValues([1, 2]) == [1: 1uL, 2: 1uL]);
-
-  assert(countValues(1) == [1: 1uL]);
-  assert(countValues(1, 1) == [1: 2uL]);
-  assert(countValues(1, 2) == [1: 1U, 2: 1UL]);
- */
-}
-// #endregion countDuplicate
 
 // #region firstPosition
 size_t firstPosition(T)(in T[] baseArray, in T value) {
@@ -113,27 +86,7 @@ unittest {
 }
 // #endregion filterValues
 
-// #region positions
-// Creates a associative array with all positions of a value in an array
-/// Creates a associative array with all positions of a value in an array
-size_t[][T] positions(T)(T[] baseArray) {
-  size_t[][T] results;
-  foreach (pos, v; baseArray) {
-    if (v in results) {
-      results[v] ~= pos;
-    } else {
-      results[v] = [pos];
-    }
-  }
-  return results;
-}
 
-unittest {
-  assert(positions([1]) == [1: [0UL]]);
-  assert(positions([1, 1]) == [1: [0UL, 1UL]]);
-  assert(positions([1, 2]) == [1: [0UL], 2: [1UL]]);
-}
-// #endregion positions
 
 // #region add
 // adding items into array
@@ -176,34 +129,7 @@ unittest {
 }
 // #endregion add
 
-// #region change positions
-// Changes positions
-void change(T)(auto ref T left, ref T right) {
-  T buffer = left;
-  left = right;
-  right = buffer;
-}
 
-/// Changs positions of elements in array
-T[] change(T)(T[] items, size_t posLeft, size_t posRight) {
-  if ((posLeft == posRight) || (posLeft >= items.length) || (posRight >= items.length) || (
-      posLeft == posRight)) {
-    return items;
-  }
-
-  T buffer = items[posLeft];
-  items[posLeft] = items[posRight];
-  items[posRight] = buffer;
-  return items;
-}
-
-unittest {
-  assert(change([1, 2, 3, 4], 1, 2) == [1, 3, 2, 4]);
-  assert(change(["a", "b", "c", "d"], 3, 2) == ["a", "b", "d", "c"]);
-  assert(change(["a", "b", "c", "d"], 1, 1) == ["a", "b", "c", "d"]);
-  assert(change(["a", "b", "c", "d"], 1, 9) == ["a", "b", "c", "d"]);
-}
-// #endregion change positions
 
 // #region sub
 T[] sub(T)(T[] lhs, T rhs, bool multiple = false) {
@@ -305,28 +231,7 @@ unittest {
 
 // #endregion Searching
 
-// #region shift
-// #region shiftFirst
-T shiftFirst(T)(auto ref T[] values) {
-  // IN Check
-  if (values.isEmpty) {
-    return null;
-  }
 
-  T value = values[0];
-  values = values.length > 1
-    ? values[1 .. $] : null;
-
-  return value;
-}
-///
-unittest {
-  string[] anArray = ["x", "y", "z"];
-  assert(anArray.shiftFirst == "x");
-  assert(anArray == ["y", "z"]);
-}
-// #endregion shiftFirst
-// #endregion shift
 
 T[] ifNull(T)(T[] values, T[] defaultValues) {
   return values.isNull ? defaultValues : values;
@@ -382,57 +287,7 @@ T[] intersect(T)(T[] left, T[] right) {
 }
 // #endregion intersect 
 
-// #region shift
-T shift(T)(auto ref T[] values) {
-  switch (values.length) {
-  case 0:
-    return Null!T;
-  case 1:
-    T value = values[0];
-    values = null;
-    return value;
-  default:
-    T value = values[0];
-    values = values[1 .. $].dup;
-    return value;
-  }
-}
 
-unittest {
-  string[] testValues;
-  assert(testValues.shift is null);
-
-  testValues = ["a"];
-  assert(testValues.length == 1);
-  assert(testValues.shift == "a");
-  assert(testValues.length == 0);
-
-  testValues = ["a", "b", "c"];
-  assert(testValues.length == 3);
-  assert(testValues.shift == "a");
-  assert(testValues.length == 2);
-}
-// #endregion shift
-
-// #region unshift
-T[] unshift(T)(auto ref T[] values, T[] newValues) {
-  values = newValues ~ values;
-  return values;
-}
-
-unittest {
-  string[] testValues = ["a", "b", "c"];
-  assert(testValues.unshift(["x"]).length == 4);
-
-  testValues = ["a", "b", "c"];
-  assert(testValues.unshift(["x", "y"]).length == 5);
-  assert(testValues.hasValue("x"));
-
-  testValues = ["a", "b", "c"];
-  assert(testValues.unshift(["x", "y"]).length == 5);
-  assert(testValues == ["x", "y", "a", "b", "c"]);
-}
-// #endregion unshift
 
 // Pop the element off the end of array
 // #region pop
@@ -467,22 +322,7 @@ unittest {
 }
 // #endregion pop
 
-T[] slice(T)(T[] values, int startPos, int length = 0) {
-  if (values.length == 0) {
-    return null;
-  }
 
-  if (startPos == 0) {
-    return values[0 .. (min(values.length, length))];
-  }
-
-  if (abs(startPos) > values.length) {
-    return null;
-  }
-
-  return startPos > 0
-    ? values[0 .. (min(values.length, length))] : values[(min(values.length, length)) .. $];
-}
 
 // #region filterValues
 T[] filterValues(T)(T[] values) {

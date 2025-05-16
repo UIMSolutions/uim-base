@@ -39,27 +39,11 @@ string toString(short value) {
   return to!string(value);
 }
 
-string toString(ushort value) {
-  return to!string(value);
-}
-
 string toString(int value) {
   return to!string(value);
 }
 
-string toString(uint value) {
-  return to!string(value);
-}
-
 string toString(long value) {
-  return to!string(value);
-}
-
-string toString(ulong value) {
-  return to!string(value);
-}
-
-string toString(float value) {
   return to!string(value);
 }
 

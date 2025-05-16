@@ -106,31 +106,99 @@ unittest {
   assert(["a": [1, 2, 3]].concatPostfixInValues([4]) == ["a": [1, 2, 3, 4]]);
 }
 
+// #region concatPrefix
 /// Concat rightValues to leftValues   
-V[string] concatPrefixInKeys(V)(auto ref V[string] leftValues, string preValue) { // right will overright left
-  V[string] results;
-  leftValues.byKeyValue
-    .each!(kv => results[preValue ~ kv.key] = kv.value);
+V[string] concatPrefix(V)(V[string] map, string[string] prefixMap) { 
+  prefixMap.byKeyValue.each!(kv => map.concatPrefix(kv.key, kv.value));
+  return map;
+}
 
-  return results;
+V[string] concatPrefix(V)(V[string] map, string prefix) { 
+  return map.concatPrefix(map.keys, prefix);
+}
+
+V[string] concatPrefix(V)(V[string] map, string[] keys, string prefix) { 
+  keys.each!(key => map.concatPrefix(key, prefix));
+  return map;
+}
+
+V[string] concatPrefix(V)(V[string] map, string key, string prefix) { 
+  if (key !in map) {
+    return map;
+  }
+
+  V value = map[key];
+  map.remove(key);
+  map[prefix~key] = value;
+
+  return map;
 }
 
 unittest {
-  auto test = ["a": "b"];
-  assert(test.concatPrefixInKeys(["abc"]) == ["abca": "b"]);
+  auto test = ["a": "b", "c": "d", "e": "f"];
+  test.concatPrefix("a", "xx");
+  assert("xxa" in test);
+
+  test = ["a": "b", "c": "d", "e": "f"];
+  test.concatPrefix(["a", "c"], "xx");
+  assert("xxa" in test && "xxc" in test && "e" in test);
+
+  test = ["a": "b", "c": "d", "e": "f"];
+  test.concatPrefix(["a":"xx", "c":"yy"]);
+  assert("xxa" in test && "yyc" in test && "e" in test);
+
+  test = ["a": "b", "c": "d", "e": "f"];
+  test.concatPrefix("xx");
+  assert("xxa" in test && "xxc" in test && "xxe" in test);
+}
+// #endregion concatPrefix
+
+// #region concatPostfix
+/// Concat rightValues to leftValues   
+V[string] concatPostfix(V)(V[string] map, string[string] postfixMap) { 
+  postfixMap.byKeyValue.each!(kv => map.concatPostfix(kv.key, kv.value));
+  return map;
 }
 
-/// Concat rightValues to leftValues   
-V[K] concatPostfixInKeys(V, K)(V[K] leftValues, V postValue) { // right will overright left
-  V[K] results;
-  foreach (k, v; leftValues)
-    results[k ~ postValue] = v;
-  return results;
+V[string] concatPostfix(V)(V[string] map, string postfix) { 
+  return map.concatPostfix(map.keys, postfix);
+}
+
+V[string] concatPostfix(V)(V[string] map, string[] keys, string postfix) { 
+  keys.each!(key => map.concatPostfix(key, postfix));
+  return map;
+}
+
+V[string] concatPostfix(V)(V[string] map, string key, string postfix) { 
+  if (key !in map) {
+    return map;
+  }
+
+  V value = map[key];
+  map.remove(key);
+  map[key~postfix] = value;
+
+  return map;
 }
 
 unittest {
-  assert(["a": "b"].concatPostfixInKeys(["abc"]) == ["aabc": "b"]);
+  auto test = ["a": "b", "c": "d", "e": "f"];
+  test.concatPostfix("a", "xx");
+  assert("axx" in test);
+
+  test = ["a": "b", "c": "d", "e": "f"];
+  test.concatPostfix(["a", "c"], "xx");
+  assert("axx" in test && "cxx" in test && "e" in test);
+
+  test = ["a": "b", "c": "d", "e": "f"];
+  test.concatPostfix(["a":"xx", "c":"yy"]);
+  assert("axx" in test && "cyy" in test && "e" in test);
+
+  test = ["a": "b", "c": "d", "e": "f"];
+  test.concatPostfix("xx");
+  assert("axx" in test && "cxx" in test && "xxe" in test);
 }
+// #endregion concatPostfix
 
 // #region toogle
 bool toggle(bool value) {

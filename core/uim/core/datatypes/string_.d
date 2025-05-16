@@ -107,7 +107,7 @@ bool contains(string text, string checkValue) {
     ? false : (text.indexOf(checkValue) >= 0);
 }
 
-unittest {
+unittest {<
   assert(["One Two Three"].containsAll("One"));
   assert(["One Two Three"].containsAll("One", "Two", "Three"));
   assert(!["One Two Three", "Eight Seven Six"].containsAll("One", "Four", "Six"));
