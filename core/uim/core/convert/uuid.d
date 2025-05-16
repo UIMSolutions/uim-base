@@ -26,23 +26,4 @@ unittest {
 }
 // #endregion toUUID
 
-// #region toJson
-Json toJson(string key, UUID value) {
-  auto json = Json.emptyObject;
-  json[key] = value.toJson;
-  return json;
-}
-
-Json toJson(UUID value) {
-  return value.isNull
-    ? Json(UUID().toString)
-    : Json(value.toString);
-}
-
-unittest {
-  auto id = randomUUID;
-  assert(id.toJson == Json(id.toString));
-
-  assert(id.toJson("id").getString("id") == id.toString);
-}
 // #endregion toJson

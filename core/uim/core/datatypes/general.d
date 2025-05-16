@@ -107,7 +107,7 @@ unittest {
 }
 
 /// Concat rightValues to leftValues   
-V[string] concatPrefixInKeys(V)(V[string] leftValues, string preValue) { // right will overright left
+V[string] concatPrefixInKeys(V)(auto ref V[string] leftValues, string preValue) { // right will overright left
   V[string] results;
   leftValues.byKeyValue
     .each!(kv => results[preValue ~ kv.key] = kv.value);
@@ -116,7 +116,8 @@ V[string] concatPrefixInKeys(V)(V[string] leftValues, string preValue) { // righ
 }
 
 unittest {
-  assert(["a": "b"].concatPrefixInKeys(["abc"]) == ["abca": "b"]);
+  auto test = ["a": "b"];
+  assert(test.concatPrefixInKeys(["abc"]) == ["abca": "b"]);
 }
 
 /// Concat rightValues to leftValues   

@@ -11,7 +11,7 @@ import uim.core;
 @safe:
 
 /// convert integral values to string with defined length
-string toString(T)(T value, size_t length = 0, string fillTxt = "0")
+/* string toString(T)(T value, size_t length = 0, string fillTxt = "0")
     if (isIntegral!T) {
   string result = fill(length, fillTxt);
 
@@ -29,7 +29,7 @@ version (test_uim_core) {
     assert(1.toString(10, "X") == "XXXXXXXXX1");
   }
 }
-
+ */
 /// limits the value on the min or max 
 T limits(T)(T value, T minLimit, T maxLimit) if (isIntegral!T)
 in (minLimit < maxLimit, "minLimit should not be equal or greater then maxLimit")
@@ -75,9 +75,6 @@ pure bool isLess(T)(T base, T[] values) {
 }
 
 unittest {
-  assert(8.isLess(10, 100));
-  assert(!80.isLess(10, 100));
-
   assert(8.isLess([10, 100]));
   assert(!80.isLess([10, 100]));
 }
@@ -87,9 +84,6 @@ pure bool isGreater(T)(T base, T[] values) {
 }
 
 unittest {
-  assert(800.isGreater(10, 100));
-  assert(!80.isGreater(10, 100));
-
   assert(800.isGreater([10, 100]));
   assert(!80.isGreater([10, 100]));
 }

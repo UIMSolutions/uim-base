@@ -23,6 +23,7 @@ public {
   import uim.vibe.data.json.merge;
   import uim.vibe.data.json.null_;
   import uim.vibe.data.json.object_;
+  import uim.vibe.data.json.remove;
   import uim.vibe.data.json.scalar;
   import uim.vibe.data.json.set;
   import uim.vibe.data.json.string_;

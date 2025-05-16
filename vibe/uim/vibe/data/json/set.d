@@ -1,8 +1,14 @@
+/****************************************************************************************************************
+* Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *
+* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
+* Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
+*****************************************************************************************************************/
 module uim.vibe.data.json.set;
 
 mixin(Version!("test_uim_vibe"));
 
 import uim.vibe;
+
 @safe:
 
 // #region Json[string]
@@ -81,43 +87,47 @@ Json[string] setPath(T)(Json[string] items, string[] path, T value) {
   return result;
 }
 
-Json[string] set(V:Json, T)(V[string] items, string key, T value) if (!is(V == T)) {
+Json[string] set(V : Json, T)(V[string] items, string key, T value) if (!is(V == T)) {
   return set(items, key, value.toJson);
 }
 
 Json[string] set(Json[string] items, string key, Json value) {
-  auto results = items.dup;
-  if (key !in results) {
-    results[key] = value;
+  writeln("Json[string] set(Json[string] items, string key, Json value)");
+  if (items is null) {
+    items = [key: value];
+  } else {
+    items[key] = value;
   }
-  return results;
+
+  return items;
 }
 
 unittest {
   Json[string] items = null;
   items = items.set("a", Json("A"));
   assert(items["a"] == Json("A"));
-  items = items.set("b", Json("B")).set("c", Json("C"));
+
+  items.set("b", Json("B")).set("c", Json("C"));
   assert(items.hasAllKeys(["a", "b", "c"]));
   assert(items["a"] == Json("A") && items["b"] == Json("B") && items["c"] == Json("C"));
 
-  items = null;
-  items = items.set("a", "A");
+  items = items.removeAll.set("a", "A");
   assert(items["a"] == Json("A"));
-  items = items.set("b", "B").set("c", "C");
+
+  items.set("b", "B").set("c", "C");
   assert(items.hasAllKeys(["a", "b", "c"]));
   assert(items["a"] == Json("A") && items["b"] == Json("B") && items["c"] == Json("C"));
 
-  items = null;
-  items = items.set("a", "A");
+  items = items.removeAll.set("a", "A");
   assert(items["a"] == Json("A"));
+
   items = items.set(["b", "c"], "X");
   assert(items.hasAllKeys(["a", "b", "c"]));
   assert(items["a"] == Json("A") && items["b"] == Json("X") && items["c"] == Json("X"));
 
-  items = null;
-  items = items.set("a", "A");
+  items = items.removeAll.set("a", "A");
   assert(items["a"] == Json("A"));
+  
   items = items.set(["b": "B", "c": "C"]);
   assert(items.hasAllKeys(["a", "b", "c"]));
   assert(items["a"] == Json("A") && items["b"] == Json("B") && items["c"] == Json("C"));
@@ -177,29 +187,26 @@ unittest {
 // #region Json
 Json set(T)(Json json, Json map) {
   if (json.isObject && map.isObject) {
-      map.byKeyValue.each!(kv => json.set(kv.key, kv.value));
+    map.byKeyValue.each!(kv => json = json.set(kv.key, kv.value));
   }
   return json;
 }
 
 Json set(T)(Json json, T[string] values) {
   if (json.isObject) {
-    values.each!((key, value) => json.set(key, value));
+    values.each!((key, value) => json = json.set(key, value));
   }
   return json;
 }
 
 Json set(T)(Json json, string[] keys, T value) {
-  if (json.isObject) {
-    keys.each!(key => json.set(key, value));
-  }
+  keys.each!(key => json = json.set(key, value));
   return json;
 }
 
 Json set(T)(Json json, string key, T value) {
   return json.isObject
-    ? set(json, key, value.toJson) 
-    : json;
+    ? set(json, key, value.toJson) : json;
 }
 
 Json set(Json json, string key, Json value) {

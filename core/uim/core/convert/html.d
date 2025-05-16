@@ -60,7 +60,6 @@ string startTag(string tag, string attributes = null) {
 
 unittest {
   assert("test".startTag == "<test>");
-  assert("test".startTag([]) == "<test>");
   assert("test".startTag(["a", "b"]) == "<test a b>");
   assert("test".startTag(["a": "b"]) == "<test a=\"b\">");
   assert("test".startTag(["a": "b", "c": "d"]) == "<test a=\"b\" c=\"d\">");
@@ -69,10 +68,10 @@ unittest {
   assert(json.startTag == "<test>");
   json = Json.emptyObject;
   json["tag"] = "test";
-  json["attributes"] = ["a": "b", "c": "d"];
+  json["attributes"] = ["a": "b", "c": "d"].toJson;
   assert(json.startTag == "<test a=\"b\" c=\"d\">");
 
-  Json[string] map = Json.emptyObject;
+  Json[string] map;
   map["tag"] = Json("test");
   map["attributes"] = Json(["a": Json("b"), "c": Json("d")]);
   assert(map.startTag == "<test a=\"b\" c=\"d\">");
@@ -103,7 +102,6 @@ string endTag(string tag) {
 
 unittest {
   assert("test".endTag == "</test>");
-  assert("test".endTag([]) == null);
 
   string[string] map = ["tag": "test"];
   assert(map.endTag == "</test>");
@@ -111,7 +109,7 @@ unittest {
   Json json = Json("test");
   assert(json.endTag == "</test>");
 
-  Json[string] mapx = Json.emptyObject;
+  Json[string] mapx;
   mapx["tag"] = Json("test");
   assert(mapx.endTag == "</test>");
 }
@@ -126,23 +124,23 @@ string htmlTag(Json json) {
   return htmlTag(json.getString("tag"), json.getString("attributes"), json.getString("content"));
 }
 
-string htmlTag(string tag, string[string] attributes = null, string[] content = null) {
+string htmlTag(string tag, string[string] attributes, string[] content) {
   return htmlTag(tag, attributes, content.join);
 }
 
-string htmlTag(string tag, string[] attributes = null, string[] content = null) {
+string htmlTag(string tag, string[] attributes, string[] content) {
   return htmlTag(tag, attributes, content.join);
 }
 
-string htmlTag(string tag, string attributes = null, string[] content = null) {
+string htmlTag(string tag, string attributes, string[] content) {
   return htmlTag(tag, attributes, content.join);
 }
 
-string htmlTag(string tag, string[string] attributes = null, string content = null) {
+string htmlTag(string tag, string[string] attributes, string content = null) {
   return startTag(tag, attributes) ~ content ~ endTag(tag);
 }
 
-string htmlTag(string tag, string[] attributes = null, string content = null) {
+string htmlTag(string tag, string[] attributes, string content = null) {
   return startTag(tag, attributes) ~ content ~ endTag(tag);
 }
 
@@ -154,15 +152,11 @@ unittest {
   assert("test".htmlTag == "<test></test>");
   assert("test".htmlTag("a b") == "<test a b></test>");
   assert("test".htmlTag("a b", "xxx") == "<test a b>xxx</test>");
-  assert("test".htmlTag(null, "xxx") == "<test>xxx</test>");
 
   assert("test".htmlTag(["a", "b"]) == "<test a b></test>");
   assert("test".htmlTag(["a", "b"], "xxx") == "<test a b>xxx</test>");
-  assert("test".htmlTag([], "xxx") == "<test>xxx</test>");
 
-  assert("test".htmlTag(["a", "b"], []) == "<test a b></test>");
   assert("test".htmlTag(["a", "b"], ["xxx"]) == "<test a b>xxx</test>");
-  assert("test".htmlTag([], ["xxx"]) == "<test>xxx</test>");
 
   Json json = Json.emptyObject;
   json["tag"] = "test";

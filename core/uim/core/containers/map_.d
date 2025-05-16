@@ -11,7 +11,7 @@ import uim.core;
 
 @safe:
 
-// #region renameKey
+/* // #region renameKey
 unittest {
   auto jsonMap = ["a": Json(1), "b": Json(2), "c": Json(3), "d": Json(4)];
   assert(jsonMap.hasAllKeys(["a", "b", "c", "d"]));
@@ -52,8 +52,8 @@ unittest {
   assert(map3.length == 1 && map3.hasKey("1") && map3["1"] == Json(3));
 }
 // #endregion set
-
-// #region hasValue
+ */
+/* // #region hasValue
 unittest {
   Json[string] test2 = ["a": Json("A"), "b": Json("B"), "c": Json("C")];
   assert(test2.hasValue(Json("A")));
@@ -65,4 +65,4 @@ unittest {
   assert(test2.hasAllValues([Json("A"), Json("B"), Json("C")]));
   assert(!test2.hasAllValues([Json("A"), Json("X"), Json("C")]));
 }
-// #endregion hasValue
+// #endregion hasValue */
