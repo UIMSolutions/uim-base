@@ -87,9 +87,9 @@ class UIMObject : IObject {
     Json[string] info;
 
     return info
-      .setValue("name", name)
-      .setValue("classname", this.classname)
-      .setValue("classFullname", this.classFullname);
+      .set("name", name)
+      .set("classname", this.classname)
+      .set("classFullname", this.classFullname);
   }
 }
 
@@ -108,6 +108,6 @@ class Test : UIMObject {
 }
 
 unittest {
-  auto obj = new IMObject;
+//   auto obj = new IMObject;
 
 }

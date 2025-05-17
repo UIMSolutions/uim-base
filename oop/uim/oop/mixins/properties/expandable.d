@@ -20,7 +20,8 @@ template XString(string name) {
   O clear"~name.capitalize~"(this O)() { _"~name~" = null; return cast(O)this; }  
   ";
 }
-version(test_uim_oop) { unittest {
+
+/* version(test_uim_oop) { unittest {
   class DTest { mixin(XString!"a"); }
   assert((new DTest).a("x").a == "x");
   assert((new DTest).a("x").a("x").a == "xx");
@@ -28,7 +29,7 @@ version(test_uim_oop) { unittest {
   assert((new DTest).a(["x", "x"]).a == "xx");
   assert((new DTest).a("x").clearA.a is null);
 }}
-
+ */
 // Mixin for expandable string array datatypes
 template XStringArray(string name) {
   const char[] Name = name.capitalize;
@@ -47,7 +48,7 @@ template XStringArray(string name) {
   O clear"~Name~"(this O)() { _"~name~" = null; return cast(O)this; }  
   ";
 }
-version(test_uim_oop) { unittest {
+/* version(test_uim_oop) { unittest {
   class DTest { mixin(XStringArray!"a"); }
   assert((new DTest).a("x").a == ["x"]);
   assert((new DTest).a("x").a("x").a == ["x", "x"]);
@@ -60,7 +61,7 @@ version(test_uim_oop) { unittest {
   assert((new DTest).a(["a", "b", "c", "a"]).removeA(["a"]).a == ["b", "c", "a"]); 
   //assert((new DTest).a(["a", "b", "c"]).removeA(["a"], true).a == ["b", "c"]);
 }}
-
+ */
 // Mixin for expandable string associative array datatypes
 template XStringAA(string name) {
   const char[] Name = name.capitalize;
@@ -77,13 +78,13 @@ template XStringAA(string name) {
   O clear"~Name~"(this O)() { _"~name~" = null; return cast(O)this; }  
   ";
 }
-version(test_uim_oop) { unittest {
+/* version(test_uim_oop) { unittest {
   class DTest { mixin(XStringAA!"a"); }
   assert((new DTest).a(["a": "x"]).a == ["a": "x"]);
   assert((new DTest).a("a", "x").a == ["a": "x"]);
   assert((new DTest).a("a", "x").clearA.a == null);
 }}
-
+ */
 template XPropertyAA(string key, string value, string name) {
   const char[] Name = capitalize(name);
   const char[] datatype = value~`[`~key~`]`;

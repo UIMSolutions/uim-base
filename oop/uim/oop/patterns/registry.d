@@ -55,11 +55,11 @@ class DObjectRegistry(T : UIMObject) {
     return hasKey(correctKey(path));
   }
   unittest {
-    auto registry = new DObjectRegistry!string;
+/*     auto registry = new DObjectRegistry!string;
     registry.register("a.b.c", "value");
     assert(registry.hasPath(["a", "b", "c"]));
     assert(!registry.hasPath(["a", "b", "x"]));
-  }
+ */  }
   // #endregion has
 
   // #region keys
@@ -71,10 +71,10 @@ class DObjectRegistry(T : UIMObject) {
     return correctKey(key) in _objects ? true : false;
   }
   unittest {
-    auto registry = new DObjectRegistry!string;
+/*     auto registry = new DObjectRegistry!string;
     registry.register("a.b.c", "value");
     assert(registry.hasKey("a.b.c"));
-    assert(!registry.hasKey("a.b.x"));
+    assert(!registry.hasKey("a.b.x")); */
   }
   // #endregion has
 

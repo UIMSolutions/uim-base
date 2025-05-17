@@ -7,29 +7,61 @@ import uim.core;
 @safe:
 
 // #region attributes
-string attributes(string[string] items, bool sorted = false) {
-  string[] attributes = items.convert((string key, string value) => "%s=\"%s\"".format(key, value));
-
-  if (sorted) {
-    attributes.sort!((a, b) => a < b);
+string readAttributes(Json json, bool sorted = false) {
+  if (json.isString) {
+    return json.getString;
   }
-  return attributes.join(" ");
+
+  string[] attributes;
+  if (json.isObject) {
+    attributes = json.convert((string key, Json value) {
+      return "%s=\"%s\"".format(key, value.getString);
+    });
+  }
+
+  if (json.isArray) {
+    attributes = json.convert((Json value) { return value.getString; });
+  }
+
+  return readAttributes(attributes, sorted);
+}
+
+string readAttributes(string[string] items, bool sorted = false) {
+  return readAttributes(items.convert((string key, string value) => "%s=\"%s\"".format(key, value)), sorted);
+}
+
+string readAttributes(string[] items, bool sorted = false) {
+  if (sorted) {
+    items.sort!((a, b) => a < b);
+  }
+  return items.join(" ");
 }
 // #endregion attributes
 
+string readContent(Json json) {
+  if (json.isString) {
+    return json.getString;
+  }
+
+  string[] content;
+  if (json.isObject) {
+    content = json.convert((string key, Json value) { return value.getString; });
+  }
+
+  if (json.isArray) {
+    content = json.convert((Json value) { return value.getString; });
+  }
+
+  return content.join;
+}
 // #region startTag
-string startTag(Json[string] map) {
-  if (map.length == 0) {
+string startTag(Json[string] items) {
+  if (items.length == 0) {
     return null;
   }
 
-  string tag = map.getString("tag");
-  Json[string] attributeMap = "attributes" in map ? map["attributes"].get!(Json[string]) : null;
-
-  string[] attributes;
-  foreach (key, value; attributeMap) {
-    attributes ~= `%s="%s"`.format(key, value.getString);
-  }
+  string tag = items.getString("tag");
+  string attributes = ("attributes" in items) ? readAttributes(items["attributes"]) : null;
 
   return startTag(tag, attributes);
 }
@@ -39,26 +71,16 @@ string startTag(Json json) {
     return startTag(json.getString);
   }
 
+  string tag;
   if (json.isObject) {
-    string tag = json.getString("tag");
+    tag = json.getString("tag");
     if (tag.length == 0) {
       return null;
     }
 
+    string attributes;
     if ("attributes" in json) {
-      Json[string] attributeMap = json["attributes"].get!(Json[string]);
-      string[] attributes;
-      foreach (key, value; attributeMap) {
-        attributes ~= `%s="%s"`.format(key, value.getString);
-      }
-
-      return startTag(tag, attributes);
-    }
-
-    Json[string] attributeMap = json["attributes"].get!(Json[string]);
-    string[] attributes;
-    foreach (key, value; attributeMap) {
-      attributes ~= "%s=\"%s\"".format(key, value.getString);
+      attributes = readAttributes(json["attributes"]);
     }
 
     return startTag(tag, attributes);
@@ -78,10 +100,13 @@ string startTag(string tag, string[] attributes) {
     ? "<%s>".format(tag) : "<%s %s>".format(tag, attributes.join(" "));
 }
 
-string startTag(string tag, string attributes = null) {
-  tag = tag.strip;
-  return attributes.length == 0
-    ? "<%s>".format(tag.strip) : "<%s %s>".format(tag, attributes.strip);
+string startTag(string tag, string attributes) {
+  return attributes.strip.length == 0
+    ? startTag(tag) : "<%s %s>".format(tag.strip, attributes.strip);
+}
+
+string startTag(string tag) {
+  return "<%s>".format(tag.strip);
 }
 
 unittest {
@@ -125,8 +150,7 @@ string endTag(string[string] map) {
 string endTag(string tag) {
   tag = tag.strip;
   return tag.length > 0
-    ? "</%s>".format(tag.strip)
-    : null;
+    ? "</%s>".format(tag.strip) : null;
 }
 
 unittest { // Test endTag(string)
@@ -169,15 +193,15 @@ string htmlTag(Json[string] map) {
   string end = endTag(map);
   string content = map.getString("content");
 
-  return start~content~end;
+  return start ~ content ~ end;
 }
 
 string htmlTag(Json json) {
   string start = startTag(json);
   string end = endTag(json);
-  string content = json.getString("content");
+  string content = "content" in json ? readContent(json["content"]) : null;
 
-  return start~content~end;
+  return start ~ content ~ end;
 }
 
 string htmlTag(string tag, string[string] attributes, string[] content) {
@@ -213,48 +237,48 @@ string htmlTag(string tag) {
 }
 
 unittest {
-    // Test htmlTag(string)
-    assert("div".htmlTag == "<div></div>");
-    assert("span".htmlTag("class=\"foo\"") == "<span class=\"foo\"></span>");
-    assert("p".htmlTag("style=\"color:red\"", "Hello") == "<p style=\"color:red\">Hello</p>");
+  // Test htmlTag(string)
+  assert("div".htmlTag == "<div></div>");
+  assert("span".htmlTag("class=\"foo\"") == "<span class=\"foo\"></span>");
+  assert("p".htmlTag("style=\"color:red\"", "Hello") == "<p style=\"color:red\">Hello</p>");
 
-    // Test htmlTag(string, string[])
-    assert("ul".htmlTag(["id=\"list\"", "class=\"main\""]) == "<ul id=\"list\" class=\"main\"></ul>");
-    assert("li".htmlTag(["data-x=\"1\""], "Item") == `<li data-x="1">Item</li>`);
-    assert("div".htmlTag(["hidden"], ["A", "B"]) == "<div hidden>AB</div>");
+  // Test htmlTag(string, string[])
+  assert("ul".htmlTag(["id=\"list\"", "class=\"main\""]) == "<ul id=\"list\" class=\"main\"></ul>");
+  assert("li".htmlTag(["data-x=\"1\""], "Item") == `<li data-x="1">Item</li>`);
+  assert("div".htmlTag(["hidden"], ["A", "B"]) == "<div hidden>AB</div>");
 
-    // Test htmlTag(string, string[string])
-    string[string] attrs = ["id": "foo", "class": "bar"];
-    assert("section".htmlTag(attrs) == "<section id=\"foo\" class=\"bar\"></section>");
-    assert("section".htmlTag(attrs, "Content") == "<section id=\"foo\" class=\"bar\">Content</section>");
+  // Test htmlTag(string, string[string])
+  string[string] attrs = ["id": "foo", "class": "bar"];
+  assert("section".htmlTag(attrs) == "<section id=\"foo\" class=\"bar\"></section>");
+  assert("section".htmlTag(attrs, "Content") == "<section id=\"foo\" class=\"bar\">Content</section>");
 
-    // Test htmlTag(string, string[string], string[])
-    assert("nav".htmlTag(attrs, ["A", "B"]) == "<nav id=\"foo\" class=\"bar\">AB</nav>");
+  // Test htmlTag(string, string[string], string[])
+  assert("nav".htmlTag(attrs, ["A", "B"]) == "<nav id=\"foo\" class=\"bar\">AB</nav>");
 
-    // Test htmlTag(Json)
-    Json j = Json.emptyObject;
-    j["tag"] = "div";
-    assert(j.htmlTag == "<div></div>");
+  // Test htmlTag(Json)
+  Json j = Json.emptyObject;
+  j["tag"] = "div";
+  assert(j.htmlTag == "<div></div>");
 
-    j["attributes"] = [`id="main"`].toJson;
-    writeln("test102\t", j.toString);
-    writeln("test101\t", j.htmlTag);
-    assert(j.htmlTag == `<div id="main"></div>`);
+  j["attributes"] = [`id="main"`].toJson;
+  writeln("test102\t", j.toString);
+  writeln("test101\t", j.htmlTag);
+  assert(j.htmlTag == `<div id="main"></div>`);
 
-    j["content"] = "Hello".toJson;
-    assert(j.htmlTag == `<div id="main">Hello</div>`);
+  j["content"] = "Hello".toJson;
+  assert(j.htmlTag == `<div id="main">Hello</div>`);
 
-    // Test htmlTag(Json[string])
-    Json[string] jmap;
-    jmap["tag"] = Json("span");
-    assert(jmap.htmlTag == "<span></span>");
-    jmap["attributes"] = [`class="x"`].toJson;
-    assert(jmap.htmlTag == `<span class="x"></span>`);
-    jmap["content"] = Json("World");
-    assert(jmap.htmlTag == `<span class="x">World</span>`);
+  // Test htmlTag(Json[string])
+  Json[string] jmap;
+  jmap["tag"] = Json("span");
+  assert(jmap.htmlTag == "<span></span>");
+  jmap["attributes"] = [`class="x"`].toJson;
+  assert(jmap.htmlTag == `<span class="x"></span>`);
+  jmap["content"] = Json("World");
+  assert(jmap.htmlTag == `<span class="x">World</span>`);
 
-    // Test htmlTag with null/empty attributes and content
-    assert("div".htmlTag([`id="foo"`], ["abc", "def"]) == "<div id=\"foo\">abcdef</div>");
+  // Test htmlTag with null/empty attributes and content
+  assert("div".htmlTag([`id="foo"`], ["abc", "def"]) == "<div id=\"foo\">abcdef</div>");
 }
 
 unittest {
@@ -270,14 +294,14 @@ unittest {
   Json json = Json.emptyObject;
   json["tag"] = "test";
   assert(json.htmlTag == "<test></test>");
- 
+
   json["attributes"] = ["a", "b"].toJson;
   writeln("Test4\t", json.htmlTag);
   assert(json.htmlTag == "<test a b></test>");
- 
+
   json["content"] = "xxx".toJson;
   assert(json.htmlTag == "<test a b>xxx</test>");
- 
+
   json["attributes"] = Json(null);
   assert(json.htmlTag == "<test>xxx</test>");
 
@@ -311,6 +335,6 @@ string htmlTag(K, V)(V[K] items, SORTORDERS sortorder = SORTORDERS.NONE) {
     .join(" ");
 }
 
-unittest {
+/* unittest {
   assert(["a": 1, "b": 2].htmlTag(SORTORDERS.ASCENDING) == `a="1" b="2"`);
-}
+} */

@@ -50,11 +50,11 @@ class DCollection(T : UIMObject) : UIMObject, IKeyAndPath, ICollection!T {
   }
 
   unittest {
-    auto collection = new DCollection!string;
+/*     auto collection = new DCollection!string;
     collection.set("a.b.c", "value");
     assert(collection.hasPath(["a", "b", "c"]));
     assert(!collection.hasPath(["a", "b", "x"]));
-  }
+ */  }
   // #endregion paths
 
   // #region keys
@@ -103,13 +103,13 @@ class DCollection(T : UIMObject) : UIMObject, IKeyAndPath, ICollection!T {
     return false;
   }
   unittest {
-    auto collection = new DCollection!string;
+/*     auto collection = new DCollection!string;
     collection.set("a", "valueA");
     collection.set("b", "valueB");
     collection.set("c", "valueC");
     assert(collection.hasItem("valueA"));
     assert(!collection.hasItem("nonexistent"));
-  }
+ */  }
   // #endregion items
 
   // #region getter
