@@ -40,3 +40,4 @@ unittest { // Json toJson(string key, UUID value)
     assert(json[key].get!string == id.toString, "UUID string mismatch in Json object");
 }
 // #endregion UUID
+

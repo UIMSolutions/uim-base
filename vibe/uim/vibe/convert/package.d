@@ -8,6 +8,6 @@ public {
     import uim.vibe.convert.json;
 /*     import uim.vibe.convert.jsonmap;
     import uim.vibe.convert.string_;
-    import uim.vibe.convert.stringmap;
-    import uim.vibe.convert.uuid; */
+    import uim.vibe.convert.stringmap; */
+    import uim.vibe.convert.uuid; 
 }
