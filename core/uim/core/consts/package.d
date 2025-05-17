@@ -1,5 +1,5 @@
 module uim.core.consts;
 
 public {
-    import uim.core.consts.filesystem
+    import uim.core.consts.filesystem;
 }

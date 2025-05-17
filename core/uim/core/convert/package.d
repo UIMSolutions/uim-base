@@ -2,7 +2,7 @@ module uim.core.convert;
 
 public {
   import uim.core.convert.boolean;
-  import uim.core.convert.double;
+  import uim.core.convert.double_;
   import uim.core.convert.html;
   import uim.core.convert.json;
   import uim.core.convert.jsonmap;

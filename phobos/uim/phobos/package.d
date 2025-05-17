@@ -81,7 +81,6 @@ public {
   import uim.phobos.socket;
   import uim.phobos.stdint;
   import uim.phobos.stdio;
-  import uim.phobos.strings;
   import uim.phobos.system;
   import uim.phobos.traits;
   import uim.phobos.utf;

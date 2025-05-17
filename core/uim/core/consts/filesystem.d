@@ -224,7 +224,7 @@ const string[] rasterImageExtensions = [
   "tiff",
   "webp"
 ];
-const string[] 3dModelExtensions = [
+const string[] _3dModelExtensions = [
   "stl",
   "obj",
   "fbx",
@@ -372,7 +372,7 @@ const string[] archiveFileExtensions = [
   "7z",
   "rar"
 ];
-const string[] 3dModelFileExtensions = [
+const string[] _3dModelFileExtensions = [
   "stl",
   "obj",
   "fbx",
