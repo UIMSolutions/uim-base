@@ -8,6 +8,7 @@ public {
 }
 
 public {
+  import uim.vibe.algorithms;
   /*   import uim.vibe.classes;
   import uim.vibe.containers;
   import uim.vibe.datatypes;

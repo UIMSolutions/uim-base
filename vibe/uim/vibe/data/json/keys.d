@@ -15,7 +15,7 @@ import uim.vibe;
 // Get keys from json object
 string[] keys(Json json, bool sorted = false) {
   return json.isObject
-    ? json.byKeyValue.map!(kv => kv.key).array : null;
+    ? json.convert((string key) => key) : null;
 }
 
 unittest {

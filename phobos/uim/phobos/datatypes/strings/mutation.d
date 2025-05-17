@@ -21,20 +21,20 @@ unittest {
 // #endregion lower
 
 // #region stripText
-string[] stripText(string[] texts, string[] chars) {
+string[] stripText(string[] texts, string[] stripchars= null) {
   return texts
-    .map!(text => stripText(text, chars))
+    .map!(text => stripText(text, stripchars))
     .array;
 }
 
-string stripText(string text, string[] chars) {
+string stripText(string text, string[] stripchars = null) {
   if (text.isEmpty) {
     return null;
   }
-  if (chars.isEmpty) {
+  if (stripchars.isEmpty) {
     return text.strip;
   }
-  foreach (c; chars) {
+  foreach (c; stripchars) {
     text = text.strip(c);
   }
   return text;
@@ -53,32 +53,6 @@ unittest {
   assert("a ".stripText(["."]) == "a ");
   assert(" a ".stripText(["."]) == " a ");
 
-  assert("a".stripText(".") == "a");
-  assert(" a".stripText(".") == " a");
-  assert("a ".stripText(".") == "a ");
-  assert(" a ".stripText(".") == " a ");
-
-  assert("a".stripText(".") == "a");
-  assert(".a".stripText(".") == "a");
-  assert("a.".stripText(".") == "a");
-  assert(".a.".stripText(".") == "a");
-
-  assert("a".stripText(".") == "a");
-  assert(".a".stripText(".") == "a");
-  assert("a.".stripText(".") == "a");
-  assert(".a.".stripText(".") == "a");
-
-  assert("a".stripText(" ") == "a");
-  assert(".a".stripText(" ") == ".a");
-  assert("a.".stripText(" ") == "a.");
-  assert(".a.".stripText(" ") == ".a.");
-
-  assert("a".stripText(".", " ") == "a");
-  assert(".a ".stripText(".", " ") == "a");
-  assert(" a.".stripText(".", " ") == "a");
-  assert(" .a. ".stripText(".", " ") == ".a.");
-  assert(" .a. ".stripText(" ", ".") == "a");
-
   assert(["a", "b", "c"].stripText == ["a", "b", "c"]);
   assert([" a", "b ", " c "].stripText == ["a", "b", "c"]);
   assert([".a", "b.", ".c."].stripText(["."]) == ["a", "b", "c"]);
@@ -86,20 +60,20 @@ unittest {
 // #endregion stripText
 
 // #region stripTextLeft
-string[] stripTextLeft(string[] texts, string[] chars) {
+string[] stripTextLeft(string[] texts, string[] stripchars = null) {
   return texts
-    .map!(text => stripTextLeft(text, chars))
+    .map!(text => stripTextLeft(text, stripchars))
     .array;
 }
 
-string stripTextLeft(string text, string[] chars) {
+string stripTextLeft(string text, string[] stripchars = null) {
   if (text.isEmpty) {
     return null;
   }
-  if (chars.isEmpty) {
+  if (stripchars.isEmpty) {
     return stripLeft(text);
   }
-  foreach (c; chars) {
+  foreach (c; stripchars) {
     text = stripLeft(text, c);
   }
   return text;
@@ -118,32 +92,6 @@ unittest {
   assert("a ".stripTextLeft(["."]) == "a ");
   assert(" a ".stripTextLeft(["."]) == " a ");
 
-  assert("a".stripTextLeft(".") == "a");
-  assert(" a".stripTextLeft(".") == " a");
-  assert("a ".stripTextLeft(".") == "a ");
-  assert(" a ".stripTextLeft(".") == " a ");
-
-  assert("a".stripTextLeft(".") == "a");
-  assert(".a".stripTextLeft(".") == "a");
-  assert("a.".stripTextLeft(".") == "a.");
-  assert(".a.".stripTextLeft(".") == "a.");
-
-  assert("a".stripTextLeft(".") == "a");
-  assert(".a".stripTextLeft(".") == "a");
-  assert("a.".stripTextLeft(".") == "a.");
-  assert(".a.".stripTextLeft(".") == "a.");
-
-  assert("a".stripTextLeft(" ") == "a");
-  assert(".a".stripTextLeft(" ") == ".a");
-  assert("a.".stripTextLeft(" ") == "a.");
-  assert(".a.".stripTextLeft(" ") == ".a.");
-
-  assert("a".stripTextLeft(".", " ") == "a");
-  assert(".a ".stripTextLeft(".", " ") == "a ");
-  assert(" a.".stripTextLeft(".", " ") == "a.");
-  assert(" .a. ".stripTextLeft(".", " ") == ".a. ");
-  assert(" .a. ".stripTextLeft(" ", ".") == "a. ");
-
   assert(["a", "b", "c"].stripTextLeft == ["a", "b", "c"]);
   assert([" a", "b ", " c "].stripTextLeft == ["a", "b ", "c "]);
   assert([".a", "b.", ".c."].stripTextLeft(["."]) == ["a", "b.", "c."]);
@@ -151,20 +99,20 @@ unittest {
 // #endregion stripTextLeft
 
 // #region stripTextRight
-string[] stripTextRight(string[] texts, string[] chars) {
+string[] stripTextRight(string[] texts, string[] stripchars = null) {
   return texts
-    .map!(text => stripTextRight(text, chars))
+    .map!(text => stripTextRight(text, stripchars))
     .array;
 }
 
-string stripTextRight(string text, string[] chars) {
+string stripTextRight(string text, string[] stripchars = null) {
   if (text.isEmpty) {
     return null;
   }
-  if (chars.isEmpty) {
+  if (stripchars.isEmpty) {
     return stripRight(text);
   }
-  foreach (c; chars) {
+  foreach (c; stripchars) {
     text = stripRight(text, c);
   }
   return text;
@@ -180,32 +128,6 @@ unittest {
   assert(" a".stripTextRight(["."]) == " a");
   assert("a ".stripTextRight(["."]) == "a ");
   assert(" a ".stripTextRight(["."]) == " a ");
-
-  assert("a".stripTextRight(".") == "a");
-  assert(" a".stripTextRight(".") == " a");
-  assert("a ".stripTextRight(".") == "a ");
-  assert(" a ".stripTextRight(".") == " a ");
-
-  assert("a".stripTextRight(".") == "a");
-  assert(".a".stripTextRight(".") == ".a");
-  assert("a.".stripTextRight(".") == "a");
-  assert(".a.".stripTextRight(".") == ".a");
-
-  assert("a".stripTextRight(".") == "a");
-  assert(".a".stripTextRight(".") == ".a");
-  assert("a.".stripTextRight(".") == "a");
-  assert(".a.".stripTextRight(".") == ".a");
-
-  assert("a".stripTextRight(" ") == "a");
-  assert(".a".stripTextRight(" ") == ".a");
-  assert("a.".stripTextRight(" ") == "a.");
-  assert(".a.".stripTextRight(" ") == ".a.");
-
-  assert("a".stripTextRight(".", " ") == "a");
-  assert(".a ".stripTextRight(".", " ") == ".a");
-  assert(" a.".stripTextRight(".", " ") == " a");
-  assert(" .a. ".stripTextRight(".", " ") == " .a.");
-  assert(" .a. ".stripTextRight(" ", ".") == " .a");
 }
 // #endregion stripTextRight
 

@@ -5,17 +5,11 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.factory;
 
-version (test_uim_oop) {
-  import std.stdio;
-
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
+mixin(Version!"test_uim_oop");
 
 import uim.oop;
-
 @safe:
+
 
 class DFactory(T : UIMObject) : UIMObject, IKeyAndPath {
   this() {
@@ -152,7 +146,8 @@ unittest {
     Factory.set("testWorkerOne", (Json[string] options = null) @safe {
         return new Test("one");
     });
-    Factory.set("testWorker.two", (Json[string] options = null) @safe {        
+        return new Test("two");
+    }    Factory.set("testWorker.two", (Json[string] options = null) @safe {        
         return new Test("two");
     });
     Factory.set("testWorker.and.three", (Json[string] options = null) @safe {        

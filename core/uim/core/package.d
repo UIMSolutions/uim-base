@@ -79,27 +79,6 @@ T[] leValues(T)(T value, T[] values) if (isNumeric!T) {
     .array;
 }
 
-/// compare values in array
-// all values in array are equal to value
-bool allEqual(T)(T[] values, T aValue) {
-  return values
-    .filter!(value => value != aValue).array.length == 0;
-}
-
-unittest {
-  assert([1, 1, 1].isAllEqual(1));
-  assert(![1, 2, 1].isAllEqual(1));
-}
-
-bool equalAny(T)(T[] values, T aValue) {
-  return (values.filter!(value => value == aValue).array.length > 0);
-}
-///
-unittest {
-  assert([1, 1, 1].equalAny(1));
-  assert(![1, 2, 1].equalAny(3));
-  assert([1, 2, 1].equalAny(1));
-}
 
 // all values in array are not equal to value
 bool nallEqual(T)(T aValue, T[] values) {
@@ -108,57 +87,6 @@ bool nallEqual(T)(T aValue, T[] values) {
 /// 
 unittest {
   assert(1.nallEqual([2, 3]));
-}
-
-// all values in array are greater then value
-bool greaterThenAll(T)(T[] baseValues, T value) if (isNumeric!T) {
-  return baseValues.all!(base => greaterThen(base, value));
-}
-/// 
-unittest {
-  assert([2, 3, 4].greaterThenAll(1));
-  assert(![1, 2, 1].greaterThenAll(1));
-}
-
-bool greaterThenAny(T)(T[] baseValues, T value) if (isNumeric!T) {
-  return baseValues.any!(base => greaterThen(base, value));
-}
-
-unittest {
-  assert([2, 3, 4].greaterThenAny(1));
-  assert([1, 2, 1].greaterThenAny(1));
-  assert(![1, 2, 1].greaterThenAny(3));
-}
-
-bool greaterThen(T)(T base, T value) if (isNumeric!T) {
-  return (base > value);
-}
-
-// all values in array are greater equal value
-bool allGreaterEqual(T)(T checkValue, T[] values) if (isNumeric!T) {
-  return values.all!(value => checkValue >= value);
-}
-unittest {
-  assert(3.isAllGreaterEqual([1, 2, 3]));
-}
-
-// all values in array are less then value
-bool allLowerThen(T)(T value, T[] values) if (isNumeric!T) {
-  foreach (v; values)
-    if (value < v)
-      continue;
-    else
-      return false;
-  return true;
-}
-// all values in array are less equal value
-bool allLowerEqual(T)(T value, T[] values) if (isNumeric!T) {
-  foreach (v; values)
-    if (value <= v)
-      continue;
-    else
-      return false;
-  return true;
 }
 
 bool equal(T)(T[] leftCells, T[] rightCells) {
