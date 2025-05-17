@@ -5,6 +5,17 @@
 *****************************************************************************************************************/
 module uim.phobos.datatypes;
 
-import uim.phobos;
-@safe:
+public {
+  import uim.phobos.datatypes.bigint;
+  import uim.phobos.datatypes.strings;
 
+  /*     import uim.phobos.datatypes.integer;
+    import uim.phobos.datatypes.float;
+    import uim.phobos.datatypes.boolean;
+    import uim.phobos.datatypes.date;
+    import uim.phobos.datatypes.time;
+    import uim.phobos.datatypes.datetime;
+ */
+  import uim.phobos.datatypes.mixins;
+  import uim.phobos.datatypes.uuids;
+}

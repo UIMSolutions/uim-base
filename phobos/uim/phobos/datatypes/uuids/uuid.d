@@ -1,2 +1,2 @@
-module uim.phobos.uuids.uuid;
+module uim.phobos.datatypes.uuids.uuid;
 

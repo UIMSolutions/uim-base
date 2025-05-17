@@ -50,7 +50,6 @@ public {
   import uim.phobos.array;
   import uim.phobos.ascii;
   import uim.phobos.base64;
-  import uim.phobos.bigint;
   import uim.phobos.bitmanip;
   import uim.phobos.checkedint;
   import uim.phobos.compiler;
@@ -85,7 +84,6 @@ public {
   import uim.phobos.traits;
   import uim.phobos.utf;
   import uim.phobos.uni;
-  import uim.phobos.uuids;
   import uim.phobos.variants;
   import uim.phobos.windows;
   import uim.phobos.zip;

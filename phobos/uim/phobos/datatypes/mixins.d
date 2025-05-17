@@ -1,5 +1,8 @@
 module uim.phobos.datatypes.mixins;
 
+import uim.phobos;
+@safe:
+
 // #region hasFunctions
 string HasFunctions(string plural, string singular, string keyType) {
   return `

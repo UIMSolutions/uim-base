@@ -3,9 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.phobos.datataype.strings;
+module uim.phobos.datatypes.strings;
 
 public {
-  import uim.phobos.datataype.strings.mutation;
-  import uim.phobos.datataype.strings.strings;
+  import uim.phobos.datatypes.strings.mutation;
+  import uim.phobos.datatypes.strings.strings;
 }

@@ -1,42 +1,8 @@
-module uim.phobos.strings.strings;
+module uim.phobos.datatypes.strings.strings;
 
 import uim.phobos;
-
 @safe:
 
-// #region lower
-string lower(string text) {
-  return text.toLower;
-}
-
-string[] lower(string[] texts) {
-  return texts
-    .map!(text => text.toLower)
-    .array;
-}
-
-unittest {
-  assert("A".lower == "a");
-  assert(["A", "B", "C"].lower.equal(["a", "b", "c"]));
-}
-// #endregion lower
-
-// #region upper
-string[] upper(string[] texts) {
-  return texts
-    .map!(text => text.toUpper)
-    .array;
-}
-
-string upper(string text) {
-  return text.toUpper;
-}
-
-unittest {
-  assert("a".upper == "A");
-  assert(["a", "b", "c"].upper.equal(["A", "B", "C"]));
-}
-// #endregion upper
 
 // #region capitalize
 string[] capitalize(string[] texts) {
