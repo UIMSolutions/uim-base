@@ -8,5 +8,4 @@ module uim.vibe.data;
 public {
   import uim.vibe.data.bson;
   import uim.vibe.data.json;
-  import uim.vibe.data.uuid;
 }

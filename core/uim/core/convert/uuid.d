@@ -6,11 +6,14 @@ import uim.core;
 
 @safe:
 
-// #region toUUID
+// #region Json
 UUID toUUID(string key, Json value) {
   return value.isObject
     ? UUID(value.getString(key)) : UUID();
 }
+
+
+
 
 UUID toUUID(Json value) {
   return value.isString
@@ -24,6 +27,4 @@ unittest {
   auto id = randomUUID;
   assert(Json(id.toString).toUUID == id);
 }
-// #endregion toUUID
-
-// #endregion toJson
+// #endregion Json
