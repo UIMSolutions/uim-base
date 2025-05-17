@@ -8,6 +8,7 @@ module uim.vibe.data.json.base;
 mixin(Version!("test_uim_vibe"));
 
 import uim.vibe;
+
 @safe:
 
 // #region Null
@@ -105,7 +106,6 @@ unittest {
   writeln("test uim_core");
   // TODO 
 }
-
 
 /// Load existing json files in directories
 Json[] loadJsonsFromDirectories(string[] dirNames) {
@@ -335,8 +335,7 @@ unittest {
 
 string[] toStringArray(Json value) {
   return value.isNull
-    ? null
-    : value.toArray.map!(json => json.to!string).array;
+    ? null : value.toArray.map!(json => json.to!string).array;
 }
 
 Json[] toArray(Json value) {
@@ -345,8 +344,7 @@ Json[] toArray(Json value) {
   }
 
   return value.isArray
-    ? value.getArray
-    : [value];
+    ? value.getArray : [value];
 }
 
 unittest {
@@ -389,6 +387,7 @@ Json updateKey(Json origin, string[string] additional) {
 
 unittest {
   import uim.vibe.data.json.set;
+
   Json json = Json.emptyObject;
   json["a"] = "hallo";
   assert(json["a"].get!string == "hallo");
@@ -439,10 +438,9 @@ Json[string] getMap(Json value, Json[string] defaultValue = null) {
 
 // #region merge
 
-
 // TODO
 unittest {
-/* 
+  /* 
   auto json = Json.emptyObject;
   json.merge("a", "A");
   json.merge("b", "B").merge("c", "C");
@@ -477,7 +475,7 @@ unittest {
   newJson.merge(json);
   assert(json.hasAllKeys(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
- */ 
+ */
 }
 // #endregion merge
 
@@ -487,9 +485,30 @@ Json match(K)(Json[K] matchValues, K key, Json defaultValue = Json(null)) {
 }
 
 // #region isSet
-bool isSet(Json json, string key) {
-  return json.isObject
-    ? json.byKeyValue.any!(kv => kv.key == key) : false;
+bool isSet(Json json, string check) {
+  return json.isAny((string key) => key == check);
+}
+
+unittest {
+  // Test with object containing the key
+  Json json = Json.emptyObject;
+  json["foo"] = "bar";
+  assert(isSet(json, "foo"), "Key 'foo' should be set");
+
+  // Test with object not containing the key
+  assert(!isSet(json, "baz"), "Key 'baz' should not be set");
+
+  // Test with empty object
+  Json emptyJson = Json.emptyObject;
+  assert(!isSet(emptyJson, "foo"), "Empty object should not have any key set");
+
+  // Test with non-object Json (string)
+  Json strJson = Json("hello");
+  assert(!isSet(strJson, "hello"), "Non-object Json should not have any key set");
+
+  // Test with null Json
+  Json nullJson = Json(null);
+  assert(!isSet(nullJson, "foo"), "Null Json should not have any key set");
 }
 // #endregion isSet
 
@@ -578,7 +597,6 @@ unittest {
 // #endregion ifNull
 
 alias JMAP = Json[string];
-
 
 // returns a updated map with new values
 // returns a updated map with new values

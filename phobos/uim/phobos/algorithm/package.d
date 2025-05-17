@@ -6,9 +6,9 @@
 module uim.phobos.algorithm;
 
 public {
-    import uim.phobos.algorithm.comparison;
-    import uim.phobos.algorithm.iteration;
-    import uim.phobos.algorithm.mutation;
+    import uim.phobos.algorithm.comparisons;
+    import uim.phobos.algorithm.iterations;
+    import uim.phobos.algorithm.mutations;
     import uim.phobos.algorithm.searching;
     import uim.phobos.algorithm.setops;
     import uim.phobos.algorithm.sorting;

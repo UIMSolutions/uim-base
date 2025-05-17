@@ -5,11 +5,10 @@ mixin(Version!("test_uim_core"));
 import uim.core;
 @safe:
 
-STRINGAA toStringMap(Json[string] map) {
-  STRINGAA stringMap;
-  map.byKeyValue
-    .each!(kv => stringMap[kv.key] = kv.value.to!string);
-  return stringMap;
+STRINGAA toStringMap(Json[string] items) {
+  STRINGAA results;
+  items.every((string key, Json value) => results[key] = value.to!string);
+  return results;
 }
 
 unittest {

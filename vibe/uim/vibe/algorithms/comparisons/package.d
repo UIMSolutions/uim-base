@@ -62,7 +62,7 @@ bool isAny(Json json, bool delegate(string key, Json value) @safe func) {
     return false;
   }
 
-  return json.byKeyValue.all!(kv => func(kv.key, kv.value));
+  return json.byKeyValue.any!(kv => func(kv.key, kv.value));
 }
 
 bool isAny(Json json, bool delegate(string key) @safe func) {
@@ -70,7 +70,7 @@ bool isAny(Json json, bool delegate(string key) @safe func) {
     return false;
   }
 
-  return json.byKeyValue.all!(kv => func(kv.key));
+  return json.byKeyValue.any!(kv => func(kv.key));
 }
 
 bool isAny(Json json, bool delegate(Json value) @safe func) {
@@ -78,7 +78,7 @@ bool isAny(Json json, bool delegate(Json value) @safe func) {
     return false;
   }
 
-  return json.byValue.all!(value => func(value));
+  return json.byValue.any!(value => func(value));
 }
 
 unittest { // isAny(Json, delegate(string, Json))
