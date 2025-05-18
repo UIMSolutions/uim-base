@@ -1,4 +1,4 @@
-module uim.errors.interfaces.errors.middleware;
+module uim.errors.interfaces.middleware;
 
 mixin(Version!("test_uim_errors"));
 

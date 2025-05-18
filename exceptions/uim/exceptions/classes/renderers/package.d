@@ -7,4 +7,8 @@ module uim.exceptions.classes.renderers;
 
 public {
     import uim.exceptions.classes.renderers.renderer;
+    import uim.exceptions.classes.renderers.console;
+    import uim.exceptions.classes.renderers.html;
+    import uim.exceptions.classes.renderers.text;
+    import uim.exceptions.classes.renderers.web;
 }

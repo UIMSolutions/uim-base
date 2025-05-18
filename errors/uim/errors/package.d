@@ -15,7 +15,6 @@ public { // uim.filesystem libraries
   import uim.errors.classes;
   import uim.errors.collections;
   import uim.errors.enumerations;
-  import uim.errors.exceptions;
   import uim.errors.factories;
   import uim.errors.helpers;
   import uim.errors.interfaces;
