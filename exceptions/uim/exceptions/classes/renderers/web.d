@@ -5,16 +5,16 @@
 *****************************************************************************************************************/
 module uim.exceptions.classes.renderers.web;
 
-mixin(Version!("test_uim_errors"));
+mixin(Version!("test_uim_exceptions"));
 
-import uim.errors;
+import uim.exceptions;
 @safe:
 
 /**
  * Web Exception Renderer.
  *
- * Captures and handles all unhandled exceptions. Displays helpful framework errors when debug is true.
- * When debug is false, WebExceptionRenderer will render 404 or 500 errors. If an uncaught exception is thrown
+ * Captures and handles all unhandled exceptions. Displays helpful framework exceptions when debug is true.
+ * When debug is false, WebExceptionRenderer will render 404 or 500 exceptions. If an uncaught exception is thrown
  * and it is a type that WebExceptionHandler does not know about it will be treated as a 500 error.
  *
  * ### Implementing application specific exception rendering
@@ -67,7 +67,7 @@ class DWebExceptionRenderer { // }: IExceptionRenderer {
   /**
      * MapHelper of exceptions to http status codes.
      *
-     * This can be customized for users that don`t want specific exceptions to throw 404 errors
+     * This can be customized for users that don`t want specific exceptions to throw 404 exceptions
      * or want their application exceptions to be automatically converted.
      *
      * @var array<string, int>

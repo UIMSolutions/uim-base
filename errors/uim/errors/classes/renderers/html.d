@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.errors.classes.renderers.html;
 
-public {
-    import uim.errors.classes.renderers.html.error;
-    import uim.errors.classes.renderers.html.exception;
-}
+mixin(Version!("test_uim_errors"));
+
+import uim.errors;
+@safe:

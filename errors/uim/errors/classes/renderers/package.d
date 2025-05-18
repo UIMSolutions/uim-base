@@ -10,8 +10,8 @@ public { // Main
 }
 
 public {
-  import uim.errors.classes.renderers.consoles;
+  import uim.errors.classes.renderers.console;
   import uim.errors.classes.renderers.html;
-  import uim.errors.classes.renderers.texts;
+  import uim.errors.classes.renderers.text;
   import uim.errors.classes.renderers.web;
 }

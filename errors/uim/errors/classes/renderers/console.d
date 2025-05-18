@@ -10,83 +10,73 @@ mixin(Version!("test_uim_errors"));
 import uim.errors;
 @safe:
 
-/**
- * Plain text exception rendering with a stack trace.
- *
- * Useful in CI or plain text environments.
+/*
+ * Plain text error rendering with a stack trace.
+ * Writes to STDERR via a UIM\Console\OutputConsole instance for console environments
  */
-class DConsoleExceptionRenderer { // }: IExceptionRenderer {
-    private Throwable _error;
+class DConsoleErrorRenderer : DErrorRenderer { 
+  mixin(ErrorRendererThis!("Console"));
 
-    /* private DOutput _output; */
-
-    private bool _trace;
-
-    /* this(Throwable errorToRender, IServerRequest serverRequest, Json[string] errorHandlingData) {
-        _error = error;
-        // TODO this.output = configuration.getEntry("stderr") ?? new DOutput("d://stderr");
-        _trace = configuration..getBooleanEntry("trace", true);
-    } */
-
-    // Render an exception into a plain text message.
-    string render() {
-/*         auto exceptions = [_error];
-        auto previous = _error.getPrevious();
-        while (!previous.isNull) {
-            exceptions ~= previous;
-            previous = previous.getPrevious();
-        } */
-
-        string[] results;
-/*         foreach (index, error; exceptions) {
-            parent = index > 0 ? exceptions[index - 1] : null;
-            results = chain(result, this.renderException(error, parent));
-        } */
-        return results.join("\n");
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
     }
 
-    // Render an individual exception
-    protected Json[string] renderException(DException exception, DException parentException) {
-        /* auto result = [
-            "<error>%s[%s] %s</error> in %s on line %s"
-            .format(
-                parent ? "Caused by " : "",
-                exceptionToRender.classname,
-                exceptionToRender.message(),
-                exceptionToRender.getFile(),
-                exceptionToRender.getLine()
-            ),
-        ]; */
+    // `stderr` - The OutputConsole instance to use. Defaults to `D://stderr`
+    // TODO _output = configuration.getEntry("stderr", new DOutput("d://stderr"));
+    // `trace` - Whether or not stacktraces should be output.       
+    _showTrace = configuration.getBooleanEntry("trace");
 
-        // auto debugValue = configuration.getEntry("debug");
-/*         if (debugValue && cast(DException) exceptionToRender) {
-            auto attributes = exceptionToRender.getAttributes();
-            if (attributes) {
-                result ~= "";
-                result ~= "<info>Exception Attributes</info>";
-                result ~= "";
-                result ~= var_export_(exceptionToRender.getAttributes(), true);
-            }
-        } */
-/*         if (_trace) {
-            auto stacktrace = Debugger.getUniqueFrames(exceptionToRender, parentException);
-            result ~= "";
-            result ~= "<info>Stack Trace:</info>";
-            result ~= "";
-            result ~= Debugger.formatTrace(stacktrace, ["format": "text"]);
-            result ~= "";
-        } */
-        // return result;
-        return null; 
-    }
+    return true;
+  }
 
-    /**
-     * Write output to the output stream
-     * Params:
-     * \Psr\Http\Message\IResponse|string aoutput The output to print.
-     */
-    // TODO void write(IResponse aoutput) {
-    void write(string outputText) {
-        // _output.write(outputText);
-    }
+  // #region trace
+  protected bool _showTrace = false;
+  bool showTrace() {
+    return _showTrace;
+  }
+  IErrorRenderer showTrace(bool value) {
+    _showTrace = value;
+    return this;
+  }
+  // #endregion trace
+
+  // TODO protected DOutput _output;
+
+  override IErrorRenderer write(string outputText) {
+    writeln(outputText);
+    return this;
+  }
+
+  override string render(IError error, bool shouldDebug) {
+    return "<error>%s: %s . %s</error> on line %s of %s%s"
+      .format(
+        error.loglabel(),
+        error.loglevel(),
+        error.message(),
+        error.line() ? error.line() : "",
+        error.fileName() ? error.fileName() : "",
+        showTrace ? "\n<info>Stack Trace:</info>\n\n" ~ error.traceAsString() : ""
+      ); 
+  }
+}
+
+unittest {
+  auto renderer = new DConsoleErrorRenderer();
+  // assert(is(typeof(renderer) == IErrorRenderer));
+  /* assert(renderer is DErrorRenderer);
+  assert(renderer is DConsoleErrorRenderer); */
+
+  /* auto error = new DError()
+    .message("This is a test error")
+    .code("TEST_ERROR")
+    .fileName(__FILE__)
+    .lineNumber(33); */
+
+  /* assert(renderer.render(new DError("Test Error", "TEST_ERROR", "This is a test error", __FILE__, __LINE__), true) == "<error>Test Error: TEST_ERROR . This is a test error</error> on line 33 of errors/uim/errors/classes/renderers/consoles/error.d\n<info>Stack Trace:</info>\n\n");
+  assert(renderer.render(new DError("Test Error", "TEST_ERROR", "This is a test error", __FILE__, __LINE__), false) == "<error>Test Error: TEST_ERROR . This is a test error</error> on line 33 of errors/uim/errors/classes/renderers/consoles/error.d");
+  assert(renderer.showTrace(true) is renderer);
+  assert(renderer.showTrace() == true);
+  assert(renderer.showTrace(false) is renderer);
+  assert(renderer.showTrace() == false); */
 }
