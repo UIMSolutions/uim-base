@@ -5,3 +5,6 @@
 *****************************************************************************************************************/
 module uim.exceptions.helpers;
 
+public {
+    import uim.exceptions.helpers.exception;
+}
