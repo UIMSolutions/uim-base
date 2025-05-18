@@ -1,3 +1,3 @@
 module uim.dyaml;
 
-public import dyaml.dyaml;
+public import dyaml;

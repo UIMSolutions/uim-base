@@ -10,7 +10,7 @@ targetName "uim-exceptions"
 targetType "library"
 
 // Exteral dependencies
-dependency "uim-base:oop" version="*"
+dependency "uim-base:oop" path=".."
 
 sourcePaths "."
 importPaths "."

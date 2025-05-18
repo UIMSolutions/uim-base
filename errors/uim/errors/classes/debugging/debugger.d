@@ -49,30 +49,30 @@ class DDebugger : UIMObject, IErrorDebugger {
 
     // These templates are not actually used, as Debugger.log() is called instead.
     _stringContents["log"] = MapHelper.create!(string, Json)
-      .setValue("trace", "{:reference} - {:path}, line {:line}")
-      .setValue("error", "{:error} ({:code}): {:description} in [{:file}, line {:line}]");
+      .set("trace", "{:reference} - {:path}, line {:line}")
+      .set("error", "{:error} ({:code}): {:description} in [{:file}, line {:line}]");
 
     _stringContents["js"] = MapHelper.create!(string, Json)
-      .setValues(["error", "info", "code", "dumpContext"], "")
-      .setValue("trace", htmlDoubleTag("pre", ["stack-trace"], "{:trace}"))
-      .setValue("links", Json.emptyArray)
-      .setValue("escapeContext", true);
+      .set(["error", "info", "code", "dumpContext"], "")
+      .set("trace", htmlDoubleTag("pre", ["stack-trace"], "{:trace}"))
+      .set("links", Json.emptyArray)
+      .set("escapeContext", true);
 
     _stringContents["html"] = MapHelper.create!(string, Json)
-      .setValue("trace", htmlDoubleTag("pre", ["uim-error trace"], "<b>Trace</b> <p>{:trace}</p>"))
-      .setValue("dumpContext", htmlDoubleTag("pre", [
+      .set("trace", htmlDoubleTag("pre", ["uim-error trace"], "<b>Trace</b> <p>{:trace}</p>"))
+      .set("dumpContext", htmlDoubleTag("pre", [
             "uim-error dumpContext"
           ], "<b>Context</b> <p>{:dumpContext}</p>"))
-      .setValue("escapeContext", true);
+      .set("escapeContext", true);
 
     _stringContents["txt"] = MapHelper.create!(string, Json)
-      .setValues(["code", "info"], "")
-      .setValue("error", "{:error}: {:code} . {:description} on line {:line} of {:path}\n{:info}");
+      .set(["code", "info"], "")
+      .set("error", "{:error}: {:code} . {:description} on line {:line} of {:path}\n{:info}");
 
     _stringContents["base"] = MapHelper.create!(string, Json)
-      .setValue("traceLine", "{:reference} - {:path}, line {:line}")
-      .setValue("trace", "Trace:\n{:trace}\n")
-      .setValue("dumpContext", "Context:\n{:dumpContext}\n");
+      .set("traceLine", "{:reference} - {:path}, line {:line}")
+      .set("trace", "Trace:\n{:trace}\n")
+      .set("dumpContext", "Context:\n{:dumpContext}\n");
 
     return true;
   }
@@ -746,35 +746,35 @@ class DDebugger : UIMObject, IErrorDebugger {
                 "uim-stack-trace"
             ], ["style": "display: none;"], "{:links}{:info}");
         e ~= `</pre>`;
-        _stringContents.setValue("js.error", e);
+        _stringContents.set("js.error", e);
         t = `<div id="{:id}-trace" class="uim-stack-trace" style="display: none;">`;
         t ~= `{:dumpContext}{:code}{:trace}</div>`;
-        _stringContents.setValue("js.info", t);
+        _stringContents.set("js.info", t);
 
         Json[string] links;
         string link = "<a href=\"javascript:void(0);\" onclick=\"document.getElementById(\"{:id}-code\")";
         link ~= ".style.display = (document.getElementById(\"{:id}-code\").style.display == ";
         link ~= "\"none\" ? \"\" : \"none\")\">Code</a>";
-        links.setValue("code", link);
+        links.set("code", link);
 
         link = "<a href=\"javascript:void(0);\" onclick=\"document.getElementById(\"{:id}-dumpContext\")";
         link ~= ".style.display = (document.getElementById(\"{:id}-dumpContext\").style.display == ";
         link ~= "\"none\" ? \"\" : \"none\")\">Context</a>";
-        links.setValue("dumpContext", link);
+        links.set("dumpContext", link);
 
-        _stringContents.setValue("js.links", links);
-        _stringContents.setValue("js.dumpContext", htmlDoubleTag("pre", "{:id}-dumpContext", [
+        _stringContents.set("js.links", links);
+        _stringContents.set("js.dumpContext", htmlDoubleTag("pre", "{:id}-dumpContext", [
                     "uim-dumpContext", "uim-debug"
                 ], ["style": "display: none;"], "{:dumpContext}"));
-        _stringContents.setValue("js.code", htmlDoubleTag("pre", "{:id}-code", [
+        _stringContents.set("js.code", htmlDoubleTag("pre", "{:id}-code", [
                     "uim-code-dump"
                 ], ["style": "display: none;"], "{:code}"));
-        _stringContents.setValue("html.error", htmlDoubleTag("pre", [
+        _stringContents.set("html.error", htmlDoubleTag("pre", [
                     "uim-error"
                 ],
                 htmlDoubleTag("b", "{:error}") ~ "({:code}) : {:description} [<b>{:path}</b>, line <b>{:line}]</b>"));
 
-        _stringContents.setValue("html.dumpContext", htmlDoubleTag("pre", [
+        _stringContents.set("html.dumpContext", htmlDoubleTag("pre", [
                     "uim-dumpContext uim-debug"
                 ],
                 htmlDoubleTag("b", "Context") ~
@@ -944,10 +944,10 @@ class DDebugger : UIMObject, IErrorDebugger {
         auto count = count(backtrace);
         auto back = null;
         _trace = MapHelper.create!(string, Json)
-            .setValue("line", "??")
-            .setValue("file", "[internal]")
-            .setValue("class", Json(null))
-            .setValue("function", "[main]");
+            .set("line", "??")
+            .set("file", "[internal]")
+            .set("class", Json(null))
+            .set("function", "[main]");
 
         for (i = options.getLong("start"); i < count && i < options.getLong(
                 "depth"); i++) {
@@ -1005,8 +1005,8 @@ class DDebugger : UIMObject, IErrorDebugger {
                             "traceLine"
                         ]));
             }
-            trace.setValue("path", trimPath(trace["file"]));
-            trace.setValue("reference", reference);
+            trace.set("path", trimPath(trace["file"]));
+            trace.set("reference", reference);
             trace.removeKey("object", "args");
             back ~= Text.insert(tpl, trace, [
                     "before": "{:",
@@ -1420,7 +1420,7 @@ class DDebugger : UIMObject, IErrorDebugger {
     if (
       location.hasKey(
         "file")) {
-      location.setValue("file", trimPath(
+      location.set("file", trimPath(
           location.getString(
           "file")));
     }

@@ -53,7 +53,7 @@ void stackTrace(Json[string] options = new Json[string]) {
     } */
 
     options
-        .setValue("start", 1);
+        .set("start", 1);
 
     /* string trace = Debugger.trace(formatOptions);
     writeln(trace); */

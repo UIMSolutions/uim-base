@@ -5,3 +5,6 @@
 *****************************************************************************************************************/
 module uim.exceptions.registries;
 
+public {
+    uim.exceptions.registries.registry;
+}

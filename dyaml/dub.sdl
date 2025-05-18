@@ -1,6 +1,6 @@
-name "dyaml"
+name "yaml"
 description "Core D-Library for the uim framework"
-homepage "https://www.sueel.de/uim"
+homepage "https://www.sueel.de/uim/dyaml"
 authors "Ozan Nurettin Süel"
 copyright "Copyright © 2018-2025, Ozan Nurettin Süel"
 license "Apache-2.0"
@@ -11,7 +11,6 @@ targetType "library"
 
 // Exteral dependencies
 dependency "dyaml" version="~>0.10.0"
-dependency "uim-base:phobos" version="*"
 
 sourcePaths "."
 importPaths "."
