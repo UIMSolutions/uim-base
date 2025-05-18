@@ -3,14 +3,16 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.errors.tests.error;
+module uim.exceptions.interfaces.exception;
 
-mixin(Version!"test_uim_errors");
-
-import uim.errors;
+import uim.exceptions;
 @safe:
 
-bool testError(IError error) {
-  assert(error !is null, "Error is null");
-  return true;
+interface IExceptions {
+/*     // This interface is used to define the contract for all exception classes in the UIManufaktur framework.
+    // It ensures that all exceptions have a message and a code, and provides methods for getting and setting these values.
+    // The interface also defines a method for getting the exception type, which can be used to categorize exceptions.
+    string getMessage();
+    int getCode();
+    string getType(); */
 }
