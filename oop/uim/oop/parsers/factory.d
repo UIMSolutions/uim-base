@@ -10,6 +10,5 @@ mixin(Version!"test_uim_oop");
 import uim.oop;
 @safe:
 
-
 class DParserFactory : DFactory!DParser {}
 auto ParserFactory() { return DParserFactory.factory; }

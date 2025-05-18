@@ -3,8 +3,8 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.exceptions.registries;
+module uim.exceptions.classes.exceptions;
 
 public {
-    import uim.exceptions.registries.registry;
+  import uim.exceptions.classes.exceptions.exception;
 }

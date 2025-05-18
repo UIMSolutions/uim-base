@@ -5,3 +5,6 @@
 *****************************************************************************************************************/
 module uim.exceptions.classes;
 
+public {
+  import uim.exceptions.classes.exceptions;
+}

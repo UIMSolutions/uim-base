@@ -5,16 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.formatters.factory;
 
+mixin(Version!"test_uim_oop");
+
 import uim.oop;
 @safe:
-
-version (test_uim_oop) {
-  import std.stdio;
-  
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
 
 class DFormatterFactory : DFactory!DFormatter {
 }

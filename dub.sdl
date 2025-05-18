@@ -23,7 +23,7 @@ dependency ":core" version="*"
 dependency ":exceptions" version="*"
 dependency ":errors" version="*"
 dependency ":oop" version="*"
-dependency ":yaml" version="*"
+// dependency ":yaml" version="*"
 
 sourceFiles "./source/uim/base.d"
 configuration "test_all" {
@@ -38,3 +38,4 @@ subPackage "core"
 subPackage "oop"
 subPackage "errors"
 subPackage "exceptions"
+// subPackage "yaml"

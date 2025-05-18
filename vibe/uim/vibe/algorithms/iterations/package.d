@@ -6,31 +6,32 @@ import uim.vibe;
 
 @safe:
 
-void every(Json json, void delegate(string key, Json value) @safe func) {
-  if (!json.isObject) {
+void every(Json data, void delegate(string key, Json value) @safe func) {
+  if (!data.isObject) {
     return;
   }
-  json.byKeyValue.each!(kv => func(kv.key, kv.value));
+  data.byKeyValue.each!(kv => func(kv.key, kv.value));
 }
 
-void every(Json json, void delegate(string key) @safe func) {
-  if (!json.isObject) {
+void every(Json data, void delegate(string key) @safe func) {
+  if (!data.isObject) {
     return;
   }
-  json.byKeyValue.each!(kv => func(kv.key));
+  data.byKeyValue.each!(kv => func(kv.key));
 }
 
-void every(Json json, void delegate(Json value) @safe func) {
-  if (!json.isObject && !json.isArray) {
+void every(Json data, void delegate(Json value) @safe func) {
+  if (!data.isObject && !data.isArray) {
     return;
   }
-  json.byValue.each!(v => func(v));
+  data.byValue.each!(v => func(v));
 }
 
 unittest {
-  int buffer;
-  json list = json.emptyObject;
+  Json list = Json.emptyArray;
   list ~= 1; list ~= 2; list ~= 3;
-  [1, 2, 3].every((int value) => buffer += value.get!int);
+
+  int buffer;
+  list.every((Json value) { buffer += value.get!int; });
   assert(buffer == 6);
 }
