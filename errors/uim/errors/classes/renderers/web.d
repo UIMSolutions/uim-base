@@ -9,3 +9,8 @@ mixin(Version!("test_uim_errors"));
 
 import uim.errors;
 @safe:
+
+class DWebErrorRenderer : DErrorRenderer { 
+  mixin(ErrorRendererThis!("Web"));
+}
+mixin(ErrorRendererCalls!("Web"));

@@ -5,9 +5,6 @@
 *****************************************************************************************************************/
 module uim.errors.tests.error;
 
-import uim.errors;
-@safe:
-
 mixin(Version!"test_uim_errors");
 
 import uim.errors;
