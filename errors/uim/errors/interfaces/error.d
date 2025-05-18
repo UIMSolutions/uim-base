@@ -3,31 +3,32 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.errors.exceptions.exception;
+module uim.errors.interfaces.errors.error;
 
 mixin(Version!("test_uim_errors"));
 
 import uim.errors;
 @safe:
 
+interface IError {
+  string loglabel();
+  IError loglabel(string newLabel);
 
-// Base error exception.
-class DErrorsException : DException {
-  mixin(ExceptionThis!("Errors"));
+  // Read-Only
+  string loglevel();
+  // Read-Only
+  string line();
 
-  override bool initialize(Json[string] initData = null) {
-    if (!super.initialize(initData)) {
-      return false;
-    }
+  string message();
+  IError message(string newMessage);
 
-    messageTemplate("default", "Exception in libary uim-errors");
+  string fileName();
+  IError fileName(string newFileName);
 
-    return true;
-  }
-}
+  size_t lineNumber();
+  IError lineNumber(size_t newLineNumber);
 
-mixin(ExceptionCalls!("Errors"));
-
-unittest {
-  testException(ErrorsException);
+  STRINGAA[] trace();
+  IError trace(STRINGAA[] newTrace);
+  string traceAsString();
 }
