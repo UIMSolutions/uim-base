@@ -3,10 +3,10 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.errors.classes.exceptions;
+module uim.exceptions.classes.renderers;
 
 public {
-    import uim.errors.classes.exceptions.exception;
-    import uim.errors.classes.exceptions.renderer;
-    import uim.errors.classes.exceptions.trap;
+    import uim.exceptions.classes.exceptions.exception;
+    import uim.exceptions.classes.exceptions.renderer;
+    import uim.exceptions.classes.exceptions.trap;
 }
