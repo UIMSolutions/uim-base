@@ -10,7 +10,6 @@ mixin(Version!("test_uim_errors"));
 import uim.errors;
 @safe:
 
-
 // Provide custom logging and error handling.
 class DDebugger : UIMObject, IErrorDebugger {
   this() {

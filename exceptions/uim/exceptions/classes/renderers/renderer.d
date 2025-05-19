@@ -8,6 +8,7 @@ module uim.exceptions.classes.renderers.renderer;
 mixin(Version!("test_uim_exceptions"));
 
 import uim.exceptions;
+
 @safe:
 
 /**
@@ -28,27 +29,27 @@ import uim.exceptions;
  * can configure your class in your config/app.D.
  */
 class DExceptionRenderer : UIMObject, IExceptionRenderer {
-    mixin(ExceptionTrapThis!());
-    
-    // Template to render for {@link uim.Core\exceptions.DException}
-    protected string _template = "";
+  mixin(ExceptionTrapThis!());
 
-    // The method corresponding to the Exception this object is for.
-    protected string method = "";
-    
-    // The exception being handled.
-    protected IException _exception;
+  // Template to render for {@link uim.Core\exceptions.DException}
+  protected string _template = "";
 
-    // Controller instance.
-   /*  protected IController controller; */
+  // The method corresponding to the Exception this object is for.
+  protected string method = "";
 
-    /**
+  // The exception being handled.
+  protected IException _exception;
+
+  // Controller instance.
+  /*  protected IController controller; */
+
+  /**
      * If set, this will be request used to create the controller that will render
      * the exception.
      */
-    /* protected IServerRequest _request; */
+  /* protected IServerRequest _request; */
 
-    /**
+  /**
      * MapHelper of exceptions to http status codes.
      *
      * This can be customized for users that don"t want specific exceptions to throw 404 exceptions
@@ -57,7 +58,7 @@ class DExceptionRenderer : UIMObject, IExceptionRenderer {
      * @var array<string, int>
      * @psalm-var array<class-string<\Throwable>, int>
      */
-    /* protected int[string] myExceptionHttpCodes = [
+  /* protected int[string] myExceptionHttpCodes = [
         // Controller exceptions
         InvalidParameterException.classname: 404,
         MissingActionException.classname: 404,
@@ -70,21 +71,21 @@ class DExceptionRenderer : UIMObject, IExceptionRenderer {
         MissingRouteException.classname: 404,
     ]; */
 
-    // Creates the controller to perform rendering on the exception response.
-    /* this(Throwable exception, IServerRequest serverRequest = null) {
+  // Creates the controller to perform rendering on the exception response.
+  /* this(Throwable exception, IServerRequest serverRequest = null) {
         _exception = exception;
         _request = serverRequest;
         _controller = _getController();
     } */
 
-    /**
+  /**
      * Get the controller instance to handle the exception.
      * Override this method in subclasses to customize the controller used.
      * This method returns the built in `ExceptionController` normally, or if an exception is repeated
      * a bare controller will be used.
      */
-    protected IExceptionController _getController() {
-        /* auto _request = _request;
+  protected IExceptionController _getController() {
+    /* auto _request = _request;
         auto routerRequest = Router.getRequest();
         // Fallback to the request in the router or make a new one from
         // _SERVER
@@ -121,10 +122,10 @@ class DExceptionRenderer : UIMObject, IExceptionRenderer {
             return new DController(_request);
         } */
 
-        // Retry RequestHandler, as another aspect of startupProcess()
-        // could have failed. Ignore any exceptions out of startup, as
-        // there could be userland input data parsers.
-        /* if (_exceptionOccured && controller.RequestHandler !is null) {
+    // Retry RequestHandler, as another aspect of startupProcess()
+    // could have failed. Ignore any exceptions out of startup, as
+    // there could be userland input data parsers.
+    /* if (_exceptionOccured && controller.RequestHandler !is null) {
             try {
                 myEvent = new DEvent("Controller.startup", controller);
                 controller.RequestHandler.startup(myEvent);
@@ -134,21 +135,21 @@ class DExceptionRenderer : UIMObject, IExceptionRenderer {
 
         return controller; */
 
-        return null;
-    }
+    return null;
+  }
 
-    // Clear output buffers so exception pages display properly.
-    protected void clearOutput() {
-/*         if (hasAllValues(D_SAPI, ["cli", "Ddbg"])) {
+  // Clear output buffers so exception pages display properly.
+  protected void clearOutput() {
+    /*         if (hasAllValues(D_SAPI, ["cli", "Ddbg"])) {
             return;
         }
         while (ob_get_level()) {
             ob_end_clean();
         } */
-    }
+  }
 
-    // Renders the response for the exception.
-    /* IResponse render() {
+  // Renders the response for the exception.
+  /* IResponse render() {
         /* auto myException = _exception;
         code = getHttpCode(myException);
         method = methodName(myException);
@@ -210,8 +211,8 @@ class DExceptionRenderer : UIMObject, IExceptionRenderer {
         return null; 
     } */
 
-    // Render a custom exception method/template.
-    /* protected IResponse _customMethod(string methodToInvoke, Throwable myExceptionToRender) {
+  // Render a custom exception method/template.
+  /* protected IResponse _customMethod(string methodToInvoke, Throwable myExceptionToRender) {
         /* myResult = this.{method}(myException);
         _shutdown();
 
@@ -221,9 +222,9 @@ class DExceptionRenderer : UIMObject, IExceptionRenderer {
         return null; 
     } */
 
-    // Get method name
-    protected string methodName(Throwable myException) {
-        /* [, baseClass] = moduleSplit(get_class(myException));
+  // Get method name
+  protected string methodName(Throwable myException) {
+    /* [, baseClass] = moduleSplit(get_class(myException));
 
         if (subString(baseClass, -9) == "Exception") {
             baseClass = subString(baseClass, 0, -9);
@@ -233,14 +234,14 @@ class DExceptionRenderer : UIMObject, IExceptionRenderer {
         _method = baseClass is null ? "exception500" : Inflector.variable(baseClass);
 
         return _method; */
-        return null; 
-    }
+    return null;
+  }
 
-    // Get exception message.
-    protected string exceptionMessage(Throwable throwableException, int exceptionCode) {
-        // auto myMessage = throwableException.message();
+  // Get exception message.
+  protected string exceptionMessage(Throwable throwableException, int exceptionCode) {
+    // auto myMessage = throwableException.message();
 
-/*         if (
+    /*         if (
             !Configure.read("debug") &&
             !(cast(HttpException)throwableException)
        ) {
@@ -249,13 +250,13 @@ class DExceptionRenderer : UIMObject, IExceptionRenderer {
                 : __d("uim", "An Internal Exception Has Occurred.");
         } */
 
-        // return myMessage;
-        return null; 
-    }
+    // return myMessage;
+    return null;
+  }
 
-    // Get template for rendering exception info.
-    protected string templateName(Throwable throwableException, string methodName, int exceptionCode) {
-/*         if (cast(HttpException)throwableException || !Configure.read("debug")) {
+  // Get template for rendering exception info.
+  protected string templateName(Throwable throwableException, string methodName, int exceptionCode) {
+    /*         if (cast(HttpException)throwableException || !Configure.read("debug")) {
             return _template = exceptionCode < 500 ? "exception400" : "exception500";
         }
 
@@ -263,20 +264,20 @@ class DExceptionRenderer : UIMObject, IExceptionRenderer {
             ? "pdo_exception"
             : methodName; */
 
-        return null;
-    }
+    return null;
+  }
 
-    // Gets the appropriate http status code for exception.
-    protected int getHttpCode(Throwable throwableException) {
-        /* return cast(HttpException)exception
+  // Gets the appropriate http status code for exception.
+  protected int getHttpCode(Throwable throwableException) {
+    /* return cast(HttpException)exception
             ? throwableException.code()
             : _exceptionHttpCodesgetInteger(get_class(throwableException), 500); */
-        
-        return 0;
-    }
 
-    // Generate the response using the controller object.
-    /* protected IResponse _outputMessage(string templateName) {
+    return 0;
+  }
+
+  // Generate the response using the controller object.
+  /* protected IResponse _outputMessage(string templateName) {
         try {
             _controller.render(templateName);
 
@@ -299,11 +300,11 @@ class DExceptionRenderer : UIMObject, IExceptionRenderer {
         }
     } */
 
-    /**
+  /**
      * A safer way to render exception messages, replaces all helpers, with basics
      * and doesn"t call component methods.
      */
-    /* protected IResponse _outputMessageSafe(string templateToRender) {
+  /* protected IResponse _outputMessageSafe(string templateToRender) {
         auto myBuilder = _controller.viewBuilder();
         myBuilder
             .setHelpers([], false)
@@ -319,25 +320,24 @@ class DExceptionRenderer : UIMObject, IExceptionRenderer {
         return response;
     } */
 
-    /**
+  /**
      * Run the shutdown events.
      *
      * Triggers the afterFilter and afterDispatch events.
      */
-    /* protected IResponse _shutdown() {
+  /* protected IResponse _shutdown() {
         _controller.dispatchEvent("Controller.shutdown");
 
         return _controller.getResponse();
     } */
 
-    // Returns an array that can be used to describe the internal state of this object.
-    /* Json[string] debugInfo(string[] showKeys = null, string[] hideKeys = null) {
-        return [
-            "exception": _exception,
-            "request": _request,
-            "controller": _controller,
-            // "template": this.template,
-            // "method": _method,
-        ];
-    } */
+  // Returns an array that can be used to describe the internal state of this object.
+  override Json[string] debugInfo(string[] showKeys = null, string[] hideKeys = null) {
+    return super.debugInfo(showKeys, hideKeys)
+      .set("exception", _exception.toJson)
+      .set("request", _request.toJson)
+      .set("controller", _controller.toJson)
+      .set("template", _template)
+      .set("method", method);
+  }
 }

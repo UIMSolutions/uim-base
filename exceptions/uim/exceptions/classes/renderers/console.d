@@ -18,31 +18,31 @@ import uim.exceptions;
 class DConsoleExceptionRenderer : DExceptionRenderer {
     mixin(ExceptionRendererThis!("Console"));
 
-    private Throwable _error;
+    private Throwable _exception;
 
     /* private DOutput _output; */
 
     private bool _trace;
 
     /* this(Throwable errorToRender, IServerRequest serverRequest, Json[string] errorHandlingData) {
-        _error = error;
+        _exception = error;
         // TODO this.output = configuration.getEntry("stderr") ?? new DOutput("d://stderr");
         _trace = configuration..getBooleanEntry("trace", true);
     } */
 
     // Render an exception into a plain text message.
     string render() {
-/*         auto exceptions = [_error];
-        auto previous = _error.getPrevious();
+/*         auto exceptions = [_exception];
+        auto previous = _exception.getPrevious();
         while (!previous.isNull) {
             exceptions ~= previous;
             previous = previous.getPrevious();
         } */
 
         string[] results;
-/*         foreach (index, error; exceptions) {
+/*         foreach (index, exception; exceptions) {
             parent = index > 0 ? exceptions[index - 1] : null;
-            results = chain(result, this.renderException(error, parent));
+            results = chain(result, this.renderException(exception, parent));
         } */
         return results.join("\n");
     }

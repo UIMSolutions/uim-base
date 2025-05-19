@@ -26,13 +26,10 @@ class DTextExceptionRenderer : DExceptionRenderer {
   // Render an exception into a plain text message.
   string render() {
     return "%s : %s on line %s of %s\nTrace:\n%s".format(
-      _exception.loglevel(),
       _exception.message(),
-      _exception.line(),
-      _exception.fileName(),
-      _exception.traceAsString(),
+      _exception.file(),
+      _exception.line()
     );
-    return null; // TODO
   }
 
   // Write output to stdout.
