@@ -27,7 +27,9 @@ import uim.exceptions;
  * Using a subclass of ExceptionRenderer gives you full control over how Exceptions are rendered, you
  * can configure your class in your config/app.D.
  */
-class DExceptionRenderer : IExceptionRenderer {
+class DExceptionRenderer : UIMObject, IExceptionRenderer {
+    mixin(ExceptionTrapThis!());
+    
     // Template to render for {@link uim.Core\exceptions.DException}
     protected string _template = "";
 

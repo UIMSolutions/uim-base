@@ -3,27 +3,25 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.errors.mixins.exceptions.renderer;
+module uim.exceptions.mixins.trap;
 
-mixin(Version!("test_uim_errors"));
+import uim.exceptions;
 
-import uim.errors;
 @safe:
-
-string exceptionRendererThis(string name = null) {
-    string fullName = name ~ "ExceptionRenderer";
+string exceptionTrapThis(string name = null) {
+    string fullName = name ~ "ExceptionTrap";
     return objThis(fullName);
 }
 
-template ExceptionRendererThis(string name = null) {
-    const char[] ExceptionRendererThis = exceptionRendererThis(name);
+template ExceptionTrapThis(string name = null) {
+    const char[] ExceptionTrapThis = exceptionTrapThis(name);
 }
 
-string exceptionRendererCalls(string name) {
-    string fullName = name ~ "ExceptionRenderer";
+string exceptionTrapCalls(string name) {
+    string fullName = name ~ "ExceptionTrap";
     return objCalls(fullName);
 }
 
-template ExceptionRendererCalls(string name) {
-    const char[] ExceptionRendererCalls = exceptionRendererCalls(name);
+template ExceptionTrapCalls(string name) {
+    const char[] ExceptionTrapCalls = exceptionTrapCalls(name);
 }

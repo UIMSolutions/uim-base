@@ -3,25 +3,25 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.exceptions.mixins.exception;
+module uim.exceptions.mixins.controller;
 
 import uim.exceptions;
 
 @safe:
-string exceptionThis(string name = null) {
-    string fullName = name ~ "Exception";
+string exceptionControllerThis(string name = null) {
+    string fullName = name ~ "ExceptionController";
     return objThis(fullName);
 }
 
-template ExceptionThis(string name = null) {
-    const char[] ExceptionThis = exceptionThis(name);
+template ExceptionControllerThis(string name = null) {
+    const char[] ExceptionControllerThis = exceptionControllerThis(name);
 }
 
-string exceptionCalls(string name) {
-    string fullName = name ~ "Exception";
+string exceptionControllerCalls(string name) {
+    string fullName = name ~ "ExceptionController";
     return objCalls(fullName);
 }
 
-template ExceptionCalls(string name) {
-    const char[] ExceptionCalls = exceptionCalls(name);
+template ExceptionControllerCalls(string name) {
+    const char[] ExceptionControllerCalls = exceptionControllerCalls(name);
 }

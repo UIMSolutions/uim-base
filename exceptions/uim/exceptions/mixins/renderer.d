@@ -5,3 +5,23 @@
 *****************************************************************************************************************/
 module uim.exceptions.mixins.renderer;
 
+import uim.exceptions;
+
+@safe:
+string exceptionRendererThis(string name = null) {
+    string fullName = name ~ "ExceptionRenderer";
+    return objThis(fullName);
+}
+
+template ExceptionRendererThis(string name = null) {
+    const char[] ExceptionRendererThis = exceptionRendererThis(name);
+}
+
+string exceptionRendererCalls(string name) {
+    string fullName = name ~ "ExceptionRenderer";
+    return objCalls(fullName);
+}
+
+template ExceptionRendererCalls(string name) {
+    const char[] ExceptionRendererCalls = exceptionRendererCalls(name);
+}

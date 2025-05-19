@@ -15,7 +15,9 @@ import uim.exceptions;
  *
  * Useful in CI or plain text environments.
  */
-class DConsoleExceptionRenderer { // }: IExceptionRenderer {
+class DConsoleExceptionRenderer : DExceptionRenderer {
+    mixin(ExceptionRendererThis!("Console"));
+
     private Throwable _error;
 
     /* private DOutput _output; */
@@ -90,3 +92,4 @@ class DConsoleExceptionRenderer { // }: IExceptionRenderer {
         // _output.write(outputText);
     }
 }
+    mixin(ExceptionRendererCalls!("Console"));

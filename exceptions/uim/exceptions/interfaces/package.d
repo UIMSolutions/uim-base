@@ -6,6 +6,7 @@
 module uim.exceptions.interfaces;
 
 public {
+    import uim.exceptions.interfaces.controller;
     import uim.exceptions.interfaces.exception;
     import uim.exceptions.interfaces.renderer;
 }
