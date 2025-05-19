@@ -255,7 +255,7 @@ class DWebExceptionRenderer : DExceptionRenderer {
   } */
 
   // Get exception message.
-  protected string exceptionMessage(Throwable exception, int exceptionCode) {
+  override protected string exceptionMessage(Throwable exception, int exceptionCode) {
     /* string result = exception.message();
 
         if (
@@ -289,7 +289,7 @@ class DWebExceptionRenderer : DExceptionRenderer {
   }
 
   // Gets the appropriate http status code for exception.
-  protected int getHttpCode(Throwable exception) {
+  override protected int getHttpCode(Throwable exception) {
     /* if (cast(HttpException) exception) {
             return exception.code();
         }

@@ -8,11 +8,20 @@ module uim.exceptions.interfaces.exception;
 import uim.exceptions;
 @safe:
 
-interface IExceptions {
+interface IException {
 /*     // This interface is used to define the contract for all exception classes in the UIManufaktur framework.
     // It ensures that all exceptions have a message and a code, and provides methods for getting and setting these values.
     // The interface also defines a method for getting the exception type, which can be used to categorize exceptions.
     string getMessage();
     int getCode();
     string getType(); */
+
+    // A message describing the error.
+    string msg();
+
+    // The file name of the D source code corresponding with where the error was thrown from.
+    string file();
+
+    // The line number of the D source code corresponding with where the error was thrown from.
+    size_t line();
 }

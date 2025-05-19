@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.exceptions.exceptions.trap;
+module uim.exceptions.classes.exceptions.trap;
 
 mixin(Version!("test_uim_core"));
 
@@ -34,10 +34,10 @@ class DExceptionTrap {
      * - `exceptionRenderer` - string - The class responsible for rendering uncaught exceptions.
      * The chosen class will be used for for both CLI and web environments. If  you want different
      * classes used in CLI and web environments you'll need to write that conditional logic as well.
-     * The conventional location for custom renderers is in `src/Error`. Your exception renderer needs to
+     * The conventional location for custom renderers is in `src/Exception`. Your exception renderer needs to
      * implement the `render()` method and return either a string or Http\Response.
      * - `log` Set to false to disable logging.
-     * - `logger` - string - The class name of the error logger to use.
+     * - `logger` - string - The class name of the exception logger to use.
      * - `trace` - boolean - Whether or not backtraces should be included in
      * logged exceptions.
      * - `skipLog` - array - List of exceptions to skip for logging. Exceptions that
@@ -46,8 +46,8 @@ class DExceptionTrap {
      * `skipLog": ["UIM\Http\Exception\NotFoundException", "UIM\Http\Exception\UnauthorizedException"]
      * ```
      * This option is forwarded to the configured `logger`
-     * - `extraFatalErrorMemory` - int - The number of megabytes to increase the memory limit by when a fatal error is
-     * encountered. This allows breathing room to complete logging or error handling.
+     * - `extraFatalExceptionMemory` - int - The number of megabytes to increase the memory limit by when a fatal exception is
+     * encountered. This allows breathing room to complete logging or exception handling.
      * - `stderr` Used in console environments so that renderers have access to the current console output stream.
      *
      */
@@ -57,7 +57,7 @@ class DExceptionTrap {
   /**
      * A list of handling callbacks.
      *
-     * Callbacks are invoked for each error that is handled.
+     * Callbacks are invoked for each exception that is handled.
      * Callbacks are invoked in the order they are attached.
      */
   protected IClosure[] aCallbacks;
@@ -85,12 +85,12 @@ class DExceptionTrap {
   bool initialize(Json[string] initData = null) {
 /*     configuration
       .setEntry("exceptionRenderer", Json(null))
-      .setEntry("logger", ErrorLogger.classname)
+      .setEntry("logger", ExceptionLogger.classname)
       .setEntry("stderr", Json(null))
       .setEntry("log", true)
       .setEntry("skipLog", Json.emptyArray)
       .setEntry("trace", false)
-      .setEntry("extraFatalErrorMemory", 4);
+      .setEntry("extraFatalExceptionMemory", 4);
     _configData = merge(initData, defaultData); */
     return true;
   }
@@ -105,7 +105,7 @@ class DExceptionTrap {
       /* if (!isSubclass_of(classname, IExceptionRenderer.classname)) {
                 throw new DInvalidArgumentException(
                     "Cannot use `{ classname}` as an `exceptionRenderer`. " ~
-                    "It must be an instance of `UIM\Error\IExceptionRenderer`."
+                    "It must be an instance of `UIM\Exception\IExceptionRenderer`."
                );
             } * /
       // return new classname(exceptionToRender, myRequest, _configData);
@@ -121,7 +121,7 @@ return null;
   }
 
   // Get an instance of the logger.
-  IErrorLogger logger() {
+  IExceptionLogger logger() {
 /*     classname = _configuration.hasEntry("logger", _defaultConfigData["logger"]);
 
     return new classname(_config); */
@@ -189,7 +189,7 @@ return null;
       auto renderer = this.renderer(myException, myRequest);
       renderer.write(event.getResult() ? event.getResult() : renderer.render());
     } catch (Throwable myException) {
-      this.logInternalError(myException);
+      this.logInternalException(myException);
     } */
     // Use this constant as a proxy for UIM tests.
 /*     if (UIM_SAPI == "cli" && !enviroment("FIXTURE_SCHEMA_METADATA")) {
@@ -202,28 +202,28 @@ return null;
 /*     if (this.disabled) {
       return;
     } */
-/*     auto megabytes = configuration.getLongEntry("extraFatalErrorMemory", 4);
+/*     auto megabytes = configuration.getLongEntry("extraFatalExceptionMemory", 4);
     if (megabytes > 0) {
       this.increaseMemoryLimit(megabytes * 1024);
     } */
-    /* error = error_get_last();
-    if (!error.isArray) {
+    /* exception = exception_get_last();
+    if (!exception.isArray) {
       return;
     }
 
     auto fatals = [
-      ERRORS.USER_ERROR,
-      ERRORS.ERROR,
-      ERRORS.PARSE,
+      EXCEPTIONS.USER_EXCEPTION,
+      EXCEPTIONS.EXCEPTION,
+      EXCEPTIONS.PARSE,
     ];
-    if (!isIn(error["type"], fatals, true)) {
+    if (!isIn(exception["type"], fatals, true)) {
       return;
     }
-    handleFatalError(
-      error["type"],
-      error["message"],
-      error["file"],
-      error["line"]
+    handleFatalException(
+      exception["type"],
+      exception["message"],
+      exception["file"],
+      exception["line"]
     ); */
   }
 
@@ -251,16 +251,16 @@ return null;
     }
  */  }
 
-  // Display/Log a fatal error.
-  void handleFatalError(int errorCode, string errorDescription, string fileName, int triggerdLine) {
-    // this.handleException(new DFatalErrorException("Fatal Error: " ~ errorDescription, 500, fileName, triggerdLine));
+  // Display/Log a fatal exception.
+  void handleFatalException(int exceptionCode, string exceptionDescription, string fileName, int triggerdLine) {
+    // this.handleException(new DFatalExceptionException("Fatal Exception: " ~ exceptionDescription, 500, fileName, triggerdLine));
   }
 
   /**
      * Log an exception.
      *
      * Primarily a auto to ensure consistency between global exception handling
-     * and the ErrorHandlerMiddleware. This method will apply the `skipLog` filter
+     * and the ExceptionHandlerMiddleware. This method will apply the `skipLog` filter
      * skipping logging if the exception should not be logged.
      *
      * After logging is attempted the `Exception.beforeRender` event is triggered.
@@ -283,15 +283,15 @@ return null;
   } */
 
   /**
-     * Trigger an error that occurred during rendering an exception.
+     * Trigger an exception that occurred during rendering an exception.
      *
-     * By triggering an ERRORS.USER_ERROR we can end up in the default
+     * By triggering an EXCEPTIONS.USER_EXCEPTION we can end up in the default
      * exception handling which will log the rendering failure,
-     * and hopefully render an error page.
+     * and hopefully render an exception page.
      * Params:
      * \Throwable logException Exception to log
      */
-  void logInternalError(Throwable logException) {
+  void logInternalException(Throwable logException) {
     /* string message =
       "[%s] %s (%s:%s)" // Keeping same message format
       .format(
@@ -300,6 +300,6 @@ return null;
         logException.getFile(),
         logException.getLine(),
       );
-    trigger_error(message, ERRORS.USER_ERROR); */
+    trigger_exception(message, EXCEPTIONS.USER_EXCEPTION); */
   }
 }
