@@ -15,12 +15,12 @@ import uim.exceptions;
  *
  * Captures and handles all unhandled exceptions. Displays helpful framework exceptions when debug is true.
  * When debug is false a ExceptionRenderer will render 404 or 500 exceptions. If an uncaught exception is thrown
- * and it is a type that ExceptionHandler does not know about it will be treated as a 500 error.
+ * and it is a type that ExceptionHandler does not know about it will be treated as a 500 exception.
  *
  * ### Implementing application specific exception rendering
  *
  * You can implement application specific exception handling by creating a subclass of
- * ExceptionRenderer and configure it to be the `exceptionRenderer` in config/error.D
+ * ExceptionRenderer and configure it to be the `exceptionRenderer` in config/exception.D
  *
  * #### Using a subclass of ExceptionRenderer
  *
@@ -35,14 +35,14 @@ class DExceptionRenderer : IExceptionRenderer {
     protected string method = "";
     
     // The exception being handled.
-    protected IError _error;
+    protected IException _exception;
 
     // Controller instance.
    /*  protected IController controller; */
 
     /**
      * If set, this will be request used to create the controller that will render
-     * the error.
+     * the exception.
      */
     /* protected IServerRequest _request; */
 
@@ -68,9 +68,9 @@ class DExceptionRenderer : IExceptionRenderer {
         MissingRouteException.classname: 404,
     ]; */
 
-    // Creates the controller to perform rendering on the error response.
+    // Creates the controller to perform rendering on the exception response.
     /* this(Throwable exception, IServerRequest serverRequest = null) {
-        _error = exception;
+        _exception = exception;
         _request = serverRequest;
         _controller = _getController();
     } */
@@ -78,10 +78,10 @@ class DExceptionRenderer : IExceptionRenderer {
     /**
      * Get the controller instance to handle the exception.
      * Override this method in subclasses to customize the controller used.
-     * This method returns the built in `ErrorController` normally, or if an error is repeated
+     * This method returns the built in `ExceptionController` normally, or if an exception is repeated
      * a bare controller will be used.
      */
-    protected IErrorController _getController() {
+    protected IExceptionController _getController() {
         /* auto _request = _request;
         auto routerRequest = Router.getRequest();
         // Fallback to the request in the router or make a new one from
@@ -96,23 +96,23 @@ class DExceptionRenderer : IExceptionRenderer {
             _request = _request.withAttribute("params", routerRequest.getAttribute("params"));
         }
 
-        _errorOccured = false;
+        _exceptionOccured = false;
             IController controller;
         try {
             auto params = _request.getAttribute("params");
-            params.set("controller", "Error");
+            params.set("controller", "Exception");
 
             auto factory = new DControllerFactory(new DContainer());
             string myClass = factory.controllerClass(_request.withAttribute("params", params));
 
             if (myClass.isEmpty) {
-                myClass = App.classname("Error", "Controller", "Controller");
+                myClass = App.classname("Exception", "Controller", "Controller");
             }
 
             auto controller = new myClass(_request);
             controller.startupProcess();
         } catch (Throwable throwable) {
-            _errorOccured = true;
+            _exceptionOccured = true;
         }
 
         if (controller.isNull) {
@@ -122,7 +122,7 @@ class DExceptionRenderer : IExceptionRenderer {
         // Retry RequestHandler, as another aspect of startupProcess()
         // could have failed. Ignore any exceptions out of startup, as
         // there could be userland input data parsers.
-        /* if (_errorOccured && controller.RequestHandler !is null) {
+        /* if (_exceptionOccured && controller.RequestHandler !is null) {
             try {
                 myEvent = new DEvent("Controller.startup", controller);
                 controller.RequestHandler.startup(myEvent);
@@ -135,7 +135,7 @@ class DExceptionRenderer : IExceptionRenderer {
         return null;
     }
 
-    // Clear output buffers so error pages display properly.
+    // Clear output buffers so exception pages display properly.
     protected void clearOutput() {
 /*         if (hasAllValues(D_SAPI, ["cli", "Ddbg"])) {
             return;
@@ -147,7 +147,7 @@ class DExceptionRenderer : IExceptionRenderer {
 
     // Renders the response for the exception.
     /* IResponse render() {
-        /* auto myException = _error;
+        /* auto myException = _exception;
         code = getHttpCode(myException);
         method = methodName(myException);
         myTemplate = templateName(myException, method, code);
@@ -157,7 +157,7 @@ class DExceptionRenderer : IExceptionRenderer {
             return _customMethod(method, myException);
         }
 
-        auto myMessage = errorMessage(myException, code);
+        auto myMessage = exceptionMessage(myException, code);
         auto myUrl = _controller.getRequest().getRequestTarget();
         auto response = _controller.getResponse();
 
@@ -174,7 +174,7 @@ class DExceptionRenderer : IExceptionRenderer {
         auto viewVars = [
             "message": myMessage,
             "url": h(myUrl),
-            "error": myException,
+            "exception": myException,
             "code": code,
         ];
 
@@ -208,7 +208,7 @@ class DExceptionRenderer : IExceptionRenderer {
         return null; 
     } */
 
-    // Render a custom error method/template.
+    // Render a custom exception method/template.
     /* protected IResponse _customMethod(string methodToInvoke, Throwable myExceptionToRender) {
         /* myResult = this.{method}(myException);
         _shutdown();
@@ -228,23 +228,23 @@ class DExceptionRenderer : IExceptionRenderer {
         }
 
         // baseClass would be an empty string if the exception class is \Exception.
-        _method = baseClass is null ? "error500" : Inflector.variable(baseClass);
+        _method = baseClass is null ? "exception500" : Inflector.variable(baseClass);
 
         return _method; */
         return null; 
     }
 
-    // Get error message.
-    protected string errorMessage(Throwable throwableException, int errorCode) {
+    // Get exception message.
+    protected string exceptionMessage(Throwable throwableException, int exceptionCode) {
         // auto myMessage = throwableException.message();
 
 /*         if (
             !Configure.read("debug") &&
             !(cast(HttpException)throwableException)
        ) {
-            myMessage = errorCode < 500
+            myMessage = exceptionCode < 500
                 ? __d("uim", "Not Found")
-                : __d("uim", "An Internal Error Has Occurred.");
+                : __d("uim", "An Internal Exception Has Occurred.");
         } */
 
         // return myMessage;
@@ -252,13 +252,13 @@ class DExceptionRenderer : IExceptionRenderer {
     }
 
     // Get template for rendering exception info.
-    protected string templateName(Throwable throwableException, string methodName, int errorCode) {
+    protected string templateName(Throwable throwableException, string methodName, int exceptionCode) {
 /*         if (cast(HttpException)throwableException || !Configure.read("debug")) {
-            return _template = errorCode < 500 ? "error400" : "error500";
+            return _template = exceptionCode < 500 ? "exception400" : "exception500";
         }
 
         return cast(PDOException)throwableException
-            ? "pdo_error"
+            ? "pdo_exception"
             : methodName; */
 
         return null;
@@ -282,23 +282,23 @@ class DExceptionRenderer : IExceptionRenderer {
         } catch (MissingTemplateException miisngTemplateExecution) {
             attributes = miisngTemplateExecution.getAttributes();
             return cast(MissingLayoutException)miisngTemplateExecution  ||
-                attributes.getString("file").has("error500")
-                ? _outputMessageSafe("error500")
-                : _outputMessage("error500");
+                attributes.getString("file").has("exception500")
+                ? _outputMessageSafe("exception500")
+                : _outputMessage("exception500");
         } catch (MissingPluginException missngPluginExecution) {
             attributes = missngPluginExecution.getAttributes();
             if (attributes.hasKey("plugin") && attributes["plugin"] == _controller.getPlugin()) {
                 _controller.setPlugin(null);
             }
 
-            return _outputMessageSafe("error500");
+            return _outputMessageSafe("exception500");
         } catch (Throwable throwable) {
-            return _outputMessageSafe("error500");
+            return _outputMessageSafe("exception500");
         }
     } */
 
     /**
-     * A safer way to render error messages, replaces all helpers, with basics
+     * A safer way to render exception messages, replaces all helpers, with basics
      * and doesn"t call component methods.
      */
     /* protected IResponse _outputMessageSafe(string templateToRender) {
@@ -306,12 +306,12 @@ class DExceptionRenderer : IExceptionRenderer {
         myBuilder
             .setHelpers([], false)
             .setLayoutPath("")
-            .setTemplatePath("Error");
+            .setTemplatePath("Exception");
         view = _controller.createView("View");
 
         auto response = _controller.getResponse()
             .withType("html")
-            .withStringBody(view.render(templateToRender, "error"));
+            .withStringBody(view.render(templateToRender, "exception"));
         _controller.setResponse(response);
 
         return response;
@@ -331,7 +331,7 @@ class DExceptionRenderer : IExceptionRenderer {
     // Returns an array that can be used to describe the internal state of this object.
     /* Json[string] debugInfo(string[] showKeys = null, string[] hideKeys = null) {
         return [
-            "error": _error,
+            "exception": _exception,
             "request": _request,
             "controller": _controller,
             // "template": this.template,

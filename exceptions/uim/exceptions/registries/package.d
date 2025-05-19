@@ -6,5 +6,6 @@
 module uim.exceptions.registries;
 
 public {
-    import uim.exceptions.registries.registry;
+  import uim.exceptions.registries.exception;
+  import uim.exceptions.registries.renderer;
 }

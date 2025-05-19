@@ -14,7 +14,7 @@ import uim.exceptions;
  * Plain text exception rendering with a stack trace.
  * Useful in CI or plain text environments.
  */
-class DTextExceptionRenderer : IExceptionRenderer{
+class DTextExceptionRenderer : IExceptionRenderer {
   private IError _error;
 
   this(IError error) {

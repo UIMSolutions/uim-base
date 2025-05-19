@@ -5,3 +5,7 @@
 *****************************************************************************************************************/
 module uim.exceptions.mixins;
 
+public {
+  import uim.exceptions.mixins.exception;
+  import uim.exceptions.mixins.renderer;
+}
