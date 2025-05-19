@@ -92,4 +92,4 @@ class DConsoleExceptionRenderer : DExceptionRenderer {
         // _output.write(outputText);
     }
 }
-    mixin(ExceptionRendererCalls!("Console"));
+mixin(ExceptionRendererCalls!("Console"));

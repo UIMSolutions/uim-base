@@ -9,3 +9,8 @@ mixin(Version!("test_uim_exceptions"));
 
 import uim.exceptions;
 @safe:
+
+class DHtmlExceptionRenderer : DExceptionRenderer {
+    mixin(ExceptionRendererThis!("Html"));
+}
+mixin(ExceptionRendererCalls!("Html"));

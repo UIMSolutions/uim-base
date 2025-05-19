@@ -27,7 +27,9 @@ import uim.exceptions;
  * Using a subclass of WebExceptionRenderer gives you full control over how Exceptions are rendered, you
  * can configure your class in your config/app.d.
  */
-class DWebExceptionRenderer { // }: IExceptionRenderer {
+class DWebExceptionRenderer : DExceptionRenderer {
+  mixin(ExceptionRendererThis!("Web"));
+
   /**
      * Creates the controller to perform rendering on the exception response.
      * Params:
@@ -93,7 +95,7 @@ class DWebExceptionRenderer { // }: IExceptionRenderer {
      * This method returns the built in `ExceptionController` normally, or if an exception is repeated
      * a bare controller will be used.
      */
-  protected IExceptionController _getController() {
+  override protected IExceptionController _getController() {
     /* request = _request;
     routerRequest = Router.getRequest();
     // Fallback to the request in the router or make a new one from
@@ -135,7 +137,7 @@ class DWebExceptionRenderer { // }: IExceptionRenderer {
   }
 
   // Clear output buffers so exception pages display properly.
-  protected void clearOutput() {
+  override protected void clearOutput() {
     /* if (isIn(UIM_SAPI, ["cli", "Ddbg"])) {
       return;
     } */
@@ -274,7 +276,7 @@ class DWebExceptionRenderer { // }: IExceptionRenderer {
      * Params:
      * \Throwable exception Exception instance.
      */
-  protected string templateName(Throwable exception, string methodName, int exceptionCode) {
+   override protected string templateName(Throwable exception, string methodName, int exceptionCode) {
     /* if (cast(HttpException) exception || !configuration.hasEntry("debug")) {
         return _template = exceptionCode < 500 ? "exception400' : 'exception500";
     }
@@ -371,3 +373,4 @@ class DWebExceptionRenderer { // }: IExceptionRenderer {
       .set("method", _method);
   } */
 }
+mixin(ExceptionRendererCalls!("Web"));

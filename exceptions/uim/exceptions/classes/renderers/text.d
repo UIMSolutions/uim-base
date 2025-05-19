@@ -14,7 +14,9 @@ import uim.exceptions;
  * Plain text exception rendering with a stack trace.
  * Useful in CI or plain text environments.
  */
-class DTextExceptionRenderer : IExceptionRenderer {
+class DTextExceptionRenderer : DExceptionRenderer {
+  mixin(ExceptionRendererThis!("Text"));
+
   private IException _exception;
 
   this(IException exception) {
@@ -39,3 +41,4 @@ class DTextExceptionRenderer : IExceptionRenderer {
     return this;
   }
 }
+mixin(ExceptionRendererCalls!("Text"));
