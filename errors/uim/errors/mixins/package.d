@@ -1,6 +1,8 @@
-module uim.errors.mixins;
+module uim.errors.mixins.errors;
 
 public {
-    import uim.errors.mixins.errors;
-    import uim.errors.mixins.exceptions;
+    import uim.errors.mixins.error;
+    import uim.errors.mixins.formatter;
+    import uim.errors.mixins.node;
+    import uim.errors.mixins.renderer;
 }

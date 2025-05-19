@@ -15,12 +15,12 @@ import uim.exceptions;
  *
  * Captures and handles all unhandled exceptions. Displays helpful framework exceptions when debug is true.
  * When debug is false, WebExceptionRenderer will render 404 or 500 exceptions. If an uncaught exception is thrown
- * and it is a type that WebExceptionHandler does not know about it will be treated as a 500 error.
+ * and it is a type that WebExceptionHandler does not know about it will be treated as a 500 exception.
  *
  * ### Implementing application specific exception rendering
  *
  * You can implement application specific exception handling by creating a subclass of
- * WebExceptionRenderer and configure it to be the `exceptionRenderer` in config/error.d
+ * WebExceptionRenderer and configure it to be the `exceptionRenderer` in config/exception.d
  *
  * #### Using a subclass of WebExceptionRenderer
  *
@@ -29,19 +29,19 @@ import uim.exceptions;
  */
 class DWebExceptionRenderer { // }: IExceptionRenderer {
   /**
-     * Creates the controller to perform rendering on the error response.
+     * Creates the controller to perform rendering on the exception response.
      * Params:
      * \Throwable exception Exception.
      * instead of creating a new one.
      */
   /* this(Throwable exception, IServerRequest serverRequest = null) {
-        _error = exception;
+        _exception = exception;
         _request = serverRequest;
         _controller = _getController();
     } */
 
   // Controller instance.
-  protected IErrorController controller;
+  protected IExceptionController controller;
 
   // Template to render for {@link \UIM\Core\Exception\DException}
   protected string _template = "";
@@ -54,11 +54,11 @@ class DWebExceptionRenderer { // }: IExceptionRenderer {
      *
      * @var \Throwable
      */
-  protected Throwable error;
+  protected Throwable exception;
 
   /**
      * If set, this will be request used to create the controller that will render
-     * the error.
+     * the exception.
      *
      * @var \UIM\Http\ServerRequest|null
      */
@@ -90,10 +90,10 @@ class DWebExceptionRenderer { // }: IExceptionRenderer {
   /**
      * Get the controller instance to handle the exception.
      * Override this method in subclasses to customize the controller used.
-     * This method returns the built in `ErrorController` normally, or if an error is repeated
+     * This method returns the built in `ExceptionController` normally, or if an exception is repeated
      * a bare controller will be used.
      */
-  protected IErrorController _getController() {
+  protected IExceptionController _getController() {
     /* request = _request;
     routerRequest = Router.getRequest();
     // Fallback to the request in the router or make a new one from
@@ -108,7 +108,7 @@ class DWebExceptionRenderer { // }: IExceptionRenderer {
     }
     try {
       params = request.getAttribute("params");
-      params.set("controller", "Error");
+      params.set("controller", "Exception");
 
       auto factory = new DControllerFactory(new DContainer());
       // Check including plugin + prefix
@@ -120,7 +120,7 @@ class DWebExceptionRenderer { // }: IExceptionRenderer {
       }
       if (!classname) {
         // Fallback to app/core provided controller.
-        classname = App.classname("Error", "Controller", "Controller");
+        classname = App.classname("Exception", "Controller", "Controller");
       }
       assert(isSubclass_of(classname, Controller.classname));
       controller = new classname(request);
@@ -134,7 +134,7 @@ class DWebExceptionRenderer { // }: IExceptionRenderer {
     return null;
   }
 
-  // Clear output buffers so error pages display properly.
+  // Clear output buffers so exception pages display properly.
   protected void clearOutput() {
     /* if (isIn(UIM_SAPI, ["cli", "Ddbg"])) {
       return;
@@ -146,7 +146,7 @@ class DWebExceptionRenderer { // }: IExceptionRenderer {
 
   // Renders the response for the exception.
   /* IResponse render() {
-        /* auto exception = _error;
+        /* auto exception = _exception;
         auto code = getHttpCode(exception);
         auto method = methodName(exception);
         auto templateText = templateName(exception, method, code);
@@ -155,7 +155,7 @@ class DWebExceptionRenderer { // }: IExceptionRenderer {
         if (hasMethod(this, method)) {
             return _customMethod(method, exception);
         }
-        string message = errorMessage(exception, code);
+        string message = exceptionMessage(exception, code);
         auto url = _controller.getRequest().getRequestTarget();
 
         auto response = _controller.getResponse();
@@ -175,7 +175,7 @@ class DWebExceptionRenderer { // }: IExceptionRenderer {
         auto viewVars = [
             "message": message,
             "url": htmlAttributeEscape(url),
-            "error": exception,
+            "exception": exception,
             "exceptions": exceptions,
             "code": code,
         ];
@@ -224,7 +224,7 @@ class DWebExceptionRenderer { // }: IExceptionRenderer {
         emitter.emit(outputResponse);
     } */
 
-  // Render a custom error method/template.
+  // Render a custom exception method/template.
   /* protected IResponse _customMethod(string methodName, Throwable exceptionToRender) {
         /*         auto result = this.{
             methodName
@@ -246,14 +246,14 @@ class DWebExceptionRenderer { // }: IExceptionRenderer {
             baseClass = subString(baseClass, 0, -9);
         }
         // baseClass would be an empty string if the exception class is \Exception.
-        method = baseClass is null ? "error500" : Inflector.variable(baseClass);
+        method = baseClass is null ? "exception500" : Inflector.variable(baseClass);
 
         return _method = method; * /
     return null;
   } */
 
-  // Get error message.
-  protected string errorMessage(Throwable exception, int errorCode) {
+  // Get exception message.
+  protected string exceptionMessage(Throwable exception, int exceptionCode) {
     /* string result = exception.message();
 
         if (
@@ -261,7 +261,7 @@ class DWebExceptionRenderer { // }: IExceptionRenderer {
             !(cast(HttpException) exception)
             ) {
             result = code < 500
-                ? __d("uim", "Not Found") : __d("uim", "An Internal Error Has Occurred.");
+                ? __d("uim", "Not Found") : __d("uim", "An Internal Exception Has Occurred.");
         }
     }
 
@@ -274,13 +274,13 @@ class DWebExceptionRenderer { // }: IExceptionRenderer {
      * Params:
      * \Throwable exception Exception instance.
      */
-  protected string templateName(Throwable exception, string methodName, int errorCode) {
+  protected string templateName(Throwable exception, string methodName, int exceptionCode) {
     /* if (cast(HttpException) exception || !configuration.hasEntry("debug")) {
-        return _template = errorCode < 500 ? "error400' : 'error500";
+        return _template = exceptionCode < 500 ? "exception400' : 'exception500";
     }
 
     _template = cast(PDOException) exception
-        ? "pdo_error" : methodName;
+        ? "pdo_exception" : methodName;
 
     return _template; */
     return null;
@@ -305,20 +305,20 @@ class DWebExceptionRenderer { // }: IExceptionRenderer {
         attributes = anException.getAttributes();
         if (
             cast(MissingLayoutException) anException ||
-            attributes.getString("file").contains("error500")
+            attributes.getString("file").contains("exception500")
             ) {
-            return _outputMessageSafe("error500");
+            return _outputMessageSafe("exception500");
         }
-        return _outputMessage("error500");
+        return _outputMessage("exception500");
     } catch (MissingPluginException anException) {
         attributes = anException.getAttributes();
         if (attributes.getString("plugin") == _controller.pluginName) {
             _controller.setPlugin(null);
         }
-        return _outputMessageSafe("error500");
+        return _outputMessageSafe("exception500");
     } catch (Throwable outer) {
         try {
-            return _outputMessageSafe("error500");
+            return _outputMessageSafe("exception500");
         } catch (Throwable anInner) {
             throw outer;
         }
@@ -327,7 +327,7 @@ class DWebExceptionRenderer { // }: IExceptionRenderer {
   } */
 
   /**
-     * A safer way to render error messages, replaces all helpers, with basics
+     * A safer way to render exception messages, replaces all helpers, with basics
      * and doesn`t call component methods.
      * Params:
      * string _template The template to render.
@@ -337,12 +337,12 @@ class DWebExceptionRenderer { // }: IExceptionRenderer {
     builder
       .setHelpers([])
       .setLayoutPath("")
-      .setTemplatePath("Error");
+      .setTemplatePath("Exception");
 
     auto view = _controller.createView("View");
     auto response = _controller.getResponse()
       .withType("html")
-      .withStringBody(view.render(templateText, "error"));
+      .withStringBody(view.render(templateText, "exception"));
     _controller.setResponse(response);
 
     return response;
@@ -364,7 +364,7 @@ class DWebExceptionRenderer { // }: IExceptionRenderer {
      */
 /*   Json[string] debugInfo(string[] showKeys = null, string[] hideKeys = null) {
     return super.debugInfo(showKeys, hideKeys)
-      .set("error", _error)
+      .set("exception", _exception)
       .set("request", _request)
       .set("controller", _controller)
       .set("template", _template)

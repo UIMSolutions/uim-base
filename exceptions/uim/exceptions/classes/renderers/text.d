@@ -15,20 +15,20 @@ import uim.exceptions;
  * Useful in CI or plain text environments.
  */
 class DTextExceptionRenderer : IExceptionRenderer {
-  private IError _error;
+  private IException _exception;
 
-  this(IError error) {
-    _error = error;
+  this(IException exception) {
+    _exception = exception;
   }
 
   // Render an exception into a plain text message.
   string render() {
     return "%s : %s on line %s of %s\nTrace:\n%s".format(
-      _error.loglevel(),
-      _error.message(),
-      _error.line(),
-      _error.fileName(),
-      _error.traceAsString(),
+      _exception.loglevel(),
+      _exception.message(),
+      _exception.line(),
+      _exception.fileName(),
+      _exception.traceAsString(),
     );
     return null; // TODO
   }
