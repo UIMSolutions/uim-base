@@ -83,67 +83,67 @@ unittest {
 
 /* 
 /**
- * Plain text exception rendering with a stack trace.
+ * Plain text error rendering with a stack trace.
  *
  * Useful in CI or plain text environments.
  * /
-class DConsoleExceptionRenderer : DExceptionRenderer {
-    mixin(ExceptionRendererThis!("Console"));
+class DConsoleErrorRenderer : DErrorRenderer {
+    mixin(ErrorRendererThis!("Console"));
 
-    private Throwable _exception;
+    private Throwable _error;
 
     /* private DOutput _output; * /
 
     private bool _trace;
 
     /* this(Throwable errorToRender, IServerRequest serverRequest, Json[string] errorHandlingData) {
-        _exception = error;
+        _error = error;
         // TODO this.output = configuration.getEntry("stderr") ?? new DOutput("d://stderr");
         _trace = configuration..getBooleanEntry("trace", true);
     } * /
 
-    // Render an exception into a plain text message.
+    // Render an error into a plain text message.
     string render() {
-/*         auto exceptions = [_exception];
-        auto previous = _exception.getPrevious();
+/*         auto errors = [_error];
+        auto previous = _error.getPrevious();
         while (!previous.isNull) {
-            exceptions ~= previous;
+            errors ~= previous;
             previous = previous.getPrevious();
         } * /
 
         string[] results;
-/*         foreach (index, exception; exceptions) {
-            parent = index > 0 ? exceptions[index - 1] : null;
-            results = chain(result, this.renderException(exception, parent));
+/*         foreach (index, error; errors) {
+            parent = index > 0 ? errors[index - 1] : null;
+            results = chain(result, this.renderError(error, parent));
         } * /
         return results.join("\n");
     }
 
-    // Render an individual exception
-    protected Json[string] renderException(DException exception, DException parentException) {
+    // Render an individual error
+    protected Json[string] renderError(DError error, DError parentError) {
         /* auto result = [
             "<error>%s[%s] %s</error> in %s on line %s"
             .format(
                 parent ? "Caused by " : "",
-                exceptionToRender.classname,
-                exceptionToRender.message(),
-                exceptionToRender.getFile(),
-                exceptionToRender.getLine()
+                errorToRender.classname,
+                errorToRender.message(),
+                errorToRender.getFile(),
+                errorToRender.getLine()
             ),
         ]; * /
 
         // auto debugValue = configuration.getEntry("debug");
-/*         if (debugValue && cast(DException) exceptionToRender) {
-            auto attributes = exceptionToRender.getAttributes();
+/*         if (debugValue && cast(DError) errorToRender) {
+            auto attributes = errorToRender.getAttributes();
             if (attributes) {
                 result ~= "";
-                result ~= "<info>Exception Attributes</info>";
+                result ~= "<info>Error Attributes</info>";
                 result ~= "";
-                result ~= var_export_(exceptionToRender.getAttributes(), true);
+                result ~= var_export_(errorToRender.getAttributes(), true);
             }
         } * /
 /*         if (_trace) {
-            auto stacktrace = Debugger.getUniqueFrames(exceptionToRender, parentException);
+            auto stacktrace = Debugger.getUniqueFrames(errorToRender, parentError);
             result ~= "";
             result ~= "<info>Stack Trace:</info>";
             result ~= "";
@@ -164,6 +164,6 @@ class DConsoleExceptionRenderer : DExceptionRenderer {
         // _output.write(outputText);
     }
 }
-mixin(ExceptionRendererCalls!("Console"));
+mixin(ErrorRendererCalls!("Console"));
 
 */ 

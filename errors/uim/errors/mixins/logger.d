@@ -3,23 +3,25 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.errors.classes.errors.collection;
-
-mixin(Version!("test_uim_errors"));
+module uim.errors.mixins.logger;
 
 import uim.errors;
+
 @safe:
-
-
-class DErrorCollection : DCollection!DError {   
+string errorLoggerThis(string name = null) {
+    string fullName = name ~ "ErrorLogger";
+    return objThis(fullName);
 }
 
-auto ErrorCollection() {
-    return new DErrorCollection;
+template ErrorLoggerThis(string name = null) {
+    const char[] ErrorLoggerThis = errorLoggerThis(name);
 }
 
-unittest {
-    auto collection = ErrorCollection();
-    assert(collection !is null);
-    // assert(collection is DErrorCollection);
-} 
+string errorLoggerCalls(string name) {
+    string fullName = name ~ "ErrorLogger";
+    return objCalls(fullName);
+}
+
+template ErrorLoggerCalls(string name) {
+    const char[] ErrorLoggerCalls = errorLoggerCalls(name);
+}

@@ -1,9 +1,9 @@
 module uim.errors.factories.middleware;
 
-mixin(Version!"test_uim_exceptions");
+mixin(Version!"test_uim_errors");
 
-import uim.exceptions;
+import uim.errors;
 @safe:
 
-class DExceptionMiddlewareFactory : DFactory!DExceptionMiddleware {}
-auto ExceptionMiddlewareFactory() { return DExceptionMiddlewareFactory.factory; }
+class DErrorMiddlewareFactory : DFactory!DErrorMiddleware {}
+auto ErrorMiddlewareFactory() { return DErrorMiddlewareFactory.factory; }

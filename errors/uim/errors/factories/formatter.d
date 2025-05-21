@@ -1,9 +1,9 @@
 module uim.errors.factories.formatter;
 
-mixin(Version!"test_uim_exceptions");
+mixin(Version!"test_uim_errors");
 
-import uim.exceptions;
+import uim.errors;
 @safe:
 
-class DExceptionFormaterFactory : DFactory!DExceptionFormater {}
-auto ExceptionFormaterFactory() { return DExceptionFormaterFactory.factory; }
+class DErrorFormatterFactory : DFactory!DErrorFormatter {}
+auto ErrorFormatterFactory() { return DErrorFormatterFactory.factory; }

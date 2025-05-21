@@ -163,3 +163,19 @@ unittest {
   assert(error.trace() == null);
   assert(error.traceAsString() == null); */
 }
+
+/* Old code
+ this(
+    ERRORS errorCode,
+    string errorMessage,
+    string filenameOfError = "",
+    size_t lineOfError = 0,
+    size_t[string][] traceDataForError = null
+  ) {
+    code(errorCode);
+    message(errorMessage);
+    fileName(filenameOfError);
+    lineNumber(lineOfError);
+    trace(traceDataForError);
+  }
+*/
