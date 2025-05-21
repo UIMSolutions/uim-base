@@ -23,3 +23,17 @@ interface IErrorRenderer {
     // Write output to the renderer`s output stream
     IErrorRenderer write(string output);
 }
+
+/* Old code
+    // Renders the response for the exception.
+    // TODO IResponse|string render();
+
+    /**
+     * Write the output to the output stream.
+     *
+     * This method is only called when exceptions are handled by a global default exception handler. */
+    // TODO void write(IResponse | string outputResponse);
+    // TODO void write(string outputResponse);
+    // TODO void write(IResponse | string outputText);
+    // TODO void write(string outputText);
+*/
