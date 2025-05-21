@@ -14,10 +14,6 @@ import uim.errors;
 class DPropertyErrorNode : DErrorNode {
   mixin(ErrorNodeThis!("Property"));
 
-  private string _name;
-
-  private string _visibility;
-
   private IErrorNode _propertyValue;
 
   this(string propertyName, string propertyVisibility, IErrorNode propertyErrorNode) {
@@ -32,15 +28,18 @@ class DPropertyErrorNode : DErrorNode {
     return Json(null); // TODO
   }
 
+  // #region visibility
   // Get the property visibility
+  private string _visibility;
+  IErrorNode visibility(string newVisibility) {
+    _visibility = newVisibility;
+    return this;
+  }
+
   string visibility() {
     return _visibility;
   }
-
-/*   // Get the property name
-  string name() {
-    return _name;
-  } */
+  // #endregion visibility
 
   override IErrorNode[] children() {
     return [this._propertyValue];

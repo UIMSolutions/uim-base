@@ -68,7 +68,7 @@ class DError : UIMObject, IError {
     _fileName = name;
     return this;
   }
-  // #endregion filemname
+  // #endregion filename
 
   // #region lineNumber
   protected size_t _lineNumber;
@@ -125,6 +125,11 @@ class DError : UIMObject, IError {
   }
   // #endregion trace
 
+  // #region throwError
+  void throwError() {
+    throw new Error(message);
+  }
+  // #endregion throwError
 }
 
 unittest {

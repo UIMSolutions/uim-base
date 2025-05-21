@@ -33,7 +33,7 @@ class DTextErrorRenderer : DErrorRenderer {
   }
 
   // Write output to stdout.
-  IErrorRenderer write(string outputText) {
+  override IErrorRenderer write(string outputText) {
     writeln(outputText);
     return this;
   }

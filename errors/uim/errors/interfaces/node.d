@@ -13,9 +13,14 @@ import uim.errors;
 // Interface for Error Nodes
 // Provides methods to look at the contained value and iterate on child nodes in the error tree.
 interface IErrorNode {
+/*     string name();
+    IErrorNode name(string name); */
+
     // Get the contained value.
     Json value();
+    IErrorNode value(Json newValue);
 
     // Get the child nodes of this node.
+    IErrorNode children(IErrorNode[] nodes);
     IErrorNode[] children();
 }
