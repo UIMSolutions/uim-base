@@ -127,7 +127,7 @@ class DDebugger : UIMObject, IErrorDebugger {
     /* auto anInstance = getInstance();
     if (!anInstance.editors.hasKey(editorName)) {
       auto known = anInstance.editors.keys.join(", ");
-      throw new DInvalidArgumentException(
+      throw new DInvalidArgumentError(
         "Unknown editor `%s`. Known editors are `%s`."
           .format(editorName, known)
       );
@@ -144,7 +144,7 @@ class DDebugger : UIMObject, IErrorDebugger {
     /* auto anInstance = getInstance();
     auto editor = anInstance.configuration.getEntry("editor");
     if (!anInstance.editors.hasKey(editor)) {
-      throw new DInvalidArgumentException(
+      throw new DInvalidArgumentError(
         "Cannot format editor URL `%s` is not a known editor."
           .format(editor));
     }
@@ -240,13 +240,13 @@ class DDebugger : UIMObject, IErrorDebugger {
     ); */
   }
 
-  // Get the frames from exception that are not present in parent
-  static Json[string] getUniqueFrames(Throwable exception, Throwable parent) {
+  // Get the frames from error that are not present in parent
+  static Json[string] getUniqueFrames(Throwable error, Throwable parent) {
     /* if (parent.isNull) {
-      return exception.getTrace();
+      return error.getTrace();
     } */
     /* parentFrames = parent.getTrace();
-    frames = exception.getTrace();
+    frames = error.getTrace();
 
     parentCount = count(parentFrames) - 1;
     frameCount = count(frames) - 1; */
@@ -362,7 +362,7 @@ class DDebugger : UIMObject, IErrorDebugger {
         back ~= "%s - %s, line %d".format(reference, somePath, frame["line"]);
       } else {
         /* debug (options);
-                throw new DInvalidArgumentException(
+                throw new DInvalidArgumentError(
                     "Invalid trace format of `{options.get(\"format\"]}` chosen. Must be one of `array`, `points` or `text`."
                ); * /
       }
@@ -474,7 +474,7 @@ class DDebugger : UIMObject, IErrorDebugger {
 
     /* anInstance = new formatterClassname();
         if (!cast(IErrorFormatter) anInstance) {
-            throw new DException(
+            throw new DError(
                 "The `%s` formatter does not implement `%s`."
                     .format(formatterClassname, IErrorFormatter.classname)
             );
@@ -608,9 +608,9 @@ class DDebugger : UIMObject, IErrorDebugger {
                         node.addProperty(new DPropertyErrorNode("'{key}'", null, export_(val, dumpContext)));
                     }
                     return node;
-                } catch (Exception anException) {
+                } catch (Error anError) {
                     return new DSpecialErrorNode(
-                        "(unable to export object: { anException.message()})");
+                        "(unable to export object: { anError.message()})");
                 }
              }
             auto outputMask = outputMask();
@@ -696,7 +696,7 @@ class DDebugger : UIMObject, IErrorDebugger {
   }
 
   /**
-     * Format an exception message to be HTML formatted.
+     * Format an error message to be HTML formatted.
      *
      * Does the following formatting operations:
      *
@@ -834,7 +834,7 @@ class DDebugger : UIMObject, IErrorDebugger {
         if (
             !instance.editors.hasKey(editorName)) {
             known = instance.editors.keys.join(", ");
-            throw new DRuntimeException(
+            throw new DRuntimeError(
                 "Unknown editor `{name}`. Known editors are {known}");
         }
         instance.configuration.setEntry("editor", editorName);
@@ -846,7 +846,7 @@ class DDebugger : UIMObject, IErrorDebugger {
     auto editor = instance.getConfig(
       "editor");
     if (instance.editors.isNull(editor)) {
-      throw new DRuntimeException(
+      throw new DRuntimeError(
         "Cannot format editor URL `{editor}` is not a known editor.");
     }
 
@@ -1159,7 +1159,7 @@ class DDebugger : UIMObject, IErrorDebugger {
         if (
             !cast(
                 IErrorFormatter) instance) {
-            throw new DRuntimeException(
+            throw new DRuntimeError(
                 "The `{aclassname}` formatter does not implement " ~ IErrorFormatter
                     .classname
             );
@@ -1324,7 +1324,7 @@ class DDebugger : UIMObject, IErrorDebugger {
 
                 return node;
             } catch (
-                Exception e) {
+                Error e) {
                 return new DSpecialErrorNode("(unable to export object: {e.message()})");
             }
         }
@@ -1445,7 +1445,7 @@ class DDebugger : UIMObject, IErrorDebugger {
   }
 
   /**
-     * Format an exception message to be HTML formatted.
+     * Format an error message to be HTML formatted.
      *
      * Does the following formatting operations:
      *

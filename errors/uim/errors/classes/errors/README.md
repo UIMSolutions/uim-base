@@ -1,7 +1,7 @@
 # Package 📦 uim.errors.errors
 
-The UIM library has error and exception handling capabilities. Errors are caught, displayed or logged.
-Exceptions, however, are handled in the program flow.
+The UIM library has error and error handling capabilities. Errors are caught, displayed or logged.
+Errors, however, are handled in the program flow.
 
 Errors are managed via the configurable ErrorHandler class. The error handling of the application can be adjusted via the ErrorHandler.
 
@@ -11,12 +11,12 @@ The following options are supported:
   The error level to capture. Error constants and bit masks are available for interested parties to select the error level. E_ALL^ERRORS.USER_DEPRECATED can be used to deactivate deprecated warnings.
 * Trace – bool
   With "True" stack traces for errors can be included in log files. After each error, stack traces are added to the log. This is useful for figuring out where/when errors occur.
-* ExceptionRenderer - String
-  Is a class responsible for rendering uncaught exceptions. This class must implement a render() method.
+* ErrorRenderer - String
+  Is a class responsible for rendering uncaught errors. This class must implement a render() method.
 * log – bool
-  If true, exceptions and stack traces are logged.
+  If true, errors and stack traces are logged.
 * skipLog – Array
-  An array of names of each exception class that should not be logged.
+  An array of names of each error class that should not be logged.
 * extraFatalErrorMemory – int
   Sets the number of megabytes to increase the memory limit when a fatal error occurs.
 

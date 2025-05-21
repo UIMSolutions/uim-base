@@ -100,7 +100,7 @@ class DErrorTrap : UIMObject {
         }
         if (errorCode == ERRORS.USER_ERROR || errorCode == ERRORS.ERROR || errorCode == ERRORS
             .PARSE) {
-            throw new DFatalErrorException(errorDescription, errorCode, fileName, errorTriggerLine);
+            throw new DFatalErrorError(errorDescription, errorCode, fileName, errorTriggerLine);
         }
  */ /* auto trace =  /* (array) * / Debugger.trace([
                 "start": 1,
@@ -130,9 +130,9 @@ class DErrorTrap : UIMObject {
                 return true;
             }
             renderer.write(event.getResult() ? event.getResult() : renderer.render(error, debugData));
-        } catch (Exception exception) {
+        } catch (Error error) {
             // Fatal errors always log.
-            logger().logException(exception);
+            logger().logError(error);
             return false;
         } */
     return true;

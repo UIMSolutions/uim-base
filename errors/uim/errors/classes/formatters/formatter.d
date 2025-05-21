@@ -38,7 +38,7 @@ class DErrorFormatter : UIMObject, IErrorFormatter {
         if (cast(DSpecialErrorNode) nodeToDump) {
             return exportSpecial(cast(DSpecialErrorNode) nodeToDump, indentLevel + 1);
         }
-        throw new DInvalidArgumentException("Unknown node received " ~ nodeToDump.classname); */
+        throw new DInvalidArgumentError("Unknown node received " ~ nodeToDump.classname); */
 
         return null; 
     }

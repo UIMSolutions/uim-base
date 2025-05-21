@@ -11,7 +11,7 @@ import uim.errors;
 @safe:
 
 
-// Log errors and unhandled exceptions to `UIM\Log\Log`
+// Log errors and unhandled errors to `UIM\Log\Log`
 class DErrorLogger : UIMObject, IErrorLogger {
     this() {
         initialize;
@@ -48,41 +48,41 @@ class DErrorLogger : UIMObject, IErrorLogger {
         Log.write(level, errorMessage); * /
     } */
 
-    /* void logException(
-        Throwable exception,
+    /* void logError(
+        Throwable error,
         IServerRequest serverRequest = null,
         bool anIncludeTrace = false
     ) {
-        exceptionMessage = message(exception, false, anIncludeTrace);
+        errorMessage = message(error, false, anIncludeTrace);
 
         if (!request.isNull) {
-            exceptionMessage ~= getRequestContext(request);
+            errorMessage ~= getRequestContext(request);
         }
-        Log.error(exceptionMessage);
+        Log.error(errorMessage);
     } */
 
-    // Generate the message for the exception
-    protected string message(Throwable exceptionToLog, bool isPrevious = false, bool includeTrace = false) {
+    // Generate the message for the error
+    protected string message(Throwable errorToLog, bool isPrevious = false, bool includeTrace = false) {
         /*         string message = "%s[%s] %s in %s on line %s"
             .format(
                 isPrevious ? "\nCaused by: " : "",
-                exceptionToLog.classname,
-                exceptionToLog.message(),
-                exceptionToLog.getFile(),
-                exceptionToLog.getLine()
+                errorToLog.classname,
+                errorToLog.message(),
+                errorToLog.getFile(),
+                errorToLog.getLine()
            );
 
         debug = configuration.getEntry("debug");
  */
-        /*         if (debug && cast(DException)exceptionToLog) {
-            attributes = exceptionToLog.getAttributes();
+        /*         if (debug && cast(DError)errorToLog) {
+            attributes = errorToLog.getAttributes();
             if (attributes) {
-                message ~= "\nException Attributes: " ~ varexport_(exceptionToLog.getAttributes(), true);
+                message ~= "\nError Attributes: " ~ varexport_(errorToLog.getAttributes(), true);
             }
         }
  */
         /* if (includeTrace) {
-            trace = Debugger.formatTrace(exceptionToLog, ["format": "points"]);
+            trace = Debugger.formatTrace(errorToLog, ["format": "points"]);
             assert(trace.isArray);
             message ~= "\nStack Trace:\n";
             trace.each!((line) {
@@ -92,15 +92,15 @@ class DErrorLogger : UIMObject, IErrorLogger {
             });
         }
  */
-        /*  auto previousException = exceptionToLog.getPrevious();
-        if (previousException) {
-            message ~= message(previousException, true,  includeTrace);
+        /*  auto previousError = errorToLog.getPrevious();
+        if (previousError) {
+            message ~= message(previousError, true,  includeTrace);
         }
         return message; */
         return null;
     }
 
-    // Get the request context for an error/exception trace.
+    // Get the request context for an error/error trace.
     /* string getRequestContext(IServerRequest request) {
         // TODO  string message = "\nRequest URL: " ~ request.getRequestTarget();
 
