@@ -11,6 +11,13 @@ import uim.oop;
 @safe:
 
 interface IRunnable {
-  O run(this O)();
-  O run(this O)(Json data);
+  IRunnable run();
+  IRunnable run(Json data);
+  IRunnable run(Json[string] data);
+
+  IRunnable finalize();
+  IRunnable finalize(Json[string] data);
+
+  // True if instance is running.
+  bool isRunning();
 }

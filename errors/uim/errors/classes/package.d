@@ -6,7 +6,7 @@
 module uim.errors.classes;
 
 public {
-  import uim.errors.classes.debugging;
+  import uim.errors.classes.debuggers;
   import uim.errors.classes.errors;
   import uim.errors.classes.formatters;
   import uim.errors.classes.middlewares;
