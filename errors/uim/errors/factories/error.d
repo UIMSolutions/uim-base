@@ -1,4 +1,4 @@
-module uim.exceptions.factories.exception;
+module uim.errors.factories.error;
 
 mixin(Version!"test_uim_exceptions");
 

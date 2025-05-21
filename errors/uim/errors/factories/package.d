@@ -6,5 +6,8 @@
 module uim.errors.factories;
 
 public {
-    import uim.errors.factories.factory;
+    import uim.errors.factories.error;
+    import uim.errors.factories.renderer;
+    import uim.errors.factories.formatter;
+    import uim.errors.factories.middleware;
 }
