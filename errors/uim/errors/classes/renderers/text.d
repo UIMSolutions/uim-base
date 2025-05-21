@@ -9,3 +9,33 @@ mixin(Version!("test_uim_errors"));
 
 import uim.errors;
 @safe:
+
+/**
+ * Plain text error rendering with a stack trace.
+ * Useful in CI or plain text environments.
+ */
+class DTextErrorRenderer : DErrorRenderer {
+  mixin(ErrorRendererThis!("Text"));
+
+  private IError _error;
+
+  this(IError error) {
+    _error = error;
+  }
+
+  // Render an error into a plain text message.
+  string render() {
+    return "%s : %s on line %s of %s\nTrace:\n%s".format(
+      _error.message(),
+      _error.file(),
+      _error.line()
+    );
+  }
+
+  // Write output to stdout.
+  IErrorRenderer write(string outputText) {
+    writeln(outputText);
+    return this;
+  }
+}
+mixin(ErrorRendererCalls!("Text"));

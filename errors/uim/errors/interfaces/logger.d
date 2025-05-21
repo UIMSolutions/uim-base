@@ -10,11 +10,11 @@ mixin(Version!("test_uim_errors"));
 import uim.errors;
 @safe:
 
-// Used by the ErrorHandlerMiddleware and global error handlers to log exceptions and errors.
+// Used by the ErrorHandlerMiddleware and global error handlers to log errors and errors.
 interface IErrorLogger {
-    // Log an error for an exception with optional request context.
-    /* void logException(
-        Throwable exception,
+    // Log an error for an error with optional request context.
+    /* void logError(
+        Throwable error,
         IServerRequest currentRequest = null,
         bool anIncludeTrace = false
     );

@@ -3,8 +3,8 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.exceptions.classes.traps;
+module uim.errors.classes.traps;
 
 public {
-    import uim.exceptions.classes.traps.trap;
+    import uim.errors.classes.traps.trap;
 }

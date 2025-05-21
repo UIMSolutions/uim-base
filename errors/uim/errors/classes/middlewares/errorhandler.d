@@ -13,8 +13,8 @@ import uim.errors;
 /**
  * Error handling middleware.
  *
- * Traps exceptions and converts them into HTML or content-type appropriate
- * error pages using the UIM ExceptionRenderer.
+ * Traps errors and converts them into HTML or content-type appropriate
+ * error pages using the UIM ErrorRenderer.
  */
 class DErrorHandlerMiddleware : UIMObject, IErrorMiddleware {
     this(Json[string] initData = null) {
@@ -37,24 +37,24 @@ class DErrorHandlerMiddleware : UIMObject, IErrorMiddleware {
         *
         * Ignored if contructor is passed an ErrorHandler instance.
         *
-        * - `log` Enable logging of exceptions.
-        * - `skipLog` List of exceptions to skip logging. Exceptions that
-        *  extend one of the listed exceptions will also not be logged. Example:
+        * - `log` Enable logging of errors.
+        * - `skipLog` List of errors to skip logging. Errors that
+        *  extend one of the listed errors will also not be logged. Example:
         *
         *  ```
-        *  "skipLog": ["uim\errors.NotFoundException", "uim\errors.UnauthorizedException"]
+        *  "skipLog": ["uim\errors.NotFoundError", "uim\errors.UnauthorizedError"]
         *  ```
         *
         * - `trace` Should error logs include stack traces?
-        * - `exceptionRenderer` The renderer instance or class name to use or a callable factory
-        *  which returns a uim.errorss.IExceptionRenderer instance.
-        *  Defaults to uim.errorss.ExceptionRenderer
+        * - `errorRenderer` The renderer instance or class name to use or a callable factory
+        *  which returns a uim.errorss.IErrorRenderer instance.
+        *  Defaults to uim.errorss.ErrorRenderer
         */
 /*         configuration
             .setEntry("skipLog", Json.emptyArray)
             .setEntry("log", true)
             .setEntry("trace", false)
-            .setEntry("exceptionRenderer", ExceptionRenderer.classname); */
+            .setEntry("errorRenderer", ErrorRenderer.classname); */
 
         return true;
     }
@@ -66,37 +66,37 @@ class DErrorHandlerMiddleware : UIMObject, IErrorMiddleware {
     /* IResponse process(IServerRequest request, IRequestHandler requestHandler) {
         try {
             return requestHandler.handle(request);
-        }  /* catch (DRedirectException exception) {
-            return _handleRedirect(exception);
+        }  /* catch (DRedirectError error) {
+            return _handleRedirect(error);
         } * /
-        catch (Throwable exception) {
-            return _handleException(exception, request);
+        catch (Throwable error) {
+            return _handleError(error, request);
         }
     } */
 
-    // Handle an exception and generate an error response
-    /* IResponse handleException(Throwable exception, IServerRequest request) {
+    // Handle an error and generate an error response
+    /* IResponse handleError(Throwable error, IServerRequest request) {
         auto _errorHandler = getErrorHandler();
-        auto renderer = _errorHandler.getRenderer(exception, request);
+        auto renderer = _errorHandler.getRenderer(error, request);
 
         IResponse response;
         try {
-            _errorHandler.logException(exception, request);
+            _errorHandler.logError(error, request);
             response = renderer.render();
-        } catch (Throwable internalException) {
-            /*  _errorHandler.logException@(DInternalException, request);
+        } catch (Throwable internalError) {
+            /*  _errorHandler.logError@(DInternalError, request);
             response = handleInternalError(); * /
         }
 
         return response;
     } */
 
-    // Convert a redirect exception into a response.
-    /*     IResponse handleRedirect(DRedirectException exceptionToHandle) {
+    // Convert a redirect error into a response.
+    /*     IResponse handleRedirect(DRedirectError errorToHandle) {
         return new DRedirectResponse(
-            exceptionToHandle.message(),
-            exceptionToHandle.code(),
-            exceptionToHandle.getHeaders()
+            errorToHandle.message(),
+            errorToHandle.code(),
+            errorToHandle.getHeaders()
         );
     }
  */

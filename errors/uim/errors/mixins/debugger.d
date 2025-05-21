@@ -3,14 +3,25 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.exceptions.classes.renderers.html;
+module uim.errors.mixins.debugger;
 
-mixin(Version!("test_uim_exceptions"));
+import uim.errors;
 
-import uim.exceptions;
 @safe:
-
-class DHtmlExceptionRenderer : DExceptionRenderer {
-    mixin(ExceptionRendererThis!("Html"));
+string errorDebuggerThis(string name = null) {
+    string fullName = name ~ "ErrorDebugger";
+    return objThis(fullName);
 }
-mixin(ExceptionRendererCalls!("Html"));
+
+template ErrorDebuggerThis(string name = null) {
+    const char[] ErrorDebuggerThis = errorDebuggerThis(name);
+}
+
+string errorDebuggerCalls(string name) {
+    string fullName = name ~ "ErrorDebugger";
+    return objCalls(fullName);
+}
+
+template ErrorDebuggerCalls(string name) {
+    const char[] ErrorDebuggerCalls = errorDebuggerCalls(name);
+}
