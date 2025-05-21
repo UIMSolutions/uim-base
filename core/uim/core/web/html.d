@@ -198,42 +198,77 @@ string htmlSingleTag(string tag, string id, string[] classes, string[string] att
 // #endregion htmlSingleTag - string[string]
 // #endregion htmlSingleTag
 
-/**
-     * Convenience method for htmlspecialchars.
-     * Params:
-     * Json text Text to wrap through htmlspecialchars. Also works with arrays, and objects.
-     *  Arrays will be mapped and have all their elements escaped. Objects will be string cast if they
-     *  implement a `__toString` method. Otherwise, the class name will be used.
-     *  Other scalar types will be returned unchanged.
-     */
-string htmlAttributeEscape(Json text, bool isDouble = true, string charsetToUse = null) {
-  /* Json result = text;
-    if (text.isString) {
-        // optimize for strings
-    } else if (text.isArray) {
-        Json result = Json.emptyObject;
-        text.byKeyValue
-            .each!(kv => result[kv.key] = htmlAttributeEscape(kv.value, isDouble, charset));
-        return result;
-    } else if (text.isObject) {
-        result = text ? text.get!string : "(object)" ~ text.classname;
-    } else if (text.isNull || isScalar(text)) {
-        return result;
-    } */
-
-  return htmlAttributeEscape(text.getString, isDouble, charsetToUse);
+// #region escapeHtmlAttributes 
+string[] escapeHtmlAttribute(string[] htmls) {
+  return htmls.map!(html => escapeHtmlAttribute(html)).array;
 }
 
-string htmlAttributeEscape(string text, bool isDouble = true, string charset = null) {
-  /* string defaultCharset;
-    if (charset.isEmpty) {
-        string encoding = mb_internal_encoding();
-        defaultCharset = encoding ? encoding : "UTF-8";
-    }
-    return htmlspecialchars(result, ENT_QUOTES | ENT_SUBSTITUTE, charsetToUse ? charsetToUse : defaultCharset, isDouble); */
-  return htmlAttribEscape(text);
+string escapeHtmlAttribute(string html) {
+  return htmlAttribEscape(html);
 }
 
 unittest {
-  assert(htmlAttributeEscape("Hallo! <world>") == "Hallo! &lt;world&gt;");
+  // Test escapeHtmlAttribute(string)
+  assert(escapeHtmlAttribute("") == "");
+  assert(escapeHtmlAttribute("Hello, world!") == "Hello, world!");
+  assert(escapeHtmlAttribute("<div>") == "&lt;div&gt;");
+  assert(escapeHtmlAttribute("&") == "&amp;");
+  assert(escapeHtmlAttribute("\"quoted\"") == "&quot;quoted&quot;");
+  assert(escapeHtmlAttribute("'single'") == "&#39;single&#39;");
+  assert(escapeHtmlAttribute("<>&'\"") == "&lt;&gt;&amp;&#39;&quot;");
+
+  // Test escapeHtmlAttribute(string[])
+  string[] input = [
+    "",
+    "Hello, world!",
+    "<div>",
+    "&",
+    "\"quoted\"",
+    "'single'",
+    "<>&'\""
+  ];
+
+  string[] expected = [
+    "",
+    "Hello, world!",
+    "&lt;div&gt;",
+    "&amp;",
+    "&quot;quoted&quot;",
+    "&#39;single&#39;",
+    "&lt;&gt;&amp;&#39;&quot;"
+  ];
+  assert(escapeHtmlAttribute(input).equal(expected));
 }
+// #endregion escapeHtmlAttributes 
+
+// #region escapeHtml
+// Escape the HTML of a given string.
+string[] escapeHtml(string[] htmls) {
+  return htmls.map!(html => escapeHtml(html)).array;
+}
+
+string escapeHtml(string html) {
+  return htmlAttribEscape(html);
+}
+
+unittest { // Test escapeHtml(string)
+  assert(escapeHtml("") == "");
+  assert(escapeHtml("Hallo! <world>") == "Hallo! &lt;world&gt;");
+  assert(escapeHtml("& This is <it>!") == "&amp; This is &lt;it&gt;!");
+  assert(escapeHtml("\"quoted\"") == "&quot;quoted&quot;");
+  assert(escapeHtml("'single'") == "&#39;single&#39;");
+  assert(escapeHtml("<>&'\"") == "&lt;&gt;&amp;&#39;&quot;");
+}
+
+unittest { // Test escapeHtml(string[])
+  assert(escapeHtml([""]) == [""]);
+  string[] input = [
+    "& This is <it>!", "Hallo! <world>", "\"quoted\"", "'single'"
+  ];
+  string[] expected = [
+    "&amp; This is &lt;it&gt;!", "Hallo! &lt;world&gt;", "&quot;quoted&quot;",
+    "&#39;single&#39;"
+  ];
+  assert(escapeHtml(input) == expected);
+}
+// #endregion escapeHtml

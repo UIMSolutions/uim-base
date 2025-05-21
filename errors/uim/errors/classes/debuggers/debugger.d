@@ -705,7 +705,7 @@ class DDebugger : UIMObject, IErrorDebugger {
      * - Convert newlines into `<br>`
      */
   static string formatHtmlMessage(string messageToFormat) {
-    /* string message = htmlAttributeEscape(messageToFormat);
+    /* string message = escapeHtmlAttribute(messageToFormat);
         message = (string) preg_replace("/`([^`]+)`/", "<code>0</code>", message);
 
         return nl2br(message); */
@@ -1455,7 +1455,7 @@ class DDebugger : UIMObject, IErrorDebugger {
      */
   /* static string formatHtmlMessage(
         string messageToFormat) {
-        messageToFormat = htmlAttributeEscape(
+        messageToFormat = escapeHtmlAttribute(
             messageToFormat);
         messageToFormat = preg_replace(
             "/`([^`]+)`/", "<code>1</code>", messageToFormat);

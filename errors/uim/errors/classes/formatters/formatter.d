@@ -8,10 +8,27 @@ module uim.errors.classes.formatters.formatter;
 mixin(Version!("test_uim_errors"));
 
 import uim.errors;
+
 @safe:
 
 class DErrorFormatter : UIMObject, IErrorFormatter {
     mixin(ErrorFormatterThis!());
+
+    string _breakTxt;
+    string breakText() {
+        return _breakTxt;
+    }
+    string breakText(size_t indentLevel) {
+        return _breakTxt = "\n" ~ " ".repeatTxt(indentLevel);
+    }
+
+    string _endBreak;
+    string endBreak() {
+        return _endBreak;
+    }
+    string endBreak(size_t indentLevel) {
+        return _endBreak = "\n" ~ " ".repeatTxt(indentLevel - 1);
+    }
 
     // Convert a tree of IErrorNode objects into a plain text string.
     string dump(IErrorNode node) {
@@ -20,7 +37,7 @@ class DErrorFormatter : UIMObject, IErrorFormatter {
 
     // Convert a tree of IErrorNode objects into HTML
     protected string export_(IErrorNode nodeToDump, size_t indentLevel) {
-       /*  if (cast(DArrayErrorNode) nodeToDump) {
+        /*  if (cast(DArrayErrorNode) nodeToDump) {
             return exportArray(cast(DArrayErrorNode) nodeToDump, indentLevel + 1);
         }
         if (cast(DClassErrorNode) nodeToDump) {
@@ -40,10 +57,13 @@ class DErrorFormatter : UIMObject, IErrorFormatter {
         }
         throw new DInvalidArgumentError("Unknown node received " ~ nodeToDump.classname); */
 
-        return null; 
+        return null;
     }
 
     protected string exportArray(DArrayErrorNode tvar, size_t indentLevel) {
+        breakText(indentLevel);
+        endBreak(indentLevel);
+        
         return null;
     }
 

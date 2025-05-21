@@ -45,18 +45,16 @@ class DTextErrorFormatter : DErrorFormatter {
 
   // #region export
   override protected string exportArray(DArrayErrorNode node, size_t indentLevel) {
-    /*         auto result = "[";
-        auto breakTxt = "\n" ~" ".repeatTxt(indentLevel);
-        auto endtxt = "\n" ~" ".repeatTxt(indentLevel - 1);
+    super.exportArray(node, indentLevel);
 
-        auto vars = node.getChildren()
-            .map!(item => breakTxt ~ export_(item.getKey(), indentLevel) ~ ": " ~ export_(item.getValue, indentLevel))
-            .array;
+    auto result = "[";
 
-        return !nodes.isEmpty
-            ? result ~ join(",", nodes) ~ end ~ "]" : result ~ "]"; */
+    auto vars = node.children()
+      .map!(item => breakTxt ~ export_(item.getKey(), indentLevel) ~ ": " ~ export_(item.getValue, indentLevel))
+      .array;
 
-    return null;
+    return !nodes.isEmpty
+      ? result ~ join(",", nodes) ~ end ~ "]" : result ~ "]";
   }
 
   override protected string exportReference(DReferenceErrorNode node, size_t indentLevel) {

@@ -80,15 +80,14 @@ class DHtmlErrorFormatter : DErrorFormatter {
   }
 
   // #region export
-  protected override string exportArray(node tvar, size_t indentLevel) {
+  protected override string exportArray(DArrayErrorNode node, size_t indentLevel) {
+    super.exportArray(node, indentLevel);
+
     if (node is null) {
       return null;
     }
 
     string[] vars = null;
-    auto breakTxt = "\n" ~ " ".repeatTxt(indentLevel);
-    auto endBreak = "\n" ~ " ".repeatTxt(indentLevel - 1);
-
     auto arrow = style("punct", ": ");
     nodeToExport.children().each!((item) {
       val = anItem.value();
@@ -132,16 +131,16 @@ class DHtmlErrorFormatter : DErrorFormatter {
       return null;
     }
 
-    auto objectId = "uim-db-object-{this.id}-{node.id()}";
-    auto result = "<span class=\"uim-debug-object\" id=\"%s\">".format(objectId);
     auto breakTxt = "\n" ~ " ".repeatTxt(indentLevel);
     auto endBreak = "\n" ~ " ".repeatTxt(indentLevel - 1);
 
-    result ~= style("punct", "object(") ~
+    auto objectId = "uim-db-object-{this.id}-{node.id()}";
+    auto result = `<span class="uim-debug-object" id="%s">`.format(objectId) ~ 
+      style("punct", "object(") ~
       style("class", node.value()) ~
       style("punct", ") id:") ~
-      style("number", (string) node.id())~style("punct", " {") ~
-      "<samp class=\"uim-debug-object-props\">";
+      style("number", node.id)~style("punct", " {") ~
+      `<samp class="uim-debug-object-props">`;
 
     string[] props = null;
     foreach (aProperty; node.children()) {

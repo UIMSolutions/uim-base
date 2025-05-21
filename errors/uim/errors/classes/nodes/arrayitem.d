@@ -38,7 +38,7 @@ class DArrayItemErrorNode : DErrorNode {
     return _key;
   }
 
-/*   IErrorNode[] getChildren() {
+/*   IErrorNode[] children() {
     return [value];
   } */
 }

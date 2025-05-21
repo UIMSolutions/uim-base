@@ -82,15 +82,15 @@ class DConsoleErrorFormatter : DErrorFormatter {
   // #region export 
   // Export an array type object
   override protected string exportArray(DArrayErrorNode node, size_t indentLevel) {
+    super.exportArray(node, indentLevel);
+
     if (node is null) {
       return null;
     }
     auto result = style("punct", "[");
-    auto breakTxt = "\n" ~ " ".repeatTxt(indentLevel);
-    auto endTxt = "\n" ~ " ".repeatTxt(indentLevel - 1);
 
     /*         auto arrowTxt = style("punct", ": ");
-        auto vars = node.getChildren()
+        auto vars = node.children()
             .map!(item => breakTxt ~ export_(item.getKey(), indentLevel) ~ arrowTxt ~ export_(item.value(), indentLevel))
             .array;
 
@@ -128,7 +128,7 @@ class DConsoleErrorFormatter : DErrorFormatter {
         string endTxt = "\n" ~" ".repeatTxt(indentLevel - 1) ~ style("punct", "}");
 
         arrow = style("punct", ": ");
-        foreach (prop; node.getChildren()) {
+        foreach (prop; node.children()) {
             auto visibility = prop.getVisibility();
             auto name = prop.name;
 
