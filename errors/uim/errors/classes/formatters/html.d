@@ -21,9 +21,6 @@ class DHtmlErrorFormatter : DErrorFormatter {
 
   protected static bool outputHeader = false;
 
-  // Random id so that HTML ids are not shared between dump outputs.
-  protected string _id;
-
   override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
@@ -31,6 +28,12 @@ class DHtmlErrorFormatter : DErrorFormatter {
 
     _id = randomUUID.toString;
     return true;
+  }
+
+  // Random id so that HTML ids are not shared between dump outputs.
+  protected string _id;
+  string id() {
+    return _id;
   }
 
   // Check if the current environment is not a CLI context
@@ -89,16 +92,30 @@ class DHtmlErrorFormatter : DErrorFormatter {
 
     string[] vars = null;
     auto arrow = style("punct", ": ");
-    nodeToExport.children().each!((item) {
+    node.children().each!((item) {
       val = anItem.value();
-      vars ~= breakTxt ~ htmlDoubleTag("span", ["uim-debug-array-item"],
+      vars ~= breakText ~ htmlDoubleTag("span", ["uim-debug-array-item"],
         export_(item.getKey(), indentLevel) ~ arrow ~ export_(val, indentLevel) ~
         style("punct", ","));
     });
 
-    return `<span class="uim-debug-array">%s<samp class="uim-debug-array-items">`.format(style("punct", "["))
-      ~ vars.join("")
-      ~ "</samp>%s%s</span>".format(endBreak, style("punct", "]"));
+    return htmlDoubleTag("span", `class="uim-debug-array"`, style("punct", "[") ~
+        htmlDoubleTag("samp", `class="uim-debug-array-items"`, vars.join("")) ~
+        endBreak ~ style("punct", "]"));
+  }
+
+  protected override string exportArrayItem(IErrorNode node, size_t indentLevel) {
+    super.exportArrayItem(node, indentLevel);
+
+    if (node is null) {
+      return null;
+    }
+
+    auto arrow = style("punct", ": ");
+    auto value = node.value();
+    return breakText ~ htmlDoubleTag("span", ["uim-debug-array-item"],
+      export_(node.getKey(), indentLevel) ~ arrow ~ export_(value, indentLevel) ~
+        style("punct", ","));
   }
 
   protected override string exportReference(DReferenceErrorNode node, size_t indentLevel) {
@@ -112,7 +129,7 @@ class DHtmlErrorFormatter : DErrorFormatter {
     ]);
 
     auto result = `<span class="uim-debug-object" id="%s">`.format(objectId);
-    auto breakTxt = "\n" ~ " ".repeatTxt(indentLevel);
+    auto breakText = "\n" ~ " ".repeatTxt(indentLevel);
     auto endBreak = "\n" ~ " ".repeatTxt(indentLevel - 1);
 
     auto link = `<a class="uim-debug-ref" href="#%s">id: %s</a>`
@@ -126,41 +143,32 @@ class DHtmlErrorFormatter : DErrorFormatter {
         style("punct", " {}"));
   }
 
-  protected override string exportClass(DClassErrorNode aNode, size_t indentLevel) {
+  protected override string exportClass(DClassErrorNode node, size_t indentLevel) {
+    super.exportClass(node, indentLevel);
+
     if (node is null) {
       return null;
     }
 
-    auto breakTxt = "\n" ~ " ".repeatTxt(indentLevel);
-    auto endBreak = "\n" ~ " ".repeatTxt(indentLevel - 1);
-
     auto objectId = "uim-db-object-{this.id}-{node.id()}";
-    auto result = `<span class="uim-debug-object" id="%s">`.format(objectId) ~ 
+    auto result = `<span class="uim-debug-object" id="%s">`.format(objectId) ~
       style("punct", "object(") ~
-      style("class", node.value()) ~
+      style("class", node.value.toString) ~
       style("punct", ") id:") ~
-      style("number", node.id)~style("punct", " {") ~
+      style("number", node.id) ~ style("punct", " {") ~
       `<samp class="uim-debug-object-props">`;
 
     string[] props = null;
-    foreach (aProperty; node.children()) {
-      auto arrow = style("punct", ": ");
-      auto visibility = aProperty.getVisibility();
-      auto name = aProperty.name;
-      props ~= visibility && visibility != "public"
-        ? breakTxt ~
-        htmlDoubleTag("span", ["uim-debug-prop"],
-          style("visibility", visibility) ~ ' ' ~ style("property", name) ~ arrow ~ export_(aProperty.value(), indentLevel)) : breakTxt ~
-        htmlDoubleTag("span", ["uim-debug-prop"],
-          style("property", name) ~ arrow ~ export_(aProperty.value(), indentLevel));
+    foreach (propertyNode; node.children()) {
+      props ~= exportProperty(cast(DPropertyErrorNode) propertyNode, indentLevel);
     }
-    end = "</samp>" ~
+    
+    auto endTag = "</samp>" ~
       endBreak ~
       style("punct", "}") ~
       "</span>";
 
-    return count(props)
-      ? result ~ props.join("") ~ end : result ~ end;
+    return result ~ (count(props) ? props.join("") : "") ~ endTag;
   }
 
   protected override string exportProperty(DPropertyErrorNode node, size_t indentLevel) {
@@ -168,7 +176,16 @@ class DHtmlErrorFormatter : DErrorFormatter {
       return null;
     }
 
-    return null;
+    auto arrow = style("punct", ": ");
+    auto visibility = node.getVisibility();
+    auto name = node.name;
+    return visibility != "public"
+      ? breakText ~
+      htmlDoubleTag("span", ["uim-debug-prop"],
+        style("visibility", visibility) ~ ' ' ~ style("property", name) ~ arrow ~ export_(node.value(), indentLevel))
+      : breakText ~
+      htmlDoubleTag("span", ["uim-debug-prop"],
+        style("property", name) ~ arrow ~ export_(node.value(), indentLevel));
   }
 
   protected override string exportScalar(DScalarErrorNode node, size_t indentLevel) {

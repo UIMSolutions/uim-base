@@ -91,15 +91,25 @@ class DConsoleErrorFormatter : DErrorFormatter {
 
     /*         auto arrowTxt = style("punct", ": ");
         auto vars = node.children()
-            .map!(item => breakTxt ~ export_(item.getKey(), indentLevel) ~ arrowTxt ~ export_(item.value(), indentLevel))
+            .map!(item => exportArrayItem(item, indentLevel))
             .array;
 
         auto closeTxt = style("punct", "]");
         return !vars.isEmpty
-            ? result ~ vars.join(style("punct", ",")) ~ endTxt ~ closeTxt : result ~ closeTxt; */
+            ? result ~ vars.join(style("punct", ",")) ~ endText ~ closeTxt : result ~ closeTxt; */
     return null;
   }
 
+  override protected string exportArrayItem(IErrorNode node, size_t indentLevel) {
+    super.exportArray(node, indentLevel);
+
+    if (node is null) {
+      return null;
+    }
+
+    return breakText ~ export_(item.getKey(), indentLevel) ~ arrowTxt ~ export_(item.value(), indentLevel);
+  }
+  
   override protected string exportReference(DReferenceErrorNode node, size_t indentLevel) {
     if (node is null) {
       return null;
@@ -114,45 +124,39 @@ class DConsoleErrorFormatter : DErrorFormatter {
   }
 
   override protected string exportClass(DClassErrorNode node, size_t indentLevel) {
+    string breakText = "\n" ~ " ".repeatTxt(indentLevel);
+    string endText = "\n" ~ " ".repeatTxt(indentLevel - 1) ~ style("punct", "}");
+
     if (node is null) {
       return null;
     }
 
     string[] props;
 
-    /*         result = style("punct", "object(") ~
-            style("class", node.value()) ~
-            style("punct", ") id:") ~
-            style("number", to!string(node.id())) ~ style("punct", " {");
-        string breakTxt = "\n" ~" ".repeatTxt(indentLevel);
-        string endTxt = "\n" ~" ".repeatTxt(indentLevel - 1) ~ style("punct", "}");
+    auto result = style("punct", "object(") ~
+      style("class", node.value.toString) ~
+      style("punct", ") id:") ~
+      style("number", to!string(node.id)) ~ style("punct", " {");
 
-        arrow = style("punct", ": ");
-        foreach (prop; node.children()) {
-            auto visibility = prop.getVisibility();
-            auto name = prop.name;
+    string[] exportedProperties = node.children
+      .map!(prop => exportProperty(cast(DPropertyErrorNode) prop, indentLevel)).array;
 
-            props ~= visibility && visibility != "public"
-                ? style("visibility", visibility) ~ " " ~
-                style("property", name) ~ arrow ~
-                export_(prop.value(), indentLevel) : style("property", name) ~ arrow ~
-                export_(
-                    prop.value(), indentLevel);
-        }
-        
-        return props.count > 0
-            ? result ~ breakTxt ~ props.join(breakTxt) ~ endTxt
-            : result ~ style("punct", "}"); */
-
-    return null;
+    return result ~ (exportedProperties.length > 0
+        ? breakText ~ exportedProperties.join(breakText) ~ endText : style("punct", "}"));
   }
 
   override protected string exportProperty(DPropertyErrorNode node, size_t indentLevel) {
-     if (node is null) {
+    if (node is null) {
       return null;
     }
 
-    return null;
+    auto visibility = node.visibility;
+    auto name = node.name;
+    auto arrow = style("punct", ": ");
+
+    return visibility != "public"
+      ? style("visibility", visibility) ~ " " ~ style("property", name) ~ arrow ~ export_(node.value(), indentLevel)
+      : style("property", name) ~ arrow ~ export_(node.value(), indentLevel);
   }
 
   override protected string exportScalar(DScalarErrorNode node, size_t indentLevel) {

@@ -49,12 +49,12 @@ class DTextErrorFormatter : DErrorFormatter {
 
     auto result = "[";
 
-    auto vars = node.children()
-      .map!(item => breakTxt ~ export_(item.getKey(), indentLevel) ~ ": " ~ export_(item.getValue, indentLevel))
+    auto nodes = node.children
+      .map!(item => breakText ~ export_(item.getKey(), indentLevel) ~ ": " ~ export_(item.getValue, indentLevel))
       .array;
 
-    return !nodes.isEmpty
-      ? result ~ join(",", nodes) ~ end ~ "]" : result ~ "]";
+    return result ~ (!nodes.isEmpty
+      ? nodes.join(",") ~ end : "") ~ "]";
   }
 
   override protected string exportReference(DReferenceErrorNode node, size_t indentLevel) {
@@ -62,24 +62,24 @@ class DTextErrorFormatter : DErrorFormatter {
       return null;
     }
 
-    return "object({" ~ node.value.getSTring ~ "}) id:{node.id()} {}";
+    return "object({" ~ node.value.getString ~ "}) id:{node.id()} {}";
   }
 
   override protected string exportClass(DClassErrorNode node, size_t indentLevel) {
+    super.exportClass(node, indentLevel);
+    _endText ~= "}";
+
     if (node is null) {
       return null;
     }
 
     string result = "object({" ~ node.value().getString ~ "}) id:{" ~ node.id() ~ "} {";
-    auto breakTxt = "\n" ~ " ".repeatTxt(indentLevel);
-    auto endTxt = "\n" ~ " ".repeatTxt(indentLevel - 1) ~ "}";
-
     auto props = node.children()
       .map!(property => exportProperty(cast(DPropertyErrorNode) property, indentLevel))
       .array;
 
     return !props.isEmpty
-      ? result ~ breakTxt ~ props.join(breakTxt) ~ endTxt : result ~ "}";
+      ? result ~ breakText ~ props.join(breakText) ~ endText : result ~ "}";
   }
 
   override protected string exportProperty(DPropertyErrorNode node, size_t indentLevel) {

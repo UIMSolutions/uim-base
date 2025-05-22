@@ -12,79 +12,86 @@ import uim.errors;
 @safe:
 
 class DErrorFormatter : UIMObject, IErrorFormatter {
-    mixin(ErrorFormatterThis!());
+  mixin(ErrorFormatterThis!());
 
-    string _breakTxt;
-    string breakText() {
-        return _breakTxt;
-    }
-    string breakText(size_t indentLevel) {
-        return _breakTxt = "\n" ~ " ".repeatTxt(indentLevel);
-    }
+  string _breakText;
+  string breakText() {
+    return _breakText;
+  }
 
-    string _endBreak;
-    string endBreak() {
-        return _endBreak;
-    }
-    string endBreak(size_t indentLevel) {
-        return _endBreak = "\n" ~ " ".repeatTxt(indentLevel - 1);
-    }
+  string breakText(size_t indentLevel) {
+    return _breakText = "\n" ~ " ".repeatTxt(indentLevel);
+  }
 
-    // Convert a tree of IErrorNode objects into a plain text string.
-    string dump(IErrorNode node) {
-        return null;
-    }
+  string _endBreak;
+  string endBreak() {
+    return _endBreak;
+  }
 
-    // Convert a tree of IErrorNode objects into HTML
-    protected string export_(IErrorNode nodeToDump, size_t indentLevel) {
-        /*  if (cast(DArrayErrorNode) nodeToDump) {
-            return exportArray(cast(DArrayErrorNode) nodeToDump, indentLevel + 1);
-        }
-        if (cast(DClassErrorNode) nodeToDump) {
-            return exportClass(cast(DClassErrorNode) nodeToDump, indentLevel + 1);
-        }
-        if (cast(DReferenceErrorNode) nodeToDump) {
-            return exportReference(cast(DReferenceErrorNode) nodeToDump, indentLevel + 1);
-        }
-        if (cast(DPropertyErrorNode) nodeToDump) {
-            return exportProperty(cast(DPropertyErrorNode) nodeToDump, indentLevel + 1);
-        }
-        if (cast(DScalarErrorNode) nodeToDump) {
-            return exportScalar(cast(DScalarErrorNode) nodeToDump, indentLevel + 1);
-        }
-        if (cast(DSpecialErrorNode) nodeToDump) {
-            return exportSpecial(cast(DSpecialErrorNode) nodeToDump, indentLevel + 1);
-        }
-        throw new DInvalidArgumentError("Unknown node received " ~ nodeToDump.classname); */
+  string endBreak(size_t indentLevel) {
+    return _endBreak = "\n" ~ " ".repeatTxt(indentLevel - 1);
+  }
 
-        return null;
-    }
+  // Convert a tree of IErrorNode objects into a plain text string.
+  string dump(IErrorNode node) {
+    return null;
+  }
 
-    protected string exportArray(DArrayErrorNode tvar, size_t indentLevel) {
-        breakText(indentLevel);
-        endBreak(indentLevel);
-        
-        return null;
+  // Convert a tree of IErrorNode objects into HTML
+  protected string export_(IErrorNode node, size_t indentLevel) {
+    if (auto arrayNode = cast(DArrayErrorNode) node) {
+      return exportArray(arrayNode, indentLevel + 1);
     }
+    if (auto classNode = cast(DClassErrorNode) node) {
+      return exportClass(classNode, indentLevel + 1);
+    }
+    if (auto referenceNode = cast(DReferenceErrorNode) node) {
+      return exportReference(referenceNode, indentLevel + 1);
+    }
+    if (auto propertyNode = cast(DPropertyErrorNode) node) {
+      return exportProperty(propertyNode, indentLevel + 1);
+    }
+    if (auto scalarNode = cast(DScalarErrorNode) node) {
+      return exportScalar(scalarNode, indentLevel + 1);
+    }
+    if (auto specialNode = cast(DSpecialErrorNode) node) {
+      return exportSpecial(specialNode, indentLevel + 1);
+    }
+    throw InvalidArgumentException("Unknown node received " ~ node.classname);
+  }
 
-    protected string exportReference(DReferenceErrorNode nodeToConvert, size_t indentLevel) {
-        return null;
-    }
+  protected string exportArray(DArrayErrorNode node, size_t indentLevel) {
+    breakText(indentLevel);
+    endBreak(indentLevel);
 
-    protected string exportClass(DClassErrorNode aNode, size_t indentLevel) {
-        return null;
-    }
+    return null;
+  }
 
-    protected string exportProperty(DPropertyErrorNode node, size_t indentLevel) {
-        return null;
-    }
+  protected override string exportArrayItem(IErrorNode node, size_t indentLevel) {
+    return null;
+  }
 
-    protected string exportScalar(DScalarErrorNode node, size_t indentLevel) {
-        return null;
-    }
+  protected string exportReference(DReferenceErrorNode nodeToConvert, size_t indentLevel) {
+    return null;
+  }
 
-    protected string exportSpecial(DSpecialErrorNode node, size_t indentLevel) {
-        return null;
-    }
-    // #endregion export
+  protected string exportClass(DClassErrorNode node, size_t indentLevel) {
+    breakText(indentLevel);
+    endBreak(indentLevel);
+
+    return null;
+  }
+
+  protected string exportProperty(DPropertyErrorNode node, size_t indentLevel) {
+    return null;
+  }
+
+  protected string exportScalar(DScalarErrorNode node, size_t indentLevel) {
+    return null;
+  }
+
+  protected string exportSpecial(DSpecialErrorNode node, size_t indentLevel) {
+    return null;
+  }
+  // #endregion export
 }
