@@ -44,7 +44,10 @@ class DTextErrorFormatter : DErrorFormatter {
   }
 
   override protected string exportArrayItem(IErrorNode node, size_t indentLevel) {
-    return startBreak ~ export_(node.value, indentLevel) ~ ": " ~ export_(node.value, indentLevel);
+    super.exportArrayItem(node, indentLevel);
+
+    return startBreak ~
+      export_(node.value, indentLevel) ~ ": " ~ export_(node.value, indentLevel);
   }
 
   override protected string exportReference(DReferenceErrorNode node, size_t indentLevel) {
@@ -58,7 +61,6 @@ class DTextErrorFormatter : DErrorFormatter {
 
   override protected string exportClass(DClassErrorNode node, size_t indentLevel) {
     super.exportClass(node, indentLevel);
-    _endBreak ~= "}";
 
     if (node is null) {
       return null;
@@ -68,14 +70,16 @@ class DTextErrorFormatter : DErrorFormatter {
       ["nodeClassname": node.classname, "nodeId": node.id.toString]);
 
     auto items = node.children()
-      .map!(property => exportProperty(cast(DPropertyErrorNode) property, indentLevel))
+      .map!(property => export_(property, indentLevel))
       .array;
 
-    return result ~ (items.length > 0 
-      ? startBreak ~ items.join(startBreak) ~ _endBreak : "}");
+    return result ~ (items.length > 0
+        ? startBreak ~ items.join(startBreak) ~ _endBreak : "") ~ "}";
   }
 
   override protected string exportProperty(DPropertyErrorNode node, size_t indentLevel) {
+    super.exportProperty(node, indentLevel);
+
     if (node is null) {
       return null;
     }
@@ -89,6 +93,8 @@ class DTextErrorFormatter : DErrorFormatter {
   }
 
   override protected string exportScalar(DScalarErrorNode node, size_t indentLevel) {
+    super.exportScalar(node, indentLevel);
+
     if (node is null) {
       return null;
     }
@@ -106,6 +112,8 @@ class DTextErrorFormatter : DErrorFormatter {
   }
 
   override protected string exportSpecial(DSpecialErrorNode node, size_t indentLevel) {
+    super.exportSpecial(node, indentLevel);
+
     if (node is null) {
       return null;
     }
@@ -114,6 +122,5 @@ class DTextErrorFormatter : DErrorFormatter {
   }
   // #endregion export
 }
+
 mixin(ErrorFormatterCalls!("Text"));
-
-

@@ -39,31 +39,36 @@ class DErrorFormatter : UIMObject, IErrorFormatter {
 
   // Convert a tree of IErrorNode objects into HTML
   protected string export_(IErrorNode node, size_t indentLevel) {
-    if (auto arrayNode = cast(DArrayErrorNode) node) {
-      return exportArray(arrayNode, indentLevel + 1);
+    if (node is null) {
+      return null; 
     }
-    if (auto classNode = cast(DClassErrorNode) node) {
-      return exportClass(classNode, indentLevel + 1);
-    }
-    if (auto referenceNode = cast(DReferenceErrorNode) node) {
-      return exportReference(referenceNode, indentLevel + 1);
-    }
-    if (auto propertyNode = cast(DPropertyErrorNode) node) {
-      return exportProperty(propertyNode, indentLevel + 1);
-    }
-    if (auto scalarNode = cast(DScalarErrorNode) node) {
-      return exportScalar(scalarNode, indentLevel + 1);
-    }
-    if (auto specialNode = cast(DSpecialErrorNode) node) {
-      return exportSpecial(specialNode, indentLevel + 1);
-    }
-    throw InvalidArgumentException("Unknown node received " ~ "node.className");
-  }
 
-  protected string exportArray(DArrayErrorNode node, size_t indentLevel) {
+    indentLevel += 1;
     startBreak(indentLevel);
     endBreak(indentLevel);
 
+    if (auto errorNode = cast(DArrayErrorNode) node) {
+      return exportArray(errorNode, indentLevel);
+    }
+    if (auto errorNode = cast(DClassErrorNode) node) {
+      return exportClass(errorNode, indentLevel);
+    }
+    if (auto errorNode = cast(DReferenceErrorNode) node) {
+      return exportReference(errorNode, indentLevel);
+    }
+    if (auto errorNode = cast(DPropertyErrorNode) node) {
+      return exportProperty(errorNode, indentLevel);
+    }
+    if (auto errorNode = cast(DScalarErrorNode) node) {
+      return exportScalar(errorNode, indentLevel);
+    }
+    if (auto errorNode = cast(DSpecialErrorNode) node) {
+      return exportSpecial(errorNode, indentLevel);
+    }
+    throw InvalidArgumentException("Unknown node received " ~ node.classinfo.baseName);
+  }
+
+  protected string exportArray(DArrayErrorNode node, size_t indentLevel) {
     return null;
   }
 
@@ -76,9 +81,6 @@ class DErrorFormatter : UIMObject, IErrorFormatter {
   }
 
   protected string exportClass(DClassErrorNode node, size_t indentLevel) {
-    startBreak(indentLevel);
-    endBreak(indentLevel);
-
     return null;
   }
 
