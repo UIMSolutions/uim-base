@@ -27,7 +27,7 @@ class DScalarErrorNode : DErrorNode {
     string type() {
         return _type;
     }
-    IErrorNode type(string aType) {
+    DScalarErrorNode type(string aType) {
         _type = aType;
         return this;
     }
@@ -39,8 +39,32 @@ class DScalarErrorNode : DErrorNode {
         return _data;
     }
     
-    IErrorNode data(Json newData) {
+    DScalarErrorNode data(Json newData) {
         _data = newData;
         return this;
     }
+}
+
+unittest {
+    // Test construction and getters
+    auto value = parseJsonString(`42`);
+    auto node = new DScalarErrorNode("int", value);
+
+    assert(node.type == "int");
+    assert(node.data == value);
+
+    // Test type setter
+    node.type("float");
+    assert(node.type == "float");
+
+    // Test data setter
+    auto newValue = parseJsonString(`3.14`);
+    node.data(newValue);
+    assert(node.data == newValue);
+
+    // Test chaining
+    auto chained = node.type("string").data(Json("hello"));
+    assert(chained is node);
+    assert(node.type == "string");
+    assert(node.data == Json("hello"));
 }

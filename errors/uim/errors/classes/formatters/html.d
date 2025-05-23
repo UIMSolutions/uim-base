@@ -105,7 +105,7 @@ class DHtmlErrorFormatter : DErrorFormatter {
 
     auto arrow = style("punct", ": ");
     auto value = node.value();
-    return breakText ~ htmlDoubleTag("span", ["uim-debug-array-item"],
+    return startBreak ~ htmlDoubleTag("span", ["uim-debug-array-item"],
       export_(node.value, indentLevel) ~ arrow ~ export_(node.value, indentLevel) ~
         style("punct", ","));
   }
@@ -121,7 +121,7 @@ class DHtmlErrorFormatter : DErrorFormatter {
     ]);
 
     auto result = `<span class="uim-debug-object" id="%s">`.format(objectId);
-    auto breakText = "\n" ~ " ".repeatTxt(indentLevel);
+    auto startBreak = "\n" ~ " ".repeatTxt(indentLevel);
     auto endBreak = "\n" ~ " ".repeatTxt(indentLevel - 1);
 
     auto link = `<a class="uim-debug-ref" href="#%s">id: %s</a>`
@@ -169,10 +169,10 @@ class DHtmlErrorFormatter : DErrorFormatter {
     auto visibility = node.visibility;
     auto name = node.name;
     return visibility != "public"
-      ? breakText ~
+      ? startBreak ~
       htmlDoubleTag("span", ["uim-debug-prop"],
         style("visibility", visibility) ~ ' ' ~ style("property", name) ~ arrow ~ export_(node.value(), indentLevel))
-      : breakText ~
+      : startBreak ~
       htmlDoubleTag("span", ["uim-debug-prop"],
         style("property", name) ~ arrow ~ export_(node.value(), indentLevel));
   }

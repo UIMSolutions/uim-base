@@ -35,7 +35,15 @@ class DErrorNode : UIMObject, IErrorNode {
   }
 
   IErrorNode[] children() {
-    return _children;
+    if (_children.length == 0) {
+      return [this.value];
+    }
+    return [this.value] ~ _children;
+  }
+
+  IErrorNode clearChildren() {
+    _children = null;
+    return this;
   }
   // #endregion children
 }

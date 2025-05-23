@@ -14,13 +14,13 @@ import uim.errors;
 class DErrorFormatter : UIMObject, IErrorFormatter {
   mixin(ErrorFormatterThis!());
 
-  string _breakText;
-  string breakText() {
-    return _breakText;
+  string _startBreak;
+  string startBreak() {
+    return _startBreak;
   }
 
-  string breakText(size_t indentLevel) {
-    return _breakText = "\n" ~ " ".repeatTxt(indentLevel);
+  string startBreak(size_t indentLevel) {
+    return _startBreak = "\n" ~ " ".repeatTxt(indentLevel);
   }
 
   string _endBreak;
@@ -61,22 +61,22 @@ class DErrorFormatter : UIMObject, IErrorFormatter {
   }
 
   protected string exportArray(DArrayErrorNode node, size_t indentLevel) {
-    breakText(indentLevel);
+    startBreak(indentLevel);
     endBreak(indentLevel);
 
     return null;
   }
 
   protected string exportArrayItem(IErrorNode node, size_t indentLevel) {
-    return null;
+    return export_(node, indentLevel);
   }
 
-  protected string exportReference(DReferenceErrorNode nodeToConvert, size_t indentLevel) {
+  protected string exportReference(DReferenceErrorNode node, size_t indentLevel) {
     return null;
   }
 
   protected string exportClass(DClassErrorNode node, size_t indentLevel) {
-    breakText(indentLevel);
+    startBreak(indentLevel);
     endBreak(indentLevel);
 
     return null;

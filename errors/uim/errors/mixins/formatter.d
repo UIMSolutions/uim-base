@@ -17,11 +17,11 @@ template ErrorFormatterThis(string name = null) {
     const char[] ErrorFormatterThis = errorFormatterThis(name);
 }
 
-string errorCalls(string name) {
+string errorFormatterCalls(string name) {
     string fullName = name ~ "ErrorFormatter";
     return objCalls(fullName);
 }
 
-template ErrorCalls(string name) {
-    const char[] ErrorCalls = errorCalls(name);
+template ErrorFormatterCalls(string name) {
+    const char[] ErrorFormatterCalls = errorFormatterCalls(name);
 }

@@ -44,7 +44,7 @@ class DTextErrorFormatter : DErrorFormatter {
   }
 
   override protected string exportArrayItem(IErrorNode node, size_t indentLevel) {
-    return breakText ~ export_(node.value, indentLevel) ~ ": " ~ export_(node.value, indentLevel);
+    return startBreak ~ export_(node.value, indentLevel) ~ ": " ~ export_(node.value, indentLevel);
   }
 
   override protected string exportReference(DReferenceErrorNode node, size_t indentLevel) {
@@ -72,7 +72,7 @@ class DTextErrorFormatter : DErrorFormatter {
       .array;
 
     return result ~ (items.length > 0 
-      ? breakText ~ items.join(breakText) ~ _endBreak : "}");
+      ? startBreak ~ items.join(startBreak) ~ _endBreak : "}");
   }
 
   override protected string exportProperty(DPropertyErrorNode node, size_t indentLevel) {
@@ -80,15 +80,12 @@ class DTextErrorFormatter : DErrorFormatter {
       return null;
     }
 
-    auto propVisibility = node.visibility;
-    auto propName = node.name;
-
-    return (propVisibility != "public"
+    return (node.visibility != "public"
         ? "[{propVisibility}] {propName}: " : "{propName}: ").mustache(
       [
-        "propVisibility": propVisibility,
-        "propName": propName
-      ]) /*  ~ export_(node.value(), indentLevel) */ ;
+        "propVisibility": node.visibility,
+        "propName": node.name
+      ]) ~ export_(node.value, indentLevel);
   }
 
   override protected string exportScalar(DScalarErrorNode node, size_t indentLevel) {
@@ -117,3 +114,6 @@ class DTextErrorFormatter : DErrorFormatter {
   }
   // #endregion export
 }
+mixin(ErrorFormatterCalls!("Text"));
+
+

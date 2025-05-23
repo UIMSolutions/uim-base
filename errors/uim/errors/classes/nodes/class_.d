@@ -8,35 +8,73 @@ module uim.errors.classes.nodes.class_;
 mixin(Version!("test_uim_errors"));
 
 import uim.errors;
+
 @safe:
 
 // Dump node for objects/class instances.
 class DClassErrorNode : DErrorNode {
-    mixin(ErrorNodeThis!("Class"));
+  mixin(ErrorNodeThis!("Class"));
 
-    this(string classname, int anId) {
-        super();
-        _classname = classname;
-        _id = anId;
-    }
+  this(string classname, int anId) {
+    super();
+    this.classname(classname);
+    this.id(anId);
+  }
 
-    // Add a property
-    void addProperty(DPropertyErrorNode node) {
-        // _properties ~= node;
-    }
+  // Add a property
+  void addProperty(DPropertyErrorNode node) {
+    _children ~= node;
+  }
 
-    private string _classname;
-    // Get the class name
-    string classname() {
-        return _classname;
-    }
-    void classname(string name) {
-        _classname = name;
-    }
+  private string _classname;
+  // Get the class name
+  string classname() {
+    return _classname;
+  }
 
-    private int _id;
-    // Get the reference id
-    int id() {
-        return _id;
-    }
+  DClassErrorNode classname(string name) {
+    _classname = name;
+    return this;
+  }
+
+  private int _id;
+  // Get the reference id
+  int id() {
+    return _id;
+  }
+
+  DClassErrorNode id(int newId) {
+    _id = newId;
+    return this;
+  }
+}
+
+unittest {
+  // Test addProperty actually adds to _children
+  auto node = new DClassErrorNode("TestClass", 1);
+
+  auto dummy1 = new DScalarErrorNode("string", Json("dummyValue1"));  
+  auto property1 = new DPropertyErrorNode("propName1", "public", dummy1);
+
+  auto dummy2 = new DScalarErrorNode("string", Json("dummyValue2"));  
+  auto property2 = new DPropertyErrorNode("propName2", "private", dummy2);
+
+  node.addProperty(property1);
+  node.addProperty(property2);
+
+  auto node2 = new DClassErrorNode("TestClass2", 2);
+
+  node2.addProperty(property1);
+  node2.addProperty(property2);
+
+  auto property3 = new DPropertyErrorNode("class1", "protected", node2);
+  node.addProperty(property3);
+
+  // Downcast to access _children for testing
+  /* auto children = node.children;
+  assert(children.length == 2, "addProperty did not add nodes correctly");
+  assert(children[0] is prop1, "First property not added correctly");
+  assert(children[1] is prop2, "Second property not added correctly"); */
+
+  writeln(TextErrorFormatter.dump(node));
 }

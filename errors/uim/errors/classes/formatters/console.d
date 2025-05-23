@@ -98,7 +98,7 @@ class DConsoleErrorFormatter : DErrorFormatter {
     }
 
     auto arrowText = style("punct", ": ");
-    return breakText ~ export_(node, indentLevel) ~ arrowText ~ export_(node, indentLevel);
+    return startBreak ~ export_(node, indentLevel) ~ arrowText ~ export_(node, indentLevel);
   }
 
   override protected string exportReference(DReferenceErrorNode node, size_t indentLevel) {
@@ -106,16 +106,15 @@ class DConsoleErrorFormatter : DErrorFormatter {
       return null;
     }
     // object(xxx) id: xxx{}
-    /* return _style("punct", "object(") ~
-            style("class", node.value()) ~
-            style("punct", ") id:") ~
-            style("number", to!string(node.id())) ~
-            style("punct", " {}"); */
-    return null;
+    return style("punct", "object(") ~
+      style("class", node.classname) ~
+      style("punct", ") id:") ~
+      style("number", to!string(node.id())) ~
+      style("punct", " {}");
   }
 
   override protected string exportClass(DClassErrorNode node, size_t indentLevel) {
-    string breakText = "\n" ~ " ".repeatTxt(indentLevel);
+    string startBreak = "\n" ~ " ".repeatTxt(indentLevel);
     string endBreak = "\n" ~ " ".repeatTxt(indentLevel - 1) ~ style("punct", "}");
 
     if (node is null) {
@@ -133,7 +132,7 @@ class DConsoleErrorFormatter : DErrorFormatter {
       .map!(prop => exportProperty(cast(DPropertyErrorNode) prop, indentLevel)).array;
 
     return result ~ (exportedProperties.length > 0
-        ? breakText ~ exportedProperties.join(breakText) ~ endBreak : style("punct", "}"));
+        ? startBreak ~ exportedProperties.join(startBreak) ~ endBreak : style("punct", "}"));
   }
 
   override protected string exportProperty(DPropertyErrorNode node, size_t indentLevel) {
