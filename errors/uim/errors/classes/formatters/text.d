@@ -11,14 +11,7 @@ import uim.errors;
 
 @safe:
 
-/**
- * A Debugger formatter for generating unstyled plain text output.
- *
- * Provides backwards compatible output with the historical output of
- * `Debugger.exportVar()`
- *
- * @internal
- */
+// A Debugger formatter for generating unstyled plain text output.
 class DTextErrorFormatter : DErrorFormatter {
   mixin(ErrorFormatterThis!("Text"));
 
@@ -37,12 +30,6 @@ class DTextErrorFormatter : DErrorFormatter {
     return templateTxt.format(lineInfo, content);
   }
 
-  // Convert a tree of IErrorNode objects into a plain text string.
-  override string dump(IErrorNode node) {
-    auto indentLevel = 0;
-    return export_(node, indentLevel);
-  }
-
   // #region export
   override protected string exportArray(DArrayErrorNode node, size_t indentLevel) {
     super.exportArray(node, indentLevel);
@@ -54,7 +41,7 @@ class DTextErrorFormatter : DErrorFormatter {
       .array;
 
     return result ~ (!nodes.isEmpty
-      ? nodes.join(",") ~ end : "") ~ "]";
+        ? nodes.join(",") ~ end : "") ~ "]";
   }
 
   override protected string exportReference(DReferenceErrorNode node, size_t indentLevel) {
@@ -90,15 +77,18 @@ class DTextErrorFormatter : DErrorFormatter {
     auto propVisibility = node.visibility();
     auto propName = node.name;
 
-    return propVisibility != "public"
-      ? "[{propVisibility}] {propName}: " ~ export_(node.value(), indentLevel) : "{propName}: " ~ export_(
-        node.value(), indentLevel);
+    return (propVisibility != "public"
+        ? "[{propVisibility}] {propName}: " : "{propName}: ").mustache([
+      "propVisibility": propVisibility,
+      "propName": propName
+    ])/*  ~ export_(node.value(), indentLevel) */;
   }
 
   override protected string exportScalar(DScalarErrorNode node, size_t indentLevel) {
     if (node is null) {
       return null;
     }
+
     switch (node.type) {
     case "bool":
       return node.value.getBoolean() ? "true" : "false";

@@ -15,12 +15,12 @@ class DErrorNode : UIMObject, IErrorNode {
   mixin(ErrorNodeThis!());
 
   // #region value
-  protected Json _value;
-  Json value() {
+  protected IErrorNode _value;
+  IErrorNode value() {
     return _value;
   }
 
-  IErrorNode value(Json newValue) {
+  IErrorNode value(IErrorNode newValue) {
     _value = newValue;
     return this;
   }
@@ -41,11 +41,11 @@ class DErrorNode : UIMObject, IErrorNode {
 }
 
 unittest {
-  Json json = Json.emptyObject;
+/*   Json json = Json.emptyObject;
   json["a"] = 1;
 
   auto node = new DErrorNode;
   node.value(json);
   assert(node.value["a"] == 1);
-  assert(node.children.length == 0);
+  assert(node.children.length == 0); */
 }

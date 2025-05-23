@@ -17,8 +17,8 @@ interface IErrorNode {
     IErrorNode name(string name); */
 
     // Get the contained value.
-    Json value();
-    IErrorNode value(Json newValue);
+    IErrorNode value();
+    IErrorNode value(IErrorNode newValue);
 
     // Get the child nodes of this node.
     IErrorNode children(IErrorNode[] nodes);

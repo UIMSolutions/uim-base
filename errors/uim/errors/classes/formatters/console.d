@@ -73,12 +73,6 @@ class DConsoleErrorFormatter : DErrorFormatter {
     ].join("\n");
   }
 
-  // Convert a tree of IErrorNode objects into a plain text string.
-  override string dump(IErrorNode node) {
-    size_t indentLevel = 0;
-    return export_(node, indentLevel);
-  }
-
   // #region export 
   // Export an array type object
   override protected string exportArray(DArrayErrorNode node, size_t indentLevel) {
@@ -89,15 +83,13 @@ class DConsoleErrorFormatter : DErrorFormatter {
     }
     auto result = style("punct", "[");
 
-    /*         auto arrowTxt = style("punct", ": ");
-        auto vars = node.children()
-            .map!(item => exportArrayItem(item, indentLevel))
-            .array;
+    auto items = node.children()
+      .map!(item => exportArrayItem(item, indentLevel))
+      .array;
 
-        auto closeTxt = style("punct", "]");
-        return !vars.isEmpty
-            ? result ~ vars.join(style("punct", ",")) ~ endText ~ closeTxt : result ~ closeTxt; */
-    return null;
+    auto closeText = style("punct", "]");
+    return result ~ (!items.isEmpty
+        ? items.join(style("punct", ",")) ~ endText : "") ~ closeText;
   }
 
   override protected string exportArrayItem(IErrorNode node, size_t indentLevel) {
@@ -107,9 +99,10 @@ class DConsoleErrorFormatter : DErrorFormatter {
       return null;
     }
 
-    return breakText ~ export_(item.getKey(), indentLevel) ~ arrowTxt ~ export_(item.value(), indentLevel);
+    auto arrowText = style("punct", ": ");
+    return breakText ~ export_(item.getKey(), indentLevel) ~ arrowText ~ export_(item.value(), indentLevel);
   }
-  
+
   override protected string exportReference(DReferenceErrorNode node, size_t indentLevel) {
     if (node is null) {
       return null;

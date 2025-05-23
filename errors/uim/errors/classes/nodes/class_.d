@@ -27,8 +27,8 @@ class DClassErrorNode : DErrorNode {
 
     private string _classname;
     // Get the class name
-    override Json value() {
-        return Json(_classname);
+    override string classname() {
+        return _classname;
     }
 
     private int _id;

@@ -73,7 +73,7 @@ class DHtmlErrorFormatter : DErrorFormatter {
 
   // Convert a tree of IErrorNode objects into HTML
   override string dump(IErrorNode node) {
-    auto content = export_(node, 0);
+    auto content = super.export_(node, 0);
     string head = "";
     if (!outputHeader) {
       outputHeader = true;
@@ -90,15 +90,7 @@ class DHtmlErrorFormatter : DErrorFormatter {
       return null;
     }
 
-    string[] vars = null;
-    auto arrow = style("punct", ": ");
-    node.children().each!((item) {
-      val = anItem.value();
-      vars ~= breakText ~ htmlDoubleTag("span", ["uim-debug-array-item"],
-        export_(item.getKey(), indentLevel) ~ arrow ~ export_(val, indentLevel) ~
-        style("punct", ","));
-    });
-
+    string[] items = node.children.map!(item => exportArrayItem(item, indentLevel)).array;
     return htmlDoubleTag("span", `class="uim-debug-array"`, style("punct", "[") ~
         htmlDoubleTag("samp", `class="uim-debug-array-items"`, vars.join("")) ~
         endBreak ~ style("punct", "]"));
@@ -162,7 +154,7 @@ class DHtmlErrorFormatter : DErrorFormatter {
     foreach (propertyNode; node.children()) {
       props ~= exportProperty(cast(DPropertyErrorNode) propertyNode, indentLevel);
     }
-    
+
     auto endTag = "</samp>" ~
       endBreak ~
       style("punct", "}") ~

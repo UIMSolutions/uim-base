@@ -33,8 +33,8 @@ class DErrorFormatter : UIMObject, IErrorFormatter {
   }
 
   // Convert a tree of IErrorNode objects into a plain text string.
-  string dump(IErrorNode node) {
-    return null;
+  override string dump(IErrorNode node) {
+    return export_(node, 0);
   }
 
   // Convert a tree of IErrorNode objects into HTML
@@ -67,7 +67,7 @@ class DErrorFormatter : UIMObject, IErrorFormatter {
     return null;
   }
 
-  protected override string exportArrayItem(IErrorNode node, size_t indentLevel) {
+  protected string exportArrayItem(IErrorNode node, size_t indentLevel) {
     return null;
   }
 
