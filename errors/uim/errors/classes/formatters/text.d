@@ -71,8 +71,8 @@ class DTextErrorFormatter : DErrorFormatter {
       .map!(property => exportProperty(cast(DPropertyErrorNode) property, indentLevel))
       .array;
 
-    return !props.isEmpty
-      ? result ~ breakText ~ items.join(breakText) ~ _endBreak : result ~ "}";
+    return result ~ (items.length > 0 
+      ? breakText ~ items.join(breakText) ~ _endBreak : "}");
   }
 
   override protected string exportProperty(DPropertyErrorNode node, size_t indentLevel) {
@@ -98,13 +98,13 @@ class DTextErrorFormatter : DErrorFormatter {
 
     switch (node.type) {
     case "bool":
-      return node.value.getBoolean() ? "true" : "false";
+      return node.data.getBoolean() ? "true" : "false";
     case "null":
       return "null";
     case "string":
-      return "'" ~ node.value.getString ~ "'";
+      return "'" ~ node.data.getString ~ "'";
     default:
-      return "({" ~ node.type ~ "}) {" ~ node.value.toString ~ "}";
+      return "({" ~ node.type ~ "}) {" ~ node.data.toString ~ "}";
     }
   }
 

@@ -129,7 +129,7 @@ class DHtmlErrorFormatter : DErrorFormatter {
 
     return htmlDoubleTag("span", ["uim-debug-ref"],
       style("punct", "object(") ~
-        style("class", node.value()) ~
+        style("class", node.classname) ~
         style("punct", ") ") ~
         link ~
         style("punct", " {}"));

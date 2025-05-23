@@ -213,13 +213,10 @@ class DWebErrorRenderer : DErrorRenderer {
         return null;
     } */
 
-  /**
-     * Emit the response content
-     * Params:
-     * \Psr\Http\Message\IResponse|string aoutput The response to output.
-     */
+  // Emit the response content
+  alias write = DErrorRenderer.write;
   void write(string outputText) {
-    // writeln(output);
+    writeln(outputText);
   }
 
   /* void write(IResponse outputResponse) {
