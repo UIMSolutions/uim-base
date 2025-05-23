@@ -16,22 +16,10 @@ class DArrayErrorNode : DErrorNode {
   mixin(ErrorNodeThis!("Array"));
 
   this(DArrayItemErrorNode[] nodes = null) {
-    /* _items = null;
-    add(nodes); */
-  }
-
-  // Add nodes
-  void add(DArrayItemErrorNode[] nodes...) {
-    add(nodes.dup);
+    add(nodes);
   }
 
   void add(DArrayItemErrorNode[] nodes) {
-    // foreach (myItem; nodes) { _items ~= myItem; }
+    _children ~= nodes; 
   }
-
-  // Get the contained items
-/*   string value() {
-    return null;
-    // TODO return _items.map!(item => item.value).join(", ");
-  } */
 }

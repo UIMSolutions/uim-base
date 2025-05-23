@@ -346,9 +346,9 @@ class DErrorRenderer : UIMObject, IErrorRenderer {
   // Returns an array that can be used to describe the internal state of this object.
   override Json[string] debugInfo(string[] showKeys = null, string[] hideKeys = null) {
     return super.debugInfo(showKeys, hideKeys)
-      .set("error", _error.toJson)
-      .set("request", _request.toJson)
-      .set("controller", _controller.toJson)
+      // .set("error", _error.toString)
+      // .set("request", _request.toString)
+      // .set("controller", _controller.toString)
       .set("template", _template)
       .set("method", method);
   }
@@ -707,14 +707,14 @@ class DErrorRenderer { // }: IErrorRenderer
   } * /
 
   // Returns an array that can be used to describe the internal state of this object.
-/*   Json[string] debugInfo(string[] showKeys = null, string[] hideKeys = null) {
+Json[string] debugInfo(string[] showKeys = null, string[] hideKeys = null) {
     return super.debugInfo
       .set("error", _error)
       .set("request", _request)
       .set("controller", _controller)
       .set("template", _template)
       .set("method", _method);
-  } * /
+  }
 }
 
 */

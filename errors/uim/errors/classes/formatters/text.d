@@ -34,14 +34,17 @@ class DTextErrorFormatter : DErrorFormatter {
   override protected string exportArray(DArrayErrorNode node, size_t indentLevel) {
     super.exportArray(node, indentLevel);
 
-    auto result = "[";
-
     auto nodes = node.children
-      .map!(item => breakText ~ export_(item.getKey(), indentLevel) ~ ": " ~ export_(item.getValue, indentLevel))
+      .map!(item => exportArrayItem(node.value, indentLevel))
       .array;
 
-    return result ~ (!nodes.isEmpty
-        ? nodes.join(",") ~ end : "") ~ "]";
+    return "[" ~ (
+      !nodes.isEmpty
+        ? nodes.join(",") ~ _endBreak : "") ~ "]";
+  }
+
+  override protected string exportArrayItem(IErrorNode node, size_t indentLevel) {
+    return breakText ~ export_(node.value, indentLevel) ~ ": " ~ export_(node.value, indentLevel);
   }
 
   override protected string exportReference(DReferenceErrorNode node, size_t indentLevel) {
@@ -49,24 +52,27 @@ class DTextErrorFormatter : DErrorFormatter {
       return null;
     }
 
-    return "object({" ~ node.value.getString ~ "}) id:{node.id()} {}";
+    return "object({nodeClassname}) id:{nodeId} {}".mustache(
+      ["nodeClassname": node.classname, "nodeId": node.id.toString]);
   }
 
   override protected string exportClass(DClassErrorNode node, size_t indentLevel) {
     super.exportClass(node, indentLevel);
-    _endText ~= "}";
+    _endBreak ~= "}";
 
     if (node is null) {
       return null;
     }
 
-    string result = "object({" ~ node.value().getString ~ "}) id:{" ~ node.id() ~ "} {";
-    auto props = node.children()
+    string result = "object({nodeClassname}) id:{nodeId} {".mustache(
+      ["nodeClassname": node.classname, "nodeId": node.id.toString]);
+
+    auto items = node.children()
       .map!(property => exportProperty(cast(DPropertyErrorNode) property, indentLevel))
       .array;
 
     return !props.isEmpty
-      ? result ~ breakText ~ props.join(breakText) ~ endText : result ~ "}";
+      ? result ~ breakText ~ items.join(breakText) ~ _endBreak : result ~ "}";
   }
 
   override protected string exportProperty(DPropertyErrorNode node, size_t indentLevel) {
@@ -74,14 +80,15 @@ class DTextErrorFormatter : DErrorFormatter {
       return null;
     }
 
-    auto propVisibility = node.visibility();
+    auto propVisibility = node.visibility;
     auto propName = node.name;
 
     return (propVisibility != "public"
-        ? "[{propVisibility}] {propName}: " : "{propName}: ").mustache([
-      "propVisibility": propVisibility,
-      "propName": propName
-    ])/*  ~ export_(node.value(), indentLevel) */;
+        ? "[{propVisibility}] {propName}: " : "{propName}: ").mustache(
+      [
+        "propVisibility": propVisibility,
+        "propName": propName
+      ]) /*  ~ export_(node.value(), indentLevel) */ ;
   }
 
   override protected string exportScalar(DScalarErrorNode node, size_t indentLevel) {

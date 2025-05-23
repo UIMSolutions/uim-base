@@ -27,8 +27,8 @@ class DTextErrorRenderer : DErrorRenderer {
   string render() {
     return "%s : %s on line %s of %s\nTrace:\n%s".format(
       _error.message(),
-      _error.file(),
-      _error.line()
+      _error.fileName(),
+      _error.lineNumber()
     );
   }
 

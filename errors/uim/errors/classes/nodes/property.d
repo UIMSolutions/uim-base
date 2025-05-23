@@ -23,9 +23,8 @@ class DPropertyErrorNode : DErrorNode {
   }
 
   // Get the value
-  override Json value() {
-    // return _propertyValue.value;
-    return Json(null); // TODO
+  override IErrorNode value() {
+    return _propertyValue.value;
   }
 
   // #region visibility

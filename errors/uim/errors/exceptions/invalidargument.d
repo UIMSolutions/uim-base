@@ -7,7 +7,7 @@ import uim.errors;
 @safe:
 
 class DInvalidArgumentException : Exception {
-  this(string message, string fileName, ulong lineNumber, Throwable nextInChain) {
+  this(string message, string fileName = null, ulong lineNumber = 0, Throwable nextInChain = null) {
     super(message, fileName, lineNumber, nextInChain);
   }
 }

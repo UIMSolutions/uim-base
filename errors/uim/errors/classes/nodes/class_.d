@@ -27,8 +27,11 @@ class DClassErrorNode : DErrorNode {
 
     private string _classname;
     // Get the class name
-    override string classname() {
+    string classname() {
         return _classname;
+    }
+    void classname(string name) {
+        _classname = name;
     }
 
     private int _id;

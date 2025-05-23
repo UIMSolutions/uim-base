@@ -23,9 +23,13 @@ class DReferenceErrorNode : DErrorNode {
 
   // #region Fields
   private string _classname;
+  string classname() {
+    return _classname;
+  }
+
   // Get the class name/value
-  override Json value() {
-    return Json(_classname);
+  override IErrorNode value() {
+    return null;
   }
 
   private int _id;

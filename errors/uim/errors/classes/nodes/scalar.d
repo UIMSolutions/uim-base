@@ -17,7 +17,7 @@ class DScalarErrorNode : DErrorNode {
     this(string newType, Json newValue) {
         super();
         _type = newType;
-        _value = newValue;
+        _data = newValue;
     }
     
     // #region type
@@ -32,13 +32,15 @@ class DScalarErrorNode : DErrorNode {
         return this;
     }
     // #endregion type
-}
-unittest {
-    Json json = Json.emptyObject;   
-    json["a"] = 1;
+
+    // Scalar data
+    protected Json _data;
+    Json data() {
+        return _data;
+    }
     
-    auto node = new DScalarErrorNode("int", json);
-    assert(node.value["a"] == 1);
-    assert(node.type == "int");
-    assert(node.children.length == 0);
+    IErrorNode data(Json newData) {
+        _data = newData;
+        return this;
+    }
 }

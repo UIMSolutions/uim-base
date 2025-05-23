@@ -14,7 +14,17 @@ import uim.errors;
 class DSpecialErrorNode : DErrorNode {
   mixin(ErrorNodeThis!("Special"));
 
-  this(string value) {
-    _value = Json(value);
+  this(Json value) {
+    _data = value;
   }
+
+  protected Json _data;
+    Json data() {
+        return _data;
+    }
+    
+    IErrorNode data(Json newData) {
+        _data = newData;
+        return this;
+    }
 }

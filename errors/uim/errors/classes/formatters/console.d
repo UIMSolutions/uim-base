@@ -89,18 +89,16 @@ class DConsoleErrorFormatter : DErrorFormatter {
 
     auto closeText = style("punct", "]");
     return result ~ (!items.isEmpty
-        ? items.join(style("punct", ",")) ~ endText : "") ~ closeText;
+        ? items.join(style("punct", ",")) ~ endBreak : "") ~ closeText;
   }
 
   override protected string exportArrayItem(IErrorNode node, size_t indentLevel) {
-    super.exportArray(node, indentLevel);
-
     if (node is null) {
       return null;
     }
 
     auto arrowText = style("punct", ": ");
-    return breakText ~ export_(item.getKey(), indentLevel) ~ arrowText ~ export_(item.value(), indentLevel);
+    return breakText ~ export_(node, indentLevel) ~ arrowText ~ export_(node, indentLevel);
   }
 
   override protected string exportReference(DReferenceErrorNode node, size_t indentLevel) {
@@ -118,7 +116,7 @@ class DConsoleErrorFormatter : DErrorFormatter {
 
   override protected string exportClass(DClassErrorNode node, size_t indentLevel) {
     string breakText = "\n" ~ " ".repeatTxt(indentLevel);
-    string endText = "\n" ~ " ".repeatTxt(indentLevel - 1) ~ style("punct", "}");
+    string endBreak = "\n" ~ " ".repeatTxt(indentLevel - 1) ~ style("punct", "}");
 
     if (node is null) {
       return null;
@@ -127,7 +125,7 @@ class DConsoleErrorFormatter : DErrorFormatter {
     string[] props;
 
     auto result = style("punct", "object(") ~
-      style("class", node.value.toString) ~
+      style("class", node.classname) ~
       style("punct", ") id:") ~
       style("number", to!string(node.id)) ~ style("punct", " {");
 
@@ -135,7 +133,7 @@ class DConsoleErrorFormatter : DErrorFormatter {
       .map!(prop => exportProperty(cast(DPropertyErrorNode) prop, indentLevel)).array;
 
     return result ~ (exportedProperties.length > 0
-        ? breakText ~ exportedProperties.join(breakText) ~ endText : style("punct", "}"));
+        ? breakText ~ exportedProperties.join(breakText) ~ endBreak : style("punct", "}"));
   }
 
   override protected string exportProperty(DPropertyErrorNode node, size_t indentLevel) {

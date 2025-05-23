@@ -92,7 +92,7 @@ class DHtmlErrorFormatter : DErrorFormatter {
 
     string[] items = node.children.map!(item => exportArrayItem(item, indentLevel)).array;
     return htmlDoubleTag("span", `class="uim-debug-array"`, style("punct", "[") ~
-        htmlDoubleTag("samp", `class="uim-debug-array-items"`, vars.join("")) ~
+        htmlDoubleTag("samp", `class="uim-debug-array-items"`, items.join("")) ~
         endBreak ~ style("punct", "]"));
   }
 
@@ -106,7 +106,7 @@ class DHtmlErrorFormatter : DErrorFormatter {
     auto arrow = style("punct", ": ");
     auto value = node.value();
     return breakText ~ htmlDoubleTag("span", ["uim-debug-array-item"],
-      export_(node.getKey(), indentLevel) ~ arrow ~ export_(value, indentLevel) ~
+      export_(node.value, indentLevel) ~ arrow ~ export_(node.value, indentLevel) ~
         style("punct", ","));
   }
 
@@ -117,7 +117,7 @@ class DHtmlErrorFormatter : DErrorFormatter {
 
     auto objectId = "uim-db-object-{id}-{nodeid}".mustache([
       "id": id,
-      "nodeid": node.id
+      "nodeid": node.id.toString
     ]);
 
     auto result = `<span class="uim-debug-object" id="%s">`.format(objectId);
@@ -145,22 +145,19 @@ class DHtmlErrorFormatter : DErrorFormatter {
     auto objectId = "uim-db-object-{this.id}-{node.id()}";
     auto result = `<span class="uim-debug-object" id="%s">`.format(objectId) ~
       style("punct", "object(") ~
-      style("class", node.value.toString) ~
+      style("class", node.classname) ~
       style("punct", ") id:") ~
-      style("number", node.id) ~ style("punct", " {") ~
+      style("number", node.id.toString) ~ style("punct", " {") ~
       `<samp class="uim-debug-object-props">`;
 
-    string[] props = null;
-    foreach (propertyNode; node.children()) {
-      props ~= exportProperty(cast(DPropertyErrorNode) propertyNode, indentLevel);
-    }
+    string[] props = node.children.map!(property => exportProperty(cast(DPropertyErrorNode) property, indentLevel)).array;
 
     auto endTag = "</samp>" ~
       endBreak ~
       style("punct", "}") ~
       "</span>";
 
-    return result ~ (count(props) ? props.join("") : "") ~ endTag;
+    return result ~ (props.length > 0 ? props.join("") : "") ~ endTag;
   }
 
   protected override string exportProperty(DPropertyErrorNode node, size_t indentLevel) {
@@ -169,7 +166,7 @@ class DHtmlErrorFormatter : DErrorFormatter {
     }
 
     auto arrow = style("punct", ": ");
-    auto visibility = node.getVisibility();
+    auto visibility = node.visibility;
     auto name = node.name;
     return visibility != "public"
       ? breakText ~
@@ -185,21 +182,19 @@ class DHtmlErrorFormatter : DErrorFormatter {
       return null;
     }
 
-    /* switch (node.getType()) {
+    switch (node.type) {
     case "bool":
-      return style("const", node.getBoolean() ? "true" : "false");
+      return style("const", node.data.getBoolean ? "true" : "false");
     case "null":
       return style("const", "null");
     case "string":
-      return style("string", "'" ~ node.getString() ~ "'");
+      return style("string", "'" ~ node.data.getString ~ "'");
     case "int", "float":
-      return style("visibility", "({node.getType()})") ~
-        " " ~ style("number", "{node.value()}");
+      return style("visibility", "({"~node.type~"})") ~
+        " " ~ style("number", "{"~node.data.getLong.toString~"}");
     default:
-      return "({node.getType()}) {node.value()}";
-    }; */
-
-    return null;
+      return "({"~node.type~"}) {"~node.data.toString~"}";
+    };
   }
 
   protected override string exportSpecial(DSpecialErrorNode node, size_t indentLevel) {
@@ -210,6 +205,6 @@ class DHtmlErrorFormatter : DErrorFormatter {
   // Style text with HTML class names
   protected string style(string styleToUse, string testToStyle) {
     return htmlDoubleTag("span", ["uim-debug-%s"], "%s")
-      .format(styleToUse, htmlAttributeEscape(testToStyle));
+      .format(styleToUse, escapeHtmlAttribute(testToStyle));
   }
 }
