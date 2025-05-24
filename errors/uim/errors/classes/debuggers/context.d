@@ -93,10 +93,7 @@ class DDebugContext : UIMObject {
 
   // Check whether an object has been seen before.
   bool hasReference(UIMObject referenceObject) {
-    foreach(kv; refObjects.byKeyValue) {
-      if (kv.key.objId == referenceObject.objId) return true;
-    }
-    return false;
+    return refObjects.byKeyValue.any!(kv => kv.key.objId == referenceObject.objId);
   }
 
   DDebugContext clone() {
