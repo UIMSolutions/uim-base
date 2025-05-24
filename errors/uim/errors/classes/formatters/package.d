@@ -6,11 +6,16 @@
 module uim.errors.classes.formatters;
 
 public { // Main
+  import uim.errors.classes.formatters.init;
   import uim.errors.classes.formatters.formatter;
 }
 
 public { // Sub
   import uim.errors.classes.formatters.console;
   import uim.errors.classes.formatters.html;
+  import uim.errors.classes.formatters.json;
   import uim.errors.classes.formatters.text;
+  import uim.errors.classes.formatters.xml;
+  import uim.errors.classes.formatters.yaml;
 }
+
