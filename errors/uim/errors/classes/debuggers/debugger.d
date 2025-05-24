@@ -1389,10 +1389,8 @@ class DDebugger : UIMObject, IErrorDebugger {
   } */
 
   // Get the type of the given variable. Will return the class name for objects.
-  /*     static string getType(
-        Json value) {
-        auto type = getTypeName(
-            value);
+  static string getTypeName(Json value) {
+        auto type = value.getString("typeName");
 
         if (type == "NULL") {
             return "null";
@@ -1409,22 +1407,16 @@ class DDebugger : UIMObject, IErrorDebugger {
 
         return type;
     }
- */
   // Prints out debug information about given variable.
   static void printVar(Json varToShow, Json[string] location = null, bool showHtml = false) {
-    /* location.mergeKeys([
-        "file",
-        "line"
+    location = location.merge([
+        "file": Json(""),
+        "line": Json(0)
       ]);
-    if (
-      location.hasKey(
-        "file")) {
-      location.set("file", trimPath(
-          location.getString(
-          "file")));
-    }
 
-    auto debugger = getInstance();
+    location.set("file", trimPath(location.getString("file")));
+
+ /*   auto debugger = getInstance();
     auto restore = null;
     if (showHtml != null) {
       restore = debugger.getConfig(

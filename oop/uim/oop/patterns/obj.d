@@ -30,6 +30,7 @@ class UIMObject : IObject {
   }
 
   bool initialize(Json[string] initData = null) {
+    objId(randomUUID);
     name("Object");
 
     auto config = MemoryConfiguration;
@@ -39,6 +40,7 @@ class UIMObject : IObject {
     return true;
   }
 
+  mixin(TProperty!("UUID", "objId"));
   mixin(TProperty!("string", "name"));
 
   string[] memberNames() {

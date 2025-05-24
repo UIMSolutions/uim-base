@@ -66,7 +66,7 @@ class DTextErrorFormatter : DErrorFormatter {
       return null;
     }
 
-    string result = "object({nodeClassname}) id:{nodeId} {".mustache(
+    string result = "(Object) Name:{nodeClassname} Id:{nodeId} {".mustache(
       ["nodeClassname": node.classname, "nodeId": node.id.toString]);
 
     auto items = node.children()
@@ -74,7 +74,7 @@ class DTextErrorFormatter : DErrorFormatter {
       .array;
 
     return result ~ (items.length > 0
-        ? startBreak ~ items.join(startBreak) ~ _endBreak : "") ~ "}";
+        ? startBreak(indentLevel+1) ~ items.join(startBreak(indentLevel+1)) ~ endBreak((indentLevel)) : "") ~ "}";
   }
 
   override protected string exportProperty(DPropertyErrorNode node, size_t indentLevel) {
@@ -84,8 +84,8 @@ class DTextErrorFormatter : DErrorFormatter {
       return null;
     }
 
-    return (node.visibility != "public"
-        ? "[{propVisibility}] {propName}: " : "{propName}: ").mustache(
+    return "(Property) " ~ (node.visibility != "public"
+        ? "[{propVisibility}] Name:{propName} " : "Name:{propName} ").mustache(
       [
         "propVisibility": node.visibility,
         "propName": node.name
@@ -101,13 +101,13 @@ class DTextErrorFormatter : DErrorFormatter {
 
     switch (node.type) {
     case "bool":
-      return node.data.getBoolean() ? "true" : "false";
+      return "Type:Bool Value:"~node.data.getBoolean() ? "true" : "false";
     case "null":
-      return "null";
+      return "Type:Null Value:null";
     case "string":
-      return "'" ~ node.data.getString ~ "'";
+      return "Type:String Value:'" ~ node.data.getString ~ "'";
     default:
-      return "({" ~ node.type ~ "}) {" ~ node.data.toString ~ "}";
+      return "Type:" ~ node.type ~ " Value:" ~ node.data.toString;
     }
   }
 
