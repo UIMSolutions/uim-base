@@ -8,6 +8,7 @@ module uim.oop.configurations.configuration;
 mixin(Version!"test_uim_oop");
 
 import uim.oop;
+
 @safe:
 
 /* private alias KeyValue = Tuple!(string, "key", Json, "value");
@@ -36,9 +37,9 @@ class DConfiguration : IConfiguration {
   mixin(TProperty!("string", "name"));
 
   // #region entries
-    abstract Json[string] entries();
-    abstract IConfiguration entries(Json[string] newEntries);
- // #endregion entries
+  abstract Json[string] entries();
+  abstract IConfiguration entries(Json[string] newEntries);
+  // #endregion entries
 
   // #region keys
   abstract string[] entryKeys();
@@ -49,334 +50,407 @@ class DConfiguration : IConfiguration {
   // #endregion values
 
   // #region has
-    mixin(HasMethods!("Entries", "Entry", "string"));
+  mixin(HasMethods!("Entries", "Entry", "string"));
 
-    mixin(HasMethods!("EntryValues", "EntryValue", "bool"));
-    mixin(HasMethods!("EntryValues", "EntryValue", "long"));
-    mixin(HasMethods!("EntryValues", "EntryValue", "double"));
-    mixin(HasMethods!("EntryValues", "EntryValue", "string"));
-    mixin(HasMethods!("EntryValues", "EntryValue", "Json[]"));
-    mixin(HasMethods!("EntryValues", "EntryValue", "Json[string]"));
-    mixin(HasMethods!("EntryValues", "EntryValue", "Json"));
+  mixin(HasMethods!("EntryValues", "EntryValue", "bool"));
+  mixin(HasMethods!("EntryValues", "EntryValue", "long"));
+  mixin(HasMethods!("EntryValues", "EntryValue", "double"));
+  mixin(HasMethods!("EntryValues", "EntryValue", "string"));
+  mixin(HasMethods!("EntryValues", "EntryValue", "Json[]"));
+  mixin(HasMethods!("EntryValues", "EntryValue", "Json[string]"));
+  mixin(HasMethods!("EntryValues", "EntryValue", "Json"));
 
-    abstract bool hasEntry(string key);
-      
-    bool hasEntryValue(bool value) {
-      return hasEntryValue(value.toJson);
-    }
+  abstract bool hasEntry(string key);
 
-    bool hasEntryValue(long value) {
-      return hasEntryValue(value.toJson);
-    }
+  bool hasEntryValue(bool value) {
+    return hasEntryValue(value.toJson);
+  }
 
-    bool hasEntryValue(double value) {
-      return hasEntryValue(value.toJson);
-    }
+  bool hasEntryValue(long value) {
+    return hasEntryValue(value.toJson);
+  }
 
-    bool hasEntryValue(string value) {
-      return hasEntryValue(value.toJson);
-    }
+  bool hasEntryValue(double value) {
+    return hasEntryValue(value.toJson);
+  }
 
-    bool hasEntryValue(Json[] value) {
-      return hasEntryValue(value.toJson);
-    }
+  bool hasEntryValue(string value) {
+    return hasEntryValue(value.toJson);
+  }
 
-    bool hasEntryValue(Json[string] value) {
-      return hasEntryValue(value.toJson);
-    }
+  bool hasEntryValue(Json[] value) {
+    return hasEntryValue(value.toJson);
+  }
 
-    abstract bool hasEntryValue(Json value);
-      
-    unittest {
-      auto config = MemoryConfiguration;
+  bool hasEntryValue(Json[string] value) {
+    return hasEntryValue(value.toJson);
+  }
 
-      // TODO
-    }
+  abstract bool hasEntryValue(Json value);
+
+  unittest {
+    auto config = MemoryConfiguration;
+
+    // TODO
+  }
   // #endregion has
 
   // #region is
-    mixin(IsMethods!("NullEntries", "NullEntry", "string"));
-    mixin(IsMethods!("EmptyEntries", "EmptyEntry", "string"));
-    mixin(IsMethods!("BooleanEntries", "BooleanEntry", "string"));
-    mixin(IsMethods!("LongEntries", "LongEntry", "string")); 
-    mixin(IsMethods!("DoubleEntries", "DoubleEntry", "string"));
-    mixin(IsMethods!("StringEntries", "StringEntry", "string"));
-    mixin(IsMethods!("ArrayEntries", "ArrayEntry", "string"));
-    mixin(IsMethods!("MapEntries", "MapEntry", "string"));
+  mixin(IsMethods!("NullEntries", "NullEntry", "string"));
+  mixin(IsMethods!("EmptyEntries", "EmptyEntry", "string"));
+  mixin(IsMethods!("BooleanEntries", "BooleanEntry", "string"));
+  mixin(IsMethods!("LongEntries", "LongEntry", "string"));
+  mixin(IsMethods!("DoubleEntries", "DoubleEntry", "string"));
+  mixin(IsMethods!("StringEntries", "StringEntry", "string"));
+  mixin(IsMethods!("ArrayEntries", "ArrayEntry", "string"));
+  mixin(IsMethods!("MapEntries", "MapEntry", "string"));
 
-    bool isNullEntry(string key) {
-      return getEntry(key).isNull;
-    }
+  bool isNullEntry(string key) {
+    return getEntry(key).isNull;
+  }
 
-    bool isEmptyEntry(string key) {
-      return hasEntry(key)
-        ? getEntry(key).isEmpty : false;
-    }
+  bool isEmptyEntry(string key) {
+    return hasEntry(key)
+      ? getEntry(key).isEmpty : false;
+  }
 
-    bool isBooleanEntry(string key) {
-      return hasEntry(key)
-        ? getEntry(key).isBoolean : false;
-    }
+  bool isBooleanEntry(string key) {
+    return hasEntry(key)
+      ? getEntry(key).isBoolean : false;
+  }
 
-    bool isLongEntry(string key) {
-      return hasEntry(key)
-        ? getEntry(key).isLong : false;
-    }
+  bool isLongEntry(string key) {
+    return hasEntry(key)
+      ? getEntry(key).isLong : false;
+  }
 
-    bool isDoubleEntry(string key) {
-      return hasEntry(key)
-        ? getEntry(key).isDouble : false;
-    }
-     
-    bool isStringEntry(string key) {
-      return hasEntry(key)
-        ? getEntry(key).isString : false;
-    }
-      
-    bool isArrayEntry(string key) {
-      return hasEntry(key)
-        ? getEntry(key).isArray : false;
-    }
+  bool isDoubleEntry(string key) {
+    return hasEntry(key)
+      ? getEntry(key).isDouble : false;
+  }
 
-    bool isMapEntry(string key) {
-      return hasEntry(key)
-        ? getEntry(key).isMap : false;
-    }
+  bool isStringEntry(string key) {
+    return hasEntry(key)
+      ? getEntry(key).isString : false;
+  }
 
-      unittest {
-        auto config = MemoryConfiguration;
+  bool isArrayEntry(string key) {
+    return hasEntry(key)
+      ? getEntry(key).isArray : false;
+  }
 
-/*         Json[string] values = ["a": Json(1), "b": Json(2), "c": Json(3)];
+  bool isMapEntry(string key) {
+    return hasEntry(key)
+      ? getEntry(key).isMap : false;
+  }
+
+  unittest {
+    auto config = MemoryConfiguration;
+
+    /*         Json[string] values = ["a": Json(1), "b": Json(2), "c": Json(3)];
         config.set("a", true);
         assert(config.hasEntry("a") && !config.hasEntry("b"));
 
         config.set(["b", "c"], values);
         assert(config.hasEntry("b") && config.hasEntry("c")); */
-      }
+  }
   // #endregion is
 
   // #region get
-    // #region boolean
-    mixin(GetMethods!("bool", "BooleanEntries", "BooleanEntry", "string"));
+  // #region boolean
+  mixin(GetMethods!("bool", "BooleanEntries", "BooleanEntry", "string"));
 
-    bool getBooleanEntry(string key) {
-      return hasEntry(key) ? getEntry(key).getBoolean : false;
-    }
-    // #endregion boolean
+  bool getBooleanEntry(string key) {
+    return hasEntry(key) ? getEntry(key).getBoolean : false;
+  }
+  // #endregion boolean
 
-    mixin(GetMethods!("long", "LongEntries", "LongEntry", "string"));
-    mixin(GetMethods!("double", "DoubleEntries", "DoubleEntry", "string"));
-    mixin(GetMethods!("string", "StringEntries", "StringEntry", "string"));
-    mixin(GetMethods!("Json[]", "ArrayEntries", "ArrayEntry", "string"));
-    mixin(GetMethods!("Json[string]", "MapEntries", "MapEntry", "string"));
-    mixin(GetMethods!("Json", "Entries", "Entry", "string"));
+  // #region long
+  mixin(GetMethods!("long", "LongEntries", "LongEntry", "string"));
 
+  long getLongEntry(string key) {
+    return hasEntry(key) ? getEntry(key).getLong : 0;
+  }
+  // #endregion long
 
-    long getLongEntry(string key) {
-      return hasEntry(key) ? getEntry(key).getLong : 0;
-    }
+  mixin(GetMethods!("double", "DoubleEntries", "DoubleEntry", "string"));
 
-    double getDoubleEntry(string key) {
-      return hasEntry(key) ? getEntry(key).getDouble : 0.0;
-    }
+  double getDoubleEntry(string key) {
+    return hasEntry(key) ? getEntry(key).getDouble : 0.0;
+  }
 
-    string getStringEntry(string key) {
-      return hasEntry(key) ? getEntry(key).getString : null;
-    }
+  mixin(GetMethods!("string", "StringEntries", "StringEntry", "string"));
+  string getStringEntry(string key) {
+    return hasEntry(key) ? getEntry(key).getString : null;
+  }
 
-    Json[] getArrayEntry(string key) {
-      return hasEntry(key) && getEntry(key).isArray
-        ? getEntry(key).getArray : null;
-    }
+  mixin(GetMethods!("Json[]", "ArrayEntries", "ArrayEntry", "string"));
 
-    Json[string] getMapEntry(string key) {
-      return hasEntry(key) && getEntry(key).isMap
-        ? getEntry(key).getMap : null;
-    }
+  Json[] getArrayEntry(string key) {
+    return hasEntry(key) && getEntry(key).isArray
+      ? getEntry(key).getArray : null;
+  }
 
-    abstract Json getEntry(string key);
+  mixin(GetMethods!("string[string]", "StringMapEntries", "StringMapEntry", "string"));
 
-    unittest {
-      auto config = MemoryConfiguration;
-      // TODO
-    }
+  string[string] getStringMapEntry(string key) {
+    return hasEntry(key) && getEntry(key).isMap
+      ? getEntry(key).getStringMap : null;
+  }
+
+  mixin(GetMethods!("Json[string]", "MapEntries", "MapEntry", "string"));
+
+  Json[string] getMapEntry(string key) {
+    return hasEntry(key) && getEntry(key).isMap
+      ? getEntry(key).getMap : null;
+  }
+
+  mixin(GetMethods!("Json", "Entries", "Entry", "string"));
+  Json opCall(string key) {
+    return getEntry(key);
+  }
+
+  abstract Json getEntry(string key);
+
+  unittest {
+    auto config = MemoryConfiguration;
+    // TODO
+  }
   // #endregion get
 
   // #region shift
-    mixin(ShiftMethods!("Json", "Entries", "Entry", "string")); 
+  mixin(ShiftMethods!("Json", "Entries", "Entry", "string"));
 
-    Json shiftEntry(string key) {
-      if (!hasEntry(key)) {
-        return Json(null);
-      }
-
-      auto value = getEntry(key);
-      removeEntry(key);
-      return value;
+  Json shiftEntry(string key) {
+    if (!hasEntry(key)) {
+      return Json(null);
     }
 
-    unittest {
-      auto config = MemoryConfiguration;
-      // TODO
-    }     
+    auto value = getEntry(key);
+    removeEntry(key);
+    return value;
+  }
+
+  unittest {
+    auto config = MemoryConfiguration;
+    // TODO
+  }
   // #endregion shift
 
   // #region set
-    mixin(SetMethods!("IConfiguration", "Entries", "Entry", "string", "bool"));
-    mixin(SetMethods!("IConfiguration", "Entries", "Entry", "string", "long"));
-    mixin(SetMethods!("IConfiguration", "Entries", "Entry", "string", "double"));
-    mixin(SetMethods!("IConfiguration", "Entries", "Entry", "string", "string"));
-    mixin(SetMethods!("IConfiguration", "Entries", "Entry", "string", "Json[string]"));
-    mixin(SetMethods!("IConfiguration", "Entries", "Entry", "string", "Json[]"));
-    mixin(SetMethods!("IConfiguration", "Entries", "Entry", "string", "Json"));
+  mixin(SetMethods!("IConfiguration", "Entries", "Entry", "string", "bool"));
+  mixin(SetMethods!("IConfiguration", "Entries", "Entry", "string", "long"));
+  mixin(SetMethods!("IConfiguration", "Entries", "Entry", "string", "double"));
+  mixin(SetMethods!("IConfiguration", "Entries", "Entry", "string", "string"));
+  mixin(SetMethods!("IConfiguration", "Entries", "Entry", "string", "Json[string]"));
 
-    IConfiguration setEntry(string key, bool value) {
-      return setEntry(key, value.toJson);
-    }
+  // #region Json[]
+  mixin(SetMethods!("IConfiguration", "Entries", "Entry", "string", "Json[]"));
 
-    IConfiguration setEntry(string key, long value) {
-      return setEntry(key, value.toJson);
-    }
+  IConfiguration opCall(string key, Json[] value) {
+    return setEntry(key, value);
+  }
 
-    IConfiguration setEntry(string key, double value) {
-      return setEntry(key, value.toJson);
-    }
+  IConfiguration setEntry(string key, Json[] value) {
+    return setEntry(key, value.toJson);
+  }
 
-    IConfiguration setEntry(string key, string value) {
-      return setEntry(key, value.toJson);
-    }
+  unittest {
+    // Create a MemoryConfiguration instance (assuming MemoryConfiguration is a concrete implementation)
+    auto config = MemoryConfiguration();
 
-    IConfiguration setEntry(string key, Json[] value) {
-      return setEntry(key, value.toJson);
-    }
+    // Prepare Json[] value
+    Json[] arr = [Json(1), Json(2), Json(3)];
 
-    IConfiguration setEntry(string key, Json[string] value) {
-      return setEntry(key, value.toJson);
-    }
+    // Test setEntry(string, Json[])
+    config.setEntry("numbers", arr);
+    assert(config.hasEntry("numbers"), "Entry 'numbers' should exist after setEntry.");
+    assert(config.getEntry("numbers").isArray, "Entry 'numbers' should be a Json array.");
+    assert(config.getArrayEntry("numbers").length == 3, "Array entry should have 3 elements.");
+    assert(config.getArrayEntry("numbers")[0].getLong == 1, "First element should be 1.");
 
-    abstract IConfiguration setEntry(string key, Json value);
+    // Test opCall(string, Json[])
+    config("letters", [Json("a"), Json("b")]);
+    assert(config.hasEntry("letters"), "Entry 'letters' should exist after opCall.");
+    assert(config.getEntry("letters").isArray, "Entry 'letters' should be a Json array.");
+    assert(config.getArrayEntry("letters")[1].getString == "b", "Second element should be 'b'.");
 
-    unittest{
-      auto config = MemoryConfiguration;
+    // Test that setEntry(string, Json[]) and opCall(string, Json[]) are equivalent
+    Json[] testArr = [Json(true), Json(false)];
+    config.setEntry("bools", testArr);
+    assert(config.getArrayEntry("bools")[0].getBoolean == true, "First bool should be true.");
+    config("bools2", testArr);
+    assert(config.getArrayEntry("bools2")[1].getBoolean == false, "Second bool should be false.");
+  }
+  // #endregion Json[]
 
-      // TODO 
-    }
+  mixin(SetMethods!("IConfiguration", "Entries", "Entry", "string", "Json"));
+
+  IConfiguration opCall(string key, bool value) {
+    return setEntry(key, value);
+  }
+
+  IConfiguration setEntry(string key, bool value) {
+    return setEntry(key, value.toJson);
+  }
+
+  IConfiguration opCall(string key, long value) {
+    return setEntry(key, value);
+  }
+
+  IConfiguration setEntry(string key, long value) {
+    return setEntry(key, value.toJson);
+  }
+
+  IConfiguration opCall(string key, double value) {
+    return setEntry(key, value);
+  }
+
+  IConfiguration setEntry(string key, double value) {
+    return setEntry(key, value.toJson);
+  }
+
+  IConfiguration opCall(string key, string value) {
+    return setEntry(key, value);
+  }
+
+  IConfiguration setEntry(string key, string value) {
+    return setEntry(key, value.toJson);
+  }
+
+  IConfiguration opCall(string key, Json[string] value) {
+    return setEntry(key, value);
+  }
+
+  IConfiguration setEntry(string key, Json[string] value) {
+    return setEntry(key, value.toJson);
+  }
+
+  IConfiguration opCall(string key, Json value) {
+    return setEntry(key, value);
+  }
+
+  abstract IConfiguration setEntry(string key, Json value);
+
+  unittest {
+    auto config = MemoryConfiguration;
+
+    // TODO 
+  }
   // #endregion set
 
   // #region update
-    mixin(UpdateMethods!("IConfiguration", "Entries", "Entry", "string", "bool"));
-    mixin(UpdateMethods!("IConfiguration", "Entries", "Entry", "string", "long"));
-    mixin(UpdateMethods!("IConfiguration", "Entries", "Entry", "string", "double"));
-    mixin(UpdateMethods!("IConfiguration", "Entries", "Entry", "string", "string"));
-    mixin(UpdateMethods!("IConfiguration", "Entries", "Entry", "string", "Json[string]"));
-    mixin(UpdateMethods!("IConfiguration", "Entries", "Entry", "string", "Json[]"));
-    mixin(UpdateMethods!("IConfiguration", "Entries", "Entry", "string", "Json"));
+  mixin(UpdateMethods!("IConfiguration", "Entries", "Entry", "string", "bool"));
+  mixin(UpdateMethods!("IConfiguration", "Entries", "Entry", "string", "long"));
+  mixin(UpdateMethods!("IConfiguration", "Entries", "Entry", "string", "double"));
+  mixin(UpdateMethods!("IConfiguration", "Entries", "Entry", "string", "string"));
+  mixin(UpdateMethods!("IConfiguration", "Entries", "Entry", "string", "Json[string]"));
+  mixin(UpdateMethods!("IConfiguration", "Entries", "Entry", "string", "Json[]"));
+  mixin(UpdateMethods!("IConfiguration", "Entries", "Entry", "string", "Json"));
 
-    IConfiguration updateEntry(string key, bool value) {
-      return updateEntry(key, value.toJson);
-    }
+  IConfiguration updateEntry(string key, bool value) {
+    return updateEntry(key, value.toJson);
+  }
 
-    IConfiguration updateEntry(string key, long value) {
-      return updateEntry(key, value.toJson);
-    }
+  IConfiguration updateEntry(string key, long value) {
+    return updateEntry(key, value.toJson);
+  }
 
-    IConfiguration updateEntry(string key, double value) {
-      return updateEntry(key, value.toJson);
-    }
+  IConfiguration updateEntry(string key, double value) {
+    return updateEntry(key, value.toJson);
+  }
 
-    IConfiguration updateEntry(string key, string value) {
-      return updateEntry(key, value.toJson);
-    }
+  IConfiguration updateEntry(string key, string value) {
+    return updateEntry(key, value.toJson);
+  }
 
-    IConfiguration updateEntry(string key, Json[] value) {
-      return updateEntry(key, value.toJson);
-    }
+  IConfiguration updateEntry(string key, Json[] value) {
+    return updateEntry(key, value.toJson);
+  }
 
-    IConfiguration updateEntry(string key, Json[string] value) {
-      return updateEntry(key, value.toJson);
-    }
+  IConfiguration updateEntry(string key, Json[string] value) {
+    return updateEntry(key, value.toJson);
+  }
 
-    IConfiguration updateEntry(string key, Json value) {
-      return hasEntry(key)
-        ? setEntry(key, value)
-        : this;
-    }
+  IConfiguration updateEntry(string key, Json value) {
+    return hasEntry(key)
+      ? setEntry(key, value) : this;
+  }
 
-    unittest{
-      auto config = MemoryConfiguration;
+  unittest {
+    auto config = MemoryConfiguration;
 
-      // TODO 
-    }
+    // TODO 
+  }
   // #endregion update
 
   // #region merge
-    mixin(MergeMethods!("IConfiguration", "Entries", "Entry", "string", "bool"));
-    mixin(MergeMethods!("IConfiguration", "Entries", "Entry", "string", "long"));
-    mixin(MergeMethods!("IConfiguration", "Entries", "Entry", "string", "double"));
-    mixin(MergeMethods!("IConfiguration", "Entries", "Entry", "string", "string"));
-    mixin(MergeMethods!("IConfiguration", "Entries", "Entry", "string", "Json[string]"));
-    mixin(MergeMethods!("IConfiguration", "Entries", "Entry", "string", "Json[]"));
-    mixin(MergeMethods!("IConfiguration", "Entries", "Entry", "string", "Json"));
+  mixin(MergeMethods!("IConfiguration", "Entries", "Entry", "string", "bool"));
+  mixin(MergeMethods!("IConfiguration", "Entries", "Entry", "string", "long"));
+  mixin(MergeMethods!("IConfiguration", "Entries", "Entry", "string", "double"));
+  mixin(MergeMethods!("IConfiguration", "Entries", "Entry", "string", "string"));
+  mixin(MergeMethods!("IConfiguration", "Entries", "Entry", "string", "Json[string]"));
+  mixin(MergeMethods!("IConfiguration", "Entries", "Entry", "string", "Json[]"));
+  mixin(MergeMethods!("IConfiguration", "Entries", "Entry", "string", "Json"));
 
-    IConfiguration mergeEntry(string key, bool value) {
-      return mergeEntry(key, value.toJson);
-    }
+  IConfiguration mergeEntry(string key, bool value) {
+    return mergeEntry(key, value.toJson);
+  }
 
-    IConfiguration mergeEntry(string key, long value) {
-      return mergeEntry(key, value.toJson);
-    }
+  IConfiguration mergeEntry(string key, long value) {
+    return mergeEntry(key, value.toJson);
+  }
 
-    IConfiguration mergeEntry(string key, double value) {
-      return mergeEntry(key, value.toJson);
-    }
+  IConfiguration mergeEntry(string key, double value) {
+    return mergeEntry(key, value.toJson);
+  }
 
-    IConfiguration mergeEntry(string key, string value) {
-      return mergeEntry(key, value.toJson);
-    }
+  IConfiguration mergeEntry(string key, string value) {
+    return mergeEntry(key, value.toJson);
+  }
 
-    IConfiguration mergeEntry(string key, Json[] value) {
-      return mergeEntry(key, value.toJson);
-    }
+  IConfiguration mergeEntry(string key, Json[] value) {
+    return mergeEntry(key, value.toJson);
+  }
 
-    IConfiguration mergeEntry(string key, Json[string] value) {
-      return mergeEntry(key, value.toJson);
-    }
+  IConfiguration mergeEntry(string key, Json[string] value) {
+    return mergeEntry(key, value.toJson);
+  }
 
-    IConfiguration mergeEntry(string key, Json value) {
-      return hasEntry(key)
-        ? this
-        : setEntry(key, value);
-    }
+  IConfiguration mergeEntry(string key, Json value) {
+    return hasEntry(key)
+      ? this : setEntry(key, value);
+  }
 
-    unittest{
-      auto config = MemoryConfiguration;
+  unittest {
+    auto config = MemoryConfiguration;
 
-      // TODO 
-    }
+    // TODO 
+  }
   // #endregion merge
- 
+
   // #region remove
-      mixin(RemoveMethods!("IConfiguration", "Entries", "Entry", "string"));
-    
-      IConfiguration clearEntries() {
-        removeEntries(entryKeys);
-        return this;
-      }
+  mixin(RemoveMethods!("IConfiguration", "Entries", "Entry", "string"));
 
-      abstract IConfiguration removeEntry(string key);
+  IConfiguration clearEntries() {
+    removeEntries(entryKeys);
+    return this;
+  }
 
-      unittest {
-        auto config = MemoryConfiguration;
-        // TODO
-      }
+  abstract IConfiguration removeEntry(string key);
+
+  unittest {
+    auto config = MemoryConfiguration;
+    // TODO
+  }
   // #endregion remove
 
   // #region clone
-    abstract IConfiguration clone(); 
+  abstract IConfiguration clone();
 
-    unittest {
-      auto config = MemoryConfiguration;
-      // TODO
-    }
+  unittest {
+    auto config = MemoryConfiguration;
+    // TODO
+  }
   // #endregion clone
 }

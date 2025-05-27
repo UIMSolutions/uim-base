@@ -8,6 +8,7 @@ module uim.errors.classes.debuggers.debugger;
 mixin(Version!("test_uim_errors"));
 
 import uim.errors;
+
 @safe:
 
 // Provide custom logging and error handling.
@@ -90,7 +91,7 @@ class DDebugger : UIMObject, IErrorDebugger {
      * The file and line.
      */
   static void addEditor(string editorName, string templateText) {
-    // getInstance().editors[editorName] = templateText;
+    // debugger.editors[editorName] = templateText;
   }
   /**
      * Templates used when generating trace or error strings. Can be global or indexed by the format
@@ -124,7 +125,7 @@ class DDebugger : UIMObject, IErrorDebugger {
 
   // Choose the editor link style you want to use.
   static void setEditor(string editorName) {
-    /* auto anInstance = getInstance();
+    /* auto anInstance = debugger;
     if (!anInstance.editors.hasKey(editorName)) {
       auto known = anInstance.editors.keys.join(", ");
       throw new DInvalidArgumentError(
@@ -140,8 +141,8 @@ class DDebugger : UIMObject, IErrorDebugger {
      * Params:
      * string afile The file to create a link for.
      */
-  static string editorUrl(string filename, int lineNumber) {
-    /* auto anInstance = getInstance();
+  // static string editorUrl(string filename, int lineNumber) {
+    /* auto anInstance = debugger;
     auto editor = anInstance.configuration.getEntry("editor");
     if (!anInstance.editors.hasKey(editor)) {
       throw new DInvalidArgumentError(
@@ -155,8 +156,8 @@ class DDebugger : UIMObject, IErrorDebugger {
         ]);
     }
     return templateText(file, lineNumber); */
-    return null;
-  }
+/*     return null;
+  } */
   /*
     //Holds current output data when outputFormat is false.
     protected Json[string] _data = null;
@@ -174,7 +175,7 @@ class DDebugger : UIMObject, IErrorDebugger {
     }
     
     // Returns a reference to the Debugger singleton object instance.
-    /* static static getInstance(string classname = null) {
+    /* static static debugger(string classname = null) {
         /** @var array<int, static>  anInstance * /
         static anInstance = null;
         if (classname) {
@@ -183,7 +184,7 @@ class DDebugger : UIMObject, IErrorDebugger {
             }
         }
         if (!anInstance) {
-            anInstance[0] = new Debugger();
+            anInstance[0] = new Debugger;
         }
         return anInstance[0];
     } */
@@ -195,20 +196,20 @@ class DDebugger : UIMObject, IErrorDebugger {
      */
   static Json[string] nullInstance(string[] key = null, Json aValue = null, bool shouldMerge = true) {
     if (key.isNull) {
-      // return getInstance().configuration.getEntry(key);
+      // return debugger.configuration.getEntry(key);
     }
 
     /*         if (key.isArray || func_num_args() >= 2) {
-            return getInstance().setConfig(key, aValue, shouldMerge);
+            return debugger.setConfig(key, aValue, shouldMerge);
         }
  */
-    // return getInstance().configuration.getEntry(key);
+    // return debugger.configuration.getEntry(key);
     return null;
   }
 
   // Reads the current output masking.
   static STRINGAA outputMask() {
-    // return configInstance("outputMask");
+    // return configuration("outputMask");
     return null;
   }
 
@@ -218,7 +219,7 @@ class DDebugger : UIMObject, IErrorDebugger {
      * Debugger.setOutputMask(["password": '[*************]");
      */
   static void setOutputMask(Json[string] keyReplaceData, bool shouldMerge = true) {
-    // configInstance("outputMask", keyReplaceData, shouldMerge);
+    // configuration("outputMask", keyReplaceData, shouldMerge);
   }
 
   // Recursively formats and outputs the contents of the supplied variable.
@@ -460,7 +461,7 @@ class DDebugger : UIMObject, IErrorDebugger {
 
   // Get the configured export formatter or infer one based on the environment.
   IErrorFormatter getExportFormatter() {
-    /* auto anInstance = getInstance();
+    /* auto anInstance = debugger;
     string formatterClassname = anInstance.configuration.getEntry("exportFormatter");
     if (!formatterClassname) {
       /*          if (DConsoleErrorFormatter.environmentMatches()) {
@@ -504,7 +505,7 @@ class DDebugger : UIMObject, IErrorDebugger {
     /* auto context = new DDebugContext(maxDepth);
     auto node = export_(value, context);
 
-    return getInstance().getExportFormatter().dump(node); */
+    return debugger.getExportFormatter().dump(node); */
     return null;
   }
 
@@ -679,7 +680,7 @@ class DDebugger : UIMObject, IErrorDebugger {
             locationData["file"] = trimPath((string) locationData["file"]);
         }
 
-        auto debugger = getInstance();
+        auto debugger = debugger;
         auto restore = null;
         if (!showHtml.isNull) {
             restore = debugger.configuration.getEntry("exportFormatter");
@@ -781,34 +782,12 @@ class DDebugger : UIMObject, IErrorDebugger {
     } */
 
   // Returns a reference to the Debugger singleton object instance.
-  static Object getInstance(string aclassname = null) {
-    /* static instance = null;
-    if (!aclassname.isEmpty) {
-      if (!instance || strtolower(aclassname) != strtolower(
-          get_class(instance[0]))) {
-        instance[0] = new aclassname();
-      }
+  protected static DDebugger _debugger;
+  static DDebugger debugger() {
+    if (_debugger is null) {
+      _debugger = new DDebugger();
     }
-    if (!instance) {
-      instance[0] = new Debugger();
-    }
-
-    return instance[0]; */
-    return null;
-  }
-
-  // Read or write configuration options for the Debugger instance.
-  static Json configInstance(string key = null, Json valueToSet = null, bool shouldMerge = true) {
-    /* if (key == null) {
-      return getInstance().configuration.getEntry(key);
-    } */
-
-    /* if (key.isArray || func_num_args() >= 2) {
-      return getInstance().setConfig(key, valueToSet, shouldMerge);
-    } */
-
-    // return getInstance().configuration.getEntry(key);
-    return Json(null);
+    return _debugger;
   }
 
   /**
@@ -819,50 +798,36 @@ class DDebugger : UIMObject, IErrorDebugger {
      * The file and line.
      */
 
-  /* static void addEditor(string editorName, string function(string filename, string line) templateNameFunc) {
-    // addEditor(editorName, string templateName) {
-  } */
-
-  /*   static void addEditor(string editorName, string templateName) {
-    auto instance = getInstance();
-    instance.editors[editorName] = templatenName;
-  } */
+  void addEditor(string editorName, string templateName) {
+    debugger.editors[editorName] = templateName;
+  }
 
   // Choose the editor link style you want to use.
-  /*     static void setEditor(string editorName) {
-        auto instance = getInstance();
-        if (
-            !instance.editors.hasKey(editorName)) {
-            known = instance.editors.keys.join(", ");
-            throw new DRuntimeError(
-                "Unknown editor `{name}`. Known editors are {known}");
-        }
-        instance.configuration.setEntry("editor", editorName);
-    } */
+  void setEditor(string editorName) {
+    configuration.setEntry("editor", editorName);
+  }
 
   // Get a formatted URL for the active editor.
-  /* static string editorUrl(string filename, int lineNumber) {
-    auto instance = getInstance();
-    auto editor = instance.getConfig(
-      "editor");
-    if (instance.editors.isNull(editor)) {
-      throw new DRuntimeError(
+  static string editorUrl(string filename, int lineNumber) {
+    auto editor = configuration.getString("editor");
+    if (editor !in editors) {
+      throw UnknownEditorException(
         "Cannot format editor URL `{editor}` is not a known editor.");
     }
 
-    auto templateText = instance.editors[editor];
+    auto templateText = editors[editor];
     return templateText.isString
       ? templateText.mustache([
           "file": filename,
           "line": lineNumber
         ]) : templateText(filename, lineNumber);
-  } */
+  }
 
   // #region outputMask
   // Reads the current output masking.
-  /*     static STRINGAA outputMask() {
-        return configInstance("outputMask");
-    } */
+  STRINGAA outputMask() {
+    return configuration.getStringMap("outputMask");
+  }
 
   /**
      * Sets configurable masking of debugger output by property name and array key names.
@@ -871,7 +836,11 @@ class DDebugger : UIMObject, IErrorDebugger {
      * Debugger.setOutputMask(["password": "[*************]");
      */
   static void outputMask(Json[string] keyvalues, bool shouldMerge = true) {
-    // configInstance("outputMask", value, shouldMerge);
+    if (shouldMerge) {
+      configuration.mergeEntry("outputMask", value);
+    } else {
+      configuration.setEntry("outputMask", value);
+    }
   }
   // #endregion outputMask
 
@@ -901,8 +870,7 @@ class DDebugger : UIMObject, IErrorDebugger {
      * - `depth` - The number of stack frames to return. Defaults to 999
      * - `format` - The format you want the return. Defaults to the currently selected format. If
      *   format is "array" or "points" the return will be an array.
-     * - `args` - Should arguments for functions be shown? If true, the arguments for each method call
-     *  will be displayed.
+     * - `args` - Should arguments for functions be shown? If true, the arguments for each method call will be displayed.
      * - `start` - The stack frame to start generating a trace from. Defaults to 0
      */
   /* static auto trace(Json[string] formatOptions = null) {
@@ -921,110 +889,107 @@ class DDebugger : UIMObject, IErrorDebugger {
      *  will be displayed.
      * - `start` - The stack frame to start generating a trace from. Defaults to 0
      */
-  // static  /* array| */ string formatTrace(Throwable /* array */ backtrace, Json[string] options = new Json[string]) {
-  /* if (cast(Throwable) backtrace) {
-            backtrace = backtrace.getTrace();
-        }
+  string formatTrace(Throwable backtrace, Json[string] options = null) {
+    auto trace = backtrace.info;
 
-        auto debugger = Debugger.getInstance();
-        auto defaults = [
-            "depth": 999,
-            "format": _outputFormat,
-            "args": false,
-            "start": 0,
-            "scope": null,
-            "exclude": [
-                "call_user_func_array",
-                "trigger_error"
-            ],
-        ];
-        auto options = options.defaults;
+/*     options = options.merge([
+      "depth": 999.toJson,
+      "format": _outputFormat.toJson,
+      "args": toJson(false),
+      "start": 0.toJson,
+      "scope": null.toJson,
+      "exclude": [
+        "call_user_func_array",
+        "trigger_error"
+      ].toJson
+    ]);
 
-        auto count = count(backtrace);
-        auto back = null;
-        _trace = MapHelper.create!(string, Json)
-            .set("line", "??")
-            .set("file", "[internal]")
-            .set("class", Json(null))
-            .set("function", "[main]");
+    auto count = count(backtrace);
+    string back = null;
+    _trace = MapHelper.create!(string, Json)
+      .set("line", "??")
+      .set("file", "[internal]")
+      .set("class", Json(null))
+      .set("function", "[main]");
 
-        for (i = options.getLong("start"); i < count && i < options.getLong(
-                "depth"); i++) {
-            auto trace = backtrace[i] + [
-                "file": "[internal]",
-                "line": "??"
-            ];
-            string signature = "[main]";
-            string reference = "[main]";
+    auto start = options.getLong("start");
+    auto depth = options.getLong("depth");
+    for (i = start; i < count && i < depth; i++) {
+      formattedTrace ~= formatTraceValue();
+  }
 
-            if (backtrace[i + 1]!is null) {
-                next = backtrace[i + 1] + _trace;
-                string signature = next["function"];
-                string signature = reference;
+  auto optionFormat = options.getString("format"); */
+    string formattedTrace;
+  return formattedTrace;
+/*   optionFormat == "array" || optionFormat == "points"
+    ? formattedTrace 
+    : formattedTrace.join("\n"); */
+}
 
-                if (!next.isEmpty("class")) {
-                    string signature = next.getString("class") ~ "." ~ next.getString("class") /*  "function") * / ;
-                    auto reference = signature ~ "(";
-                    if (options.isNull("args") && next.hasKey(
-                            "args")) {
-                        auto args = next["args"].map!(
-                            arg => Debugger.exportVar(
-                                arg)).array;
-                        reference ~= args.join(
-                            ", ");
-                    }
-                    reference ~= ")";
-                }
-            }
-            if (hasAllValues(signature, options.getBoolean("exclude", true))) {
-                continue;
-            }
+string formatTraceValue(long index, Json[] backtrace, Json[string] options = null) {
+  auto trace = backtrace[index].merge([
+    "file": "[internal]",
+    "line": "??"
+  ]);
+  string signature = "[main]";
+  string reference = "[main]";
 
-            auto formatValue = options.getString(
-                "format");
-            if (formatValue == "points") {
-                back ~= [
-                    "file": trace["file"],
-                    "line": trace["line"],
-                    "reference": reference
-                ];
-            } else if (formatValue == "array") {
-                if (!options.hasKey("args")) {
-                    trace.removeKey("args");
-                }
-                back ~= trace;
-            } else {
-                formatValue = options.getString(
-                    "format");
-                tpl = _stringContents.path([
-                        formatValue,
-                        "traceLine"
-                    ], _stringContents.path([
-                            "base",
-                            "traceLine"
-                        ]));
-            }
-            trace.set("path", trimPath(trace["file"]));
-            trace.set("reference", reference);
-            trace.removeKey("object", "args");
-            back ~= Text.insert(tpl, trace, [
-                    "before": "{:",
-                    "after": "}"
-                ]);
-        }
-    } */
+  if (backtrace[index + 1] != Json(null)) {
+    auto next = backtrace[index + 1].merge(trace);
+    signature = next["function"].getString;
+    // string signature = reference;
 
-  /* return ["array", "points"].has(options.getString(
-            "format"))
-        ? back : back.join("\n"); */
-  /* return null;
-    } */
-
-  /**
+    if (!next.isEmpty("class")) {
+      signature = next.getString("class") ~ "." ~ next.getString("function");
+      reference = signature ~ "(";
+      if (options.isNull("args") && next.hasKey("args")) {
+        // reference ~= next["args"].getArray.map!(arg => exportVar(arg)).join(", ");
+      }
+      reference ~= ")";
+    }
+  }
+/*   if (hasAllValues(options, signature/* , options.getBoolean("exclude", true) * /)) {
+    return reference;
+  }
+ */
+  auto formatValue = options.getString("format");
+  Json back = Json.emptyObject;
+  if (formatValue == "points") {
+    back.set([
+      "file": trace["file"],
+      "line": trace["line"],
+      "reference": reference.toJson
+    ]);
+  } else if (formatValue == "array") {
+    if (!options.hasKey("args")) {
+      trace.removeKey("args");
+    }
+    back.set(trace);
+  } else {
+    formatValue = options.getString(
+      "format");
+    auto tpl = _stringContents.path([
+        formatValue,
+        "traceLine"
+      ], _stringContents.path([
+          "base",
+          "traceLine"
+        ]));
+  }
+  trace.set("path", trace["file"].getString/* trimPath(trace["file"]) */);
+  trace.set("reference", reference);
+  trace.removeKeys(["object", "args"]);
+  /* back ~= Text.insert(tpl, trace, [
+      "before": "{:",
+      "after": "}"
+    ]); */
+  return back.toString;
+}
+/**
      * Shortens file paths by replacing the application base path with "APP", and the UIM core
      * path with "CORE".
      */
-  /* static string trimPath(
+/* static string trimPath(
         string pathToShorten) {
         if (defined("APP") && indexOf(path, APP) == 0) {
             return replace(APP, "APP/", path);
@@ -1039,7 +1004,7 @@ class DDebugger : UIMObject, IErrorDebugger {
         return path;
     } */
 
-  /**
+/**
      * Grabs an excerpt from a file and highlights a given line of code.
      *
      * Usage:
@@ -1053,7 +1018,7 @@ class DDebugger : UIMObject, IErrorDebugger {
      * are processed with highlight_string() as well, so they have basic UIM syntax highlighting
      * applied.
      */
-  /* static string[] excerpt(string absPathToFile, int lineNumber, int numberLinesContext = 2) {
+/* static string[] excerpt(string absPathToFile, int lineNumber, int numberLinesContext = 2) {
         auto lines = null;
         if (
             !filehasKey(
@@ -1097,48 +1062,45 @@ class DDebugger : UIMObject, IErrorDebugger {
         return lines;
     } */
 
-  /**
+/**
      * Wraps the highlight_string function in case the server API does not
      * implement the function as it is the case of the HipHop interpreter
      */
-  /*     protected static string _highlight(
-        string stringToConvert) {
-        if (function_hasKey("hD_log") || function_hasKey(
+     protected string _highlight(string stringToConvert) {
+/*         if (function_hasKey("hD_log") || function_hasKey(
                 "hD_gettid")) {
             return htmlentities(
                 stringToConvert);
         }
-
+ */
         auto added = false;
         if (indexOf(stringToConvert, "<?D") == false) {
             added = true;
             stringToConvert = "<?D \n" ~ stringToConvert;
         }
-        auto highlight = highlight_string(
-            stringToConvert, true);
+/*         auto highlight = highlight_string(stringToConvert, true); */
+        auto highlight = stringToConvert;
         if (added) {
-            highlight = replace(
+            highlight = highlight.replace(
                 [
                     "&lt;?D&nbsp;<br/>",
                     "&lt;?D&nbsp;<br />"
                 ],
-                "",
-                highlight
+                ""
             );
         }
 
         return highlight;
     }
- */
-  /**
+ 
+/**
      * Get the configured export formatter or infer one based on the environment.
      *
      * @return uim.errors.debugs.IErrorFormatter
      * @unstable This method is not stable and may change in the future.
      */
-  // IErrorFormatter getExportFormatter() {
-  /*         auto instance = getInstance();
-        string formaterClassname = instance
+// IErrorFormatter getExportFormatter() {
+        string formaterClassname = debugger
             .getConfig(
                 "exportFormatter");
         if (!formaterClassname) {
@@ -1166,11 +1128,11 @@ class DDebugger : UIMObject, IErrorDebugger {
         }
         return instance;
  */
-  /*     return null;
+/*     return null;
     } */
 
-  // Converts a variable to a plain text string.
-  /* static string exportVarAsPlainText(Json value, int maxOutputDepth = 3) {
+// Converts a variable to a plain text string.
+/* static string exportVarAsPlainText(Json value, int maxOutputDepth = 3) {
         return (new DTextFormatter()).dump(
             export_(
                 value, new DDebugContext(
@@ -1178,19 +1140,19 @@ class DDebugger : UIMObject, IErrorDebugger {
         );
     } */
 
-  /**
+/**
      * Convert the variable to the internal node tree.
      *
      * The node tree can be manipulated and serialized more easily
      * than many object graphs can.
      */
-  /* static IErrorNode exportVarAsNodes(
+/* static IErrorNode exportVarAsNodes(
         Json varToConvert, int maxOutputDepth = 3) {
         return export_(varToConvert, new DDebugContext(
                 maxOutputDepth));
     } */
 
-  /**
+/**
      * Converts a variable to a string for debug output.
      *
      * *Note:* The following keys will have their contents
@@ -1207,16 +1169,16 @@ class DDebugger : UIMObject, IErrorDebugger {
      * This is done to protect database credentials, which could be accidentally
      * shown in an error message if UIM is deployed in development mode.
      */
-  /* static string exportVar(Json value, int maxOutputDepth = 3) {
+/* static string exportVar(Json value, int maxOutputDepth = 3) {
         auto dumpContext = new DDebugContext(
             maxOutputDepth);
-        return getInstance().getExportFormatter()
+        return debugger.getExportFormatter()
             .dump(
                 export_(value, dumpContext));
     } */
 
-  // Protected export function used to keep track of indentation and recursion.
-  /*     protected static IErrorNode export_(Json varToDump, DDebugContext dumpContext) {
+// Protected export function used to keep track of indentation and recursion.
+/*     protected static IErrorNode export_(Json varToDump, DDebugContext dumpContext) {
         auto type = varToDump.getString("type");
         switch (type) {
         case "float":
@@ -1241,7 +1203,7 @@ class DDebugger : UIMObject, IErrorDebugger {
         }
     }
  */
-  /**
+/**
      * Export an array type object. Filters out keys used in datasource configuration.
      *
      * The following keys are replaced with ***"s
@@ -1254,8 +1216,8 @@ class DDebugger : UIMObject, IErrorDebugger {
      * - prefix
      * - schema
      */
-  // protected static DArrayErrorNode exportArray(Json[string] valueToExport, DDebugContext dumpContext) {
-  /*
+// protected static DArrayErrorNode exportArray(Json[string] valueToExport, DDebugContext dumpContext) {
+/*
     auto items = null;
 
     autp remaining = dumpContext
@@ -1292,8 +1254,8 @@ class DDebugger : UIMObject, IErrorDebugger {
         return null;
     } */
 
-  // Handles object to node conversion.
-  /* protected static IErrorNode exportObject(Object objToConvert, DDebugContext dumpContext) {
+// Handles object to node conversion.
+/* protected static IErrorNode exportObject(Object objToConvert, DDebugContext dumpContext) {
     /* auto isRef = dumpContext.hasReference(
         objToConvert);
     auto refNum = dumpContext
@@ -1302,11 +1264,11 @@ class DDebugger : UIMObject, IErrorDebugger {
 
     auto classnameName = get_class(
         objToConvert); */
-  /*     if (isRef) {
+/*     if (isRef) {
         return new DReferenceErrorNode(null, refNum);
     }
  */
-  /* auto node = new DClassErrorNode(null, refNum);
+/* auto node = new DClassErrorNode(null, refNum);
     auto remaining = dumpContext
         .remainingDepth();
     if (remaining > 0) {
@@ -1388,35 +1350,35 @@ class DDebugger : UIMObject, IErrorDebugger {
     return null;
   } */
 
-  // Get the type of the given variable. Will return the class name for objects.
-  static string getTypeName(Json value) {
-        auto type = value.getString("typeName");
+// Get the type of the given variable. Will return the class name for objects.
+static string getTypeName(Json value) {
+  auto type = value.getString("typeName");
 
-        if (type == "NULL") {
-            return "null";
-        }
+  if (type == "NULL") {
+    return "null";
+  }
 
-        if (type == "double") {
-            return "float";
-        }
+  if (type == "double") {
+    return "float";
+  }
 
-        if (
-            type == "unknown type") {
-            return "unknown";
-        }
+  if (
+    type == "unknown type") {
+    return "unknown";
+  }
 
-        return type;
-    }
-  // Prints out debug information about given variable.
-  static void printVar(Json varToShow, Json[string] location = null, bool showHtml = false) {
-    location = location.merge([
-        "file": Json(""),
-        "line": Json(0)
-      ]);
+  return type;
+}
+// Prints out debug information about given variable.
+static void printVar(Json varToShow, Json[string] location = null, bool showHtml = false) {
+  location = location.merge([
+      "file": Json(""),
+      "line": Json(0)
+    ]);
 
-    location.set("file", trimPath(location.getString("file")));
+  location.set("file", trimPath(location.getString("file")));
 
- /*   auto debugger = getInstance();
+  /*   auto debugger = debugger;
     auto restore = null;
     if (showHtml != null) {
       restore = debugger.getConfig(
@@ -1434,9 +1396,9 @@ class DDebugger : UIMObject, IErrorDebugger {
         "exportFormatter", restore);
     }
     writeln(formatter.formatWrapper(contents, location)); */
-  }
+}
 
-  /**
+/**
      * Format an error message to be HTML formatted.
      *
      * Does the following formatting operations:
@@ -1445,7 +1407,7 @@ class DDebugger : UIMObject, IErrorDebugger {
      * - Convert `bool` into `<code>bool</code>`
      * - Convert newlines into `<br />`
      */
-  /* static string formatHtmlMessage(
+/* static string formatHtmlMessage(
         string messageToFormat) {
         messageToFormat = escapeHtmlAttribute(
             messageToFormat);
@@ -1456,10 +1418,10 @@ class DDebugger : UIMObject, IErrorDebugger {
             messageToFormat);
     } */
 
-  // Verifies that the application"s salt and cipher seed value has been changed from the default value.
-  // static void checkSecurityKeys() {
-  // salt = Security.getSalt();
-  /* if (salt == "__SALT__" || strlen(
+// Verifies that the application"s salt and cipher seed value has been changed from the default value.
+// static void checkSecurityKeys() {
+// salt = Security.getSalt();
+/* if (salt == "__SALT__" || strlen(
             salt) < 32) {
         trigger_error(
             "Please change the value of `Security.salt` in `ROOT/config/app_local.D` "
@@ -1467,5 +1429,6 @@ class DDebugger : UIMObject, IErrorDebugger {
                 ERRORS.USER_NOTICE
         );
     } */
-  // }
+// }
 }
+// auto Debugger {}

@@ -15,12 +15,19 @@ import uim.vibe;
 Json toJson(T)(T value) if (isScalarType!(T)) {
   return Json(value);
 }
+
+Json toJson(T:bool)(T value) {
+  return Json(value);
+}
+
 Json toJson(T:string)(T value) {
   return Json(value);
 }
+
 Json toJson(T:UUID)(T value) {
   return Json(value.toString);
 }
+
 Json toJson(T:Json)(T value) {
   return value;
 }
