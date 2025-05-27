@@ -257,34 +257,40 @@ string[string] getStringMap(Json value, string key, string[string] defaultValue 
 }
 
 string[string] getStringMap(Json value, string[string] defaultValue = null) {
-  string[string] result;
   if (!value.isObject) return defaultValue;
 
-  value.getMap.byKeyValue.each!(kv => result[kv.key] = kv.value.getString);
-  return result;
+  return value.getMap.getStringMap;
 }
 
-unittest { // Test getStringMap(Json[string] map, string key, Json[string] defaultValue = null)
+string[string] getStringMap(Json[string] map, string[string] defaultValue = null) {
+  string[string] results;
+  map.byKeyValue.each!(kv => results[kv.key] = kv.value.getString);
+  return results;
+}
+
+unittest {
+    // getStringMap(Json[string] map, string key, string[string] defaultValue = null)
     Json[string] map;
     map["a"] = ["k1": "v1", "k2": "v2"].toJson;
     map["b"] = ["x": "y"].toJson;
-    auto result = map.getStringMap("a");
+    auto result = getStringMap(map, "a");
     assert(result.length == 2);
     assert(result["k1"] == "v1");
     assert(result["k2"] == "v2");
 
     // Key not present, should return defaultValue
     string[string] defValue = ["defValue": "val"];
-    result = map.getStringMap("c", defValue);
+    result = getStringMap(map, "c", defValue);
     assert(result.length == 1 && result["defValue"] == "val");
 }
 
-unittest { // Test getStringMap(Json[] values, size_t index, Json[string] defaultValue = null)
+unittest {
+    // getStringMap(Json[] values, size_t index, string[string] defaultValue = null)
     Json[] arr = [["a": "b"].toJson, ["c": "d"].toJson];
     auto result = getStringMap(arr, 0);
     assert(result.length == 1 && result["a"] == "b");
 
-    result = arr.getStringMap(1);
+    result = getStringMap(arr, 1);
     assert(result.length == 1 && result["c"] == "d");
 
     // Out of bounds, should return defaultValue
@@ -293,7 +299,8 @@ unittest { // Test getStringMap(Json[] values, size_t index, Json[string] defaul
     assert(result.length == 1 && result["x"] == "y");
 }
 
-unittest { // Test getStringMap(Json value, string key, Json[string] defaultValue = null)
+unittest {
+    // getStringMap(Json value, string key, string[string] defaultValue = null)
     Json obj = Json.emptyObject;
     obj["foo"] = ["bar": "baz"].toJson;
     auto result = getStringMap(obj, "foo");
@@ -301,7 +308,7 @@ unittest { // Test getStringMap(Json value, string key, Json[string] defaultValu
 
     // Key not present, should return defaultValue
     string[string] defValue = ["notfound": "yes"];
-    result = getStringMap(obj, "missing", defValue);
+    result = obj.getStringMap("missing", defValue);
     assert(result.length == 1 && result["notfound"] == "yes");
 
     // Not an object, should return defaultValue
@@ -310,7 +317,8 @@ unittest { // Test getStringMap(Json value, string key, Json[string] defaultValu
     assert(result.length == 1 && result["notfound"] == "yes");
 }
 
-unittest { // Test getStringMap(Json value, Json[string] defaultValue = null)
+unittest {
+    // getStringMap(Json value, string[string] defaultValue = null)
     Json obj = ["a": "b", "c": "d"].toJson;
     auto result = getStringMap(obj);
     assert(result.length == 2 && result["a"] == "b" && result["c"] == "d");
@@ -320,5 +328,21 @@ unittest { // Test getStringMap(Json value, Json[string] defaultValue = null)
     string[string] defValue = ["fallback": "ok"];
     result = getStringMap(notObj, defValue);
     assert(result.length == 1 && result["fallback"] == "ok");
+}
+
+unittest {
+    // getStringMap(Json[string] map, string[string] defaultValue = null)
+    Json[string] map;
+    map["x"] = Json("y");
+    map["z"] = Json("w");
+    auto result = getStringMap(map);
+    assert(result.length == 2);
+    assert(result["x"] == "y");
+    assert(result["z"] == "w");
+
+    // Empty map
+    Json[string] emptyMap;
+    result = getStringMap(emptyMap);
+    assert(result.length == 0);
 }
 // #endregion getStringMap
