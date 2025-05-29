@@ -54,6 +54,7 @@ interface IConfiguration : IObject {
     mixin(GetInterfaces!("string", "StringEntries", "StringEntry", "string"));
     mixin(GetInterfaces!("Json[]", "ArrayEntries", "ArrayEntry", "string"));
     mixin(GetInterfaces!("Json[string]", "MapEntries", "MapEntry", "string"));
+    mixin(GetInterfaces!("string[string]", "StringMapEntries", "StringMapEntry", "string"));
     mixin(GetInterfaces!("Json", "Entries", "Entry", "string"));
   // #endregion get
 

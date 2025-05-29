@@ -335,6 +335,16 @@ string mustache(string text, string[string] items) {
   return text;
 }
 
+string mustache(string text, string[] keys, string[] values) {
+  if (keys.length != values.length) {
+    throw new Exception("Keys and values must have the same length.");
+  }
+  for (size_t i = 0; i < keys.length; i++) {
+    text = text.mustache(keys[i], values[i]);
+  }
+  return text;
+} 
+
 string mustache(string text, string key, Json value) {
   return std.string.replace(text, "{" ~ key ~ "}", value.toString);
 }

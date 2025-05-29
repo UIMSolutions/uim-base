@@ -36,6 +36,7 @@ class DDebugger : UIMObject, IErrorDebugger {
       .setEntry("exportFormatter", Json(null))
       .setEntry("editor", "vscode");
 
+  // A map of editors to their link templates.
     _editors = [
       "atom": "atom://core/open/file?filename={file}&line={line}",
       "emacs": "emacs://open?url=file://{file}&line={line}",
@@ -45,60 +46,6 @@ class DDebugger : UIMObject, IErrorDebugger {
       "vscode": "vscode://file/{file}:{line}",
     ];
 
-    _stringContents = null;
-
-    // These templates are not actually used, as Debugger.log() is called instead.
-    _stringContents["log"] = MapHelper.create!(string, Json)
-      .set("trace", "{:reference} - {:path}, line {:line}")
-      .set("error", "{:error} ({:code}): {:description} in [{:file}, line {:line}]");
-
-    _stringContents["js"] = MapHelper.create!(string, Json)
-      .set(["error", "info", "code", "dumpContext"], "")
-      .set("trace", htmlDoubleTag("pre", ["stack-trace"], "{:trace}"))
-      .set("links", Json.emptyArray)
-      .set("escapeContext", true);
-
-    _stringContents["html"] = MapHelper.create!(string, Json)
-      .set("trace", htmlDoubleTag("pre", ["uim-error trace"], "<b>Trace</b> <p>{:trace}</p>"))
-      .set("dumpContext", htmlDoubleTag("pre", [
-            "uim-error dumpContext"
-          ], "<b>Context</b> <p>{:dumpContext}</p>"))
-      .set("escapeContext", true);
-
-    _stringContents["txt"] = MapHelper.create!(string, Json)
-      .set(["code", "info"], "")
-      .set("error", "{:error}: {:code} . {:description} on line {:line} of {:path}\n{:info}");
-
-    _stringContents["base"] = MapHelper.create!(string, Json)
-      .set("traceLine", "{:reference} - {:path}, line {:line}")
-      .set("trace", "Trace:\n{:trace}\n")
-      .set("dumpContext", "Context:\n{:dumpContext}\n");
-
-    return true;
-  }
-
-  // The current output format.
-  protected string _outputFormat = "js";
-
-  // A map of editors to their link templates.
-  protected STRINGAA _editors;
-
-  /**
-     * Add an editor link format
-     *
-     * Template strings can use the `{file}` and `{line}` placeholders.
-     * Closures templates must return a string, and accept two parameters:
-     * The file and line.
-     */
-  static void addEditor(string editorName, string templateText) {
-    // debugger.editors[editorName] = templateText;
-  }
-  /**
-     * Templates used when generating trace or error strings. Can be global or indexed by the format
-     * value used in _outputFormat.
-     */
-  protected Json[string][string] _stringContents;
-
   /**
      * Mapping for error renderers.
      *
@@ -106,62 +53,211 @@ class DDebugger : UIMObject, IErrorDebugger {
      * an object based system. Having Debugger handle and render errors
      * will be deprecated and the new DErrorTrap system should be used instead.
      */
-  protected STRINGAA renderers; /*  = [
-        "txt": TextErrorRenderer.classname,
+    _renderers = [
+        "txt": TextErrorRenderer.name,
         // The html alias currently uses no JS and will be deprecated.
-        "js": HtmlErrorRenderer.classname,
-    ]; */
+        "js": HtmlErrorRenderer.name
+    ];
 
+    _stringContents = null;
+
+    // These templates are not actually used, as Debugger.log() is called instead.
+    setStringContent("log", MapHelper.create!(string, Json)
+      .set("trace", "{:reference} - {:path}, line {:line}")
+      .set("error", "{:error} ({:code}): {:description} in [{:file}, line {:line}]"));
+
+    setStringContent("log", MapHelper.create!(string, Json)
+      .set("trace", "{:reference} - {:path}, line {:line}")
+      .set("error", "{:error} ({:code}): {:description} in [{:file}, line {:line}]"));
+
+    setStringContent("js", MapHelper.create!(string, Json)
+      .set(["error", "info", "code", "dumpContext"], "")
+      .set("trace", htmlDoubleTag("pre", ["stack-trace"], "{:trace}"))
+      .set("links", Json.emptyArray)
+      .set("escapeContext", true));
+
+    setStringContent("html", MapHelper.create!(string, Json)
+      .set("trace", htmlDoubleTag("pre", ["uim-error trace"], "<b>Trace</b> <p>{:trace}</p>"))
+      .set("dumpContext", htmlDoubleTag("pre", [
+            "uim-error dumpContext"
+          ], "<b>Context</b> <p>{:dumpContext}</p>"))
+      .set("escapeContext", true));
+
+    setStringContent("txt", MapHelper.create!(string, Json)
+      .set(["code", "info"], "")
+      .set("error", "{:error}: {:code} . {:description} on line {:line} of {:path}\n{:info}"));
+
+    setStringContent("base", MapHelper.create!(string, Json)
+      .set("traceLine", "{:reference} - {:path}, line {:line}")
+      .set("trace", "Trace:\n{:trace}\n")
+      .set("dumpContext", "Context:\n{:dumpContext}\n"));
+
+    return true;
+  }
+
+  // The current output format.
+  protected string _outputFormat = "js";
+
+  // Getter for outputFormat
+  string outputFormat() const {
+    return _outputFormat;
+  }
+
+  // Setter for outputFormat
+  void outputFormat(string value) {
+    _outputFormat = value;
+  }
+
+  // Returns a reference to the Debugger singleton object instance.
+  protected static DDebugger _debugger;
+  static DDebugger debugger() {
+    if (_debugger is null) {
+      _debugger = new DDebugger();
+    }
+    return _debugger;
+  }
+
+  // #region editors
+  /**
+     * A map of editors to their link templates.
+     *
+     * The keys are editor names, and the values are either a string template
+     * or a closure that returns a string. The template can use `{file}` and `{line}`
+     * placeholders.
+     */
   // A map of editors to their link templates.
-  protected STRINGAA editors = [
-    "atom": "atom://core/open/file?filename={file}&line={line}",
-    "emacs": "emacs://open?url=file://{file}&line={line}",
-    "macvim": "mvim://open/?url=file://{file}&line={line}",
-    "Dstorm": "Dstorm://open?file={file}&line={line}",
-    "sublime": "subl://open?url=file://{file}&line={line}",
-    "textmate": "txmt://open?url=file://{file}&line={line}",
-    "vscode": "vscode://file/{file}:{line}",
-  ];
+  protected STRINGAA _editors;
+
+  // Getter for editors
+  STRINGAA editors() {
+    return _editors;
+  }
+  string editor(string name) {
+    return name in _editors ? _editors[name] : null;
+  }
+
+  // Setter for editors
+  void editors(STRINGAA values) {
+    _editors = values;
+  }
+    /**
+     * Add an editor link format
+     *
+     * Template strings can use the `{file}` and `{line}` placeholders.
+     * Closures templates must return a string, and accept two parameters:
+     * The file and line.
+     */
+  void addEditor(string editorName, string templateText) {
+    _editors[editorName] = templateText;
+  }
 
   // Choose the editor link style you want to use.
-  static void setEditor(string editorName) {
-    /* auto anInstance = debugger;
-    if (!anInstance.editors.hasKey(editorName)) {
-      auto known = anInstance.editors.keys.join(", ");
-      throw new DInvalidArgumentError(
+  void setEditor(string editorName) {
+    if (editorName !in _editors) {
+      auto known = editors.keys.join(", ");
+      throw new DInvalidArgumentException(
         "Unknown editor `%s`. Known editors are `%s`."
           .format(editorName, known)
       );
     }
-    anInstance.configuration.setEntry("editor", name); */
+    configuration.setEntry("editor", name);
   }
 
-  /**
-     * Get a formatted URL for the active editor.
-     * Params:
-     * string afile The file to create a link for.
-     */
-  // static string editorUrl(string filename, int lineNumber) {
-    /* auto anInstance = debugger;
-    auto editor = anInstance.configuration.getEntry("editor");
-    if (!anInstance.editors.hasKey(editor)) {
-      throw new DInvalidArgumentError(
+  bool hasEditor(string editorName) {
+    return editorName in _editors ? true : false;
+  }
+
+  // Get a formatted URL for the active editor.
+  string editorUrl(string filename, int lineNumber) {
+    auto editorName = configuration.getStringEntry("editor");
+    if (!hasEditor(editorName)) {
+      throw new DInvalidArgumentException(
         "Cannot format editor URL `%s` is not a known editor."
-          .format(editor));
+          .format(editorName));
     }
-    auto templateText = anInstance.editors[editor];
-    if (isString(templateText)) {
-      return templateText.replace(["{file}", "{lineNumber}"], [
-          filename, to!string(lineNumber)
-        ]);
-    }
-    return templateText(file, lineNumber); */
-/*     return null;
-  } */
+
+    auto templateText = editor(editorName);
+    return templateText
+      .mustache(["file", "line"], [filename, to!string(lineNumber)]);
+  }
+
+unittest {
+    // Test getter and setter for editors
+    DDebugger dbg = new DDebugger();
+
+    // Prepare a test editors map
+    STRINGAA testEditors = [
+        "vscode": "vscode://file/{file}:{line}",
+        "sublime": "subl://open?url=file://{file}&line={line}"
+    ];
+
+    /* dbg.editors(testEditors);
+    assert(dbg.editors().equal(testEditors), "Editors getter/setter failed");
+
+    // Test addEditor
+    dbg.addEditor("atom", "atom://core/open/file?filename={file}&line={line}");
+    assert("atom" in dbg.editors(), "addEditor did not add new editor");
+    assert(dbg.editors()["atom"] == "atom://core/open/file?filename={file}&line={line}", "addEditor value mismatch");
+
+    // Overwrite an existing editor
+    dbg.addEditor("vscode", "custom://{file}:{line}");
+    assert(dbg.editors()["vscode"] == "custom://{file}:{line}", "addEditor did not overwrite existing editor");
+ */
+ }  
+// #endregion editors
+
+  // #region stringContents
+  /**
+     * Templates used when generating trace or error strings. Can be global or indexed by the format
+     * value used in _outputFormat.
+     */
+  protected Json[string][string] _stringContents;
+
+  // Getter for _stringContents
+  Json[string][string] stringContents() {
+    return _stringContents;
+  }
+
+  // Setter for _stringContents
+  void stringContents(Json[string][string] value) {
+    _stringContents = value;
+  }
+
+  void setStringContent(string name, Json[string] values) {
+    _stringContents[name] = values;
+  }
+  // #endregion stringContents
+
+  // #region renderers
+  protected STRINGAA _renderers; 
+
+  // Getter for _renderers
+  STRINGAA renderers() {
+    return _renderers;
+  }
+
+  // Setter for _renderers
+  void renderers(STRINGAA value) {
+    _renderers = value;
+  }
+  // #endregion renderers
+
+  // #region data
+  protected Json[string] _data = null;
+
+  // Getter for _data
+  Json[string] data() {
+    return _data;
+  }
+
+  // Setter for _data
+  void data(Json[string] value) {
+    _data = value;
+  }
+  // #endregion data
+
   /*
     //Holds current output data when outputFormat is false.
-    protected Json[string] _data = null;
-
     this() {
         docRef = ini_get("docref_root");
         if (isEmpty(docRef) && function_hasKey("ini_set")) {
@@ -194,7 +290,7 @@ class DDebugger : UIMObject, IErrorDebugger {
      * Params:
      * Json[string]|string key The key to get/set, or a complete array of configs.
      */
-  static Json[string] nullInstance(string[] key = null, Json aValue = null, bool shouldMerge = true) {
+  Json[string] nullInstance(string[] key = null, Json aValue = null, bool shouldMerge = true) {
     if (key.isNull) {
       // return debugger.configuration.getEntry(key);
     }
@@ -207,10 +303,10 @@ class DDebugger : UIMObject, IErrorDebugger {
     return null;
   }
 
+  // #region outputMask
   // Reads the current output masking.
-  static STRINGAA outputMask() {
-    // return configuration("outputMask");
-    return null;
+  STRINGAA outputMask() {
+    return configuration.getStringMapEntry("outputMask");
   }
 
   /**
@@ -218,14 +314,46 @@ class DDebugger : UIMObject, IErrorDebugger {
      * ### Example
      * Debugger.setOutputMask(["password": '[*************]");
      */
-  static void setOutputMask(Json[string] keyReplaceData, bool shouldMerge = true) {
-    // configuration("outputMask", keyReplaceData, shouldMerge);
+  void setOutputMask(Json[string] keyReplaceData) {
+    configuration.setEntry("outputMask", keyReplaceData);
+  }
+  void mergeOutputMask(Json[string] keyReplaceData) {
+    configuration.mergeEntry("outputMask", keyReplaceData);
+  }
+  void updateOutputMask(Json[string] keyReplaceData) {
+    configuration.updateEntry("outputMask", keyReplaceData);
   }
 
+  /**
+     * Sets configurable masking of debugger output by property name and array key names.
+     *
+     * ### Example
+     * Debugger.setOutputMask(["password": "[*************]");
+     */
+  void outputMask(Json[string] values, bool shouldMerge = true) {
+    if (shouldMerge) {
+      mergeOutputMask(values);
+    } else {
+      setOutputMask(values);
+    }
+  }
+  // #endregion outputMask
+
   // Recursively formats and outputs the contents of the supplied variable.
-  static void dump(Json valueToDump, int maxOutputDepth = 3) {
+  void dump(Json valueToDump, int maxOutputDepth = 3) {
     // pr(exportVar(valueToDump, maxOutputDepth));
   }
+
+  // Get the configured export formatter or infer one based on the environment.
+IErrorFormatter getExportFormatter() {
+        string formatterName = configuration.getStringEntry("exportFormatter");
+        if (!formatterName) {
+                formatterName = TextErrorFormatter.name;
+        }
+
+        auto formatter = ErrorFormatterFactory(formatterName);
+        return formatter;
+    }
 
   /**
      * Creates an entry in the log file. The log entry will contain a stack trace from where it was called.
@@ -363,7 +491,7 @@ class DDebugger : UIMObject, IErrorDebugger {
         back ~= "%s - %s, line %d".format(reference, somePath, frame["line"]);
       } else {
         /* debug (options);
-                throw new DInvalidArgumentError(
+                throw new DInvalidArgumentException(
                     "Invalid trace format of `{options.get(\"format\"]}` chosen. Must be one of `array`, `points` or `text`."
                ); * /
       }
@@ -438,7 +566,7 @@ class DDebugger : UIMObject, IErrorDebugger {
      * Wraps the highlight_string auto in case the server API does not
      * implement the auto as it is the case of the HipHop interpreter
      */
-  protected static string _highlight(string stringToConvert) {
+  protected string _highlight(string stringToConvert) {
     /* if (function_hasKey("hD_log") || function_hasKey("hD_gettid")) {
       return htmlentities(stringToConvert);
     }
@@ -454,35 +582,12 @@ class DDebugger : UIMObject, IErrorDebugger {
       highlight = highlight.replace(
         ["&lt;?D&nbsp;<br/>", "&lt;?D&nbsp;<br />"],
         "");
-    }
-    return highlight; */
-    return null;
+    } */
+    string highlight = stringToConvert; // Placeholder for actual highlighting logic.
+    return highlight;
   }
 
-  // Get the configured export formatter or infer one based on the environment.
-  IErrorFormatter getExportFormatter() {
-    /* auto anInstance = debugger;
-    string formatterClassname = anInstance.configuration.getEntry("exportFormatter");
-    if (!formatterClassname) {
-      /*          if (DConsoleErrorFormatter.environmentMatches()) {
-                formatterClassname = ConsoleErrorFormatter.classname;
-            } else if (HtmlFormatter.environmentMatches()) {
-                formatterClassname = HtmlErrorFormatter.classname;
-            } else {
-                formatterClassname = TextErrorFormatter.classname;
-            } * /
-    }
 
-    /* anInstance = new formatterClassname();
-        if (!cast(IErrorFormatter) anInstance) {
-            throw new DError(
-                "The `%s` formatter does not implement `%s`."
-                    .format(formatterClassname, IErrorFormatter.classname)
-            );
-        }
-        return anInstance; */
-    return null;
-  }
 
   /**
      * Converts a variable to a string for debug output.
@@ -674,43 +779,48 @@ class DDebugger : UIMObject, IErrorDebugger {
   }
 
   // Prints out debug information about given variable.
-  static void printVar(Json debugValue, Json[string] locationData = null, string showHtml = null) {
-    /* auto locationData ~= ["file": Json(null), "line": Json(null)];
-        if (locationData["file"]) {
-            locationData["file"] = trimPath((string) locationData["file"]);
-        }
+// Prints out debug information about given variable.
+void printVar(Json varToShow, Json[string] location = null, bool showHtml = false) {
+  location = location.merge([
+      "file": Json(""),
+      "line": Json(0)
+    ]);
 
-        auto debugger = debugger;
-        auto restore = null;
-        if (!showHtml.isNull) {
-            restore = debugger.configuration.getEntry("exportFormatter");
-            debugger.configuration.setEntry("exportFormatter", showHtml == "true" ? HtmlFormatter.classname
-                    : TextFormatter.classname);
-        }
-        auto contents = exportVar(debugValue, 25);
-        auto formatter = debugger.getExportFormatter();
+  location.set("file", trimPath(location.getString("file")));
 
-        if (restore) {
-            debugger.setConfig("exportFormatter", restore);
-        }
-        writeln(formatter.formatWrapper(contents, locationData)); */
-  }
+  /*   auto debugger = debugger;
+    auto restore = null;
+    if (showHtml != null) {
+      restore = debugger.getConfig(
+        "exportFormatter");
+      debugger.configuration.setEntry(
+        "exportFormatter", showHtml ? HtmlFormatter.classname : TextFormatter
+          .classname);
+    }
+    auto contents = exportVar(varToShow, 25);
+    auto formatter = debugger
+      .getExportFormatter();
+
+    if (restore) {
+      debugger.setConfig(
+        "exportFormatter", restore);
+    }
+    writeln(formatter.formatWrapper(contents, location)); */
+}
 
   /**
      * Format an error message to be HTML formatted.
      *
      * Does the following formatting operations:
-     *
      * - HTML escape the message.
      * - Convert `bool` into `<code>bool</code>`
      * - Convert newlines into `<br>`
      */
-  static string formatHtmlMessage(string messageToFormat) {
-    /* string message = escapeHtmlAttribute(messageToFormat);
-        message = (string) preg_replace("/`([^`]+)`/", "<code>0</code>", message);
+  static string formatHtmlMessage(string message) {
+    message = escapeHtmlAttribute(message);
+    // message = (string) preg_replace("/`([^`]+)`/", "<code>0</code>", message);
 
-        return nl2br(message); */
-    return null;
+    return message.replace("\n", "<br>"); 
   }
 
   // Verifies that the application`s salt and cipher seed value has been changed from the default value.
@@ -724,8 +834,8 @@ class DDebugger : UIMObject, IErrorDebugger {
       );
     } */
   }
+
   // Holds current output data when outputFormat is false.
-  protected Json[string] _data = null;
   /* this() {
         auto docRef = ini_get("docref_root");
         if (docRef.isEmpty && function_hasKey("ini_set")) {
@@ -781,68 +891,8 @@ class DDebugger : UIMObject, IErrorDebugger {
                 htmlDoubleTag("p", "{:dumpContext}")));
     } */
 
-  // Returns a reference to the Debugger singleton object instance.
-  protected static DDebugger _debugger;
-  static DDebugger debugger() {
-    if (_debugger is null) {
-      _debugger = new DDebugger();
-    }
-    return _debugger;
-  }
 
-  /**
-     * Add an editor link format
-     *
-     * Template strings can use the `{file}` and `{line}` placeholders.
-     * Closures templates must return a string, and accept two parameters:
-     * The file and line.
-     */
 
-  void addEditor(string editorName, string templateName) {
-    debugger.editors[editorName] = templateName;
-  }
-
-  // Choose the editor link style you want to use.
-  void setEditor(string editorName) {
-    configuration.setEntry("editor", editorName);
-  }
-
-  // Get a formatted URL for the active editor.
-  static string editorUrl(string filename, int lineNumber) {
-    auto editor = configuration.getString("editor");
-    if (editor !in editors) {
-      throw UnknownEditorException(
-        "Cannot format editor URL `{editor}` is not a known editor.");
-    }
-
-    auto templateText = editors[editor];
-    return templateText.isString
-      ? templateText.mustache([
-          "file": filename,
-          "line": lineNumber
-        ]) : templateText(filename, lineNumber);
-  }
-
-  // #region outputMask
-  // Reads the current output masking.
-  STRINGAA outputMask() {
-    return configuration.getStringMap("outputMask");
-  }
-
-  /**
-     * Sets configurable masking of debugger output by property name and array key names.
-     *
-     * ### Example
-     * Debugger.setOutputMask(["password": "[*************]");
-     */
-  static void outputMask(Json[string] keyvalues, bool shouldMerge = true) {
-    if (shouldMerge) {
-      configuration.mergeEntry("outputMask", value);
-    } else {
-      configuration.setEntry("outputMask", value);
-    }
-  }
-  // #endregion outputMask
 
   // Recursively formats and outputs the contents of the supplied variable.
   /*     static void dump(Json dumpValue, int maxOutputDepth = 3) {
@@ -852,14 +902,14 @@ class DDebugger : UIMObject, IErrorDebugger {
   /**
      * Creates an entry in the log file. The log entry will contain a stack trace from where it was called.
      * as well as export the variable using exportVar. By default, the log is written to the debug log.
-     */
+     * /
   static void log(Json varToLog, string logLevel = "debug", size_t maxOutputDepth = 3) {
     // string source = trace(["start": 1]) ~ "\n";
 
     /* Log.write(
       logLevel,
       "\n" ~ source ~ exportVarAsPlainText(varToLog, maxOutputDepth)
-    ); */
+    ); * /
   }
 
   /**
@@ -888,7 +938,7 @@ class DDebugger : UIMObject, IErrorDebugger {
      * - `args` - Should arguments for functions be shown? If true, the arguments for each method call
      *  will be displayed.
      * - `start` - The stack frame to start generating a trace from. Defaults to 0
-     */
+     * /
   string formatTrace(Throwable backtrace, Json[string] options = null) {
     auto trace = backtrace.info;
 
@@ -918,12 +968,12 @@ class DDebugger : UIMObject, IErrorDebugger {
       formattedTrace ~= formatTraceValue();
   }
 
-  auto optionFormat = options.getString("format"); */
+  auto optionFormat = options.getString("format"); * /
     string formattedTrace;
   return formattedTrace;
 /*   optionFormat == "array" || optionFormat == "points"
     ? formattedTrace 
-    : formattedTrace.join("\n"); */
+    : formattedTrace.join("\n"); * /
 }
 
 string formatTraceValue(long index, Json[] backtrace, Json[string] options = null) {
@@ -951,7 +1001,7 @@ string formatTraceValue(long index, Json[] backtrace, Json[string] options = nul
 /*   if (hasAllValues(options, signature/* , options.getBoolean("exclude", true) * /)) {
     return reference;
   }
- */
+ * /
   auto formatValue = options.getString("format");
   Json back = Json.emptyObject;
   if (formatValue == "points") {
@@ -976,13 +1026,13 @@ string formatTraceValue(long index, Json[] backtrace, Json[string] options = nul
           "traceLine"
         ]));
   }
-  trace.set("path", trace["file"].getString/* trimPath(trace["file"]) */);
+  trace.set("path", trace["file"].getString/* trimPath(trace["file"]) * /);
   trace.set("reference", reference);
   trace.removeKeys(["object", "args"]);
   /* back ~= Text.insert(tpl, trace, [
       "before": "{:",
       "after": "}"
-    ]); */
+    ]); * /
   return back.toString;
 }
 /**
@@ -1062,74 +1112,6 @@ string formatTraceValue(long index, Json[] backtrace, Json[string] options = nul
         return lines;
     } */
 
-/**
-     * Wraps the highlight_string function in case the server API does not
-     * implement the function as it is the case of the HipHop interpreter
-     */
-     protected string _highlight(string stringToConvert) {
-/*         if (function_hasKey("hD_log") || function_hasKey(
-                "hD_gettid")) {
-            return htmlentities(
-                stringToConvert);
-        }
- */
-        auto added = false;
-        if (indexOf(stringToConvert, "<?D") == false) {
-            added = true;
-            stringToConvert = "<?D \n" ~ stringToConvert;
-        }
-/*         auto highlight = highlight_string(stringToConvert, true); */
-        auto highlight = stringToConvert;
-        if (added) {
-            highlight = highlight.replace(
-                [
-                    "&lt;?D&nbsp;<br/>",
-                    "&lt;?D&nbsp;<br />"
-                ],
-                ""
-            );
-        }
-
-        return highlight;
-    }
- 
-/**
-     * Get the configured export formatter or infer one based on the environment.
-     *
-     * @return uim.errors.debugs.IErrorFormatter
-     * @unstable This method is not stable and may change in the future.
-     */
-// IErrorFormatter getExportFormatter() {
-        string formaterClassname = debugger
-            .getConfig(
-                "exportFormatter");
-        if (!formaterClassname) {
-            if (DConsoleFormatter.environmentMatches()) {
-                formaterClassname = ConsoleFormatter
-                    .classname;
-            } else if (
-                HtmlFormatter.environmentMatches()) {
-                formaterClassname = HtmlFormatter
-                    .classname;
-            } else {
-                formaterClassname = TextFormatter
-                    .classname;
-            }
-        }
-
-        auto instance = new aclassname();
-        if (
-            !cast(
-                IErrorFormatter) instance) {
-            throw new DRuntimeError(
-                "The `{aclassname}` formatter does not implement " ~ IErrorFormatter
-                    .classname
-            );
-        }
-        return instance;
- */
-/*     return null;
-    } */
 
 // Converts a variable to a plain text string.
 /* static string exportVarAsPlainText(Json value, int maxOutputDepth = 3) {
@@ -1348,7 +1330,7 @@ string formatTraceValue(long index, Json[] backtrace, Json[string] options = nul
 
     return node; * /
     return null;
-  } */
+  } * /
 
 // Get the type of the given variable. Will return the class name for objects.
 static string getTypeName(Json value) {
@@ -1369,66 +1351,6 @@ static string getTypeName(Json value) {
 
   return type;
 }
-// Prints out debug information about given variable.
-static void printVar(Json varToShow, Json[string] location = null, bool showHtml = false) {
-  location = location.merge([
-      "file": Json(""),
-      "line": Json(0)
-    ]);
 
-  location.set("file", trimPath(location.getString("file")));
-
-  /*   auto debugger = debugger;
-    auto restore = null;
-    if (showHtml != null) {
-      restore = debugger.getConfig(
-        "exportFormatter");
-      debugger.configuration.setEntry(
-        "exportFormatter", showHtml ? HtmlFormatter.classname : TextFormatter
-          .classname);
-    }
-    auto contents = exportVar(varToShow, 25);
-    auto formatter = debugger
-      .getExportFormatter();
-
-    if (restore) {
-      debugger.setConfig(
-        "exportFormatter", restore);
-    }
-    writeln(formatter.formatWrapper(contents, location)); */
+*/
 }
-
-/**
-     * Format an error message to be HTML formatted.
-     *
-     * Does the following formatting operations:
-     *
-     * - HTML escape the message.
-     * - Convert `bool` into `<code>bool</code>`
-     * - Convert newlines into `<br />`
-     */
-/* static string formatHtmlMessage(
-        string messageToFormat) {
-        messageToFormat = escapeHtmlAttribute(
-            messageToFormat);
-        messageToFormat = preg_replace(
-            "/`([^`]+)`/", "<code>1</code>", messageToFormat);
-
-        return nl2br(
-            messageToFormat);
-    } */
-
-// Verifies that the application"s salt and cipher seed value has been changed from the default value.
-// static void checkSecurityKeys() {
-// salt = Security.getSalt();
-/* if (salt == "__SALT__" || strlen(
-            salt) < 32) {
-        trigger_error(
-            "Please change the value of `Security.salt` in `ROOT/config/app_local.D` "
-                ~"to a random value of at least 32 characters.",
-                ERRORS.USER_NOTICE
-        );
-    } */
-// }
-}
-// auto Debugger {}

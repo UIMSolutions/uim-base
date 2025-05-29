@@ -6,7 +6,6 @@
 module uim.errors.classes.formatters.console;
 
 mixin(Version!("test_uim_errors"));
-
 import uim.errors;
 
 @safe:

@@ -125,10 +125,10 @@ class DConsoleErrorRenderer : DErrorRenderer {
             "<error>%s[%s] %s</error> in %s on line %s"
             .format(
                 parent ? "Caused by " : "",
-                errorToRender.classname,
-                errorToRender.message(),
-                errorToRender.getFile(),
-                errorToRender.getLine()
+                error.classname,
+                error.message(),
+                error.getFile(),
+                error.getLine()
             ),
         ]; * /
 

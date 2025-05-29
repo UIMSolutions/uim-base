@@ -6,14 +6,14 @@ import uim.errors;
 
 @safe:
 
-class DInvalidArgumentException : Exception {
+class DUnknownEditorException : Exception {
   this(string message, string fileName = null, ulong lineNumber = 0, Throwable nextInChain = null) {
     super(message, fileName, lineNumber, nextInChain);
   }
 }
 
 auto UnknownEditorException() {
-  return new DInvalidArgumentException("Invalid Argumnent");
+  return new DInvalidArgumentException("Unknown Editor");
 }
 
 auto UnknownEditorException(string message) {

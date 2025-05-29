@@ -13,3 +13,6 @@ auto ErrorFormatterFactory() {
     return DErrorFormatterFactory.factory;
 }
 
+auto ErrorFormatterFactory(string key) {
+    return ErrorFormatterFactory.create(key);   
+}
