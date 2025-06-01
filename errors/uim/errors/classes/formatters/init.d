@@ -29,3 +29,7 @@ static this() {
     return new DYamlErrorFormatter(options);
   });
 }
+
+unittest {
+  writeln(ErrorFormatterFactory.paths);
+}

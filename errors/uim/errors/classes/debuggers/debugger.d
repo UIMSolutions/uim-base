@@ -270,21 +270,6 @@ unittest {
         configuration.setEntry(aConfig);
     }
     
-    // Returns a reference to the Debugger singleton object instance.
-    /* static static debugger(string classname = null) {
-        /** @var array<int, static>  anInstance * /
-        static anInstance = null;
-        if (classname) {
-            if (!anInstance || strtolower(classname) != get_class(anInstance[0]).lower) {
-                anInstance[0] = new classname();
-            }
-        }
-        if (!anInstance) {
-            anInstance[0] = new Debugger;
-        }
-        return anInstance[0];
-    } */
-
   /**
      * Read or write configuration options for the Debugger instance.
      * Params:
@@ -339,72 +324,8 @@ unittest {
   }
   // #endregion outputMask
 
-  // Recursively formats and outputs the contents of the supplied variable.
-  void dump(Json valueToDump, int maxOutputDepth = 3) {
-    // pr(exportVar(valueToDump, maxOutputDepth));
-  }
-
-  // Get the configured export formatter or infer one based on the environment.
-IErrorFormatter getExportFormatter() {
-        string formatterName = configuration.getStringEntry("exportFormatter");
-        if (!formatterName) {
-                formatterName = TextErrorFormatter.name;
-        }
-
-        auto formatter = ErrorFormatterFactory(formatterName);
-        return formatter;
-    }
-
-  /**
-     * Creates an entry in the log file. The log entry will contain a stack trace from where it was called.
-     * as well as export the variable using exportVar. By default, the log is written to the debug log.
-     */
-  static void log(Json varToLog, string levelType = "debug", int maxDepth = 3) {
-    /* string source = trace(["start": 1]);
-    source ~= "\n";
-
-    Log.write(
-      levelType,
-      "\n" ~ source ~ exportVarAsPlainText(varToLog, maxDepth)
-    ); */
-  }
-
-  // Get the frames from error that are not present in parent
-  static Json[string] getUniqueFrames(Throwable error, Throwable parent) {
-    /* if (parent.isNull) {
-      return error.getTrace();
-    } */
-    /* parentFrames = parent.getTrace();
-    frames = error.getTrace();
-
-    parentCount = count(parentFrames) - 1;
-    frameCount = count(frames) - 1; */
-
-    // Reverse loop through both traces removing frames that
-    // are the same.
-    /*     for (index = frameCount, p = parentCount; index >= 0 && p >= 0; p--) {
-      parentTail = parentFrames[p];
-      tail = frames[index];
-
-      // Frames without file/line are never equal to another frame.
-      isEqual = (
-        (
-          tail.hasAllKeys(["file", "line"]) &&
-          parentTail.hasAllKeys(["file", "line"])
-      ) &&
-        (tail["file"] == parentTail["file"]) &&
-        (tail["line"] == parentTail["line"])
-      );
-      if (isEqual) {
-        removeKey(frames[index]);
-        index--;
-      }
-    }
-    return frames; */
-    return null;
-  }
-
-  /**
+  // #region trace
+    /**
      * Outputs a stack trace based on the supplied options.
      *
      * ### Options
@@ -416,14 +337,13 @@ IErrorFormatter getExportFormatter() {
      * will be displayed.
      * - `start` - The stack frame to start generating a trace from. Defaults to 0
      */
-  static string[] trace(Json[string] options = new Json[string]) {
-    // Remove the frame for Debugger.trace()
-    /* backtrace = debug_backtrace();
-    backtrace.shift;
+  string[] trace(Json[string] options = new Json[string]) {
+    import core.runtime;
 
-    return Debugger.formatTrace(backtrace, options); */
+    Throwable.TraceInfo traceInfo = null;
+    () @trusted { traceInfo = core.runtime.defaultTraceHandler(); }();
 
-    return null;
+    return formatTrace(traceInfo, options);
   }
 
   /**
@@ -438,9 +358,17 @@ IErrorFormatter getExportFormatter() {
      * will be displayed.
      * - `start` - The stack frame to start generating a trace from. Defaults to 0
      */
-  static string[] formatTrace(Throwable backtrace, Json[string] options = new Json[string]) {
-    /* if (cast(Throwable) backtrace) {
-      backtrace = backtrace.getTrace();
+  static string[] formatTrace(Throwable throwable, Json[string] options = new Json[string]) {
+    import core.runtime;
+
+    return (throwable is null)
+      ? null
+      : formatTrace(throwable.info, options);
+  }
+  
+  static string[] formatTrace(Throwable.TraceInfo traceInfo, Json[string] options = new Json[string]) {
+    /* if (cast(Throwable) traceInfo) {
+      traceInfo = traceInfo.getTrace();
     }
 
     options
@@ -451,14 +379,14 @@ IErrorFormatter getExportFormatter() {
       .merge("scope", Json(null))
       .merge("exclude", ["call_user_func_array", "trigger_error"]); */
 
-    /* auto count = count(backtrace) + 1;
+    /* auto count = count(traceInfo) + 1;
     string[] back = null; */
 
     /*     for (index = options.getLong("start"); index < count && index < options.getLong("depth");
       index++) {
       frame = ["file": "[main]", "line": ""];
-      if (isSet(backtrace[index])) {
-        frame = backtrace[index] ~ ["file": "[internal]", "line": "??"];
+      if (isSet(traceInfo[index])) {
+        frame = traceInfo[index] ~ ["file": "[internal]", "line": "??"];
       }
       string signature = frame.getString("file");
       string reference = frame.getString("file");
@@ -502,6 +430,426 @@ IErrorFormatter getExportFormatter() {
     // return back.join("\n");
     return null;
   }
+
+  /**
+     * Formats a stack trace based on the supplied options.
+     *
+     * ### Options
+     *
+     * - `depth` - The number of stack frames to return. Defaults to 999
+     * - `format` - The format you want the return. Defaults to the currently selected format. If
+     *   format is "array" or "points" the return will be an array.
+     * - `args` - Should arguments for functions be shown? If true, the arguments for each method call
+     *  will be displayed.
+     * - `start` - The stack frame to start generating a trace from. Defaults to 0
+     * /
+  string formatTrace(Throwable backtrace, Json[string] options = null) {
+    auto trace = backtrace.info;
+
+/*     options = options.merge([
+      "depth": 999.toJson,
+      "format": _outputFormat.toJson,
+      "args": toJson(false),
+      "start": 0.toJson,
+      "scope": null.toJson,
+      "exclude": [
+        "call_user_func_array",
+        "trigger_error"
+      ].toJson
+    ]);
+
+    auto count = count(backtrace);
+    string back = null;
+    _trace = MapHelper.create!(string, Json)
+      .set("line", "??")
+      .set("file", "[internal]")
+      .set("class", Json(null))
+      .set("function", "[main]");
+
+    auto start = options.getLong("start");
+    auto depth = options.getLong("depth");
+    for (i = start; i < count && i < depth; i++) {
+      formattedTrace ~= formatTraceValue();
+  }
+
+  auto optionFormat = options.getString("format"); * /
+    string formattedTrace;
+  return formattedTrace;
+/*   optionFormat == "array" || optionFormat == "points"
+    ? formattedTrace 
+    : formattedTrace.join("\n"); * /
+}
+
+string formatTraceValue(long index, Json[] backtrace, Json[string] options = null) {
+  auto trace = backtrace[index].merge([
+    "file": "[internal]",
+    "line": "??"
+  ]);
+  string signature = "[main]";
+  string reference = "[main]";
+
+  if (backtrace[index + 1] != Json(null)) {
+    auto next = backtrace[index + 1].merge(trace);
+    signature = next["function"].getString;
+    // string signature = reference;
+
+    if (!next.isEmpty("class")) {
+      signature = next.getString("class") ~ "." ~ next.getString("function");
+      reference = signature ~ "(";
+      if (options.isNull("args") && next.hasKey("args")) {
+        // reference ~= next["args"].getArray.map!(arg => exportVar(arg)).join(", ");
+      }
+      reference ~= ")";
+    }
+  }
+/*   if (hasAllValues(options, signature/* , options.getBoolean("exclude", true) * /)) {
+    return reference;
+  }
+ * /
+  auto formatValue = options.getString("format");
+  Json back = Json.emptyObject;
+  if (formatValue == "points") {
+    back.set([
+      "file": trace["file"],
+      "line": trace["line"],
+      "reference": reference.toJson
+    ]);
+  } else if (formatValue == "array") {
+    if (!options.hasKey("args")) {
+      trace.removeKey("args");
+    }
+    back.set(trace);
+  } else {
+    formatValue = options.getString(
+      "format");
+    auto tpl = _stringContents.path([
+        formatValue,
+        "traceLine"
+      ], _stringContents.path([
+          "base",
+          "traceLine"
+        ]));
+  }
+  trace.set("path", trace["file"].getString/* trimPath(trace["file"]) * /);
+  trace.set("reference", reference);
+  trace.removeKeys(["object", "args"]);
+  /* back ~= Text.insert(tpl, trace, [
+      "before": "{:",
+      "after": "}"
+    ]); * /
+  return back.toString;
+} */
+  // #endregion trace
+
+  // #region typename
+  static string getTypeName(Json value) {
+  auto type = value.getString("typeName");
+
+  if (type == "NULL") {
+    return "null";
+  }
+
+  if (type == "double") {
+    return "float";
+  }
+
+  if (
+    type == "unknown type") {
+    return "unknown";
+  }
+
+  return type;
+}
+  // #endregion typename
+
+  // #region dump
+  // Recursively formats and outputs the contents of the supplied variable.
+  void dump(Json valueToDump, int maxOutputDepth = 3) {
+    // pr(exportVar(valueToDump, maxOutputDepth));
+  }
+  // #endregion dump
+
+  // #region export
+  // Get the configured export formatter or infer one based on the environment.
+IErrorFormatter exportFormatter() {
+        string formatterName = configuration.getStringEntry("exportFormatter");
+        if (!formatterName) {
+            formatterName = "text"; // TextErrorFormatter is the default.
+        }
+
+        return ErrorFormatterFactory(formatterName);
+    }
+    
+// Converts a variable to a plain text string.
+/* static string exportVarAsPlainText(Json value, int maxOutputDepth = 3) {
+        return (new DTextFormatter()).dump(
+            export_(
+                value, new DDebugContext(
+                maxOutputDepth))
+        );
+    } */
+
+/**
+     * Convert the variable to the internal node tree.
+     *
+     * The node tree can be manipulated and serialized more easily
+     * than many object graphs can.
+     */
+/* static IErrorNode exportVarAsNodes(
+        Json varToConvert, int maxOutputDepth = 3) {
+        return export_(varToConvert, new DDebugContext(
+                maxOutputDepth));
+    } */
+
+/**
+     * Converts a variable to a string for debug output.
+     *
+     * *Note:* The following keys will have their contents
+     * replaced with `*****`:
+     *
+     * - password
+     * - login
+     * - host
+     * - database
+     * - port
+     * - prefix
+     * - schema
+     *
+     * This is done to protect database credentials, which could be accidentally
+     * shown in an error message if UIM is deployed in development mode.
+     */
+/* static string exportVar(Json value, int maxOutputDepth = 3) {
+        auto dumpContext = new DDebugContext(
+            maxOutputDepth);
+        return debugger.exportFormatter()
+            .dump(
+                export_(value, dumpContext));
+    } */
+
+// Protected export function used to keep track of indentation and recursion.
+/*     protected static IErrorNode export_(Json varToDump, DDebugContext dumpContext) {
+        auto type = varToDump.getString("type");
+        switch (type) {
+        case "float":
+        case "string":
+        case "resource":
+        case "resource (closed)":
+        case "null":
+            return new DScalarErrorNode(type, varToDump);
+        case "boolean":
+            return new DScalarErrorNode("bool", varToDump);
+        case "integer":
+            return new DScalarErrorNode("int", varToDump);
+        case "array":
+            return exportArray(varToDump, dumpContext
+                    .withAddedDepth());
+        case "unknown":
+            return new DSpecialErrorNode(
+                "(unknown)");
+        default:
+            return exportObject(varToDump, dumpContext
+                    .withAddedDepth());
+        }
+    }
+ */
+/**
+     * Export an array type object. Filters out keys used in datasource configuration.
+     *
+     * The following keys are replaced with ***"s
+     *
+     * - password
+     * - login
+     * - host
+     * - database
+     * - port
+     * - prefix
+     * - schema
+     */
+// protected static DArrayErrorNode exportArray(Json[string] valueToExport, DDebugContext dumpContext) {
+/*
+    auto items = null;
+
+    autp remaining = dumpContext
+        .remainingDepth();
+    if (remaining >= 0) {
+        outputMask = outputMask();
+        foreach (valueToExport as key : val) {
+            if (hasKey(key, outputMask)) {
+                node = new DScalarErrorNode(
+                    "string", outputMask[key]);
+            } else if (
+                val != valueToExport) {
+                // Dump all the items without increasing depth.
+                node = export_(val, dumpContext);
+            } else {
+                // Likely recursion, so we increase depth.
+                node = export_(val, dumpContext
+                        .withAddedDepth());
+            }
+            items ~= new DArrayItemErrorNode(
+                export_(key, dumpContext), node);
+        }
+    } else {
+        items ~= new DArrayItemErrorNode(
+            new DScalarErrorNode(
+                "string", ""),
+            new DSpecialErrorNode(
+                "[maximum depth reached]")
+        );
+    } 
+
+    return new DArrayErrorNode(
+        items); * /
+        return null;
+    } */
+
+// Handles object to node conversion.
+/* protected static IErrorNode exportObject(Object objToConvert, DDebugContext dumpContext) {
+    /* auto isRef = dumpContext.hasReference(
+        objToConvert);
+    auto refNum = dumpContext
+        .getReferenceId(
+            objToConvert);
+
+    auto classnameName = get_class(
+        objToConvert); */
+/*     if (isRef) {
+        return new DReferenceErrorNode(null, refNum);
+    }
+ */
+/* auto node = new DClassErrorNode(null, refNum);
+    auto remaining = dumpContext
+        .remainingDepth();
+    if (remaining > 0) {
+        if (hasMethod(objToConvert, "debugInfo")) {
+            try {
+                foreach (key, val;  /* (array) * / objToConvert
+                    .debugInfo(string[] showKeys = null, string[] hideKeys = null)) {
+                    node.addProperty(
+                        new DPropertyErrorNode(
+                            "" {
+                            key
+                        }
+                    "", null, export_(val, dumpContext)));
+                }
+
+                return node;
+            } catch (
+                Error e) {
+                return new DSpecialErrorNode("(unable to export object: {e.message()})");
+            }
+        }
+
+        auto outputMask = outputMask();
+        auto objectVars = get_object_vars(
+            objToConvert);
+        foreach (key, value; objectVars) {
+            if (hasKey(key, outputMask)) {
+                value = outputMask[key];
+            }
+            /** @psalm-suppress RedundantCast * /
+            node.addProperty(
+                new DPropertyErrorNode(key, "public", export_(
+                    value, dumpContext
+                    .withAddedDepth()))
+            );
+        }
+
+        auto reflectionObject = new DReflectionObject(
+            objToConvert);
+
+        auto filters = [
+            ReflectionProperty
+            .IS_PROTECTED: "protected",
+            ReflectionProperty
+            .IS_PRIVATE: "private",
+        ];
+        foreach (filter, visibility; filters) {
+            reflectionProperties = reflectionObject
+                .getProperties(
+                    filter);
+            foreach (
+                reflectionProperty; reflectionProperties) {
+                reflectionProperty
+                    .setAccessible(
+                        true);
+
+                auuto value = hasMethod(
+                    reflectionProperty, "isInitialized") && !reflectionProperty
+                    .isInitialized(
+                        objToConvert)
+                    ? new DSpecialErrorNode("[uninitialized]") : export_(
+                        reflectionProperty
+                            .value(objToConvert), dumpContext
+                            .withAddedDepth());
+
+                node.addProperty(
+                    new DPropertyErrorNode(
+                        reflectionProperty
+                        .getName(),
+                        visibility,
+                        value
+                )
+                );
+            }
+        }
+    }
+
+    return node; * /
+    return null;
+  } */
+  // #endregion export
+
+  /**
+     * Creates an entry in the log file. The log entry will contain a stack trace from where it was called.
+     * as well as export the variable using exportVar. By default, the log is written to the debug log.
+     */
+  void log(Json varToLog, string levelType = "debug", int maxDepth = 3) {
+    /* string source = trace(["start": 1]);
+    source ~= "\n";
+
+    Log.write(
+      levelType,
+      "\n" ~ source ~ exportVarAsPlainText(varToLog, maxDepth)
+    ); */
+  }
+
+  // Get the frames from error that are not present in parent
+   Json[string] getUniqueFrames(Throwable error, Throwable parent) {
+    /* if (parent.isNull) {
+      return error.getTrace();
+    } */
+    /* parentFrames = parent.getTrace();
+    frames = error.getTrace();
+
+    parentCount = count(parentFrames) - 1;
+    frameCount = count(frames) - 1; */
+
+    // Reverse loop through both traces removing frames that
+    // are the same.
+    /*     for (index = frameCount, p = parentCount; index >= 0 && p >= 0; p--) {
+      parentTail = parentFrames[p];
+      tail = frames[index];
+
+      // Frames without file/line are never equal to another frame.
+      isEqual = (
+        (
+          tail.hasAllKeys(["file", "line"]) &&
+          parentTail.hasAllKeys(["file", "line"])
+      ) &&
+        (tail["file"] == parentTail["file"]) &&
+        (tail["line"] == parentTail["line"])
+      );
+      if (isEqual) {
+        removeKey(frames[index]);
+        index--;
+      }
+    }
+    return frames; */
+    return null;
+  }
+
+
 
   // Shortens file paths by replacing the application base path with 'APP", and the UIM core path with 'CORE'.
   static string trimPath(string pathToShorten) {
@@ -610,7 +958,7 @@ IErrorFormatter getExportFormatter() {
     /* auto context = new DDebugContext(maxDepth);
     auto node = export_(value, context);
 
-    return debugger.getExportFormatter().dump(node); */
+    return debugger.exportFormatter().dump(node); */
     return null;
   }
 
@@ -799,7 +1147,7 @@ void printVar(Json varToShow, Json[string] location = null, bool showHtml = fals
     }
     auto contents = exportVar(varToShow, 25);
     auto formatter = debugger
-      .getExportFormatter();
+      .exportFormatter();
 
     if (restore) {
       debugger.setConfig(
@@ -923,118 +1271,6 @@ void printVar(Json varToShow, Json[string] location = null, bool showHtml = fals
      * - `args` - Should arguments for functions be shown? If true, the arguments for each method call will be displayed.
      * - `start` - The stack frame to start generating a trace from. Defaults to 0
      */
-  /* static auto trace(Json[string] formatOptions = null) {
-        return Debugger.formatTrace(debug_backtrace(), formatOptions);
-    } */
-
-  /**
-     * Formats a stack trace based on the supplied options.
-     *
-     * ### Options
-     *
-     * - `depth` - The number of stack frames to return. Defaults to 999
-     * - `format` - The format you want the return. Defaults to the currently selected format. If
-     *   format is "array" or "points" the return will be an array.
-     * - `args` - Should arguments for functions be shown? If true, the arguments for each method call
-     *  will be displayed.
-     * - `start` - The stack frame to start generating a trace from. Defaults to 0
-     * /
-  string formatTrace(Throwable backtrace, Json[string] options = null) {
-    auto trace = backtrace.info;
-
-/*     options = options.merge([
-      "depth": 999.toJson,
-      "format": _outputFormat.toJson,
-      "args": toJson(false),
-      "start": 0.toJson,
-      "scope": null.toJson,
-      "exclude": [
-        "call_user_func_array",
-        "trigger_error"
-      ].toJson
-    ]);
-
-    auto count = count(backtrace);
-    string back = null;
-    _trace = MapHelper.create!(string, Json)
-      .set("line", "??")
-      .set("file", "[internal]")
-      .set("class", Json(null))
-      .set("function", "[main]");
-
-    auto start = options.getLong("start");
-    auto depth = options.getLong("depth");
-    for (i = start; i < count && i < depth; i++) {
-      formattedTrace ~= formatTraceValue();
-  }
-
-  auto optionFormat = options.getString("format"); * /
-    string formattedTrace;
-  return formattedTrace;
-/*   optionFormat == "array" || optionFormat == "points"
-    ? formattedTrace 
-    : formattedTrace.join("\n"); * /
-}
-
-string formatTraceValue(long index, Json[] backtrace, Json[string] options = null) {
-  auto trace = backtrace[index].merge([
-    "file": "[internal]",
-    "line": "??"
-  ]);
-  string signature = "[main]";
-  string reference = "[main]";
-
-  if (backtrace[index + 1] != Json(null)) {
-    auto next = backtrace[index + 1].merge(trace);
-    signature = next["function"].getString;
-    // string signature = reference;
-
-    if (!next.isEmpty("class")) {
-      signature = next.getString("class") ~ "." ~ next.getString("function");
-      reference = signature ~ "(";
-      if (options.isNull("args") && next.hasKey("args")) {
-        // reference ~= next["args"].getArray.map!(arg => exportVar(arg)).join(", ");
-      }
-      reference ~= ")";
-    }
-  }
-/*   if (hasAllValues(options, signature/* , options.getBoolean("exclude", true) * /)) {
-    return reference;
-  }
- * /
-  auto formatValue = options.getString("format");
-  Json back = Json.emptyObject;
-  if (formatValue == "points") {
-    back.set([
-      "file": trace["file"],
-      "line": trace["line"],
-      "reference": reference.toJson
-    ]);
-  } else if (formatValue == "array") {
-    if (!options.hasKey("args")) {
-      trace.removeKey("args");
-    }
-    back.set(trace);
-  } else {
-    formatValue = options.getString(
-      "format");
-    auto tpl = _stringContents.path([
-        formatValue,
-        "traceLine"
-      ], _stringContents.path([
-          "base",
-          "traceLine"
-        ]));
-  }
-  trace.set("path", trace["file"].getString/* trimPath(trace["file"]) * /);
-  trace.set("reference", reference);
-  trace.removeKeys(["object", "args"]);
-  /* back ~= Text.insert(tpl, trace, [
-      "before": "{:",
-      "after": "}"
-    ]); * /
-  return back.toString;
-}
 /**
      * Shortens file paths by replacing the application base path with "APP", and the UIM core
      * path with "CORE".
@@ -1110,247 +1346,49 @@ string formatTraceValue(long index, Json[] backtrace, Json[string] options = nul
         }
 
         return lines;
-    } */
-
-
-// Converts a variable to a plain text string.
-/* static string exportVarAsPlainText(Json value, int maxOutputDepth = 3) {
-        return (new DTextFormatter()).dump(
-            export_(
-                value, new DDebugContext(
-                maxOutputDepth))
-        );
-    } */
-
-/**
-     * Convert the variable to the internal node tree.
-     *
-     * The node tree can be manipulated and serialized more easily
-     * than many object graphs can.
-     */
-/* static IErrorNode exportVarAsNodes(
-        Json varToConvert, int maxOutputDepth = 3) {
-        return export_(varToConvert, new DDebugContext(
-                maxOutputDepth));
-    } */
-
-/**
-     * Converts a variable to a string for debug output.
-     *
-     * *Note:* The following keys will have their contents
-     * replaced with `*****`:
-     *
-     * - password
-     * - login
-     * - host
-     * - database
-     * - port
-     * - prefix
-     * - schema
-     *
-     * This is done to protect database credentials, which could be accidentally
-     * shown in an error message if UIM is deployed in development mode.
-     */
-/* static string exportVar(Json value, int maxOutputDepth = 3) {
-        auto dumpContext = new DDebugContext(
-            maxOutputDepth);
-        return debugger.getExportFormatter()
-            .dump(
-                export_(value, dumpContext));
-    } */
-
-// Protected export function used to keep track of indentation and recursion.
-/*     protected static IErrorNode export_(Json varToDump, DDebugContext dumpContext) {
-        auto type = varToDump.getString("type");
-        switch (type) {
-        case "float":
-        case "string":
-        case "resource":
-        case "resource (closed)":
-        case "null":
-            return new DScalarErrorNode(type, varToDump);
-        case "boolean":
-            return new DScalarErrorNode("bool", varToDump);
-        case "integer":
-            return new DScalarErrorNode("int", varToDump);
-        case "array":
-            return exportArray(varToDump, dumpContext
-                    .withAddedDepth());
-        case "unknown":
-            return new DSpecialErrorNode(
-                "(unknown)");
-        default:
-            return exportObject(varToDump, dumpContext
-                    .withAddedDepth());
-        }
     }
- */
-/**
-     * Export an array type object. Filters out keys used in datasource configuration.
-     *
-     * The following keys are replaced with ***"s
-     *
-     * - password
-     * - login
-     * - host
-     * - database
-     * - port
-     * - prefix
-     * - schema
-     */
-// protected static DArrayErrorNode exportArray(Json[string] valueToExport, DDebugContext dumpContext) {
-/*
-    auto items = null;
-
-    autp remaining = dumpContext
-        .remainingDepth();
-    if (remaining >= 0) {
-        outputMask = outputMask();
-        foreach (valueToExport as key : val) {
-            if (hasKey(key, outputMask)) {
-                node = new DScalarErrorNode(
-                    "string", outputMask[key]);
-            } else if (
-                val != valueToExport) {
-                // Dump all the items without increasing depth.
-                node = export_(val, dumpContext);
-            } else {
-                // Likely recursion, so we increase depth.
-                node = export_(val, dumpContext
-                        .withAddedDepth());
-            }
-            items ~= new DArrayItemErrorNode(
-                export_(key, dumpContext), node);
-        }
-    } else {
-        items ~= new DArrayItemErrorNode(
-            new DScalarErrorNode(
-                "string", ""),
-            new DSpecialErrorNode(
-                "[maximum depth reached]")
-        );
-    } 
-
-    return new DArrayErrorNode(
-        items); * /
-        return null;
-    } */
-
-// Handles object to node conversion.
-/* protected static IErrorNode exportObject(Object objToConvert, DDebugContext dumpContext) {
-    /* auto isRef = dumpContext.hasReference(
-        objToConvert);
-    auto refNum = dumpContext
-        .getReferenceId(
-            objToConvert);
-
-    auto classnameName = get_class(
-        objToConvert); */
-/*     if (isRef) {
-        return new DReferenceErrorNode(null, refNum);
-    }
- */
-/* auto node = new DClassErrorNode(null, refNum);
-    auto remaining = dumpContext
-        .remainingDepth();
-    if (remaining > 0) {
-        if (hasMethod(objToConvert, "debugInfo")) {
-            try {
-                foreach (key, val;  /* (array) * / objToConvert
-                    .debugInfo(string[] showKeys = null, string[] hideKeys = null)) {
-                    node.addProperty(
-                        new DPropertyErrorNode(
-                            "" {
-                            key
-                        }
-                    "", null, export_(val, dumpContext)));
-                }
-
-                return node;
-            } catch (
-                Error e) {
-                return new DSpecialErrorNode("(unable to export object: {e.message()})");
-            }
-        }
-
-        auto outputMask = outputMask();
-        auto objectVars = get_object_vars(
-            objToConvert);
-        foreach (key, value; objectVars) {
-            if (hasKey(key, outputMask)) {
-                value = outputMask[key];
-            }
-            /** @psalm-suppress RedundantCast * /
-            node.addProperty(
-                new DPropertyErrorNode(key, "public", export_(
-                    value, dumpContext
-                    .withAddedDepth()))
-            );
-        }
-
-        auto reflectionObject = new DReflectionObject(
-            objToConvert);
-
-        auto filters = [
-            ReflectionProperty
-            .IS_PROTECTED: "protected",
-            ReflectionProperty
-            .IS_PRIVATE: "private",
-        ];
-        foreach (filter, visibility; filters) {
-            reflectionProperties = reflectionObject
-                .getProperties(
-                    filter);
-            foreach (
-                reflectionProperty; reflectionProperties) {
-                reflectionProperty
-                    .setAccessible(
-                        true);
-
-                auuto value = hasMethod(
-                    reflectionProperty, "isInitialized") && !reflectionProperty
-                    .isInitialized(
-                        objToConvert)
-                    ? new DSpecialErrorNode("[uninitialized]") : export_(
-                        reflectionProperty
-                            .value(objToConvert), dumpContext
-                            .withAddedDepth());
-
-                node.addProperty(
-                    new DPropertyErrorNode(
-                        reflectionProperty
-                        .getName(),
-                        visibility,
-                        value
-                )
-                );
-            }
-        }
-    }
-
-    return node; * /
-    return null;
-  } * /
-
-// Get the type of the given variable. Will return the class name for objects.
-static string getTypeName(Json value) {
-  auto type = value.getString("typeName");
-
-  if (type == "NULL") {
-    return "null";
-  }
-
-  if (type == "double") {
-    return "float";
-  }
-
-  if (
-    type == "unknown type") {
-    return "unknown";
-  }
-
-  return type;
-}
 
 */
+}
+
+
+ /* string getStackTrace() {
+	import core.runtime;
+
+	version(Posix) {
+		// druntime cuts out the first few functions on the trace as they are internal
+		// so we'll make some dummy functions here so our actual info doesn't get cut
+		Throwable.TraceInfo f5() { return defaultTraceHandler(); }
+		Throwable.TraceInfo f4() { return f5(); }
+		Throwable.TraceInfo f3() { return f4(); }
+		Throwable.TraceInfo f2() { return f3(); }
+		auto stuff = f2();
+	} else {
+		auto stuff = defaultTraceHandler();
+	}
+
+	return stuff.toString();
+}
+ */
+unittest {
+  import core.runtime;
+
+  try {
+    throw new Exception("Test exception");
+    // throw new Exception("Test exception", "Test error", 500, "test.d", 42);
+  }
+  catch (Exception e) {
+    writeln (e.file);
+    writeln (e.message);
+
+    string info;
+    () @trusted { info = core.runtime.defaultTraceHandler().toString; }();
+    writeln(info.split("\n"));
+
+    () @trusted { info = e.info.toString; }();
+    writeln(info);
+
+/*     auto Throwable.TraceInfo traceInfo = e.info;
+	  writeln(stuff.getStackTrace);
+ */  }
 }
