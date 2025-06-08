@@ -12,27 +12,14 @@ import uim.vibe;
 @safe:
 
 // #region Json[string]
-Json[string] merge(T)(Json[string] items, Json map) {
-  auto results = items.dup;
-
-  if (!map.isObject) {
-    return results;
-  }
-
-  values.each!((key, value) => results = results.merge(key, value));
-  return results;
-}
-
 Json[string] merge(T)(Json[string] items, T[string] values) {
-  auto results = items.dup;
-  values.each!((key, value) => results = results.merge(key, value));
-  return results;
+  values.each!((key, value) => items = items.merge(key, value));
+  return items;
 }
 
 Json[string] merge(T)(Json[string] items, string[] keys, T value) {
-  auto results = items.dup;
-  keys.each!(key => results = results.merge(key, value));
-  return results;
+  keys.each!(key => results = items.merge(key, value));
+  return items;
 }
 
 Json mergePath(T)(Json[string] items, string[] path, T value) {
@@ -140,7 +127,11 @@ Json merge(V)(Json json, string key, V value) {
   return json;
 }
 
-Json merge(V : Json)(Json json, string key, V value) {
+Json merge(T : Json)(Json json, string key, T value) {
+  if (json == Json(null)) {
+    json = Json.emptyObject;
+  }
+
   if (!json.isObject) {
     return json;
   }

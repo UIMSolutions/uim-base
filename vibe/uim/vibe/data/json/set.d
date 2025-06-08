@@ -11,6 +11,83 @@ import uim.vibe;
 
 @safe:
 
+// #region set
+Json[string] setValues(Json[string] map, Json[string] values) {
+  foreach(kv; values.byKeyValue) {
+    map = map.setValue(kv.key, kv.value);
+  }
+  return map;
+}
+
+Json[string] setValues(Json[string] map, string[] keys, Json value) {
+  keys.each!(key => map = map.setValue(key, value));
+  return map;
+}
+
+Json[string] setValue(Json[string] map, string key, Json value) {
+  map[key] = value;
+  return map;
+}
+
+Json setValues(Json json, Json[string] map) {
+  foreach(kv; map.byKeyValue) {
+    json = json.setValue(kv.key, kv.value);
+  }
+  return json;
+}
+
+Json setValues(Json json, string[] keys, Json value) {
+  keys.each!(key => json = json.setValue(key, value));
+  return json;
+}
+
+Json setValue(T)(Json json, string[] path, T value) {
+  return setValue(json, path, Json(value));
+}
+
+Json setValue(T:Json)(Json json, string[] path, T value) {
+  if (path.length == 0) {
+    return json;
+  }
+
+  if (path.length == 1) {
+    return json.setValue(path[0], value);
+  }
+
+  auto key = path[0];
+  if (key !in json) {
+    json[key] = Json.emptyObject;
+  }
+
+  json[key] = json[key].setValue(path[1..$], value);
+  return json;
+}
+
+Json setValue(T)(Json json, string key, T value) {
+  return json.setValue(key, Json(value));
+}
+
+Json setValue(T:Json)(Json json, string key, T value) {
+  if (json.isObject) {
+    json[key] = value;
+  }
+  return json;
+}
+
+unittest {
+  auto json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": "h"}]}`);
+
+  json = json.setValue("a", Json("A"));
+  assert(json["a"] == Json("A"));
+
+  json = json.setValues(["a", "b"], Json("B"));
+  assert(json["a"] == Json("B"));
+
+  json = json.setValues(["c"], Json("C"));
+  assert(json["c"] == Json("C"));
+}
+// #endregion set
+
 // #region Json[string]
 /* Json[string] setNull(Json[string] map, string key) {
   return map.set(key, Json(null));

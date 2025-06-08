@@ -51,3 +51,5 @@ tls/openssl_version.d
 lib/subprojects/allocator
 lib/subprojects/diet/
 lib/subprojects/openssl/
+uim-base-test-test_all
+vibe/vibe-test-test_uim_vibe
