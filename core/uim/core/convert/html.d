@@ -302,7 +302,7 @@ unittest {
   json["content"] = "xxx".toJson;
   assert(json.htmlTag == "<test a b>xxx</test>");
 
-  json["attributes"] = Json(null);
+  json["attributes"] = Null!Json;
   assert(json.htmlTag == "<test>xxx</test>");
 
   Json[string] map;
@@ -315,7 +315,7 @@ unittest {
   map["content"] = "xxx".toJson;
   assert(map.htmlTag == "<test a b>xxx</test>");
 
-  map["attributes"] = Json(null);
+  map["attributes"] = Null!Json;
   assert(map.htmlTag == "<test>xxx</test>");
 }
 // #endregion htmlTag

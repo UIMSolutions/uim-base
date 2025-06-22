@@ -35,7 +35,7 @@ Json debugInfo(Json debugVariable, bool showHtml = false, bool showFrom = true) 
     Debugger.printVar(debugVariable, location, showHtml);
     */
     // return debugVariable;
-    return Json(null);
+    return Null!Json;
 }
 /**
  * Outputs a stack trace based on the supplied options.

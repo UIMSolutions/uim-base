@@ -46,7 +46,7 @@ unittest {
   // static assert(!__traits(compiles, node._data), "_data should be protected");
 
   // Test with null Json
-  Json jnull = Json(null);
+  Json jnull = Null!Json;
   node.data(jnull);
   assert(node.data() == jnull, "data(Json) should accept null Json");
 }

@@ -9,7 +9,7 @@ import uim.core;
 T shift(T:Json)(auto ref T[] values) {
   switch (values.length) {
   case 0:
-    return Json(null);
+    return Null!Json;
   case 1:
     T value = values[0];
     values = Json.emptyArray;

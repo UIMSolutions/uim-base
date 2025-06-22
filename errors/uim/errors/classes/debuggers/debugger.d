@@ -33,7 +33,7 @@ class DDebugger : UIMObject, IErrorDebugger {
 
     configuration
       .setEntry("outputMask", Json.emptyArray)
-      .setEntry("exportFormatter", Json(null))
+      .setEntry("exportFormatter", Null!Json)
       .setEntry("editor", "vscode");
 
   // A map of editors to their link templates.
@@ -376,7 +376,7 @@ unittest {
       .merge("format", "text")
       .merge("args", false)
       .merge("start", 0)
-      .merge("scope", Json(null))
+      .merge("scope", Null!Json)
       .merge("exclude", ["call_user_func_array", "trigger_error"]); */
 
     /* auto count = count(traceInfo) + 1;
@@ -463,7 +463,7 @@ unittest {
     _trace = MapHelper.create!(string, Json)
       .set("line", "??")
       .set("file", "[internal]")
-      .set("class", Json(null))
+      .set("class", Null!Json)
       .set("function", "[main]");
 
     auto start = options.getLong("start");
@@ -488,7 +488,7 @@ string formatTraceValue(long index, Json[] backtrace, Json[string] options = nul
   string signature = "[main]";
   string reference = "[main]";
 
-  if (backtrace[index + 1] != Json(null)) {
+  if (backtrace[index + 1] != Null!Json) {
     auto next = backtrace[index + 1].merge(trace);
     signature = next["function"].getString;
     // string signature = reference;

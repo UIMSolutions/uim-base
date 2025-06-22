@@ -58,9 +58,9 @@ class DErrorTrap : UIMObject {
         * - `stderr` Used in console environments so that renderers have access to the current console output stream.
         */
         /* configuration
-            .setEntry("errorRenderer", Json(null))
+            .setEntry("errorRenderer", Null!Json)
             .setEntry("logger", ErrorLogger.classname)
-            .setEntry("stderr", Json(null))
+            .setEntry("stderr", Null!Json)
             .setEntry("log", true)
             .setEntry("skipLog", Json.emptyArray)
             .setEntry("trace", false)

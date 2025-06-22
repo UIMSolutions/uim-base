@@ -84,9 +84,9 @@ class DExceptionTrap {
 
   bool initialize(Json[string] initData = null) {
 /*     configuration
-      .setEntry("exceptionRenderer", Json(null))
+      .setEntry("exceptionRenderer", Null!Json)
       .setEntry("logger", ExceptionLogger.classname)
-      .setEntry("stderr", Json(null))
+      .setEntry("stderr", Null!Json)
       .setEntry("log", true)
       .setEntry("skipLog", Json.emptyArray)
       .setEntry("trace", false)

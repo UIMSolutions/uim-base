@@ -47,7 +47,7 @@ class DErrorTrap : UIMObject {
         * - `trace` - boolean - Whether or not backtraces should be included in logged errors.
         */
     configuration // TODOD "errorLevel": E_ALL,
-    .setEntry("errorRenderer", Json(null))
+    .setEntry("errorRenderer", Null!Json)
       .setEntry("log", true) // TODO "logger": ErrorLogger.classname,
       .setEntry("trace", false);
 

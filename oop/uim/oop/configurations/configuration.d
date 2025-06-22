@@ -223,7 +223,7 @@ class DConfiguration : IConfiguration {
 
   Json shiftEntry(string key) {
     if (!hasEntry(key)) {
-      return Json(null);
+      return Null!Json;
     }
 
     auto value = getEntry(key);
