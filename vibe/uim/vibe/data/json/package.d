@@ -7,12 +7,14 @@ module uim.vibe.data.json;
 
 public {
   import uim.vibe.data.json.array_;
-  import uim.vibe.data.json.base;
+  import uim.vibe.data.json.utils;
   import uim.vibe.data.json.biginteger;
   import uim.vibe.data.json.boolean;
   import uim.vibe.data.json.convert;
   import uim.vibe.data.json.double_;
   import uim.vibe.data.json.empty;
+  import uim.vibe.data.json.filter;
+  import uim.vibe.data.json.first;
   import uim.vibe.data.json.get;
   import uim.vibe.data.json.has;
   import uim.vibe.data.json.integer;

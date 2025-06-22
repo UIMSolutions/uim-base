@@ -10,6 +10,20 @@ mixin(Version!("test_uim_vibe"));
 import uim.vibe;
 @safe:
 
+// #region Null
+T Null(T:Json[string])() {
+  return null;
+}
+
+T Null(T:Json[])() {
+  return null;
+}
+
+T Null(T:Json)() {
+  return Json(null);
+}
+// #endregion Null
+
 // #region is
 // Check if json value is null
 // #region Json[string]

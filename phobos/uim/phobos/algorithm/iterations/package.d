@@ -9,6 +9,12 @@ import uim.phobos;
 
 @safe:
 
+T first(T)(T[] values) {
+  return (values.length > 0) 
+    ? values[0]
+    : Null!T;  
+}
+
 void every(K, V)(V[K] items, void delegate(K key, V value) @safe func) {
   items.byKeyValue.each!(kv => func(kv.key, kv.value));
 }

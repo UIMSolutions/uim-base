@@ -3,20 +3,26 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.phobos.datatypes;
+module uim.vibe.data.json.first;
 
-public {
-  import uim.phobos.datatypes.bigint;
-  import uim.phobos.datatypes.strings;
+mixin(Version!("test_uim_vibe"));
 
-  /*     import uim.phobos.datatypes.integer;
-    import uim.phobos.datatypes.float;
-    import uim.phobos.datatypes.boolean;
-    import uim.phobos.datatypes.date;
-    import uim.phobos.datatypes.time;
-    import uim.phobos.datatypes.datetime;
- */
-  import uim.phobos.datatypes.mixins;
-  import uim.phobos.datatypes.null_;
-  import uim.phobos.datatypes.uuids;
+import uim.vibe;
+
+@safe:
+
+Json firstObject (Json[] items) {
+  return items.filterObject.first;
+}
+
+Json firstNotObject (Json[] items) {
+  return items.filterNotObject.first;
+}
+
+Json firstHasKey (Json[] items, string key) {
+  return items.filterHasKey(key).first;
+}
+
+Json firstWithoutKey (Json[] items, string key) {
+  return items.filterWithoutKey(key).first;
 }
