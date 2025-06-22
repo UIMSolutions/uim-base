@@ -90,11 +90,11 @@ bool isInteger(Json json, string[] path, bool strict = true) {
     return true;
   }
 
-  if (path.length == 0 && json == Json(null)) {
+  if (path.length == 0 && json == Null!Json) {
     return true;
   }
 
-  if (path.length == 0 && json == Json(null)) {
+  if (path.length == 0 && json == Null!Json) {
     return false;
   }
 

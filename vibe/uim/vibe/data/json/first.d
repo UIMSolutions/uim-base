@@ -11,18 +11,42 @@ import uim.vibe;
 
 @safe:
 
-Json firstObject (Json[] items) {
+// #region Json[]
+Json firstObject(Json[] items) {
   return items.filterObject.first;
 }
 
-Json firstNotObject (Json[] items) {
+Json firstNotObject(Json[] items) {
   return items.filterNotObject.first;
 }
 
-Json firstHasKey (Json[] items, string key) {
+Json firstHasKey(Json[] items, string key) {
   return items.filterHasKey(key).first;
 }
 
-Json firstWithoutKey (Json[] items, string key) {
+Json firstWithoutKey(Json[] items, string key) {
   return items.filterWithoutKey(key).first;
 }
+// #endregion Json[]
+
+// #region Json
+Json firstObject(Json json) {
+  return json.isArray
+    ? json.toArray.filterObject.first : Null!Json;
+}
+
+Json firstNotObject(Json json) {
+  return json.isArray
+    ? json.toArray.filterNotObject.first : Null!Json;
+}
+
+Json firstHasKey(Json json, string key) {
+  return json.isArray
+    ? json.toArray.filterHasKey(key).first : Null!Json;
+}
+
+Json firstWithoutKey(Json json, string key) {
+  return json.isArray
+    ? json.toArray.filterWithoutKey(key).first : Null!Json;
+}
+// #endregion Json

@@ -19,7 +19,7 @@ T Null(T:Json[])() {
   return null;
 }
 
-T Null(T:Json)() {
+T Null(T:Json)() if (is(T == Json)) {
   return Json(null);
 }
 // #endregion Null

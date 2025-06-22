@@ -45,7 +45,7 @@ Json setValue(T)(Json json, string[] path, T value) {
   return setValue(json, path, Json(value));
 }
 
-Json setValue(T:Json)(Json json, string[] path, T value) {
+Json setPath(T:Json)(Json json, string[] path, T value) {
   if (path.length == 0) {
     return json;
   }
@@ -59,12 +59,12 @@ Json setValue(T:Json)(Json json, string[] path, T value) {
     json[key] = Json.emptyObject;
   }
 
-  json[key] = json[key].setValue(path[1..$], value);
+  json[key] = json[key].setPath(path[1..$], value);
   return json;
 }
 
 Json setValue(T)(Json json, string key, T value) {
-  return json.setValue(key, Json(value));
+  return json.set(key, Json(value));
 }
 
 Json setValue(T:Json)(Json json, string key, T value) {
@@ -77,13 +77,13 @@ Json setValue(T:Json)(Json json, string key, T value) {
 unittest {
   auto json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": "h"}]}`);
 
-  json = json.setValue("a", Json("A"));
+  json = json.set("a", Json("A"));
   assert(json["a"] == Json("A"));
 
-  json = json.setValues(["a", "b"], Json("B"));
+  json = json.set(["a", "b"], Json("B"));
   assert(json["a"] == Json("B"));
 
-  json = json.setValues(["c"], Json("C"));
+  json = json.set(["c"], Json("C"));
   assert(json["c"] == Json("C"));
 }
 // #endregion set

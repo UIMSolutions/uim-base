@@ -14,14 +14,14 @@ import uim.vibe;
 mixin(IsJsonFunctions!("Array"));
 
 bool isArray(Json json, bool strict = true) {
-  if (json == Json(null)) {
+  if (json == Null!Json) {
     return false;
   }
 
   if (!strict) {
     // TODO: Future: Add support for array Json[]ean, integer, float, and string.
   }
-  return json != Json(null)
+  return json != Null!Json
     ? (json.type == Json.Type.array) : false;
 }
 

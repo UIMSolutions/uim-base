@@ -10,17 +10,6 @@ mixin(Version!("test_uim_vibe"));
 import uim.vibe;
 @safe:
 
-// #region Null
-V Null(V : Json)() {
-  return Json(null);
-}
-
-unittest {
-  assert(Null!Json == Json(null));
-  assert(Null!Json.isNull);
-}
-// #endregion Null
-
 // #region is
 bool isMap(Json json) {
   return json.type == Json.Type.object;

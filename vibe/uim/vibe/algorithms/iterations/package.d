@@ -6,6 +6,18 @@ import uim.vibe;
 
 @safe:
 
+T first(T)(T[] values) {
+  return (values.length > 0) 
+    ? values[0]
+    : Null!T;  
+}
+
+T last(T)(T[] values) {
+  return (values.length > 0) 
+    ? values[$-1]
+    : Null!T;  
+}
+
 void every(Json data, void delegate(string key, Json value) @safe func) {
   if (!data.isObject) {
     return;

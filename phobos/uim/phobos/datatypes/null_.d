@@ -3,9 +3,10 @@ module uim.phobos.datatypes.null_;
 import uim.phobos;
 @safe:
 
+/*
 T Null(T)() {
     return T.init;
-}
+}*/ 
 
 // #region bool
 T Null(T : bool)() {

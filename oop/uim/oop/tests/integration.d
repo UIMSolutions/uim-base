@@ -541,7 +541,7 @@ mixin template TIntegrationTest() {
      * If the view variable does not exist, null will be returned.
      */
     Json viewVariable(string varName) {
-        return _controller ? controller.viewBuilder().getVar(varName) : Json(null);
+        return _controller ? controller.viewBuilder().getVar(varName) : Null!Json;
     }
 
     // Asserts that the response status code is in the 2xx range.

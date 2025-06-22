@@ -36,12 +36,12 @@ class DTestSession {
     // Returns given session variable, or all of them, if no parameters given.
     Json read(string sessionName = null) {
         if (_session is null) {
-            return Json(null);
+            return Null!Json;
         }
         // TODO 
         /* if (sessionName.isNull) {
-            return _session ? _session : Json(null);
+            return _session ? _session : Null!Json;
         } */ 
-        return Json(null); // TODO Hash.get(_session, sessionName);
+        return Null!Json; // TODO Hash.get(_session, sessionName);
     } 
 }
