@@ -1,4 +1,4 @@
-module uim.vibe.data.json.get;
+module uim.vibe.datatypes.json.get;
 
 mixin(Version!("test_uim_vibe"));
 

@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.vibe.data.json.string_;
+module uim.vibe.datatypes.json.string_;
 
 mixin(Version!("test_uim_vibe"));
 

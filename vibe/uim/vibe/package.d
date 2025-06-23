@@ -14,7 +14,7 @@ public {
   import uim.vibe.datatypes;
  */
   import uim.vibe.convert;
-  import uim.vibe.data;
+  import uim.vibe.datatypes;
   import uim.vibe.enumerations;
   import uim.vibe.http;
   import uim.vibe.mixins;

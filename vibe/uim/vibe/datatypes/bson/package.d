@@ -1,2 +1,2 @@
-module uim.vibe.data.bson;
+module uim.vibe.datatypes.bson;
 
