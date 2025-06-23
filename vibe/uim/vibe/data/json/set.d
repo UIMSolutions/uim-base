@@ -11,37 +11,20 @@ import uim.vibe;
 
 @safe:
 
-// #region set
-Json[string] setValues(Json[string] map, Json[string] values) {
-  foreach(kv; values.byKeyValue) {
-    map = map.setValue(kv.key, kv.value);
-  }
-  return map;
-}
-
-Json[string] setValues(Json[string] map, string[] keys, Json value) {
-  keys.each!(key => map = map.setValue(key, value));
-  return map;
-}
-
-Json[string] setValue(Json[string] map, string key, Json value) {
-  map[key] = value;
-  return map;
-}
 
 Json setValues(Json json, Json[string] map) {
   foreach(kv; map.byKeyValue) {
-    json = json.setValue(kv.key, kv.value);
+    json = json.set(kv.key, kv.value);
   }
   return json;
 }
 
 Json setValues(Json json, string[] keys, Json value) {
-  keys.each!(key => json = json.setValue(key, value));
+  keys.each!(key => json = json.set(key, value));
   return json;
 }
 
-Json setValue(T)(Json json, string[] path, T value) {
+Json setPath(T)(Json json, string[] path, T value) {
   return setValue(json, path, Json(value));
 }
 
@@ -50,10 +33,12 @@ Json setPath(T:Json)(Json json, string[] path, T value) {
     return json;
   }
 
+  // path.length > 0 
   if (path.length == 1) {
     return json.setValue(path[0], value);
   }
 
+  // path.length > 1 
   auto key = path[0];
   if (key !in json) {
     json[key] = Json.emptyObject;
@@ -133,6 +118,16 @@ unittest {
 }
  */
 // #region Json[string]
+Json[string] setValues(Json[string] map, Json[string] values) {
+  values.byKeyValue.each!(kv => map = map.set(kv.key, kv.value));
+  return map;
+}
+
+Json[string] setValues(Json[string] map, string[] keys, Json value) {
+  keys.each!(key => map = map.set(key, value));
+  return map;
+}
+
 Json[string] set(T)(Json[string] data, T[string] values) {
   auto results = data.dup;
   values.each!((key, value) => results = results.set(key, value));
@@ -164,9 +159,6 @@ Json[string] setPath(T)(Json[string] data, string[] path, T value) {
   return result;
 }
 
-Json[string] set(V : Json, T)(V[string] data, string key, T value) if (!is(V == T)) {
-  return set(data, key, value.toJson);
-}
 
 Json[string] setObject(Json[string] data, string[] keys) {
   return data.set(keys, Json.emptyObject);
@@ -185,11 +177,15 @@ Json[string] setArray(Json[string] data, string key) {
 }
 
 Json[string] setNull(Json[string] data, string[] keys) {
-  return data.set(keys, Json(null));
+  return data.set(keys, Null!Json);
 }
 
 Json[string] setNull(Json[string] data, string key) {
-  return data.set(key, Json(null));
+  return data.set(key, Null!Json);
+}
+
+Json[string] set(V : Json, T)(V[string] data, string key, T value) if (!is(V == T)) {
+  return set(data, key, value.toJson);
 }
 
 Json[string] set(Json[string] data, string key, Json value) {

@@ -131,9 +131,6 @@ unittest {
 }
 // #endregion
 
-
-
-
 Json toJson(string[] values) {
   auto json = Json.emptyArray;
   values.each!(value => json ~= value);
