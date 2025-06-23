@@ -27,6 +27,47 @@ Json firstHasKey(Json[] items, string key) {
 Json firstWithoutKey(Json[] items, string key) {
   return items.filterWithoutKey(key).first;
 }
+
+unittest {
+  // Prepare test data
+  Json obj1 = ["a": 1, "b": 2].toJson;
+  Json obj2 = ["x": 10].toJson;
+  Json arr1 = [1, 2, 3].toJson;
+  Json str1 = "hello".toJson;
+  Json num1 = 42.toJson;
+
+  Json[] items = [obj1, arr1, str1, obj2, num1];
+
+  // Test firstObject
+  assert(firstObject(items) == obj1);
+
+  // Test firstNotObject
+  assert(firstNotObject(items) == arr1);
+
+  // Test firstHasKey
+  assert(firstHasKey(items, "x") == obj2);
+  assert(firstHasKey(items, "a") == obj1);
+
+  // Test firstWithoutKey
+  assert(firstWithoutKey(items, "a") == obj2);
+
+  // Test with empty array
+  Json[] emptyItems;
+  assert(firstObject(emptyItems).isNull);
+  assert(firstNotObject(emptyItems).isNull);
+  assert(firstHasKey(emptyItems, "any").isNull);
+  assert(firstWithoutKey(emptyItems, "any").isNull);
+
+  // Test with no matching object
+  Json[] onlyArrays = [arr1, str1, num1];
+  assert(firstObject(onlyArrays).isNull);
+  assert(firstHasKey(onlyArrays, "z").isNull);
+
+  // Test with all objects
+  Json[] onlyObjects = [obj1, obj2];
+  assert(firstNotObject(onlyObjects).isNull);
+  assert(firstWithoutKey(onlyObjects, "a") == obj2);
+}
 // #endregion Json[]
 
 // #region Json
