@@ -21,7 +21,26 @@ bool isBigInteger(Json json, bool strict = true) {
 }
 
 unittest {
-  assert(parseJsonString(`1000000000000000000000`).isBigInteger);
-  assert(!parseJsonString(`1`).isBigInteger);
+    // Test: Large integer should be recognized as BigInteger
+    auto bigIntJson = parseJsonString(`1000000000000000000000`);
+    assert(bigIntJson.isBigInteger, "Failed: Large integer not recognized as BigInteger");
+
+    // Test: Small integer should not be recognized as BigInteger
+    auto smallIntJson = parseJsonString(`1`);
+    assert(!smallIntJson.isBigInteger, "Failed: Small integer incorrectly recognized as BigInteger");
+
+    // Test: Non-integer types should not be recognized as BigInteger
+    auto floatJson = parseJsonString(`1.23`);
+    assert(!floatJson.isBigInteger, "Failed: Float incorrectly recognized as BigInteger");
+
+    auto stringJson = parseJsonString(`"1000000000000000000000"`);
+    assert(!stringJson.isBigInteger, "Failed: String incorrectly recognized as BigInteger");
+
+    auto boolJson = parseJsonString(`true`);
+    assert(!boolJson.isBigInteger, "Failed: Boolean incorrectly recognized as BigInteger");
+
+    auto nullJson = parseJsonString(`null`);
+    assert(!nullJson.isBigInteger, "Failed: Null incorrectly recognized as BigInteger");
 }
+
 // #endregion is

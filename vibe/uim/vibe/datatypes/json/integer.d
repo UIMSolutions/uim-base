@@ -11,7 +11,7 @@ import uim.vibe;
 
 @safe:
 
-// #region isInteger
+// #region is
 // #region Json[string]
 bool isAllInteger(Json[string] map, bool strict = true) {
   return map.byValue.all!(value => value.isInteger(strict));
@@ -31,6 +31,65 @@ bool isAnyInteger(Json[string] map, string[] keys, bool strict = true) {
 
 bool isInteger(Json[string] map, string key, bool strict = true) {
   return key in map && map[key].isInteger(strict);
+}
+
+unittest {
+  // Test isInteger(Json[string] map, string key, bool strict = true)
+  {
+    Json[string] map;
+    map["a"] = Json(1);
+    map["b"] = Json(2.0);
+    map["c"] = Json("3");
+    assert(map.isInteger("a"));
+    assert(!map.isInteger("b"));
+    assert(!map.isInteger("c"));
+    assert(!map.isInteger("d")); // key not present
+  }
+
+  // Test isAnyInteger(Json[string] map, bool strict = true)
+  {
+    Json[string] map;
+    map["a"] = Json("x");
+    map["b"] = Json(2);
+    assert(map.isAnyInteger);
+    map["a"] = Json("y");
+    map["b"] = Json("z");
+    assert(!map.isAnyInteger);
+  }
+
+  // Test isAnyInteger(Json[string] map, string[] keys, bool strict = true)
+  {
+    Json[string] map;
+    map["a"] = Json("x");
+    map["b"] = Json(2);
+    map["c"] = Json(3.0);
+    assert(map.isAnyInteger(["a", "b"]));
+    assert(!map.isAnyInteger(["a", "c"]));
+    assert(map.isAnyInteger(["b", "c"]));
+  }
+
+  // Test isAllInteger(Json[string] map, bool strict = true)
+  {
+    Json[string] map;
+    map["a"] = Json(1);
+    map["b"] = Json(2);
+    assert(map.isAllInteger);
+    map["c"] = Json(3.0);
+    assert(!map.isAllInteger);
+    map["d"] = Json("4");
+    assert(!map.isAllInteger);
+  }
+
+  // Test isAllInteger(Json[string] map, string[] keys, bool strict = true)
+  {
+    Json[string] map;
+    map["a"] = Json(1);
+    map["b"] = Json(2);
+    map["c"] = Json("3");
+    assert(map.isAllInteger(["a", "b"]));
+    assert(!map.isAllInteger(["a", "b", "c"]));
+    assert(!map.isAllInteger(["c"]));
+  }
 }
 // #endregion Json[string]
 

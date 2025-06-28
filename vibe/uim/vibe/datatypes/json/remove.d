@@ -13,7 +13,9 @@ import uim.vibe;
 
 // #region Json[string]
 Json[string] removeAll(Json[string] map) {
-  map.keys.each!(key => map.remove(key));
+  // Collect keys first to avoid mutating during iteration
+  auto keys = map.keys.array;
+  keys.each!(key => map.remove(key));
   return map;
 }
 
@@ -31,6 +33,56 @@ Json[string] remove(Json[string] map, string key) {
     map.remove(key);
   }
   return map;
+}
+
+unittest {
+    // Test removeAll(Json[string])
+    Json[string] map = [
+        "a": Json("1"),
+        "b": Json("2"),
+        "c": Json("3")
+    ];
+    auto cleared = removeAll(map.dup);
+    assert(cleared.length == 0);
+
+    // Test remove(Json[string], string[])
+    map = [
+        "a": Json("1"),
+        "b": Json("2"),
+        "c": Json("3")
+    ];
+    auto removed = remove(map.dup, ["a", "c"]);
+    assert(removed.length == 1);
+    assert("b" in removed);
+    assert(!("a" in removed));
+    assert(!("c" in removed));
+
+    // Test remove(Json[string], string)
+    map = [
+        "a": Json("1"),
+        "b": Json("2"),
+        "c": Json("3")
+    ];
+    auto removedOne = remove(map.dup, "b");
+    assert(removedOne.length == 2);
+    assert("a" in removedOne);
+    assert("c" in removedOne);
+    assert(!("b" in removedOne));
+
+    // Test remove(Json[string], string) with non-existent key
+    map = [
+        "a": Json("1"),
+        "b": Json("2")
+    ];
+    auto removedNonExistent = remove(map.dup, "z");
+    assert(removedNonExistent.length == 2);
+    assert("a" in removedNonExistent);
+    assert("b" in removedNonExistent);
+
+    // Test remove(Json[string], string) with null map
+    Json[string] nullMap;
+    auto result = remove(nullMap, "a");
+    assert(result is nullMap);
 }
 // #endregion Json[string]
 

@@ -8,6 +8,7 @@ module uim.vibe.datatypes.json.double_;
 mixin(Version!("test_uim_vibe"));
 
 import uim.vibe;
+
 @safe:
 
 // #region is
@@ -20,11 +21,47 @@ bool isDouble(Json value, bool strict = true) {
   return (value.type == Json.Type.float_);
 }
 
-unittest { // Json
-  assert(!Json(true).isDouble);  
-  assert(!Json(10).isDouble);  
-  assert(Json(1.1).isDouble);  
-  assert(!Json("text").isDouble);
+unittest {
+  // Test with float value
+  Json floatVal = Json(3.14);
+  assert(isDouble(floatVal));
+  assert(floatVal.isDouble);
+
+  // Test with integer value
+  Json intVal = Json(42);
+  assert(!isDouble(intVal));
+  assert(!intVal.isDouble);
+
+  // Test with boolean value
+  Json boolVal = Json(true);
+  assert(!isDouble(boolVal));
+  assert(!boolVal.isDouble);
+
+  // Test with string value
+  Json strVal = Json("test");
+  assert(!isDouble(strVal));
+  assert(!strVal.isDouble);
+
+  // Test with null value
+  Json nullVal = Json.init;
+  assert(!isDouble(nullVal));
+  assert(!nullVal.isDouble);
+
+  // Test with array value
+  Json arrVal = Json.emptyArray;
+  assert(!isDouble(arrVal));
+  assert(!arrVal.isDouble);
+
+  // Test with object value
+  Json objVal = Json.emptyObject;
+  assert(!isDouble(objVal));
+  assert(!objVal.isDouble);
+
+  // Test with strict = false (should still only return true for float)
+  assert(isDouble(floatVal, false));
+  assert(!isDouble(intVal, false));
+  assert(!isDouble(boolVal, false));
+  assert(!isDouble(strVal, false));
 }
 
 unittest { // Json[]
@@ -99,8 +136,8 @@ unittest {
   assert(list.getDoubleAt(1) != 1.0);
 
   auto map = ["One": Json(1.0), "Two": Json(2.0)];
-  assert(map.getDouble("One") == 1.0);  
-  assert(map.getDouble("Two") != 1.0);  
+  assert(map.getDouble("One") == 1.0);
+  assert(map.getDouble("Two") != 1.0);
 }
 // #endregion get
 

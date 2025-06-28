@@ -89,14 +89,6 @@ unittest {
   assert(map.isBoolean("t"));  
   assert(map.isBoolean("f"));  
 
-  /* assert(map.isAnyBoolean("one", "t"));  
-  assert(map.isAnyBoolean("f", "t"));  
-  assert(!map.isAnyBoolean("one", "alfa"));  
-
-  assert(map.isAllBoolean("f", "t"));
-  assert(!map.isAllBoolean("f", "alfa"));  
-  assert(!map.isAllBoolean("one", "alfa"));   */
-
   map = Json.emptyObject;
   map["t"] = Json(true);  
   map["f"] = Json(false);
