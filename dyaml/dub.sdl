@@ -12,8 +12,8 @@ targetType "library"
 // Exteral dependencies
 dependency "dyaml" version="~>0.10.0"
 
-sourcePaths "."
-importPaths "."
+sourcePaths "uim"
+importPaths "uim"
 
 // configuration "default" {}
 

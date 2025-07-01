@@ -11,8 +11,8 @@ targetType "library"
 
 dependency "uim-base:core" version="*"
 
-sourcePaths "."
-importPaths "."
+sourcePaths "uim"
+importPaths "uim"
 
 
 // configuration "default" {}
