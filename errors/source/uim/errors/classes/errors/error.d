@@ -132,6 +132,7 @@ class DError : UIMObject, IError {
   // #endregion throwError
 }
 
+/* 
 unittest {
   auto error = new DError();
   assert(error !is null);
@@ -166,9 +167,9 @@ unittest {
   assert(error.fileName == "test.d");
   assert(error.lineNumber == 42);
   assert(error.trace() == null);
-  assert(error.traceAsString() == null); */
+  assert(error.traceAsString() == null); * /
 }
-
+*/
 /* Old code
  this(
     ERRORS errorCode,

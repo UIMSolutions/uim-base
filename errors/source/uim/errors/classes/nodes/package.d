@@ -3,16 +3,15 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.errors.classes;
+module uim.errors.classes.nodes;
 
 public {
-  import uim.errors.classes.controllers;
-  import uim.errors.classes.debuggers;
-  import uim.errors.classes.errors;
-  import uim.errors.classes.formatters;
-  import uim.errors.classes.loggers;
-
-  // import uim.errors.classes.middlewares;
-  import uim.errors.classes.nodes;
-  import uim.errors.classes.renderers;
+    import uim.errors.classes.nodes.array_;
+    import uim.errors.classes.nodes.class_;
+    import uim.errors.classes.nodes.arrayitem;
+    import uim.errors.classes.nodes.node;
+    import uim.errors.classes.nodes.property;
+    import uim.errors.classes.nodes.reference;
+    import uim.errors.classes.nodes.scalar;
+    import uim.errors.classes.nodes.special;
 }
