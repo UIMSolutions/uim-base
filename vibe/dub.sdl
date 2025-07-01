@@ -16,12 +16,12 @@ dependency "colored" version="~>0.0.31"
 
 dependency "uim-base:phobos" path=".."
 
-configuration "test_uim_vibe" {
+configuration "test_library" {
 	targetType "library"
 	versions "test_uim_vibe"
 }
 
-configuration "test_uim_all" {
+configuration "test_all" {
 	targetType "library"
 	versions "test_uim_vibe" "test_uim_phobos"
 }

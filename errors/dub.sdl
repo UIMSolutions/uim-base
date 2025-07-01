@@ -11,7 +11,7 @@ targetType "library"
 
 dependency "uim-base:oop" path=".."
 
-configuration "test_uim_errors" {
+configuration "test_library" {
 	targetType "library"
 	versions "test_uim_errors"
 }

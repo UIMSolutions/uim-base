@@ -14,14 +14,6 @@ dependency "vibe-d" version="~>0.10.2"
 dependency "unit-threaded" version="~>2.2.2"
 dependency "colored" version="~>0.0.31"
 
-configuration "unittest" {
-    dependency "unit-threaded" version="*"
-    // mainSourceFile "bin/ut.d"
-    // excludedSourceFiles "src/main.d"
-    // targetType "executable"
-    // preBuildCommands "$DUB run --compiler=$$DC unit-threaded -c gen_ut_main -- -f bin/ut.d -d $DUB"
-}
-
-configuration "test_uim_phobos" {
+configuration "test_library" {
 	versions "test_uim_phobos"
 }
