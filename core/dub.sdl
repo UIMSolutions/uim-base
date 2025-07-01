@@ -17,9 +17,6 @@ dependency "colored" version="~>0.0.31"
 dependency "uim-base:phobos" path=".."
 dependency "uim-base:vibe" path=".."
 
-sourcePaths "uim"
-importPaths "uim"
-
 // configuration "default" {}
 
 configuration "test_uim_core" {

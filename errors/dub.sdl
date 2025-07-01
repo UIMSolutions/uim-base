@@ -11,13 +11,11 @@ targetType "library"
 
 dependency "uim-base:oop" path=".."
 
-sourcePaths "uim"
-importPaths "uim"
-
 configuration "test_uim_errors" {
 	targetType "library"
 	versions "test_uim_errors"
 }
+
 configuration "test_all" {
 	targetType "library"
 	versions "test_uim_core" "test_uim_oop" "test_uim_errors"

@@ -11,12 +11,10 @@ targetType "library"
 
 dependency "uim-base:core" version="*"
 
-sourcePaths "uim"
-importPaths "uim"
-
-
-// configuration "default" {}
- 
+configuration "default" {
+	targetType "library"
+}
+	
 configuration "test_uim_oop" {
 	versions "test_uim_oop"
 }
