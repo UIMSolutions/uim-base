@@ -29,12 +29,12 @@ Json[] filterWithoutKey(Json[] items, string key) {
 
 unittest {
   // Prepare test data
-  Json obj1 = Json(["a": 1, "b": 2]);
-  Json obj2 = Json(["b": 3]);
+  Json obj1 = ["a": 1, "b": 2].toJson;
+  Json obj2 = ["b": 3].toJson;
   Json arr = Json([1, 2, 3]);
   Json str = Json("hello");
   Json num = Json(42);
-  Json nullVal = Json.init;
+  Json nullVal = Json(null);
 
   Json[] items = [obj1, arr, str, obj2, num, nullVal];
 

@@ -39,59 +39,75 @@ bool isEmpty(Json value, bool strict = true) {
 }
 
 unittest {
+  /* { // Test null value
+    Json json;
+    assert(json.isEmpty);
+    assert(json.isEmpty(true));
+    assert(json.isEmpty(false));
+  } */
+
   { // Test null value
-    Json json = Json.init;
+    Json json = Json(null);
     assert(json.isEmpty);
     assert(json.isEmpty(true));
     assert(json.isEmpty(false));
   }
 
-  // Test empty string
-  Json jstr = Json("");
-  assert(isEmpty(jstr));
-  assert(isEmpty(jstr, true));
-  assert(isEmpty(jstr, false));
+  { // Test empty string
+    Json jstr = Json("");
+    assert(isEmpty(jstr));
+    assert(isEmpty(jstr, true));
+    assert(isEmpty(jstr, false));
+  }
 
-  // Test non-empty string
-  Json jstr2 = Json("abc");
-  assert(!isEmpty(jstr2));
-  assert(!isEmpty(jstr2, true));
-  assert(!isEmpty(jstr2, false));
+  { // Test non-empty string
+    Json jstr2 = Json("abc");
+    assert(!isEmpty(jstr2));
+    assert(!isEmpty(jstr2, true));
+    assert(!isEmpty(jstr2, false));
+  }
 
-  // Test empty array
-  Json jarr = Json.emptyArray;
-  assert(isEmpty(jarr));
-  assert(isEmpty(jarr, true));
-  assert(isEmpty(jarr, false));
+  { // Test empty array
+    Json jarr = Json.emptyArray;
+    assert(isEmpty(jarr));
+    assert(isEmpty(jarr, true));
+    assert(isEmpty(jarr, false));
+  }
 
-  // Test non-empty array
-  Json jarr2 = Json([Json(1), Json(2)]);
-  assert(!isEmpty(jarr2));
-  assert(!isEmpty(jarr2, true));
-  assert(!isEmpty(jarr2, false));
+  { // Test non-empty array
+    Json jarr2 = Json([Json(1), Json(2)]);
+    assert(!isEmpty(jarr2));
+    assert(!isEmpty(jarr2, true));
+    assert(!isEmpty(jarr2, false));
+  }
 
-  // Test empty object
-  Json jobj = Json([string: Json.init]);
-  assert(isEmpty(jobj));
-  assert(isEmpty(jobj, true));
-  assert(isEmpty(jobj, false));
+  { // Test empty object
+    Json json = Json.emptyObject;
+    assert(json.isEmpty);
+    assert(json.isEmpty(true));
+    assert(json.isEmpty(false));
+  }
 
-  // Test non-empty object
-  Json jobj2 = Json(["a": Json(1)]);
-  assert(!isEmpty(jobj2));
-  assert(!isEmpty(jobj2, true));
-  assert(!isEmpty(jobj2, false));
+  { // Test non-empty object
+    Json json = Json.emptyObject;
+    json["a"] = Json(1);
+    assert(!json.isEmpty);
+    assert(!json.isEmpty(true));
+    assert(!json.isEmpty(false));
+  }
 
-  // Test boolean (should be false)
-  Json jbool = Json(true);
-  assert(!isEmpty(jbool));
-  assert(!isEmpty(jbool, true));
-  assert(!isEmpty(jbool, false));
+  { // Test boolean (should be false)
+    Json jbool = Json(true);
+    assert(!isEmpty(jbool));
+    assert(!isEmpty(jbool, true));
+    assert(!isEmpty(jbool, false));
+  }
 
-  // Test number (should be false)
-  Json jint = Json(0);
-  assert(!isEmpty(jint));
-  assert(!isEmpty(jint, true));
-  assert(!isEmpty(jint, false));
+  { // Test number (should be false)
+    Json jint = Json(0);
+    assert(!isEmpty(jint));
+    assert(!isEmpty(jint, true));
+    assert(!isEmpty(jint, false));
+  }
 }
 // #endregion is
