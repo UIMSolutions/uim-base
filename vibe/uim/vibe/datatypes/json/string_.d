@@ -346,3 +346,12 @@ unittest {
     assert(result.length == 0);
 }
 // #endregion getStringMap
+
+/* string[string] getStringMap(Json json, string[string] defaultValue = null) {
+  if (!json.isObject) return defaultValue;
+
+  string[string] results;
+  json.byKeyValue.each!(kv => results[kv.key] = kv.value.getString);
+  return results;
+}
+ */
