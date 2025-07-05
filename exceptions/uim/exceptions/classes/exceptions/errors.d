@@ -12,7 +12,7 @@ import uim.exceptions;
 
 
 // Base error exception.
-class DErrorsException : DException {
+class UIMErrorsException : DException {
   mixin(ExceptionThis!("Errors"));
 
   override bool initialize(Json[string] initData = null) {

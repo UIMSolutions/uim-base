@@ -8,6 +8,7 @@ module uim.core.datatypes.boolean;
 mixin(Version!("test_uim_core"));
 
 import uim.core;
+
 @safe:
 
 // char[] BOOL(bool toogleValue) { return cast(char[])((toogleValue) ? `true`:`false`); }
@@ -19,22 +20,15 @@ bool toggle(bool value) {
 }
 
 unittest {
-  assert(toggle(true) == false, "Error in toggle(bool)");
-  assert(toggle(toggle(true)) == true, "Error in toggle(bool)");
-
-  bool value = true;
-  assert(value.toggle == false);
-  /* assert(value == false);
-
-  value = true;
-  assert(value.toggle.toggle == true); */
+  assert(toggle(true) == false, "toggle(true) should return false");
+  assert(toggle(false) == true, "toggle(false) should return true");
+  // Double toggle returns original value
+  assert(toggle(toggle(true)) == true, "toggle(toggle(true)) should return true");
+  assert(toggle(toggle(false)) == false, "toggle(toggle(false)) should return false");
 }
 // #endregion toogle
 
 // #region isBoolean
-
-
-
 
 // #endregion isBoolean
 

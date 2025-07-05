@@ -12,7 +12,7 @@ import uim.exceptions;
 
 
 // Represents a fatal error
-class DFatalErrorException : DErrorsException {
+class DFatalErrorException : UIMErrorsException {
     mixin(ExceptionThis!("FatalError"));
 
     this(
