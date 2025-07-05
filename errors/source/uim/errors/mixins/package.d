@@ -1,4 +1,4 @@
-module uim.errors.mixins.errors;
+module uim.errors.mixins;
 
 public {
     import uim.errors.mixins.controller;
@@ -9,4 +9,7 @@ public {
     import uim.errors.mixins.node;
     import uim.errors.mixins.renderer;
     import uim.errors.mixins.trap;
+
+    import uim.errors.mixins.errors;
+    import uim.errors.mixins.exceptions;
 }
