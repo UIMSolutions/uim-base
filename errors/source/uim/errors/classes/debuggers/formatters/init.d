@@ -1,4 +1,4 @@
-module uim.errors.classes.formatters.init;
+module uim.errors.classes.debuggers.formatters.init;
 
 import uim.errors;
 

@@ -1,4 +1,4 @@
-module uim.errors.classes.formatters.xml;
+module uim.errors.classes.debuggers.formatters.xml;
 
 mixin(Version!("test_uim_errors"));
 

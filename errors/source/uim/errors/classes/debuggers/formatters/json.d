@@ -1,4 +1,4 @@
-module uim.errors.classes.formatters.json;
+module uim.errors.classes.debuggers.formatters.json;
 
 mixin(Version!("test_uim_errors"));
 
