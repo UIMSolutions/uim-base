@@ -8,6 +8,5 @@ module uim.errors.factories;
 public {
     import uim.errors.factories.error;
     import uim.errors.factories.formatter;
-    import uim.errors.factories.middleware;
     import uim.errors.factories.renderer;
 }
