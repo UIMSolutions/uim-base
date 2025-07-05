@@ -8,9 +8,6 @@ module uim.errors.classes;
 public {
   import uim.errors.classes.debuggers;
   import uim.errors.classes.errors;
-  import uim.errors.classes.formatters;
-
+  import uim.errors.classes.exceptions;
   import uim.errors.classes.middlewares;
-  import uim.errors.classes.nodes;
-  import uim.errors.classes.renderers;
 }
