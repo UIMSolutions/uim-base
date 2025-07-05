@@ -16,7 +16,7 @@ import uim.errors;
  * Traps errors and converts them into HTML or content-type appropriate
  * error pages using the UIM ErrorRenderer.
  */
-class DErrorHandlerMiddleware : UIMObject, IErrorMiddleware {
+class UIMErrorHandlerMiddleware : UIMObject, IErrorMiddleware {
     this(Json[string] initData = null) {
         super(initData);
     }
@@ -42,7 +42,7 @@ class DErrorHandlerMiddleware : UIMObject, IErrorMiddleware {
         *  extend one of the listed errors will also not be logged. Example:
         *
         *  ```
-        *  "skipLog": ["uim\errors.NotFoundError", "uim\errors.UnauthorizedError"]
+        *  "skipLog": ["uim\errors.NotFounUIMError", "uim\errors.UnauthorizeUIMError"]
         *  ```
         *
         * - `trace` Should error logs include stack traces?

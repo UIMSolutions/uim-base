@@ -12,7 +12,7 @@ import uim.errors;
 @safe:
 
 // Debug node for special messages like errors or recursion warnings.
-class DSpecialErrorNode : DErrorNode {
+class DSpecialErrorNode : UIMErrorNode {
   mixin(ErrorNodeThis!("Special"));
 
   this(Json value) {

@@ -11,6 +11,5 @@ public { // Main class
 
 public { // Helper modules
   // import uim.errors.errors.handler;    
-  import uim.errors.classes.errors.logger;
-  import uim.errors.classes.errors.trap;
+  import uim.errors.classes.errors.error;
 }

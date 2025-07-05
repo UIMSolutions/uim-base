@@ -16,7 +16,7 @@ import uim.errors;
  *
  * @internal
  */
-class DHtmlErrorFormatter : DErrorFormatter {
+class DHtmlErrorFormatter : UIMErrorFormatter {
   mixin(ErrorFormatterThis!("Html"));
 
   protected static bool outputHeader = false;

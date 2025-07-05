@@ -11,7 +11,7 @@ import uim.errors;
 
 @safe:
 
-class DErrorFormatter : UIMObject, IErrorFormatter {
+class UIMErrorFormatter : UIMObject, IErrorFormatter {
   mixin(ErrorFormatterThis!());
 
   string _startBreak;

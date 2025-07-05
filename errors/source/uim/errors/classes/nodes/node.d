@@ -11,7 +11,7 @@ import uim.errors;
 
 @safe:
 
-class DErrorNode : UIMObject, IErrorNode {
+class UIMErrorNode : UIMObject, IErrorNode {
   mixin(ErrorNodeThis!());
 
   // #region value
@@ -52,7 +52,7 @@ unittest {
 /*   Json json = Json.emptyObject;
   json["a"] = 1;
 
-  auto node = new DErrorNode;
+  auto node = new UIMErrorNode;
   node.value(json);
   assert(node.value["a"] == 1);
   assert(node.children.length == 0); */

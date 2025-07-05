@@ -6,11 +6,11 @@ import uim.errors;
 
 @safe:
 
-class DErrorFormatterFactory : DFactory!DErrorFormatter {
+class UIMErrorFormatterFactory : DFactory!UIMErrorFormatter {
 }
 
 auto ErrorFormatterFactory() {
-    return DErrorFormatterFactory.factory;
+    return UIMErrorFormatterFactory.factory;
 }
 
 auto ErrorFormatterFactory(string key) {

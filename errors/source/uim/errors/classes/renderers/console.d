@@ -14,7 +14,7 @@ import uim.errors;
  * Plain text error rendering with a stack trace.
  * Writes to STDERR via a UIM\Console\OutputConsole instance for console environments
  */
-class DConsoleErrorRenderer : DErrorRenderer { 
+class DConsoleErrorRenderer : UIMErrorRenderer { 
   mixin(ErrorRendererThis!("Console"));
 
   override bool initialize(Json[string] initData = null) {
@@ -64,17 +64,17 @@ class DConsoleErrorRenderer : DErrorRenderer {
 /* unittest {
   auto renderer = new DConsoleErrorRenderer();
   // assert(is(typeof(renderer) == IErrorRenderer));
-  /* assert(renderer is DErrorRenderer);
+  /* assert(renderer is UIMErrorRenderer);
   assert(renderer is DConsoleErrorRenderer); */
 
-  /* auto error = new DError()
+  /* auto error = new UIMError()
     .message("This is a test error")
     .code("TEST_ERROR")
     .fileName(__FILE__)
     .lineNumber(33); */
 
-  /* assert(renderer.render(new DError("Test Error", "TEST_ERROR", "This is a test error", __FILE__, __LINE__), true) == "<error>Test Error: TEST_ERROR . This is a test error</error> on line 33 of errors/uim/errors/classes/renderers/consoles/error.d\n<info>Stack Trace:</info>\n\n");
-  assert(renderer.render(new DError("Test Error", "TEST_ERROR", "This is a test error", __FILE__, __LINE__), false) == "<error>Test Error: TEST_ERROR . This is a test error</error> on line 33 of errors/uim/errors/classes/renderers/consoles/error.d");
+  /* assert(renderer.render(new UIMError("Test Error", "TEST_ERROR", "This is a test error", __FILE__, __LINE__), true) == "<error>Test Error: TEST_ERROR . This is a test error</error> on line 33 of errors/uim/errors/classes/renderers/consoles/error.d\n<info>Stack Trace:</info>\n\n");
+  assert(renderer.render(new UIMError("Test Error", "TEST_ERROR", "This is a test error", __FILE__, __LINE__), false) == "<error>Test Error: TEST_ERROR . This is a test error</error> on line 33 of errors/uim/errors/classes/renderers/consoles/error.d");
   assert(renderer.showTrace(true) is renderer);
   assert(renderer.showTrace() == true);
   assert(renderer.showTrace(false) is renderer);
@@ -87,7 +87,7 @@ class DConsoleErrorRenderer : DErrorRenderer {
  *
  * Useful in CI or plain text environments.
  * /
-class DConsoleErrorRenderer : DErrorRenderer {
+class DConsoleErrorRenderer : UIMErrorRenderer {
     mixin(ErrorRendererThis!("Console"));
 
     private Throwable _error;
@@ -120,7 +120,7 @@ class DConsoleErrorRenderer : DErrorRenderer {
     }
 
     // Render an individual error
-    protected Json[string] renderError(DError error, DError parentError) {
+    protected Json[string] renderError(UIMError error, UIMError parentError) {
         /* auto result = [
             "<error>%s[%s] %s</error> in %s on line %s"
             .format(
@@ -133,7 +133,7 @@ class DConsoleErrorRenderer : DErrorRenderer {
         ]; * /
 
         // auto debugValue = configuration.getEntry("debug");
-/*         if (debugValue && cast(DError) errorToRender) {
+/*         if (debugValue && cast(UIMError) errorToRender) {
             auto attributes = errorToRender.getAttributes();
             if (attributes) {
                 result ~= "";

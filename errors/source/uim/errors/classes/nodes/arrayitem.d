@@ -12,7 +12,7 @@ import uim.errors;
 
 
 // Dump node for Array Items.
-class DArrayItemErrorNode : DErrorNode {
+class DArrayItemErrorNode : UIMErrorNode {
   mixin(ErrorNodeThis!("ArrayItem"));
 
   private IErrorNode _key;

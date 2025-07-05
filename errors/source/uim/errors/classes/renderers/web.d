@@ -10,7 +10,7 @@ mixin(Version!("test_uim_errors"));
 import uim.errors;
 @safe:
 
-class DWebErrorRenderer : DErrorRenderer { 
+class DWebErrorRenderer : UIMErrorRenderer { 
   mixin(ErrorRendererThis!("Web"));
 
   /**
@@ -46,7 +46,7 @@ class DWebErrorRenderer : DErrorRenderer {
   // Controller instance.
   protected IErrorController controller;
 
-  // Template to render for {@link \UIM\Core\Error\DError}
+  // Template to render for {@link \UIM\Core\Error\UIMError}
   protected string _template = "";
 
   // The method corresponding to the Error this object is for.
@@ -83,7 +83,7 @@ class DWebErrorRenderer : DErrorRenderer {
     MissingActionError.classname: 404,
     // Datasource errors
     PageOutOfBoundsError.classname: 404,
-    RecordNotFoundError.classname: 404,
+    RecordNotFounUIMError.classname: 404,
     // Http errors
     MissingControllerError.classname: 404,
     // Routing errors
@@ -204,7 +204,7 @@ class DWebErrorRenderer : DErrorRenderer {
         _controller.set(viewVars);
         _controller.viewBuilder().setOption("serialize", serialize);
 
-        if (cast(DError) error && isDebug) {
+        if (cast(UIMError) error && isDebug) {
             _controller.set(error.getAttributes());
         }
         _controller.setResponse(response);
@@ -214,7 +214,7 @@ class DWebErrorRenderer : DErrorRenderer {
     } */
 
   // Emit the response content
-  alias write = DErrorRenderer.write;
+  alias write = UIMErrorRenderer.write;
   void write(string outputText) {
     writeln(outputText);
   }

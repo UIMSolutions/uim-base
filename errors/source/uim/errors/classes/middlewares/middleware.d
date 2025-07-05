@@ -11,7 +11,7 @@ import uim.errors;
 
 @safe:
 
-class DErrorMiddleware : UIMObject, IErrorMiddleware {
+class UIMErrorMiddleware : UIMObject, IErrorMiddleware {
   this(Json[string] initData = null) {
     super(initData);
   }

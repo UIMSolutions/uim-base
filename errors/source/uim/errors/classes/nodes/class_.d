@@ -12,7 +12,7 @@ import uim.errors;
 @safe:
 
 // Dump node for objects/class instances.
-class DClassErrorNode : DErrorNode {
+class DClassErrorNode : UIMErrorNode {
   mixin(ErrorNodeThis!("Class"));
 
   this(string classname, int anId) {

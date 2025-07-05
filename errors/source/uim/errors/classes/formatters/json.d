@@ -6,6 +6,6 @@ import uim.errors;
 
 @safe:
 
-class DJsonErrorFormatter : DErrorFormatter {
+class DJsonErrorFormatter : UIMErrorFormatter {
   mixin(ErrorFormatterThis!("Json"));
 }

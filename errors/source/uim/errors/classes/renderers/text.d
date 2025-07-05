@@ -14,7 +14,7 @@ import uim.errors;
  * Plain text error rendering with a stack trace.
  * Useful in CI or plain text environments.
  */
-class DTextErrorRenderer : DErrorRenderer {
+class DTextErrorRenderer : UIMErrorRenderer {
   mixin(ErrorRendererThis!("Text"));
 
   private IError _error;

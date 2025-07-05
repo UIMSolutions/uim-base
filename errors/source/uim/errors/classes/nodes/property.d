@@ -12,7 +12,7 @@ import uim.errors;
 @safe:
 
 // Dump node for object properties.
-class DPropertyErrorNode : DErrorNode {
+class DPropertyErrorNode : UIMErrorNode {
   mixin(ErrorNodeThis!("Property"));
 
   private IErrorNode _propertyValue;
@@ -45,7 +45,7 @@ class DPropertyErrorNode : DErrorNode {
 
 /* 
 unittest {
-  auto dummy = new DErrorNode("dummyValue");
+  auto dummy = new UIMErrorNode("dummyValue");
   auto node = new DPropertyErrorNode("propName", "public", dummy);
 
   // Act & Assert

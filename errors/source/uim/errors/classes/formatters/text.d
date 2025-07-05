@@ -12,7 +12,7 @@ import uim.errors;
 @safe:
 
 // A Debugger formatter for generating unstyled plain text output.
-class DTextErrorFormatter : DErrorFormatter {
+class DTextErrorFormatter : UIMErrorFormatter {
   mixin(ErrorFormatterThis!("Text"));
 
   string formatWrapper(string content, Json[string] location) {

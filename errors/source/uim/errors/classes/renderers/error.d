@@ -21,7 +21,7 @@ import uim.errors;
  * #### Using a subclass of ErrorRenderer
  */
 
-class DErrorRenderer : UIMObject, IErrorRenderer {
+class UIMErrorRenderer : UIMObject, IErrorRenderer {
   mixin(ErrorRendererThis!());
 
   override bool initialize(Json[string] initData = null) {
@@ -76,7 +76,7 @@ class DErrorRenderer : UIMObject, IErrorRenderer {
         MissingActionError.classname: 404,
         // Datasource errors
         PageOutOfBoundsError.classname: 404,
-        RecordNotFoundError.classname: 404,
+        RecordNotFounUIMError.classname: 404,
         // Http errors
         MissingControllerError.classname: 404,
         // Routing errors
@@ -176,7 +176,7 @@ class DErrorRenderer : UIMObject, IErrorRenderer {
         auto myUrl = _controller.getRequest().getRequestTarget();
         auto response = _controller.getResponse();
 
-        if (cast(DError)myError) {
+        if (cast(UIMError)myError) {
             /** @psalm-suppress DeprecatedMethod * /
             foreach (/* (array) * /myError.responseHeader() as myKey: myValue) {
                 response = response.withHeader(myKey, myValue);
@@ -214,7 +214,7 @@ class DErrorRenderer : UIMObject, IErrorRenderer {
         _controller.set(viewVars);
         _controller.viewBuilder().setOption("serialize", serialize);
 
-        if (cast(DError)myError && Configure.hasKey("debug")) {
+        if (cast(UIMError)myError && Configure.hasKey("debug")) {
             _controller.set(myError.getAttributes());
         }
         _controller.setResponse(response);
@@ -386,7 +386,7 @@ import uim.errors;
  * Using a subclass of ErrorRenderer gives you full control over how Errors are rendered, you
  * can configure your class in your config/app.D.
  * /
-class DErrorRenderer { // }: IErrorRenderer
+class UIMErrorRenderer { // }: IErrorRenderer
   this() {
     initialize();
   }
@@ -408,7 +408,7 @@ class DErrorRenderer { // }: IErrorRenderer
   // Controller instance.
   // protected IErrorController controller;
 
-  // Template to render for {@link uim.Core\errors.DError}
+  // Template to render for {@link uim.Core\errors.UIMError}
   protected string _template = "";
 
   // The method corresponding to the Error this object is for.
@@ -432,7 +432,7 @@ class DErrorRenderer { // }: IErrorRenderer
         MissingActionError.classname: 404,
         // Datasource errors
         PageOutOfBoundsError.classname: 404,
-        RecordNotFoundError.classname: 404,
+        RecordNotFounUIMError.classname: 404,
         // Http errors
         MissingControllerError.classname: 404,
         // Routing errors
@@ -532,7 +532,7 @@ class DErrorRenderer { // }: IErrorRenderer
         auto myUrl = _controller.getRequest().getRequestTarget();
         auto response = _controller.getResponse(); * /
 
-    /* if (cast(DError) error) {
+    /* if (cast(UIMError) error) {
             /** @psalm-suppress DeprecatedMethod * /
     /* foreach (myKey, myValue; /* (array) * /error.responseHeader()) {
                 response = response.withHeader(myKey, myValue);
@@ -574,7 +574,7 @@ class DErrorRenderer { // }: IErrorRenderer
     _controller.set(viewVars);
     _controller.viewBuilder().setOption("serialize", serialize);
 
-    if (cast(DError) error && isDebug) {
+    if (cast(UIMError) error && isDebug) {
       _controller.set(error.getAttributes());
     }
     _controller.setResponse(response);

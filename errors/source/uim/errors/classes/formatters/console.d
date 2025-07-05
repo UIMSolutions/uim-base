@@ -11,7 +11,7 @@ import uim.errors;
 @safe:
 
 // Debugger formatter for generating output with ANSI escape codes
-class DConsoleErrorFormatter : DErrorFormatter {
+class DConsoleErrorFormatter : UIMErrorFormatter {
   mixin(ErrorFormatterThis!("Console"));
 
   // text colors used in colored output.

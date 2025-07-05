@@ -5,5 +5,5 @@ mixin(Version!"test_uim_errors");
 import uim.errors;
 @safe:
 
-class DErrorFactory : DFactory!DError {}
-auto ErrorFactory() { return DErrorFactory.factory; }
+class UIMErrorFactory : DFactory!UIMError {}
+auto ErrorFactory() { return UIMErrorFactory.factory; }

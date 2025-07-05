@@ -6,7 +6,7 @@ import uim.errors;
 
 @safe:
 
-class DYamlErrorFormatter : DErrorFormatter {
+class DYamlErrorFormatter : UIMErrorFormatter {
   mixin(ErrorFormatterThis!("Yaml"));
 }
 mixin(ErrorFormatterCalls!("Yaml"));

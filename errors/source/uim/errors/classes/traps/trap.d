@@ -25,7 +25,7 @@ import uim.errors;
  *
  * If undefined, an ErrorRenderer will be selected based on the current SAPI (CLI or Web).
  */
-class DErrorTrap : UIMObject {
+class UIMErrorTrap : UIMObject {
     mixin(ErrorTrapThis!());
     // mixin TEventDispatcher;
 
@@ -50,7 +50,7 @@ class DErrorTrap : UIMObject {
         * - `skipLog` - array - List of errors to skip for logging. Errors that
         *  extend one of the listed errors will also not be logged. E.g.:
         *  ```
-        *  "skipLog": ["uim\Http\errors.NotFoundError", "uim\Http\errors.UnauthorizedError"]
+        *  "skipLog": ["uim\Http\errors.NotFounUIMError", "uim\Http\errors.UnauthorizeUIMError"]
         *  ```
         *  This option is forwarded to the configured `logger`
         * - `extraFatalErrorMemory` - int - The number of megabytes to increase the memory limit by when a fatal error is
@@ -177,7 +177,7 @@ class DErrorTrap : UIMObject {
      * is mutable and the object returned by this method
      * could be a stale value.
      */
-    static DErrorTrap instance() {
+    static UIMErrorTrap instance() {
         // return registeredTrap;
         return null;
     }

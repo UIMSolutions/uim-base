@@ -16,7 +16,7 @@ import uim.errors;
  * Traps errors and converts them into HTML or content-type appropriate
  * error pages using the UIM ErrorRenderer.
  */
-class DErrorHandlerMiddleware : UIMObject, IErrorMiddleware {
+class UIMErrorHandlerMiddleware : UIMObject, IErrorMiddleware {
     this(Json[string] initData = null) {
         super(initData);
     }

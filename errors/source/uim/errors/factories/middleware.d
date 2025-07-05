@@ -5,5 +5,5 @@ mixin(Version!"test_uim_errors");
 import uim.errors;
 @safe:
 
-class DErrorMiddlewareFactory : DFactory!DErrorMiddleware {}
-auto ErrorMiddlewareFactory() { return DErrorMiddlewareFactory.factory; }
+class UIMErrorMiddlewareFactory : DFactory!UIMErrorMiddleware {}
+auto ErrorMiddlewareFactory() { return UIMErrorMiddlewareFactory.factory; }

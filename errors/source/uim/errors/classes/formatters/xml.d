@@ -6,7 +6,7 @@ import uim.errors;
 
 @safe:
 
-class DXmlErrorFormatter : DErrorFormatter {
+class DXmlErrorFormatter : UIMErrorFormatter {
   mixin(ErrorFormatterThis!("Xml"));
 }
 mixin(ErrorFormatterCalls!("Xml"));

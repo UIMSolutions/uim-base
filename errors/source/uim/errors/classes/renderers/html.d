@@ -10,7 +10,7 @@ mixin(Version!("test_uim_errors"));
 import uim.errors;
 @safe:
 
-class DHtmlErrorRenderer : DErrorRenderer { 
+class DHtmlErrorRenderer : UIMErrorRenderer { 
   mixin(ErrorRendererThis!("Html"));
 }
 mixin(ErrorRendererCalls!("Html"));
