@@ -6,7 +6,6 @@
 module uim.errors.interfaces;
 
 public {
-  import uim.errors.interfaces.error;
 
   import uim.errors.interfaces.controller;
   import uim.errors.interfaces.debugger;
@@ -15,7 +14,6 @@ public {
   import uim.errors.interfaces.logger;
   import uim.errors.interfaces.middleware;
   import uim.errors.interfaces.node;
-  import uim.errors.interfaces.renderer;
 
   // 
   import uim.errors.interfaces.errors;
