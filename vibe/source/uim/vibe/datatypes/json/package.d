@@ -19,6 +19,7 @@ public {
   import uim.vibe.datatypes.json.has;
   import uim.vibe.datatypes.json.integer;
   import uim.vibe.datatypes.json.integral;
+  import uim.vibe.datatypes.json.isset;
   import uim.vibe.datatypes.json.json;
   import uim.vibe.datatypes.json.keys;
   import uim.vibe.datatypes.json.long_;

@@ -245,7 +245,7 @@ class ArrayHelper {
     /*         // assert(["c", "b", "x"].filter(v => v > "b") == ["x"]); */
   }
 
-  static V[] has(V)(V[] values, V value) {
+  static bool has(V)(V[] values, V value) {
     return values.any!(v => v == value);
   }
 

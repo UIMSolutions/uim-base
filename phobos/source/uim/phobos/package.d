@@ -46,7 +46,7 @@ public {
 }
 
 public {
-  import uim.phobos.algorithm;
+  import uim.phobos.algorithms;
   import uim.phobos.array;
   import uim.phobos.ascii;
   import uim.phobos.base64;

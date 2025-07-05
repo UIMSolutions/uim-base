@@ -8,8 +8,8 @@ module uim.core.datatypes.string_;
 mixin(Version!("test_uim_core"));
 
 import uim.core;
-@safe:
 
+@safe:
 
 string toJSONString(T)(T[string] values, bool sorted = NOTSORTED) {
   string result = "{" ~ MapHelper.sortedKeys(values)
@@ -64,8 +64,6 @@ unittest {
 }
 // #endregion bind
 
-
-
 string toString(string[] values) {
   return "%s".format(values);
 }
@@ -114,47 +112,72 @@ size_t[] indexOfAll(string text, string searchTxt) {
   return results;
 }
 
-*/ 
+*/
 
 // #region substring
 // subString() - returns a part of a string.
-// aText - String value
+// text - String value
 // startPos - Required. Specifies where to start in the string. Starting with 0 (first letter)
-// -- A positive number - Start at a specified position in the string
-// -- A negative number - Start at a specified position from the end of the string
-// -- 0 - Start at the first character in string
-string subString(string aText, long startPos) {
-  if (startPos == 0) {
-    return aText;
-  }
-
-  return startPos > 0
-    ? (startPos >= aText.length ? aText : aText[startPos .. $]) : (
-      -startPos >= aText.length ? aText : aText[0 .. $ + startPos]);
-}
-
-// same like subString(), with additional parameter length
 // length  - Specifies the length of the returned string. Default is to the end of the string.
 // A positive number - The length to be returned from the start parameter
 // Negative number - The length to be returned from the end of the string
 // If the length parameter is 0, NULL, or FALSE - it return an empty string
-string subString(string aText, size_t startPos, long aLength) {
-  auto myText = subString(aText, startPos);
-  return aLength > 0
-    ? (myText.length >= aLength ? myText[0 .. aLength] : myText) : (
-      myText.length >= -aLength ? myText[$ + aLength .. $] : myText);
+string subString(string text, int offset, int length = 0) {
+  if (abs(offset) >= text.length) {
+    return null;
+  }
+
+  int startPos = 0;
+  int endPos = to!int(text.length);
+
+  // If length is 0, return from offset to end
+  if (offset > 0) {
+    startPos = offset;
+  } else {
+    startPos = to!int(text.length) + offset;
+  }
+
+  endPos = length > 0
+    ? startPos + length : endPos + length;
+
+  startPos = max(0, startPos);
+  endPos = min(text.length, endPos);
+  if (startPos >= endPos) {
+    return null; // If start position is greater than or equal to end position, return null
+  }
+  return text[startPos .. endPos];
 }
 
 unittest {
-  version(test_uim_core) writeln("Testing subString()");
-  assert("This is a test".subString(4) == " is a test");
-  assert("This is a test".subString(-4) == "This is a ");
-
-  assert("0123456789".subString(4, 2) == "45");
-  assert("0123456789".subString(-4, 2) == "01");
-  assert("0123456789".subString(-4, -2) == "45");
-}
-// #endregion substring
+  // Basic positive offset, no length (should return from offset to end)
+  assert(subString("This is a test", 4) == " is a test");
+  // Negative offset, no length (should return from start to offset from end)
+  assert(subString("This is a test", -4) == "test");
+  // Positive offset, positive length
+  assert(subString("0123456789", 4, 2) == "45");
+  // Negative offset, positive length (should start at length-4, take 2 chars)
+  assert(subString("0123456789", -4, 2) == "67");
+  // Negative offset, negative length (should start at length-4, end at length-2)
+  assert(subString("0123456789", -4, -2) == "67");
+  // Offset out of bounds (too large)
+  assert(subString("abc", 10) is null);
+  // Offset out of bounds (too negative)
+  assert(subString("abc", -10) is null);
+  // Length zero (should return from offset to end)
+  assert(subString("abcdef", 2, 0) == "cdef");
+  // Length negative, end before start (should return null)
+  assert(subString("abcdef", 4, -5) is null);
+  // Length positive, end past string (should return from startPos to end)
+  assert(subString("abcdef", 3, 10) == "def");
+  // Offset at end of string (should return empty string)
+  assert(subString("abcdef", 6) == "");
+  // Offset at end of string, length positive (should return empty string)
+  assert(subString("abcdef", 6, 2) == "");
+  // Offset at end of string, length negative (should return null)
+  assert(subString("abcdef", 6, -1) is null);
+  // Empty string input
+  assert(subString("", 0) is null);
+} // #endregion substring
 
 // #region capitalizeWords
 string capitalizeWords(string aText, string separator = " ") {
@@ -195,30 +218,46 @@ size_t[string] countWords(string[] selectTexts, bool isCaseSensitive = true) {
 }
 
 unittest {
-  writeln("Testing countWords()");
-
   // assert(countWords("This is a test")["this"] == 0);
   assert(countWords("this is a test")["this"] == 1);
   assert(countWords("this is a this")["this"] == 2);
 }
 // #endregion countWords
 
-string repeatTxt(string text, size_t times) {
-  string result;
-  for (auto i = 0; i < times; i++) {
-    result ~= text;
+// #region repeatTxt
+string repeatTxt(string text, size_t times, string separator = "") {
+  if (times == 0) {
+    return null;
   }
-  return result;
+
+  return iota(0, times).map!(i => text).join(separator);
 }
 
 unittest {
-  writeln("Testing repeat()");
-
-  assert(repeatTxt("bla", 0) is null);
+  // Basic repetition, no separator
   assert(repeatTxt("bla", 2) == "blabla");
+  // Basic repetition, with separator
+  assert(repeatTxt("bla", 3, ",") == "bla,bla,bla");
+  // Repetition with empty string
+  assert(repeatTxt("", 3) == "");
+  // Repetition with separator and empty string
+  assert(repeatTxt("", 3, "-") == "--");
+  // Repetition with times = 1
+  assert(repeatTxt("abc", 1) == "abc");
+  // Repetition with times = 0 should return null
+  assert(repeatTxt("abc", 0) is null);
+  // Repetition with separator longer than text
+  assert(repeatTxt("x", 4, "123") == "x123x123x123x");
+  // Repetition with unicode
+  assert(repeatTxt("ü", 3, "|") == "ü|ü|ü");
 }
+// #endregion repeatTxt
 
-string firstElement(string text, string separator = ".") {
+// #region firstElement
+/// Returns the first element of a string separated by a separator.
+/// If the separator is not found, the whole string is returned.
+/// If the string is empty, an empty string is returned.
+string firstElement(string text, string separator = " ") {
   if (text.length == 0) {
     return text;
   }
@@ -229,13 +268,46 @@ string firstElement(string text, string separator = ".") {
 }
 
 unittest {
-  writeln("Testing firstElement()");
-
-  assert("a/b/c".firstElement("/") == "a");
-  assert("a.b.c".firstElement(".") == "a");
+  // Basic usage with default separator (space)
+  assert(firstElement("hello world") == "hello");
+  assert(firstElement("foo bar baz") == "foo");
+  // Separator at the start
+  assert(firstElement(" hello world") == "");
+  // Separator at the end (should return everything before separator)
+  assert(firstElement("hello ") == "hello");
+  // No separator present (should return the whole string)
+  assert(firstElement("helloworld") == "helloworld");
+  // Empty string input
+  assert(firstElement("") == "");
+  // Custom separator
+  assert(firstElement("a/b/c", "/") == "a");
+  assert(firstElement("foo|bar|baz", "|") == "foo");
+  // Separator not found with custom separator
+  assert(firstElement("abc-def", "/") == "abc-def");
+  // Multiple consecutive separators
+  assert(firstElement("a..b.c", ".") == "a");
+  assert(firstElement("..a.b", ".") == "");
+  // Separator is a multi-character string
+  assert(firstElement("abc--def--ghi", "--") == "abc");
+  assert(firstElement("--abc--def", "--") == "");
+  // Separator is a space, but no space present
+  assert(firstElement("abc") == "abc");
+  // Separator is a tab
+  assert(firstElement("foo\tbar\tbaz", "\t") == "foo");
+  // Separator is a comma
+  assert(firstElement("x,y,z", ",") == "x");
+  // Separator is at the end, custom separator
+  assert(firstElement("abc/", "/") == "abc");
+  // Separator is at the start, custom separator
+  assert(firstElement("/abc", "/") == "");
 }
+// #endregion firstElement
 
-string lastElement(string text, string separator = ".") {
+// #region lastElement
+/// Returns the last element of a string separated by a separator.
+/// If the separator is not found, the whole string is returned.
+/// If the string is empty, null is returned.
+string lastElement(string text, string separator = " ") {
   if (text.length == 0) {
     return null;
   }
@@ -249,11 +321,40 @@ string lastElement(string text, string separator = ".") {
 }
 
 unittest {
-  writeln("Testing lastElement()");
-
-  assert("a/b/c".lastElement("/") == "c");
-  assert("a.b.c".lastElement(".") == "c");
+  // Basic usage with default separator (space)
+  assert(lastElement("hello world") == "world");
+  assert(lastElement("foo bar baz") == "baz");
+  // Separator at the start (should return everything after the first separator)
+  assert(lastElement(" hello world") == "world");
+  // Separator at the end (should return empty string)
+  assert(lastElement("hello ") == "");
+  // No separator present (should return the whole string)
+  assert(lastElement("helloworld") == "helloworld");
+  // Empty string input (should return null)
+  assert(lastElement("") is null);
+  // Custom separator
+  assert(lastElement("a/b/c", "/") == "c");
+  assert(lastElement("foo|bar|baz", "|") == "baz");
+  // Separator not found with custom separator
+  assert(lastElement("abc-def", "/") == "abc-def");
+  // Multiple consecutive separators
+  assert(lastElement("a..b.c", ".") == "c");
+  assert(lastElement("..a.b", ".") == "b");
+  // Separator is a multi-character string
+  assert(lastElement("abc--def--ghi", "--") == "ghi");
+  assert(lastElement("--abc--def", "--") == "def");
+  // Separator is a space, but no space present
+  assert(lastElement("abc") == "abc");
+  // Separator is a tab
+  assert(lastElement("foo\tbar\tbaz", "\t") == "baz");
+  // Separator is a comma
+  assert(lastElement("x,y,z", ",") == "z");
+  // Separator is at the end, custom separator
+  assert(lastElement("abc/", "/") == "");
+  // Separator is at the start, custom separator
+  assert(lastElement("/abc", "/") == "abc");
 }
+// #endregion lastElement
 
 // #region toPath
 string toPath(string[] pathItems, string separator = ".") {
@@ -272,10 +373,6 @@ unittest {
   assert(["a ", "", "/b", "c/"].toPath("/") == "a/b/c");
 }
 // #region toPath
-
-
-
-
 
 string[] split(string text, string splitText = " ", int limit) {
   auto splits = std.string.split(text, splitText);
@@ -301,8 +398,6 @@ string[] split(string[] texts, string splitText = " ", int limit = 0) {
 
 ///
 unittest {
-  writeln("Testing ifNull()");
-
   string a = null;
   assert(isNull(a));
   assert(a.isNull);
@@ -317,16 +412,39 @@ unittest {
   assert(!"xyz".isNull);
 }
 
+// #region ifEmpty
+/// Returns the first string if it is not empty, otherwise returns the second string. 
 string ifEmpty(string check, string value) {
-  if (value.length > 0) {
-    return check;
-  }
-  return value;
+  return check.length > 0
+    ? check : value;
 }
+
+unittest {
+  // Returns check if not empty
+  assert(ifEmpty("abc", "xyz") == "abc");
+  assert(ifEmpty("0", "xyz") == "0");
+  assert(ifEmpty(" ", "xyz") == " ");
+
+  // Returns value if check is empty
+  assert(ifEmpty("", "xyz") == "xyz");
+  // Returns value if check is empty string, even if value is also empty
+  assert(ifEmpty("", "") == "");
+}
+// #endregion ifEmpty
 
 // #region mustache
 string mustache(string text, Json[string] items) {
   items.byKeyValue.each!(item => text = text.mustache(item.key, item.value));
+  return text;
+}
+
+string mustache(string text, Json map, string[] selectedKeys = null) {
+  if (!map.isObject) {
+    return text; // If items is not an object, return the original text
+  }
+  map.keys
+    .filter!(key => selectedKeys.length == 0 || selectedKeys.has(key))
+    .each!(key => text = text.mustache(key, map[key]));
   return text;
 }
 
@@ -343,7 +461,7 @@ string mustache(string text, string[] keys, string[] values) {
     text = text.mustache(keys[i], values[i]);
   }
   return text;
-} 
+}
 
 string mustache(string text, string key, Json value) {
   return std.string.replace(text, "{" ~ key ~ "}", value.toString);
@@ -354,8 +472,39 @@ string mustache(string text, string key, string value) {
 }
 
 unittest {
-  assert("A:{a}, B:{b}".mustache(["a": "x", "b": "y"]) == "A:x, B:y");
-  assert("A:{a}, B:{b}".mustache(["a": "a", "b": "b"]) != "A:x, B:y");
+  // Test mustache with string[string] items
+  assert(mustache("Hello {name}!", ["name": "World"]) == "Hello World!");
+  assert(mustache("A:{a}, B:{b}", ["a": "x", "b": "y"]) == "A:x, B:y");
+  assert(mustache("Nothing to replace", ["foo": "bar"]) == "Nothing to replace");
+  assert(mustache("{a}{b}{c}", ["a": "1", "b": "2", "c": "3"]) == "123");
+  assert(mustache("{a}{b}{c}", ["a": "1", "b": "2"]) == "12{c}");
+
+  // Test mustache with Json[string] items
+  Json[string] jmap;
+  jmap["x"] = Json("42");
+  jmap["y"] = Json("abc");
+  assert(mustache("X:{x}, Y:{y}", jmap) == "X:42, Y:abc");
+
+  // Test mustache with string[] keys and values
+  assert(mustache("A:{a}, B:{b}", ["a", "b"], ["foo", "bar"]) == "A:foo, B:bar");
+  assertThrown!Exception(mustache("A:{a}, B:{b}", ["a"], ["foo", "bar"]));
+
+  // Test mustache with string key/value
+  assert(mustache("Hello {who}!", "who", "world") == "Hello world!");
+  assert(mustache("{x}{y}", "x", "1") == "1{y}");
+
+  // Test mustache with string key/Json value
+  assert(mustache("Value: {val}", "val", Json(123)) == "Value: 123");
+  assert(mustache("{foo}", "foo", Json("bar")) == "bar");
+
+  // Test with missing placeholders
+  assert(mustache("No placeholders", ["a": "b"]) == "No placeholders");
+  assert(mustache("No {x}", "y", "z") == "No {x}");
+
+  // Test with empty input
+  assert(mustache("", ["a": "b"]) == "");
+  assert(mustache("", "a", "b") == "");
+  assert(mustache("", ["a"], ["b"]) == "");
 }
 // #endregion mustache
 
@@ -364,8 +513,7 @@ string doubleMustache(string text, Json[string] items, string[] selectedKeys = n
   if (selectedKeys.length > 0) {
     selectedKeys.filter!(key => key in items)
       .each!(key => text = text.doubleMustache(key, items[key]));
-  } 
-  else {
+  } else {
     items.byKeyValue.each!(item => text = text.doubleMustache(item.key, item.value));
   }
   return text;
@@ -403,8 +551,6 @@ unittest {
   // TODO: Add Tests
 }
 
-
-
 /**
      * Returns the input CamelCasedString as an dashed-string.
      *
@@ -415,8 +561,6 @@ unittest {
 /* static string dasherize(string stringToDasherize) {
     return delimit(stringToDasherize.replace("_", "-"), "-");
   } */
-
-
 
 /**
      * Returns camelBacked version of an underscored string.
@@ -432,8 +576,6 @@ string variable(string stringToConvert) {
   }
   return result;
 }
-
-
 
 // Cache inflected values, and return if already available
 STRINGAA[string] _cache;
@@ -482,6 +624,7 @@ protected string longestText(string[] texts) {
 
   return texts.sort!("a.length > b.length")[0];
 }
+
 unittest {
   // TODO
 }
@@ -492,8 +635,8 @@ string replace(string origin, string[] selects, string newTxt) {
   selects.each!(select => origin = std.string.replace(origin, select, newTxt));
   return origin;
 }
+
 unittest {
   // TODO
 }
 // #endregion replace
-

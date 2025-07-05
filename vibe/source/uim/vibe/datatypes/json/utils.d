@@ -472,33 +472,7 @@ Json match(K)(Json[K] matchValues, K key, Json defaultValue = Json(null)) {
     ? matchValues[key] : defaultValue;
 }
 
-// #region isSet
-bool isSet(Json json, string check) {
-  return json.isAny((string key) => key == check);
-}
 
-unittest {
-  // Test with object containing the key
-  Json json = Json.emptyObject;
-  json["foo"] = "bar";
-  assert(isSet(json, "foo"), "Key 'foo' should be set");
-
-  // Test with object not containing the key
-  assert(!isSet(json, "baz"), "Key 'baz' should not be set");
-
-  // Test with empty object
-  Json emptyJson = Json.emptyObject;
-  assert(!isSet(emptyJson, "foo"), "Empty object should not have any key set");
-
-  // Test with non-object Json (string)
-  Json strJson = Json("hello");
-  assert(!isSet(strJson, "hello"), "Non-object Json should not have any key set");
-
-  // Test with null Json
-  Json nullJson = Json(null);
-  assert(!isSet(nullJson, "foo"), "Null Json should not have any key set");
-}
-// #endregion isSet
 
 // #region count
 size_t count(Json value) {
