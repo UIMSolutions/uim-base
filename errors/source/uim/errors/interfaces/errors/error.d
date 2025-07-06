@@ -31,6 +31,9 @@ interface IError {
   STRINGAA[] trace();
   IError trace(STRINGAA[] newTrace);
   string traceAsString();
+
+  IError previous();
+  IError previous(IError newPrevious);
 }
 
 /* Old Code 

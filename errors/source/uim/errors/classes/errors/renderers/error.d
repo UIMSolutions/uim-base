@@ -55,6 +55,10 @@ class UIMErrorRenderer : UIMObject, IErrorRenderer {
     return this;
   }
 
+  Json[string] attributes() {
+    return null;
+  }
+
     /**
      * If set, this will be request used to create the controller that will render
      * the error.
