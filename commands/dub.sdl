@@ -1,0 +1,26 @@
+name "commands"
+description "V in MVC"
+authors "ONS"
+copyright "Copyright © 2018 - 2025, ONS"
+license "Apache-2.0"
+
+// target
+targetname "uim_commands"
+targetType "library"
+
+// Internal dependencies
+dependency "uim-low:consoles" path=".."
+dependency "uim-low:events" path=".."
+dependency "uim-low:i18n" path=".."
+
+sourcePaths "."
+importPaths "."
+
+// configuration "default" {}
+
+configuration "test_library" {
+	versions "test_uim_commands"
+}
+configuration "test_all" {
+	versions "test_uim_core" "test_uim_oop"
+}
