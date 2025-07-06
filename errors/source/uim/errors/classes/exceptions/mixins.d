@@ -3,31 +3,28 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.exceptions.classes.exceptions.errors;
+module uim.errors.classes.exceptions.mixins;
 
-mixin(Version!("test_uim_exceptions"));
+mixin(Version!("test_uim_errors"));
 
-import uim.exceptions;
+import uim.errors;
 @safe:
 
-
-// Base error exception.
-class UIMErrorsException : DException {
-  mixin(ExceptionThis!("Errors"));
-
-  override bool initialize(Json[string] initData = null) {
-    if (!super.initialize(initData)) {
-      return false;
-    }
-
-    messageTemplate("default", "Exception in libary uim-exceptions");
-
-    return true;
-  }
+@safe:
+string exceptionThis(string name = null) {
+    string fullName = name ~ "Exception";
+    return objThis(fullName);
 }
 
-mixin(ExceptionCalls!("Errors"));
+template ExceptionThis(string name = null) {
+    const char[] ExceptionThis = exceptionThis(name);
+}
 
-unittest {
-  testException(ErrorsException);
+string exceptionCalls(string name) {
+    string fullName = name ~ "Exception";
+    return objCalls(fullName);
+}
+
+template ExceptionCalls(string name) {
+    const char[] ExceptionCalls = exceptionCalls(name);
 }

@@ -7,21 +7,3 @@ module uim.errors.mixins.exceptions.exception;
 
 import uim.errors;
 
-@safe:
-string exceptionThis(string name = null) {
-    string fullName = name ~ "Error";
-    return objThis(fullName);
-}
-
-template ExceptionThis(string name = null) {
-    const char[] ExceptionThis = exceptionThis(name);
-}
-
-string exceptionCalls(string name) {
-    string fullName = name ~ "Error";
-    return objCalls(fullName);
-}
-
-template ExceptionCalls(string name) {
-    const char[] ExceptionCalls = exceptionCalls(name);
-}
