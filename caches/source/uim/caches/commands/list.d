@@ -7,7 +7,7 @@ module uim.caches.commands.list;
 
 mixin(Version!"test_uim_caches");
 
-import uim.commands;
+import uim.caches;
 @safe:
 
 // CacheList command.

@@ -7,7 +7,7 @@ module uim.caches.commands.clear;
 
 mixin(Version!"test_uim_caches");
 
-import uim.commands;
+import uim.caches;
 @safe:
 
 // CacheClear command

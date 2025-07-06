@@ -9,5 +9,3 @@ import uim.caches;
 
 @safe:
 
-interface ICache {
-}
