@@ -3,30 +3,14 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.commands.classes.commands.command;
-
-mixin(Version!"test_uim_commands");
+module uim.commands.tests.command;
 
 import uim.commands;
 
 @safe:
 
-// Base class for commands
-class DCommand : UIMObject, ICommand {
-  mixin(CommandThis!());
-  /*    mixin TLocatorAware;
-    mixin TLog; */
-
-  override bool initialize(Json[string] initData = null) {
-    if (!super.initialize(initData)) {
-      return false;
-    }
+bool testCommand(ICommand commandToTest) {
+    assert(commandToTest !is null, "commandToTest is null");
 
     return true;
-  }
-
-  // Implement this method with your command`s logic.
-  bool execute(Json[string] options, IConsole console = null) {
-    return true;
-  }
 }

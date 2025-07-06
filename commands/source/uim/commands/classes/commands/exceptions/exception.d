@@ -3,30 +3,30 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.commands.classes.commands.command;
+module uim.commands.classes.commands.exceptions.exception;
 
 mixin(Version!"test_uim_commands");
 
 import uim.commands;
-
 @safe:
 
-// Base class for commands
-class DCommand : UIMObject, ICommand {
-  mixin(CommandThis!());
-  /*    mixin TLocatorAware;
-    mixin TLog; */
+// Base commands exception.
+class DCommandsException : DException {
+  mixin(ExceptionThis!("Commands"));
 
   override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
 
-    return true;
-  }
+    messageTemplate("default", "Exception in libary uim-commands");
 
-  // Implement this method with your command`s logic.
-  bool execute(Json[string] options, IConsole console = null) {
     return true;
   }
+}
+
+mixin(ExceptionCalls!("Commands"));
+
+unittest {
+  testException(CommandsException);
 }
