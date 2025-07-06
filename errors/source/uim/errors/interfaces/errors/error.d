@@ -34,6 +34,9 @@ interface IError {
 
   IError previous();
   IError previous(IError newPrevious);
+
+  Json[string] attributes();
+  IError attributes(Json[string] newAttributes);
 }
 
 /* Old Code 

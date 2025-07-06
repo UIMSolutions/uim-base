@@ -57,6 +57,41 @@ class UIMError : UIMObject, IError {
   }
   // #endregion loglabel
 
+// #region previous
+  /**
+   * The previous error in the chain of errors.
+   *
+   * This is used to track the cause of an error through multiple layers.
+   * It can be set to null if there is no previous error.
+   */
+  protected IError _previous;
+  IError previous() {
+    return _previous;
+  }
+
+  // This method is used to set the previous error in a chain of errors.
+  // It can be used to track the cause of an error through multiple layers.
+  /* @param newPrevious The new previous error to set.
+   * @return The current instance of IError for method chaining.
+   */
+  IError previous(IError newPrevious) {
+    _previous = newPrevious;
+    return this;
+  }
+  // #region previous
+
+  protected Json[string] _attributes;
+  Json[string] attributes() {
+    if (_attributes is null) {
+      _attributes = new Json[string];
+    }
+    return _attributes;
+  }
+  IError attributes(Json[string] newAttributes) {
+    _attributes = newAttributes;
+    return this;
+  }
+
   // #region loglevel
   string loglevel() {
     return uim.core.logging.LogLevels.level(loglabel());

@@ -32,6 +32,8 @@ class UIMErrorRenderer : UIMObject, IErrorRenderer {
     return true;
   }
 
+  
+
   // Template to render 
   protected string _template = "";
 
@@ -59,7 +61,7 @@ class UIMErrorRenderer : UIMObject, IErrorRenderer {
     return null;
   }
 
-    /**
+  /**
      * If set, this will be request used to create the controller that will render
      * the error.
      */
@@ -349,11 +351,10 @@ class UIMErrorRenderer : UIMObject, IErrorRenderer {
 
   // Returns an array that can be used to describe the internal state of this object.
   override Json[string] debugInfo(string[] showKeys = null, string[] hideKeys = null) {
-    return super.debugInfo(showKeys, hideKeys)
-      // .set("error", _error.toString)
-      // .set("request", _request.toString)
-      // .set("controller", _controller.toString)
-      .set("template", _template)
+    return super.debugInfo(showKeys, hideKeys) // .set("error", _error.toString)
+    // .set("request", _request.toString)
+    // .set("controller", _controller.toString)
+    .set("template", _template)
       .set("method", method);
   }
 

@@ -53,9 +53,9 @@ class DConsoleErrorRenderer : UIMErrorRenderer {
   override string render(IError error, bool shouldDebug) {
     auto errors = [error];
     auto previousError = error.previous();
-    while (!previous.isNull) {
-      errors = previous ~ errors;
-      previous = previopreviousErrorus.previous();
+    while (previousError !is null) {
+      errors = previousError ~ errors;
+      previousError = previousError.previous();
     }
 
     return errors.map!(e => renderError(e)).join("\n");
@@ -82,7 +82,7 @@ class DConsoleErrorRenderer : UIMErrorRenderer {
       auto attributes = error.attributes();
       if (attributes) {
         rendered ~= "<info>Error Attributes</info>";
-        rendered ~= attributes.map!(a => "\n  - %s: %s".format(a.key, a.value)).join("");
+        // TODO: rendered ~= attributes.byKeyValue.map!(kv => "\n  - %s: %s".format(kv.key, kv.value)).array.join("");
       }
     }
 
