@@ -9,9 +9,7 @@ targetname "uim_commands"
 targetType "library"
 
 // Internal dependencies
-dependency "uim-low:consoles" path=".."
-dependency "uim-low:events" path=".."
-dependency "uim-low:i18n" path=".."
+dependency "uim-base:oop" path=".."
 
 sourcePaths "."
 importPaths "."
