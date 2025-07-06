@@ -33,19 +33,6 @@ import uim.caches;
  *
  * In general all Cache operations are supported by all cache engines.
  * However, Cache.increment() and Cache.decrement() are not supported by File caching.
- *
- * There are 7 built-in caching engines:
- *
- * - `ApcuEngine` - Uses the APCu object cache, one of the fastest caching engines.
- * - `ArrayEngine` - Uses only memory to store all data, not actually a persistent engine.
- *  Can be useful in test or CLI environment.
- * - `FileEngine` - Uses simple files to store content. Poor performance, but good for
- *  storing large objects, or things that are not IO sensitive. Well suited to development
- *  as it is an easy cache to inspect and manually flush.
- * - `MemcacheEngine` - Uses the PECL.Memcache extension and Memory for storage.
- *  Fast reads/writes, and benefits from memcache being distributed.
- * - `RedisEngine` - Uses redis and D-redis extension to store cache data.
- * - `XcacheEngine` - Uses the Xcache extension, an alternative to APCu.
  */
 class DCache : UIMObject, ICache {
   mixin(CacheThis!());
@@ -55,22 +42,8 @@ class DCache : UIMObject, ICache {
       return false;
     }
 
-    // An array mapping URL schemes to fully qualified caching engine class names.
-    /* _dsnClassMap = [
-            /* "array": ArrayCacheEngine.classname,
-            "apcu": ApcuCacheEngine.classname,
-            "file": FileCacheEngine.classname, * /
-            "memcached": MemoryCacheEngine.classname,
-            "memory": MemoryCacheEngine.classname,
-            "null": NullCacheEngine.classname,
-            /* "redis": RedisCacheEngine.classname, * /
-        ];
-        */
     return true;
   }
-
-  // An array mapping URL schemes to fully qualified caching engine class names.
-  protected static STRINGAA _dsnClassMap;
 
   // #region enable
   // Flag for tracking whether caching is enabled.

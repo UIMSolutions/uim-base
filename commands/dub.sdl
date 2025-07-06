@@ -9,10 +9,7 @@ targetname "uim_commands"
 targetType "library"
 
 // Internal dependencies
-dependency "uim-base:oop" path=".."
-
-sourcePaths "."
-importPaths "."
+dependency "uim-base:errors" path=".."
 
 // configuration "default" {}
 

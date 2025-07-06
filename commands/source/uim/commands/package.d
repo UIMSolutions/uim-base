@@ -8,9 +8,9 @@ module uim.commands;
 mixin(ImportPhobos!());
 
 public { // uim libraries
-  import uim.oop;
+  import uim.errors;
 }
 
-public { // uim.filesystem libraries
+public { // Packages
   import uim.commands.classes;
 }
