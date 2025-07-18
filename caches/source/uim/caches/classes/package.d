@@ -6,6 +6,6 @@
 module uim.caches.classes;
 
 public {
-    import uim.caches.classes.caches;
-    import uim.caches.classes.engines;
+    import uim.caches.classes.cache; // Main class for cache management
+    import uim.caches.classes.engines; // Cache engines for different implementations
 }

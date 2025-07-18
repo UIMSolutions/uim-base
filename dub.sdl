@@ -19,6 +19,7 @@ dependency "unit-threaded" version="*"
 // uim dependencies
 dependency ":vibe" version="*"
 dependency ":phobos" version="*"
+dependency ":caches" version="*"
 dependency ":core" version="*"
 dependency ":commands" version="*"
 dependency ":errors" version="*"
@@ -32,10 +33,11 @@ configuration "test_all" {
 }
 
 // Subpackages
+subPackage "caches"
+subPackage "commands"
+subPackage "core"
+subPackage "errors"
+subPackage "oop"
 subPackage "phobos"
 subPackage "vibe"
-subPackage "core"
-subPackage "oop"
-subPackage "commands"
-subPackage "errors"
 subPackage "yaml"

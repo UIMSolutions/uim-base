@@ -33,14 +33,12 @@ class DCacheListCommand : DCommand {
     myParser.description("Show a list of configured caches.");
 
     return myParser;
-  }
+  }*/
 
   // Get the list of cache prefixes
   override bool execute(Json[string] arguments, IConsole console = null) {
-    auto myEngines = Cache.configured();
-    myEngines
-      .each!(engine => aConsole.writeln("- %s".format(engine)));
-
+    Output.writeln("Configured cache engines:");
+    Cache.engines().each!(engine => Output.writeln("- %s".format(engine)));
     return true;
-  } */
+  }
 }
