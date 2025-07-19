@@ -14,7 +14,7 @@ import uim.consoles;
 @safe:
 
 
-class DFileErrorOutput : DErrorOutput {
+class DFileErrorOutput:  DErrorOutputEngine {
   mixin(ErrorOutputThis!("File"));
 }
 mixin(ErrorOutputCalls!("File"));

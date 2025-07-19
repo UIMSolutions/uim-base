@@ -14,7 +14,7 @@ import uim.consoles;
 @safe:
 
 
-class DRestErrorOutput : DErrorOutput {
+class DRestErrorOutput:  DErrorOutputEngine {
   mixin(ErrorOutputThis!("Rest"));
 }
 mixin(ErrorOutputCalls!("Rest"));

@@ -5,7 +5,5 @@ public {
 }
 
 public { // Subclasses
-    import uim.consoles.classes.error.file;
-    import uim.consoles.classes.error.rest;
-    import uim.consoles.classes.error.standard;
+    import uim.consoles.classes.error.engines;
 }

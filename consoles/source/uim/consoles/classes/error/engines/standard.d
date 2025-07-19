@@ -5,16 +5,13 @@
 *****************************************************************************************************************/
 module uim.consoles.classes.error.standard;
 
-import uim.consoles;
-@safe:
-
 mixin(Version!"test_uim_consoles");
 
 import uim.consoles;
 @safe:
 
 
-class DStandardErrorOutput : DErrorOutput {
+class DStandardErrorOutput:  DErrorOutputEngine {
   mixin(ErrorOutputThis!("Standard"));
 }
 mixin(ErrorOutputCalls!("Standard"));
