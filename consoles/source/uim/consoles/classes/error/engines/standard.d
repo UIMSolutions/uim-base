@@ -10,9 +10,22 @@ mixin(Version!"test_uim_consoles");
 import uim.consoles;
 @safe:
 
-
 class DStandardErrorOutput:  DErrorOutputEngine {
   mixin(ErrorOutputThis!("Standard"));
+
+  bool write(string message) {
+    // Standard error output implementation
+    import std.stdio;
+    stderr.write(message);
+    return true; // Indicate success
+  }
+
+  bool writeLn(string message) {
+    // Standard error output implementation with newline
+    import std.stdio;
+    stderr.writeln(message);
+    return true; // Indicate success
+  }
 }
 mixin(ErrorOutputCalls!("Standard"));
 

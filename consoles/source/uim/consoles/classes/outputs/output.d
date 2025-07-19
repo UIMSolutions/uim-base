@@ -45,4 +45,9 @@ class DOutput : UIMObject, IOutput {
     }
     return _engines;    
   }
+
+  // Returns the default output engine
+  override DOutputEngine defaultEngine() {    
+    return OutputEngineFactory("default");
+  }
 }

@@ -3,23 +3,24 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.consoles.factories.error;
+module uim.consoles.classes.outputs.engines.factory;
 
 mixin(Version!"test_uim_consoles");
 
 import uim.consoles;
 @safe:
 
-class DErrorOutputFactory : DFactory!DErrorOutput {
-}
 
-auto ErrorOutputFactory() {
-  return DErrorOutputFactory.factory;
+class DOutputFactory : DFactory!DOutput{}
+
+auto OutputFactory() {
+    return DOutputFactory.factory;
 }
 
 unittest {
-  assert(ErrorOutputFactory);
-  assert(ErrorOutputFactory.create("standard").name == "StandardErrorOutput");
-  assert(ErrorOutputFactory.create("file").name == "FileErrorOutput");
-  assert(ErrorOutputFactory.create("rest").name == "RestErrorOutput");
+    assert(OutputFactory);
+    assert(OutputFactory.create("standard").name == "StandardOutput");
+    assert(OutputFactory.create("file").name == "FileOutput");
+    assert(OutputFactory.create("rest").name == "RestOutput");
 }
+ 
