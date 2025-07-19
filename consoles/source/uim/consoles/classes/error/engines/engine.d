@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.consoles.classes.error.rest;
+module uim.consoles.classes.error.engines.engine;
 
 import uim.consoles;
 @safe:
@@ -14,14 +14,11 @@ import uim.consoles;
 @safe:
 
 
-class DRestErrorOutput : DErrorOutput {
-  mixin(ErrorOutputThis!("Rest"));
+class DErrorOutput : UIMObject, IErrorOutput {
+  mixin(ErrorOutputThis!());
 }
-mixin(ErrorOutputCalls!("Rest"));
 
 unittest {
-  auto output = RestErrorOutput();   
+  auto output = new DErrorOutput();
   assert(testErrorOutput(output));
-
-  assert(output.name == "RestErrorOutput");
 }
