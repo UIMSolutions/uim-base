@@ -3,25 +3,15 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.consoles.classes.outputs.engines.mixin_;
+module uim.consoles.classes.outputs.engines.tests;
+
+mixin(Version!"test_uim_consoles");
 
 import uim.consoles;
-
 @safe:
-string outputEngineThis(string name = null) {
-    string fullName = name ~ "OutputEngine";
-    return objThis(fullName);
-}
 
-template OutputEngineThis(string name = null) {
-    const char[] OutputEngineThis = outputEngineThis(name);
-}
-
-string outputEngineCalls(string name) {
-    string fullName = name ~ "OutputEngine";
-    return objCalls(fullName);
-}
-
-template OutputEngineCalls(string name) {
-    const char[] OutputEngineCalls = outputEngineCalls(name);
+bool testOutput(IOutputEngine output) {
+    assert(output !is null, "In testOutput: output is null");
+    
+    return true;
 }

@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt rest.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.consoles.classes.outputs.rest;
+module uim.consoles.classes.outputs.engines.rest;
 
 mixin(Version!"test_uim_consoles");
 

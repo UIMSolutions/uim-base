@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.consoles.classes.outputs.standard;
+module uim.consoles.classes.outputs.engines.standard;
 
 mixin(Version!"test_uim_consoles");
 
@@ -34,8 +34,8 @@ import uim.consoles;
  * ```
  * This would create orange 'Overwrite:' text, while the rest of the text would remain the normal color.
  */
-class DStandardOutput : DOutputEngine {
-  mixin(OutputThis!("Standard"));
+class DStandardOutputEngine : DOutputEngine {
+  mixin(OutputEngineThis!("Standard"));
 
   override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
@@ -96,17 +96,17 @@ class DStandardOutput : DOutputEngine {
   }
 
   // #region write
-  override IOutput write(string message, uint numberOfLines = 1) {
+  override IOutputEngine write(string message, uint numberOfLines = 1) {
     std.stdio.write(styleText(message) ~ LF.repeatTxt(numberOfLines));
     return this;
   }
   // #endregion write
 }
 
-mixin(OutputCalls!("Standard"));
+mixin(OutputEngineCalls!("Standard"));
 
 unittest {
-  auto output = new DOutput();
+  auto output = new DStandardOutputEngine();
   assert(testOutput(output));
 
   /* writeln("output.styles == ", output.styles);

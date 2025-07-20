@@ -85,17 +85,17 @@ class DOutputEngine : UIMObject, IOutputEngine {
 
   // #region write
     // Outputs a single or multiple messages or newlines to stdout / stderr.
-    IOutput write(uint numberOfLines = 1) {
+    IOutputEngine write(uint numberOfLines = 1) {
       write("", numberOfLines);
       return this;
     }
 
-    IOutput write(string[] messages, uint numberOfLines = 1) {
+    IOutputEngine write(string[] messages, uint numberOfLines = 1) {
       write(messages.join(LF), numberOfLines); 
       return this;
     }  
 
-    IOutput write(string message, uint numberOfLines = 1) {
+    IOutputEngine write(string message, uint numberOfLines = 1) {
       return this;
     }
   // #endregion write
@@ -188,26 +188,26 @@ class DOutputEngine : UIMObject, IOutputEngine {
      * this.output.setStyle("annoy", []);
      * ```
      */
-  IOutput style(string styleName, STRINGAA options) {
+  IOutputEngine style(string styleName, STRINGAA options) {
     Json[string] map;
     options.each!((key, value) => map[key] = Json(value));
 
     return style(styleName, map);
   }
 
-  IOutput style(string styleName, Json[string] options) {
+  IOutputEngine style(string styleName, Json[string] options) {
     Json json = Json.emptyObject;
     options.each!((key, value) => json[key] = value);
 
     return style(styleName, json);
   }
 
-  IOutput style(string key, Json option) {
+  IOutputEngine style(string key, Json option) {
     _styles[key] = option;
     return this;
   }
 
-  IOutput removeStyle(string name) {
+  IOutputEngine removeStyle(string name) {
     _styles.remove(name);
     return this;
   }
@@ -225,7 +225,7 @@ class DOutputEngine : UIMObject, IOutputEngine {
   }
 
   // Set the output type on how formatting tags are treated.
-  IOutput outputType(string type) {
+  IOutputEngine outputType(string type) {
     /* if (!type.isIn(["RAW", "PLAIN", "COLOR"])) {
       // throw new DInvalidArgumentException("Invalid output type `%s`.".format(type));
     } */
@@ -235,7 +235,7 @@ class DOutputEngine : UIMObject, IOutputEngine {
   // #endregion outputType
 
   // Clean up and close handles
-  IOutput close() {
+  IOutputEngine close() {
     return this; 
   }
 }

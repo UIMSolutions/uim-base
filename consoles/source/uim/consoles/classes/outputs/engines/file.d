@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.consoles.classes.outputs.file;
+module uim.consoles.classes.outputs.engines.file;
 
 import uim.consoles;
 @safe:
@@ -146,7 +146,7 @@ class DFileOutput : DOutputEngine {
      * Outputs a single or multiple messages to stdout or stderr. If no parameters
      * are passed, outputs just a newline.
      */
-  override IOutput write(string message, uint numberOfLines = 1) {
+  override IOutputEngine write(string message, uint numberOfLines = 1) {
     append(filename, this.styleText(message ~ LF.repeatTxt(numberOfLines)));
     return this;
   }
@@ -177,7 +177,7 @@ class DFileOutput : DOutputEngine {
   }
 
   // Clean up and close handles
-  override IOutput close() {
+  override IOutputEngine close() {
     /* if (isResource(_output)) {
             fclose(_output);
         } */

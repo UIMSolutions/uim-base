@@ -3,18 +3,28 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.consoles.classes.output.engines;
+module uim.consoles.classes.outputs.engines.text;
 
-public { // Main packages
-  import uim.consoles.classes.outputs.engines.engine;
-  import uim.consoles.classes.outputs.engines.factory;
-  import uim.consoles.classes.outputs.engines.interfaces;
-  import uim.consoles.classes.outputs.engines.mixins;
-  import uim.consoles.classes.outputs.engines.tests;
-}
+import uim.consoles;
+@safe:
 
-public { // Additional packages
-  import uim.consoles.classes.outputs.engines.error.file;
-  import uim.consoles.classes.outputs.engines.error.rest;
-  import uim.consoles.classes.outputs.engines.error.standard;
+mixin(Version!"test_uim_consoles");
+
+import uim.consoles;
+@safe:
+
+class DTextOutput : DFileEngine {
+  mixin(OutputEngineThis!("Text"));
+
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
+  }
+
+  override IOutputEngine write(string message, uint numberOfLines = 1) {
+    append(filename, this.styleText(message ~ LF.repeatTxt(numberOfLines)));
+    return this;
+  }
 }
+mixin(OutputEngineClass!("Text"));
