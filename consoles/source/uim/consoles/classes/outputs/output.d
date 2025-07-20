@@ -30,24 +30,65 @@ class DOutput : UIMObject, IOutput {
     return "Output";
   }
 
-  protected DOutputEngine[string] _engines;
+  protected IOutputEngine[string] _engines;
   // Returns the list of output engines
-  override DOutputEngine[string] engines() {
+  override IOutputEngine[string] engines() {
     if (_engines.length == 0) {
-      _engines = OutputEngineCollection().engines();    
+      _engines = OutputEngineCollection().engines();
 
       if (_engines.length == 0) {
         throw new UIMException("No output engines configured.");
-      } 
+      }
 
       // Sort the engines by name
       _engines = _engines.sort!((a, b) => a.name < b.name);
     }
-    return _engines;    
+    return _engines;
   }
 
   // Returns the default output engine
-  override DOutputEngine defaultEngine() {    
+  override IOutputEngine defaultEngine() {
     return OutputEngineFactory("default");
+  }
+
+  DOutput write(uint numberOfLines = 1) {
+    return engines.byKeys.all!(name => !writeToEngine(name, numberOfLines).isNull) ? this : null;
+  }
+
+  IOutputEngine engine(string name) {
+    auto engine = (name in engines) ? engines[name] : null;
+    if (engine.isNull) {
+      // TODO Errormessage
+      return null; 
+    }
+  }
+
+  DOutput writeToEngine(string name, uint numberOfLines = 1) {
+    if (auto engine = engine(name)) {
+      return !engine.write(numberOfLines).isNull ? this : null;
+    }
+    return null; 
+  }
+
+  DOutput write(string[] messages, uint numberOfLines = 1) {
+    return engines.byKeys.all!(name => !writeToEngine(name, messages, numberOfLines).isNull) ? this : null;
+  }
+
+  DOutput writeToEngine(string name, string[] messages, uint numberOfLines = 1) {
+    if (auto engine = engine(name)) {
+      return !engine.write(messages, numberOfLines).isNull ? this : null;
+    }
+    return null; 
+  }
+
+  DOutput write(string message, uint numberOfLines = 1) {
+    return engines.byKeys.all!(name => !writeToEngine(name, message, numberOfLines).isNull) ? this : null;
+  }
+
+  DOutput writeToEngine(string name, string message, uint numberOfLines = 1) {
+    if (auto engine = engine(message, name)) {
+      return !engine.write(numberOfLines).isNull ? this : null;
+    }
+    return null; 
   }
 }

@@ -8,20 +8,20 @@ module uim.consoles.classes.error.engines.mixin_;
 import uim.consoles;
 
 @safe:
-string errorOutputThis(string name = null) {
-    string fullName = name ~ "ErrorOutput";
+string errorOutputEngineThis(string name = null) {
+    string fullName = name ~ "ErrorOutputEngine";
     return objThis(fullName);
 }
 
-template ErrorOutputThis(string name = null) {
-    const char[] ErrorOutputThis = errorOutputThis(name);
+template ErrorOutputEngineThis(string name = null) {
+    const char[] ErrorOutputThis = errorOutputEngineThis(name);
 }
 
-string errorOutputCalls(string name) {
-    string fullName = name ~ "ErrorOutput";
+string errorOutputEngineCalls(string name) {
+    string fullName = name ~ "ErrorOutputEngine";
     return objCalls(fullName);
 }
 
-template ErrorOutputCalls(string name) {
-    const char[] ErrorOutputCalls = errorOutputCalls(name);
+template ErrorOutputEngineCalls(string name) {
+    const char[] ErrorOutputEngineCalls = errorOutputEngineCalls(name);
 }

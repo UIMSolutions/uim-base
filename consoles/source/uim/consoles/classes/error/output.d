@@ -5,7 +5,7 @@ mixin(Version!"test_uim_consoles");
 import uim.consoles;
 @safe:
 
-class DErrorOutput : UIMObject {
+class DErrorOutput : DOutput {
   static private DErrorOutput _output;
   static DErrorOutput output() {
     if (_output is null) {
@@ -18,9 +18,11 @@ class DErrorOutput : UIMObject {
     name = "ErrorOutput";
   }
 
-  DErrorOutputEngine engine() {
+  IErrorOutputEngine engine() {
     return new DErrorOutputEngine();
   }
+
+  
 }
 
 auto ErrorOutput() {

@@ -9,6 +9,7 @@ public { // Main packages
   import uim.consoles.classes.outputs.engines.engine;
   import uim.consoles.classes.outputs.engines.factory;
   import uim.consoles.classes.outputs.engines.interface_;
+  import uim.consoles.classes.outputs.engines.mixin_;
 }
 
 public { // Additional packages

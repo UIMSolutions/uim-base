@@ -11,14 +11,14 @@ import uim.consoles;
 @safe:
 
 
-class DRestOutput : DOutputEngine {
-  mixin(OutputThis!("Rest"));
+class DRestOutputEngine : DOutputEngine {
+  mixin(OutputEngineThis!("Rest"));
 }
 
-mixin(OutputCalls!("Rest"));
+mixin(OutputEngineCalls!("Rest"));
 
 unittest {
-  auto output = RestOutput;
-  assert(testOutput(output));
+  auto output = RestOutputEngine;
+  assert(testOutputEngine(output));
 }
 

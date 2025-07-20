@@ -11,9 +11,9 @@ import uim.consoles;
 
 interface IOutputEngine : IObject {
     // Outputs a single or multiple messages or newlines to stdout / stderr.
-    IOutput write(uint numberOfLines = 1);
-    IOutput write(string[] messages, uint numberOfLines = 1);
-    IOutput write(string message, uint numberOfLines = 1);
+    IOutputEngine write(uint numberOfLines = 1);
+    IOutputEngine write(string[] messages, uint numberOfLines = 1);
+    IOutputEngine write(string message, uint numberOfLines = 1);
 
     // #region style
     // Gets the current styles offered
@@ -22,15 +22,15 @@ interface IOutputEngine : IObject {
     Json[string] styles();
 
     // Set style
-    IOutput style(string style, STRINGAA definition);
-    IOutput style(string style, Json definition);
-    IOutput removeStyle(string name);
+    IOutputEngine style(string style, STRINGAA definition);
+    IOutputEngine style(string style, Json definition);
+    IOutputEngine removeStyle(string name);
     // #endregion style
 
     // #region outputType
     // Get the output type on how formatting tags are treated.
     string outputType();
     // Set the output type on how formatting tags are treated.
-    IOutput outputType(string type);
+    IOutputEngine outputType(string type);
     // #endregion outputType
 }

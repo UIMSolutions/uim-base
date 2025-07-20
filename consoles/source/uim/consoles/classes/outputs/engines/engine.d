@@ -71,7 +71,7 @@ import uim.consoles;
  * - UIMObject
  * - IOutput
  */
-class DOutputEngine : UIMObject, IOutput {
+class DOutputEngine : UIMObject, IOutputEngine {
   mixin(OutputThis!());
 
   // Raw output constant - no modification of output text.

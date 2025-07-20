@@ -42,7 +42,7 @@ import uim.consoles;
  * at this time.
  */
 class DFileOutput : DOutputEngine {
-  mixin(OutputThis!("File"));
+  mixin(OutputEngineThis!("File"));
 
   override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
@@ -185,10 +185,10 @@ class DFileOutput : DOutputEngine {
   }
 }
 
-mixin(OutputCalls!("File"));
+mixin(OutputEngineCalls!("File"));
 
 unittest {
-  auto output = FileOutput;
-  assert(testOutput(output));
+  auto output = FileOutputEngine;
+  assert(testOutputEngine(output));
 }
 

@@ -4,5 +4,5 @@ import uim.consoles;
 
 @safe:
 
-interface IErrorOutput {
+interface IErrorOutputEngine {
 }
