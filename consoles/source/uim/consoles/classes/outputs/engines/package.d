@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.consoles.classes.output.engines;
 
-public { // Main packages
+public { // Main modules
   import uim.consoles.classes.outputs.engines.engine;
   import uim.consoles.classes.outputs.engines.factory;
   import uim.consoles.classes.outputs.engines.interfaces;
@@ -13,8 +13,14 @@ public { // Main packages
   import uim.consoles.classes.outputs.engines.tests;
 }
 
+public { // Additional modules
+  import uim.consoles.classes.outputs.engines.file;
+  import uim.consoles.classes.outputs.engines.html;
+  import uim.consoles.classes.outputs.engines.memory;
+  import uim.consoles.classes.outputs.engines.rest;
+  import uim.consoles.classes.outputs.engines.standard;
+}
+
 public { // Additional packages
-  import uim.consoles.classes.outputs.engines.error.file;
-  import uim.consoles.classes.outputs.engines.error.rest;
-  import uim.consoles.classes.outputs.engines.error.standard;
+  import uim.consoles.classes.outputs.engines.formatters;
 }

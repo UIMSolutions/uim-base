@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.consoles.classes.outputs.engines.text;
+module uim.consoles.classes.outputs.engines.memory;
 
 import uim.consoles;
 
@@ -15,8 +15,8 @@ import uim.consoles;
 
 @safe:
 
-class DTextFileOutput : DFileEngine {
-  mixin(OutputEngineThis!("TextFile"));
+class DMemoryOutput : DFileEngine {
+  mixin(OutputEngineThis!("Memory"));
 
   override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
@@ -47,4 +47,4 @@ class DTextFileOutput : DFileEngine {
   // #endregion writeln
 }
 
-mixin(OutputEngineClass!("TextFile"));
+mixin(OutputEngineClass!("Memory"));

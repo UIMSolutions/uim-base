@@ -85,20 +85,16 @@ class DOutputEngine : UIMObject, IOutputEngine {
 
   // #region write
     // Outputs a single or multiple messages or newlines to stdout / stderr.
-    IOutputEngine write(uint numberOfLines = 1) {
-      write("", numberOfLines);
-      return this;
-    }
-
-    IOutputEngine write(string[] messages, uint numberOfLines = 1) {
-      write(messages.join(LF), numberOfLines); 
-      return this;
-    }  
-
-    IOutputEngine write(string message, uint numberOfLines = 1) {
-      return this;
-    }
+    abstract IOutputEngine write(string[] messages); 
+    abstract IOutputEngine write(string message); 
   // #endregion write
+
+  // #region writeln
+    // Outputs a single or multiple messages or newlines to stdout / stderr.
+    abstract IOutputEngine writeln(uint numberOfLines = 1);
+    abstract IOutputEngine writeln(string[] messages, uint numberOfLines = 1);
+    abstract IOutputEngine writeln(string message, uint numberOfLines = 1);
+  // #endregion writeln
 
   // #region styleText
   // Apply styling to text.

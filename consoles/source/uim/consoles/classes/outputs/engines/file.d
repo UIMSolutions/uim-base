@@ -147,7 +147,7 @@ class DFileOutput : DOutputEngine {
      * are passed, outputs just a newline.
      */
   override IOutputEngine write(string message, uint numberOfLines = 1) {
-    append(filename, this.styleText(message ~ LF.repeatTxt(numberOfLines)));
+    filename.append(message~ LF.repeatTxt(numberOfLines));
     return this;
   }
 
