@@ -11,4 +11,4 @@ import uim.errors;
 @safe:
 
 class UIMErrorFactory : DFactory!UIMError {}
-auto ErrorFactory() { return UIMErrorFactory.factory; }
+auto ErrorFactory() { return UIMErrorFactory.instance; }

@@ -11,7 +11,7 @@ import uim.oop;
 @safe:
 
 
-class DFactory(T : UIMObject) : UIMObject, IKeyAndPath {
+class DFactory(T) : UIMObject, IKeyAndPath {
   this() {
     super();
   }
@@ -141,7 +141,7 @@ unittest {
     }
 
     class TestFactory : DFactory!Test {}
-    auto Factory() { return TestFactory.factory; }
+    auto Factory() { return TestFactory.instance; }
 
     Factory.set("testWorkerOne", (Json[string] options = null) @safe {
         return new Test("one");

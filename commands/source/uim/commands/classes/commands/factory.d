@@ -12,4 +12,4 @@ import uim.commands;
 
 class DCommandFactory : DFactory!DCommand {
 }
-auto CommandFactory() { return DCommandFactory.factory; }
+auto CommandFactory() { return DCommandFactory.instance; }

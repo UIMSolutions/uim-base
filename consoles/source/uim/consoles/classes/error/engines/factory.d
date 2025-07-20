@@ -14,7 +14,7 @@ class DErrorOutputFactory : DFactory!DErrorOutput {
 }
 
 auto ErrorOutputFactory() {
-  return DErrorOutputFactory.factory;
+  return DErrorOutputFactory.instance;
 }
 
 unittest {

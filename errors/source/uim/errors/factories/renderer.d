@@ -11,7 +11,7 @@ import uim.errors;
 @safe:
 
 class UIMErrorRendererFactory : DFactory!UIMErrorRenderer {}
-auto ErrorRendererFactory() { return UIMErrorRendererFactory.factory; }
+auto ErrorRendererFactory() { return UIMErrorRendererFactory.instance; }
 
 static this() {
   ErrorRendererFactory.set("console", (Json[string] options = null) @safe {

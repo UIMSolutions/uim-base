@@ -13,7 +13,7 @@ import uim.consoles;
 
 class DConsoleFactory : DFactory!DConsole {
 }
-auto ConsoleFactory() { return DConsoleFactory.factory; }
+auto ConsoleFactory() { return DConsoleFactory.instance; }
 
 unittest {
     auto factory = ConsoleFactory();

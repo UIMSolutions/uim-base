@@ -14,7 +14,7 @@ import uim.consoles;
 class DInputFactory : DFactory!DInput{}
 
 auto InputFactory() {
-    return DInputFactory.factory;
+    return DInputFactory.instance;
 }
 
 unittest {

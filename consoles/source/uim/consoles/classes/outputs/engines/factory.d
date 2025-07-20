@@ -14,7 +14,7 @@ import uim.consoles;
 class DOutputFactory : DFactory!DOutput{}
 
 auto OutputFactory() {
-    return DOutputFactory.factory;
+    return DOutputFactory.instance;
 }
 
 unittest {

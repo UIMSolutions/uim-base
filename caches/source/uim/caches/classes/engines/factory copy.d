@@ -12,4 +12,4 @@ import uim.caches;
 
 class DCacheEngineFactory : DFactory!DCacheEngine {
 }
-auto CacheEngineFactory() { return DCacheEngineFactory.factory; }
+auto CacheEngineFactory() { return DCacheEngineFactory.instance; }

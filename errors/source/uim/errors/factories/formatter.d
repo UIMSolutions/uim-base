@@ -15,7 +15,7 @@ class UIMErrorFormatterFactory : DFactory!UIMErrorFormatter {
 }
 
 auto ErrorFormatterFactory() {
-    return UIMErrorFormatterFactory.factory;
+    return UIMErrorFormatterFactory.instance;
 }
 
 auto ErrorFormatterFactory(string key) {

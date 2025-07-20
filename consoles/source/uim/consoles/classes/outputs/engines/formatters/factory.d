@@ -8,19 +8,25 @@ module uim.consoles.classes.outputs.engines.formatters.factory;
 mixin(Version!"test_uim_consoles");
 
 import uim.consoles;
+
 @safe:
 
+class DOutputEngineFormatterFactory : DFactory!IOutputEngineFormatter {
+}
 
-class DOutputEngineFormatterFactory : DFactory!DOutputEngineFormatter{}
+auto OutputEngineFormatterFactory() {
+  return DOutputEngineFormatterFactory.instance;
+}
 
-auto OutputFactory() {
-    return DOutputFactory.factory;
+static this() {
+  ErrorOutputFactory.set("standard", (Json[string] options = new Json[string]) @safe {
+    return new DRestErrorOutput(options);
+  });
 }
 
 unittest {
-    assert(OutputFactory);
-    assert(OutputFactory.create("standard").name == "StandardOutput");
-    assert(OutputFactory.create("file").name == "FileOutput");
-    assert(OutputFactory.create("rest").name == "RestOutput");
+  assert(OutputFactory);
+  assert(OutputFactory.create("standard").name == "StandardOutput");
+  assert(OutputFactory.create("file").name == "FileOutput");
+  assert(OutputFactory.create("rest").name == "RestOutput");
 }
- 
