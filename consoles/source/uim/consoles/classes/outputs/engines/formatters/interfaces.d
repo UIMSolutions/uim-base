@@ -5,8 +5,9 @@
 *****************************************************************************************************************/
 module uim.consoles.classes.outputs.engines.formatters.interfaces;
 
-import uim.consoles;
+mixin(Version!"test_uim_consoles");
 
+import uim.consoles;
 @safe:
 
 interface IOutputEngineFormatter : IObject {

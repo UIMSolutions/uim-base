@@ -19,14 +19,37 @@ auto OutputEngineFormatterFactory() {
 }
 
 static this() {
-  ErrorOutputFactory.set("standard", (Json[string] options = new Json[string]) @safe {
-    return new DRestErrorOutput(options);
+  OutputEngineFormatterFactory.set("standard", (Json[string] options = new Json[string]) @safe {
+    return new DTextEngineFormatterFactory(options);
+  });
+
+  OutputEngineFormatterFactory.set("text", (Json[string] options = new Json[string]) @safe {
+    return new DTextEngineFormatterFactory(options);
+  });
+
+  OutputEngineFormatterFactory.set("html", (Json[string] options = new Json[string]) @safe {
+    return new DHtmlEngineFormatterFactory(options);
+  });
+
+  OutputEngineFormatterFactory.set("json", (Json[string] options = new Json[string]) @safe {
+    return new DJsonEngineFormatterFactory(options);
+  });
+
+  OutputEngineFormatterFactory.set("yaml", (Json[string] options = new Json[string]) @safe {
+    return new DYamlEngineFormatterFactory(options);
+  });
+
+  OutputEngineFormatterFactory.set("xml", (Json[string] options = new Json[string]) @safe {
+    return new DXmlEngineFormatterFactory(options);
   });
 }
 
 unittest {
-  assert(OutputFactory);
-  assert(OutputFactory.create("standard").name == "StandardOutput");
-  assert(OutputFactory.create("file").name == "FileOutput");
-  assert(OutputFactory.create("rest").name == "RestOutput");
+  assert(OutputEngineFormatterFactory);
+  assert(OutputFactory.create("standard").name == TextEngineFormatterFactory.name);
+  assert(OutputFactory.create("text").name == TextEngineFormatterFactory.name);
+  assert(OutputFactory.create("html").name == HtmlEngineFormatterFactory.name);
+  assert(OutputFactory.create("json").name == JsonEngineFormatterFactory.name);
+  assert(OutputFactory.create("yaml").name == YamlEngineFormatterFactory.name);
+  assert(OutputFactory.create("xml").name == XmlEngineFormatterFactory.name);
 }

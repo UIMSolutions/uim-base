@@ -3,27 +3,21 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.consoles.classes.outputs.engines.formatters.mixins;
+module uim.consoles.classes.outputs.engines.formatters.xml;
 
 mixin(Version!"test_uim_consoles");
 
 import uim.consoles;
 @safe:
 
-string outputEngineFormatterThis(string name = null) {
-    string fullName = name ~ "OutputEngineFormatter";
-    return objThis(fullName);
-}
+class DXmlOutputEngineFormatter : DOutputEngineFormatter {
+  mixin(OutputEngineFormatterThis!("Xml"));
 
-template OutputEngineFormatterThis(string name = null) {
-    const char[] OutputEngineFormatterThis = outputEngineFormatterThis(name);
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
+    return true;
+  }
 }
-
-string outputEngineFormatterCalls(string name) {
-    string fullName = name ~ "OutputEngineFormatter";
-    return objCalls(fullName);
-}
-
-template OutputEngineFormatterCalls(string name) {
-    const char[] OutputEngineFormatterCalls = outputEngineFormatterCalls(name);
-}
+mixin(OutputEngineFormatterCalls!("Xml"));
