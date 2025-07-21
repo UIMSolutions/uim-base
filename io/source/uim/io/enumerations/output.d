@@ -3,8 +3,17 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.io.enumerations;
+module uim.io.enumerations.output;
 
-public {
-    import uim.io.enumerations.output;
+mixin(Version!"test_uim_io");
+
+enum OutputLevels : int {
+  // Output constant for verbose shells.
+  VERBOSE = 2,
+
+  // Output constant for normal shells.
+  NORMAL = 1,
+
+  // Output constant for quiet shells.
+  QUIET = 0
 }

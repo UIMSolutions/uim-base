@@ -164,26 +164,21 @@ class DOutputEngine : UIMObject, IOutputEngine {
   // Styles that are available as tags in console output.
   protected static Json[string] _styles;
   
+  // Gets all the style definitions.
+  Json[string] styles() {
+    return _styles;
+  }
+
+  IOutputEngine styles(Json[string] styles) {
+    _styles = styles;
+    return this;
+  }
+  
   // Gets the current styles offered
   Json style(string name) {
     return name in _styles ? _styles[name] : Json(null);
   }
 
-  /**
-     * Sets style.
-     *
-     * ### Creates or modifies an existing style.
-     *
-     * ```
-     * output.setStyle("annoy", ["text": "purple", "background": "yellow", "blink": true.toJson]);
-     * ```
-     *
-     * ### Remove a style
-     *
-     * ```
-     * this.output.setStyle("annoy", []);
-     * ```
-     */
   IOutputEngine style(string styleName, STRINGAA options) {
     Json[string] map;
     options.each!((key, value) => map[key] = Json(value));
@@ -206,11 +201,6 @@ class DOutputEngine : UIMObject, IOutputEngine {
   IOutputEngine removeStyle(string name) {
     _styles.remove(name);
     return this;
-  }
-
-  // Gets all the style definitions.
-  Json[string] styles() {
-    return _styles;
   }
   // #endregion styles
 

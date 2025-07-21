@@ -40,17 +40,9 @@ class DConsole : UIMObject, IConsole {
     return true;
   }
 
-  // Output constant making verbose shells.
-  const int VERBOSE = 2;
-
-  // Output constant for making normal shells.
-  const int NORMAL = 1;
-
-  // Output constants for making quiet shells.
-  const int QUIET = 0;
 
   // The current output level.
-  protected int _level = NORMAL;
+  protected OutputLevels _level = OutputLevels.NORMAL;
 
   /**
      * The number of bytes last written to the output stream
@@ -163,51 +155,7 @@ class DConsole : UIMObject, IConsole {
     return 0;
   }
 
-  // Convenience method for out() that wraps message between <info> ta
-  int info(string[] messages, int newLinesToAppend = 1, int outputLevel = NORMAL) {
-    string messageType = "info";
-    auto outputMessages = wrapMessageWithType(messageType, messages);
-
-    // return _writeln(outputMessages, newLinesToAppend, outputLevel);
-    return 0;
-  }
-
-  // Convenience method for out() that wraps message between <comment> tag
-  int comment(string[] outputMessages, int newLinesToAppendToAppend = 1, int outputLevel = NORMAL) {
-    auto message = wrapMessageWithType("comment", outputMessages);
-    // return _writeln(message, newLinesToAppend, outputLevel); */
-    return 0;
-  }
-
-  // Convenience method for writeErrorMessages() that wraps message between <warning> tag
-  int warning(string[] outputMessages, int newLinesToAppend = 1) {
-    auto message = wrapMessageWithType("warning", outputMessages);
-
-    // return _writeErrorMessages(message, newLinesToAppend); */
-    return 0;
-  }
-
-  /**
-     * Convenience method for writeErrorMessages() that wraps message between <error> tag
-     * Params:
-     * string[]|string message A string or an array of strings to output
-     */
-  int error(string[] message, int newLinesToAppend = 1) {
-    string messageType = "error";
-    message = wrapMessageWithType(messageType, message);
-
-    // return _writeErrorMessages(message, newLinesToAppend);
-    return 0;
-  }
-
-  // Convenience method for out() that wraps message between <success> tag
-  int success(string[] message, int newLinesToAppend = 1, int outputLevel = NORMAL) {
-    string messageType = "success";
-    message = wrapMessageWithType(messageType, message);
-
-    // return _writeln(message, newLinesToAppend, outputLevel);
-    return 0;
-  }
+  
 
   // Halts the the current process with a StopException.
   void abort(string errorMessage, int errorCode /* = DCommand.false */ ) {
