@@ -8,7 +8,7 @@ module uim.consoles.classes.inputs.option;
 import uim.consoles;
 @safe:
 
-mixin(Version!"test_uim_consoles");
+mixin(Version!"test_uim_io");
 
 import uim.consoles;
 @safe:

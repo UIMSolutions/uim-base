@@ -8,7 +8,7 @@ module uim.consoles.classes.error.engines.file;
 import uim.consoles;
 @safe:
 
-mixin(Version!"test_uim_consoles");
+mixin(Version!"test_uim_io");
 
 import uim.consoles;
 @safe:

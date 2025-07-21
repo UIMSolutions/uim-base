@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.consoles.classes.outputs.engines.formatters.formatter;
 
-mixin(Version!"test_uim_consoles");
+mixin(Version!"test_uim_io");
 
 import uim.consoles;
 @safe:

@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.commands.classes.commands.collection;
 
-mixin(Version!"test_uim_commands");
+mixin(Version!"test_uim_io");
 
 import uim.commands;
 @safe:

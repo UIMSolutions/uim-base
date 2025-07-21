@@ -14,7 +14,7 @@ dependency "uim-base" version="*"
 // configuration "default" {}
 
 configuration "test_library" {
-	versions "test_uim_consoles"
+	versions "test_uim_io"
 }
 configuration "test_all" {
 	versions "test_uim_core" "test_uim_oop"

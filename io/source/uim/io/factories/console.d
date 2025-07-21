@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.consoles.factories.console;
 
-mixin(Version!"test_uim_consoles");
+mixin(Version!"test_uim_io");
 
 import uim.consoles;
 @safe:

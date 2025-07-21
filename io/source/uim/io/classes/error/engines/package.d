@@ -1,6 +1,6 @@
 module uim.consoles.classes.error.engines;
 
-mixin(Version!"test_uim_consoles");
+mixin(Version!"test_uim_io");
 
 import uim.consoles;
 
