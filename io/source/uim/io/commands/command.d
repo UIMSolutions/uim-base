@@ -1,2 +1,2 @@
-module uim.consoles.commands.command;
+module uim.io.commands.command;
 

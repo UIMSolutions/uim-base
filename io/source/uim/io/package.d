@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.consoles;
+module uim.io;
 
 mixin(ImportPhobos!());
 
@@ -12,16 +12,16 @@ public { // uim libraries
 }
 
 public { // uim.filesystem libraries
-  import uim.consoles.classes;
-  import uim.consoles.collections;
-  import uim.consoles.enumerations;
-  import uim.consoles.errors;
-  import uim.consoles.exceptions;
-  import uim.consoles.factories;
-  import uim.consoles.helpers;
-  import uim.consoles.interfaces;
-  import uim.consoles.mixins;
-  import uim.consoles.registries;
-  import uim.consoles.tests;
+  import uim.io.classes;
+  import uim.io.collections;
+  import uim.io.enumerations;
+  import uim.io.errors;
+  import uim.io.exceptions;
+  import uim.io.factories;
+  import uim.io.helpers;
+  import uim.io.interfaces;
+  import uim.io.mixins;
+  import uim.io.registries;
+  import uim.io.tests;
 }
 

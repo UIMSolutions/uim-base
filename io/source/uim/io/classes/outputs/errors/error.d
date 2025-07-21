@@ -1,2 +1,2 @@
-module uim.consoles.classes.outputs.errors.error;
+module uim.io.classes.outputs.errors.error;
 

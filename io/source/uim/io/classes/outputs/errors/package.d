@@ -1,5 +1,5 @@
-module uim.consoles.classes.outputs.errors;
+module uim.io.classes.outputs.errors;
 
 public {
-    import uim.consoles.classes.outputs.errors.error;
+    import uim.io.classes.outputs.errors.error;
 }

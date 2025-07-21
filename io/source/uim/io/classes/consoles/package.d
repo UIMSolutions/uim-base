@@ -3,13 +3,13 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module consoles.uim.consoles.classes.consoles;
+module consoles.uim.io.classes.consoles;
 
 public { // Main
-    import uim.consoles.classes.consoles.console;
-    import uim.consoles.classes.consoles.collection;
+    import uim.io.classes.consoles.console;
+    import uim.io.classes.consoles.collection;
 }
 
 public {
-    import uim.consoles.classes.consoles.optionparser;
+    import uim.io.classes.consoles.optionparser;
 }

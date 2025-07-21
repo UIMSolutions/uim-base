@@ -3,12 +3,12 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.consoles.tests.constraints;
+module uim.io.tests.constraints;
 
 public {
-  import uim.consoles.tests.constraints.contents;
+  import uim.io.tests.constraints.contents;
 }
 
 public {
-  // TODO import uim.consoles.tests.constraints.exitcode;  
+  // TODO import uim.io.tests.constraints.exitcode;  
 }

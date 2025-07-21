@@ -1,5 +1,5 @@
-module uim.consoles.registries;
+module uim.io.registries;
 
 public {
-    import uim.consoles.registries.console;
+    import uim.io.registries.console;
 }

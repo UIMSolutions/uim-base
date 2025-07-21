@@ -3,14 +3,14 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.consoles.classes.consoles.collection;
+module uim.io.classes.consoles.collection;
 
-import uim.consoles;
+import uim.io;
 @safe:
 
 mixin(Version!"test_uim_io");
 
-import uim.consoles;
+import uim.io;
 @safe:
 
 

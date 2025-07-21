@@ -1,5 +1,5 @@
-module uim.consoles.classes.outputs.commands.command;
+module uim.io.classes.outputs.commands.command;
 
 public {
-import uim.consoles.classes.outputs.commands.command;
+import uim.io.classes.outputs.commands.command;
 }

@@ -3,11 +3,11 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.consoles.exceptions.exception;
+module uim.io.exceptions.exception;
 
 mixin(Version!"test_uim_io");
 
-import uim.consoles;
+import uim.io;
 @safe:
 
 // Exception class for Console libraries. This exception will be thrown from Console library classes when they encounter an error.

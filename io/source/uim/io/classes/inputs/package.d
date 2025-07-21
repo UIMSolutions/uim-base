@@ -1,16 +1,16 @@
-module uim.consoles.classes.inputs;
+module uim.io.classes.inputs;
 
 // Main class
 public {
-    import uim.consoles.classes.inputs.input;
+    import uim.io.classes.inputs.input;
 }
 
 // Derived classes
 public {
-    import uim.consoles.classes.inputs.argument;
-    import uim.consoles.classes.inputs.option;
-    import uim.consoles.classes.inputs.file;
-    import uim.consoles.classes.inputs.rest;
-    import uim.consoles.classes.inputs.standard;
+    import uim.io.classes.inputs.argument;
+    import uim.io.classes.inputs.option;
+    import uim.io.classes.inputs.file;
+    import uim.io.classes.inputs.rest;
+    import uim.io.classes.inputs.standard;
 }
 

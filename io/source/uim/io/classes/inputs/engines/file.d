@@ -1,11 +1,11 @@
-module uim.consoles.classes.inputs.file;
+module uim.io.classes.inputs.file;
 
-import uim.consoles;
+import uim.io;
 @safe:
 
 mixin(Version!"test_uim_io");
 
-import uim.consoles;
+import uim.io;
 @safe:
 
 

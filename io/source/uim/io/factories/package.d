@@ -3,17 +3,17 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.consoles.factories;
+module uim.io.factories;
 
 public {
-    import uim.consoles.factories.console;
-    import uim.consoles.factories.error;
-    import uim.consoles.factories.input;
-    import uim.consoles.factories.output;
+    import uim.io.factories.console;
+    import uim.io.factories.error;
+    import uim.io.factories.input;
+    import uim.io.factories.output;
 }
 
 static this() { // Init factories
-  import uim.consoles;
+  import uim.io;
 
   InputFactory.set("file", (Json[string] options = new Json[string]) @safe {
       return new DFileInput(options);

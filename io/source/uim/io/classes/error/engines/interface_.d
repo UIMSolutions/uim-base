@@ -1,6 +1,6 @@
-module uim.consoles.classes.error.engines.interface_;
+module uim.io.classes.error.engines.interface_;
 
-import uim.consoles;
+import uim.io;
 
 @safe:
 

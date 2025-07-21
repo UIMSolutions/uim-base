@@ -1,8 +1,8 @@
-module uim.consoles.classes.error.output;
+module uim.io.classes.error.output;
 
 mixin(Version!"test_uim_io");
 
-import uim.consoles;
+import uim.io;
 @safe:
 
 class DErrorOutput : DOutput {

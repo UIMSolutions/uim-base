@@ -1,2 +1,2 @@
-module uim.consoles.classes.outputs.commands;
+module uim.io.classes.outputs.commands;
 

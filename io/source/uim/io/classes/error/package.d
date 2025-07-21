@@ -1,9 +1,9 @@
-module uim.consoles.classes.error;
+module uim.io.classes.error;
 
 public {
-    import uim.consoles.classes.error.output;
+    import uim.io.classes.error.output;
 }
 
 public { // Subclasses
-    import uim.consoles.classes.error.engines;
+    import uim.io.classes.error.engines;
 }

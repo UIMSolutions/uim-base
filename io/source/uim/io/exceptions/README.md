@@ -1,1 +1,1 @@
-# Package 📦 uim.consoles.exceptions
+# Package 📦 uim.io.exceptions
