@@ -3,17 +3,17 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.commands.classes.commands;
+module uim.io.classes.commands;
 
 public {
-    import uim.commands.classes.commands.command;
+    import uim.io.classes.commands.command;
     // 
-    import uim.commands.classes.commands.collection;
-    import uim.commands.classes.commands.factory;
-    import uim.commands.classes.commands.helper;
-    import uim.commands.classes.commands.interface_;
-    import uim.commands.classes.commands.mixins;
-    import uim.commands.classes.commands.enumeration;
-    import uim.commands.classes.commands.exceptions;
-    import uim.commands.classes.commands.registry;
+    import uim.io.classes.commands.collection;
+    import uim.io.classes.commands.factory;
+    import uim.io.classes.commands.helper;
+    import uim.io.classes.commands.interface_;
+    import uim.io.classes.commands.mixins;
+    import uim.io.classes.commands.enumeration;
+    import uim.io.classes.commands.exceptions;
+    import uim.io.classes.commands.registry;
 }
