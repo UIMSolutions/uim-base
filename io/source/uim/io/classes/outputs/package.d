@@ -14,6 +14,7 @@ public {
 public {
     import uim.io.classes.outputs.commands;
     import uim.io.classes.outputs.engines;
+    import uim.io.classes.outputs.enumerations;
     import uim.io.classes.outputs.errors;
     import uim.io.classes.outputs.exceptions;
     import uim.io.classes.outputs.formatters;

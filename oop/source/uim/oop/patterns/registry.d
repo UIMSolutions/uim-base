@@ -143,16 +143,16 @@ class DObjectRegistry(T : UIMObject) {
   // #endregion register
 
   // #region clone
-  T create(string[] path) {
-    return create(correctKey(path));
+  T clone(string[] path) {
+    return clone(correctKey(path));
   }
 
-  T create(string key) {
-    T createdObject;
+  T clone(string key) {
+    T clonedObject;
     if (auto registerdObject = get(correctKey(key))) {
-      () @trusted { createdObject = cast(T) factory(registerdObject.classname); }();
+      () @trusted { clonedObject = cast(T) factory(registerdObject.classname); }();
     }
-    return createdObject;
+    return clonedObject;
   }
   // #endregion clone
 

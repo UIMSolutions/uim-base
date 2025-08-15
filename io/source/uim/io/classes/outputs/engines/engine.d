@@ -78,7 +78,7 @@ class DOutputEngine : UIMObject, IOutputEngine {
   static const string LF = "\n";  // TODO = D_EOL;
 
   // The current output type.
-  protected string _outputType = "COLOR"; // text colors used in colored output.
+  protected OutputTypes _outputType = OutputTypes.RENDER; // text colors used in colored output.
   protected static int[string] _foregroundColors; // background colors used in colored output.
   protected static int[string] _backgroundColors; // Formatting options for colored output.
   protected static int[string] _options;
@@ -100,11 +100,11 @@ class DOutputEngine : UIMObject, IOutputEngine {
   // Apply styling to text.
   string styleText(string text) {
     string styledTxt = text;
-    if (outputType == "RAW") {
+    if (_outputType == OutputTypes.RAW) {
       return text;
     }
 
-    if (outputType == "PLAIN") {
+    if (_outputType == OutputTypes.PLAIN) {
       styledTxt = text;
       styles.keys
         .each!(key => styledTxt = styledTxt.replace("<"~key~">", "").replace("</"~key~">", ""));
