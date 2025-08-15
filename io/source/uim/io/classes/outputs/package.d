@@ -12,8 +12,11 @@ public {
 
 // Derived classe
 public {
-    import uim.io.classes.outputs.file;
-    import uim.io.classes.outputs.rest;
-    import uim.io.classes.outputs.standard;
+    import uim.io.classes.outputs.commands;
+    import uim.io.classes.outputs.engines;
+    import uim.io.classes.outputs.errors;
+    import uim.io.classes.outputs.exceptions;
+    import uim.io.classes.outputs.formatters;
+    import uim.io.classes.outputs.styles;
 }
 
