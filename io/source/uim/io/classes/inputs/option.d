@@ -5,9 +5,6 @@
 *****************************************************************************************************************/
 module uim.io.classes.inputs.option;
 
-import uim.io;
-@safe:
-
 mixin(Version!"test_uim_io");
 
 import uim.io;

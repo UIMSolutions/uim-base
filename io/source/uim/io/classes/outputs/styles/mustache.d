@@ -1,4 +1,4 @@
-module uim.io.classes.outputs.styles.style;
+module uim.io.classes.outputs.styles.mustache;
 
 mixin(Version!"test_uim_io");
 
@@ -62,28 +62,18 @@ class DOutputStyle : UIMObject, IOutputStyle {
   }
 
   // #region replaceCode
-  string replaceCodes(string text, string[string] styleCodes, ) {
-    styleCodes.each!(code => text = text.replaceCode(code, value));
+  override string replaceCodes(string[string] styleCodes, string text) {
+    styleCodes.keys
+      .each!(code => text = replaceCode(code, text));
     return text;
-  }
-
-  string replaceCode(string text, string code) {
-    return text.replace("<" ~ code ~ ">", "").replace("</" ~ code ~ ">", "");
+  }  string replaceCode(string styleCode, string text) {
+    return text.replace("{" ~ styleCode ~ "}", "");
   }
   // #endregion replaceCode
 
   // #region removeCode
-  string removeCodes(string text, string[string] values) {
-    return text.removeCode(values.keys);
-  }
-
-  string removeCodes(string text, string[] codes) {
-    codes.each!(code => text = text.removeCode(code));
-    return text;
-  }
-
-  string removeCode(string text, string code) {
-    return text.replace("<" ~ code ~ ">", "").replace("</" ~ code ~ ">", "");
+  override string removeCode(string styleCode, string text) {
+    return text.replace("{" ~ styleCode ~ "}", "");
   }
   // #endregion removeCode
 }

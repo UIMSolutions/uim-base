@@ -46,10 +46,10 @@ static this() {
 
 unittest {
   assert(OutputFormatterFactory);
-  assert(OutputFactory.create("standard").name == TextEngineFormatterFactory.name);
-  assert(OutputFactory.create("text").name == TextEngineFormatterFactory.name);
-  assert(OutputFactory.create("html").name == HtmlEngineFormatterFactory.name);
-  assert(OutputFactory.create("json").name == JsonEngineFormatterFactory.name);
-  assert(OutputFactory.create("yaml").name == YamlEngineFormatterFactory.name);
-  assert(OutputFactory.create("xml").name == XmlEngineFormatterFactory.name);
+  assert(OutputFormatterFactory.create("standard").name == TextEngineFormatterFactory.name);
+  assert(OutputFormatterFactory.create("text").name == TextEngineFormatterFactory.name);
+  assert(OutputFormatterFactory.create("html").name == HtmlEngineFormatterFactory.name);
+  assert(OutputFormatterFactory.create("json").name == JsonEngineFormatterFactory.name);
+  assert(OutputFormatterFactory.create("yaml").name == YamlEngineFormatterFactory.name);
+  assert(OutputFormatterFactory.create("xml").name == XmlEngineFormatterFactory.name);
 }

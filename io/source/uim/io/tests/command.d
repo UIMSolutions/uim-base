@@ -10,8 +10,6 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-
-
 /* bool testCommand(IConsoleCommand commandToTest) {
     assert(commandToTest !is null, "In testCommand: commandToTest is null");
 

@@ -13,7 +13,7 @@ import uim.io;
 
 class DOutputFactory : DFactory!DOutput{}
 
-auto OutputFactory() {
+auto OutputFormatterFactoryOutputFactory() {
     return DOutputFactory.instance;
 }
 
