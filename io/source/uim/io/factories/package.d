@@ -6,17 +6,19 @@
 module uim.io.factories;
 
 public {
-    import uim.io.factories.console;
-    // import uim.io.factories.error;
-    import uim.io.factories.input;
-    import uim.io.factories.output;
+  import uim.io.factories.console;
+
+  // import uim.io.factories.error;
+  import uim.io.factories.input;
+
+  // import uim.io.factories.output;
 }
 
 static this() { // Init factories
   import uim.io;
 
   InputFactory.set("file", (Json[string] options = new Json[string]) @safe {
-      return new DFileInput(options);
+    return new DFileInput(options);
   });
 
   InputFactory.set("rest", (Json[string] options = new Json[string]) @safe {
@@ -24,15 +26,15 @@ static this() { // Init factories
   });
 
   InputFactory.set("standard", (Json[string] options = new Json[string]) @safe {
-      return new DStandardInput(options);
+    return new DStandardInput(options);
   });
 
   OutputFactory.set("file", (Json[string] options = new Json[string]) @safe {
-      return new DFileOutput(options);
+    return new DFileOutput(options);
   });
 
   OutputFactory.set("rest", (Json[string] options = new Json[string]) @safe {
-      return new DRestOutput(options);
+    return new DRestOutput(options);
   });
 
   OutputFactory.set("standard", (Json[string] options = new Json[string]) @safe {
@@ -40,15 +42,14 @@ static this() { // Init factories
   });
 
   ErrorOutputFactory.set("file", (Json[string] options = new Json[string]) @safe {
-      return new DFileErrorOutput(options);
+    return new DFileErrorOutput(options);
   });
 
   ErrorOutputFactory.set("rest", (Json[string] options = new Json[string]) @safe {
-      return new DRestErrorOutput(options);
+    return new DRestErrorOutput(options);
   });
 
   ErrorOutputFactory.set("standard", (Json[string] options = new Json[string]) @safe {
     return new DStandardErrorOutput(options);
   });
 }
- 

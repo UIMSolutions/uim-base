@@ -6,12 +6,13 @@
 module uim.io.mixins;
 
 public {
-    import uim.io.mixins.argument;
+  import uim.io.mixins.argument;
 
-    // import uim.io.mixins.command;
-    import uim.io.mixins.console;
-    import uim.io.mixins.consoleintegrationtest;
-    import uim.io.mixins.error;
-    import uim.io.mixins.input;
-    import uim.io.mixins.output;
+  // import uim.io.mixins.command;
+  import uim.io.mixins.console;
+  import uim.io.mixins.consoleintegrationtest;
+
+  // import uim.io.mixins.error;
+  import uim.io.mixins.input;
+  // import uim.io.mixins.output;
 }
