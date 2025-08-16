@@ -10,8 +10,8 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DTextOutputEngineFormatter : DOutputEngineFormatter {
-  mixin(OutputEngineFormatterThis!("Text"));
+class DTextOutputFormatter : DOutputFormatter {
+  mixin(OutputFormatterThis!("Text"));
 
   override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
@@ -22,4 +22,4 @@ class DTextOutputEngineFormatter : DOutputEngineFormatter {
 
   
 }
-mixin(OutputEngineFormatterCalls!("Text"));
+mixin(OutputFormatterCalls!("Text"));

@@ -46,34 +46,40 @@ class DOutputStyle : UIMObject, IOutputStyle {
     string styledTxt = text;
     if (outputType == OutputTypes.PLAIN) {
       values.keys
-        .each!(key => styledTxt = styledTxt.removeStyleCode(key));
+        .each!(key => styledTxt = styledTxt.removeCode(key));
 
-      if (!styledTxt.isNull) {
-        return styledTxt;
-      }
+      return styledTxt;
     }
 
-    foreach (tag; styles.keys) {
-      if (styledTxt.contains("<" ~ tag ~ ">")) {
-        styledTxt = styledTxt.replace("<" ~ tag ~ ">", "").replace("</" ~ tag ~ ">", "");
-        Json match = Json.emptyObject;
-        match["tag"] = tag;
-        match["text"] = styledTxt;
-        return replaceTags(match);
-      }
+    if (outputType == OutputTypes.RENDER) {
+      values
+        .each!((key, value) => styledTxt = styledTxt.replaceCode(key, value));
+
+      return replaceCodes(values, styledTxt);
     }
 
     return text;
   }
 
-  // #region removeStyleCode
-  string removeStyleCodes(string[] styleCodes, string text) {
-    styleCodes.each!(code => text = removeStyleCode(code, text));
+  // #region replaceCode
+  string replaceCodes(string[string] styleCodes, string text) {
+    styleCodes.each!(code => text = replaceCode(code, text));
     return text;
   }
 
-  string removeStyleCode(string styleCode, string text) {
+  string replaceCode(string styleCode, string text) {
     return text.replace("<" ~ styleCode ~ ">", "").replace("</" ~ styleCode ~ ">", "");
   }
-  // #endregion removeStyleCode
+  // #endregion replaceCode
+
+  // #region removeCode
+  string removeCodes(string[] styleCodes, string text) {
+    styleCodes.each!(code => text = removeCode(code, text));
+    return text;
+  }
+
+  string removeCode(string styleCode, string text) {
+    return text.replace("<" ~ styleCode ~ ">", "").replace("</" ~ styleCode ~ ">", "");
+  }
+  // #endregion removeCode
 }

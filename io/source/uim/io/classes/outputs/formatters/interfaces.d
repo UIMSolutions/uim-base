@@ -10,14 +10,14 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-interface IOutputEngineFormatter : IObject {
+interface IOutputFormatter : IObject {
     // Outputs a single or multiple messages or newlines to stdout / stderr.
-    IOutputEngineFormatter write(string[] messages);
-    IOutputEngineFormatter write(string message);
+    IOutputFormatter write(string[] messages);
+    IOutputFormatter write(string message);
 
-    IOutputEngineFormatter writeln(uint numberOfLines = 1);
-    IOutputEngineFormatter writeln(string[] messages, uint numberOfLines = 1);
-    IOutputEngineFormatter writeln(string message, uint numberOfLines = 1);
+    IOutputFormatter writeln(uint numberOfLines = 1);
+    IOutputFormatter writeln(string[] messages, uint numberOfLines = 1);
+    IOutputFormatter writeln(string message, uint numberOfLines = 1);
 
     // #region style
     // Gets the current styles offered
@@ -26,15 +26,15 @@ interface IOutputEngineFormatter : IObject {
     Json[string] styles();
 
     // Set style
-    IOutputEngineFormatter style(string style, STRINGAA definition);
-    IOutputEngineFormatter style(string style, Json definition);
-    IOutputEngineFormatter removeStyle(string name);
+    IOutputFormatter style(string style, STRINGAA definition);
+    IOutputFormatter style(string style, Json definition);
+    IOutputFormatter removeStyle(string name);
     // #endregion style
 
     // #region outputType
     // Get the output type on how formatting tags are treated.
     string outputType();
     // Set the output type on how formatting tags are treated.
-    IOutputEngineFormatter outputType(string type);
+    IOutputFormatter outputType(string type);
     // #endregion outputType
 }

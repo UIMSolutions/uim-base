@@ -10,20 +10,20 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-string outputEngineFormatterThis(string name = null) {
-    string fullName = name ~ "OutputEngineFormatter";
+string OutputFormatterThis(string name = null) {
+    string fullName = name ~ "OutputFormatter";
     return objThis(fullName);
 }
 
-template OutputEngineFormatterThis(string name = null) {
-    const char[] OutputEngineFormatterThis = outputEngineFormatterThis(name);
+template OutputFormatterThis(string name = null) {
+    const char[] OutputFormatterThis = OutputFormatterThis(name);
 }
 
-string outputEngineFormatterCalls(string name) {
-    string fullName = name ~ "OutputEngineFormatter";
+string OutputFormatterCalls(string name) {
+    string fullName = name ~ "OutputFormatter";
     return objCalls(fullName);
 }
 
-template OutputEngineFormatterCalls(string name) {
-    const char[] OutputEngineFormatterCalls = outputEngineFormatterCalls(name);
+template OutputFormatterCalls(string name) {
+    const char[] OutputFormatterCalls = OutputFormatterCalls(name);
 }

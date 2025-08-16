@@ -11,41 +11,41 @@ import uim.io;
 
 @safe:
 
-class DOutputEngineFormatterFactory : DFactory!IOutputEngineFormatter {
+class DOutputFormatterFactory : DFactory!IOutputFormatter {
 }
 
-auto OutputEngineFormatterFactory() {
-  return DOutputEngineFormatterFactory.instance;
+auto OutputFormatterFactory() {
+  return DOutputFormatterFactory.instance;
 }
 
 static this() {
-  OutputEngineFormatterFactory.set("standard", (Json[string] options = new Json[string]) @safe {
+  OutputFormatterFactory.set("standard", (Json[string] options = new Json[string]) @safe {
     return new DTextEngineFormatterFactory(options);
   });
 
-  OutputEngineFormatterFactory.set("text", (Json[string] options = new Json[string]) @safe {
+  OutputFormatterFactory.set("text", (Json[string] options = new Json[string]) @safe {
     return new DTextEngineFormatterFactory(options);
   });
 
-  OutputEngineFormatterFactory.set("html", (Json[string] options = new Json[string]) @safe {
+  OutputFormatterFactory.set("html", (Json[string] options = new Json[string]) @safe {
     return new DHtmlEngineFormatterFactory(options);
   });
 
-  OutputEngineFormatterFactory.set("json", (Json[string] options = new Json[string]) @safe {
+  OutputFormatterFactory.set("json", (Json[string] options = new Json[string]) @safe {
     return new DJsonEngineFormatterFactory(options);
   });
 
-  OutputEngineFormatterFactory.set("yaml", (Json[string] options = new Json[string]) @safe {
+  OutputFormatterFactory.set("yaml", (Json[string] options = new Json[string]) @safe {
     return new DYamlEngineFormatterFactory(options);
   });
 
-  OutputEngineFormatterFactory.set("xml", (Json[string] options = new Json[string]) @safe {
+  OutputFormatterFactory.set("xml", (Json[string] options = new Json[string]) @safe {
     return new DXmlEngineFormatterFactory(options);
   });
 }
 
 unittest {
-  assert(OutputEngineFormatterFactory);
+  assert(OutputFormatterFactory);
   assert(OutputFactory.create("standard").name == TextEngineFormatterFactory.name);
   assert(OutputFactory.create("text").name == TextEngineFormatterFactory.name);
   assert(OutputFactory.create("html").name == HtmlEngineFormatterFactory.name);

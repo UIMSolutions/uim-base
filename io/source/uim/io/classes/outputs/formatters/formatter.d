@@ -10,8 +10,8 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DOutputEngineFormatter : UIMObject, IOutputEngineFormatter {
-  mixin(OutputEngineFormatterThis!());
+class DOutputFormatter : UIMObject, IOutputFormatter {
+  mixin(OutputFormatterThis!());
 
   override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
@@ -21,36 +21,42 @@ class DOutputEngineFormatter : UIMObject, IOutputEngineFormatter {
   }
 
     // Outputs a single or multiple messages or newlines to stdout / stderr.
-    IOutputEngineFormatter write(string[] messages);
-    IOutputEngineFormatter write(string message);
+    IOutputFormatter write(string[] messages);
+    IOutputFormatter write(string message);
 
-    IOutputEngineFormatter writeln(uint numberOfLines = 1);
-    IOutputEngineFormatter writeln(string[] messages, uint numberOfLines = 1);
-    IOutputEngineFormatter writeln(string message, uint numberOfLines = 1);
+    IOutputFormatter writeln(uint numberOfLines = 1);
+    IOutputFormatter writeln(string[] messages, uint numberOfLines = 1);
+    IOutputFormatter writeln(string message, uint numberOfLines = 1);
 
-    // #region style
+    // #region styles
     // Gets the current styles offered
-    Json style(string name) {
-      return Json(null)
+    protected IOutputStyle[string] _styles;
+
+    IOutputStyle style(string name) {
+      return (name in _styles) ? _styles[name] : null;
+    }
+
+    IOutputStyle style(string name) {
+      return (name in _styles) ? _styles[name] : null;
     }
 
     // Gets all the style definitions.
-    Json[string] styles() {
-      return null;
+    IOutputStyle[string] styles() {
+      return _styles;
     }
 
     // Set style
-    IOutputEngineFormatter style(string style, STRINGAA definition);
-    IOutputEngineFormatter style(string style, Json definition);
-    IOutputEngineFormatter removeStyle(string name);
-    // #endregion style
+    IOutputFormatter style(string style, STRINGAA definition);
+    IOutputFormatter style(string style, Json definition);
+    IOutputFormatter removeStyle(string name);
+    // #endregion styles
 
     // #region outputType
     // Get the output type on how formatting tags are treated.
     string outputType();
     // Set the output type on how formatting tags are treated.
-    IOutputEngineFormatter outputType(string type);
+    IOutputFormatter outputType(string type);
     // #endregion outputType
 
 }
-mixin(OutputEngineFormatterCalls!());
+mixin(OutputFormatterCalls!());

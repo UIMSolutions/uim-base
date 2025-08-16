@@ -10,8 +10,8 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DHtmlOutputEngineFormatter : DOutputEngineFormatter {
-  mixin(OutputEngineFormatterThis!("Html"));
+class DHtmlOutputFormatter : DOutputFormatter {
+  mixin(OutputFormatterThis!("Html"));
 
   override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
@@ -20,4 +20,4 @@ class DHtmlOutputEngineFormatter : DOutputEngineFormatter {
     return true;
   }
 }
-mixin(OutputEngineFormatterCalls!("Html"));
+mixin(OutputFormatterCalls!("Html"));
