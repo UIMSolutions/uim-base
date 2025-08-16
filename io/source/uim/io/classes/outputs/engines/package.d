@@ -11,6 +11,7 @@ public { // Main modules
   import uim.io.classes.outputs.engines.interfaces;
   import uim.io.classes.outputs.engines.mixins;
   import uim.io.classes.outputs.engines.tests;
+  import uim.io.classes.outputs.engines.registry;
 }
 
 public { // Additional modules

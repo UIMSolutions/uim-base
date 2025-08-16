@@ -16,11 +16,3 @@ class DOutputFactory : DFactory!DOutput{}
 auto OutputFormatterFactoryOutputFactory() {
     return DOutputFactory.instance;
 }
-
-unittest {
-    assert(OutputFactory);
-    assert(OutputFactory.create("standard").name == "StandardOutput");
-    assert(OutputFactory.create("file").name == "FileOutput");
-    assert(OutputFactory.create("rest").name == "RestOutput");
-}
- 

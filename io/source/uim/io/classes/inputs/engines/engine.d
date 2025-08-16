@@ -3,10 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.io.classes.inputs.input;
-
-import uim.io;
-@safe:
+module uim.io.classes.inputs.engines.engine;
 
 mixin(Version!"test_uim_io");
 
@@ -15,7 +12,7 @@ import uim.io;
 
 
 // Object wrapper for interacting with stdin
-class DInput : UIMObject, IInput {
+class DInputEngine : UIMObject {
   mixin(InputThis!());
 
   // Input value.

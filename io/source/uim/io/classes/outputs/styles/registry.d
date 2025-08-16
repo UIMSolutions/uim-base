@@ -3,7 +3,6 @@ module uim.io.classes.outputs.styles.registry;
 mixin(Version!"test_uim_io");
 
 import uim.io;
-
 @safe:
 
 class DStyleRegistry : DObjectRegistry!DStyle {

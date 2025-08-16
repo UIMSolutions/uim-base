@@ -20,7 +20,7 @@ class DInput : UIMObject {
     super();
   }
 
-  protected DInputENgine[string] _engines;
+  protected DInputEngine[string] _engines;
   protected DInputEngine[string] engines() {
     if (_engines is null) {
       _engines = new DInputEngine[string];

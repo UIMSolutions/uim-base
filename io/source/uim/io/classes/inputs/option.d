@@ -10,7 +10,6 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-
 /**
  * An object to represent a single option used in the command line.
  * DConsoleOptionParser buildOptionParser creates these when you use addOption()

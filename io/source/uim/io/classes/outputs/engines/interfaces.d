@@ -5,8 +5,9 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs.engines.interfaces;
 
-import uim.io;
+mixin(Version!"test_uim_io");
 
+import uim.io;
 @safe:
 
 interface IOutputEngine : IObject {
