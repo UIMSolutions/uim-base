@@ -3,27 +3,21 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.io.classes.outputs.engines.formatters.mixins;
+module uim.io.classes.outputs.formatters.subclasses.html;
 
 mixin(Version!"test_uim_io");
 
 import uim.io;
 @safe:
 
-string OutputFormatterThis(string name = null) {
-    string fullName = name ~ "OutputFormatter";
-    return objThis(fullName);
-}
+class DHtmlOutputFormatter : DOutputFormatter {
+  mixin(OutputFormatterThis!("Html"));
 
-template OutputFormatterThis(string name = null) {
-    const char[] OutputFormatterThis = OutputFormatterThis(name);
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
+    return true;
+  }
 }
-
-string OutputFormatterCalls(string name) {
-    string fullName = name ~ "OutputFormatter";
-    return objCalls(fullName);
-}
-
-template OutputFormatterCalls(string name) {
-    const char[] OutputFormatterCalls = OutputFormatterCalls(name);
-}
+mixin(OutputFormatterCalls!("Html"));
