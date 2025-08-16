@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.io.classes.outputs.engines.html;
+module uim.io.classes.outputs.engines.subclasses.memory;
 
 import uim.io;
 
@@ -15,8 +15,8 @@ import uim.io;
 
 @safe:
 
-class DHtmlFileOutputEngine : DFileEngine {
-  mixin(OutputEngineThis!("HtmlFile"));
+class DMemoryOutputEngine : DFileEngine {
+  mixin(OutputEngineThis!("Memory"));
 
   override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
@@ -47,8 +47,8 @@ class DHtmlFileOutputEngine : DFileEngine {
   // #endregion writeln
 }
 
-mixin(OutputEngineClass!("HtmlFile"));
+mixin(OutputEngineClass!("Memory"));
 
 unittest{
-  assert(testOutputEngine(new DHtmlFileOutputEngine()), "Test DHtmlFileOutputEngine failed");
+  assert(testOutputEngine(new DMemoryOutputEngine()), "Test DMemoryOutputEngine failed");
 }
