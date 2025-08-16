@@ -41,7 +41,7 @@ import uim.io;
  * See OutputConsole.styles() to learn more about defining your own styles. Nested styles are not supported
  * at this time.
  */
-class DFileOutput : DOutputEngine {
+class DFileOutputEngine : DOutputEngine {
   mixin(OutputEngineThis!("File"));
 
   override bool initialize(Json[string] initData = null) {
@@ -187,8 +187,6 @@ class DFileOutput : DOutputEngine {
 
 mixin(OutputEngineCalls!("File"));
 
-unittest {
-  auto output = FileOutputEngine;
-  assert(testOutputEngine(output));
+unittest{
+  assert(testOutputEngine(new DFileOutputEngine()), "Test DFileOutputEngine failed");
 }
-

@@ -13,7 +13,7 @@ public { // uim libraries
 
 public { // uim.filesystem libraries
   import uim.io.classes;
-  import uim.io.collections;
+  // import uim.io.collections;
   import uim.io.enumerations;
   import uim.io.errors;
   import uim.io.exceptions;

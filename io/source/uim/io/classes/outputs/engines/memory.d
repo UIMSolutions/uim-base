@@ -15,7 +15,7 @@ import uim.io;
 
 @safe:
 
-class DMemoryOutput : DFileEngine {
+class DMemoryOutputEngine : DFileEngine {
   mixin(OutputEngineThis!("Memory"));
 
   override bool initialize(Json[string] initData = null) {
@@ -48,3 +48,7 @@ class DMemoryOutput : DFileEngine {
 }
 
 mixin(OutputEngineClass!("Memory"));
+
+unittest{
+  assert(testOutputEngine(new DMemoryOutputEngine()), "Test DMemoryOutputEngine failed");
+}

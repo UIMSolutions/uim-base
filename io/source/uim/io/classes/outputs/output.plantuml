@@ -1,0 +1,34 @@
+@startuml
+
+class DOutput {
+    +outputData: String
+    +outputType: OutputType
+    +writeOutput(data: String): void
+    +getOutputType(): OutputType
+}
+
+class DOutputEngine {
+    +outputs: List<DOutput>
+    +processOutputs(): void
+}
+
+class DOutputFormatter {
+    +format(data: String): String
+}
+
+class DOutputStyle {
+    +styleName: String
+    +applyStyle(data: String): String
+}
+
+enum OutputType {
+    FILE
+    CONSOLE
+    NETWORK
+}
+
+DOutputEngine "1" -- "*" DOutput : manages >
+DOutput "1" -- "1" DOutputFormatter : uses >
+DOutput "1" -- "1" DOutputStyle : styled by >
+
+@enduml

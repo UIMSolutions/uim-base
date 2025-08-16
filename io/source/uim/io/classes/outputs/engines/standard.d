@@ -125,3 +125,6 @@ unittest {
   output.write("COLOR: <info>Hallo World</info>"); */
 }
 
+unittest{
+  assert(testOutputEngine(new DStandardOutputEngine()), "Test DStandardOutputEngine failed");
+}

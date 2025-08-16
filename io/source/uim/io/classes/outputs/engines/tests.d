@@ -8,10 +8,30 @@ module uim.io.classes.outputs.engines.tests;
 mixin(Version!"test_uim_io");
 
 import uim.io;
+
 @safe:
 
-bool testOutput(IOutputEngine output) {
-    assert(output !is null, "In testOutput: output is null");
-    
-    return true;
+bool testOutputEngine(IOutputEngine engine) {
+  assert(engine !is null, "In testOutputEngine: engine is null");
+
+  // Setup: initialize static members for styles
+  engine.style("warning", new DMarkupOutputStyle());
+  engine.style("info", new DMarkupOutputStyle());
+
+  // Test: styles() returns all styles
+  auto styles = engine.styles();
+  assert("warning" in styles);
+  assert("info" in styles);
+
+  // Test: styles(Json[string]) sets styles
+  styles["custom"] = new DMarkupOutputStyle();
+  engine.styles(newStyles);
+  auto updatedStyles = engine.styles();
+  assert("custom" in updatedStyles);
+
+  // Test: removeStyle(string) removes style
+  engine.removeStyle("thirdstyle");
+  assert(engine.style("thirdstyle").isNull);
+
+  return true;
 }

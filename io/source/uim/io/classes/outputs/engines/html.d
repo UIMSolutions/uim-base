@@ -15,7 +15,7 @@ import uim.io;
 
 @safe:
 
-class DHtmlFileOutput : DFileEngine {
+class DHtmlFileOutputEngine : DFileEngine {
   mixin(OutputEngineThis!("HtmlFile"));
 
   override bool initialize(Json[string] initData = null) {
@@ -48,3 +48,7 @@ class DHtmlFileOutput : DFileEngine {
 }
 
 mixin(OutputEngineClass!("HtmlFile"));
+
+unittest{
+  assert(testOutputEngine(new DHtmlFileOutputEngine()), "Test DHtmlFileOutputEngine failed");
+}

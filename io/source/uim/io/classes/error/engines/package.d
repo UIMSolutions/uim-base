@@ -10,6 +10,7 @@ public { // Main packages
   import uim.io.classes.error.engines.engine;
   import uim.io.classes.error.engines.interface_;
   import uim.io.classes.error.engines.mixin_;
+  import uim.io.classes.error.engines.factory;
 }
 
 public { // Additional packages

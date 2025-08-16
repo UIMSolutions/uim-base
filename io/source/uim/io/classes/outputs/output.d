@@ -25,7 +25,7 @@ class DOutput : UIMObject, IOutput {
     super();
   }
 
-  // Returns the name of the output engine
+  // Returns the name of the output
   override string name() const {
     return "Output";
   }
@@ -33,6 +33,7 @@ class DOutput : UIMObject, IOutput {
   // #region engines
   // Collection of output engines
   protected IOutputEngine[string] _engines;
+  
   // Returns the list of output engines
   override IOutputEngine[string] engines() {
     if (_engines.length == 0) {

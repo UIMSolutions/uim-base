@@ -7,7 +7,7 @@ module uim.io.factories;
 
 public {
     import uim.io.factories.console;
-    import uim.io.factories.error;
+    // import uim.io.factories.error;
     import uim.io.factories.input;
     import uim.io.factories.output;
 }
