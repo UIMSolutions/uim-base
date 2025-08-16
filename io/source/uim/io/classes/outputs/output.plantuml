@@ -1,34 +1,13 @@
 @startuml
 
 class DOutput {
-    +outputData: String
-    +outputType: OutputType
-    +writeOutput(data: String): void
-    +getOutputType(): OutputType
-}
+    + write(numberOfLines : uint = 1) : DOutput
+    + write(messages : string[], numberOfLines : uint = 1) : DOutput
+    + write(message : string, numberOfLines : uint = 1) : DOutput
 
-class DOutputEngine {
-    +outputs: List<DOutput>
-    +processOutputs(): void
+    + writeToEngine(name : string, numberOfLines : uint = 1) : DOutput
+    + writeToEngine(name : string, messages : string[], numberOfLines : uint = 1) : DOutput
+    + writeToEngine(name : string, message : string, numberOfLines : uint = 1) : DOutput {
 }
-
-class DOutputFormatter {
-    +format(data: String): String
-}
-
-class DOutputStyle {
-    +styleName: String
-    +applyStyle(data: String): String
-}
-
-enum OutputType {
-    FILE
-    CONSOLE
-    NETWORK
-}
-
-DOutputEngine "1" -- "*" DOutput : manages >
-DOutput "1" -- "1" DOutputFormatter : uses >
-DOutput "1" -- "1" DOutputStyle : styled by >
 
 @enduml

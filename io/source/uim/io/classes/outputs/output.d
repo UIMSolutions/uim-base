@@ -33,7 +33,7 @@ class DOutput : UIMObject, IOutput {
   // #region engines
   // Collection of output engines
   protected IOutputEngine[string] _engines;
-  
+
   // Returns the list of output engines
   override IOutputEngine[string] engines() {
     if (_engines.length == 0) {
@@ -67,6 +67,91 @@ class DOutput : UIMObject, IOutput {
       _engines[name] = engine;
     }
     return this;
+  }
+
+  unittest {
+    // Mock IOutputEngine implementation for testing
+    class MockOutputEngine : IOutputEngine {
+      string _name;
+      this(string name) {
+        _name = name;
+      }
+
+      override string name() const {
+        return _name;
+      }
+
+      override DOutput write(uint numberOfLines) {
+        return null;
+      }
+
+      override DOutput write(string[] messages, uint numberOfLines) {
+        return null;
+      }
+
+      override DOutput write(string message, uint numberOfLines) {
+        return null;
+      }
+    }
+
+    // Mock OutputEngineCollection
+    class MockOutputEngineCollection {
+      IOutputEngine[string] _engines;
+      this() {
+        _engines["engineA"] = new MockOutputEngine("engineA");
+        _engines["engineB"] = new MockOutputEngine("engineB");
+      }
+
+      IOutputEngine[string] engines() {
+        return _engines;
+      }
+    }
+
+    // Mock OutputEngineFactory
+    IOutputEngine MockOutputEngineFactory(string name) {
+      return new MockOutputEngine(name);
+    }
+
+    // Patch DOutput for testing
+    class TestDOutput : DOutput {
+      override IOutputEngine[string] engines() {
+        if (_engines.length == 0) {
+          _engines = MockOutputEngineCollection().engines();
+        }
+        return _engines;
+      }
+
+      override IOutputEngine defaultEngine() {
+        return MockOutputEngineFactory("default");
+      }
+    }
+
+    auto output = new TestDOutput();
+
+    // Test: engines() returns engines and sorts them
+    auto engines = output.engines();
+    assert(engines.length == 2);
+    assert("engineA" in engines);
+    assert("engineB" in engines);
+
+    // Test: defaultEngine() returns a mock engine
+    auto defEngine = output.defaultEngine();
+    assert(defEngine !is null);
+    assert(defEngine.name == "default");
+
+    // Test: engine(string name) returns correct engine
+    auto engineA = output.engine("engineA");
+    assert(engineA !is null);
+    assert(engineA.name == "engineA");
+
+    // Test: engine(string name) returns null for unknown engine
+    auto engineX = output.engine("engineX");
+    assert(engineX is null);
+
+    // Test: engine(string name, IOutputEngine engine) sets engine
+    auto customEngine = new MockOutputEngine("custom");
+    output.engine("custom", customEngine);
+    assert(output.engines()["custom"] is customEngine);
   }
   // #endregion engines
 
