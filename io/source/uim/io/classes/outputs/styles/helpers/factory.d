@@ -1,4 +1,4 @@
-module uim.io.classes.outputs.styles.factory;
+module uim.io.classes.outputs.styles.helpers.factory;
 
 mixin(Version!"test_uim_io");
 

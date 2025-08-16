@@ -1,4 +1,4 @@
-module uim.io.classes.outputs.styles.markup;
+module uim.io.classes.outputs.styles.subclasses.markup;
 
 mixin(Version!"test_uim_io");
 
