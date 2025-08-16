@@ -21,3 +21,7 @@ class DHtmlOutputFormatter : DOutputFormatter {
   }
 }
 mixin(OutputFormatterCalls!("Html"));
+
+unittest {
+  assert(testOutputFormatter(new DHtmlOutputFormatter()), "In DHtmlOutputFormatter: Test failed");
+}

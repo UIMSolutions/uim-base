@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.io.classes.outputs.engines.formatters.xml;
+module uim.io.classes.outputs.formatters.subclasses.xml;
 
 mixin(Version!"test_uim_io");
 
@@ -21,3 +21,7 @@ class DXmlOutputFormatter : DOutputFormatter {
   }
 }
 mixin(OutputFormatterCalls!("Xml"));
+
+unittest {
+  assert(testOutputFormatter(new DXmlOutputFormatter()), "In DXmlOutputFormatter: Test failed");
+}

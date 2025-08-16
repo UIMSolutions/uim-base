@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.io.classes.outputs.engines.formatters.text;
+module uim.io.classes.outputs.formatters.subclasses.text;
 
 mixin(Version!"test_uim_io");
 
@@ -23,3 +23,7 @@ class DTextOutputFormatter : DOutputFormatter {
   
 }
 mixin(OutputFormatterCalls!("Text"));
+
+unittest {
+  assert(testOutputFormatter(new DTextOutputFormatter()), "In DTextOutputFormatter: Test failed");
+}

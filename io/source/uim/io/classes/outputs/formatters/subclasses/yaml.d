@@ -10,7 +10,7 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DHtmlOutputFormatter : DOutputFormatter {
+class DYamlOutputFormatter : DOutputFormatter {
   mixin(OutputFormatterThis!("Yaml"));
 
   override bool initialize(Json[string] initData = null) {
@@ -21,3 +21,7 @@ class DHtmlOutputFormatter : DOutputFormatter {
   }
 }
 mixin(OutputFormatterCalls!("Yaml"));
+
+unittest {
+  assert(testOutputFormatter(new DYamlOutputFormatter()), "In DYamlOutputFormatter: Test failed");
+}
