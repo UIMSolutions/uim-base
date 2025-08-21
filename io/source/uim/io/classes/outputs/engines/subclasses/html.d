@@ -5,14 +5,9 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs.engines.subclasses.html;
 
-import uim.io;
-
-@safe:
-
 mixin(Version!"test_uim_io");
 
 import uim.io;
-
 @safe:
 
 class DHtmlFileOutputEngine : DFileEngine {

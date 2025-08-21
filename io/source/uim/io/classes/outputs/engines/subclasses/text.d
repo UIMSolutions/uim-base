@@ -5,10 +5,6 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs.engines.subclasses.text;
 
-import uim.io;
-
-@safe:
-
 mixin(Version!"test_uim_io");
 
 import uim.io;

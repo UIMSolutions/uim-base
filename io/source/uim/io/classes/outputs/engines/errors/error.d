@@ -3,8 +3,20 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.io.classes.outputs.engines.commands;
+module uim.io.classes.outputs.engines.errors.error;
 
-public {
-  import uim.io.classes.outputs.engines.commands.command;
+mixin(Version!"test_uim_io");
+
+import uim.io;
+
+@safe:
+
+class DOutputEngineError : DError {
+  mixin(ErrorThis!("OutputEngine"));
+}
+
+mixin(ErrorCalls!("OutputEngine"));
+
+unittest {
+  assert(testError(new DOutputEngineError));
 }
