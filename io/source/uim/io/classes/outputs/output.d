@@ -243,3 +243,8 @@ class DOutput : UIMObject, IOutput {
   }
   // #endregion Output methods
 }
+
+// Singleton
+auto Output() {
+  return DOutput.output();
+}

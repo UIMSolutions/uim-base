@@ -19,6 +19,7 @@ class DHtmlFileOutputEngine : DFileEngine {
     }
   }
 
+  // #region write
   override IOutputEngine write(string[] messages) {
     super.write(filename.append(styleText(messages)));
     return this;
@@ -28,6 +29,8 @@ class DHtmlFileOutputEngine : DFileEngine {
     super.write(filename.append(styleText(message)));
     return this;
   }
+  // #endregion write
+
 
   // #region writeln
   override IOutputEngine writeln(string[] messages, uint numberOfLines = 1) {

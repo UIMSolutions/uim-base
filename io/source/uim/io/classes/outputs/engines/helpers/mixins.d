@@ -5,9 +5,11 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs.engines.mixins;
 
-import uim.io;
+mixin(Version!"test_uim_io");
 
+import uim.io;
 @safe:
+
 string outputEngineThis(string name = null) {
     string fullName = name ~ "OutputEngine";
     return objThis(fullName);
