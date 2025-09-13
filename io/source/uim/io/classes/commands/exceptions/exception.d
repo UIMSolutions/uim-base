@@ -19,7 +19,7 @@ class DCommandsException : DException {
       return false;
     }
 
-    messageTemplate("default", "Exception in libary uim-commands");
+    messageTemplate("default", "Exception in libary uim-io");
 
     return true;
   }

@@ -10,6 +10,6 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DCommandRegistry : DObjectRegistry!DCommand {
+class DCommandRegistry : DRegistry!DCommand {
 }
 auto CommandRegistration() { return DCommandRegistry.registration; }

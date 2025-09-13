@@ -10,6 +10,6 @@ mixin(Version!"test_uim_oop");
 import uim.oop;
 @safe:
 
-class DValidatorRegistry : DObjectRegistry!DUIMValidator {
+class DValidatorRegistry : DRegistry!DUIMValidator {
 }
 auto ValidatorRegistry() { return DValidatorRegistry.registration; }

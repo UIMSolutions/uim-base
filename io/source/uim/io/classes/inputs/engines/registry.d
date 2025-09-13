@@ -5,7 +5,7 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DInputEngineRegistry : DObjectRegistry!DInputEngine {
+class DInputEngineRegistry : DRegistry!DInputEngine {
 }
 
 auto InputEngineRegistry() {

@@ -25,8 +25,8 @@ class DCommand : UIMObject, ICommand {
     return true;
   }
 
-  // Implement this method with your command`s logic.
-  bool execute(Json[string] options) {
-    return true;
-  }
+  // Execute command with given options.
+  abstract bool execute(string[string] options);
+  abstract bool execute(Json[string] options);
+  abstract bool execute(Json options);
 }

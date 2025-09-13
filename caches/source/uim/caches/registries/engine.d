@@ -10,7 +10,7 @@ import uim.caches;
 @safe:
 
 // An object registry for cache engines.
-class DCacheEngineRegistry : DObjectRegistry!DCacheEngine {
+class DCacheEngineRegistry : DRegistry!DCacheEngine {
 }
 
 auto CacheEngineRegistry() { // Singleton

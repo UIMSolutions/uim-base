@@ -5,7 +5,7 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DStyleRegistry : DObjectRegistry!DStyle {
+class DStyleRegistry : DRegistry!DStyle {
 }
 
 auto StyleRegistry() {

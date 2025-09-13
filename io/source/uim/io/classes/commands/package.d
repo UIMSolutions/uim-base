@@ -11,7 +11,7 @@ public {
     import uim.io.classes.commands.collection;
     import uim.io.classes.commands.factory;
     import uim.io.classes.commands.helper;
-    import uim.io.classes.commands.interface_;
+    import uim.io.classes.commands.interfaces;
     import uim.io.classes.commands.mixins;
     import uim.io.classes.commands.enumeration;
     import uim.io.classes.commands.exceptions;

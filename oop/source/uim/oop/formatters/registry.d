@@ -16,6 +16,6 @@ version (test_uim_oop) {
   }
 }
 
-class DFormatterRegistry : DObjectRegistry!DFormatter {
+class DFormatterRegistry : DRegistry!DFormatter {
 }
 auto FormatterRegistration() { return DFormatterRegistry.registration; }

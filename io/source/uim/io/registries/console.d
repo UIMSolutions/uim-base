@@ -11,7 +11,7 @@ import uim.io;
 @safe:
 
 
-class DConsoleRegistry : DObjectRegistry!DConsole {
+class DConsoleRegistry : DRegistry!DConsole {
 }
 
 auto ConsoleRegistration() {

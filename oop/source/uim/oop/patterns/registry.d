@@ -14,27 +14,28 @@ version (test_uim_oop) {
     writeln("-----  ", __MODULE__, "\t  -----");
   }
 }
-class DObjectRegistry(T : UIMObject) {
+class DRegistry(T) {
   // #region Singleton
-  protected static DObjectRegistry!T _registration;
-  public static DObjectRegistry!T registration() {
-    return (_registration is null)
-      ? _registration = new DObjectRegistry!T : _registration;
+  protected static DRegistry!T _instance;
+  public static DRegistry!T instance() {
+    return (_instance is null)
+      ? _instance = new DRegistry!T
+      : _instance;
   }
   // #endregion Singleton
 
-  protected T[string] _objects;
+  protected T[string] _registeredObjects;
   protected T _nullValue = null;
   protected string _pathSeparator = ".";
 
-  size_t length() {
-    return _objects.length;
+  size_t size() {
+    return _registeredObjects.length;
   }
 
   // #region keys
-
+  // Get all keys in the registry
   string[] keys(SORTORDERS sortorder = NOSORT) {
-    auto keys = _objects.keys;
+    auto keys = _registeredObjects.keys;
     if (keys is null) {
       return null;
     }
@@ -47,6 +48,7 @@ class DObjectRegistry(T : UIMObject) {
 
     return keys;
   }
+  // #endregion keys
 
   // #region has
   mixin(HasMethods!("Paths", "Path", "string[]"));
@@ -55,7 +57,7 @@ class DObjectRegistry(T : UIMObject) {
     return hasKey(correctKey(path));
   }
   unittest {
-/*     auto registry = new DObjectRegistry!string;
+/*     auto registry = new DRegistry!string;
     registry.register("a.b.c", "value");
     assert(registry.hasPath(["a", "b", "c"]));
     assert(!registry.hasPath(["a", "b", "x"]));
@@ -68,10 +70,10 @@ class DObjectRegistry(T : UIMObject) {
   mixin(HasMethods!("Keys", "Key", "string"));
 
   bool hasKey(string key) {
-    return correctKey(key) in _objects ? true : false;
+    return correctKey(key) in _registeredobjects ? true : false;
   }
   unittest {
-/*     auto registry = new DObjectRegistry!string;
+/*     auto registry = new DRegistry!string;
     registry.register("a.b.c", "value");
     assert(registry.hasKey("a.b.c"));
     assert(!registry.hasKey("a.b.x")); */
@@ -91,7 +93,7 @@ class DObjectRegistry(T : UIMObject) {
 
   // #region objects
   T[] objects() {
-    return _objects.values;
+    return _registeredobjects.values;
   }
 
   // #region has
@@ -99,7 +101,7 @@ class DObjectRegistry(T : UIMObject) {
 
   // TODO
   bool hasObject(T object) {
-    foreach (obj; _objects.values) {
+    foreach (obj; _registeredobjects.values) {
       // if (obj.isEquals(object)) { return true; }
     }
     return false;
@@ -115,7 +117,7 @@ class DObjectRegistry(T : UIMObject) {
   }
 
   T get(string key) {
-    return correctKey(key) in _objects ? _objects[correctKey(key)] : _nullValue;
+    return correctKey(key) in _registeredobjects ? _registeredobjects[correctKey(key)] : _nullValue;
   }
   // #endregion objects
 
@@ -137,7 +139,7 @@ class DObjectRegistry(T : UIMObject) {
   }
 
   O register(this O)(string key, T newObject) {
-    _objects[correctKey(key)] = newObject;
+    _registeredobjects[correctKey(key)] = newObject;
     return cast(O) this;
   }
   // #endregion register
@@ -163,17 +165,17 @@ class DObjectRegistry(T : UIMObject) {
   }
 
   O removeKey(this O)(string key) {
-    _objects.removeKey(key);
+    _registeredobjects.removeKey(key);
     return cast(O) this;
   }
 
   O removeKey(this O)(string key) {
-    _objects.removeKey(key);
+    _registeredobjects.removeKey(key);
     return cast(O) this;
   }
 
   O clearAll(this O)() {
-    _objects = null;
+    _registeredobjects = null;
     return cast(O) this;
   }
   // #endregion remove
@@ -198,7 +200,7 @@ unittest {
     mixin(TProperty!("string", "name"));
   }
 
-  class TestRegistry : DObjectRegistry!Test {}
+  class TestRegistry : DRegistry!Test {}
 
   assert(TestRegistry.registry.length == 0);
   assert(TestRegistry.registry.length == 0); */
