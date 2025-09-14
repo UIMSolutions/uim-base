@@ -10,4 +10,4 @@ import uim.oop;
 
 class DParserRegistry : DRegistry!DParser {
 }
-auto ParserRegistry() { return DParserRegistry.registration; }
+auto ParserRegistry() { return DParserRegistry.instance; }

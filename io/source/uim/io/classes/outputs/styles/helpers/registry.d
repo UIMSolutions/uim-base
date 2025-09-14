@@ -9,7 +9,7 @@ class DStyleRegistry : DRegistry!DStyle {
 }
 
 auto StyleRegistry() {
-  return DStyleRegistry.registration;
+  return DStyleRegistry.instance;
 }
 
 static this() {

@@ -12,4 +12,4 @@ import uim.caches;
 
 class DCommandRegistry : DRegistry!DCommand {
 }
-auto CommandRegistration() { return DCommandRegistry.registration; }
+auto CommandRegistration() { return DCommandRegistry.instance; }

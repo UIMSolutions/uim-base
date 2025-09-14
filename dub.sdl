@@ -21,7 +21,7 @@ dependency ":vibe" version="*"
 dependency ":phobos" version="*"
 dependency ":caches" version="*"
 dependency ":core" version="*"
-dependency ":commands" version="*"
+dependency ":io" version="*"
 dependency ":errors" version="*"
 dependency ":oop" version="*"
 dependency ":yaml" version="*"
@@ -34,8 +34,8 @@ configuration "test_all" {
 
 // Subpackages
 subPackage "caches"
-subPackage "commands"
 subPackage "core"
+subPackage "io"
 subPackage "errors"
 subPackage "oop"
 subPackage "phobos"

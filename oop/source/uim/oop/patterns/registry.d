@@ -19,8 +19,7 @@ class DRegistry(T) {
   protected static DRegistry!T _instance;
   public static DRegistry!T instance() {
     return (_instance is null)
-      ? _instance = new DRegistry!T
-      : _instance;
+      ? _instance = new DRegistry!T : _instance;
   }
   // #endregion Singleton
 
@@ -32,7 +31,27 @@ class DRegistry(T) {
     return _registeredObjects.length;
   }
 
-  // #region keys
+  
+
+  // #region path
+  // #region has
+  mixin(HasMethods!("Paths", "Path", "string[]"));
+
+  bool hasPath(string[] path) {
+    return hasKey(correctKey(path));
+  }
+
+  unittest {
+    /*     auto registry = new DRegistry!string;
+    registry.register("a.b.c", "value");
+    assert(registry.hasPath(["a", "b", "c"]));
+    assert(!registry.hasPath(["a", "b", "x"]));
+ */
+  }
+  // #endregion has
+  // #endregion path
+
+// #region keys
   // Get all keys in the registry
   string[] keys(SORTORDERS sortorder = NOSORT) {
     auto keys = _registeredObjects.keys;
@@ -48,32 +67,52 @@ class DRegistry(T) {
 
     return keys;
   }
-  // #endregion keys
 
-  // #region has
-  mixin(HasMethods!("Paths", "Path", "string[]"));
-
-  bool hasPath(string[] path) {
-    return hasKey(correctKey(path));
-  }
   unittest {
-/*     auto registry = new DRegistry!string;
-    registry.register("a.b.c", "value");
-    assert(registry.hasPath(["a", "b", "c"]));
-    assert(!registry.hasPath(["a", "b", "x"]));
- */  }
-  // #endregion has
+    // Dummy type for registry
+    class Dummy {
+    }
 
+    auto registry = new DRegistry!Dummy;
+
+    // Register some objects with different keys
+    registry.register("b.key", new Dummy);
+    registry.register("a.key", new Dummy);
+    registry.register("c.key", new Dummy);
+
+    // Test NOSORT
+    auto keysNoSort = registry.keys(SORTORDERS.NOSORT);
+    assert(keysNoSort.length == 3);
+    assert(keysNoSort.canFind("a.key"));
+    assert(keysNoSort.canFind("b.key"));
+    assert(keysNoSort.canFind("c.key"));
+
+    // Test ASCENDING
+    auto keysAsc = registry.keys(SORTORDERS.ASCENDING);
+    assert(keysAsc == ["a.key", "b.key", "c.key"]);
+
+    // Test DESCENDING
+    auto keysDesc = registry.keys(SORTORDERS.DESCENDING);
+    assert(keysDesc == ["c.key", "b.key", "a.key"]);
+
+    // Test empty registry
+    auto emptyRegistry = new DRegistry!Dummy;
+    auto emptyKeys = emptyRegistry.keys();
+    assert(emptyKeys is null || emptyKeys.length == 0);
+  }
+  // #endregion keys
+  
   // #region keys
   // #region has
   // Check if the key is in the object
   mixin(HasMethods!("Keys", "Key", "string"));
 
   bool hasKey(string key) {
-    return correctKey(key) in _registeredobjects ? true : false;
+    return correctKey(key) in _registeredObjects ? true : false;
   }
+
   unittest {
-/*     auto registry = new DRegistry!string;
+    /*     auto registry = new DRegistry!string;
     registry.register("a.b.c", "value");
     assert(registry.hasKey("a.b.c"));
     assert(!registry.hasKey("a.b.x")); */
@@ -81,7 +120,7 @@ class DRegistry(T) {
   // #endregion has
 
   // #region correct
-  string correctKey(string[] path) {
+  string correctPath(string[] path) {
     return correctKey(path.join(_pathSeparator));
   }
 
@@ -93,7 +132,7 @@ class DRegistry(T) {
 
   // #region objects
   T[] objects() {
-    return _registeredobjects.values;
+    return _registeredObjects.values;
   }
 
   // #region has
@@ -101,7 +140,7 @@ class DRegistry(T) {
 
   // TODO
   bool hasObject(T object) {
-    foreach (obj; _registeredobjects.values) {
+    foreach (obj; _registeredObjects.values) {
       // if (obj.isEquals(object)) { return true; }
     }
     return false;
@@ -117,7 +156,7 @@ class DRegistry(T) {
   }
 
   T get(string key) {
-    return correctKey(key) in _registeredobjects ? _registeredobjects[correctKey(key)] : _nullValue;
+    return correctKey(key) in _registeredObjects ? _registeredObjects[correctKey(key)] : _nullValue;
   }
   // #endregion objects
 
@@ -130,17 +169,17 @@ class DRegistry(T) {
 
   O register(this O)(T newObject) {
     this.register(newObject.classname, newObject);
-    return cast(O) this;
+    return cast(O)this;
   }
 
   O register(this O)(string[] path, T newObject) {
     this.register(correctKey(path), newObject);
-    return cast(O) this;
+    return cast(O)this;
   }
 
   O register(this O)(string key, T newObject) {
-    _registeredobjects[correctKey(key)] = newObject;
-    return cast(O) this;
+    _registeredObjects[correctKey(key)] = newObject;
+    return cast(O)this;
   }
   // #endregion register
 
@@ -152,7 +191,7 @@ class DRegistry(T) {
   T clone(string key) {
     T clonedObject;
     if (auto registerdObject = get(correctKey(key))) {
-      () @trusted { clonedObject = cast(T) factory(registerdObject.classname); }();
+      () @trusted { clonedObject = cast(T)factory(registerdObject.classname); }();
     }
     return clonedObject;
   }
@@ -161,22 +200,22 @@ class DRegistry(T) {
   // #region remove
   O removeKeys(this O)(string[] keys) {
     keys.all!(reg => removeKey(reg));
-    return cast(O) this;
+    return cast(O)this;
   }
 
   O removeKey(this O)(string key) {
-    _registeredobjects.removeKey(key);
-    return cast(O) this;
+    _registeredObjects.removeKey(key);
+    return cast(O)this;
   }
 
   O removeKey(this O)(string key) {
-    _registeredobjects.removeKey(key);
-    return cast(O) this;
+    _registeredObjects.removeKey(key);
+    return cast(O)this;
   }
 
   O clearAll(this O)() {
-    _registeredobjects = null;
-    return cast(O) this;
+    _registeredObjects = null;
+    return cast(O)this;
   }
   // #endregion remove
 

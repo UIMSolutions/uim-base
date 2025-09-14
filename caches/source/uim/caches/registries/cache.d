@@ -14,5 +14,5 @@ class DCacheRegistry : DRegistry!DCache {
 }
 
 auto CacheRegistry() { // Singleton
-  return DCacheRegistry.registration;
+  return DCacheRegistry.instance;
 }

@@ -18,4 +18,4 @@ version (test_uim_oop) {
 
 class DFormatterRegistry : DRegistry!DFormatter {
 }
-auto FormatterRegistration() { return DFormatterRegistry.registration; }
+auto FormatterRegistration() { return DFormatterRegistry.instance; }

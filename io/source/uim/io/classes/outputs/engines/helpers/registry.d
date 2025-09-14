@@ -14,5 +14,5 @@ class DDOutputEngineRegistry : DRegistry!DOutputEngine {
 }
 
 auto OutputEngineRegistry() {
-  return DDOutputEngineRegistry.registration;
+  return DDOutputEngineRegistry.instance;
 }

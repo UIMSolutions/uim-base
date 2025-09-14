@@ -15,7 +15,7 @@ class DConsoleRegistry : DRegistry!DConsole {
 }
 
 auto ConsoleRegistration() {
-    return DConsoleRegistry.registration;
+    return DConsoleRegistry.instance;
 }
 
 unittest {

@@ -9,5 +9,5 @@ class DInputEngineRegistry : DRegistry!DInputEngine {
 }
 
 auto InputEngineRegistry() {
-  return DInputEngineRegistry.registration;
+  return DInputEngineRegistry.instance;
 }

@@ -1,15 +1,14 @@
-name "consoles"
+name "io"
 description "V in MVC"
 authors "ONS"
 copyright "Copyright © 2018 - 2025, ONS"
 license "Apache-2.0"
 
 // target
-targetname "uim_consoles"
+targetname "uim_io"
 targetType "library"
 
-dependency "uim-base" version="*"
-
+dependency "uim-base:oop" version="*"
 
 // configuration "default" {}
 
