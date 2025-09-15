@@ -10,6 +10,7 @@ mixin(Version!"test_uim_oop");
 import uim.oop;
 @safe:
 
-interface IFactory {
-
+interface IFactory(T) : IKeys, IPaths {
+    T create(string[] path);
+    T create(string key);
 }

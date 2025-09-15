@@ -3,13 +3,22 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.io.classes.commands.factory;
+module uim.oop.interfaces.paths;
 
-mixin(Version!"test_uim_io");
+mixin(Version!"test_uim_oop");
 
-import uim.io;
+import uim.oop;
+
 @safe:
 
-class DCommandFactory : DFactory!DCommand {
+interface IPaths {
+  string[][] paths(SORTORDERS sortorder = NOSORT);
+
+  bool hasAllPath(string[][] paths);
+  bool hasAnyPath(string[][] paths);
+  bool hasPath(string[] path);
+
+  bool removePaths(string[][] paths);
+  bool removePath(string[] path);
 }
-auto CommandFactory() { return DCommandFactory.instance; }
+

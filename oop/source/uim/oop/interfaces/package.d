@@ -22,10 +22,11 @@ public {
   import uim.oop.interfaces.fixturestrategy;
   import uim.oop.interfaces.httpapplication;
   import uim.oop.interfaces.iterable;
-  import uim.oop.interfaces.keyandpath;
+  import uim.oop.interfaces.keys;
   import uim.oop.interfaces.list;
   import uim.oop.interfaces.map;
   import uim.oop.interfaces.named;
+  import uim.oop.interfaces.paths;
   import uim.oop.interfaces.pluginapplication;
   import uim.oop.interfaces.retrystrategy;
   import uim.oop.interfaces.runnable;
