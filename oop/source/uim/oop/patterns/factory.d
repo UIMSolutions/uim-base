@@ -11,7 +11,7 @@ import uim.oop;
 @safe:
 
 
-class DFactory(T) : UIMObject, IKeyAndPath {
+class DFactory(T) : UIMObject, IKeys, IPath {
   this() {
     super();
   }
@@ -34,26 +34,44 @@ class DFactory(T) : UIMObject, IKeyAndPath {
     return true;
   }
 
-  protected static DFactory!T _factory;
+  protected static DFactory!T _instance;
   protected T delegate(Json[string] options = null)[string] _workers;
-  public static DFactory!T factory() {
-    if (_factory is null) {
-      _factory = new DFactory!T;
+  public static DFactory!T instance() {
+    if (_instance is null) {
+      _instance = new DFactory!T;
     }
-    return _factory;
+    return _instance;
   }
 
-  protected string _pathSeparator = ".";
+  protected string _separator = ".";
 
   // #region paths
   string[][] paths() {
-    return _workers.keys.map!(key => key.split(_pathSeparator)).array;
+    return _workers.keys.map!(key => key.split(_separator)).array;
   }
 
-  mixin(HasMethods!("Paths", "Path", "string[]"));
-  
+  bool hasAnyPaths(string[][] paths) {
+    return paths.any!(path => hasPath(path));
+  }
+
+  bool hasAllPaths(string[][] paths) {
+    return paths.all!(path => hasPath(path));
+  }
+
   bool hasPath(string[] path) {
-    return hasKey(path.join(_pathSeparator));
+    return hasKey(path.join(_separator));
+  }
+
+  T path(string[] path, Json[string] options = null) @safe {
+    return create(pathToKey(path), options);
+  }
+
+  bool removePaths(string[][] paths) {
+    return paths.all!(path => removePath(path));
+  }
+
+  bool removePath(string[] path) {
+    return removeKey(pathToKey(path));
   }
   // #endregion paths
 
@@ -71,20 +89,25 @@ class DFactory(T) : UIMObject, IKeyAndPath {
     return keys;
   }
 
-  // #region has
-  mixin(HasMethods!("Keys", "Key", "string"));
+  bool hasAnyKeys(string[] keys) {
+    return keys.any!(key => hasKey(key));
+  }
+  
+  bool hasAllKeys(string[] keys) {
+    return keys.all!(key => hasKey(key));
+  }
 
   bool hasKey(string key) {
     return key in _workers ? true : false;
   }
-  // #endregion has
+  // #endregion keys
 
   // #region correct
-  string correctKey(string[] path) {
-    return correctKey(path.join(_pathSeparator));
+  string pathToKey(string[] path) {
+    return pathToKey(path.join(_separator));
   }
 
-  string correctKey(string key) {
+  string pathToKey(string key) {
     return key.strip;
   }
   // #endregion correct
@@ -94,13 +117,9 @@ class DFactory(T) : UIMObject, IKeyAndPath {
     _workers[workerName] = workFunc;
   }
 
-  T path(string[] path, Json[string] options = null) @safe {
-    return create(correctKey(path), options);
-  }
-
   T create(string key, Json[string] options = null) @safe {
-    return correctKey(key) in _workers
-      ? _workers[correctKey(key)](options) : null;
+    return pathToKey(key) in _workers
+      ? _workers[pathToKey(key)](options) : null;
   }
 
   T opIndex(string key, Json[string] options = null) {
@@ -108,20 +127,12 @@ class DFactory(T) : UIMObject, IKeyAndPath {
   }
 
   // #region remove
-  bool removePaths(string[][] paths) {
-    return paths.all!(path => removePath(path));
-  }
-
-  bool removePath(string[] path) {
-    return removeKey(correctKey(path));
-  }
-
   bool removeKeys(string[] keys) {
     return keys.all!(key => removeKey(key));
   }
 
   bool removeKey(string key) {
-    return removeKey(correctKey(key));
+    return removeKey(pathToKey(key));
   }
 
   void clear() {

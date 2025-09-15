@@ -10,9 +10,9 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DDOutputEngineRegistry : DRegistry!DOutputEngine {
+class DOutputEngineRegistry : DRegistry!DOutputEngine {
 }
 
-auto OutputEngineRegistry() {
-  return DDOutputEngineRegistry.instance;
+auto outputEngineRegistry() {
+  return DOutputEngineRegistry.instance;
 }

@@ -11,4 +11,5 @@ import uim.oop;
 @safe:
 
 class DParserFactory : DFactory!DParser {}
-auto ParserFactory() { return DParserFactory.instance; }
+
+auto parserFactory() { return DParserFactory.instance; }

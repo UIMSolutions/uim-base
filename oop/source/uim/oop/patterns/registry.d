@@ -31,14 +31,12 @@ class DRegistry(T) {
     return _registeredObjects.length;
   }
 
-  
-
   // #region path
   // #region has
   mixin(HasMethods!("Paths", "Path", "string[]"));
 
   bool hasPath(string[] path) {
-    return hasKey(correctKey(path));
+    return hasKey(pathToKey(path));
   }
 
   unittest {
@@ -51,7 +49,7 @@ class DRegistry(T) {
   // #endregion has
   // #endregion path
 
-// #region keys
+  // #region keys
   // Get all keys in the registry
   string[] keys(SORTORDERS sortorder = NOSORT) {
     auto keys = _registeredObjects.keys;
@@ -101,14 +99,14 @@ class DRegistry(T) {
     assert(emptyKeys is null || emptyKeys.length == 0);
   }
   // #endregion keys
-  
+
   // #region keys
   // #region has
   // Check if the key is in the object
   mixin(HasMethods!("Keys", "Key", "string"));
 
   bool hasKey(string key) {
-    return correctKey(key) in _registeredObjects ? true : false;
+    return pathToKey(key) in _registeredObjects ? true : false;
   }
 
   unittest {
@@ -121,10 +119,10 @@ class DRegistry(T) {
 
   // #region correct
   string correctPath(string[] path) {
-    return correctKey(path.join(_pathSeparator));
+    return pathToKey(path.join(_pathSeparator));
   }
 
-  string correctKey(string key) {
+  string pathToKey(string key) {
     return key.strip;
   }
   // #endregion correct
@@ -147,86 +145,110 @@ class DRegistry(T) {
   }
   // #endregion has
 
-  T get(string[] path) {
-    return get(correctKey(path));
-  }
-
+  // #region get
   T opIndex(string key) {
     return get(key);
   }
 
+  T get(string[] path) {
+    return get(pathToKey(path));
+  }
+
   T get(string key) {
-    return correctKey(key) in _registeredObjects ? _registeredObjects[correctKey(key)] : _nullValue;
+    return key in _registeredObjects ? _registeredObjects[key] : _nullValue;
   }
   // #endregion objects
 
-  /// Get registeredobject by index
-
   // #region register
+  // Allow assignment via indexing
   void opIndexAssign(string key, T newObject) {
     register(key, newObject);
   }
 
-  O register(this O)(T newObject) {
-    this.register(newObject.classname, newObject);
-    return cast(O)this;
-  }
-
+  // Register an object with a path
   O register(this O)(string[] path, T newObject) {
-    this.register(correctKey(path), newObject);
+    this.register(pathToKey(path), newObject);
     return cast(O)this;
   }
 
+  // Register an object with a key
   O register(this O)(string key, T newObject) {
-    _registeredObjects[correctKey(key)] = newObject;
+    _registeredObjects[pathToKey(key)] = newObject;
     return cast(O)this;
+  }
+
+  unittest {
+    // Dummy type for registry
+    class Dummy {
+      string value;
+      this(string v) {
+        value = v;
+      }
+
+      override bool opEquals(Object o) {
+        auto other = cast(Dummy)o;
+        return other !is null && value == other.value;
+      }
+    }
+
+    auto registry = new DRegistry!Dummy;
+
+    // Test register with key
+    auto dummy1 = new Dummy("one");
+    registry.register("key1", dummy1);
+    assert(registry.get("key1") is dummy1);
+
+    // Test register with path
+    auto dummy2 = new Dummy("two");
+    registry.register(["a", "b", "c"], dummy2);
+    assert(registry.get("a.b.c") is dummy2);
+
+    // Test opIndexAssign
+    auto dummy3 = new Dummy("three");
+    registry["key3"] = dummy3;
+    assert(registry.get("key3") is dummy3);
+
+    // Test that keys are registered correctly
+    auto keys = registry.keys();
+    assert(keys.canFind("key1"));
+    assert(keys.canFind("a.b.c"));
+    assert(keys.canFind("key3"));
+
+    // Test unregister
+    registry.unregister("key1");
+    assert(!registry.hasKey("key1"));
+
+    // Test unregister with path
+    registry.unregister(["a", "b", "c"]);
+    assert(!registry.hasKey("a.b.c"));
+
+    // Test unregisterAll
+    registry.unregisterAll();
+    assert(registry.size == 0);
   }
   // #endregion register
 
-  // #region clone
-  T clone(string[] path) {
-    return clone(correctKey(path));
-  }
-
-  T clone(string key) {
-    T clonedObject;
-    if (auto registerdObject = get(correctKey(key))) {
-      () @trusted { clonedObject = cast(T)factory(registerdObject.classname); }();
-    }
-    return clonedObject;
-  }
-  // #endregion clone
-
-  // #region remove
-  O removeKeys(this O)(string[] keys) {
-    keys.all!(reg => removeKey(reg));
+  // #region unregister
+  O unregisterMany(this O)(string[] keys) {
+    keys.each!(reg => unregister(reg));
     return cast(O)this;
   }
 
-  O removeKey(this O)(string key) {
-    _registeredObjects.removeKey(key);
+  O unregister(this O)(string[] path) {
+    _registeredObjects.remove(pathToKey(path));
     return cast(O)this;
   }
 
-  O removeKey(this O)(string key) {
-    _registeredObjects.removeKey(key);
+  O unregister(this O)(string key) {
+    _registeredObjects.remove(key);
     return cast(O)this;
   }
 
-  O clearAll(this O)() {
-    _registeredObjects = null;
+  O unregisterAll(this O)() {
+    _registeredObjects.clear;
     return cast(O)this;
   }
-  // #endregion remove
-
-  // Create the registeredobject object with the correct settings.
-  /* 
-    T create(string registration, Json[string] initData = null) {
-        return hasRegistration(registration) 
-      ? registeredobjects(registration).clone(initData)
-      : null;
-    } */
-
+  // #endregion unregister
 }
 
 unittest {
@@ -243,4 +265,23 @@ unittest {
 
   assert(TestRegistry.registry.length == 0);
   assert(TestRegistry.registry.length == 0); */
+}
+
+string registryCalls(string className, string instanceName, string typeName) {
+  return "
+auto "
+    ~ instanceName ~ "Registry() { return " ~ className ~ "Registry.instance; }
+auto "
+    ~ instanceName ~ "Registry(string key, " ~ typeName ~ " registerObject) { 
+  return "
+    ~ instanceName ~ "Registry.register(key, registerObject); }
+auto "
+    ~ instanceName ~ "Registry(string[] path) { return " ~ instanceName ~ "Registry.get(path); }
+auto "
+    ~ instanceName ~ "Registry(string key) { return " ~ instanceName ~ "Registry.get(key); }
+";
+}
+
+template RegistryCalls(string className, string instanceName, string typeName) {
+  const char[] ValidatorCalls = registryCalls(className, instanceName, typeName);
 }

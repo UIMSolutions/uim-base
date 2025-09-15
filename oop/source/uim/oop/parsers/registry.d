@@ -6,8 +6,29 @@
 module uim.oop.parsers.registry;
 
 import uim.oop;
+
 @safe:
 
-class DParserRegistry : DRegistry!DParser {
+class DParserRegistry : DRegistry!IParser {
 }
-auto ParserRegistry() { return DParserRegistry.instance; }
+
+mixin(RegistryCalls!("DParserRegistry", "parser", "IParser"));
+
+unittest {
+  auto registry = new DParserRegistry();
+
+  // Test: Register a parser
+  auto parser = new DummyParser();
+  registry.register("dummy", parser);
+
+  // Test: Retrieve the parser
+  auto retrieved = registry.get("dummy");
+  assert(retrieved is parser, "Retrieved parser should be the same as registered parser");
+
+  // Test: Registry contains the parser
+  assert(registry.contains("dummy"), "Registry should contain 'dummy' parser");
+
+  // Test: Unregister the parser
+  registry.unregister("dummy");
+  assert(!registry.contains("dummy"), "Registry should not contain 'dummy' after unregister");
+}
