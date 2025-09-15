@@ -10,9 +10,10 @@ mixin(Version!"test_uim_oop");
 import uim.oop;
 @safe:
 
-class DValidatorRegistry : DRegistry!DUIMValidator {
+class DValidatorRegistry : DRegistry!IValidator {
 }
-auto ValidatorRegistry() { return DValidatorRegistry.instance; }
+
+mixin(RegistryCalls!("DValidatorRegistry", "validator", "IValidator"));
 
 unittest {
     // Test that ValidatorRegistry returns a singleton instance

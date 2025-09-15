@@ -8,14 +8,8 @@ module uim.oop.formatters.registry;
 import uim.oop;
 @safe:
 
-version (test_uim_oop) {
-  import std.stdio;
-  
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
+mixin(Version!"test_uim_oop");
 
-class DFormatterRegistry : DRegistry!DFormatter {
+class DFormatterRegistry : DRegistry!IFormatter {
 }
-auto FormatterRegistration() { return DFormatterRegistry.instance; }
+mixin(RegistryCalls!("DFormatter", "formatter", "IFormatter"));
