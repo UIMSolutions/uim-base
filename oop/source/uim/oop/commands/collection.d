@@ -5,9 +5,9 @@
 *****************************************************************************************************************/
 module uim.oop.commands.collection;
 
-mixin(Version!"test_uim_io");
+mixin(Version!"test_uim_oop");
 
-import uim.io;
+import uim.oop;
 @safe:
 
 

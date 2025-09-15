@@ -3,14 +3,30 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.io.tests.command;
+module uim.oop.classes.commands.exceptions.exception;
+
+mixin(Version!"test_uim_io");
 
 import uim.io;
-
 @safe:
 
-bool testCommand(ICommand commandToTest) {
-    assert(commandToTest !is null, "commandToTest is null");
+// Base commands exception.
+class DCommandsException : DException {
+  mixin(ExceptionThis!("Commands"));
+
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
+
+    messageTemplate("default", "Exception in libary uim-io");
 
     return true;
+  }
+}
+
+mixin(ExceptionCalls!("Commands"));
+
+unittest {
+  testException(CommandsException);
 }

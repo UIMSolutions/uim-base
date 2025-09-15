@@ -5,22 +5,18 @@
 *****************************************************************************************************************/
 module uim.oop.commands;
 
-import uim.core;
-mixin(Version!"test_uim_oop");
-
 public { // Packages
-    import uim.oop.configurations.engines;
+  import uim.oop.commands.exceptions;
+  import uim.oop.commands.tests; 
 }
 
 public { // Modules
-    // import uim.oop.configurations.config;
-    import uim.oop.configurations.configuration;
-    // import uim.oop.configurations.file;
-    // import uim.oop.configurations.ini;
-    import uim.oop.configurations.interfaces;
-    import uim.oop.configurations.memory;
-    // import uim.oop.configurations.xml;
-    // import uim.oop.configurations.yaml;
-    
-    // import uim.oop.configurations.tests;
+  import uim.oop.commands.collection;
+  import uim.oop.commands.command;
+  import uim.oop.commands.enumeration;
+  import uim.oop.commands.factory;
+  import uim.oop.commands.helper;
+  import uim.oop.commands.interfaces;
+  import uim.oop.commands.mixins;
+  import uim.oop.commands.registry;
 }

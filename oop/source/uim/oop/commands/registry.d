@@ -5,11 +5,12 @@
 *****************************************************************************************************************/
 module uim.oop.commands.registry;
 
-mixin(Version!"test_uim_io");
+mixin(Version!"test_uim_oop");
 
 import uim.io;
 @safe:
 
 class DCommandRegistry : DRegistry!DCommand {
 }
-auto CommandRegistration() { return DCommandRegistry.instance; }
+
+mixin(RegistryCalls!("DCommand", "command", "ICommand"));

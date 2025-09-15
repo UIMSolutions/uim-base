@@ -3,8 +3,14 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.io.classes.commands.tests;
+module uim.oop.tests.command;
 
-public {
-    import uim.io.classes.commands.command;
+import uim.oop;
+
+@safe:
+
+bool testCommand(ICommand commandToTest) {
+    assert(commandToTest !is null, "commandToTest is null");
+
+    return true;
 }
