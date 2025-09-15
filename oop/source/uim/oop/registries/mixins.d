@@ -1,4 +1,4 @@
-module uim.oop.mixins.registry;
+module uim.oop.registries.mixins;
 
 mixin(Version!"test_uim_oop");
 

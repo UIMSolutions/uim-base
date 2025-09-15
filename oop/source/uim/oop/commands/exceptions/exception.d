@@ -5,9 +5,9 @@
 *****************************************************************************************************************/
 module uim.oop.classes.commands.exceptions.exception;
 
-mixin(Version!"test_uim_io");
+mixin(Version!"test_uim_oop");
 
-import uim.io;
+import uim.oop;
 @safe:
 
 // Base commands exception.
@@ -19,7 +19,7 @@ class DCommandsException : DException {
       return false;
     }
 
-    messageTemplate("default", "Exception in libary uim-io");
+    messageTemplate("default", "Exception uim.oop.exceptions");
 
     return true;
   }

@@ -7,9 +7,29 @@ module uim.oop.commands.factory;
 
 mixin(Version!"test_uim_oop");
 
-import uim.io;
+import uim.oop;
+
 @safe:
 
 class DCommandFactory : DFactory!ICommand {
 }
+
 mixin(FactoryCalls!("DCommand", "command", "ICommand"));
+
+unittest {
+  // Test that DCommandFactory can be instantiated
+  auto factory = new DCommandFactory();
+  assert(factory !is null, "DCommandFactory instance should not be null");
+
+  // Test that DCommandFactory creates ICommand objects
+  auto cmd = factory.create();
+  assert(cmd !is null, "create() should return a non-null ICommand");
+  static assert(is(typeof(cmd) : ICommand), "create() should return an ICommand");
+
+  // Test that createByName works if available
+  static if (__traits(hasMember, factory, "createByName")) {
+    auto namedCmd = factory.createByName("DCommand");
+    assert(namedCmd !is null, "createByName should return a non-null ICommand for valid name");
+    static assert(is(typeof(namedCmd) : ICommand), "createByName should return an ICommand");
+  }
+}

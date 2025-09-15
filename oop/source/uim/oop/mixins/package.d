@@ -25,7 +25,6 @@ public {
   import uim.oop.mixins.interfaces;
   import uim.oop.mixins.mergevariables;
   import uim.oop.mixins.methods;
-  import uim.oop.mixins.registry;
   import uim.oop.mixins.staticconfig;
   import uim.oop.mixins.valuemap;
 }
