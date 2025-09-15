@@ -3,14 +3,30 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.oop.formatters.registry;
+module uim.oop.commands.command;
 
-import uim.oop;
+mixin(Version!"test_uim_io");
+
+import uim.io;
+
 @safe:
 
-mixin(Version!"test_uim_oop");
+// Base class for commands
+class DCommand : UIMObject, ICommand {
+  mixin(CommandThis!());
+  /*    mixin TLocatorAware;
+    mixin TLog; */
 
-class DFormatterRegistry : DRegistry!IFormatter {
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
+
+    return true;
+  }
+
+  // Execute command with given options.
+  abstract bool execute(string[string] options);
+  abstract bool execute(Json[string] options);
+  abstract bool execute(Json options);
 }
-
-mixin(RegistryCalls!("DFormatter", "formatter", "IFormatter"));

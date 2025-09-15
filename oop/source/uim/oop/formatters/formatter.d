@@ -6,11 +6,12 @@
 module uim.oop.formatters.formatter;
 
 import uim.oop;
+
 @safe:
 
 version (test_uim_oop) {
   import std.stdio;
-  
+
   unittest {
     writeln("-----  ", __MODULE__, "\t  -----");
   }
@@ -18,14 +19,14 @@ version (test_uim_oop) {
 
 // Base class for Formatters
 class DFormatter : UIMObject, IFormatter {
-/*    mixin TLocatorAware;
+  /*    mixin TLocatorAware;
     mixin TLog; */
 
-    override bool initialize(Json[string] initData = null) {
-        if (!super.initialize(initData)) {
-            return false;
-        }
-
-        return true;
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
     }
+
+    return true;
+  }
 }

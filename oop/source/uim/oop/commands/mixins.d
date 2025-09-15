@@ -3,14 +3,27 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.oop.formatters.registry;
+module uim.oop.commands.mixins;
 
-import uim.oop;
+mixin(Version!"test_uim_io");
+
+import uim.io;
+
 @safe:
-
-mixin(Version!"test_uim_oop");
-
-class DFormatterRegistry : DRegistry!IFormatter {
+string commandThis(string name = null) {
+    string fullName = name ~ "Command";
+    return objThis(fullName);
 }
 
-mixin(RegistryCalls!("DFormatter", "formatter", "IFormatter"));
+template CommandThis(string name = null) {
+    const char[] CommandThis = commandThis(name);
+}
+
+string commandCalls(string name) {
+    string fullName = name ~ "Command";
+    return objCalls(fullName);
+}
+
+template CommandCalls(string name) {
+    const char[] CommandCalls = commandCalls(name);
+}
