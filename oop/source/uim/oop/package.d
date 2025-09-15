@@ -30,7 +30,7 @@ public {
   import uim.oop.mixins;
   import uim.oop.patterns;
   import uim.oop.parsers;
-  import uim.oop.repositories;
+  import uim.oop.registries;
   import uim.oop.tests;
   import uim.oop.validators;
 }

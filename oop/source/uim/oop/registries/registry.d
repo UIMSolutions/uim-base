@@ -3,17 +3,13 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.oop.patterns.registry;
+module uim.oop.registries.registry;
+
+mixin(Version!"test_uim_oop");
 
 import uim.oop;
-
 @safe:
 
-version (test_uim_oop) {
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
 class DRegistry(T) {
   // #region Singleton
   protected static DRegistry!T _instance;

@@ -1,4 +1,4 @@
-module uim.oop.validators.tests;
+module uim.oop.registries.helpers;
 
 mixin(Version!"test_uim_oop");
 

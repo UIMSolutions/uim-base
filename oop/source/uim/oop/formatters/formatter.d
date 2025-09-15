@@ -5,17 +5,11 @@
 *****************************************************************************************************************/
 module uim.oop.formatters.formatter;
 
-import uim.oop;
+mixin(Version!"test_uim_oop");
 
+import uim.oop;
 @safe:
 
-version (test_uim_oop) {
-  import std.stdio;
-
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
 
 // Base class for Formatters
 class DFormatter : UIMObject, IFormatter {

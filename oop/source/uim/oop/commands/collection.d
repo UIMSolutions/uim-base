@@ -11,11 +11,6 @@ import uim.oop;
 @safe:
 
 
-class DCommandCollection : DCollection!DCommand {}
+class DCommandCollection : DCollection!ICommand {}
 auto CommandCollection() { return new DCommandCollection; } 
 
-unittest {
-  assert(CommandCollection);
-
-  auto collection = CommandCollection;
-}
