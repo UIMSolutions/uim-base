@@ -13,7 +13,7 @@ import uim.oop;
 class DValidatorRegistry : DRegistry!IValidator {
 }
 
-mixin(RegistryCalls!("DValidatorRegistry", "validator", "IValidator"));
+mixin(RegistryCalls!("DValidator", "validator", "IValidator"));
 
 unittest {
     // Test that ValidatorRegistry returns a singleton instance

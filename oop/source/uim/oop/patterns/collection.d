@@ -10,7 +10,7 @@ mixin(Version!"test_uim_oop");
 import uim.oop;
 @safe:
 
-class DCollection(T : UIMObject) : UIMObject, IKeyAndPath, ICollection!T {
+class DCollection(T : UIMObject) : UIMObject, IKeys, IPaths, ICollection!T {
   this() {
     super("Collection");
   }

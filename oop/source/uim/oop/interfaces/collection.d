@@ -10,7 +10,7 @@ mixin(Version!"test_uim_oop");
 import uim.oop;
 @safe:
 
-interface ICollection(T) : IKeyAndPath {
+interface ICollection(T) : IKeys, IPaths {
     
 }
 
