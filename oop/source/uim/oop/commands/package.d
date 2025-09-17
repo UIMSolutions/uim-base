@@ -5,18 +5,21 @@
 *****************************************************************************************************************/
 module uim.oop.commands;
 
-public { // Packages
-  import uim.oop.commands.exceptions;
-  import uim.oop.commands.tests; 
+public { // Base module
+  import uim.oop.commands.command;
 }
 
-public { // Modules
+public { // Additional modules
   import uim.oop.commands.collection;
-  import uim.oop.commands.command;
   import uim.oop.commands.enumeration;
   import uim.oop.commands.factory;
   import uim.oop.commands.helper;
   import uim.oop.commands.interfaces;
   import uim.oop.commands.mixins;
   import uim.oop.commands.registry;
+}
+
+public { // Additional packages
+  import uim.oop.commands.exceptions;
+  import uim.oop.commands.tests; 
 }

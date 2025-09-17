@@ -11,5 +11,5 @@ import uim.io;
 @safe:
 
 interface ICommand : IObject {
-    bool execute(Json[string] options = new Json[string]);
+  bool execute(Json[string] options = null);
 }

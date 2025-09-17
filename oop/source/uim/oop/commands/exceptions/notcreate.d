@@ -3,17 +3,30 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.io.classes.commands;
+module uim.oop.commands.exceptions.notcreate;
 
-public {
-    import uim.io.classes.commands.command;
-    // 
-    import uim.io.classes.commands.collection;
-    import uim.io.classes.commands.factory;
-    import uim.io.classes.commands.helper;
-    import uim.io.classes.commands.interfaces;
-    import uim.io.classes.commands.mixins;
-    import uim.io.classes.commands.enumeration;
-    import uim.io.classes.commands.exceptions;
-    import uim.io.classes.commands.registry;
+mixin(Version!"test_uim_oop");
+
+import uim.oop;
+@safe:
+
+// Base commands exception.
+class DNotCreateCommandException : DCommandException {
+  mixin(ExceptionThis!("NotCreateCommand"));
+
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
+
+    messageTemplate("default", "Not able to create command '{name}' in '{instance}'");
+
+    return true;
+  }
+}
+
+mixin(ExceptionCalls!("NotCreateCommand"));
+
+unittest {
+  testException(CommandsException);
 }

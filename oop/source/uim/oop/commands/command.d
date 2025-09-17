@@ -25,7 +25,13 @@ class DCommand : UIMObject, ICommand {
   }
 
   // Execute command with given options.
-  abstract bool execute(string[string] options);
-  abstract bool execute(Json[string] options);
-  abstract bool execute(Json options);
+  bool execute(Json options) {
+    return execute(options.toJsonMap);
+  }
+
+  bool execute(string[string] options) {
+    return execute(options.toJsonMap);
+  }
+  
+  abstract bool execute(Json[string] options = null);
 }

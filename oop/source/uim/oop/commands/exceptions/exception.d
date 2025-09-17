@@ -11,8 +11,8 @@ import uim.oop;
 @safe:
 
 // Base commands exception.
-class DCommandsException : DException {
-  mixin(ExceptionThis!("Commands"));
+class DCommandException : DException {
+  mixin(ExceptionThis!("Command"));
 
   override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
@@ -25,8 +25,8 @@ class DCommandsException : DException {
   }
 }
 
-mixin(ExceptionCalls!("Commands"));
+mixin(ExceptionCalls!("Command"));
 
 unittest {
-  testException(CommandsException);
+  testException(CommandException);
 }

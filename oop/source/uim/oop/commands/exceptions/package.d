@@ -5,6 +5,11 @@
 *****************************************************************************************************************/
 module uim.oop.classes.commands.exceptions;
 
-public {
+public { // Base exception
     import uim.oop.classes.commands.exceptions.exception;
+}
+
+public { // Additional exceptions
+    import uim.oop.classes.commands.exceptions.notcreate;
+    import uim.oop.classes.commands.exceptions.notfind;
 }
