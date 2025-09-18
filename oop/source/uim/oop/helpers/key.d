@@ -39,3 +39,40 @@ unittest {
   assert(toKey(path5) == ".bar.");
 }
 // #endregion path-key conversion
+
+// #region path-key conversion
+// Converts a path array to a key string using the specified separator.
+string correctKey(string key, string separator = ".") {
+  return key.split(separator).map!(p => p.trim).join(separator);
+}
+
+unittest {
+    // Test 1: Basic usage with default separator
+    assert(correctKey("foo.bar.baz") == "foo.bar.baz");
+
+    // Test 2: Custom separator
+    assert(correctKey("foo/bar/baz", "/") == "foo/bar/baz");
+
+    // Test 3: Key with whitespace
+    assert(correctKey(" foo . bar . baz ") == "foo.bar.baz");
+
+    // Test 4: Empty key
+    assert(correctKey("") == "");
+
+    // Test 5: Key with empty segments
+    assert(correctKey(".bar.", ".") == ".bar.");
+
+    // Test 6: Key with multiple separators and whitespace
+    assert(correctKey(" foo / bar / baz ", "/") == "foo/bar/baz");
+
+    // Test 7: Key with leading/trailing separators
+    assert(correctKey(".foo.bar.", ".") == ".foo.bar.");
+
+    // Test 8: Key with only whitespace segments
+    assert(correctKey("   .   .   ") == ".");
+
+    // Test 9: Key with mixed whitespace and empty segments
+    assert(correctKey(" . bar . ", ".") == ".bar.");
+}
+// #endregion path-key conversion
+
