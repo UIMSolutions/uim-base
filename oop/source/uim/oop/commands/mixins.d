@@ -7,7 +7,7 @@ module uim.oop.commands.mixins;
 
 mixin(Version!"test_uim_oop");
 
-import uim.io;
+import uim.oop;
 
 @safe:
 string commandThis(string name = null) {

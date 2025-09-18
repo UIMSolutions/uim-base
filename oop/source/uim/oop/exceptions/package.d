@@ -3,10 +3,10 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.oop.exceptions; 
+module uim.errors.classes.exceptions;
 
 public {
-  import uim.oop.enumerations.loglevel;
-  // import uim.oop.enumerations.enumeration;
-  import uim.oop.enumerations.filemodes;
+  import uim.errors.classes.exceptions.exception;
+  import uim.errors.classes.exceptions.interface_;
+  import uim.errors.classes.exceptions.mixins;
 }

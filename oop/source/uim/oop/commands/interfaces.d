@@ -7,7 +7,7 @@ module uim.oop.commands.interfaces;
 
 mixin(Version!"test_uim_oop");
 
-import uim.io;
+import uim.oop;
 @safe:
 
 interface ICommand : IObject {
