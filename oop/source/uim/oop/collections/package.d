@@ -11,5 +11,7 @@ mixin(Version!"test_uim_oop");
 public {
   // import uim.oop.collections.arraylist;
   import uim.oop.collections.interfaces;
+  import uim.oop.collections.collection;
+  import uim.oop.collections.mixins;
   // import uim.oop.collections.list;
 }
