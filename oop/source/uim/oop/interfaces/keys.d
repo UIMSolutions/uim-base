@@ -28,6 +28,14 @@ interface IKeys(T) {
     bool has(string key);
   // #endregion has
 
+  // #region get
+  // Gets the entire collection as a map of paths to items.
+  T[string] items(string[][] keys);
+
+  // Gets a specific item from the collection.
+  T item(string key);
+  // #endregion get
+
   // #region set
     // Adds all given items to the collection.
     bool set(T[string] items);

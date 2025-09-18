@@ -8,6 +8,7 @@ module uim.oop.interfaces.paths;
 mixin(Version!"test_uim_oop");
 
 import uim.oop;
+
 @safe:
 
 interface IPaths {
@@ -16,7 +17,7 @@ interface IPaths {
   // #region has
   // Checks if the collection contains the specified items. 
   bool hasAllPath(string[][] paths);
-  
+
   // Checks if the collection contains any of the specified items.
   bool hasAnyPath(string[][] paths);
 
@@ -25,11 +26,11 @@ interface IPaths {
   // #endregion has
 
   // #region get
-  // Gets the entire collection as an array of items.
-  T[string[]] getPath(T[string[]] items);
+  // Gets the entire collection as a map of paths to items.
+  T[string[]] items(string[][] paths);
 
   // Gets a specific item from the collection.
-  T getPath(string[] path, T item);
+  T item(string[] path);
   // #endregion get
 
   // #region set

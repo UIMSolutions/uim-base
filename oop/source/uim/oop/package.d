@@ -27,12 +27,15 @@ public {
   import uim.oop.exceptions;
   import uim.oop.factories;
   import uim.oop.formatters;
+  import uim.oop.helpers;
   import uim.oop.interfaces;
   import uim.oop.mixins;
   import uim.oop.patterns;
   import uim.oop.parsers;
   import uim.oop.registries;
-  import uim.oop.tests;
   import uim.oop.validators;
 }
 
+version(unittest) {
+  import uim.oop.tests;
+}

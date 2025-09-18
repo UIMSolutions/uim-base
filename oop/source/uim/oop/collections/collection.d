@@ -12,25 +12,7 @@ import uim.oop;
 @safe:
 
 class DCollection(T) : UIMObject, ICollection!T {
-  this() {
-    super("Collection");
-  }
-
-  this(Json[string] initData) {
-    super("Collection", initData);
-  }
-
-  this(string newName, Json[string] initData = null) {
-    this(initData).name(newName);
-  }
-
-  override bool initialize(Json[string] initData = null) {
-    if (!super.initialize(initData)) {
-      return false;
-    }
-
-    return true;
-  }
+  mixin(CollectionThis!());
 
   protected string _pathSeparator = ".";
   protected T[string] _items;
@@ -132,9 +114,6 @@ class DCollection(T) : UIMObject, ICollection!T {
   }
 
   // #region correct
-  string pathToKey(string[] path) {
-    return pathToKey(path.join(_pathSeparator));
-  }
   // #endregion correct
   // #endregion keys
 

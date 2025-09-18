@@ -10,29 +10,8 @@ mixin(Version!"test_uim_oop");
 import uim.oop;
 @safe:
 
-
-class DFactory(T) : UIMObject, IKeys, IPath {
-  this() {
-    super();
-  }
-
-  this(Json[string] initData) {
-    super(initData);
-  }
-
-  this(string newName, Json[string] initData = null) {
-    super(newName, initData);
-  }
-
-  override bool initialize(Json[string] initData = null) {
-    if (!super.initialize(initData)) {
-      return true;
-    }
-
-    name("Attribute");
-
-    return true;
-  }
+class DFactory(T) : UIMObject, IFactory!T {
+  mixin(FactoryThis!());
 
   protected static DFactory!T _instance;
   protected T delegate(Json[string] options = null)[string] _workers;
@@ -47,7 +26,7 @@ class DFactory(T) : UIMObject, IKeys, IPath {
 
   // #region paths
   string[][] paths() {
-    return _workers.keys.map!(key => key.split(_separator)).array;
+    return _workers.keys.map!(key => key.keyToPath(_separator)).array;
   }
 
   bool hasAnyPaths(string[][] paths) {
