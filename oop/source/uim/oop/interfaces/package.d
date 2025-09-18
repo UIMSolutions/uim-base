@@ -11,7 +11,6 @@ mixin(Version!"test_uim_oop");
 public {
   import uim.oop.interfaces.cloneable;
   import uim.oop.interfaces.closure;
-  import uim.oop.interfaces.collection;
   import uim.oop.interfaces.comparable;
   import uim.oop.interfaces.configengine;
   import uim.oop.interfaces.configurable;

@@ -5,9 +5,6 @@
 *****************************************************************************************************************/
 module uim.oop.formatters;
 
-import uim.core;
-mixin(Version!"test_uim_oop");
-
 public {
     import uim.oop.formatters.formatter;
 }
@@ -15,7 +12,11 @@ public {
 public {
     import uim.oop.formatters.collection;
     import uim.oop.formatters.factory;
+    import uim.oop.formatters.helpers;
     import uim.oop.formatters.interfaces;
     import uim.oop.formatters.mixins;
     import uim.oop.formatters.registry;
+    version(unittest) {
+        import uim.oop.formatters.tests;
+    }
 }
