@@ -8,9 +8,10 @@ module uim.oop.collections.collection;
 mixin(Version!"test_uim_oop");
 
 import uim.oop;
+
 @safe:
 
-class DCollection(T) : UIMObject, IKeys, IPaths, ICollection!T {
+class DCollection(T) : UIMObject, ICollection!T {
   this() {
     super("Collection");
   }
@@ -43,18 +44,64 @@ class DCollection(T) : UIMObject, IKeys, IPaths, ICollection!T {
     return _items.keys.map!(key => key.split(_pathSeparator)).array;
   }
 
-  mixin(HasMethods!("Paths", "Path", "string[]"));
-  
+  bool hasAllPaths(string[][] paths) {
+    return paths.all!(path => hasPath(path));
+  }
+
+  bool hasAnyPath(string[][] paths) {
+    return paths.any!(path => hasPath(path));
+  }
+
   bool hasPath(string[] path) {
     return hasKey(path.join(_pathSeparator));
   }
 
   unittest {
-/*     auto collection = new DCollection!string;
-    collection.set("a.b.c", "value");
+    auto collection = new DCollection!string;
+
+    // Add items with hierarchical keys
+    collection.set("a.b.c", "value1");
+    collection.set("x.y", "value2");
+    collection.set("single", "value3");
+
+    // Test paths()
+    auto expectedPaths = [
+      ["a", "b", "c"],
+      ["x", "y"],
+      ["single"]
+    ];
+    auto actualPaths = collection.paths();
+    assert(actualPaths.length == expectedPaths.length);
+    foreach (i, path) {
+      assert(path == expectedPaths[i]);
+    }
+
+    // Test hasPath
     assert(collection.hasPath(["a", "b", "c"]));
-    assert(!collection.hasPath(["a", "b", "x"]));
- */  }
+    assert(collection.hasPath(["x", "y"]));
+    assert(collection.hasPath(["single"]));
+    assert(!collection.hasPath(["not", "exist"]));
+
+    // Test hasAllPaths
+    assert(collection.hasAllPaths([
+          ["a", "b", "c"],
+          ["x", "y"]
+        ]));
+    assert(!collection.hasAllPaths([
+          ["a", "b", "c"],
+          ["not", "exist"]
+        ]));
+
+    // Test hasAnyPath
+    assert(collection.hasAnyPath([
+          ["not", "exist"],
+          ["x", "y"]
+        ]));
+    assert(!collection.hasAnyPath([
+          ["foo"],
+          ["bar"]
+        ]));
+  }
   // #endregion paths
 
   // #region keys
@@ -72,19 +119,21 @@ class DCollection(T) : UIMObject, IKeys, IPaths, ICollection!T {
     return keys;
   }
 
-  mixin(HasMethods!("Keys", "Key", "string"));
+  bool hasAllKeys(string[] keys) {
+    return keys.all!(key => hasKey(key));
+  }
+
+  bool hasAnyKey(string[] keys) {
+    return keys.any!(key => hasKey(key));
+  }
 
   bool hasKey(string key) {
     return key in _items ? true : false;
   }
 
   // #region correct
-  string correctKey(string[] path) {
-    return correctKey(path.join(_pathSeparator));
-  }
-
-  string correctKey(string key) {
-    return key.strip;
+  string pathToKey(string[] path) {
+    return pathToKey(path.join(_pathSeparator));
   }
   // #endregion correct
   // #endregion keys
@@ -102,22 +151,24 @@ class DCollection(T) : UIMObject, IKeys, IPaths, ICollection!T {
     }
     return false;
   }
+
   unittest {
-/*     auto collection = new DCollection!string;
+    /*     auto collection = new DCollection!string;
     collection.set("a", "valueA");
     collection.set("b", "valueB");
     collection.set("c", "valueC");
     assert(collection.hasItem("valueA"));
     assert(!collection.hasItem("nonexistent"));
- */  }
+ */
+  }
   // #endregion items
 
   // #region getter
-  T get(string[] path) {
+  T getPath(string[] path) {
     return get(path.join(_pathSeparator));
   }
 
-  T get(string key) {
+  T getKey(string key) {
     return key in _items ? _items[key] : null;
   }
   // #endregion getter
@@ -125,12 +176,12 @@ class DCollection(T) : UIMObject, IKeys, IPaths, ICollection!T {
   // #region setter
   O set(this o)(T[string] newItems) {
     newItems.byKeyValue.each!(kv => set(kv.key, kv.value));
-    return cast(O) this;
+    return cast(O)this;
   }
 
   O set(this o)(string[] path, T newItem) {
     set(path.join(_pathSeparator), newItem);
-    return cast(O) this;
+    return cast(O)this;
   }
 
   void opIndexAssign(string key, T newItem) {
@@ -139,7 +190,7 @@ class DCollection(T) : UIMObject, IKeys, IPaths, ICollection!T {
 
   O set(this O)(string key, T newItem) {
     _items[key] = newItem;
-    return cast(O) this;
+    return cast(O)this;
   }
   // #endregion setter
 

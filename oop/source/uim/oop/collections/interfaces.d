@@ -47,7 +47,7 @@ interface ICollection2(T) { // : IIterable!T {
   bool removeAll(ICollection2!T aCollection);
 
   // Returns the number of elements in this collection.
-  size_t  size();
+  size_t size();
 
   // Returns an array containing all of the elements in this collection.
   T[] toArray();
