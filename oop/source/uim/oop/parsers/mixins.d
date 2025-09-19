@@ -5,8 +5,11 @@
 *****************************************************************************************************************/
 module uim.oop.parsers.mixins;
 
+mixin(Version!"test_uim_oop");
+
 import uim.oop;
-@safe: 
+@safe:
+
 
 string parserThis(string name = null) {
     string fullName = name ~ "Parser";

@@ -5,9 +5,6 @@
 *****************************************************************************************************************/
 module uim.oop.interfaces;
 
-import uim.core;
-mixin(Version!"test_uim_oop");
-
 public {
   import uim.oop.interfaces.cloneable;
   import uim.oop.interfaces.closure;
@@ -30,4 +27,7 @@ public {
   import uim.oop.interfaces.retrystrategy;
   import uim.oop.interfaces.runnable;
   import uim.oop.interfaces.stringable;
+}
+
+public { // Additional packages
 }

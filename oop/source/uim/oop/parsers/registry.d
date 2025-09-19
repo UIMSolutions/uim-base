@@ -5,9 +5,11 @@
 *****************************************************************************************************************/
 module uim.oop.parsers.registry;
 
-import uim.oop;
+mixin(Version!"test_uim_oop");
 
+import uim.oop;
 @safe:
+
 
 class DParserRegistry : DRegistry!IParser {
 }

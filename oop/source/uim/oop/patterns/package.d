@@ -11,3 +11,6 @@ mixin(Version!"test_uim_oop");
 public {
     import uim.oop.patterns.obj;
 }
+
+public { // Additional modules
+}

@@ -5,17 +5,22 @@
 *****************************************************************************************************************/
 module uim.oop.parsers;
 
-import uim.core;
 mixin(Version!"test_uim_oop");
 
-public {
+import uim.oop;
+@safe:
+
+public { // Core modules
     import uim.oop.parsers.parser;
 }
 
-public {
+public { // Additional modules
     import uim.oop.parsers.collection;
     import uim.oop.parsers.factory;
     import uim.oop.parsers.interfaces;
     import uim.oop.parsers.mixins;
     import uim.oop.parsers.registry;
+}
+
+public { // Additional packages
 }

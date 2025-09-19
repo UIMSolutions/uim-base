@@ -5,8 +5,11 @@
 *****************************************************************************************************************/
 module uim.oop.parsers.parser;
 
+mixin(Version!"test_uim_oop");
+
 import uim.oop;
 @safe:
+
 
 // Base class for parsers
 class DParser : UIMObject, IParser {

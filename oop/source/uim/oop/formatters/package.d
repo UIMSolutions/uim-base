@@ -6,17 +6,21 @@
 module uim.oop.formatters;
 
 public {
-    import uim.oop.formatters.formatter;
+  import uim.oop.formatters.formatter;
 }
 
 public {
-    import uim.oop.formatters.collection;
-    import uim.oop.formatters.factory;
-    import uim.oop.formatters.helpers;
-    import uim.oop.formatters.interfaces;
-    import uim.oop.formatters.mixins;
-    import uim.oop.formatters.registry;
-    version(unittest) {
-        import uim.oop.formatters.tests;
-    }
+  import uim.oop.formatters.collection;
+  import uim.oop.formatters.factory;
+  import uim.oop.formatters.helpers;
+  import uim.oop.formatters.interfaces;
+  import uim.oop.formatters.mixins;
+  import uim.oop.formatters.registry;
+
+  version (unittest) {
+    import uim.oop.formatters.tests;
+  }
+}
+
+public { // Additional packages
 }
