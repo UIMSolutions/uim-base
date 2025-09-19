@@ -5,3 +5,7 @@
 *****************************************************************************************************************/
 module uim.oop.formatters.tests;
 
+mixin(Version!"test_uim_oop");
+
+import uim.oop;
+@safe:
