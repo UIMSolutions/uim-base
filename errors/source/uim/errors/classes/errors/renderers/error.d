@@ -200,7 +200,7 @@ class UIMErrorRenderer : UIMObject, IErrorRenderer {
         ];
 
         auto serialize = ["message", "url", "code"];
-        if (Configure.hasKey("debug")) {
+        if (Configure.has("debug")) {
             trace = /* (array) * /Debugger.formatTrace(myError.getTrace(), [
                 "format": "array",
                 "args": false,
@@ -220,7 +220,7 @@ class UIMErrorRenderer : UIMObject, IErrorRenderer {
         _controller.set(viewVars);
         _controller.viewBuilder().setOption("serialize", serialize);
 
-        if (cast(UIMError)myError && Configure.hasKey("debug")) {
+        if (cast(UIMError)myError && Configure.has("debug")) {
             _controller.set(myError.getAttributes());
         }
         _controller.setResponse(response);
@@ -308,7 +308,7 @@ class UIMErrorRenderer : UIMObject, IErrorRenderer {
                 : _outputMessage("error500");
         } catch (MissingPluginError missngPluginExecution) {
             attributes = missngPluginExecution.getAttributes();
-            if (attributes.hasKey("plugin") && attributes["plugin"] == _controller.getPlugin()) {
+            if (attributes.has("plugin") && attributes["plugin"] == _controller.getPlugin()) {
                 _controller.setPlugin(null);
             }
 
@@ -670,7 +670,7 @@ class UIMErrorRenderer { // }: IErrorRenderer
             return _outputMessage("error500");
         } catch (MissingPluginError e) {
             attributes = e.getAttributes();
-            if (attributes.hasKey("plugin") && attributes["plugin"] == _controller.getPlugin()) {
+            if (attributes.has("plugin") && attributes["plugin"] == _controller.getPlugin()) {
                 _controller.setPlugin(null);
             }
 

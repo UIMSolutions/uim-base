@@ -40,7 +40,7 @@ class DFactory(T) : UIMObject, IFactory!T {
   }
 
   bool hasPath(string[] path) {
-    return hasKey(path.join(_separator));
+    return has(path.join(_separator));
   }
   // #endregion has
 
@@ -115,14 +115,14 @@ class DFactory(T) : UIMObject, IFactory!T {
   }
 
   bool hasAnyKeys(string[] keys) {
-    return keys.any!(key => hasKey(key));
+    return keys.any!(key => has(key));
   }
 
   bool hasAllKeys(string[] keys) {
-    return keys.all!(key => hasKey(key));
+    return keys.all!(key => has(key));
   }
 
-  bool hasKey(string key) {
+  bool has(string key) {
     return key in _workers ? true : false;
   }
 
@@ -152,7 +152,7 @@ class DFactory(T) : UIMObject, IFactory!T {
 
   // Updates a specific item in the collection.
   bool update(string key, T item) {
-    return hasKey(key) ? set(key, item) : false;
+    return has(key) ? set(key, item) : false;
   }
   // #endregion update
 
@@ -164,7 +164,7 @@ class DFactory(T) : UIMObject, IFactory!T {
 
   // Merges a specific item into the collection.
   bool merge(string key, T item) {
-    return !hasKey(key) ? set(key, item) : false;
+    return !has(key) ? set(key, item) : false;
   }
   // #endregion merge
 

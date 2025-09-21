@@ -63,7 +63,7 @@ class DMiddlewareDispatcher {
   // TODO
   /* 
     protected DServerRequest _createRequest(Json[string] requestSpec) {
-        if (requestSpec.hasKey("input")) {
+        if (requestSpec.has("input")) {
             requestSpec.set("post", null);
             requestSpec.set("environment.uimUIM_INPUT", requestSpec["input"]);
         }

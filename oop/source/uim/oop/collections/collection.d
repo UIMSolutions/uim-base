@@ -35,7 +35,7 @@ class DCollection(T) : UIMObject, ICollection!T {
   }
 
   bool hasPath(string[] path) {
-    return hasKey(path.join(_pathSeparator));
+    return has(path.join(_pathSeparator));
   }
 
   unittest {
@@ -148,14 +148,14 @@ class DCollection(T) : UIMObject, ICollection!T {
   }
 
   bool hasAllKeys(string[] keys) {
-    return keys.all!(key => hasKey(key));
+    return keys.all!(key => has(key));
   }
 
   bool hasAnyKey(string[] keys) {
-    return keys.any!(key => hasKey(key));
+    return keys.any!(key => has(key));
   }
 
-  bool hasKey(string key) {
+  bool has(string key) {
     return key in _items ? true : false;
   }
 

@@ -21,5 +21,5 @@ interface IRegistry(T) : IKeys, IPaths {
   T get(string key);
 
   // Checks if a key is registered.
-  bool hasKey(string key);
+  bool has(string key);
 }

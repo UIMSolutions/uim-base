@@ -42,7 +42,7 @@ mixin template TContainerStub() {
         appClass = _appClass
             ? _appClass : configuration.getStringEntry("App.namespace") ~ "\\Application";
 
-        if (!class_hasKey(appClass)) {
+        if (!class_has(appClass)) {
             throw new DLogicException(
                 "Cannot load `%s` for use in integration testing.".format(appClass));
         }

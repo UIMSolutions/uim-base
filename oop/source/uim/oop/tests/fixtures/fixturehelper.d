@@ -60,13 +60,13 @@ class DFixtureHelper {
                  classname = fixtureName;
             }
 
-            if (fixtures.hasKey(classname)) {
+            if (fixtures.has(classname)) {
                 throw new DUnexpectedValueException("Found duplicate fixture `%s`.".format(fixtureName));
             }
-            if (!class_hasKey(classname)) {
+            if (!class_has(classname)) {
                 throw new DUnexpectedValueException("Could not find fixture `%s`.".format(fixtureName));
             }
-            if (!cachedFixtures.hasKey(classname)) {
+            if (!cachedFixtures.has(classname)) {
                 // TODO cachedFixtures[classname] = new classname();
             }
             fixtures[classname] = cachedFixtures[classname];
@@ -191,7 +191,7 @@ class DFixtureHelper {
         // TODO 
         /*
         foreach (["references": references]; constrained) {
-            if (references.any!(reference => constrained.hasKey(reference))) { return null; }; 
+            if (references.any!(reference => constrained.has(reference))) { return null; }; 
         }
         * /
         return chain(unconstrained, array_column(constrained, "fixture"));
@@ -205,7 +205,7 @@ class DFixtureHelper {
 
         // Get and cache off the schema since TestFixture generates a fake schema based on fields
         auto aTableName = fixture.sourceName();
-        if (!schemas.hasKey(aTableName)) {
+        if (!schemas.has(aTableName)) {
             schemas[aTableName] = dbConnection.getSchemaCollection().describe(aTableName);
         }
         tableSchema = schemas[aTableName];

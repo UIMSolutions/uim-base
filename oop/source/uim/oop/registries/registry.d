@@ -32,7 +32,7 @@ class DRegistry(T) {
   mixin(HasMethods!("Paths", "Path", "string[]"));
 
   bool hasPath(string[] path) {
-    return hasKey(pathToKey(path));
+    return has(pathToKey(path));
   }
 
   unittest {
@@ -101,15 +101,15 @@ class DRegistry(T) {
   // Check if the key is in the object
   mixin(HasMethods!("Keys", "Key", "string"));
 
-  bool hasKey(string key) {
+  bool has(string key) {
     return pathToKey(key) in _registeredObjects ? true : false;
   }
 
   unittest {
     /*     auto registry = new DRegistry!string;
     registry.register("a.b.c", "value");
-    assert(registry.hasKey("a.b.c"));
-    assert(!registry.hasKey("a.b.x")); */
+    assert(registry.has("a.b.c"));
+    assert(!registry.has("a.b.x")); */
   }
   // #endregion has
 
@@ -212,11 +212,11 @@ class DRegistry(T) {
 
     // Test unregister
     registry.unregister("key1");
-    assert(!registry.hasKey("key1"));
+    assert(!registry.has("key1"));
 
     // Test unregister with path
     registry.unregister(["a", "b", "c"]);
-    assert(!registry.hasKey("a.b.c"));
+    assert(!registry.has("a.b.c"));
 
     // Test unregisterAll
     registry.unregisterAll();

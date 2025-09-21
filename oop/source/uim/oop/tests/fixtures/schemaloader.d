@@ -50,7 +50,7 @@ class DSchemaLoader {
 
         // Don"t create schema if we are in a Dunit separate process test method.
         // TODO 
-        /* if (GLOBALS.hasKey("__DUNIT_BOOTSTRAP")) {
+        /* if (GLOBALS.has("__DUNIT_BOOTSTRAP")) {
             return;
         } */
         if (shouldDropTables) {
@@ -61,7 +61,7 @@ class DSchemaLoader {
         // TODO 
         /* 
         filePaths.each!((filePath) {
-            if (!filehasKey(filePath)) {
+            if (!filehas(filePath)) {
                 throw new DInvalidArgumentException(
                     "Unable to load SQL file `%s`."
                     .format(filePath));
@@ -134,7 +134,7 @@ class DSchemaLoader {
     void loadInternalFile(string schemaFile, string connectionName = "test") {
         // Don"t reload schema when we are in a separate process state.
         // TODO 
-        /* if (GLOBALS.hasKey("__DUNIT_BOOTSTRAP")) {
+        /* if (GLOBALS.has("__DUNIT_BOOTSTRAP")) {
             return;
         } */
         // TODO _helper.dropTables(connectionName);
@@ -149,10 +149,10 @@ class DSchemaLoader {
                 string name = aTable.getString("table", tableName);
                 
                 auto tableSchema = new DTableSchema(name, aTable["columns"]);
-                if (aTable.hasKey("indexes")) {
+                if (aTable.has("indexes")) {
                     aTable["indexes"].byKeyValue.each(kv => tableSchema.addIndex(kv.key, kv.value));
                 }
-                if (aTable.hasKey("constraints")) {
+                if (aTable.has("constraints")) {
                     aTable["constraints"].byKeyValue
                         .each!(kv => tableSchema.addConstraint(aKey, anIndex));
                 }

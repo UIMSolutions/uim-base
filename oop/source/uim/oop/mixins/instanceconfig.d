@@ -149,7 +149,7 @@ mixin template TInstanceConfig() {
 
     result = _config;
     keyToRead.split(".").each!((key) { // TODO
-      if (!result.isArray || !result.hasKey(key)) {
+      if (!result.isArray || !result.has(key)) {
         result = null;
         break;
       }
@@ -217,7 +217,7 @@ mixin template TInstanceConfig() {
       if (!isArray(update)) {
         throw new DException("Cannot unset `%s` value.".format(keyToDelete));
       }
-      if (!update.hasKey(myKey)) {
+      if (!update.has(myKey)) {
         break;
       }
       if (index == stackLength - 1) {

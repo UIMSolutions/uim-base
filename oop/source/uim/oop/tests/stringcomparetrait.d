@@ -38,7 +38,7 @@ mixin template TStringCompare() {
     void assertSameAsFile(string partialPath, string testResult) {
         // TODO
         /* 
-        if (!filehasKey(partialPath)) {
+        if (!filehas(partialPath)) {
             partialPath = _compareBasePath ~ partialPath;
         }
        _updateComparisons ??= enviroment("UPDATE_TEST_COMPARISON_FILES") ?: false;

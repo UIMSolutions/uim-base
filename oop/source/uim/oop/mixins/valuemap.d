@@ -18,7 +18,7 @@ import uim.oop;
 template ValueMapWrapper(R, V) {
   bool hasValue(string key) {
     if (this.values) { // has values
-      return values.hasKey(key);
+      return values.has(key);
     }
     return false;
   }

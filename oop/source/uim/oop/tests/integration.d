@@ -379,7 +379,7 @@ mixin template TIntegrationTest() {
      */
     protected void _handleError(Throwable exceptionToHandle) {
         classname = configuration.getEntry("Error.exceptionRenderer");
-        if (classname.isEmpty || !class_hasKey(classname)) {
+        if (classname.isEmpty || !class_has(classname)) {
             classname = WebExceptionRenderer.classname;
         }
 
@@ -411,10 +411,10 @@ mixin template TIntegrationTest() {
         if (!hostInfo.isEmpty("https")) {
             env.set("HTTPS", "on");
         }
-        if (hostInfo.hasKey("host")) {
+        if (hostInfo.has("host")) {
             env.set("HTTP_HOST", hostInfo["host"]);
         }
-        if (_request.hasKey("headers")) {
+        if (_request.has("headers")) {
             _request["headers"].byKeyValue.each!((kv) {
                 string name = kv.key.replace("-", "_").upper;
                 if (!["CONTENT_LENGTH", "CONTENT_TYPE"].has(name)) {
@@ -437,7 +437,7 @@ mixin template TIntegrationTest() {
             props.set("input", someData);
         } else if (
             someData.isArray &&
-            props.hasKey("environment.CONTENT_TYPE") &&
+            props.has("environment.CONTENT_TYPE") &&
             props.getString("environment.CONTENT_TYPE") == "application/x-www-form-urlencoded"
             ) {
             props.set("input", http_build_query(someData));
@@ -470,9 +470,9 @@ mixin template TIntegrationTest() {
         }
         if (_csrfToken == true) {
             auto middleware = new DCsrfProtectionMiddleware();
-            if (!_cookie.hasKey(_csrfKeyName) && !_session.hasKey(_csrfKeyName)) {
+            if (!_cookie.has(_csrfKeyName) && !_session.has(_csrfKeyName)) {
                 token = middleware.createToken();
-            } else if (_cookie.hasKey(_csrfKeyName)) {
+            } else if (_cookie.has(_csrfKeyName)) {
                 token = _cookie.get(_csrfKeyName);
             } else {
                 token = _session.get(_csrfKeyName);
@@ -483,7 +483,7 @@ mixin template TIntegrationTest() {
             // the inverse.
             _session.set(_csrfKeyName, token);
             _cookie.set(_csrfKeyName, token);
-            if (!results.hasKey("_csrfToken")) {
+            if (!results.has("_csrfToken")) {
                 results.set("_csrfToken", token);
             }
         }
@@ -501,7 +501,7 @@ mixin template TIntegrationTest() {
                 }
 
                 if (kv.value.isArray) {
-                    auto looksLikeFile = kv.value.hasKeys(["error", "tmp_name", "size"]);
+                    auto looksLikeFile = kv.value.hasMany(["error", "tmp_name", "size"]);
                     if (looksLikeFile) {
                         continue;
                     }
