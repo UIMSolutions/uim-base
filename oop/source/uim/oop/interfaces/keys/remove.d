@@ -15,9 +15,9 @@ interface IRemoveKeys(T) : IHasKeys!T, IGetKeys!T, IUpdateKeys!T {
     bool removeAll();
 
     // Removes the given keys from the collection.
-    bool remove(string[] keys);
+    bool removeKeys(string[] keys);
 
     // Removes a specific key from the collection.
-    bool remove(string key);
+    bool removeKey(string key);
 }
 

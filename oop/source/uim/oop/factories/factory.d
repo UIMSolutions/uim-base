@@ -35,7 +35,7 @@ class DFactory(T) : UIMObject, IFactory!T {
     return paths.any!(path => hasPath(path));
   }
 
-  bool hasAllPaths(string[][] paths) {
+  bool hasAllPath(string[][] paths) {
     return paths.all!(path => hasPath(path));
   }
 
@@ -89,11 +89,11 @@ class DFactory(T) : UIMObject, IFactory!T {
   // #endregion merge
 
   // #region remove
-  bool removeMany(string[][] paths) {
+  bool removePaths(string[][] paths) {
     return paths.all!(path => remove(path));
   }
 
-  bool remove(string[] path) {
+  bool removePath(string[] path) {
     return remove(path.toKey);
   }
   // #endregion remove
@@ -174,7 +174,7 @@ class DFactory(T) : UIMObject, IFactory!T {
   }
 
   bool remove(string[] keys) {
-    return keys.all!(key => remove(key));
+    return keys.all!(key => removeKey(key));
   }
 
   bool remove(string key) {

@@ -13,8 +13,8 @@ import uim.oop;
 
 interface IGetPaths(T) {
   // Gets the entire collection as a map of paths to items.
-  T[string[]] items(string[][] paths);
+  T[string[]] itemsByPath(string[][] paths);
 
   // Gets a specific item from the collection.
-  T item(string[] path);
+  T itemByPath(string[] path);
 }

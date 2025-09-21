@@ -11,12 +11,10 @@ import uim.oop;
 @safe:
 
 interface IGetKeys(T) {
-  // #region get
   // Gets the entire collection as a map of paths to items.
-  T[string] items(string[][] keys);
+  T[string] itemsByKey(string[] keys);
 
   // Gets a specific item from the collection.
-  T item(string key);
-  // #endregion get
+  T itemByKey(string key);
 }
 

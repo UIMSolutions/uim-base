@@ -14,25 +14,28 @@ import uim.oop;
 interface IUpdateKeys(T) {
   // #region set
   // Adds all given items to the collection.
-  bool set(T[string] items);
+  bool setKeys(T[string] items);
+  bool setKeys(string[] keys, T items);
 
   // Adds a specific item to the collection.
-  bool set(string key, T item);
+  bool setKey(string key, T item);
   // #endregion set
 
   // #region update
   // Updates all given items in the collection.
-  bool update(T[string] items);
+  bool updateKeys(T[string] items);
+  bool updateKeys(string[] keys, T items);
 
   // Updates a specific item in the collection.
-  bool update(string key, T item);
-  // #endregion update  
+  bool updateKey(string key, T item);
+  // #endregion update
 
   // #region merge
   // Merges all given items into the collection.
-  bool merge(T[string] items);
+  bool mergeKeys(T[string] items);  
+  bool mergeKeys(string[] keys, T items);
 
   // Merges a specific item into the collection.
-  bool merge(string key, T item);
-  // #endregion merge   
+  bool mergeKey(string key, T item);
+  // #endregion merge
 }

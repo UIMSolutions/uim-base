@@ -11,7 +11,7 @@ import uim.oop;
 @safe:
 
 
-class DFormatterCollection : DCollection!DFormatter {   
+class DFormatterCollection : DCollection!IFormatter {   
 }
 auto FormatterCollection() { return new DFormatterCollection; } 
 
