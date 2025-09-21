@@ -10,7 +10,7 @@ mixin(Version!"test_uim_oop");
 import uim.oop;
 @safe:
 
-interface IKeys(T) : IHasKeys!T, IGetKeys!T, IUpdateKeys!T, IremoveMany!T {
+interface IKeys(T) : IHasKeys!T, IGetKeys!T, IUpdateKeys!T, IRemoveKeys!T {
   // Returns an array containing all of the keys in this collection.
   string[] keys(SORTORDERS sortorder = NOSORT);
 }

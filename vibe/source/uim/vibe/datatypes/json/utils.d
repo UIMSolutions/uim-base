@@ -8,6 +8,7 @@ module uim.vibe.datatypes.json.utils;
 mixin(Version!("test_uim_vibe"));
 
 import uim.vibe;
+
 @safe:
 
 // #region is
@@ -472,8 +473,6 @@ Json match(K)(Json[K] matchValues, K key, Json defaultValue = Json(null)) {
     ? matchValues[key] : defaultValue;
 }
 
-
-
 // #region count
 size_t count(Json value) {
   if (value.isNull) {
@@ -510,29 +509,97 @@ unittest {
 // #endregion count
 
 // #region remove
+Json removeMany(Json json, string[][] paths) {
+  if (!json.isObject || paths.length == 0) {
+    return json;
+  }
+
+  foreach (path; paths) {
+    json = json.removeItem(path);
+  }
+  return json;
+}
+
 Json removeMany(Json json, string[] keys) {
   if (!json.isObject || keys.length == 0) {
     return json;
   }
 
-  foreach (key; keys) {
-    json = json.remove(key);
-  } 
+  keys.each!(key => json = json.removeItem(key));
   return json;
 }
 
-Json remove(Json json, string key) {
+Json removeItem(Json json, string[] path) {
   if (!json.isObject) {
     return json;
   }
 
-  if (json.has(key)) json = json.remove(key);
+  if (path.length == 0) {
+    return json;
+  }
+
+  if (path.length == 1) {
+    return removeItem(json, path[0]);
+  }
+
+  if (json.has(path[0])) {
+    json = json.removeItem(path[1 .. $]);
+  }
+
   return json;
+}
+
+Json removeItem(Json json, string key) {
+  if (!json.isObject) {
+    return json;
+  }
+
+  if (json.has(key)) {
+    json.remove(key);
+  }
+
+  return json;
+}
+
+unittest {
+  // Test remove on non-object
+  Json j = Json("value");
+  assert(j.remove("key") == j);
+
+  // Test remove on object without key
+  Json obj = Json.emptyObject;
+  obj["a"] = 1;
+  Json result = obj.remove("b");
+  assert(result == obj);
+
+  // Test remove on object with key
+  obj["b"] = 2;
+  result = obj.remove("b");
+  assert(result.has("a"));
+  assert(!result.has("b"));
+
+  // Test removeMany with empty keys
+  Json obj2 = Json.emptyObject;
+  obj2["x"] = 10;
+  obj2["y"] = 20;
+  Json res2 = obj2.removeMany([]);
+  assert(res2 == obj2);
+
+  // Test removeMany with some keys
+  obj2["z"] = 30;
+  Json res3 = obj2.removeMany(["x", "z"]);
+  assert(res3.has("y"));
+  assert(!res3.has("x"));
+  assert(!res3.has("z"));
+
+  // Test removeMany on non-object
+  Json j2 = Json(123);
+  assert(j2.removeMany(["a", "b"]) == j2);
 }
 // #endregion remove
 
 // #region filter
-Json onlyKeys(Json json, string[] keys) {
+Json filterKeys(Json json, string[] keys) {
   if (!json.isObject || keys.length == 0) {
     return Json(null);
   }
@@ -661,25 +728,25 @@ unittest {
   assert(map.length == 3 && map.hasAllKeys(["a", "b", "c"]) && map["a"] == "A");
 
   /* map.update("a", "x").update("d", "x").update("e", "x").update("f", "x");
-    assert(map.length == 3 && !map.hasAnyKeys(["d", "e", "f"]) && map["a"] == Json("x"));
+    assert(map.length == 3 && !map.hasAnys(["d", "e", "f"]) && map["a"] == Json("x"));
 
     map = ["a": Json("A"), "b": Json("B"), "c": Json("C")]; // Reset map
     map.update(["c", "d", "e"], "x");
-    assert(map.length == 3 && !map.hasAnyKeys(["d", "e", "f"]) && map["a"] != "x" && map["c"] == Json("x"));
+    assert(map.length == 3 && !map.hasAnys(["d", "e", "f"]) && map["a"] != "x" && map["c"] == Json("x"));
 
     map = ["a": Json("A"), "b": Json("B"), "c": Json("C")]; // Reset map
     map.update(["a", "b", "c"], "x").update(["d", "e", "f"], "x");
-    assert(map.length == 3 && !map.hasAnyKeys(["d", "e", "f"]) && map["a"] == Json("x") && map["c"] == Json(
+    assert(map.length == 3 && !map.hasAnys(["d", "e", "f"]) && map["a"] == Json("x") && map["c"] == Json(
         "x"));
 
     map = ["a": Json("A"), "b": Json("B"), "c": Json("C")]; // Reset map
     map.update(["c": "x", "d": "x", "e": "x"]);
-    assert(map.length == 3 && !map.hasAnyKeys(["d", "e", "f"]) && map["a"] != "x" && map["c"] == Json(
+    assert(map.length == 3 && !map.hasAnys(["d", "e", "f"]) && map["a"] != "x" && map["c"] == Json(
         "x"));
 
     map = ["a": Json("A"), "b": Json("B"), "c": Json("C")]; // Reset map
     map.update(["c": "x", "d": "x", "e": "x"], "c", "e");
-    assert(map.length == 3 && !map.hasAnyKeys(["d", "e", "f"]) && map["a"] != "x" && map["c"] == Json(
+    assert(map.length == 3 && !map.hasAnys(["d", "e", "f"]) && map["a"] != "x" && map["c"] == Json(
         "x")); */
 }
 // #endregion update
@@ -725,25 +792,25 @@ unittest {
   assert(map.length == 3 && map.hasAllKeys(["a", "b", "c"]) && map["a"] == "A");
 
   /* map.merge("a", "x").merge("d", "x").merge("e", "x").merge("f", "x");
-    assert(map.length == 6 && map.hasAnyKeys(["d", "e", "f"]) && map["e"] == Json("x"));
+    assert(map.length == 6 && map.hasAnys(["d", "e", "f"]) && map["e"] == Json("x"));
 
     map = ["a": Json("A"), "b": Json("B"), "c": Json("C")]; // Reset map
     map.merge(["c", "d", "e"], "x");
-    assert(map.length == 5 && map.hasAnyKeys(["d", "e", "f"]) && map["a"] != Json("x") && map["d"] == Json("x"));
+    assert(map.length == 5 && map.hasAnys(["d", "e", "f"]) && map["a"] != Json("x") && map["d"] == Json("x"));
 
     map = ["a": Json("A"), "b": Json("B"), "c": Json("C")]; // Reset map
     map.merge(["a", "b", "c"], "x").merge(["d", "e", "f"], "x");
-    assert(map.length == 6 && map.hasAnyKeys(["d", "e", "f"]) && map["a"] != Json("x") && map["d"] == Json(
+    assert(map.length == 6 && map.hasAnys(["d", "e", "f"]) && map["a"] != Json("x") && map["d"] == Json(
         "x"));
 
     map = ["a": Json("A"), "b": Json("B"), "c": Json("C")]; // Reset map
     map.merge(["c": "x", "d": "x", "e": "x"]);
-    assert(map.length == 5 && map.hasAnyKeys(["d", "e", "f"]) && map["a"] != "x" && map["d"] == Json(
+    assert(map.length == 5 && map.hasAnys(["d", "e", "f"]) && map["a"] != "x" && map["d"] == Json(
         "x"));
 
     map = ["a": Json("A"), "b": Json("B"), "c": Json("C")]; // Reset map
     map.merge(["c": "x", "d": "x", "e": "x"], "c", "e");
-    assert(map.length == 4 && map.hasAnyKeys(["d", "e", "f"]) && map["a"] != "x" && map["e"] == Json(
+    assert(map.length == 4 && map.hasAnys(["d", "e", "f"]) && map["a"] != "x" && map["e"] == Json(
         "x")); */
 }
 // #endregion merge
@@ -803,7 +870,7 @@ Json[string] copy(Json[string] values, string[] keys = null) {
   return results;
 }
 
-Json[string] onlyKeys(Json[string] values, string[] keys) {
+Json[string] filterKeys(Json[string] values, string[] keys) {
   if (keys.length == 0) {
     return values.dup;
   }
@@ -816,7 +883,7 @@ Json[string] onlyKeys(Json[string] values, string[] keys) {
   return filteredData;
 }
 
-/* Json[string] onlyKeys(Json[string] values, string[] keys, string[] excludeKeys) {
+/* Json[string] filterKeys(Json[string] values, string[] keys, string[] excludeKeys) {
   if (keys.length == 0) {
     return values.dup;
   }
@@ -829,7 +896,7 @@ Json[string] onlyKeys(Json[string] values, string[] keys) {
   return filteredData;
 }
 
-Json[string] onlyKeys(Json[string] values, string[] keys, string excludeKey) {
+Json[string] filterKeys(Json[string] values, string[] keys, string excludeKey) {
   if (keys.length == 0) {
     return values.dup;
   }

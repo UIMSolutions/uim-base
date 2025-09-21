@@ -31,7 +31,7 @@ bool hasAllKeys(Json[string] items, string[] keys) {
   return keys.all!(key => has(items, key));
 }
 
-bool hasAnyKeys(Json[string] items, string[] keys) {
+bool hasAnys(Json[string] items, string[] keys) {
   return keys.any!(key => has(items, key));
 }
 
@@ -45,7 +45,7 @@ bool hasAllKeys(Json[] items, string[] keys) {
   return keys.all!(key => has(items, key));
 }
 
-bool hasAnyKeys(Json[] items, string[] keys) {
+bool hasAnys(Json[] items, string[] keys) {
   return keys.any!(key => has(items, key));
 }
 
@@ -61,7 +61,7 @@ bool hasAllKeys(Json json, string[] keys) {
 }
 
 /// Check if Json has key
-bool hasAnyKeys(Json json, string[] keys) {
+bool hasAnys(Json json, string[] keys) {
   return keys.any!(key => has(json, key));
 }
 
@@ -88,8 +88,8 @@ unittest {
   assert(json.has("a"));
   assert(!json.has("x"));
 
-  assert(json.hasAnyKeys(["y", "c"]));
-  assert(!json.hasAnyKeys(["x", "y"]));
+  assert(json.hasAnys(["y", "c"]));
+  assert(!json.hasAnys(["x", "y"]));
 
   assert(json.hasAllKeys(["a", "c"]));
   assert(!json.hasAllKeys(["x", "c"]));

@@ -11,7 +11,7 @@ import uim.oop;
 
 @safe:
 
-interface IremoveMany(T) {
+interface IRemovePaths(T) {
   // Removes the given paths from the collection.
   bool removeMany(string[][] paths);
 

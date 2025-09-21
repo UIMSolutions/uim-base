@@ -13,19 +13,19 @@ import uim.vibe;
 
 // #region is
 // #region Json[string]
-bool isAllInteger(Json[string] map, bool strict = true) {
+bool allInteger(Json[string] map, bool strict = true) {
   return map.byValue.all!(value => value.isInteger(strict));
 }
 
-bool isAllInteger(Json[string] map, string[] keys, bool strict = true) {
+bool allInteger(Json[string] map, string[] keys, bool strict = true) {
   return keys.all!(key => map.isInteger(key, strict));
 }
 
-bool isAnyInteger(Json[string] map, bool strict = true) {
+bool anyInteger(Json[string] map, bool strict = true) {
   return map.byValue.any!(value => value.isInteger(strict));
 }
 
-bool isAnyInteger(Json[string] map, string[] keys, bool strict = true) {
+bool anyInteger(Json[string] map, string[] keys, bool strict = true) {
   return keys.any!(index => map.isInteger(index));
 }
 
@@ -46,67 +46,67 @@ unittest {
     assert(!map.isInteger("d")); // key not present
   }
 
-  // Test isAnyInteger(Json[string] map, bool strict = true)
+  // Test anyInteger(Json[string] map, bool strict = true)
   {
     Json[string] map;
     map["a"] = Json("x");
     map["b"] = Json(2);
-    assert(map.isAnyInteger);
+    assert(map.anyInteger);
     map["a"] = Json("y");
     map["b"] = Json("z");
-    assert(!map.isAnyInteger);
+    assert(!map.anyInteger);
   }
 
-  // Test isAnyInteger(Json[string] map, string[] keys, bool strict = true)
+  // Test anyInteger(Json[string] map, string[] keys, bool strict = true)
   {
     Json[string] map;
     map["a"] = Json("x");
     map["b"] = Json(2);
     map["c"] = Json(3.0);
-    assert(map.isAnyInteger(["a", "b"]));
-    assert(!map.isAnyInteger(["a", "c"]));
-    assert(map.isAnyInteger(["b", "c"]));
+    assert(map.anyInteger(["a", "b"]));
+    assert(!map.anyInteger(["a", "c"]));
+    assert(map.anyInteger(["b", "c"]));
   }
 
-  // Test isAllInteger(Json[string] map, bool strict = true)
+  // Test allInteger(Json[string] map, bool strict = true)
   {
     Json[string] map;
     map["a"] = Json(1);
     map["b"] = Json(2);
-    assert(map.isAllInteger);
+    assert(map.allInteger);
     map["c"] = Json(3.0);
-    assert(!map.isAllInteger);
+    assert(!map.allInteger);
     map["d"] = Json("4");
-    assert(!map.isAllInteger);
+    assert(!map.allInteger);
   }
 
-  // Test isAllInteger(Json[string] map, string[] keys, bool strict = true)
+  // Test allInteger(Json[string] map, string[] keys, bool strict = true)
   {
     Json[string] map;
     map["a"] = Json(1);
     map["b"] = Json(2);
     map["c"] = Json("3");
-    assert(map.isAllInteger(["a", "b"]));
-    assert(!map.isAllInteger(["a", "b", "c"]));
-    assert(!map.isAllInteger(["c"]));
+    assert(map.allInteger(["a", "b"]));
+    assert(!map.allInteger(["a", "b", "c"]));
+    assert(!map.allInteger(["c"]));
   }
 }
 // #endregion Json[string]
 
 // #region Json[]
-bool isAllInteger(Json[] values, bool strict = true) {
+bool allInteger(Json[] values, bool strict = true) {
   return values.all!(value => value.isInteger(strict));
 }
 
-bool isAllInteger(Json[] values, size_t[] indices, bool strict = true) {
+bool allInteger(Json[] values, size_t[] indices, bool strict = true) {
   return indices.all!(index => values.isInteger(index, strict));
 }
 
-bool isAnyInteger(Json[] values, bool strict = true) {
+bool anyInteger(Json[] values, bool strict = true) {
   return values.any!(value => value.isInteger(strict));
 }
 
-bool isAnyInteger(Json[] values, size_t[] indices, bool strict = true) {
+bool anyInteger(Json[] values, size_t[] indices, bool strict = true) {
   return indices.any!(index => values.isInteger(index, strict));
 }
 
@@ -115,58 +115,70 @@ bool isInteger(Json[] values, size_t index, bool strict = true) {
 }
 // #endregion Json[]
 
-// #region Json
-bool isAllInteger(Json json, bool strict = true) {
+// #region isInteger(Json)
+bool allInteger(Json json, bool strict = true) {
   if (json.isObject) {
-    return isAllInteger(json.to!(Json[string]), strict);
+    return allInteger(json.to!(Json[string]), strict);
   }
   if (json.isArray) {
-    return isAllInteger(json.to!(Json[]), strict);
+    return allInteger(json.to!(Json[]), strict);
   }
   return json.isInteger(strict);
 }
 
-bool isAllInteger(Json json, string[] keys, bool strict = true) {
+bool allInteger(Json json, string[][] paths, bool strict = true) {
+  return paths.all!(path => json.isInteger(path, strict));
+}
+
+bool allInteger(Json json, string[] keys, bool strict = true) {
   return keys.all!(key => json.isInteger(key, strict));
 }
 
-bool isAnyInteger(Json json, bool strict = true) {
+bool anyInteger(Json json, bool strict = true) {
   if (json.isObject) {
-    return isAnyInteger(json.to!(Json[string]), strict);
+    return anyInteger(json.to!(Json[string]), strict);
   }
   if (json.isArray) {
-    return isAnyInteger(json.to!(Json[]), strict);
+    return anyInteger(json.to!(Json[]), strict);
   }
   return json.isInteger(strict);
 }
 
-bool isAnyInteger(Json json, string[] keys, bool strict = true) {
+bool anyInteger(Json json, string[][] paths, bool strict = true) {
+  return paths.any!(path => json.isInteger(path, strict));
+}
+
+bool anyInteger(Json json, string[] keys, bool strict = true) {
   return keys.any!(key => json.isInteger(key, strict));
 }
 
 bool isInteger(Json json, string[] path, bool strict = true) {
-  if (json.isNull) {
-    return true;
-  }
-
-  if (path.length == 0 && json == Null!Json) {
-    return true;
-  }
-
-  if (path.length == 0 && json == Null!Json) {
+  if (json.isNull || path.length == 0) {
     return false;
   }
 
-  auto key = path[0];
-  return path.length == 1
-    ? json.isInteger(key, strict) : json.has(key) && json[key].isInteger(path[1 .. $], strict);
+  if (!json.isObject || !json.has(path[0])) {
+    return false;
+  }
+
+  if (path.length == 1) {
+    return json.isInteger(path[0], strict);
+  }
+
+  return json[path[0]].isInteger(path[1 .. $], strict);
 }
 
 bool isInteger(Json json, string key, bool strict = true) {
-  return key in json && json[key].isInteger(strict);
-}
-// #endregion Json
+  if (json.isNull || key.length == 0) {
+    return false;
+  }
 
+  if (!json.isObject || !json.has(key)) {
+    return false;
+  }
+
+  return json[key].isInteger(strict);
+}
 unittest {
   assert(!Json(true).isInteger);
   assert(Json(10).isInteger);
@@ -181,63 +193,64 @@ unittest {
   assert(map.isInteger("a") && map.isInteger("b"));
   assert(!map.isInteger("c"));
 
-  assert(map.isAllInteger(["a", "b"]));
-  assert(map.isAnyInteger(["a", "b"]));
+  assert(map.allInteger(["a", "b"]));
+  assert(map.anyInteger(["a", "b"]));
 
   map["b"] = Json("B");
   assert(map.isInteger("a"));
   assert(!map.isInteger("b") && !map.isInteger("c"));
 
-  assert(!map.isAllInteger(["a", "b"]));
-  assert(map.isAnyInteger(["a", "b"]));
+  assert(!map.allInteger(["a", "b"]));
+  assert(map.anyInteger(["a", "b"]));
 
   map["a"] = Json("A");
   assert(!map.isInteger("a") && !map.isInteger("b") && !map.isInteger("c"));
 
-  assert(!map.isAllInteger(["a", "b"]));
-  assert(!map.isAnyInteger(["a", "b"]));
+  assert(!map.allInteger(["a", "b"]));
+  assert(!map.anyInteger(["a", "b"]));
 
   // Json[]
   auto list = [Json(1), Json(2)];
   assert(list[0].isInteger && list[1].isInteger);
 
-  assert(list.isAllInteger);
-  assert(list.isAnyInteger);
+  assert(list.allInteger);
+  assert(list.anyInteger);
 
   list[1] = Json(2.0);
   assert(list[0].isInteger && !list[1].isInteger);
 
-  assert(!list.isAllInteger);
-  assert(list.isAnyInteger);
+  assert(!list.allInteger);
+  assert(list.anyInteger);
 
   list[0] = Json(1.0);
   assert(!list[0].isInteger && !list[1].isInteger);
-  assert(!list.isAllInteger);
-  assert(!list.isAnyInteger);
+  assert(!list.allInteger);
+  assert(!list.anyInteger);
 }
+// #endregion isInteger(Json)
 
 // #region Json[]
 unittest {
   auto values = [Json(1), Json(2)];
-  assert(values.isAnyInteger);
-  assert(values.isAllInteger);
+  assert(values.anyInteger);
+  assert(values.allInteger);
 
   values = [Json("a"), Json(2)];
-  assert(values.isAnyInteger);
-  assert(!values.isAllInteger);
+  assert(values.anyInteger);
+  assert(!values.allInteger);
 
   values = [Json("a"), Json("b")];
-  assert(!values.isAnyInteger);
-  assert(!values.isAllInteger);
+  assert(!values.anyInteger);
+  assert(!values.allInteger);
 
-  assert(isAnyInteger([Json(1), Json(2)]));
-  assert(isAnyInteger([Json("x"), Json(2)]));
+  assert(anyInteger([Json(1), Json(2)]));
+  assert(anyInteger([Json("x"), Json(2)]));
 
-  assert(!isAnyInteger([Json("x"), Json("y")]));
-  assert(isAllInteger([Json(1), Json(2)]));
+  assert(!anyInteger([Json("x"), Json("y")]));
+  assert(allInteger([Json(1), Json(2)]));
 
-  assert(!isAllInteger([Json("x"), Json(2)]));
-  assert(!isAllInteger([Json("x"), Json("y")]));
+  assert(!allInteger([Json("x"), Json(2)]));
+  assert(!allInteger([Json("x"), Json("y")]));
 }
 // #endregion Json[]
 
@@ -246,16 +259,16 @@ unittest {
   Json[string] map;
   map["a"] = Json(1);
   map["b"] = Json(2);
-  assert(map.isAllInteger(["a", "b"]));
-  assert(map.isAnyInteger(["a", "b"]));
+  assert(map.allInteger(["a", "b"]));
+  assert(map.anyInteger(["a", "b"]));
 
   map["b"] = Json("B");
-  assert(!map.isAllInteger(["a", "b"]));
-  assert(map.isAnyInteger(["a", "b"]));
+  assert(!map.allInteger(["a", "b"]));
+  assert(map.anyInteger(["a", "b"]));
 
   map["a"] = Json("A");
-  assert(!map.isAllInteger(["a", "b"]));
-  assert(!map.isAnyInteger(["a", "b"]));
+  assert(!map.allInteger(["a", "b"]));
+  assert(!map.anyInteger(["a", "b"]));
 }
 // #endregion Json[string]
 

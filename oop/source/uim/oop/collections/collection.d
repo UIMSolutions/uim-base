@@ -151,7 +151,7 @@ class DCollection(T) : UIMObject, ICollection!T {
     return keys.all!(key => has(key));
   }
 
-  bool hasAnyKey(string[] keys) {
+  bool hasAny(string[] keys) {
     return keys.any!(key => has(key));
   }
 

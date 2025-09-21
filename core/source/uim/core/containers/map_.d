@@ -21,21 +21,21 @@ unittest {
   jsonMap = ["a": Json(1), "b": Json(2), "c": Json(3), "d": Json(4)];
   assert(jsonMap.hasAllKeys(["a", "b", "c", "d"]));
   jsonMap.renameKeys(["a", "b"], ["x", "y", "z"]); // keys.length < others.length
-  assert(jsonMap.hasAllKeys(["x", "y", "c", "d"]) && !jsonMap.hasAnyKeys([
+  assert(jsonMap.hasAllKeys(["x", "y", "c", "d"]) && !jsonMap.hasAnys([
       "a", "b"
     ]));
 
   jsonMap = ["a": Json(1), "b": Json(2), "c": Json(3), "d": Json(4)];
   assert(jsonMap.hasAllKeys(["a", "b", "c", "d"]));
   jsonMap.renameKeys(["a", "b", "c"], ["x", "y"]); // keys.length > others.length
-  assert(jsonMap.hasAllKeys(["x", "y", "c", "d"]) && !jsonMap.hasAnyKeys([
+  assert(jsonMap.hasAllKeys(["x", "y", "c", "d"]) && !jsonMap.hasAnys([
       "a", "b"
     ]));
 
   jsonMap = ["a": Json(1), "b": Json(2), "c": Json(3), "d": Json(4)];
   assert(jsonMap.hasAllKeys(["a", "b", "c", "d"]));
   jsonMap.renameKeys(["a": "x", "b": "y"]);
-  assert(jsonMap.hasAllKeys(["x", "y", "c", "d"]) && !jsonMap.hasAnyKeys([
+  assert(jsonMap.hasAllKeys(["x", "y", "c", "d"]) && !jsonMap.hasAnys([
       "a", "b"
     ]));
 }
