@@ -84,6 +84,52 @@ class DCollection(T) : UIMObject, ICollection!T {
           ["bar"]
         ]));
   }
+
+  // #region set
+  // Sets the entire collection to the specified items.
+  bool setPath(T[string[]] items) {
+    return items.byKeyValue.all!((k, v) => setPath(k, v));
+  }
+
+  // Sets a specific item in the collection.
+  bool setPath(string[] path, T item) {
+    return set(path.toKey, item);
+  }
+  // #endregion set
+
+  // #region update
+  // Updates the entire collection to the specified items.
+  bool updatePath(T[string[]] items) {
+    return items.byKeyValue.all!((k, v) => updatePath(k, v));
+  }
+
+  // Updates a specific item in the collection.
+  bool updatePath(string[] path, T item) {
+    return update(path.toKey, item);
+  }
+  // #endregion update
+
+  // #region merge
+  // Merges the entire collection with the specified items.
+  bool mergePath(T[string[]] items) {
+    return items.byKeyValue.all!((k, v) => mergePath(k, v));
+  }
+
+  // Merges a specific item into the collection.
+  bool mergePath(string[] path, T item) {
+    return merge(path.toKey, item);
+  }
+  // #endregion merge
+
+  // #region remove
+  bool removeMany(string[][] paths) {
+    return paths.all!(path => removePath(path));
+  }
+
+  bool removePath(string[] path) {
+    return removeKey(path.toKey);
+  }
+  // #endregion remove
   // #endregion paths
 
   // #region keys
@@ -174,7 +220,7 @@ class DCollection(T) : UIMObject, ICollection!T {
   // #endregion setter
 
   // #region remove
-  bool removePaths(string[][] paths) {
+  bool removeMany(string[][] paths) {
     return paths.all!(path => removePath(path));
   }
 
@@ -182,7 +228,7 @@ class DCollection(T) : UIMObject, ICollection!T {
     return removeKey(correctKey(path));
   }
 
-  bool removeKeys(string[] keys) {
+  bool removeMany(string[] keys) {
     return keys.all!(key => removeKey(key));
   }
 

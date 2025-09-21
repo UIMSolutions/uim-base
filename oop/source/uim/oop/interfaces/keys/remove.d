@@ -10,7 +10,7 @@ mixin(Version!"test_uim_oop");
 import uim.oop;
 @safe:
 
-interface IRemoveKeys(T) : IHasKeys!T, IGetKeys!T, IUpdateKeys!T {
+interface IremoveMany(T) : IHasKeys!T, IGetKeys!T, IUpdateKeys!T {
     // Removes all keys from the collection.
     bool removeAll();
 

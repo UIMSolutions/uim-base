@@ -89,7 +89,7 @@ class DFactory(T) : UIMObject, IFactory!T {
   // #endregion merge
 
   // #region remove
-  bool removePaths(string[][] paths) {
+  bool removeMany(string[][] paths) {
     return paths.all!(path => removePath(path));
   }
 

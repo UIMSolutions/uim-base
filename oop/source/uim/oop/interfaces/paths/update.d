@@ -11,28 +11,7 @@ import uim.oop;
 
 @safe:
 
-interface IPaths(T) {
-  string[][] paths(SORTORDERS sortorder = NOSORT);
-
-  // #region has
-    // Checks if the collection contains the specified items. 
-    bool hasAllPath(string[][] paths);
-
-    // Checks if the collection contains any of the specified items.
-    bool hasAnyPath(string[][] paths);
-
-    // Checks if the collection contains a specific item.
-    bool hasPath(string[] path);
-  // #endregion has
-
-  // #region get
-    // Gets the entire collection as a map of paths to items.
-    T[string[]] items(string[][] paths);
-
-    // Gets a specific item from the collection.
-    T item(string[] path);
-  // #endregion get
-
+interface IUpdatePaths(T) {
   // #region set
     // Sets the entire collection to the specified items.
     bool setPath(T[string[]] items);
@@ -56,12 +35,4 @@ interface IPaths(T) {
     // Merges a specific item into the collection.
     bool mergePath(string[] path, T item);
   // #endregion merge
-
-  // #region remove
-    // Removes the given paths from the collection.
-    bool removePaths(string[][] paths);
-
-    // Removes a specific path from the collection.
-    bool removePath(string[] path);
-  // #endregion remove
 }

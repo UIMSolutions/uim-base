@@ -24,7 +24,7 @@ unittest {
 /*     assert(map["key1"] == "value1");
     assert(map["key2"] == "value2"); */
     
-    map.removeKeys(["key1"]);
+    map.removeMany(["key1"]);
     assert(map.length == 1);
 /*     assert(!map.containsKey("key1"));
     assert(map.containsKey("key2")); */

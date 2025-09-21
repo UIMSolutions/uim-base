@@ -62,14 +62,14 @@ class DMap(K, V) : IMap {
     return _entries[key];
   }
 
-  // #region removeKeys
-  void removeKeys(K[] keys) {
+  // #region removeMany
+  void removeMany(K[] keys) {
     keys.each!(key => this.removeKey(key));
   }
   void removeKey(K key) {
     _entries.remove(key);
   }
-  // #endregion removeKeys
+  // #endregion removeMany
 
   void clear(this O)() { 
     _entries = null; 
