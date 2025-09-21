@@ -100,7 +100,7 @@ class DCache : UIMObject, ICache {
         /*        try {
             myRegistry.load(configName, configData);
         } catch (RuntimeException exception) {
-            if (!hasKey("fallback", configData)) {
+            if (!has("fallback", configData)) {
                 myRegistry.set(configName, new DNullEngine());
                 trigger_error(exception.message(), ERRORS.USER_WARNING);
 
@@ -364,7 +364,7 @@ class DCache : UIMObject, ICache {
         if (groupName.isNull) {
             return _groups;
         }
-        if (_groups.hasKey(groupName)) {
+        if (_groups.has(groupName)) {
             return [groupName: _groups[groupName]];
         }
         throw new DInvalidArgumentException("Invalid cache group `%s`.".format(groupName));

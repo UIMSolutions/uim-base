@@ -381,7 +381,7 @@ class DConsole : UIMObject, IConsole {
     /* writeln();
         shouldOverwrite = shouldOverwrite || _forceOverwrite; */
 
-    /*         if (filehasKey(fileCreationPath) && shouldOverwrite == false) {
+    /*         if (filehas(fileCreationPath) && shouldOverwrite == false) {
             warning("File `{fileCreationPath}` exists");
             aKey = askChoice("Do you want to overwrite?", [
                     "y", "n", "a", "q"
@@ -406,7 +406,7 @@ class DConsole : UIMObject, IConsole {
  */ /* try {
             // Create the directory using the current user permissions.
             directory = dirname(fileCreationPath);
-            if (!filehasKey(directory)) {
+            if (!filehas(directory)) {
                 createFolder(directory, 0777 ^ umask(), true);
             }
             file = new DSplFileObject(fileCreationPath, "w");
@@ -417,7 +417,7 @@ class DConsole : UIMObject, IConsole {
         } */
     /* file.rewind();
         file.fwrite(contentsForFile); */
-    /* if (filehasKey(fileCreationPath)) {
+    /* if (filehas(fileCreationPath)) {
             writeln("<success>Wrote</success> `{fileCreationPath}`");
 
             return true;

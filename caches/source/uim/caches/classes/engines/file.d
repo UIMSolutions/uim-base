@@ -79,7 +79,7 @@ class DFileCacheEngine : DCacheEngine {
 
   // #region has
   override bool hasEntry(string key) {
-    // return _entries.hasKey(key);
+    // return _entries.has(key);
     return false;
   }
   // #endregion has

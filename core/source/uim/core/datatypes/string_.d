@@ -443,7 +443,7 @@ string mustache(string text, Json map, string[] selectedKeys = null) {
     return text; // If items is not an object, return the original text
   }
   map.keys
-    .filter!(key => map.hasKey(key))
+    .filter!(key => map.has(key))
     .filter!(key => selectedKeys.length == 0 || selectedKeys.hasValue(key))
     .each!(key => text = text.mustache(key, map[key]));
   return text;

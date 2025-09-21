@@ -20,7 +20,7 @@ class DRemoveEngineOutputCommand : DOutputCommand {
       return false;
     }
 
-    if (!options.hasKey("name")) {
+    if (!options.has("name")) {
       Error("Missing required parameter: name", __MODULE__);
       return false;
     }

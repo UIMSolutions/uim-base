@@ -29,7 +29,7 @@ bool testOutputEngine(IOutputEngine engine) {
   auto updatedStyles = engine.styles();
   assert("custom" in updatedStyles);
 
-  // Test: removeStyle(string) removes style
+  // Test: removeStyle(string) removeMany style
   engine.removeStyle("thirdstyle");
   assert(engine.style("thirdstyle").isNull);
 

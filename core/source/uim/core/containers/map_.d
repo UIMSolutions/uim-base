@@ -16,7 +16,7 @@ unittest {
   auto jsonMap = ["a": Json(1), "b": Json(2), "c": Json(3), "d": Json(4)];
   assert(jsonMap.hasAllKeys(["a", "b", "c", "d"]));
   jsonMap.renameKey("a", "x");
-  assert(jsonMap.hasAllKeys(["x", "b", "c", "d"]) && !jsonMap.hasKey("a"));
+  assert(jsonMap.hasAllKeys(["x", "b", "c", "d"]) && !jsonMap.has("a"));
 
   jsonMap = ["a": Json(1), "b": Json(2), "c": Json(3), "d": Json(4)];
   assert(jsonMap.hasAllKeys(["a", "b", "c", "d"]));
@@ -45,11 +45,11 @@ unittest {
 unittest {
   Json[string] map3 = new Json[string];
   map3.set("1", Json("1"));
-  assert(map3.length == 1 && map3.hasKey("1") && map3["1"] == Json("1"));
+  assert(map3.length == 1 && map3.has("1") && map3["1"] == Json("1"));
   map3.set("1", Json("2"));
-  assert(map3.length == 1 && map3.hasKey("1") && map3["1"] == Json("2"));
+  assert(map3.length == 1 && map3.has("1") && map3["1"] == Json("2"));
   map3.set("1", 3);
-  assert(map3.length == 1 && map3.hasKey("1") && map3["1"] == Json(3));
+  assert(map3.length == 1 && map3.has("1") && map3["1"] == Json(3));
 }
 // #endregion set
  */

@@ -335,7 +335,7 @@ class DConsoleOptionParser : UIMObject, IConsoleOptionParser {
       if (arg.isEqualTo(inputArgument)) {
         return;
       }
-      if (options.hasKey("required") && !arg.isRequired()) {
+      if (options.has("required") && !arg.isRequired()) {
         throw new DLogicException("A required argument cannot follow an optional one");
       }
     }); */
@@ -418,7 +418,7 @@ class DConsoleOptionParser : UIMObject, IConsoleOptionParser {
                 someArguments = _parseArg(token, someArguments);
             }
         }
-        if (params.hasKey("help")) {
+        if (params.has("help")) {
             return [params, someArguments];
         }
         foreach (index, arg; arguments) {
@@ -433,7 +433,7 @@ class DConsoleOptionParser : UIMObject, IConsoleOptionParser {
             auto isBoolean = option.isBoolean();
             auto defaultValue = option.defaultValue();
 
-            auto useDefault = !params.hasKey(name);
+            auto useDefault = !params.has(name);
             if (defaultValue !is null && useDefault && !isBoolean) {
                 params.set(name, defaultValue);
             }
@@ -441,7 +441,7 @@ class DConsoleOptionParser : UIMObject, IConsoleOptionParser {
                 params.set(name, false);
             }
             auto prompt = option.prompt();
-            if (!params.hasKey(name) && prompt) {
+            if (!params.has(name) && prompt) {
                 if (!console) {
                     throw new DConsoleException(
                         "Cannot use interactive option prompts without a Console instance. " ~
@@ -455,7 +455,7 @@ class DConsoleOptionParser : UIMObject, IConsoleOptionParser {
 
                 params[name] = aValue;
             }
-            if (option.isRequired() && !params.hasKey(name)) {
+            if (option.isRequired() && !params.has(name)) {
                 throw new DConsoleException(
                     "Missing required option. The `%s` option is required and has no default value."
                     .format(name)
@@ -513,7 +513,7 @@ class DConsoleOptionParser : UIMObject, IConsoleOptionParser {
                 _tokens.unshift("-" ~ flags[index]);
             }
         }
-        if (!_shortOptions.hasKey(aKey)) {
+        if (!_shortOptions.has(aKey)) {
             auto options = _shortOptions.byKeyValue
                 .map!(shortLong => shortLong.key ~ " (short for `--" ~ shortLong.value ~ "`)");
 
@@ -535,7 +535,7 @@ class DConsoleOptionParser : UIMObject, IConsoleOptionParser {
      * returns Params with option added in.
      */
   protected Json[string] _parseOption(string nameToParse, Json[string] params) {
-    /* if (!_options.hasKey(nameToParse)) {
+    /* if (!_options.has(nameToParse)) {
             throw new DMissingOptionException(
                 "Unknown option `%s`.".format(nameToParse), nameToParse, _options.keys
             );
@@ -544,7 +544,7 @@ class DConsoleOptionParser : UIMObject, IConsoleOptionParser {
         auto isBoolean = option.isBoolean();
         auto nextValue = _nextToken();
         auto emptyNextValue = (isEmpty(nextValue) && nextValue != "0");
-        if (!isBoolean && !emptyNextValue && !_optionhasKey(nextValue)) {
+        if (!isBoolean && !emptyNextValue && !_optionhas(nextValue)) {
             _tokens.shift();
             aValue = nextValue;
         } else if (isBoolean) {
@@ -564,12 +564,12 @@ class DConsoleOptionParser : UIMObject, IConsoleOptionParser {
   }
 
   // Check to see if name has an option (short/long) defined for it.
-  protected bool _optionhasKey(string optionName) {
+  protected bool _optionhas(string optionName) {
     /*         if (optionName.startsWith("--")) {
-            return _options.hasKey(subString(optionName, 2));
+            return _options.has(subString(optionName, 2));
         }
         if (optionName[0] == "-" && optionName[1] != "-") {
-            return _shortOptions.hasKey(optionName[1]);
+            return _shortOptions.has(optionName[1]);
         }
  */
     return false;
@@ -586,7 +586,7 @@ class DConsoleOptionParser : UIMObject, IConsoleOptionParser {
         }
 
         auto next = count(someArguments);
-        if (!_arguments.hasKey(next)) {
+        if (!_arguments.has(next)) {
             auto expected = count(_arguments);
             throw new DConsoleException(
                 "Received too many arguments. Got `%s` but only `%s` arguments are defined."

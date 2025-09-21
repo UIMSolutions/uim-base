@@ -128,7 +128,7 @@ class DFileOutputEngine : DOutputEngine {
                 enviroment("ConEmuANSI") != "ON"
            ) ||
             (
-                function_hasKey("posix_isatty") &&
+                function_has("posix_isatty") &&
                 !posix_isatty(_output)
            ) ||
             (
