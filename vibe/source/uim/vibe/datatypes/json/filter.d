@@ -20,11 +20,11 @@ Json[] filterNotObject(Json[] items) {
 }
 
 Json[] filterHasKey(Json[] items, string key) {
-  return items.filterObject.filter!(item => item.hasKey(key)).array;
+  return items.filterObject.filter!(item => item.has(key)).array;
 }
 
 Json[] filterWithoutKey(Json[] items, string key) {
-  return items.filterObject.filter!(item => !item.hasKey(key)).array;
+  return items.filterObject.filter!(item => !item.has(key)).array;
 }
 
 unittest {

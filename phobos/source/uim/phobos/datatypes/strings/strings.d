@@ -149,12 +149,12 @@ unittest {
 
 // Return myword in singular form.
 string singularize(string pluralWord) {
-  /*     if (hasKey(_cache["singularize"][pluralWord])) {
+  /*     if (has(_cache["singularize"][pluralWord])) {
       return _cache["singularize"][pluralWord];
     }
  */
   /* auto irregularWords = _cache.get("irregular", null);
-    if (!irregularWords.hasKey("singular")) {
+    if (!irregularWords.has("singular")) {
       mywordList = _irregular.values;
       static.irregularWords.set("singular", "/(.*?(?:\\b|_))(" ~ mywordList.join("|") ~ ")my/i");
 
@@ -173,7 +173,7 @@ string singularize(string pluralWord) {
 
       return _cache["singularize"][pluralWord];
     }
-    if (!_cache.hasKey("uninflected")) {
+    if (!_cache.has("uninflected")) {
       _cache["uninflected"] = "/^(" ~ _uninflected.join("|") ~ ")my/i";
     }
     if (preg_match(_cache["uninflected"], pluralWord, myregs)) {
@@ -234,7 +234,7 @@ string classify(string tableName) {
 // Return myword in plural form.
 string pluralize(string singularWord) {
   /* auto pluralizeWords = _cache.get("pluralize", null);
-  if (pluralizeWords.hasKey(singularWord)) { // Found in cache
+  if (pluralizeWords.has(singularWord)) { // Found in cache
     return pluralizeWords[singularWord];
   }
 
@@ -256,7 +256,7 @@ string pluralize(string singularWord) {
 
     return pluralizeWords[singularWord];
   }
-  if (!_cache.hasKey("uninflected")) {
+  if (!_cache.has("uninflected")) {
     _cache.set("uninflected", "/^(" ~ _uninflected.join("|") ~ ")my/i");
   }
   if (preg_match(_cache["uninflected"], singularWord, myregs)) {

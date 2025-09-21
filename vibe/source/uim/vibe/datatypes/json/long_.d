@@ -102,7 +102,7 @@ bool isLong(Json json, string[] path, bool strict = true) {
 
   auto key = path[0];
   return path.length == 1
-    ? json.isLong(key, strict) : json.hasKey(key) && json[key].isLong(path[1 .. $], strict);
+    ? json.isLong(key, strict) : json.has(key) && json[key].isLong(path[1 .. $], strict);
 }
 
 bool isLong(Json json, string key, bool strict = true) {

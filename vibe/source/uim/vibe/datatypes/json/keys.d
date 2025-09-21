@@ -25,48 +25,48 @@ unittest {
 }
 // #endregion keys
 
-// #region hasKeySearch
+// #region hasSearch
 // #region Json[string]
 bool hasAllKeys(Json[string] items, string[] keys) {
-  return keys.all!(key => hasKey(items, key));
+  return keys.all!(key => has(items, key));
 }
 
 bool hasAnyKeys(Json[string] items, string[] keys) {
-  return keys.any!(key => hasKey(items, key));
+  return keys.any!(key => has(items, key));
 }
 
-bool hasKey(Json[string] items, string key) {
+bool has(Json[string] items, string key) {
   return key in items ? true : false;
 }
 // #endregion Json[string]
 
 // #region Json[]
 bool hasAllKeys(Json[] items, string[] keys) {
-  return keys.all!(key => hasKey(items, key));
+  return keys.all!(key => has(items, key));
 }
 
 bool hasAnyKeys(Json[] items, string[] keys) {
-  return keys.any!(key => hasKey(items, key));
+  return keys.any!(key => has(items, key));
 }
 
-bool hasKey(Json[] items, string key) {
-  return items.any!(item => item.hasKey(key));
+bool has(Json[] items, string key) {
+  return items.any!(item => item.has(key));
 }
 // #endregion Json[]
 
 // #region Json
 // Check if json has key
 bool hasAllKeys(Json json, string[] keys) {
-  return keys.all!(key => hasKey(json, key));
+  return keys.all!(key => has(json, key));
 }
 
 /// Check if Json has key
 bool hasAnyKeys(Json json, string[] keys) {
-  return keys.any!(key => hasKey(json, key));
+  return keys.any!(key => has(json, key));
 }
 
 /// Searching key in json, if depth = true also in subnodes  
-bool hasKey(Json json, string key) {
+bool has(Json json, string key) {
   if (!json.isObject)
     return false;
 
@@ -75,7 +75,7 @@ bool hasKey(Json json, string key) {
       return true;
     }
 /*     if (deepSearch) {
-      if (kv.value.hasKey(key))
+      if (kv.value.has(key))
         return true;
     }
  */  }
@@ -85,8 +85,8 @@ bool hasKey(Json json, string key) {
 
 unittest {
   auto json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": "h"}]}`);
-  assert(json.hasKey("a"));
-  assert(!json.hasKey("x"));
+  assert(json.has("a"));
+  assert(!json.has("x"));
 
   assert(json.hasAnyKeys(["y", "c"]));
   assert(!json.hasAnyKeys(["x", "y"]));
@@ -95,4 +95,4 @@ unittest {
   assert(!json.hasAllKeys(["x", "c"]));
 }
 // #endregion Json
-// #endregion hasKeySearch
+// #endregion hasSearch

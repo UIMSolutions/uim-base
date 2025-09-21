@@ -159,7 +159,7 @@ bool isInteger(Json json, string[] path, bool strict = true) {
 
   auto key = path[0];
   return path.length == 1
-    ? json.isInteger(key, strict) : json.hasKey(key) && json[key].isInteger(path[1 .. $], strict);
+    ? json.isInteger(key, strict) : json.has(key) && json[key].isInteger(path[1 .. $], strict);
 }
 
 bool isInteger(Json json, string key, bool strict = true) {

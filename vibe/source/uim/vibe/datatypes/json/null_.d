@@ -274,7 +274,7 @@ bool isNull(Json json, string[] path, bool strict = true) {
 
   auto key = path[0];
   return path.length == 1
-    ? json.isNull(key, strict) : json.hasKey(key) && json[key].isNull(path[1 .. $], strict);
+    ? json.isNull(key, strict) : json.has(key) && json[key].isNull(path[1 .. $], strict);
 }
 
 bool isNull(Json json, string key, bool strict = true) {

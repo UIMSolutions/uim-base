@@ -36,7 +36,7 @@ bool hasPath(Json json, string[] path) {
     return false;
   }
 
-  if (!json.hasKey(path[0])) {
+  if (!json.has(path[0])) {
     return false;
   }
 
@@ -82,7 +82,7 @@ Json reduceKeys(Json json, string[] keys) {
   if (json.isObject) {
     Json result = Json.emptyObject;
     keys
-      .filter!(key => json.hasKey(key))
+      .filter!(key => json.has(key))
       .each!(key => result[key] = json[key]);
 
     return result;
@@ -175,7 +175,7 @@ unittest {
 T maxValue(T)(Json[] jsons, string key) {
   T result;
   foreach (json; jsons) { // find first value
-    if (!json.hasKey(key)) {
+    if (!json.has(key)) {
       continue;
     }
 
@@ -184,7 +184,7 @@ T maxValue(T)(Json[] jsons, string key) {
   } // found value
 
   foreach (json; jsons) { // compare values
-    if (!json.hasKey(key)) {
+    if (!json.has(key)) {
       continue;
     }
 
@@ -207,7 +207,7 @@ unittest {
 }
 
 Json firstWithKey(Json[] jsons, string key) {
-  Json[] results = jsons.filter!(json => json.hasKey(key)).array;
+  Json[] results = jsons.filter!(json => json.has(key)).array;
   return results.length > 0
     ? results[0] : Json(null);
 }
@@ -414,7 +414,7 @@ Json[string] getMap(Json[] values, size_t index, Json[string] defaultValue = nul
 }
 
 Json[string] getMap(Json value, string key, Json[string] defaultValue = null) {
-  return value.isObject && value.hasKey(key)
+  return value.isObject && value.has(key)
     ? value[key].getMap : defaultValue;
 }
 
@@ -510,7 +510,7 @@ unittest {
 // #endregion count
 
 // #region remove
-Json removes(Json json, string[] keys) {
+Json removeMany(Json json, string[] keys) {
   if (!json.isObject || keys.length == 0) {
     return json;
   }
@@ -522,7 +522,7 @@ Json removes(Json json, string[] keys) {
 }
 
 Json remove(Json json, string key) {
-  if (!json.isObject || keys.length == 0) {
+  if (!json.isObject) {
     return json;
   }
 
@@ -539,7 +539,7 @@ Json onlyKeys(Json json, string[] keys) {
 
   auto result = Json.emptyObject;
   keys
-    .filter!(key => json.hasKey(key))
+    .filter!(key => json.has(key))
     .each!(key => result[key] = json[key]);
 
   return result;
@@ -584,40 +584,40 @@ unittest {
     assert(map.length == 3);
 
     map.set("d", "x");
-    assert(map.length == 4 && map.hasKey("d"));
+    assert(map.length == 4 && map.has("d"));
 
     map.set("e", "x").set("f", "x");
     assert(map.length == 6 && map.hasAllKeys(["d", "e", "f"]));
 
     map = ["a": Json("A"), "b": Json("B"), "c": Json("C")]; // Reset map
     map.set(["d", "e", "f"], "x");
-    assert(map.length == 6 && map.hasKey("d") && map["f"] == Json("x"));
+    assert(map.length == 6 && map.has("d") && map["f"] == Json("x"));
 
     map = ["a": Json("A"), "b": Json("B"), "c": Json("C")]; // Reset map
     map.set("d", "x").set("e", "x").set("f", "x");
-    assert(map.length == 6 && map.hasKey("d") && map["f"] == Json("x"));
+    assert(map.length == 6 && map.has("d") && map["f"] == Json("x"));
 
     map = ["a": Json("A"), "b": Json("B"), "c": Json("C")]; // Reset map
     map.set(["d": "x", "e": "x", "f": "x"]);
-    assert(map.length == 6 && map.hasKey("d") && map["f"] == Json("x"));
+    assert(map.length == 6 && map.has("d") && map["f"] == Json("x"));
 
     map = ["a": Json(true), "b": Json(false), "c": Json(true)]; // Reset map
     assert(map.length == 3);
 
     map.set("d");
-    assert(map.length == 4 && map.hasKey("d"));
+    assert(map.length == 4 && map.has("d"));
 
     map = ["a": Json(true), "b": Json(false), "c": Json(true)]; // Reset map
     map.set(["d", "e", "f"], "x");
-    assert(map.length == 6 && map.hasKey("d") && map["f"] == Json("x"));
+    assert(map.length == 6 && map.has("d") && map["f"] == Json("x"));
 
     map = ["a": Json(true), "b": Json(false), "c": Json(true)]; // Reset map
     map.set("d", true).set("e", true).set("f", true);
-    assert(map.length == 6 && map.hasKey("d") && map["f"] == Json(true));
+    assert(map.length == 6 && map.has("d") && map["f"] == Json(true));
 
     map = ["a": Json(true), "b": Json(false), "c": Json(true)]; // Reset map
     map.set(["d": true, "e": true, "f": true]);
-    assert(map.length == 6 && map.hasKey("d") && map["f"] == Json(true));  
+    assert(map.length == 6 && map.has("d") && map["f"] == Json(true));  
  */
 }
 // #endregion set
@@ -751,7 +751,7 @@ unittest {
 // #region getStringArray
 string[] getStringArray(Json[string] map, string[] keys) {
   return keys
-    .filter!(key => map.hasKey(key))
+    .filter!(key => map.has(key))
     .map!(key => map.getString(key))
     .array;
 }
@@ -797,7 +797,7 @@ Json[string] copy(Json[string] values, string[] keys = null) {
 
   Json[string] results;
   keys
-    .filter!(key => values.hasKey(key))
+    .filter!(key => values.has(key))
     .each!(key => results[key] = values[key]);
 
   return results;

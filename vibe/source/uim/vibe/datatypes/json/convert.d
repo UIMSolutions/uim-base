@@ -215,7 +215,7 @@ string toString(Json[string] items, string[] keys) {
 
   Json json = Json.emptyObject;
   keys
-    .filter!(key => items.hasKey(key))
+    .filter!(key => items.has(key))
     .each!(key => json[key] = items[key]);
   return json.toString; 
 }
@@ -234,7 +234,7 @@ string toString(Json json, string[] keys) {
   if (keys.length == 0) keys = json.keys;
   Json result = Json.emptyObject;
   keys
-    .filter!(key => json.hasKey(key))
+    .filter!(key => json.has(key))
     .each!(key => result[key] = json[key]);
   return result.toString; 
 }

@@ -98,7 +98,7 @@ bool is{target}(Json json, string[] path, bool strict = true) {
   auto key = path[0];
   return path.length == 1
     ? json.is{target}(key, strict) 
-    : json.hasKey(key) && json[key].is{target}(path[1 .. $], strict);
+    : json.has(key) && json[key].is{target}(path[1 .. $], strict);
 }
 
 bool is{target}(Json json, string key, bool strict = true) {

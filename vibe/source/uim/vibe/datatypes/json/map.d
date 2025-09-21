@@ -46,7 +46,7 @@ import uim.vibe;
   assert(map.length == 3);
 
   map.set("d", Json("x"));
-  assert(map.length == 4 && map.hasKey("d"));
+  assert(map.length == 4 && map.has("d"));
 
   map.set("e", Json("x")).set("f", Json("x"));
   assert(map.length == 6 && map.hasAllKeys(["d", "e", "f"]));
@@ -56,20 +56,20 @@ import uim.vibe;
   map["b"] = "B";
   map["c"] = "C";
   map.set(["d", "e", "f"], Json("x"));
-  assert(map.length == 6 && map.hasKey("d") && map["f"] == Json("x"));
+  assert(map.length == 6 && map.has("d") && map["f"] == Json("x"));
 
   map = Json.emptyObject;
   map["a"] = "A";
   map["b"] = "B";
   map["c"] = "C";
   map.set("d", Json("x")).set("e", Json("x")).set("f", Json("x"));
-  assert(map.length == 6 && map.hasKey("d") && map["f"] == Json("x"));
+  assert(map.length == 6 && map.has("d") && map["f"] == Json("x"));
 
   map = Json.emptyObject;
   map["a"] = "A";
   map["b"] = "B";
   map["c"] = "C";
   map.set(["d": Json("x"), "e": Json("x"), "f": Json("x")]);
-  assert(map.length == 6 && map.hasKey("d") && map["f"] == Json("x"));
+  assert(map.length == 6 && map.has("d") && map["f"] == Json("x"));
 } */
 // #region set Json

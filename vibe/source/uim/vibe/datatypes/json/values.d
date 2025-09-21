@@ -16,7 +16,7 @@ import uim.vibe;
 Json[] values(Json json, string[] keys) {
   return json.isObject
     ? keys
-    .filter!(key => json.hasKey(key))
+    .filter!(key => json.has(key))
     .map!(key => json[key])
     .array : null;
 }

@@ -252,7 +252,7 @@ string[string] getStringMap(Json[] values, size_t index, string[string] defaultV
 }
 
 string[string] getStringMap(Json value, string key, string[string] defaultValue = null) {
-  return value.isObject && value.hasKey(key)
+  return value.isObject && value.has(key)
     ? value[key].getStringMap : defaultValue;
 }
 
