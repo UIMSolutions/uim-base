@@ -13,8 +13,8 @@ import uim.oop;
 
 interface IRemovePaths(T) {
   // Removes the given paths from the collection.
-  bool removeMany(string[][] paths);
+  bool removePaths(string[][] paths);
 
   // Removes a specific path from the collection.
-  bool remove(string[] path);
+  bool removePath(string[] path);
 }
