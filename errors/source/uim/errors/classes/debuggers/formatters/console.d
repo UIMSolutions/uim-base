@@ -59,7 +59,7 @@ class DConsoleErrorFormatter : UIMErrorFormatter {
 
   string formatWrapper(string contents, Json[string] locations) {
     string lineInfo = "";
-    if (locations.hasAllKeys(["file", "line"])) {
+    if (locations.hasAlls(["file", "line"])) {
       lineInfo = "%s (line %s)".format(locations.getString("file"), locations.getString("line"));
     }
 

@@ -118,7 +118,7 @@ class DFactory(T) : UIMObject, IFactory!T {
     return keys.any!(key => has(key));
   }
 
-  bool hasAllKeys(string[] keys) {
+  bool hasAlls(string[] keys) {
     return keys.all!(key => has(key));
   }
 

@@ -24,7 +24,7 @@ class DTextErrorFormatter : UIMErrorFormatter {
 ";
     string lineInfo = "";
 
-    if (location.hasAllKeys(["file", "line"])) {
+    if (location.hasAlls(["file", "line"])) {
       lineInfo = "%s (line %s)".format(location.getString("file"), location.getString("line"));
     }
     return templateTxt.format(lineInfo, content);

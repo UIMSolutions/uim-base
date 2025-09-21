@@ -269,7 +269,7 @@ unittest {
 
   // TODO: Fix this test
   // json = json.merge("b", Json("B")).merge("c", Json("C"));
-  // assert(json.hasAllKeys(["a", "b", "c"]));
+  // assert(json.hasAlls(["a", "b", "c"]));
   // assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 
   json = json.merge("a", Json("X"));
@@ -281,7 +281,7 @@ unittest {
 
   // TODO: Fix this test
   // json = json.merge("b", "B").merge("c", "C");
-  // assert(json.hasAllKeys(["a", "b", "c"]));
+  // assert(json.hasAlls(["a", "b", "c"]));
   // assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 
   json = json.merge("a", "X");
@@ -293,7 +293,7 @@ unittest {
   assert(json["a"] == Json("A"));
 
   json = json.merge(["b", "c"], "X");
-  assert(json.hasAllKeys(["a", "b", "c"]));
+  assert(json.hasAlls(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("X") && json["c"] == Json("X"));
 
   json = json.merge("a", "X");
@@ -307,7 +307,7 @@ unittest {
   assert(json["a"] == Json("A"));
 
   json = json.merge(["b": "B", "c": "C"]);
-  assert(json.hasAllKeys(["a", "b", "c"]));
+  assert(json.hasAlls(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 
   json = json.merge("a", "X");

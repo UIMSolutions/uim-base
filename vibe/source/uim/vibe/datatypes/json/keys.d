@@ -27,7 +27,7 @@ unittest {
 
 // #region hasSearch
 // #region Json[string]
-bool hasAllKeys(Json[string] items, string[] keys) {
+bool hasAlls(Json[string] items, string[] keys) {
   return keys.all!(key => has(items, key));
 }
 
@@ -41,7 +41,7 @@ bool has(Json[string] items, string key) {
 // #endregion Json[string]
 
 // #region Json[]
-bool hasAllKeys(Json[] items, string[] keys) {
+bool hasAlls(Json[] items, string[] keys) {
   return keys.all!(key => has(items, key));
 }
 
@@ -56,7 +56,7 @@ bool has(Json[] items, string key) {
 
 // #region Json
 // Check if json has key
-bool hasAllKeys(Json json, string[] keys) {
+bool hasAlls(Json json, string[] keys) {
   return keys.all!(key => has(json, key));
 }
 
@@ -91,8 +91,8 @@ unittest {
   assert(json.hasAnys(["y", "c"]));
   assert(!json.hasAnys(["x", "y"]));
 
-  assert(json.hasAllKeys(["a", "c"]));
-  assert(!json.hasAllKeys(["x", "c"]));
+  assert(json.hasAlls(["a", "c"]));
+  assert(!json.hasAlls(["x", "c"]));
 }
 // #endregion Json
 // #endregion hasSearch

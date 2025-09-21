@@ -13,7 +13,7 @@ import uim.oop;
 
 interface IHasKeys(T) {
   // Checks if the collection contains all keys.
-  bool hasAllKey(string[] keys);
+  bool hasAll(string[] keys);
 
   // Checks if the collection contains any of the given keys.
   bool hasAny(string[] keys);
