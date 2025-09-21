@@ -77,13 +77,13 @@ abstract class DContainer(T : UIMObject) {
     return _items.length = 0;
   } 
 
-  bool removeKey(T[] remove) {
-    remove.each!(item => removeKey(item));
+  bool remove(T[] remove) {
+    remove.each!(item => remove(item));
   }
 
   // Removes a single instance of the specified element from this container, if it is present.
-  bool removeKey(T removeItem) {
-    _items.removeKey(removeItem);
+  bool remove(T removeItem) {
+    _items.remove(removeItem);
   }
 
   // Removes all of the elements from this container */

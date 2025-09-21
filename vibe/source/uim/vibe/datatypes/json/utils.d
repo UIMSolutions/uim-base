@@ -510,13 +510,23 @@ unittest {
 // #endregion count
 
 // #region remove
-Json removeKeys(Json json, string[] keys) {
-  keys.each!(key => json = json.removeKey(key));
+Json removes(Json json, string[] keys) {
+  if (!json.isObject || keys.length == 0) {
+    return json;
+  }
+
+  foreach (key; keys) {
+    json = json.remove(key);
+  } 
   return json;
 }
 
-Json removeKey(Json json, string key) {
-  json.remove(key);
+Json remove(Json json, string key) {
+  if (!json.isObject || keys.length == 0) {
+    return json;
+  }
+
+  if (json.has(key)) json = json.remove(key);
   return json;
 }
 // #endregion remove

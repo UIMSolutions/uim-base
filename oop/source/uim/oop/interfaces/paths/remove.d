@@ -16,5 +16,5 @@ interface IremoveMany(T) {
   bool removeMany(string[][] paths);
 
   // Removes a specific path from the collection.
-  bool removePath(string[] path);
+  bool remove(string[] path);
 }

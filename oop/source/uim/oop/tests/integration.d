@@ -275,7 +275,7 @@ mixin template TIntegrationTest() {
      * The response of the dispatched request will be stored as
      * a property. You can use various assert methods to check the response.
      */
-    bool removeKey(string[] urls) {
+    bool remove(string[] urls) {
         _sendRequest(urls, "DELETE");
         return true;
     }
@@ -422,7 +422,7 @@ mixin template TIntegrationTest() {
                 }
                 env[name] = kv.value;
             });
-            _request.removeKey("headers");
+            _request.remove("headers");
         }
 
         auto props = [

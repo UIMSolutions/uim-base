@@ -90,11 +90,11 @@ class DFactory(T) : UIMObject, IFactory!T {
 
   // #region remove
   bool removeMany(string[][] paths) {
-    return paths.all!(path => removePath(path));
+    return paths.all!(path => remove(path));
   }
 
-  bool removePath(string[] path) {
-    return removeKey(path.toKey);
+  bool remove(string[] path) {
+    return remove(path.toKey);
   }
   // #endregion remove
 
@@ -174,10 +174,10 @@ class DFactory(T) : UIMObject, IFactory!T {
   }
 
   bool remove(string[] keys) {
-    return keys.all!(key => removeKey(key));
+    return keys.all!(key => remove(key));
   }
 
-  bool removeKey(string key) {
+  bool remove(string key) {
     return remove(key.correctKey) ? false : true;
   }
   // #endregion remove

@@ -125,7 +125,7 @@ class DMemoryCacheEngine : DCacheEngine {
 
   // #region remove
   override ICacheEngine removeEntry(string key) {
-    _entries.removeKey(key);
+    _entries.remove(key);
     return this;
   }
   // #endregion remove
@@ -177,7 +177,7 @@ class DMemoryCacheEngine : DCacheEngine {
     string prefix = configuration.getStringEntry("prefix");
     /*    _entries.getAllKeys()
       .filter!(key => key.startsWith(prefix))
-      .each!(key => _entries.removeKey(key)); */
+      .each!(key => _entries.remove(key)); */
     return this;
   }
 

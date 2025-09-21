@@ -123,11 +123,11 @@ class DCollection(T) : UIMObject, ICollection!T {
 
   // #region remove
   bool removeMany(string[][] paths) {
-    return paths.all!(path => removePath(path));
+    return paths.all!(path => remove(path));
   }
 
-  bool removePath(string[] path) {
-    return removeKey(path.toKey);
+  bool remove(string[] path) {
+    return remove(path.toKey);
   }
   // #endregion remove
   // #endregion paths
@@ -221,19 +221,19 @@ class DCollection(T) : UIMObject, ICollection!T {
 
   // #region remove
   bool removeMany(string[][] paths) {
-    return paths.all!(path => removePath(path));
+    return paths.all!(path => remove(path));
   }
 
-  bool removePath(string[] path) {
-    return removeKey(correctKey(path));
+  bool remove(string[] path) {
+    return remove(correctKey(path));
   }
 
   bool removeMany(string[] keys) {
-    return keys.all!(key => removeKey(key));
+    return keys.all!(key => remove(key));
   }
 
-  bool removeKey(string key) {
-    return removeKey(correctKey(key));
+  bool remove(string key) {
+    return remove(correctKey(key));
   }
 
   void clear() {

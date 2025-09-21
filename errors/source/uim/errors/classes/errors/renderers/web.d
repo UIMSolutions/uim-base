@@ -117,7 +117,7 @@ class DWebErrorRenderer : UIMErrorRenderer {
       // Check including plugin + prefix
       auto classname = factory.controllerClass(request.withAttribute("params", params));
       if (!classname && !params.isEmpty("prefix") && !params.isEmpty("plugin")) {
-        params.removeKey("prefix");
+        params.remove("prefix");
         // Fallback to only plugin
         classname = factory.controllerClass(request.withAttribute("params", params));
       }

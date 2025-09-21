@@ -106,7 +106,7 @@ Json update(V)(Json json, string key, V value) {
 // #endregion merge
 
 // #region remove
-V[string] removeKey(V : Json)(V[string] items, string key) {
+V[string] remove(V : Json)(V[string] items, string key) {
   if (hasKey(items, key)) {
     items.remove(key);
   }

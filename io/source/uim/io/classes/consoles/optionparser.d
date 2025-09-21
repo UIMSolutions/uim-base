@@ -295,7 +295,7 @@ class DConsoleOptionParser : UIMObject, IConsoleOptionParser {
 
   // Remove an option from the option parser.
   void removeOption(string name) {
-    _options.removeKey(name);
+    _options.remove(name);
   }
 
   /**
