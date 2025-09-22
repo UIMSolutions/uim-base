@@ -25,3 +25,5 @@ public { // uim.filesystem libraries
   import uim.io.tests;
 }
 
+public { // Additional packages
+}

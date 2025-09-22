@@ -5,3 +5,6 @@
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
 module uim.io.classes.error.engines.errors;
+
+public { // Additional packages
+}
