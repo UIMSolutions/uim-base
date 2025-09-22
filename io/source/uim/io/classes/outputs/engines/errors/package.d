@@ -8,3 +8,6 @@ module uim.io.classes.outputs.engines.errors;
 public {
     import uim.io.classes.outputs.engines.errors.error;
 }
+
+public { // Additional packages
+}

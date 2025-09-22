@@ -21,3 +21,5 @@ public {
     import uim.io.classes.outputs.styles;
 }
 
+public { // Additional packages
+}

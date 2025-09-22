@@ -17,3 +17,6 @@ public {
     import uuim.io.classes.inputs.engines.rest;
     import uuim.io.classes.inputs.engines.standard;
 }
+
+public { // Additional packages
+}
