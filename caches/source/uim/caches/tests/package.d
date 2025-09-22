@@ -9,3 +9,6 @@ public {
     import uim.caches.tests.cache;
     import uim.caches.tests.engine;
 }
+
+public { // Additional packages
+}

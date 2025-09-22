@@ -22,3 +22,6 @@ public { // uim.filesystem libraries
   import uim.caches.registries;
   import uim.caches.tests;
 }
+
+public { // Additional packages
+}
