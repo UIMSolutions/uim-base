@@ -5,14 +5,9 @@
 *****************************************************************************************************************/
 module uim.oop.tests.constraints.response;
 
-version (test_uim_oop) {
-  import std.stdio;
-  
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
+public {
+  // TODO import uim.oop.tests.constraints.response.statussuccess;
 }
 
-public {
-    // TODO import uim.oop.tests.constraints.response.statussuccess;
+public { // Additional packages
 }

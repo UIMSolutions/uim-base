@@ -5,10 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.tests.constraints.views;
 
-import uim.core;
-mixin(Version!"test_uim_oop");
-
 public {
     // TODO import uim.oop.tests.constraints.views.layoutfileequals;
     // TODO import uim.oop.tests.constraints.views.templatefileequals;
+}
+
+public { // Additional packages
 }

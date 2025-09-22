@@ -18,3 +18,6 @@ public {
     import uim.oop.validators.registry;
     import uim.oop.validators.tests;
 }
+
+public { // Additional packages
+}

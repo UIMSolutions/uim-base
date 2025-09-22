@@ -25,3 +25,6 @@ public { // Modules
     import uim.oop.tests.testsession;
     import uim.oop.tests.unitconsecutivetrait;
 }
+
+public { // Additional packages
+}

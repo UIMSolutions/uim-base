@@ -19,3 +19,6 @@ public {
     // TODO import uim.oop.tests.constraints.eventfired;
     // TODO import uim.oop.tests.constraints.eventfiredwith; 
 }
+
+public { // Additional packages
+}

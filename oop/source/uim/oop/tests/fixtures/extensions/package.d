@@ -12,3 +12,6 @@ public {
     // TODO import uim.oop.tests.fixtures.extensions.unitextension;
     // TODO import uim.oop.tests.fixtures.extensions.unitstartedsubscriber;
 }
+
+public { // Additional packages
+}
