@@ -13,3 +13,6 @@ public {
     import uim.io.classes.outputs.formatters.helpers.registry;
     import uim.io.classes.outputs.formatters.helpers.tests;
 }
+
+public { // Additional packages
+}

@@ -12,3 +12,6 @@ public {
     import uim.io.exceptions.missingoption;
     import uim.io.exceptions.stop;
 }
+
+public { // Additional packages
+}
