@@ -5,3 +5,5 @@
 *****************************************************************************************************************/
 module uim.errors.interfaces.exceptions;
 
+public { // Additional packages
+}

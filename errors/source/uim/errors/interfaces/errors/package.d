@@ -6,6 +6,9 @@
 module uim.errors.interfaces.errors;
 
 public {
-    import uim.errors.interfaces.errors.error;
-    import uim.errors.interfaces.errors.renderer;
-}   
+  import uim.errors.interfaces.errors.error;
+  import uim.errors.interfaces.errors.renderer;
+}
+
+public { // Additional packages
+}

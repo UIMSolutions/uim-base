@@ -10,3 +10,6 @@ public {
     import uim.errors.factories.formatter;
     import uim.errors.factories.renderer;
 }
+
+public { // Additional packages
+}

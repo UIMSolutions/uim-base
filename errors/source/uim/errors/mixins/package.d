@@ -12,3 +12,6 @@ public {
   import uim.errors.mixins.errors;
   import uim.errors.mixins.exceptions;
 }
+
+public { // Additional packages
+}

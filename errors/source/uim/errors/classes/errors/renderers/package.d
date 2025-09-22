@@ -18,3 +18,6 @@ public {
   import uim.errors.classes.errors.renderers.xml;
   import uim.errors.classes.errors.renderers.yaml;
 }
+
+public { // Additional packages
+}

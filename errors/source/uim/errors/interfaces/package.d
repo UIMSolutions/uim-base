@@ -19,3 +19,6 @@ public {
   import uim.errors.interfaces.errors;
   import uim.errors.interfaces.exceptions;
 }
+
+public { // Additional packages
+}
