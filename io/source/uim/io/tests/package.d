@@ -10,3 +10,6 @@ public {
     import uim.io.tests.input;
     // import uim.io.tests.output;
 }
+
+public { // Additional packages
+}

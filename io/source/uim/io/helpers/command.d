@@ -10,7 +10,6 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-
 class CommandHelper {
     private string _command;
     private string _description;

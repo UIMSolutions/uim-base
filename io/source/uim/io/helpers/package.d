@@ -10,3 +10,6 @@ public {
     import uim.io.helpers.console;
     import uim.io.helpers.registry;
 }
+
+public { // Additional packages
+}

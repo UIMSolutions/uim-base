@@ -5,16 +5,11 @@
 *****************************************************************************************************************/
 module uim.oop.enumerations; 
 
-version (test_uim_oop) {
-  import std.stdio;
-  
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
-
 public {
   import uim.oop.enumerations.loglevel;
   // import uim.oop.enumerations.enumeration;
   import uim.oop.enumerations.filemodes;
+}
+
+public { // Additional packages
 }

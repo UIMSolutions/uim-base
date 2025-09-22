@@ -13,3 +13,6 @@ public {
     // TODO import uim.io.tests.constraints.contents.notcontain;
     // TODO import uim.io.tests.constraints.contents.regexp;
 }
+
+public { // Additional packages
+}

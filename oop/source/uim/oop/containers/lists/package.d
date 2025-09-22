@@ -5,8 +5,9 @@
 *****************************************************************************************************************/
 module uim.oop.containers.lists;
 
-import uim.core;
-mixin(Version!"test_uim_oop");
 public {
   // import uim.oop.containers.lists.list;
+}
+
+public { // Additional packages
 }

@@ -17,3 +17,6 @@ public {
   import uim.io.interfaces.optionparser;
   // import uim.io.interfaces.output;
 }
+
+public { // Additional packages
+}

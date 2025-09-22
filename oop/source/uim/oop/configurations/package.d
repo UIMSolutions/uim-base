@@ -24,3 +24,6 @@ public { // Modules
     
     // import uim.oop.configurations.tests;
 }
+
+public { // Additional packages
+}
