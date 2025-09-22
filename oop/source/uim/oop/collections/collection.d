@@ -71,7 +71,7 @@ class DCollection(T) : UIMObject, ICollection!T {
 
   // Sets a specific item in the collection.
   bool setPath(string[] path, T item) {
-    return set(path.toKey, item);
+    return setKey(path.toKey, item);
   }
   // #endregion set
 
@@ -83,7 +83,7 @@ class DCollection(T) : UIMObject, ICollection!T {
 
   // Updates a specific item in the collection.
   bool updatePath(string[] path, T item) {
-    return update(path.toKey, item);
+    return updateKey(path.toKey, item);
   }
   // #endregion update
 
@@ -95,7 +95,7 @@ class DCollection(T) : UIMObject, ICollection!T {
 
   // Merges a specific item into the collection.
   bool mergePath(string[] path, T item) {
-    return merge(path.toKey, item);
+    return mergeKey(path.toKey, item);
   }
   // #endregion merge
 
@@ -223,7 +223,7 @@ class DCollection(T) : UIMObject, ICollection!T {
 
   // Updates a specific item in the collection.
   bool updateKey(string key, T item) {
-    return (hasKey(key)) ? set(key.toKey, item) : false;
+    return (hasKey(key)) ? setKey(key.toKey, item) : false;
   }
   // #endregion update
 
@@ -239,7 +239,7 @@ class DCollection(T) : UIMObject, ICollection!T {
 
   // Merges a specific item into the collection.
   bool mergeKey(string key, T item) {
-    return (!hasKey(key)) ? set(key.toKey, item) : false;
+    return (!hasKey(key)) ? setKey(key.toKey, item) : false;
   }
   // #endregion merge
 

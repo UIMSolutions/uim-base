@@ -8,16 +8,16 @@ module uim.oop.interfaces.keys.remove;
 mixin(Version!"test_uim_oop");
 
 import uim.oop;
+
 @safe:
 
 interface IRemoveKeys(T) : IHasKeys!T, IGetKeys!T, IUpdateKeys!T {
-    // Removes all keys from the collection.
-    bool removeAll();
+  // Removes all keys from the collection.
+  bool removeAll();
 
-    // Removes the given keys from the collection.
-    bool removeKeys(string[] keys);
+  // Removes the given keys from the collection.
+  bool removeKeys(string[] keys);
 
-    // Removes a specific key from the collection.
-    bool removeKey(string key);
+  // Removes a specific key from the collection.
+  bool removeKey(string key);
 }
-

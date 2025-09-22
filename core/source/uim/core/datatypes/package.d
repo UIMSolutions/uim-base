@@ -18,3 +18,5 @@ public {
   import uim.core.datatypes.uuid;
 }
 
+public { // Additional packages
+}

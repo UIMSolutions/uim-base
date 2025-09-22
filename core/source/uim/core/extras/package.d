@@ -9,3 +9,6 @@ public {
   import uim.core.extras.bitmap;
   import uim.core.extras.csvhtml;
 }
+
+public { // Additional packages
+}

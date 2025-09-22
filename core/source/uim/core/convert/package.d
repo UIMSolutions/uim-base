@@ -10,3 +10,6 @@ public {
   import uim.core.convert.stringmap;
   import uim.core.convert.uuid;
 }
+
+public { // Additional packages
+}

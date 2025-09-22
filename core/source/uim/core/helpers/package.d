@@ -15,3 +15,6 @@ public {
     import uim.core.helpers.map;
     import uim.core.helpers.xml;
 }
+
+public { // Additional packages
+}
