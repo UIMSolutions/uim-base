@@ -12,9 +12,6 @@ import uim.oop;
 @safe:
 
 interface IGetPaths(T) {
-  // Gets the entire collection as a map of paths to items.
-  T[string[]] itemsByPath(string[][] paths);
-
   // Gets a specific item from the collection.
   T itemByPath(string[] path);
 }

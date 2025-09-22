@@ -41,17 +41,18 @@ class DCollection(T) : UIMObject, ICollection!T {
   }
 
   bool hasPath(string[] path) {
-    return has(path.join(_pathSeparator));
+    return hasKey(path.join(_pathSeparator));
   }
   // #endregion has
   
   // #region get
     // Gets the entire collection as a map of paths to items.
-  T[string[]] itemsByPath(string[][] paths) {
-    T[string[]] foundItems;
-    return paths
-      .filter!(path => hasPath(path))
-      .each!(path => foundItems[path] = itemByPath(path));
+  T[string] itemsByPath(string[][] paths) {
+    T[string] foundItems;
+    paths
+      .map!(path => path.toKey)
+      .filter!(key => hasKey(key))
+      .each!(key => foundItems[key] = itemByKey(key));
 
     return foundItems;
   }
@@ -63,11 +64,7 @@ class DCollection(T) : UIMObject, ICollection!T {
   // #endregion get
 
   // #region set
-  // Sets the entire collection to the specified items.
-  bool setPaths(T[string[]] items) {
-    return items.byKeyValue.all!((k, v) => setPath(k, v));
-  }
-
+  // Sets the entire collection to the specified item.
   bool setPaths(string[][] paths, T item) {
     return paths.all!(p => setPath(p, item));
   }
@@ -79,11 +76,7 @@ class DCollection(T) : UIMObject, ICollection!T {
   // #endregion set
 
   // #region update
-  // Updates the entire collection to the specified items.
-  bool updatePaths(T[string[]] items) {
-    return items.byKeyValue.all!((k, v) => updatePath(k, v));
-  }
-
+  // Updates the entire collection to the specified item.
   bool updatePaths(string[][] paths, T item) {
     return paths.all!(p => updatePath(p, item));
   }
@@ -95,11 +88,7 @@ class DCollection(T) : UIMObject, ICollection!T {
   // #endregion update
 
   // #region merge
-  // Merges the entire collection with the specified items.
-  bool mergePaths(T[string[]] items) {
-    return items.byKeyValue.all!((k, v) => mergePath(k, v));
-  }
-
+  // Merges the entire collection with the specified item.
   bool mergePaths(string[][] paths, T item) {
     return paths.all!(p => mergePath(p, item));
   }
@@ -116,16 +105,16 @@ class DCollection(T) : UIMObject, ICollection!T {
   }
 
   bool removePath(string[] path) {
-    return remove(path.toKey);
+    return removeKey(path.toKey);
   }
 
   unittest {
     auto collection = new DCollection!string;
 
     // Add items with hierarchical keys
-    collection.set("a.b.c", "value1");
-    collection.set("x.y", "value2");
-    collection.set("single", "value3");
+    collection.setKey("a.b.c", "value1");
+    collection.setKey("x.y", "value2");
+    collection.setKey("single", "value3");
 
     // Remove multiple paths
     string[][] pathsToRemove = [
@@ -175,7 +164,7 @@ class DCollection(T) : UIMObject, ICollection!T {
     return keys.all!(key => hasKey(key));
   }
 
-  bool hasAnyKeys(string[] keys) {
+  bool hasAnyKey(string[] keys) {
     return keys.any!(key => hasKey(key));
   }
 
@@ -198,7 +187,7 @@ class DCollection(T) : UIMObject, ICollection!T {
 
   // Gets a specific item from the collection.
   T itemByKey(string key) {
-    return _items.hasKey(key) ? _items[key.correctKey] : null;
+    return key in _items ? _items[key.correctKey] : null;
   }
   // #endregion get
 
@@ -213,7 +202,7 @@ class DCollection(T) : UIMObject, ICollection!T {
   }
 
   void opIndexAssign(string key, T item) {
-    set(key, item);
+    setKey(key, item);
   }
 
   // Sets a specific item in the collection.

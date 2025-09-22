@@ -36,7 +36,7 @@ auto "
 auto "
     ~ instanceName ~ "Factory(string key, " ~ typeName ~ " registerObject) { 
   return "
-    ~ instanceName ~ "Factory.register(key, registerObject); }
+    ~ instanceName ~ "Factory.setKey(key, registerObject); }
 auto "
     ~ instanceName ~ "Factory(string[] path) { return " ~ instanceName ~ "Factory.get(path); }
 auto "

@@ -39,3 +39,27 @@ unittest {
   assert(toPath(key5) == ["foo", "", "baz"]);
 }
 // #endregion key-path conversion
+
+// #region correct path
+// Corrects a path array by trimming whitespace from each segment.
+string[] correctPath(string[] path) {
+  return path.map!(p => p.trim).array;
+}
+unittest {
+  // Test 1: Basic usage
+  string[] path1 = [" foo ", " bar ", " baz "];
+  assert(correctPath(path1) == ["foo", "bar", "baz"]);
+
+  // Test 2: Path with empty segments
+  string[] path2 = [" foo ", "", " baz "];
+  assert(correctPath(path2) == ["foo", "", "baz"]);
+
+  // Test 3: Path with all whitespace segments
+  string[] path3 = ["   ", " bar ", "   "];
+  assert(correctPath(path3) == ["", "bar", ""]);
+
+  // Test 4: Empty path
+  string[] path4 = [];
+  assert(correctPath(path4) == []);
+}
+// #endregion correct path

@@ -31,7 +31,7 @@ class DFactory(T) : UIMObject, IFactory!T {
   }
 
   // #region has
-  bool hasAnyPaths(string[][] paths) {
+  bool hasAnyPath(string[][] paths) {
     return paths.any!(path => hasPath(path));
   }
 
@@ -44,47 +44,24 @@ class DFactory(T) : UIMObject, IFactory!T {
   }
   // #endregion has
 
-  // #region get
-  // Gets the entire collection as a map of paths to items.
-  T[string[]] items(string[][] paths);
-
-  // Gets a specific item from the collection.
-  T item(string[] path);
-  // #endregion get
-
   // #region set
-  // Sets the entire collection to the specified items.
-  bool setPath(T[string[]] items) {
-    return items.byKeyValue.all!((k, v) => setPath(k, v));
-  }
-
   // Sets a specific item in the collection.
-  bool setPath(string[] path, T item) {
-    return set(path.toKey, item);
+  bool setPath(string[] path, T delegate(Json[string] options = null) @safe createFunc) {
+    return setKey(path.toKey, createFunc);
   }
   // #endregion set
 
   // #region update
-  // Updates the entire collection to the specified items.
-  bool updatePath(T[string[]] items) {
-    return items.byKeyValue.all!((k, v) => updatePath(k, v));
-  }
-
   // Updates a specific item in the collection.
-  bool updatePath(string[] path, T item) {
-    return update(path.toKey, item);
+  bool updatePath(string[] path, T delegate(Json[string] options = null) @safe createFunc) {
+    return updateKey(path.toKey, createFunc);
   }
   // #endregion update
 
   // #region merge
-  // Merges the entire collection with the specified items.
-  bool mergePath(T[string[]] items) {
-    return items.byKeyValue.all!((k, v) => mergePath(k, v));
-  }
-
   // Merges a specific item into the collection.
-  bool mergePath(string[] path, T item) {
-    return merge(path.toKey, item);
+  bool mergePath(string[] path, T delegate(Json[string] options = null) @safe createFunc) {
+    return mergeKey(path.toKey, createFunc);
   }
   // #endregion merge
 
@@ -114,57 +91,39 @@ class DFactory(T) : UIMObject, IFactory!T {
     return keys;
   }
 
-  bool hasAnys(string[] keys) {
-    return keys.any!(key => has(key));
+  // #region has
+  bool hasAnyKey(string[] keys) {
+    return keys.any!(key => hasKey(key));
   }
 
-  bool hasAlls(string[] keys) {
-    return keys.all!(key => has(key));
+  bool hasAllKey(string[] keys) {
+    return keys.all!(key => hasKey(key));
   }
 
-  bool has(string key) {
+  bool hasKey(string key) {
     return key in _workers ? true : false;
   }
+  // #endregion has
 
   // #region set
   // Sets the entire collection to the specified items.
-  bool set(T[string[]] items) {
-    return items.byKeyValue.all!((k, v) => set(k, v));
-  }
-
-  // Sets a specific item in the collection.
-  bool set(string key, T item) {
-    return set(path.toKey, item);
-  }
-
-  // #endregion keys
-
-  void set(string workerName, T delegate(Json[string] options = null) @safe workFunc) {
-    _workers[workerName] = workFunc;
+  bool setKey(string workerName, T delegate(Json[string] options = null) @safe createFunc) {
+    _workers[workerName] = createFunc;
+    return true;
   }
   // #endregion set
 
   // #region update
-  // Updates the entire collection to the specified items.
-  bool update(T[string[]] items) {
-    return items.byKeyValue.all!((k, v) => update(k, v));
-  }
-
   // Updates a specific item in the collection.
-  bool update(string key, T item) {
-    return has(key) ? set(key, item) : false;
+  bool updateKey(string key, T delegate(Json[string] options = null) @safe createFunc) {
+    return hasKey(key) ? setKey(key, item) : false;
   }
   // #endregion update
 
   // #region merge
-  // Merges the entire collection with the specified items.
-  bool merge(T[string[]] items) {
-    return items.byKeyValue.all!((k, v) => merge(k, v));
-  }
-
   // Merges a specific item into the collection.
-  bool merge(string key, T item) {
-    return !has(key) ? set(key, item) : false;
+  bool mergeKey(string key, T delegate(Json[string] options = null) @safe createFunc) {
+    return !hasKey(key) ? setKey(key, item) : false;
   }
   // #endregion merge
 
@@ -173,19 +132,34 @@ class DFactory(T) : UIMObject, IFactory!T {
     return _workers.clear;
   }
 
-  bool remove(string[] keys) {
+  bool removeKeys(string[] keys) {
     return keys.all!(key => removeKey(key));
   }
 
-  bool remove(string key) {
+  bool removeKey(string key) {
     return remove(key.correctKey) ? false : true;
   }
   // #endregion remove
   // #endregion keys
 
   // #region create
+  // #region path
+  T[string] createMany(string[][] paths, Json[string] options = null) {
+    T[string] result;
+    paths.each!(path => result[path] = create(path, options));
+    return result;
+  }
+
   T create(string[] path, Json[string] options = null) @safe {
     return has(path) ? _workers[path.toKey](options) : null;
+  }
+  // #endregion path
+
+  // #region key
+  T[string] createMany(string[] keys, Json[string] options = null) {
+    T[string] result;
+    keys.each!(key => result[key] = create(key, options));
+    return result;
   }
 
   T opIndex(string key, Json[string] options = null) {
@@ -197,5 +171,6 @@ class DFactory(T) : UIMObject, IFactory!T {
     return pathToKey(key) in _workers
       ? _workers[pathToKey(key)](options) : result;
   }
+  // #endregion key
   // #endregion create
 }

@@ -14,8 +14,7 @@ import uim.oop;
 interface IUpdatePaths(T) {
   // #region set
   // Sets the entire collection to the specified items.
-  bool setPaths(T[string[]] items);
-  bool setPaths(string[][] paths,  T items);
+  bool setPaths(string[][] paths, T item);
 
   // Sets a specific item in the collection.
   bool setPath(string[] path, T item);
@@ -23,8 +22,7 @@ interface IUpdatePaths(T) {
 
   // #region update
   // Updates the entire collection to the specified items.
-  bool updatePaths(T[string[]] items);
-  bool updatePaths(string[][] paths,  T items);
+  bool updatePaths(string[][] paths, T item);
 
   // Updates a specific item in the collection.
   bool updatePath(string[] path, T item);
@@ -32,8 +30,7 @@ interface IUpdatePaths(T) {
 
   // #region merge
   // Merges the entire collection with the specified items.
-  bool mergePaths(T[string[]] items);
-  bool mergePaths(string[][] paths,  T items);
+  bool mergePaths(string[][] paths, T item);
 
   // Merges a specific item into the collection.
   bool mergePath(string[] path, T item);

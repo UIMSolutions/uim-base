@@ -11,7 +11,7 @@ import uim.oop;
 
 @safe:
 
-class DFormatterFactory : DFactory!IFormatter, IFactory!IFormatter {
+class DFormatterFactory : DFactory!IFormatter {
 }
 
 mixin(FactoryCalls!("DFormatter", "formatter", "IFormatter"));

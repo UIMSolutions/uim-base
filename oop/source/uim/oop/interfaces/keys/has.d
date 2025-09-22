@@ -16,7 +16,7 @@ interface IHasKeys(T) {
   bool hasAllKey(string[] keys);
 
   // Checks if the collection contains any of the given keys.
-  bool hasAnyKeys(string[] keys);
+  bool hasAnyKey(string[] keys);
 
   // Checks if the collection contains a specific key.
   bool hasKey(string key);
