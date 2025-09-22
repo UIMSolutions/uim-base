@@ -8,3 +8,6 @@ module uim.core.logging;
 public {
     import uim.core.logging.loglevel;
 }
+
+public { // Additional packages
+}

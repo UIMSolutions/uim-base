@@ -4,3 +4,6 @@
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
 module uim.core.tests;
+
+public { // Additional packages
+}

@@ -23,3 +23,6 @@ public { // uim.filesystem libraries
   // import uim.errors.registries;
   // import uim.errors.tests;
 }
+
+public { // Additional packages
+}

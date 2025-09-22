@@ -10,3 +10,6 @@ public {
   import uim.errors.classes.errors;
   import uim.errors.classes.middlewares;
 }
+
+public { // Additional packages
+}

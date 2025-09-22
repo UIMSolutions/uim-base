@@ -6,12 +6,15 @@
 module uim.errors.classes.debuggers.nodes;
 
 public {
-    import uim.errors.classes.debuggers.nodes.array_;
-    import uim.errors.classes.debuggers.nodes.class_;
-    import uim.errors.classes.debuggers.nodes.arrayitem;
-    import uim.errors.classes.debuggers.nodes.node;
-    import uim.errors.classes.debuggers.nodes.property;
-    import uim.errors.classes.debuggers.nodes.reference;
-    import uim.errors.classes.debuggers.nodes.scalar;
-    import uim.errors.classes.debuggers.nodes.special;
+  import uim.errors.classes.debuggers.nodes.array_;
+  import uim.errors.classes.debuggers.nodes.class_;
+  import uim.errors.classes.debuggers.nodes.arrayitem;
+  import uim.errors.classes.debuggers.nodes.node;
+  import uim.errors.classes.debuggers.nodes.property;
+  import uim.errors.classes.debuggers.nodes.reference;
+  import uim.errors.classes.debuggers.nodes.scalar;
+  import uim.errors.classes.debuggers.nodes.special;
+}
+
+public { // Additional packages
 }

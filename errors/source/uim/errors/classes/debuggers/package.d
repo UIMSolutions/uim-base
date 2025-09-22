@@ -5,3 +5,7 @@ public {
     import uim.errors.classes.debuggers.nodes;
     import uim.errors.classes.debuggers.formatters;
 }
+
+public { // Additional packages
+}
+

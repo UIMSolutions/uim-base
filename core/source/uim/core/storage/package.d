@@ -6,8 +6,11 @@
 module uim.core.storage;
 
 public {
-    import uim.core.storage.file;
-    import uim.core.storage.folder;
-    import uim.core.storage.link;
-    import uim.core.storage.path;
+  import uim.core.storage.file;
+  import uim.core.storage.folder;
+  import uim.core.storage.link;
+  import uim.core.storage.path;
+}
+
+public { // Additional packages
 }
