@@ -45,7 +45,7 @@ class DHtmlErrorFormatter : UIMErrorFormatter {
 
   string formatWrapper(string acontents, Json[string] location) {
     string lineInfo = "";
-    if (location.hasAlls(["file", "line"])) {
+    if (location.hasAll(["file", "line"])) {
       /* lineInfo = htmlDoubleTag("span", "<strong>{file}</strong> (line <strong>{line}</strong>)")
         .mustache(location, ["file", "line"]); */
     }

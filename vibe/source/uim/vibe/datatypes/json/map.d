@@ -49,7 +49,7 @@ import uim.vibe;
   assert(map.length == 4 && map.has("d"));
 
   map.set("e", Json("x")).set("f", Json("x"));
-  assert(map.length == 6 && map.hasAlls(["d", "e", "f"]));
+  assert(map.length == 6 && map.hasAll(["d", "e", "f"]));
 
   map = Json.emptyObject;
   map["a"] = "A";

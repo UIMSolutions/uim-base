@@ -433,13 +433,13 @@ unittest {
   auto json = Json.emptyObject;
   json.merge("a", "A");
   json.merge("b", "B").merge("c", "C");
-  assert(json.hasAlls(["a", "b", "c"]));
+  assert(json.hasAll(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 
   json = Json.emptyObject;
   json.merge("a", Json("A"));
   json.merge("b", Json("B")).merge("c", Json("C"));
-  assert(json.hasAlls(["a", "b", "c"]));
+  assert(json.hasAll(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 
   json.merge(["a", "b", "c"], "x");
@@ -447,22 +447,22 @@ unittest {
 
   json = Json.emptyObject;
   json.merge(["a", "b", "c"], Json("x"));
-  assert(json.hasAlls(["a", "b", "c"]));
+  assert(json.hasAll(["a", "b", "c"]));
   assert(json["a"] == Json("x") && json["b"] == Json("x") && json["c"] == Json("x"));
 
   json = Json.emptyObject;
   json.merge(["a": "A", "b": "B", "c": "C"]);
-  assert(json.hasAlls(["a", "b", "c"]));
+  assert(json.hasAll(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 
   json = Json.emptyObject;
   json.merge(["a": Json("A"), "b": Json("B"), "c": Json("C")]);
-  assert(json.hasAlls(["a", "b", "c"]));
+  assert(json.hasAll(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 
   auto newJson = Json.emptyObject;
   newJson.merge(json);
-  assert(json.hasAlls(["a", "b", "c"]));
+  assert(json.hasAll(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
  */
 }
@@ -654,7 +654,7 @@ unittest {
     assert(map.length == 4 && map.has("d"));
 
     map.set("e", "x").set("f", "x");
-    assert(map.length == 6 && map.hasAlls(["d", "e", "f"]));
+    assert(map.length == 6 && map.hasAll(["d", "e", "f"]));
 
     map = ["a": Json("A"), "b": Json("B"), "c": Json("C")]; // Reset map
     map.set(["d", "e", "f"], "x");
@@ -725,28 +725,28 @@ unittest {
  */
 unittest {
   Json[string] map = ["a": Json("A"), "b": Json("B"), "c": Json("C")];
-  assert(map.length == 3 && map.hasAlls(["a", "b", "c"]) && map["a"] == "A");
+  assert(map.length == 3 && map.hasAll(["a", "b", "c"]) && map["a"] == "A");
 
   /* map.update("a", "x").update("d", "x").update("e", "x").update("f", "x");
-    assert(map.length == 3 && !map.hasAnys(["d", "e", "f"]) && map["a"] == Json("x"));
+    assert(map.length == 3 && !map.hasAny(["d", "e", "f"]) && map["a"] == Json("x"));
 
     map = ["a": Json("A"), "b": Json("B"), "c": Json("C")]; // Reset map
     map.update(["c", "d", "e"], "x");
-    assert(map.length == 3 && !map.hasAnys(["d", "e", "f"]) && map["a"] != "x" && map["c"] == Json("x"));
+    assert(map.length == 3 && !map.hasAny(["d", "e", "f"]) && map["a"] != "x" && map["c"] == Json("x"));
 
     map = ["a": Json("A"), "b": Json("B"), "c": Json("C")]; // Reset map
     map.update(["a", "b", "c"], "x").update(["d", "e", "f"], "x");
-    assert(map.length == 3 && !map.hasAnys(["d", "e", "f"]) && map["a"] == Json("x") && map["c"] == Json(
+    assert(map.length == 3 && !map.hasAny(["d", "e", "f"]) && map["a"] == Json("x") && map["c"] == Json(
         "x"));
 
     map = ["a": Json("A"), "b": Json("B"), "c": Json("C")]; // Reset map
     map.update(["c": "x", "d": "x", "e": "x"]);
-    assert(map.length == 3 && !map.hasAnys(["d", "e", "f"]) && map["a"] != "x" && map["c"] == Json(
+    assert(map.length == 3 && !map.hasAny(["d", "e", "f"]) && map["a"] != "x" && map["c"] == Json(
         "x"));
 
     map = ["a": Json("A"), "b": Json("B"), "c": Json("C")]; // Reset map
     map.update(["c": "x", "d": "x", "e": "x"], "c", "e");
-    assert(map.length == 3 && !map.hasAnys(["d", "e", "f"]) && map["a"] != "x" && map["c"] == Json(
+    assert(map.length == 3 && !map.hasAny(["d", "e", "f"]) && map["a"] != "x" && map["c"] == Json(
         "x")); */
 }
 // #endregion update
@@ -789,28 +789,28 @@ unittest {
 
 unittest {
   Json[string] map = ["a": Json("A"), "b": Json("B"), "c": Json("C")];
-  assert(map.length == 3 && map.hasAlls(["a", "b", "c"]) && map["a"] == "A");
+  assert(map.length == 3 && map.hasAll(["a", "b", "c"]) && map["a"] == "A");
 
   /* map.merge("a", "x").merge("d", "x").merge("e", "x").merge("f", "x");
-    assert(map.length == 6 && map.hasAnys(["d", "e", "f"]) && map["e"] == Json("x"));
+    assert(map.length == 6 && map.hasAny(["d", "e", "f"]) && map["e"] == Json("x"));
 
     map = ["a": Json("A"), "b": Json("B"), "c": Json("C")]; // Reset map
     map.merge(["c", "d", "e"], "x");
-    assert(map.length == 5 && map.hasAnys(["d", "e", "f"]) && map["a"] != Json("x") && map["d"] == Json("x"));
+    assert(map.length == 5 && map.hasAny(["d", "e", "f"]) && map["a"] != Json("x") && map["d"] == Json("x"));
 
     map = ["a": Json("A"), "b": Json("B"), "c": Json("C")]; // Reset map
     map.merge(["a", "b", "c"], "x").merge(["d", "e", "f"], "x");
-    assert(map.length == 6 && map.hasAnys(["d", "e", "f"]) && map["a"] != Json("x") && map["d"] == Json(
+    assert(map.length == 6 && map.hasAny(["d", "e", "f"]) && map["a"] != Json("x") && map["d"] == Json(
         "x"));
 
     map = ["a": Json("A"), "b": Json("B"), "c": Json("C")]; // Reset map
     map.merge(["c": "x", "d": "x", "e": "x"]);
-    assert(map.length == 5 && map.hasAnys(["d", "e", "f"]) && map["a"] != "x" && map["d"] == Json(
+    assert(map.length == 5 && map.hasAny(["d", "e", "f"]) && map["a"] != "x" && map["d"] == Json(
         "x"));
 
     map = ["a": Json("A"), "b": Json("B"), "c": Json("C")]; // Reset map
     map.merge(["c": "x", "d": "x", "e": "x"], "c", "e");
-    assert(map.length == 4 && map.hasAnys(["d", "e", "f"]) && map["a"] != "x" && map["e"] == Json(
+    assert(map.length == 4 && map.hasAny(["d", "e", "f"]) && map["a"] != "x" && map["e"] == Json(
         "x")); */
 }
 // #endregion merge

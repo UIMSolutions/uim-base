@@ -14,7 +14,7 @@ import uim.oop;
 class DCommandFactory : DFactory!ICommand {
 }
 
-mixin(FactoryCalls!("DCommand", "command", "ICommand"));
+mixin(FactoryCalls!("Command"));
 
 unittest {
   // Test that DCommandFactory can be instantiated

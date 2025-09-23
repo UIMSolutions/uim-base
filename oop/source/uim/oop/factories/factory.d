@@ -29,7 +29,7 @@ class DFactory(T) : UIMObject, IFactory!T {
     }
     
     if (initData.hasKey("separator")) {
-      _separator = initData.toString("separator");
+      _separator = initData.getString("separator");
     } 
     
     return true;
@@ -165,7 +165,7 @@ class DFactory(T) : UIMObject, IFactory!T {
   }
 
   T create(string[] path, Json[string] options = null) @safe {
-    return has(path) ? _workers[path.toKey](options) : null;
+    return create(path.toKey);
   }
   // #endregion path
 

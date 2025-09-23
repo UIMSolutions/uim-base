@@ -27,11 +27,11 @@ unittest {
 
 // #region hasSearch
 // #region Json[string]
-bool hasAlls(Json[string] items, string[] keys) {
+bool hasAll(Json[string] items, string[] keys) {
   return keys.all!(key => has(items, key));
 }
 
-bool hasAnys(Json[string] items, string[] keys) {
+bool hasAny(Json[string] items, string[] keys) {
   return keys.any!(key => has(items, key));
 }
 
@@ -41,32 +41,32 @@ bool has(Json[string] items, string key) {
 // #endregion Json[string]
 
 // #region Json[]
-bool hasAlls(Json[] items, string[] keys) {
+bool hasAll(Json[] items, string[] keys) {
   return keys.all!(key => has(items, key));
 }
 
-bool hasAnys(Json[] items, string[] keys) {
+bool hasAny(Json[] items, string[] keys) {
   return keys.any!(key => has(items, key));
 }
 
-bool has(Json[] items, string key) {
-  return items.any!(item => item.has(key));
+bool hasKey(Json[] items, string key) {
+  return items.any!(item => item.hasKey(key));
 }
 // #endregion Json[]
 
 // #region Json
 // Check if json has key
-bool hasAlls(Json json, string[] keys) {
-  return keys.all!(key => has(json, key));
+bool hasAll(Json json, string[] keys) {
+  return keys.all!(key => hasKey(json, key));
 }
 
 /// Check if Json has key
-bool hasAnys(Json json, string[] keys) {
-  return keys.any!(key => has(json, key));
+bool hasAny(Json json, string[] keys) {
+  return keys.any!(key => hasKey(json, key));
 }
 
 /// Searching key in json, if depth = true also in subnodes  
-bool has(Json json, string key) {
+bool hasKey(Json json, string key) {
   if (!json.isObject)
     return false;
 
@@ -88,11 +88,11 @@ unittest {
   assert(json.has("a"));
   assert(!json.has("x"));
 
-  assert(json.hasAnys(["y", "c"]));
-  assert(!json.hasAnys(["x", "y"]));
+  assert(json.hasAny(["y", "c"]));
+  assert(!json.hasAny(["x", "y"]));
 
-  assert(json.hasAlls(["a", "c"]));
-  assert(!json.hasAlls(["x", "c"]));
+  assert(json.hasAll(["a", "c"]));
+  assert(!json.hasAll(["x", "c"]));
 }
 // #endregion Json
 // #endregion hasSearch
