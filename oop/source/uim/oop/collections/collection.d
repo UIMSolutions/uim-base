@@ -263,7 +263,8 @@ class DCollection(T) : UIMObject, ICollection!T {
   }
 
   bool removeKey(string key) {
-    return remove(key.correctKey);
+    remove(key.correctKey);
+    return true;
   }
   // #endregion remove
   // #endregion keys

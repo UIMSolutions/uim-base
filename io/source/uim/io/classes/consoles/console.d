@@ -12,8 +12,8 @@ import uim.io;
 mixin(Version!"test_uim_io");
 
 import uim.io;
-@safe:
 
+@safe:
 
 /**
  * A wrapper around the various IO operations shell tasks need to do.
@@ -40,7 +40,6 @@ class DConsole : UIMObject, IConsole {
     return true;
   }
 
-
   // The current output level.
   protected OutputLevels _level = OutputLevels.NORMAL;
 
@@ -56,42 +55,42 @@ class DConsole : UIMObject, IConsole {
   protected bool _isInteractive = true;
 
   // #region Output
-    // The output  stream
-    protected IOutput _output;
-    IOutput output() {
-      return _output;
-    }
+  // The output  stream
+  protected IOutput _output;
+  IOutput output() {
+    return _output;
+  }
 
-    DConsole output(IOutput newOutput) {
-      _output = newOutput;
-      return this;
-    }
+  DConsole output(IOutput newOutput) {
+    _output = newOutput;
+    return this;
+  }
   // #endregion Output
 
   // #region ErrorOutput
-    // The error stream
-    protected IErrorOutput _errorOutput;
-    IErrorOutput errorOutput() {
-      return _errorOutput;
-    }
+  // The error stream
+  protected IErrorOutput _errorOutput;
+  IErrorOutput errorOutput() {
+    return _errorOutput;
+  }
 
-    DConsole errorOutput(IErrorOutput newOutput) {
-      _errorOutput = newOutput;
-      return this;
-    }
+  DConsole errorOutput(IErrorOutput newOutput) {
+    _errorOutput = newOutput;
+    return this;
+  }
   // #endregion ErrorOutput
 
   // #region InputOutput
   // The input stream
-    protected IInput _input;
-    IInput input() {
-      return _input;
-    }
+  protected IInput _input;
+  IInput input() {
+    return _input;
+  }
 
-    DConsole input(IInput newIntput) {
-      _input = newIntput;
-      return this;
-    }
+  DConsole input(IInput newIntput) {
+    _input = newIntput;
+    return this;
+  }
   // #endregion InputOutput
 
   // The helper registry.
@@ -154,8 +153,6 @@ class DConsole : UIMObject, IConsole {
     // return _lastWritten;
     return 0;
   }
-
-  
 
   // Halts the the current process with a StopException.
   void abort(string errorMessage, int errorCode /* = DCommand.false */ ) {

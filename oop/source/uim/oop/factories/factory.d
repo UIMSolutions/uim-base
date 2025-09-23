@@ -23,6 +23,18 @@ class DFactory(T) : UIMObject, IFactory!T {
     return _instance;
   }
 
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
+    
+    if (initData.hasKey("separator")) {
+      _separator = initData.toString("separator");
+    } 
+    
+    return true;
+  }
+
   protected string _separator = ".";
 
   // #region paths 
@@ -40,7 +52,7 @@ class DFactory(T) : UIMObject, IFactory!T {
   }
 
   bool hasPath(string[] path) {
-    return has(path.join(_separator));
+    return hasKey(path.toKey(_separator));
   }
   // #endregion has
 
@@ -71,7 +83,7 @@ class DFactory(T) : UIMObject, IFactory!T {
   }
 
   bool removePath(string[] path) {
-    return removeKey(key)(path.toKey);
+    return removeKey(path.toKey);
   }
   // #endregion remove
 
@@ -116,20 +128,21 @@ class DFactory(T) : UIMObject, IFactory!T {
   // #region update
   // Updates a specific item in the collection.
   bool updateKey(string key, T delegate(Json[string] options = null) @safe createFunc) {
-    return hasKey(key) ? setKey(key, item) : false;
+    return hasKey(key) ? setKey(key, createFunc) : false;
   }
   // #endregion update
 
   // #region merge
   // Merges a specific item into the collection.
   bool mergeKey(string key, T delegate(Json[string] options = null) @safe createFunc) {
-    return !hasKey(key) ? setKey(key, item) : false;
+    return !hasKey(key) ? setKey(key, createFunc) : false;
   }
   // #endregion merge
 
   // #region remove
   bool removeAll() {
-    return _workers.clear;
+    _workers.clear;
+    return true;
   }
 
   bool removeKeys(string[] keys) {
@@ -137,7 +150,8 @@ class DFactory(T) : UIMObject, IFactory!T {
   }
 
   bool removeKey(string key) {
-    return remove(key.correctKey) ? false : true;
+    remove(key.correctKey);
+    return true;
   }
   // #endregion remove
   // #endregion keys
@@ -168,8 +182,8 @@ class DFactory(T) : UIMObject, IFactory!T {
 
   T create(string key, Json[string] options = null) @safe {
     T result;
-    return pathToKey(key) in _workers
-      ? _workers[pathToKey(key)](options) : result;
+    return key.correctKey in _workers
+      ? _workers[key.correctKey](options) : result;
   }
   // #endregion key
   // #endregion create

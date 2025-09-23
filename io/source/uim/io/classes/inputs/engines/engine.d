@@ -12,7 +12,7 @@ import uim.io;
 
 
 // Object wrapper for interacting with stdin
-class DInputEngine : UIMObject {
+class DInputEngine : UIMObject, IInputEngine {
   mixin(InputThis!());
 
   // Input value.

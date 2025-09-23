@@ -5,3 +5,11 @@
 *****************************************************************************************************************/
 module uim.io.classes.inputs.engines.interfaces;
 
+mixin(Version!"test_uim_io");
+
+import uim.io;
+@safe:
+
+interface IInputEngine {
+  
+}

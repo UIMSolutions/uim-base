@@ -31,9 +31,7 @@ class UIMErrorRenderer : UIMObject, IErrorRenderer {
 
     return true;
   }
-
   
-
   // Template to render 
   protected string _template = "";
 
