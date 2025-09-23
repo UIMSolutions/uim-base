@@ -5,5 +5,5 @@
 *****************************************************************************************************************/
 module uim.phobos.complex;
 
-import uim.phobos;
-@safe:
+public { // Additional packages
+}

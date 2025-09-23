@@ -5,5 +5,5 @@
 *****************************************************************************************************************/
 module uim.phobos.algorithms.sortings;
 
-import uim.phobos;
-@safe:
+public { // Additional packages
+}

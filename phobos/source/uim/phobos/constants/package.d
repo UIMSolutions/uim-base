@@ -8,3 +8,6 @@ module uim.phobos.constants;
 public {
     import uim.phobos.constants.constants;
 }
+
+public { // Additional packages
+}

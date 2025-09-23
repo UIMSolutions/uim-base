@@ -5,5 +5,5 @@
 *****************************************************************************************************************/
 module uim.phobos.array;
 
-import uim.phobos;
-@safe:
+public { // Additional packages
+}

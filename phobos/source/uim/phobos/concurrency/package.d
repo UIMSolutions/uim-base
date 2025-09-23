@@ -5,5 +5,5 @@
 *****************************************************************************************************************/
 module uim.phobos.concurrency;
 
-import uim.phobos;
-@safe:
+public { // Additional packages
+}

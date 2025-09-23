@@ -5,5 +5,5 @@
 *****************************************************************************************************************/
 module uim.phobos.algorithms.setops;
 
-import uim.phobos;
-@safe:
+public { // Additional packages
+}
