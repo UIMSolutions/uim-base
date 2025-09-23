@@ -12,5 +12,5 @@ import uim.oop;
 
 
 class DCommandCollection : DCollection!ICommand {}
-auto CommandCollection() { return new DCommandCollection; } 
 
+mixin(CollectionCalls!("Command"));

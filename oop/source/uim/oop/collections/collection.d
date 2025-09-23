@@ -175,12 +175,11 @@ class DCollection(T) : UIMObject, ICollection!T {
 
   // #region get
   // Gets the entire collection as a map of paths to items.
-  T[string] itemsByKey(string[] keys) {
+  T[string] itemsByKey(in string[] keys) {
     T[string] foundItems;
-    return keys
-      .map!(k => k.correctKey)
-      .filter!(k => k in _items)
-      .each!(k => foundItems[k] = itemByKey(k));
+    auto ks = keys.map!(k => k.correctKey).array;
+    ks = ks.filter!(k => k in _items ? true : false).array;
+    ks.each!(k => foundItems[k] = itemByKey(k));
 
     return foundItems;
   }
@@ -194,7 +193,10 @@ class DCollection(T) : UIMObject, ICollection!T {
   // #region set
   // Sets the entire collection to the specified items.
   bool setKeys(T[string] items) {
-    return items.byKeyValue.all!((k, v) => setKey(k, v));
+    foreach(k, v; _items) {
+      if (!setKey(k, v)) return false;
+    }
+    return true;
   }
 
   bool setKeys(string[] keys, T item) {
@@ -207,14 +209,18 @@ class DCollection(T) : UIMObject, ICollection!T {
 
   // Sets a specific item in the collection.
   bool setKey(string key, T item) {
-    return _items[key.correctKey] = item;
+    _items[key.correctKey] = item;
+    return true;
   }
   // #endregion set
 
   // #region update
   // Updates the entire collection to the specified items.
   bool updateKeys(T[string] items) {
-    return items.byKeyValue.all!((k, v) => updateKey(k, v));
+    foreach(k, v; items) {
+      if (!updateKey(k, v)) return false;
+    }
+    return true;
   }
 
   bool updateKeys(string[] keys, T item) {
@@ -223,14 +229,17 @@ class DCollection(T) : UIMObject, ICollection!T {
 
   // Updates a specific item in the collection.
   bool updateKey(string key, T item) {
-    return (hasKey(key)) ? setKey(key.toKey, item) : false;
+    return (hasKey(key)) ? setKey(key, item) : false;
   }
   // #endregion update
 
   // #region merge
   // Merges the entire collection with the specified items.
   bool mergeKeys(T[string] items) {
-    return items.byKeyValue.all!((k, v) => mergeKey(k, v));
+    foreach(k, v; items) {
+      if (!mergeKey(k, v)) return false;
+    }
+    return true;
   }
 
   bool mergeKeys(string[] keys, T item) {
@@ -239,7 +248,7 @@ class DCollection(T) : UIMObject, ICollection!T {
 
   // Merges a specific item into the collection.
   bool mergeKey(string key, T item) {
-    return (!hasKey(key)) ? setKey(key.toKey, item) : false;
+    return (!hasKey(key)) ? setKey(key, item) : false;
   }
   // #endregion merge
 

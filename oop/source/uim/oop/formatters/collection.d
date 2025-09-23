@@ -13,10 +13,4 @@ import uim.oop;
 
 class DFormatterCollection : DCollection!IFormatter {   
 }
-auto FormatterCollection() { return new DFormatterCollection; } 
-
-unittest {
-  /* assert(FormatterCollection);
-
-  auto collection = FormatterCollection; */
-}
+mixin(CollectionCalls!("Formatter"));

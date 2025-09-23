@@ -1,8 +1,8 @@
 module uim.phobos.algorithms.iterations.every;
 
-mixin(Version!"test_uim_oop");
+mixin(Version!"test_uim_phobos");
 
-import uim.core;
+import uim.phobos;
 @safe:
 
 void every(K, V)(V[K] items, void delegate(K key, V value) @safe func) {

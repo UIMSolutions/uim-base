@@ -27,7 +27,7 @@ class DFactory(T) : UIMObject, IFactory!T {
 
   // #region paths 
   string[][] paths() {
-    return _workers.keys.map!(key => key.keyToPath(_separator)).array;
+    return _workers.keys.map!(key => key.toPath(_separator)).array;
   }
 
   // #region has
@@ -67,11 +67,11 @@ class DFactory(T) : UIMObject, IFactory!T {
 
   // #region remove
   bool removePaths(string[][] paths) {
-    return paths.all!(path => remove(path));
+    return paths.all!(path => removePath(path));
   }
 
   bool removePath(string[] path) {
-    return remove(path.toKey);
+    return removeKey(key)(path.toKey);
   }
   // #endregion remove
 

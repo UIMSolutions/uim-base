@@ -7,7 +7,7 @@ import uim.core;
 
 STRINGAA toStringMap(Json[string] items) {
   STRINGAA results;
-  items.every((string key, Json value) { results[key] = value.to!string; });
+  items.each!((key, value) { results[key] = value.to!string; });
   return results;
 }
 
