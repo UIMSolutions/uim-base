@@ -106,7 +106,7 @@ class DInputArgument : UIMObject {
     if (_choices.isEmpty) {
       return true;
     }
-    /* if (!_choices.has(choiceToValidate)) {
+    /* if (!_choices.hasKey(choiceToValidate)) {
             throw new DConsoleException(
                 "`%s` is not a valid value for `%s`. Please use one of `%s`"
                     .format(choiceToValidate, _name, _choices.join(", "))

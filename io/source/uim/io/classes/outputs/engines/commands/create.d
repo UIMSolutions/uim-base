@@ -21,7 +21,7 @@ class DCreateOutputEngineCommand : DOutputCommand {
       return false;
     }
 
-    if (!options.has("name")) {
+    if (!options.hasKey("name")) {
       Error("Missing required parameter: name", __MODULE__);
       return false;
     }
@@ -39,7 +39,7 @@ class DCreateOutputEngineCommand : DOutputCommand {
       return false;
     }
 
-    if (!options.has("name-in-registry")) {
+    if (!options.hasKey("name-in-registry")) {
       Error("Missing required parameter: name-in-registry", __MODULE__);
       return false;
     }

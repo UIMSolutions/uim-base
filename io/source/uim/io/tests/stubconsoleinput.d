@@ -32,7 +32,7 @@ class DStubInputConsole : DInput {
   override string read() {
     _currentIndex += 1;
 
-    /* if (!_replies.has(_currentIndex)) {
+    /* if (!_replies.hasKey(_currentIndex)) {
             auto total = count(_replies);
             auto formatter = new NumberFormatters("en", NumberFormatters.ORDINAL);
             auto nth = formatter.format(_currentIndex + 1);

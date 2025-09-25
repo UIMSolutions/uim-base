@@ -140,13 +140,13 @@ class DOutputEngine : UIMObject, IOutputEngine {
 
     string[] styleInfo;
     string text = style.getString("text"); // "red"
-    if (_foregroundColors.has(text)) {
+    if (_foregroundColors.hasKey(text)) {
       styleInfo ~= to!string(_foregroundColors[text]); // "31"
     }
     style.remove("text");
 
     string background = style.getString("background"); // "white"
-    if (_backgroundColors.has(background)) {
+    if (_backgroundColors.hasKey(background)) {
       styleInfo ~= to!string(_backgroundColors[background]); // "47"
     }
     style.remove("background");
