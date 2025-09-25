@@ -104,8 +104,8 @@ unittest {
   auto id4 = randomUUID;
   
   assert(id.toJson.get!string == id.toString);
-  /* assert([id, id2, id3].toJson.has(id));
-  assert(![id, id2, id3].toJson.has(id4)); */
+  /* assert([id, id2, id3].toJson.hasKey(id));
+  assert(![id, id2, id3].toJson.hasKey(id4)); */
 
   // assert([id, id2, id3].toJson.hasAllKeys(id, id2, id3));
   // assert(id.toJson.get!string == id.toString);
@@ -215,7 +215,7 @@ string toString(Json[string] items, string[] keys) {
 
   Json json = Json.emptyObject;
   keys
-    .filter!(key => items.has(key))
+    .filter!(key => items.hasKey(key))
     .each!(key => json[key] = items[key]);
   return json.toString; 
 }
@@ -234,7 +234,7 @@ string toString(Json json, string[] keys) {
   if (keys.length == 0) keys = json.keys;
   Json result = Json.emptyObject;
   keys
-    .filter!(key => json.has(key))
+    .filter!(key => json.hasKey(key))
     .each!(key => result[key] = json[key]);
   return result.toString; 
 }

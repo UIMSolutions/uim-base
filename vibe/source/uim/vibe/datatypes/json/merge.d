@@ -45,7 +45,7 @@ Json[string] mergePath(T)(Json[string] items, string[] path, T value) {
   }
 
   // path.length > 1
-  if (!items.has(key)) {
+  if (!items.hasKey(key)) {
     items.set(key, Json.emptyObject);
   }
   if (!items.isObject(key)) {
@@ -218,7 +218,7 @@ auto merge(T)(ref Json json, string key, T value) {
     return json;
   }
 
-  return json.has(key)
+  return json.hasKey(key)
     ? json : json.set(key, value);
 }
 ///

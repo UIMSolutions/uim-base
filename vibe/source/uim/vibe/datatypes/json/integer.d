@@ -157,7 +157,7 @@ bool isInteger(Json json, string[] path, bool strict = true) {
     return false;
   }
 
-  if (!json.isObject || !json.has(path[0])) {
+  if (!json.isObject || !json.hasKey(path[0])) {
     return false;
   }
 
@@ -173,7 +173,7 @@ bool isInteger(Json json, string key, bool strict = true) {
     return false;
   }
 
-  if (!json.isObject || !json.has(key)) {
+  if (!json.isObject || !json.hasKey(key)) {
     return false;
   }
 

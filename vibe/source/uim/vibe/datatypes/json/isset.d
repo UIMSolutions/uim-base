@@ -68,10 +68,10 @@ bool anySet(Json json, string[] keys) {
 
 bool isSet(Json json, string key) {
   if (json.isArray) {
-    return json.toArray.any!(j => j.has(key));
+    return json.toArray.any!(j => j.hasKey(key));
   }
   if (json.isObject) {
-    return json.has(key);
+    return json.hasKey(key);
   }
   return false;
 }
@@ -98,7 +98,7 @@ unittest {
       return arr;
     }
 
-    bool has(string key) const {
+    bool hasKey(string key) const {
       return key in obj;
     }
   }

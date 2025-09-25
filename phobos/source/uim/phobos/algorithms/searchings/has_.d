@@ -22,7 +22,7 @@ import uim.phobos;
  * Returns:
  *     true if `value` is found in `values`, false otherwise.
  */
-bool has(T)(T[] values, T value) {
+bool hasKey(T)(T[] values, T value) {
   if (values is null) {
     return false; // Handle null array case
   }
@@ -34,20 +34,20 @@ unittest {
   assert(!has!int(null, 1));
 
   // Test with a single element array
-  assert(has([1], 1));
-  assert(!has([1], 2));
+  assert(hasKey([1], 1));
+  assert(!hasKey([1], 2));
 
   // Test with multiple elements
-  assert(has([1, 2, 3], 2));
-  assert(!has([1, 2, 3], 4));
+  assert(hasKey([1, 2, 3], 2));
+  assert(!hasKey([1, 2, 3], 4));
 
   // Test with repeated elements
-  assert(has([1, 2, 2, 3], 2));
+  assert(hasKey([1, 2, 2, 3], 2));
 
   // Test with strings
-  assert(has(["a", "b", "c"], "b"));
-  assert(!has(["a", "b", "c"], "d"));
+  assert(hasKey(["a", "b", "c"], "b"));
+  assert(!hasKey(["a", "b", "c"], "d"));
 
   // Test with characters
-  assert(has(['a', 'b', 'c'], 'b'));
+  assert(hasKey(['a', 'b', 'c'], 'b'));
 }

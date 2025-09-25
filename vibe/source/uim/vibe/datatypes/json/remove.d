@@ -141,15 +141,15 @@ Json remove(Json json, string key) {
 
 unittest {
   auto json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": "h"}]}`);
-  assert(json.has("a"));
+  assert(json.hasKey("a"));
   json.remove("a");
-  assert(!json.has("a"));
+  assert(!json.hasKey("a"));
 
   json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": "h"}]}`);
-  assert(!json.has("x"));
+  assert(!json.hasKey("x"));
   json.remove("x");
-  assert(!json.has("x"));
+  assert(!json.hasKey("x"));
   json.remove("x");
-  assert(json.has("a"));
+  assert(json.hasKey("a"));
 }
 // #endregion Json

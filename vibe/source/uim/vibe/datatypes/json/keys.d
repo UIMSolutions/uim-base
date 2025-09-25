@@ -31,7 +31,7 @@ bool hasAllKeys(Json[string] items, string[] keys) {
   return keys.all!(key => hasKey(items, key));
 }
 
-bool hasAnyKey([string] items, string[] keys) {
+bool hasAnyKey(Json[string] items, string[] keys) {
   return keys.any!(key => hasKey(items, key));
 }
 
@@ -42,11 +42,11 @@ bool hasKey(Json[string] items, string key) {
 
 // #region Json[]
 bool hasAllKeys(Json[] items, string[] keys) {
-  return keys.all!(key => has(items, key));
+  return keys.all!(key => hasKey(items, key));
 }
 
 bool hasAnyKey(Json[] items, string[] keys) {
-  return keys.any!(key => has(items, key));
+  return keys.any!(key => hasKey(items, key));
 }
 
 bool hasKey(Json[] items, string key) {
@@ -75,7 +75,7 @@ bool hasKey(Json json, string key) {
       return true;
     }
 /*     if (deepSearch) {
-      if (kv.value.has(key))
+      if (kv.value.hasKey(key))
         return true;
     }
  */  }
@@ -85,8 +85,8 @@ bool hasKey(Json json, string key) {
 
 unittest {
   auto json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": "h"}]}`);
-  assert(json.has("a"));
-  assert(!json.has("x"));
+  assert(json.hasKey("a"));
+  assert(!json.hasKey("x"));
 
   assert(json.hasAnyKey(["y", "c"]));
   assert(!json.hasAnyKey(["x", "y"]));

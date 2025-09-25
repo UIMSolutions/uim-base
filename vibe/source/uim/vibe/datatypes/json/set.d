@@ -147,7 +147,7 @@ Json[string] setPath(T)(Json[string] map, string[] path, T value) {
     return map.set(path[0], value);
   }
 
-  if (!map.has(path[0])) {
+  if (!map.hasKey(path[0])) {
     map[path[0]] = Json.emptyObject;
   }
 
