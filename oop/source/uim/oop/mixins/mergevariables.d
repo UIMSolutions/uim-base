@@ -33,7 +33,7 @@ mixin template TMergeVariables() {
       myclass = myparent;
     }
     properties
-      .filter!(property => property_has(this, aProperty))
+      .filter!(property => property_hasKey(this, aProperty))
       .each!((property) { 
         // TODO
         /* auto mythhasValue = this. {property};
@@ -52,7 +52,7 @@ mixin template TMergeVariables() {
     /* auto mythhasValue = this.{propertyName};
 
     bool isAssoc = (
-      mergingOptions.has("associative") &&
+      mergingOptions.hasKey("associative") &&
         isIn(propertyName, mergingOptions.toArray("associative"), true)
    );
 
@@ -82,7 +82,7 @@ mixin template TMergeVariables() {
     }
 
     parentClassData.byKeyValue
-      .filter!(kv => !currentData.has(kv.key))
+      .filter!(kv => !currentData.hasKey(kv.key))
       .each!(key => currentData[kv.key] = kv.value);
 
     return currentData;

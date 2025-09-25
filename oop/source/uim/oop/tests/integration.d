@@ -379,7 +379,7 @@ mixin template TIntegrationTest() {
      */
     protected void _handleError(Throwable exceptionToHandle) {
         classname = configuration.getEntry("Error.exceptionRenderer");
-        if (classname.isEmpty || !class_has(classname)) {
+        if (classname.isEmpty || !class_hasKey(classname)) {
             classname = WebExceptionRenderer.classname;
         }
 
@@ -411,13 +411,13 @@ mixin template TIntegrationTest() {
         if (!hostInfo.isEmpty("https")) {
             env.set("HTTPS", "on");
         }
-        if (hostInfo.has("host")) {
+        if (hostInfo.hasKey("host")) {
             env.set("HTTP_HOST", hostInfo["host"]);
         }
-        if (_request.has("headers")) {
+        if (_request.hasKey("headers")) {
             _request["headers"].byKeyValue.each!((kv) {
                 string name = kv.key.replace("-", "_").upper;
-                if (!["CONTENT_LENGTH", "CONTENT_TYPE"].has(name)) {
+                if (!["CONTENT_LENGTH", "CONTENT_TYPE"].hasKey(name)) {
                     name = "HTTP_" ~ name;
                 }
                 env[name] = kv.value;
@@ -437,7 +437,7 @@ mixin template TIntegrationTest() {
             props.set("input", someData);
         } else if (
             someData.isArray &&
-            props.has("environment.CONTENT_TYPE") &&
+            props.hasKey("environment.CONTENT_TYPE") &&
             props.getString("environment.CONTENT_TYPE") == "application/x-www-form-urlencoded"
             ) {
             props.set("input", http_build_query(someData));
@@ -470,9 +470,9 @@ mixin template TIntegrationTest() {
         }
         if (_csrfToken == true) {
             auto middleware = new DCsrfProtectionMiddleware();
-            if (!_cookie.has(_csrfKeyName) && !_session.has(_csrfKeyName)) {
+            if (!_cookie.hasKey(_csrfKeyName) && !_session.hasKey(_csrfKeyName)) {
                 token = middleware.createToken();
-            } else if (_cookie.has(_csrfKeyName)) {
+            } else if (_cookie.hasKey(_csrfKeyName)) {
                 token = _cookie.get(_csrfKeyName);
             } else {
                 token = _session.get(_csrfKeyName);
@@ -483,7 +483,7 @@ mixin template TIntegrationTest() {
             // the inverse.
             _session.set(_csrfKeyName, token);
             _cookie.set(_csrfKeyName, token);
-            if (!results.has("_csrfToken")) {
+            if (!results.hasKey("_csrfToken")) {
                 results.set("_csrfToken", token);
             }
         }

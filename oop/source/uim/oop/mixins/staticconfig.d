@@ -216,7 +216,7 @@ REGEXP`;
         } */
 
         string aQuery = "";
-        if (parsed.has("query")) {
+        if (parsed.hasKey("query")) {
             aQuery = parsed["query"];
             parsed.remove("query");
         }
@@ -240,7 +240,7 @@ REGEXP`;
             /** @var string ascheme */
             scheme = parsed["scheme"];
             parsed.set("classname", scheme);
-            if (classnameMap.has(scheme)) {
+            if (classnameMap.hasKey(scheme)) {
                 parsed.set("classname", classnameMap[scheme]);
             }
         }

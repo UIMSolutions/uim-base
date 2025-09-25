@@ -42,7 +42,7 @@ mixin template TContainerStub() {
         appClass = _appClass
             ? _appClass : configuration.getStringEntry("App.namespace") ~ "\\Application";
 
-        if (!class_has(appClass)) {
+        if (!class_hasKey(appClass)) {
             throw new DLogicException(
                 "Cannot load `%s` for use in integration testing.".format(appClass));
         }
@@ -85,7 +85,7 @@ mixin template TContainerStub() {
             return;
         }
         _containerServices.byKeyValue.each!((keyFactory) {
-            if (containerToWrap.has(keyFactory.key)) {
+            if (containerToWrap.hasKey(keyFactory.key)) {
                 try {
                     containerToWrap.extend(keyFactory.key).setConcrete(keyFactory.value);
                 } catch (DNotFoundException exception) {
