@@ -59,11 +59,11 @@ Json ifBoolean(Json value, Json booleanValue) {
 }
 
 Json ifBoolean(Json obj, string key, Json booleanValue) {
-  return obj.has(key) && obj[key].isBoolean ? booleanValue : obj[key];
+  return obj.hasKey(key) && obj[key].isBoolean ? booleanValue : obj[key];
 }
 
 Json ifBoolean(Json[string] map, string key, Json booleanValue) {
-  return map.has(key) && map[key].isBoolean ? booleanValue : map[key];
+  return map.hasKey(key) && map[key].isBoolean ? booleanValue : map[key];
 }
 
 unittest {
@@ -93,11 +93,11 @@ Json ifNotBoolean(Json value, Json notBooleanValue) {
 }
 
 Json ifNotBoolean(Json obj, string key, Json notBooleanValue) {
-  return obj.has(key) && obj[key].isBoolean ? obj[key] : notBooleanValue;
+  return obj.hasKey(key) && obj[key].isBoolean ? obj[key] : notBooleanValue;
 }
 
 Json ifNotBoolean(Json[string] map, string key, Json notBooleanValue) {
-  return map.has(key) && map[key].isBoolean ? map[key] : notBooleanValue;
+  return map.hasKey(key) && map[key].isBoolean ? map[key] : notBooleanValue;
 }
 
 unittest {

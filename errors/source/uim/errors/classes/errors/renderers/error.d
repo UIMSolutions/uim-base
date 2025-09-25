@@ -198,7 +198,7 @@ class UIMErrorRenderer : UIMObject, IErrorRenderer {
         ];
 
         auto serialize = ["message", "url", "code"];
-        if (Configure.has("debug")) {
+        if (Configure.hasKey("debug")) {
             trace = /* (array) * /Debugger.formatTrace(myError.getTrace(), [
                 "format": "array",
                 "args": false,
@@ -218,7 +218,7 @@ class UIMErrorRenderer : UIMObject, IErrorRenderer {
         _controller.set(viewVars);
         _controller.viewBuilder().setOption("serialize", serialize);
 
-        if (cast(UIMError)myError && Configure.has("debug")) {
+        if (cast(UIMError)myError && Configure.hasKey("debug")) {
             _controller.set(myError.getAttributes());
         }
         _controller.setResponse(response);
@@ -301,12 +301,12 @@ class UIMErrorRenderer : UIMObject, IErrorRenderer {
         } catch (MissingTemplateError miisngTemplateExecution) {
             attributes = miisngTemplateExecution.getAttributes();
             return cast(MissingLayoutError)miisngTemplateExecution  ||
-                attributes.getString("file").has("error500")
+                attributes.getString("file").hasKey("error500")
                 ? _outputMessageSafe("error500")
                 : _outputMessage("error500");
         } catch (MissingPluginError missngPluginExecution) {
             attributes = missngPluginExecution.getAttributes();
-            if (attributes.has("plugin") && attributes["plugin"] == _controller.getPlugin()) {
+            if (attributes.hasKey("plugin") && attributes["plugin"] == _controller.getPlugin()) {
                 _controller.setPlugin(null);
             }
 
@@ -668,7 +668,7 @@ class UIMErrorRenderer { // }: IErrorRenderer
             return _outputMessage("error500");
         } catch (MissingPluginError e) {
             attributes = e.getAttributes();
-            if (attributes.has("plugin") && attributes["plugin"] == _controller.getPlugin()) {
+            if (attributes.hasKey("plugin") && attributes["plugin"] == _controller.getPlugin()) {
                 _controller.setPlugin(null);
             }
 

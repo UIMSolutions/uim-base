@@ -106,7 +106,7 @@ class DMemoryCacheEngine : DCacheEngine {
 
   // #region has
   override bool hasEntry(string key) {
-    return _entries.has(key);
+    return _entries.hasKey(key);
   }
   // #endregion has
 
@@ -197,7 +197,7 @@ class DMemoryCacheEngine : DCacheEngine {
 
     if (count(mygroups) != count(configuration.getEntry("groups"))) {
       _compiledGroupNames
-        .filter!(groupName => !mygroups.has(groupName))
+        .filter!(groupName => !mygroups.hasKey(groupName))
         .each!((groupName) { setEntry(mygroup, 1, 0); mygroups[mygroup] = 1; }); */
       /* mygroups = mygroups.sort; * /
     } * /

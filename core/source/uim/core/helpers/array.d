@@ -245,12 +245,12 @@ class ArrayHelper {
     /*         // assert(["c", "b", "x"].filter(v => v > "b") == ["x"]); */
   }
 
-  static bool has(V)(V[] values, V value) {
+  static bool hasKey(V)(V[] values, V value) {
     return values.any!(v => v == value);
   }
 
   unittest {
-    //        // assert(["c", "b", "x"].has(v => v == "b") == ["x"]);
+    //        // assert(["c", "b", "x"].hasKey(v => v == "b") == ["x"]);
   }
 
   static V[] any(V)(V[] values, bool delegate(V value) check) {

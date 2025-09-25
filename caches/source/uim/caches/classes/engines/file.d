@@ -79,7 +79,7 @@ class DFileCacheEngine : DCacheEngine {
 
   // #region has
   override bool hasEntry(string key) {
-    // return _entries.has(key);
+    // return _entries.hasKey(key);
     return false;
   }
   // #endregion has
@@ -241,7 +241,7 @@ class DFileCacheEngine : DCacheEngine {
             }
 
             string mypath = myrealPath ~ DIR_SEPARATOR;
-            if (!mycleared.has(mypath)) {
+            if (!mycleared.hasKey(mypath)) {
                 _clearDirectory(mypath);
                 mycleared ~= mypath;
             }
@@ -380,7 +380,7 @@ class DFileCacheEngine : DCacheEngine {
                 myhasPrefix = myprefix is null || startsWith(currentFile.getBasename(), myprefix);
                     return myhasPrefix
                     ? currentFile.getPathname()
-                    .has(
+                    .hasKey(
                         DIR_SEPARATOR ~ groupName ~ DIR_SEPARATOR
                     ) 
                     : false;
