@@ -66,13 +66,13 @@ Json update(V)(Json json, string key, V value) {
   auto json = Json.emptyObject;
   json.update("a", "A");
   json.update("b", "B").update("c", "C");
-  assert(json.hasAll(["a", "b", "c"]));
+  assert(json.hasAllKeys(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 
   json = Json.emptyObject;
   json.update("a", Json("A"));
   json.update("b", Json("B")).update("c", Json("C"));
-  assert(json.hasAll(["a", "b", "c"]));
+  assert(json.hasAllKeys(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 
   json.update(["a", "b", "c"], "x");
@@ -80,22 +80,22 @@ Json update(V)(Json json, string key, V value) {
 
   json = Json.emptyObject;
   json.update(["a", "b", "c"], Json("x"));
-  assert(json.hasAll(["a", "b", "c"]));
+  assert(json.hasAllKeys(["a", "b", "c"]));
   assert(json["a"] == Json("x") && json["b"] == Json("x") && json["c"] == Json("x"));
 
   json = Json.emptyObject;
   json.update(["a": "A", "b": "B", "c": "C"]);
-  assert(json.hasAll(["a", "b", "c"]));
+  assert(json.hasAllKeys(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 
   json = Json.emptyObject;
   json.update(["a": Json("A"), "b": Json("B"), "c": Json("C")]);
-  assert(json.hasAll(["a", "b", "c"]));
+  assert(json.hasAllKeys(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 
   auto newJson = Json.emptyObject;
   newJson.update(json);
-  assert(json.hasAll(["a", "b", "c"]));
+  assert(json.hasAllKeys(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 }
  */

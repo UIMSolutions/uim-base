@@ -199,14 +199,14 @@ unittest {
   assert(json["a"] == Json("A"));
 
   json.set("b", Json("B")).set("c", Json("C"));
-  assert(json.hasAll(["a", "b", "c"]));
+  assert(json.hasAllKeys(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 
   json = json.removeAll.set("a", "A");
   assert(json["a"] == Json("A"));
 
   json.set("b", "B").set("c", "C");
-  assert(json.hasAll(["a", "b", "c"]));
+  assert(json.hasAllKeys(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 
   json = json.removeAll.set("a", "A");
@@ -214,14 +214,14 @@ unittest {
 
   json.set(["b", "c"], "X");
   writeln("json: ", json.toString);
-  assert(json.hasAll(["a", "b", "c"]));
+  assert(json.hasAllKeys(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("X") && json["c"] == Json("X"));
 
   json = json.removeAll.set("a", "A");
   assert(json["a"] == Json("A"));
   
   json.set(["b": "B", "c": "C"]);
-  assert(json.hasAll(["a", "b", "c"]));
+  assert(json.hasAllKeys(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 }
 // #endregion Json[string]
@@ -341,13 +341,13 @@ unittest {
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 
   writeln(json.toString);
-  assert(json.hasAll(["a", "b", "c"]));
+  assert(json.hasAllKeys(["a", "b", "c"]));
 
   json = Json.emptyObject;
   json.set("a", Json("A"));
   json.set("b", Json("B"));
   json.set("c", Json("C"));
-  assert(json.hasAll(["a", "b", "c"]));
+  assert(json.hasAllKeys(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 
   json.set(["a", "b", "c"], "x");
@@ -355,17 +355,17 @@ unittest {
 
   json = Json.emptyObject;
   json.set(["a", "b", "c"], Json("x"));
-  assert(json.hasAll(["a", "b", "c"]));
+  assert(json.hasAllKeys(["a", "b", "c"]));
   assert(json["a"] == Json("x") && json["b"] == Json("x") && json["c"] == Json("x"));
 
   json = Json.emptyObject;
   json.set(["a": "A", "b": "B", "c": "C"]);
-  assert(json.hasAll(["a", "b", "c"]));
+  assert(json.hasAllKeys(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 
   json = Json.emptyObject;
   json.set(["a": Json("A"), "b": Json("B"), "c": Json("C")]);
-  assert(json.hasAll(["a", "b", "c"]));
+  assert(json.hasAllKeys(["a", "b", "c"]));
   assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
 }
 // #endregion Json
