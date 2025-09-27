@@ -11,7 +11,9 @@ import uim.caches;
 @safe:
 
 
-class DCacheEngineCollection : DCollection!DCacheEngine {}
+class DCacheEngineCollection : DCollection!DCacheEngine {
+  mixin(CollectionThis!("CacheEngine"));
+}
 auto CacheEngineCollection() { return new DCacheEngineCollection; } 
 
 unittest {

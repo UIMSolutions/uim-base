@@ -5,11 +5,12 @@
 *****************************************************************************************************************/
 module uim.caches.classes.engines.factory;
 
-mixin(Version!"test_uim_cacheengines");
+mixin(Version!"test_uim_caches");
 
 import uim.caches;
 @safe:
 
 class DCacheEngineFactory : DFactory!DCacheEngine {
+    mixin(FactoryThis!("CacheEngine"));
 }
-auto CacheEngineFactory() { return DCacheEngineFactory.instance; }
+mixin(FactoryCalls!("CacheEngine"));

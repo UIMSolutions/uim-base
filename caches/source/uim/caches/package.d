@@ -11,7 +11,6 @@ public { // uim libraries
 
 public { // uim.filesystem libraries
   import uim.caches.classes;
-  import uim.caches.collections;
   import uim.caches.commands;
   import uim.caches.enumerations;
   import uim.caches.errors;
@@ -19,7 +18,6 @@ public { // uim.filesystem libraries
   import uim.caches.helpers;
   import uim.caches.interfaces;
   import uim.caches.mixins;
-  import uim.caches.registries;
   import uim.caches.tests;
 }
 

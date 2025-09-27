@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.caches.classes.engines.registryx;
+module uim.caches.classes.engines.registry;
 
 mixin(Version!"test_uim_caches");
 
@@ -12,9 +12,10 @@ import uim.caches;
 @safe:
 
 class DCacheEngineRegistry : DRegistry!ICacheEngine {
+  mixin(RegistryThis!("CacheEngine"));
 }
 
-mixin(RegistryCalls!("DCacheEngine", "cacheEngine", "ICacheEngine"));
+mixin(RegistryCalls!("CacheEngine"));
 
 unittest {
   // Create a dummy ICacheEngine implementation for testing
