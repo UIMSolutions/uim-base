@@ -3,15 +3,15 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.io.classes.outputs.formatters.subclasses.xml;
+module uim.io.classes.outputs.formatters.json;
 
 mixin(Version!"test_uim_io");
 
 import uim.io;
 @safe:
 
-class DXmlOutputFormatter : DOutputFormatter {
-  mixin(OutputFormatterThis!("Xml"));
+class DJsonOutputFormatter : DOutputFormatter {
+  mixin(OutputFormatterThis!("Json"));
 
   override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
@@ -20,8 +20,8 @@ class DXmlOutputFormatter : DOutputFormatter {
     return true;
   }
 }
-mixin(OutputFormatterCalls!("Xml"));
+mixin(OutputFormatterCalls!("json"));
 
 unittest {
-  assert(testOutputFormatter(new DXmlOutputFormatter()), "In DXmlOutputFormatter: Test failed");
+  assert(testOutputFormatter(new DJsonOutputFormatter()), "In DJsonOutputFormatter: Test failed");
 }
