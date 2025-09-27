@@ -3,23 +3,21 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.oop.commands;
+module uim.caches.classes.caches.collection;
 
-public { // Base module
-  import uim.oop.commands.command;
+mixin(Version!"test_uim_caches");
+
+import uim.caches;
+@safe:
+
+
+class DCacheEngineCollection : DCollection!DCacheEngine {
+  mixin(CollectionThis!("CacheEngine"));
 }
+auto CacheEngineCollection() { return new DCacheEngineCollection; } 
 
-public { // Additional modules
-  import uim.oop.commands.collection;
-  import uim.oop.commands.enumeration;
-  import uim.oop.commands.factory;
-  import uim.oop.commands.helpers;
-  import uim.oop.commands.interfaces;
-  import uim.oop.commands.mixins;
-  import uim.oop.commands.registry;
-}
+unittest {
+  assert(CacheEngineCollection);
 
-public { // Additional packages
-  import uim.oop.commands.exceptions;
-  import uim.oop.commands.tests; 
+  auto collection = CacheEngineCollection;
 }

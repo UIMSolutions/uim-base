@@ -6,7 +6,7 @@ public { // Main
 
 public { // Additional
     import uim.caches.classes.engines.file;
-    import uim.caches.classes.engines.helper;
+    import uim.caches.classes.engines.helpers;
     import uim.caches.classes.engines.interfaces;
     import uim.caches.classes.engines.memory;
     import uim.caches.classes.engines.mixins;
