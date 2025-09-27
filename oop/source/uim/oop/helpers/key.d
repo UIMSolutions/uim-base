@@ -14,7 +14,7 @@ import uim.oop;
 // #region path-key conversion
 // Converts a path array to a key string using the specified separator.
 string toKey(string[] path, string separator = ".") {
-  return path.map!(p => p.trim).join(separator);
+  return path.map!(p => p.strip).join(separator);
 }
 
 unittest {
@@ -43,7 +43,7 @@ unittest {
 // #region path-key conversion
 // Converts a path array to a key string using the specified separator.
 string correctKey(string key, string separator = ".") {
-  return key.split(separator).map!(p => p.trim).join(separator);
+  return key.split(separator).correctPath.join(separator);
 }
 
 unittest {

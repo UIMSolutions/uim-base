@@ -8,13 +8,14 @@ module uim.oop.parsers.registry;
 mixin(Version!"test_uim_oop");
 
 import uim.oop;
+
 @safe:
 
-
 class DParserRegistry : DRegistry!IParser {
+  mixin(RegistryThis!("Parser"));
 }
 
-mixin(RegistryCalls!("DParserRegistry", "parser", "IParser"));
+mixin(RegistryCalls!("Parser"));
 
 unittest {
   auto registry = new DParserRegistry();

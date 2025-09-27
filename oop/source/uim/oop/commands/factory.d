@@ -12,8 +12,8 @@ import uim.oop;
 @safe:
 
 class DCommandFactory : DFactory!ICommand {
+  mixin(FactoryThis!("Command"));
 }
-
 mixin(FactoryCalls!("Command"));
 
 unittest {

@@ -11,26 +11,12 @@ import uim.oop;
 
 @safe:
 
-interface IFactory(T){
+interface IFactory(T) : IHasKeys!T, IHasPaths!T, IRemoveKeys!T, IRemovePaths!T, IObject {
   T[string] createMany(string[][] paths, Json[string] options = null);
   T create(string[] path, Json[string] options = null);
 
   T[string] createMany(string[] keys, Json[string] options = null);
   T create(string key, Json[string] options = null);
-
-  // #region has
-  // Checks if the collection contains all keys.
-  bool hasAllPath(string[][] paths);
-  bool hasAllKey(string[] keys);
-
-  // Checks if the collection contains any of the given keys.
-  bool hasAnyPath(string[][] paths);
-  bool hasAnyKey(string[] keys);
-
-  // Checks if the collection contains a specific key.
-  bool hasPath(string[] path);  
-  bool hasKey(string key);
-  // #endregion has
 
   // #region change
   // Sets a specific item in the collection.
@@ -45,17 +31,4 @@ interface IFactory(T){
   bool mergePath(string[] path, T delegate(Json[string] options = null) @safe createFunc);
   bool mergeKey(string key, T delegate(Json[string] options = null) @safe createFunc);
   // #region change
-
-  // #region remove
-  // Removes all items from the collection.
-  bool removeAll();   
-
-  // Removes the given items from the collection.
-  bool removePaths(string[][] paths);
-  bool removeKeys(string[] keys);
-
-  // Removes a specific item from the collection.
-  bool removePath(string[] path);
-  bool removeKey(string key);
-  // #endregion remove
 }

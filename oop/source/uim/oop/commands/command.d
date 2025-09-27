@@ -26,7 +26,7 @@ class DCommand : UIMObject, ICommand {
 
   // Execute command with given options.
   bool execute(Json options) {
-    return execute(options.toJsonMap);
+    return execute(options.get!(Json[string]));
   }
 
   bool execute(string[string] options) {

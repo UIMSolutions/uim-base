@@ -356,23 +356,6 @@ unittest {
 }
 // #endregion lastElement
 
-// #region toPath
-string toPath(string[] pathItems, string separator = ".") {
-  return pathItems.stripText([" ", separator, " "])
-    .filter!(item => item.length > 0)
-    .join(separator);
-}
-
-unittest {
-  assert(toPath(["a", "b", "c"]) == "a.b.c");
-  assert(toPath(["a ", ".b", "c."]) == "a.b.c");
-  assert(toPath(["a ", "", ".b", "c."]) == "a.b.c");
-
-  assert(["a", "b", "c"].toPath("/") == "a/b/c");
-  assert(["a ", "/b", "c/"].toPath("/") == "a/b/c");
-  assert(["a ", "", "/b", "c/"].toPath("/") == "a/b/c");
-}
-// #region toPath
 
 string[] split(string text, string splitText = " ", int limit) {
   auto splits = std.string.split(text, splitText);

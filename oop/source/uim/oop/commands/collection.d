@@ -8,9 +8,11 @@ module uim.oop.commands.collection;
 mixin(Version!"test_uim_oop");
 
 import uim.oop;
+
 @safe:
 
-
-class DCommandCollection : DCollection!ICommand {}
+class DCommandCollection : DCollection!ICommand {
+  mixin(CollectionThis!("Command"));
+}
 
 mixin(CollectionCalls!("Command"));

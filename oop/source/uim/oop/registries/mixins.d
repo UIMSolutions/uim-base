@@ -25,30 +25,16 @@ template RegistryThis(string name = null) {
 }
 
 string registryCalls(string name) {
-    string fullName = name ~ "Registry";
-    return objCalls(fullName);
-}
-
-template RegistryCalls(string name) {
-    const char[] RegistryCalls = registryCalls(name);
-}
-
-
-string registryCalls(string className, string instanceName, string typeName) {
   return "
 auto "
-    ~ instanceName ~ "Registry() { return " ~ className ~ "Registry.instance; }
+    ~ name ~ "Registry() { return D" ~ name ~ "Registry.instance; }
 auto "
-    ~ instanceName ~ "Registry(string key, " ~ typeName ~ " registerObject) { 
-  return "
-    ~ instanceName ~ "Registry.register(key, registerObject); }
+    ~ name ~ "Registry(string[] path) { return " ~ name ~ "Registry.get(path); }
 auto "
-    ~ instanceName ~ "Registry(string[] path) { return " ~ instanceName ~ "Registry.get(path); }
-auto "
-    ~ instanceName ~ "Registry(string key) { return " ~ instanceName ~ "Registry.get(key); }
+    ~ name ~ "Registry(string key) { return " ~ name ~ "Registry.get(key); }
 ";
 }
 
-template RegistryCalls(string className, string instanceName, string typeName) {
-  const char[] RegistryCalls = registryCalls(className, instanceName, typeName);
+template RegistryCalls(string name) {
+  const char[] RegistryCalls = registryCalls(name);
 }

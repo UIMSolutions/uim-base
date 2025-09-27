@@ -21,29 +21,16 @@ template FactoryThis(string name = null) {
 }
 
 string factoryCalls(string name) {
-    string fullName = name ~ "Factory";
-    return objCalls(fullName);
-}
-
-template FactoryCalls(string name) {
-    const char[] FactoryCalls = factoryCalls(name);
-}
-
-string factoryCalls(string className, string instanceName, string typeName) {
   return "
 auto "
-    ~ instanceName ~ "Factory() { return " ~ className ~ "Factory.instance; }
+    ~ name ~ "Factory() { return D" ~ name ~ "Factory.instance; }
 auto "
-    ~ instanceName ~ "Factory(string key, " ~ typeName ~ " registerObject) { 
-  return "
-    ~ instanceName ~ "Factory.setKey(key, registerObject); }
+    ~ name ~ "Factory(string[] path) { return " ~ name ~ "Factory.create(path); }
 auto "
-    ~ instanceName ~ "Factory(string[] path) { return " ~ instanceName ~ "Factory.get(path); }
-auto "
-    ~ instanceName ~ "Factory(string key) { return " ~ instanceName ~ "Factory.get(key); }
+    ~ name ~ "Factory(string key) { return " ~ name ~ "Factory.create(key); }
 ";
 }
 
-template FactoryCalls(string className, string instanceName, string typeName) {
-  const char[] FactoryCalls = factoryCalls(className, instanceName, typeName);
+template FactoryCalls(string name) {
+  const char[] FactoryCalls = factoryCalls(name);
 }

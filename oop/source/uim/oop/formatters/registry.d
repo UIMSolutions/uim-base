@@ -12,9 +12,9 @@ import uim.oop;
 @safe:
 
 class DFormatterRegistry : DRegistry!IFormatter {
+  mixin(RegistryThis!("Formatter"));
 }
-
-mixin(RegistryCalls!("DFormatter", "formatter", "IFormatter"));
+mixin(RegistryCalls!("Formatter"));
 
 unittest {
   // Create a dummy formatter for testing

@@ -27,11 +27,11 @@ class DFactory(T) : UIMObject, IFactory!T {
     if (!super.initialize(initData)) {
       return false;
     }
-    
+
     if (initData.hasKey("separator")) {
       _separator = initData.getString("separator");
-    } 
-    
+    }
+
     return true;
   }
 
@@ -39,7 +39,19 @@ class DFactory(T) : UIMObject, IFactory!T {
 
   // #region paths 
   string[][] paths() {
-    return _workers.keys.map!(key => key.toPath(_separator)).array;
+    if (_workers is null) {
+      return null;
+    }
+
+    string[][] foundPaths;
+    foreach (key; this.keys) {
+      if (key is null) {
+        continue;
+      }
+      foundPaths ~= key.toPath(_separator);
+    }
+
+    return foundPaths;
   }
 
   // #region has
@@ -160,7 +172,9 @@ class DFactory(T) : UIMObject, IFactory!T {
   // #region path
   T[string] createMany(string[][] paths, Json[string] options = null) {
     T[string] result;
-    paths.each!(path => result[path] = create(path, options));
+    foreach (path; paths) {
+      result[path.toKey] = create(path, options);
+    }
     return result;
   }
 

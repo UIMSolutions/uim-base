@@ -10,7 +10,7 @@ mixin(Version!"test_uim_oop");
 import uim.oop;
 @safe:
 
-class DRegistry(T) {
+class DRegistry(T) : UIMObject, IRegistry!T {
   // #region Singleton
   protected static DRegistry!T _instance;
   public static DRegistry!T instance() {
@@ -21,7 +21,7 @@ class DRegistry(T) {
 
   protected T[string] _registeredObjects;
   protected T _nullValue = null;
-  protected string _pathSeparator = ".";
+  protected string _separator = ".";
 
   size_t size() {
     return _registeredObjects.length;
@@ -32,7 +32,7 @@ class DRegistry(T) {
   mixin(HasMethods!("Paths", "Path", "string[]"));
 
   bool hasPath(string[] path) {
-    return hasKey(pathToKey(path));
+    return hasKey(path.toKey(_separator));
   }
 
   unittest {
@@ -102,7 +102,7 @@ class DRegistry(T) {
   mixin(HasMethods!("Keys", "Key", "string"));
 
   bool hasKey(string key) {
-    return pathToKey(key) in _registeredObjects ? true : false;
+    return key.correctKey in _registeredObjects ? true : false;
   }
 
   unittest {
@@ -112,17 +112,6 @@ class DRegistry(T) {
     assert(!registry.hasKey("a.b.x")); */
   }
   // #endregion has
-
-  // #region correct
-  string correctPath(string[] path) {
-    return pathToKey(path.join(_pathSeparator));
-  }
-
-  string pathToKey(string key) {
-    return key.strip;
-  }
-  // #endregion correct
-  // #endregion keys
 
   // #region objects
   T[] objects() {
@@ -147,7 +136,7 @@ class DRegistry(T) {
   }
 
   T get(string[] path) {
-    return get(pathToKey(path));
+    return get(path.toKey(_separator));
   }
 
   T get(string key) {
@@ -162,15 +151,15 @@ class DRegistry(T) {
   }
 
   // Register an object with a path
-  O register(this O)(string[] path, T newObject) {
-    this.register(pathToKey(path), newObject);
-    return cast(O)this;
+  bool register(string[] path, T newObject) {
+    this.register(path.toKey(_separator), newObject);
+    return true;
   }
 
   // Register an object with a key
-  O register(this O)(string key, T newObject) {
-    _registeredObjects[pathToKey(key)] = newObject;
-    return cast(O)this;
+  bool register(string key, T newObject) {
+    _registeredObjects[key.correctKey] = newObject;
+    return true;
   }
 
   unittest {
@@ -225,24 +214,29 @@ class DRegistry(T) {
   // #endregion register
 
   // #region unregister
-  O unregisterMany(this O)(string[] keys) {
-    keys.each!(reg => unregister(reg));
-    return cast(O)this;
+  bool unregisterAll() {
+    _registeredObjects.clear();
+    return true;
   }
 
-  O unregister(this O)(string[] path) {
-    _registeredObjects.remove(pathToKey(path));
-    return cast(O)this;
+  bool unregisterMany(string[][] paths) {
+    paths.each!(path => unregister(path));
+    return true;
   }
 
-  O unregister(this O)(string key) {
+  bool unregisterMany(string[] keys) {
+    keys.each!(key => unregister(key));
+    return true;
+  }
+
+  bool unregister(string[] path) {
+    _registeredObjects.remove(path.toKey(_separator));
+    return true;
+  }
+
+  bool unregister(string key) {
     _registeredObjects.remove(key);
-    return cast(O)this;
-  }
-
-  O unregisterAll(this O)() {
-    _registeredObjects.clear;
-    return cast(O)this;
+    return true;
   }
   // #endregion unregister
 }

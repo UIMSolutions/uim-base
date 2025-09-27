@@ -12,9 +12,9 @@ import uim.oop;
 @safe:
 
 class DFormatterFactory : DFactory!IFormatter {
+  mixin(FactoryThis!("Formatter"));
 }
-
-mixin(FactoryCalls!("DFormatter", "formatter", "IFormatter"));
+mixin(FactoryCalls!("Formatter"));
 
 unittest {
   // Test that DFormatterFactory can be instantiated

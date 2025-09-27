@@ -11,6 +11,7 @@ import uim.oop;
 @safe:
 
 class DCommandRegistry : DRegistry!DCommand {
+  mixin(RegistryThis!("Command"));
 }
 
-mixin(RegistryCalls!("DCommand", "command", "ICommand"));
+mixin(RegistryCalls!("Command"));

@@ -13,8 +13,8 @@ import uim.oop;
 
 // #region key-path conversion
 // Converts a key string to a path array using the specified separator.
-string toPath(string key, string separator = ".") {
-  return key.split(separator).map!(k => k.trim).array;
+string[] toPath(string key, string separator = ".") {
+  return key.split(separator).correctPath;
 }
 
 unittest {
@@ -43,7 +43,7 @@ unittest {
 // #region correct path
 // Corrects a path array by trimming whitespace from each segment.
 string[] correctPath(string[] path) {
-  return path.map!(p => p.trim).array;
+  return path.map!(p => p.strip).array;
 }
 unittest {
   // Test 1: Basic usage
