@@ -12,16 +12,16 @@ public { // Additional packages
 }
 
 public {
-    import uuim.io.classes.inputs.engines.engine;
-    import uuim.io.classes.inputs.engines.factory;
-    import uuim.io.classes.inputs.engines.interfaces;
-    import uuim.io.classes.inputs.engines.registry;
+    import uim.io.classes.inputs.engines.engine;
+    import uim.io.classes.inputs.engines.factory;
+    import uim.io.classes.inputs.engines.interfaces;
+    import uim.io.classes.inputs.engines.registry;
 }
 
 public {
-    import uuim.io.classes.inputs.engines.file;
-    import uuim.io.classes.inputs.engines.rest;
-    import uuim.io.classes.inputs.engines.standard;
+    import uim.io.classes.inputs.engines.file;
+    import uim.io.classes.inputs.engines.rest;
+    import uim.io.classes.inputs.engines.standard;
 }
 
 public { // Additional packages

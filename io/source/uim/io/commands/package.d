@@ -1,7 +1,7 @@
 module uim.io.commands;
 
 public {
-  import uim.io.classes.inputs.commands.command;
+  import uim.io.commands.command;
 }
 
 public { // Additional packages

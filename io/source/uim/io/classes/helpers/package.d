@@ -7,7 +7,7 @@ module uim.io.classes.helpers;
 
 public {
   import uim.io.classes.helpers.arguments;
-  import uim.io.classes.helpformatter;
+  // import uim.io.classes.helpformatter;
 }
 
 public { // Additional packages
