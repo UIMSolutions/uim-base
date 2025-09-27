@@ -9,6 +9,7 @@ targetname "uim_caches"
 targetType "library"
 
 // Internal dependencies
+dependency "uim-base:errors" version="*"
 dependency "uim-base:oop" version="*"
 
 // configuration "default" {}

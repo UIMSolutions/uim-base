@@ -11,7 +11,7 @@ import uim.oop;
 
 @safe:
 
-interface IRemoveKeys(T) : IHasKeys!T, IGetKeys!T, IUpdateKeys!T {
+interface IRemoveKeys(T) {
   // Removes all keys from the collection.
   bool removeAll();
 

@@ -11,6 +11,8 @@ import uim.oop;
 @safe:
 
 class DRegistry(T) : UIMObject, IRegistry!T {
+  mixin(RegistryThis!());
+
   // #region Singleton
   protected static DRegistry!T _instance;
   public static DRegistry!T instance() {
@@ -29,7 +31,13 @@ class DRegistry(T) : UIMObject, IRegistry!T {
 
   // #region path
   // #region has
-  mixin(HasMethods!("Paths", "Path", "string[]"));
+  bool hasAnyPath(string[][] paths) {
+    return paths.any!(path => hasPath(path));
+  }
+
+  bool hasAllPath(string[][] paths) {
+    return paths.all!(path => hasPath(path));
+  }
 
   bool hasPath(string[] path) {
     return hasKey(path.toKey(_separator));
@@ -43,6 +51,22 @@ class DRegistry(T) : UIMObject, IRegistry!T {
  */
   }
   // #endregion has
+
+  // #region get
+  T getPath(string[] path) {
+    return getKey(path.toKey(_separator));
+  }
+  // #endregion get
+
+  // #region remove
+  bool removePaths(string[][] paths) {
+    return paths.all!(path => removePath(path));
+  }
+
+  bool removePath(string[] path) {
+    return removeKey(path.toKey);
+  }
+  // #endregion remove
   // #endregion path
 
   // #region keys
@@ -98,8 +122,13 @@ class DRegistry(T) : UIMObject, IRegistry!T {
 
   // #region keys
   // #region has
-  // Check if the key is in the object
-  mixin(HasMethods!("Keys", "Key", "string"));
+  bool hasAnyKey(string[] keys) {
+    return keys.any!(key => hasKey(key));
+  }
+
+  bool hasAllKey(string[] keys) {
+    return keys.all!(key => hasKey(key));
+  }
 
   bool hasKey(string key) {
     return key.correctKey in _registeredObjects ? true : false;
@@ -113,36 +142,25 @@ class DRegistry(T) : UIMObject, IRegistry!T {
   }
   // #endregion has
 
-  // #region objects
-  T[] objects() {
-    return _registeredObjects.values;
-  }
-
-  // #region has
-  mixin(HasMethods!("Objects", "Object", "T"));
-
-  // TODO
-  bool hasObject(T object) {
-    foreach (obj; _registeredObjects.values) {
-      // if (obj.isEquals(object)) { return true; }
-    }
-    return false;
-  }
-  // #endregion has
-
   // #region get
-  T opIndex(string key) {
-    return get(key);
+  T getKey(string key) {
+    auto correctedKey = key.correctKey;
+    return correctedKey in _registeredObjects
+      ? _registeredObjects[correctedKey]
+      : _nullValue;
   }
+  // #endregion get
 
-  T get(string[] path) {
-    return get(path.toKey(_separator));
+  // #region remove
+  bool removeKeys(string[] keys) {
+    return keys.all!(key => removeKey(key));
   }
-
-  T get(string key) {
-    return key in _registeredObjects ? _registeredObjects[key] : _nullValue;
+  bool removeKey(string key) {
+    _registeredObjects.remove(key.correctKey);
+    return true;
   }
-  // #endregion objects
+  // #endregion remove
+  // #endregion keys
 
   // #region register
   // Allow assignment via indexing

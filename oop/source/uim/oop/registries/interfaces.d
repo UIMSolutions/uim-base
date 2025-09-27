@@ -11,7 +11,7 @@ import uim.oop;
 
 @safe:
 
-interface IRegistry(T) : IHasKeys!T, IHasPaths!T, IRemoveKeys!T, IRemovePaths!T, IObject {
+interface IRegistry(T) : IHasKeys!T, IHasPaths!T, IObject {
   // Registers an object with a specific key.
   bool register(string[] path, T obj);
   bool register(string key, T obj);
@@ -26,6 +26,10 @@ interface IRegistry(T) : IHasKeys!T, IHasPaths!T, IRemoveKeys!T, IRemovePaths!T,
   bool unregister(string key);
 
   // Retrieves an object by its key.
-  T get(string[] path);
-  T get(string key);
+  T getPath(string[] path);
+  T getKey(string key);
+
+  // Retrieves an object by its key.
+  bool removePath(string[] path);
+  bool removeKey(string key);
 }

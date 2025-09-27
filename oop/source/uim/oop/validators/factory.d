@@ -10,5 +10,7 @@ mixin(Version!"test_uim_oop");
 import uim.oop;
 @safe:
 
-class DValidatorFactory : DFactory!IValidator {}
+class DValidatorFactory : DFactory!IValidator {
+    mixin(FactoryThis!("Validator"));
+}
 auto ValidatorFactory() { return DValidatorFactory.instance; }

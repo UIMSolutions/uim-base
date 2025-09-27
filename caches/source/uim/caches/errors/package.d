@@ -6,4 +6,5 @@
 module uim.caches.errors;
 
 public { // Additional packages
+  import uim.caches.errors.error;
 }

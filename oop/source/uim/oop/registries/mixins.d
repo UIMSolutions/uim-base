@@ -29,9 +29,9 @@ string registryCalls(string name) {
 auto "
     ~ name ~ "Registry() { return D" ~ name ~ "Registry.instance; }
 auto "
-    ~ name ~ "Registry(string[] path) { return " ~ name ~ "Registry.get(path); }
+    ~ name ~ "Registry(string[] path) { return " ~ name ~ "Registry.getPath(path); }
 auto "
-    ~ name ~ "Registry(string key) { return " ~ name ~ "Registry.get(key); }
+    ~ name ~ "Registry(string key) { return " ~ name ~ "Registry.getKey(key); }
 ";
 }
 

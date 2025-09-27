@@ -8,9 +8,12 @@ module uim.oop.formatters.collection;
 mixin(Version!"test_uim_oop");
 
 import uim.oop;
+
 @safe:
 
-
-class DFormatterCollection : DCollection!IFormatter {   
+class DFormatterCollection : DCollection!IFormatter {
+  mixin(CollectionThis!("Formatter"));
 }
+
 mixin(CollectionCalls!("Formatter"));
+
