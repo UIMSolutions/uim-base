@@ -36,9 +36,9 @@ class DCacheListCommand : DCommand {
   }*/
 
   // Get the list of cache prefixes
-  override bool execute(Json[string] arguments, IConsole console = null) {
-    Output.writeln("Configured cache engines:");
-    Cache.engines().each!(engine => Output.writeln("- %s".format(engine)));
+  override bool execute(Json[string] arguments /* , IConsole console = null */ ) {
+    writeln("Configured cache engines:"); // todo
+    // Cache.engines().each!(engine => Output.writeln("- %s".format(engine)));
     return true;
   }
 }

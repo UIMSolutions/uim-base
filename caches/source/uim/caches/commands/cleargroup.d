@@ -46,7 +46,7 @@ class DCacheClearGroupCommand : DCommand {
   } */
 
   // Clears the cache group
-  override bool execute(Json[string] arguments, IConsole console = null) {
+  override bool execute(Json[string] arguments/* , IConsole console = null */ ) {
 /*     auto anGroup = to!string(commandArguments.getArgument("group"));
     try {
       anGroupConfigs = Cache.groupConfigs(anGroup);

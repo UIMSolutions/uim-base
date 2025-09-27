@@ -8,9 +8,11 @@ module uim.caches.classes.caches.factory;
 mixin(Version!"test_uim_caches");
 
 import uim.caches;
+
 @safe:
 
 class DCacheFactory : DFactory!DCache {
-    mixin(FactoryThis!("Cache"));
+  mixin(FactoryThis!("Cache"));
 }
+
 mixin(FactoryCalls!("Cache"));

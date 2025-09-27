@@ -9,15 +9,12 @@ public { // uim libraries
   import uim.errors;
 }
 
-public { // uim.filesystem libraries
+public { // Core packages
   import uim.caches.classes;
   import uim.caches.commands;
   import uim.caches.enumerations;
   import uim.caches.errors;
   import uim.caches.exceptions;
-  import uim.caches.helpers;
-  import uim.caches.interfaces;
-  import uim.caches.mixins;
   import uim.caches.tests;
 }
 

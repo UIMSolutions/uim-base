@@ -46,7 +46,7 @@ class DCacheClearCommand : DCommand {
   } */
 
   // Implement this method with your command`s logic.
-  override bool execute(Json[string] arguments, IConsole console = null) {
+  override bool execute(Json[string] arguments/* , IConsole console = null */) {
 /*     string engineName = to!string(commandArguments.getArgument("engine"));
     try {
       console.writeln("Clearing {engineName}");
