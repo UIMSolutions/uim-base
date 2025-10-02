@@ -1,13 +1,9 @@
-module uim.io.classes.inputs.engines.file;
-
-import uim.io;
-@safe:
+module uim.io.classes.inputs.engines.subclasses.file;
 
 mixin(Version!"test_uim_io");
 
 import uim.io;
 @safe:
-
 
 // Object wrapper for interacting with stdin
 class DFileInput : DInput {

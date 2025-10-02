@@ -1,4 +1,4 @@
-module uim.io.classes.inputs.engines.rest;
+module uim.io.classes.inputs.engines.subclasses.rest;
 
 import uim.io;
 @safe:

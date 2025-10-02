@@ -1,18 +1,13 @@
 module uim.io.classes.inputs;
 
-// Main class
-public {
-    import uim.io.classes.inputs.input;
+public { // Modules
+  import uim.io.classes.inputs.argument;
+  import uim.io.classes.inputs.input;
+  import uim.io.classes.inputs.option;
 }
 
-// Derived classes
-public {
-    import uim.io.classes.inputs.argument;
-    import uim.io.classes.inputs.factory;
-    import uim.io.classes.inputs.input;
-    import uim.io.classes.inputs.option;
-}
-
-public { // Additional packages
-    import uim.io.classes.inputs.engines;
+public { // Packages
+  import uim.io.classes.inputs.commands;
+  import uim.io.classes.inputs.helpers;
+  import uim.io.classes.inputs.tests;
 }
