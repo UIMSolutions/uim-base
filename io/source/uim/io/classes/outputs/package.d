@@ -5,21 +5,18 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs;
 
-// Main classes
-public {
-    import uim.io.classes.outputs.output;
+public { // Modules
+  import uim.io.classes.outputs.interfaces;
+  import uim.io.classes.outputs.output;
 }
 
-// Derived classe
-public {
-    import uim.io.classes.outputs.commands;
-    import uim.io.classes.outputs.engines;
-    import uim.io.classes.outputs.enumerations;
-    import uim.io.classes.outputs.errors;
-    import uim.io.classes.outputs.exceptions;
-    import uim.io.classes.outputs.formatters;
-    import uim.io.classes.outputs.styles;
-}
-
-public { // Additional packages
+public { // Packages
+  import uim.io.classes.outputs.commands;
+  import uim.io.classes.outputs.engines;
+  import uim.io.classes.outputs.enumerations;
+  import uim.io.classes.outputs.errors;
+  import uim.io.classes.outputs.exceptions;
+  import uim.io.classes.outputs.formatters;
+  import uim.io.classes.outputs.styles;
+  import uim.io.classes.outputs.tests;
 }

@@ -3,10 +3,25 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.io.classes.inputs.engines.helpers;
+module uim.io.classes.error.engines.helpers.mixin_;
 
-public { // Modules
-  import uim.io.classes.inputs.engines.helpers.factory;
-  import uim.io.classes.inputs.engines.helpers.functions;
-  import uim.io.classes.inputs.engines.helpers.repository;
+import uim.io;
+
+@safe:
+string outputThis(string name = null) {
+    string fullName = name ~ "Output";
+    return objThis(fullName);
+}
+
+template OutputThis(string name = null) {
+    const char[] OutputThis = outputThis(name);
+}
+
+string outputCalls(string name) {
+    string fullName = name ~ "Output";
+    return objCalls(fullName);
+}
+
+template OutputCalls(string name) {
+    const char[] OutputCalls = outputCalls(name);
 }

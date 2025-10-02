@@ -72,7 +72,7 @@ import uim.io;
  * - IOutput
  */
 class DOutputEngine : UIMObject, IOutputEngine {
-  mixin(OutputThis!());
+  mixin(OutputEngineThis!());
 
   // Raw output constant - no modification of output text.
   static const string LF = "\n";  // TODO = D_EOL;

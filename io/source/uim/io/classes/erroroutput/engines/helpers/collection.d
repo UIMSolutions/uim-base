@@ -23,5 +23,5 @@ unittest {
     auto collection = ErrorOutputEngineCollection();
     assert(collection !is null);
 
-    testCollection(collection, "ErrorOutputEngine");
+    assert(testCollection(collection, "ErrorOutputEngine"), "ErrorOutputEngineCollection failed");  
 }

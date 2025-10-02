@@ -3,10 +3,15 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.io.classes.inputs.engines.helpers;
+module uim.io.classes.outputs.helpers.repository;
 
-public { // Modules
-  import uim.io.classes.inputs.engines.helpers.factory;
-  import uim.io.classes.inputs.engines.helpers.functions;
-  import uim.io.classes.inputs.engines.helpers.repository;
+mixin(Version!"test_uim_io");
+
+import uim.io;
+@safe:
+
+class DOutputRepository : DRepository!IOutput {
 }
+
+mixin(RepositoryCalls!("Output"));
+
