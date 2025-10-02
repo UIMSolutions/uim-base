@@ -11,8 +11,8 @@ import uim.io;
 @safe:
 
 
-class DErrorOutputEngine : UIMObject, IErrorOutput {
-  mixin(ErrorOutputThis!());
+class DErrorOutputEngine : UIMObject, IErrorOutputEngine {
+  mixin(ErrorOutputEngineThis!());
 }
 
 unittest {

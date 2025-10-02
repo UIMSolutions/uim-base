@@ -8,11 +8,11 @@ public {
 // Derived classes
 public {
     import uim.io.classes.inputs.argument;
+    import uim.io.classes.inputs.factory;
+    import uim.io.classes.inputs.input;
     import uim.io.classes.inputs.option;
-    import uim.io.classes.inputs.file;
-    import uim.io.classes.inputs.rest;
-    import uim.io.classes.inputs.standard;
 }
 
 public { // Additional packages
+    import uim.io.classes.inputs.engines;
 }

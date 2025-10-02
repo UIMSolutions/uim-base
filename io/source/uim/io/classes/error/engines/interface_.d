@@ -4,5 +4,5 @@ import uim.io;
 
 @safe:
 
-interface IErrorOutputEngine {
+interface IErrorOutputEngine : IObject {
 }

@@ -15,9 +15,9 @@ import uim.io;
 
 
 class DRestErrorOutput:  DErrorOutputEngine {
-  mixin(ErrorOutputThis!("Rest"));
+  mixin(ErrorOutputEngineThis!("Rest"));
 }
-mixin(ErrorOutputCalls!("Rest"));
+mixin(ErrorOutputEngineCalls!("Rest"));
 
 unittest {
   auto output = RestErrorOutput();   

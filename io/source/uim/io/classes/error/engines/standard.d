@@ -11,7 +11,7 @@ import uim.io;
 @safe:
 
 class DStandardErrorOutput:  DErrorOutputEngine {
-  mixin(ErrorOutputThis!("Standard"));
+  mixin(ErrorOutputEngineThis!("Standard"));
 
   bool write(string message) {
     // Standard error output implementation
@@ -27,7 +27,7 @@ class DStandardErrorOutput:  DErrorOutputEngine {
     return true; // Indicate success
   }
 }
-mixin(ErrorOutputCalls!("Standard"));
+mixin(ErrorOutputEngineCalls!("Standard"));
 
 unittest {
   auto output = StandardErrorOutput();

@@ -10,7 +10,8 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DErrorOutputFactory : DFactory!DErrorOutput {
+class DErrorOutputEngineFactory : DFactory!DErrorOutput {
+  mixin(FactoryThis!("ErrorOutputEngine"));
 }
 
 auto ErrorOutputFactory() {
@@ -18,8 +19,8 @@ auto ErrorOutputFactory() {
 }
 
 unittest {
-  assert(ErrorOutputFactory);
-  assert(ErrorOutputFactory.create("standard").name == "StandardErrorOutput");
-  assert(ErrorOutputFactory.create("file").name == "FileErrorOutput");
-  assert(ErrorOutputFactory.create("rest").name == "RestErrorOutput");
+  assert(ErrorOutputEngineFactory);
+  assert(ErrorOutputEngineFactory.create("standard").name == "StandardErrorOutputEngine");
+  assert(ErrorOutputEngineFactory.create("file").name == "FileErrorOutputEngine");
+  assert(ErrorOutputEngineFactory.create("rest").name == "RestErrorOutputEngine");
 }

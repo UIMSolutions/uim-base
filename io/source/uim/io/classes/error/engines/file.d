@@ -15,9 +15,9 @@ import uim.io;
 
 
 class DFileErrorOutputEngine :  DErrorOutputEngine {
-  mixin(ErrorOutputThis!("File"));
+  mixin(ErrorOutputEngineThis!("File"));
 }
-mixin(ErrorOutputCalls!("File"));
+mixin(ErrorOutputEngineCalls!("File"));
 
 unittest {
   auto output = FileErrorOutput();
