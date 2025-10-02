@@ -5,16 +5,15 @@
 *****************************************************************************************************************/
 module uim.oop.collections;
 
-import uim.core;
 mixin(Version!"test_uim_oop");
+import uim.oop;
 
-public {
-  // import uim.oop.collections.arraylist;
+public { // Modules
   import uim.oop.collections.interfaces;
   import uim.oop.collections.collection;
   import uim.oop.collections.mixins;
-  // import uim.oop.collections.list;
+  import uim.oop.collections.tests;
 }
 
-public { // Additional packages
+public { // Packages
 }

@@ -5,5 +5,9 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs.helpers;
 
-public { // Additional packages
+public { // Modules
+  import uim.io.classes.outputs.helpers.factory;
+  import uim.io.classes.outputs.helpers.functions;
+  import uim.io.classes.outputs.helpers.mixins;
+  import uim.io.classes.outputs.helpers.repository;
 }

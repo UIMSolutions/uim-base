@@ -17,7 +17,7 @@ import uim.io;
 class DErrorOutputEngineCollection : DCollection!DErrorOutputEngine {
     mixin(CollectionThis!("ErrorOutputEngine"));
 }
-mixin(CollectionCalls!("ErrorOutputEngine"));#
+mixin(CollectionCalls!("ErrorOutputEngine"));
 
 unittest {
     auto collection = ErrorOutputEngineCollection();
