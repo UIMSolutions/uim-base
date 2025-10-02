@@ -15,6 +15,7 @@ public {
   import uim.io.classes.outputs.engines.exceptions;
   import uim.io.classes.outputs.engines.helpers;
   import uim.io.classes.outputs.engines.subclasses;
+  import uim.io.classes.outputs.engines.tests;
 }
 
 public { // Additional packages
