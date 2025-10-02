@@ -8,15 +8,12 @@ module uim.io.classes.outputs.formatters.helpers.factory;
 mixin(Version!"test_uim_io");
 
 import uim.io;
-
 @safe:
 
 class DOutputFormatterFactory : DFactory!IOutputFormatter {
+  mixin(FactoryThis!("OutputFormatter"));
 }
-
-auto OutputFormatterFactory() {
-  return DOutputFormatterFactory.instance;
-}
+mixin(FactoryCalls!("OutputFormatter"));
 
 static this() {
   OutputFormatterFactory.set("standard", (Json[string] options = new Json[string]) @safe {

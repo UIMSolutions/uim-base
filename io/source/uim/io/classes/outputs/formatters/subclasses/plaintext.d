@@ -3,19 +3,27 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.io.classes.outputs.formatters.helpers.tests;
+module uim.io.classes.outputs.formatters.plaintext;
 
 mixin(Version!"test_uim_io");
 
 import uim.io;
 @safe:
 
-bool testOutputFormatter(DOutputFormatter formatter) {
-    // Test the formatter's initialization
-    if (!formatter.initialize()) {
-        return false;
-    }
+class DTextOutputFormatter : DOutputFormatter {
+  mixin(OutputFormatterThis!("Text"));
 
-    // Additional tests can be added here as needed
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
     return true;
+  }
+
+  
+}
+mixin(OutputFormatterCalls!("Text"));
+
+unittest {
+  assert(testOutputFormatter(new DTextOutputFormatter()), "In DTextOutputFormatter: Test failed");
 }
