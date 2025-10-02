@@ -10,7 +10,7 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DHtmlFileOutputEngine : DFileEngine {
+class DHtmlFileOutputEngine : DFileOutputEngine {
   mixin(OutputEngineThis!("HtmlFile"));
 
   override bool initialize(Json[string] initData = null) {

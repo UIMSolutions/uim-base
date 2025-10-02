@@ -10,7 +10,7 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DMemoryOutputEngine : DFileEngine {
+class DMemoryOutputEngine : DOutputEngine {
   mixin(OutputEngineThis!("Memory"));
 
   override bool initialize(Json[string] initData = null) {
