@@ -184,6 +184,9 @@ class DFileOutputEngine : DOutputEngine {
 
 mixin(OutputEngineCalls!("File"));
 
-unittest{
-  assert(testOutputEngine(new DFileOutputEngine()), "Test DFileOutputEngine failed");
+unittest {
+  auto engine = new DFileOutputEngine();
+  assert(engine !is null, "DFileOutputEngine is null");
+
+  assert(testOutputEngine(engine, "FileOutputEngine"), "Test DFileOutputEngine failed");  
 }

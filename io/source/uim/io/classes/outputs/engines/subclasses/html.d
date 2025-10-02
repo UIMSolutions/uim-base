@@ -47,6 +47,9 @@ class DHtmlFileOutputEngine : DFileOutputEngine {
 
 mixin(OutputEngineClass!("HtmlFile"));
 
-unittest{
-  assert(testOutputEngine(new DHtmlFileOutputEngine()), "Test DHtmlFileOutputEngine failed");
+unittest {
+  auto engine = new DHtmlFileOutputEngine();
+  assert(engine !is null, "DHtmlFileOutputEngine is null");
+
+  assert(testOutputEngine(engine, "HtmlFileOutputEngine"), "Test DHtmlFileOutputEngine failed");  
 }

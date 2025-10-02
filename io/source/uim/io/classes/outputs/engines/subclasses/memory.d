@@ -44,6 +44,9 @@ class DMemoryOutputEngine : DOutputEngine {
 
 mixin(OutputEngineClass!("Memory"));
 
-unittest{
-  assert(testOutputEngine(new DMemoryOutputEngine()), "Test DMemoryOutputEngine failed");
+unittest {
+  auto engine = new DMemoryOutputEngine();
+  assert(engine !is null, "DMemoryOutputEngine is null");
+
+  assert(testOutputEngine(engine, "MemoryOutputEngine"), "Test DMemoryOutputEngine failed");  
 }

@@ -10,7 +10,6 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-
 class DErrorOutputEngine : UIMObject, IErrorOutputEngine {
   mixin(ErrorOutputEngineThis!());
 }

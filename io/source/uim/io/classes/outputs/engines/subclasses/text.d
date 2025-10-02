@@ -45,6 +45,9 @@ class DTextFileOutput : DFileEngine {
 
 mixin(OutputEngineClass!("TextFile"));
 
-unittest{
-  assert(testOutputEngine(new DTextFileOutputEngine()), "Test DTextFileOutputEngine failed");
+unittest {
+  auto engine = new DTextFileOutputEngine();
+  assert(engine !is null, "DTextFileOutputEngine is null");
+
+  assert(testOutputEngine(engine, "TextFileOutputEngine"), "Test DTextFileOutputEngine failed");  
 }

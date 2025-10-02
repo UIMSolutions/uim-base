@@ -15,9 +15,11 @@ class DRestOutputEngine : DOutputEngine {
   mixin(OutputEngineThis!("Rest"));
 }
 
-mixin(OutputEngineCalls!("Rest"));
+mixin(OutputEngineClass!("Rest"));
 
-unittest{
-  // assert(testOutputEngine(new DRestOutputEngine()), "Test DRestOutputEngine failed");
+unittest {
+  auto engine = new DRestOutputEngine();
+  assert(engine !is null, "DRestOutputEngine is null");
+
+  assert(testOutputEngine(engine, "RestOutputEngine"), "Test DRestOutputEngine failed");  
 }
-

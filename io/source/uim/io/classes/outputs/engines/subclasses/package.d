@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs.engines.subclasses;
 
-public {
+public { // Modules
   import uim.io.classes.outputs.engines.subclasses.file;
   import uim.io.classes.outputs.engines.subclasses.html;
   import uim.io.classes.outputs.engines.subclasses.memory;
@@ -14,5 +14,5 @@ public {
   import uim.io.classes.outputs.engines.subclasses.text;
 }
 
-public { // Additional packages
+public { // Packages
 }

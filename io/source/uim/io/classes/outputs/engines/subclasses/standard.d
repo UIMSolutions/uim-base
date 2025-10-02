@@ -102,7 +102,14 @@ class DStandardOutputEngine : DOutputEngine {
   }
   // #endregion write
 }
+mixin(OutputEngineClass!("Standard"));
 
+unittest {
+  auto engine = new DStandardOutputEngine();
+  assert(engine !is null, "DStandardOutputEngine is null");
+
+  assert(testOutputEngine(engine, "StandardOutputEngine"), "Test DStandardOutputEngine failed");  
+}
 mixin(OutputEngineCalls!("Standard"));
 
 unittest {
