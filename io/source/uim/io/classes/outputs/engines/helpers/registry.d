@@ -10,9 +10,15 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DOutputEngineRegistry : DRegistry!DOutputEngine {
+class DOutputEngineRegistry : DObjectRegistry!IOutputEngine {
+  mixin(RegistryThis!"OutputEngine");
 }
 
-auto outputEngineRegistry() {
-  return DOutputEngineRegistry.instance;
+mixin(RegistryCalls!"OutputEngine");
+
+unittest {
+  auto registry = new DOutputEngineRegistry();
+  assert(registry !is null, "OutputEngineRegistry is null!");
+
+  assert(testRegistry(registry, "OutputEngine"), "OutputEngineRegistry test failed!");
 }

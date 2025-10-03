@@ -8,11 +8,18 @@ module uim.io.classes.inputs.engines.registry;
 mixin(Version!"test_uim_io");
 
 import uim.io;
+
 @safe:
 
-class DInputEngineRegistry : DRegistry!DInputEngine {
+class DInputEngineRegistry : DObjectRegistry!IInputEngine {
+  mixin(RegistryThis!"InputEngine");
 }
 
-auto InputEngineRegistry() {
-  return DInputEngineRegistry.instance;
+mixin(RegistryCalls!"InputEngine");
+
+unittest {
+  auto registry = new DInputEngineRegistry();
+  assert(registry !is null, "InputEngineRegistry is null!");
+
+  assert(testRegistry(registry, "InputEngine"), "InputEngineRegistry test failed!");
 }
