@@ -97,6 +97,22 @@ template ImportPhobos(string[] libNames = null) {
   const char[] ImportPhobos = importPhobos(libNames);
 }
 
+auto importHelpers(string rootName) {
+  return "
+    public {
+      import "~rootName~".helpers.collection; 
+      import "~rootName~".helpers.factory; 
+      import "~rootName~".helpers.functions; 
+      import "~rootName~".helpers.mixins; 
+      import "~rootName~".helpers.registry; 
+    }";
+}
+
+template ImportHelpers(string rootName) {
+  const char[] ImportHelpers = importHelpers(rootName);
+}
+
+
 string imports(string rootNamespace, string[] additionalNames) {
   import std.algorithm;
   import std.array;
