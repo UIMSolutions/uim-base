@@ -10,13 +10,9 @@ public { // Base module
 }
 
 public { // Additional modules
-  import uim.oop.commands.collection;
   import uim.oop.commands.enumeration;
-  import uim.oop.commands.factory;
   import uim.oop.commands.helpers;
   import uim.oop.commands.interfaces;
-  import uim.oop.commands.mixins;
-  import uim.oop.commands.registry;
 }
 
 public { // Additional packages

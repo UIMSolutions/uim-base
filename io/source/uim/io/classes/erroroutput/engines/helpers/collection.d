@@ -5,23 +5,20 @@
 *****************************************************************************************************************/
 module uim.io.classes.error.engines.helpers.collection;
 
-import uim.io;
-@safe:
-
 mixin(Version!"test_uim_io");
 
 import uim.io;
+
 @safe:
 
-
 class DErrorOutputEngineCollection : DCollection!DErrorOutputEngine {
-    mixin(CollectionThis!("ErrorOutputEngine"));
+  mixin(CollectionThis!("ErrorOutputEngine"));
 }
 mixin(CollectionCalls!("ErrorOutputEngine"));
 
 unittest {
-    auto collection = ErrorOutputEngineCollection();
-    assert(collection !is null);
+  auto collection = ErrorOutputEngineCollection();
+  assert(collection !is null);
 
-    assert(testCollection(collection, "ErrorOutputEngine"), "ErrorOutputEngineCollection failed");  
+  assert(testCollection(collection, "ErrorOutputEngine"), "ErrorOutputEngineCollection failed");
 }

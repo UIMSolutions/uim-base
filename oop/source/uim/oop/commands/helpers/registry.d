@@ -15,3 +15,12 @@ class DCommandRegistry : DRegistry!DCommand {
 }
 
 mixin(RegistryCalls!("Command"));
+
+unittest {
+  auto registry = new DCommandRegistry();
+  assert(registry is null, "Registry is null");
+  assert(registry.count == 0, "Registry count is zero");
+  assert(registry.isEmpty, "Registry is empty");
+
+  assert(testRegistry(new DCommandRegistry, "CommandRegistry"), "Test registry failed");
+}
