@@ -3,20 +3,23 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.io.classes.erroroutputs;
+module uim.io.classes.erroroutputs.helpers.registry;
 
-public {
-    import uim.io.classes.erroroutputs.output;
-    import uim.io.classes.erroroutputs.interfaces;
+import uim.io;
+
+mixin(Version!"test_uim_io");
+@safe:
+
+class DErrorOutputRegistry : DObjectRegistry!IErrrorOutput {
+  mixin(RegistryThis!"ErrorOutput");
 }
 
-public { // Subclasses
-    import uim.io.classes.erroroutputs.engines;
-    import uim.io.classes.erroroutputs.commands;
-    import uim.io.classes.erroroutputs.errors;
-    import uim.io.classes.erroroutputs.helpers;
-    import uim.io.classes.erroroutputs.tests;
+mixin(RegistryCalls!"ErrorOutput");
+
+unittest {
+  auto registry = new DErrorOutputRegistry();
+  assert(registry !is null, "ErrorOutputRegistry is null!");
+
+  assert(testRegistry(registry, "ErrorOutput"), "ErrorOutputRegistry test failed!");
 }
 
-public { // Additional packages
-}

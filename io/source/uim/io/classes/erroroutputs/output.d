@@ -10,7 +10,7 @@ import uim.io;
 mixin(Version!"test_uim_io");
 @safe:
 
-class DErrorOutput : DOutput {
+class DErrorOutput : DOutput, IErrorOutput {
   static private DErrorOutput _output;
   static DErrorOutput output() {
     if (_output is null) {

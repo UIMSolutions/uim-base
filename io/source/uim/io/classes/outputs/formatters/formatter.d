@@ -5,10 +5,9 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs.formatters.formatter;
 
-mixin(Version!"test_uim_io");
-
 import uim.io;
 
+mixin(Version!"test_uim_io");
 @safe:
 
 class DOutputFormatter : UIMObject, IOutputFormatter {
