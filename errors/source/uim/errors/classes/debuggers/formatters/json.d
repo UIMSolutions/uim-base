@@ -5,9 +5,8 @@
 *****************************************************************************************************************/
 module uim.errors.classes.debuggers.formatters.json;
 
-mixin(Version!("test_uim_errors"));
-
 import uim.errors;
+mixin(Version!("test_uim_errors"));
 
 @safe:
 
