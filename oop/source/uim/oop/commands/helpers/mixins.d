@@ -3,13 +3,13 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.oop.commands.mixins;
-
-mixin(Version!"test_uim_oop");
+module uim.oop.commands.helpers.mixins;
 
 import uim.oop;
 
+mixin(Version!"test_uim_oop");
 @safe:
+
 string commandThis(string name = null) {
     string fullName = name ~ "Command";
     return objThis(fullName);

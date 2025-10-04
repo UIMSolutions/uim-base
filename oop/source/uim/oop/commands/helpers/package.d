@@ -6,4 +6,9 @@
 module uim.oop.commands.helpers;
 
 import uim.oop.commands;
-mixin(ImportHelpers!"uim.oop.commands");
+// mixin(ImportHelpers!"uim.oop.commands");
+public import uim.oop.commands.helpers.collection; 
+public import uim.oop.commands.helpers.factory; 
+public import uim.oop.commands.helpers.functions; 
+public import uim.oop.commands.helpers.mixins; 
+public import uim.oop.commands.helpers.registry; 

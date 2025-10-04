@@ -6,10 +6,10 @@
 module uim.oop.collections.mixins;
 
 import uim.oop;
+
 mixin(Version!("test_uim_oop"));
 @safe:
 
-@safe:
 string collectionThis(string name = null) {
     string fullName = name ~ "Collection";
     return objThis(fullName);

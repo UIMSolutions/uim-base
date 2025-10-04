@@ -5,10 +5,9 @@
 *****************************************************************************************************************/
 module uim.oop.commands.helpers.factory;
 
-mixin(Version!"test_uim_oop");
-
 import uim.oop;
 
+mixin(Version!"test_uim_oop");
 @safe:
 
 class DCommandFactory : DFactory!ICommand {
