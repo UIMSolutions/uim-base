@@ -6,6 +6,7 @@
 module uim.oop.factories.mixins;
 
 import uim.oop;
+
 mixin(Version!("test_uim_oop"));
 @safe:
 

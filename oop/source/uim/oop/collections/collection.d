@@ -8,7 +8,6 @@ module uim.oop.collections.collection;
 mixin(Version!"test_uim_oop");
 
 import uim.oop;
-
 @safe:
 
 class DCollection(T) : UIMObject, ICollection!T {
