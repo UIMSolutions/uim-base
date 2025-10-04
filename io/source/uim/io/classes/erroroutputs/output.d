@@ -3,15 +3,33 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.io.classes;
+module uim.io.classes.error.output;
 
+import uim.io;
 
-public {
-  import uim.io.classes.consoles;
-  import uim.io.classes.erroroutputs;
-  import uim.io.classes.inputs;
-  import uim.io.classes.outputs;
+mixin(Version!"test_uim_io");
+@safe:
+
+class DErrorOutput : DOutput {
+  static private DErrorOutput _output;
+  static DErrorOutput output() {
+    if (_output is null) {
+      _output = new DErrorOutput();
+    }
+    return _output;
+  }
+
+  this() {
+    name = "ErrorOutput";
+  }
+
+  IErrorOutputEngine engine() {
+    return new DErrorOutputEngine();
+  }
+
+  
 }
 
-public { // Additional packages
+auto ErrorOutput() {
+  return Derroroutputs.output();
 }
