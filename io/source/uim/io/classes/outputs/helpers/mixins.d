@@ -5,9 +5,9 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs.helpers.mixins;
 
-import uim.io;mixin(Version!"test_uim_io");
-
 import uim.io;
+
+mixin(Version!"test_uim_io");
 @safe:
 
 string outputThis(string name = null) {

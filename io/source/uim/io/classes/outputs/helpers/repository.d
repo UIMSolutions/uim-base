@@ -11,8 +11,8 @@ import uim.io;
 
 @safe:
 
-class DOutputRepository : DRepository!IOutput {
-  mixin(RepositoryThis!("Output"));
+class DOutputRegistry : DRegistry!IOutput {
+  mixin(RegistryThis!("Output"));
 }
 
-mixin(RepositoryCalls!("Output"));
+mixin(RegistryCalls!("Output"));

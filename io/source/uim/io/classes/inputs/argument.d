@@ -6,11 +6,8 @@
 module uim.io.classes.inputs.argument;
 
 import uim.io;
-@safe:
 
 mixin(Version!"test_uim_io");
-
-import uim.io;
 @safe:
 
 

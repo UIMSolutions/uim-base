@@ -1,4 +1,4 @@
 module uim.oop.validators.helpers;
 
-import uim.opp;
+import uim.oop;
 mixin(ImportHelpers!"uim.oop.validators");
