@@ -15,7 +15,7 @@ class DRestOutputEngine : DOutputEngine {
   mixin(OutputEngineThis!("Rest"));
 }
 
-mixin(OutputEngineClass!("Rest"));
+mixin(OutputEngineCalls!("Rest"));
 
 unittest {
   auto engine = new DRestOutputEngine();

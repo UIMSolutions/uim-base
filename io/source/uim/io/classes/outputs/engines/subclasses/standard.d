@@ -102,7 +102,7 @@ class DStandardOutputEngine : DOutputEngine {
   }
   // #endregion write
 }
-mixin(OutputEngineClass!("Standard"));
+mixin(OutputEngineCalls!("Standard"));
 
 unittest {
   auto engine = new DStandardOutputEngine();

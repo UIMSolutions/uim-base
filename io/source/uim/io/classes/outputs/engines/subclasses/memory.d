@@ -42,7 +42,7 @@ class DMemoryOutputEngine : DOutputEngine {
   // #endregion writeln
 }
 
-mixin(OutputEngineClass!("Memory"));
+mixin(OutputEngineCalls!("Memory"));
 
 unittest {
   auto engine = new DMemoryOutputEngine();

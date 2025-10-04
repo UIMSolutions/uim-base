@@ -11,7 +11,7 @@ import uim.io;
 
 @safe:
 
-class DTextFileOutput : DFileEngine {
+class DTextFileOutput : DFileOutputEngine {
   mixin(OutputEngineThis!("TextFile"));
 
   override bool initialize(Json[string] initData = null) {

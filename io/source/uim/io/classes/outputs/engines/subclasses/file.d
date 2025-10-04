@@ -143,7 +143,7 @@ class DFileOutputEngine : DOutputEngine {
      * Outputs a single or multiple messages to stdout or stderr. If no parameters
      * are passed, outputs just a newline.
      */
-  override IOutputEngine write(string message, uint numberOfLines = 1) {
+  /* override */  IOutputEngine write(string message, uint numberOfLines = 1) {
     filename.append(message~ LF.repeatTxt(numberOfLines));
     return this;
   }

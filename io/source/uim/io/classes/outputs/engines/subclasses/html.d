@@ -45,11 +45,11 @@ class DHtmlFileOutputEngine : DFileOutputEngine {
   // #endregion writeln
 }
 
-mixin(OutputEngineClass!("HtmlFile"));
+mixin(OutputEngineCalls!("HtmlFile"));
 
 unittest {
   auto engine = new DHtmlFileOutputEngine();
-  assert(engine !is null, "DHtmlFileOutputEngine is null");
+  assert(engine !is null, "Creation of DHtmlFileOutputEngine failed");
 
-  assert(testOutputEngine(engine, "HtmlFileOutputEngine"), "Test DHtmlFileOutputEngine failed");  
+  assert(testOutputEngine(engine, "HtmlFileOutputEngine"), "Test for DHtmlFileOutputEngine failed");
 }
