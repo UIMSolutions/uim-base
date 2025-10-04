@@ -6,6 +6,7 @@
 module uim.vibe.helpers.json;
 
 import uim.vibe;
+
 mixin(Version!("test_uim_vibe"));
 @safe:
 

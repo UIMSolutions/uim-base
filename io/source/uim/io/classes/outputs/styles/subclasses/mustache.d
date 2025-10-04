@@ -5,10 +5,10 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs.styles.mustache;
 
-mixin(Version!"test_uim_io");
 
 import uim.io;
 
+mixin(Version!"test_uim_io");
 @safe:
 
 class DOutputStyle : UIMObject, IOutputStyle {

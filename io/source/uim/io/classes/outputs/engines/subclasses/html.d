@@ -11,7 +11,7 @@ mixin(Version!"test_uim_io");
 @safe:
 
 class DHtmlFileOutputEngine : DFileOutputEngine {
-  mixin(OutputEngineThis!("HtmlFile"));
+  mixin(OutputEngineThis!"HtmlFile");
 
   override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
@@ -45,7 +45,7 @@ class DHtmlFileOutputEngine : DFileOutputEngine {
   // #endregion writeln
 }
 
-mixin(OutputEngineCalls!("HtmlFile"));
+mixin(OutputEngineCalls!"HtmlFile");
 
 unittest {
   auto engine = new DHtmlFileOutputEngine();

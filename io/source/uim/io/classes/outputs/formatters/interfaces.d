@@ -21,13 +21,12 @@ interface IOutputFormatter : IObject {
 
     // #region style
     // Gets the current styles offered
-    Json style(string name);
+    IOutputStyle style(string name);
     // Gets all the style definitions.
-    Json[string] styles();
+    IOutputStyle[string] styles();
 
     // Set style
-    IOutputFormatter style(string style, STRINGAA definition);
-    IOutputFormatter style(string style, Json definition);
+    IOutputFormatter style(string style, IOutputStyle definition);
     IOutputFormatter removeStyle(string name);
     // #endregion style
 

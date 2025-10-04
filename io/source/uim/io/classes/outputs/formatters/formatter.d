@@ -141,4 +141,3 @@ class DOutputFormatter : UIMObject, IOutputFormatter {
   // #endregion outputType
 
 }
-
