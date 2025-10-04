@@ -5,9 +5,8 @@
 *****************************************************************************************************************/
 module uim.vibe.datatypes.json.scalar;
 
-mixin(Version!("test_uim_vibe"));
-
 import uim.vibe;
+mixin(Version!("test_uim_vibe"));
 
 @safe:
 

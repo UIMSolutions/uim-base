@@ -5,9 +5,8 @@
 *****************************************************************************************************************/
 module uim.vibe.helpers.json;
 
-mixin(Version!("test_uim_vibe"));
-
 import uim.vibe;
+mixin(Version!("test_uim_vibe"));
 @safe:
 
 string typeName(Json json) {
