@@ -5,3 +5,7 @@
 *****************************************************************************************************************/
 module uim.core.convert.boolean;
 
+import uim.core;
+
+mixin(Version!("test_uim_core"));
+@safe:

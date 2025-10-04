@@ -6,69 +6,70 @@
 module uim.core.helpers.classes;
 
 import uim.core;
+
 mixin(Version!("test_uim_core"));
 @safe:
 
 string baseName(ClassInfo classinfo) {
-    string qualName = classinfo.name;
-    size_t dotIndex = qualName.retro.countUntil('.');
+  string qualName = classinfo.name;
+  size_t dotIndex = qualName.retro.countUntil('.');
 
-    return dotIndex < 0
-        ? qualName : qualName[($ - dotIndex) .. $];
+  return dotIndex < 0
+    ? qualName : qualName[($ - dotIndex) .. $];
 }
 
 string classFullname(Object instance) {
-    return instance is null
-        ? "null" : instance.classinfo.name;
+  return instance is null
+    ? "null" : instance.classinfo.name;
 }
 
 string classname(Object instance) {
-    return instance is null
-        ? null : instance.classinfo.baseName;
+  return instance is null
+    ? null : instance.classinfo.baseName;
 }
 
 unittest {
-    interface ITest {
-        O create(this O)();
-    };
+  interface ITest {
+    O create(this O)();
+  };
 
-    class Test : ITest {
-        O create(this O)() {
-            return cast(O) this.classinfo.create;
-        }
+  class Test : ITest {
+    O create(this O)() {
+      return cast(O)this.classinfo.create;
     }
+  }
 
-    auto test = new Test;
-    writeln("test.classname", test.classname);
-    assert(test.classname == "Test");
-    assert(test.stringof == "test");
+  auto test = new Test;
+  writeln("test.classname", test.classname);
+  assert(test.classname == "Test");
+  assert(test.stringof == "test");
 
-    class Test1 : Test {
+  class Test1 : Test {
 
-    }
+  }
 
-    class Test2 : Test1 {
-    }
+  class Test2 : Test1 {
+  }
 
-    assert((new Test1).classname == "Test1");
-    assert((new Test2).classname == "Test2");
+  assert((new Test1).classname == "Test1");
+  assert((new Test2).classname == "Test2");
 
-    writeln((new Test2).classinfo);
-    writeln("Base:", (new Test2).classinfo.base);
-    writeln("Name:", (new Test2).classinfo.name);
-    writeln("classname:", (new Test2).classname);
-    writeln("fullclassname:", (new Test2).classFullname);
-    writeln("Interfaces:", (new Test).classinfo.interfaces);
+  writeln((new Test2).classinfo);
+  writeln("Base:", (new Test2).classinfo.base);
+  writeln("Name:", (new Test2).classinfo.name);
+  writeln("classname:", (new Test2).classname);
+  writeln("fullclassname:", (new Test2).classFullname);
+  writeln("Interfaces:", (new Test).classinfo.interfaces);
 
-    Object result;
-    Test2 function(string) fn;
-    string name = "uim.core.helpers.classes.tt";
-    () @trusted { result = Object.factory(name); }();
-    debug writeln(result.classname);
-    /* debug writeln(x("uim.core.helpers.classes.tt"));*/
-    debug writeln((new Test2).classinfo.create);
-    auto cl = (new Test2).classinfo;
-    debug writeln(cl.create);
+  Object result;
+  Test2 function(string) fn;
+  string name = "uim.core.helpers.classes.tt";
+  () @trusted { result = Object.factory(name); }();
+  debug writeln(result.classname);
+  /* debug writeln(x("uim.core.helpers.classes.tt"));*/
+  debug writeln((new Test2).classinfo.create);
+  auto cl = (new Test2).classinfo;
+  debug writeln(cl.create);
 
-    debug writeln((new Test2).create);
+  debug writeln((new Test2).create);
 }

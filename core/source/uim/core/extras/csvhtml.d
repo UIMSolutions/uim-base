@@ -7,7 +7,9 @@ module uim.core.extras.csvhtml;
 
 import uim.core;
 
+mixin(Version!("test_uim_core"));
 @safe:
+
 void convertCSVtoHTML() {
   immutable input =
       "Character,Speech\n" ~

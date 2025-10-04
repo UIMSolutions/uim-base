@@ -6,6 +6,6 @@
 module uim.core.convert.double_;
 
 import uim.core;
-mixin(Version!("test_uim_core"));
 
+mixin(Version!("test_uim_core"));
 @safe:

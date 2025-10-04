@@ -6,6 +6,6 @@
 module uim.core.convert.long_;
 
 import uim.core;
-mixin(Version!("test_uim_core"));
 
+mixin(Version!("test_uim_core"));
 @safe:

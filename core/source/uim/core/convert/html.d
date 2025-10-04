@@ -6,8 +6,8 @@
 module uim.core.convert.html;
 
 import uim.core;
-mixin(Version!("test_uim_core"));
 
+mixin(Version!("test_uim_core"));
 @safe:
 
 // #region attributes
