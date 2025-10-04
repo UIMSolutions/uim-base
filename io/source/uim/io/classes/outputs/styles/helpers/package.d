@@ -6,4 +6,4 @@
 module uim.io.classes.outputs.styles.helpers;
 
 import uim.io;
-mixin(ImportHelpers!"uim.io.classes.ounputs.styles");
+mixin(ImportHelpers!"uim.io.classes.outputs.styles");

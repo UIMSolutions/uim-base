@@ -6,12 +6,9 @@
 module uim.io.exceptions;
 
 public {
-    import uim.io.exceptions.exception;
-    import uim.io.exceptions.missingconsoleinput;
-    import uim.io.exceptions.missinghelper;
-    import uim.io.exceptions.missingoption;
-    import uim.io.exceptions.stop;
-}
-
-public { // Additional packages
+  import uim.io.exceptions.exception;
+  import uim.io.exceptions.missingconsoleinput;
+  import uim.io.exceptions.missinghelper;
+  import uim.io.exceptions.missingoption;
+  import uim.io.exceptions.stop;
 }

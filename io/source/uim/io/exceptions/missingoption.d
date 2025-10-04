@@ -5,9 +5,9 @@
 *****************************************************************************************************************/
 module uim.io.exceptions.missingoption;
 
-mixin(Version!"test_uim_io");
-
 import uim.io;
+
+mixin(Version!"test_uim_io");
 @safe:
 
 // Exception raised with suggestions

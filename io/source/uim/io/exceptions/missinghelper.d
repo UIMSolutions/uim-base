@@ -5,9 +5,9 @@
 *****************************************************************************************************************/
 module uim.io.exceptions.missinghelper;
 
-mixin(Version!"test_uim_io");
-
 import uim.io;
+
+mixin(Version!"test_uim_io");
 @safe:
 
 // Used when a Helper cannot be found.
