@@ -3,22 +3,21 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.io.classes.erroroutputs.engines;
+module uim.io.classes.erroroutputs.engines.subclasses.file;
 
 import uim.io;
 
 mixin(Version!"test_uim_io");
 @safe:
 
-public { // Modules
-  import uim.io.classes.erroroutputs.engines.engine;
-  import uim.io.classes.erroroutputs.engines.interfaces;
+class DFileErrorOutputEngine :  DErrorOutputEngine {
+  mixin(ErrorOutputEngineThis!("File"));
 }
+mixin(ErrorOutputEngineCalls!("File"));
 
-public { // Packages
-  import uim.io.classes.erroroutputs.engines.errors;
-  import uim.io.classes.erroroutputs.engines.exceptions;
-  import uim.io.classes.erroroutputs.engines.helpers;
-  import uim.io.classes.erroroutputs.engines.subclasses;
-  import uim.io.classes.erroroutputs.engines.tests;
+unittest {
+  auto output = FileErrorOutput();
+  assert(testErrorOutput(output));
+
+  assert(output.name == "FileErrorOutput");
 }

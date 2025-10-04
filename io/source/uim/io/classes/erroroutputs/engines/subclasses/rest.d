@@ -3,21 +3,21 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.io.classes.erroroutputs.engines.file;
+module uim.io.classes.erroroutputs.engines.subclasses.rest;
 
 import uim.io;
 
 mixin(Version!"test_uim_io");
 @safe:
 
-class DFileErrorOutputEngine :  DErrorOutputEngine {
-  mixin(ErrorOutputEngineThis!("File"));
+class DRestErrorOutput:  DErrorOutputEngine {
+  mixin(ErrorOutputEngineThis!("Rest"));
 }
-mixin(ErrorOutputEngineCalls!("File"));
+mixin(ErrorOutputEngineCalls!("Rest"));
 
 unittest {
-  auto output = FileErrorOutput();
+  auto output = RestErrorOutput();   
   assert(testErrorOutput(output));
 
-  assert(output.name == "FileErrorOutput");
+  assert(output.name == "RestErrorOutput");
 }
