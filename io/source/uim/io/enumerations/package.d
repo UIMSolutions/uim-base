@@ -8,6 +8,3 @@ module uim.io.enumerations;
 public {
     import uim.io.enumerations.output;
 }
-
-public { // Additional packages
-}

@@ -5,9 +5,9 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs.output;
 
-import uim.io;
 mixin(Version!"test_uim_io");
 
+import uim.io;
 @safe:
 
 class DOutput : UIMObject, IOutput {

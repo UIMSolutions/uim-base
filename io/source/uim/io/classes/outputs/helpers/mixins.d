@@ -5,9 +5,11 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs.helpers.mixins;
 
-import uim.io;
+import uim.io;mixin(Version!"test_uim_io");
 
+import uim.io;
 @safe:
+
 string outputThis(string name = null) {
     string fullName = name ~ "Output";
     return objThis(fullName);

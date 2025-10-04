@@ -7,6 +7,9 @@ module uim.io.enumerations.output;
 
 mixin(Version!"test_uim_io");
 
+import uim.io;
+@safe:
+// Enumeration for output levels.
 enum OutputLevels : int {
   // Output constant for verbose shells.
   VERBOSE = 2,

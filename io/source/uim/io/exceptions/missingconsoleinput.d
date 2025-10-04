@@ -6,14 +6,9 @@
 module uim.io.exceptions.missingconsoleinput;
 
 import uim.io;
-@safe:
 
 mixin(Version!"test_uim_io");
-
-import uim.io;
 @safe:
-
-
 
 // Exception class used to indicate missing console input.
 class DMissingInputConsoleException : DConsoleException {

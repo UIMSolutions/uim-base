@@ -8,7 +8,6 @@ module uim.io.commands.command;
 mixin(Version!"test_uim_io");
 
 import uim.io;
-
 @safe:
 
 class DOutputEngineCommand : DCommand {

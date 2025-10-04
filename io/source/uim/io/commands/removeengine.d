@@ -5,3 +5,7 @@
 *****************************************************************************************************************/
 module uim.io.commands.removeengine;
 
+mixin(Version!"test_uim_io");
+
+import uim.io;
+@safe:

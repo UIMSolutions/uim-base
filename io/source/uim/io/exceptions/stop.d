@@ -10,8 +10,6 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-
-
 // Exception class for halting errors in console tasks
 class DStopException : DConsoleException {
   // mixin(ExceptionThis!("Stop"));

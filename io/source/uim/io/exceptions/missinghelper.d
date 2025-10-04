@@ -5,14 +5,10 @@
 *****************************************************************************************************************/
 module uim.io.exceptions.missinghelper;
 
-import uim.io;
-@safe:
-
 mixin(Version!"test_uim_io");
 
 import uim.io;
 @safe:
-
 
 // Used when a Helper cannot be found.
 class DMissingHelperException : DConsoleException {

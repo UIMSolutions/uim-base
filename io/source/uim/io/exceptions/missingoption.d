@@ -5,14 +5,10 @@
 *****************************************************************************************************************/
 module uim.io.exceptions.missingoption;
 
-import uim.io;
-@safe:
-
 mixin(Version!"test_uim_io");
 
 import uim.io;
 @safe:
-
 
 // Exception raised with suggestions
 class DMissingOptionException : DConsoleException {

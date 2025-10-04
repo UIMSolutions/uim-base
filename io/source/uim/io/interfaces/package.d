@@ -13,10 +13,6 @@ public {
   import uim.io.interfaces.console;
 
   // import uim.io.interfaces.erroroutput;
-  import uim.io.interfaces.input;
   import uim.io.interfaces.optionparser;
   // import uim.io.interfaces.output;
-}
-
-public { // Additional packages
 }

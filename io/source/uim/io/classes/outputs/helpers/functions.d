@@ -5,3 +5,7 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs.helpers.functions;
 
+mixin(Version!"test_uim_io");
+
+import uim.io;
+@safe:

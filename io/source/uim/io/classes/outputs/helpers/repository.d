@@ -8,10 +8,11 @@ module uim.io.classes.outputs.helpers.repository;
 mixin(Version!"test_uim_io");
 
 import uim.io;
+
 @safe:
 
 class DOutputRepository : DRepository!IOutput {
+  mixin(RepositoryThis!("Output"));
 }
 
 mixin(RepositoryCalls!("Output"));
-
