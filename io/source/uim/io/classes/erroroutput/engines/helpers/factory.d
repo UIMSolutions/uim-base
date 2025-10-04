@@ -5,10 +5,9 @@
 *****************************************************************************************************************/
 module uim.io.classes.error.engines.helpers.factory;
 
-mixin(Version!"test_uim_io");
-
 import uim.io;
 
+mixin(Version!"test_uim_io");
 @safe:
 
 class DErrorOutputEngineFactory : DFactory!DErrorOutput {

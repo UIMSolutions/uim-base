@@ -11,7 +11,13 @@ import uim.io;
 @safe:
 
 class DOutputFormatterFactory : DFactory!IOutputFormatter {
+    mixin(FactoryThis!("OutputFormatter"));
 }
-
 mixin(FactoryCalls!("OutputFormatter"));
 
+unittest {
+  auto factory = new DOutputFormatterFactory();
+  assert(factory !is null);
+
+  testFactory(factory, "OutputFormatter");
+}

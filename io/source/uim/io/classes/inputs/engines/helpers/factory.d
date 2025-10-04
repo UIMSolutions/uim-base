@@ -5,12 +5,19 @@
 *****************************************************************************************************************/
 module uim.io.classes.inputs.engines.factory;
 
-mixin(Version!"test_uim_io");
-
 import uim.io;
+
+mixin(Version!"test_uim_io");
 @safe:
 
-
-class DInputFactory : DFactory!IInput{}
-
+class DInputFactory : DFactory!IInput {
+    mixin(FactoryThis!("Input"));
+}
 mixin(FactoryCalls!("Input"));
+
+unittest {
+  auto factory = new DInputFactory();
+  assert(factory !is null);
+
+  testFactory(factory, "Input");
+}

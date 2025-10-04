@@ -5,19 +5,19 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs.styles.helpers.factory;
 
-mixin(Version!"test_uim_io");
-
 import uim.io;
 
+mixin(Version!"test_uim_io");
 @safe:
 
-class DOutputStyleFactory : DFactory!DOutputStyle {
+class DOutputStyleFactory : DFactory!IOutputStyle {
+    mixin(FactoryThis!("OutputStyle"));
 }
-
-auto OutputStyleFactory() {
-  return DOutputStyleFactory.instance;
-}
+mixin(FactoryCalls!("OutputStyle"));
 
 unittest {
-  assert(OutputStyleFactory);
+  auto factory = new DOutputStyleFactory();
+  assert(factory !is null, "OutputStyleFactory is null");
+
+  assert(testFactory(factory, "OutputStyle"), "Test OutputStyleFactory failed");
 }

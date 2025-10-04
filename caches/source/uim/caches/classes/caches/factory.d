@@ -5,14 +5,20 @@
 *****************************************************************************************************************/
 module uim.caches.classes.caches.factory;
 
-mixin(Version!"test_uim_caches");
-
 import uim.caches;
 
+mixin(Version!"test_uim_caches");
 @safe:
 
-class DCacheFactory : DFactory!DCache {
+class DCacheFactory : DFactory!ICache {
   mixin(FactoryThis!("Cache"));
 }
 
 mixin(FactoryCalls!("Cache"));
+
+unittest {
+  auto factory = new DCacheFactory();
+  assert(factory !is null);
+
+  testFactory(factory, "Cache");
+}

@@ -13,4 +13,13 @@ import uim.oop;
 class DValidatorFactory : DFactory!IValidator {
     mixin(FactoryThis!("Validator"));
 }
-auto ValidatorFactory() { return DValidatorFactory.instance; }
+mixin(FactoryCalls!("Validator"));
+
+unittest {
+  auto factory = new DValidatorFactory();
+  assert(factory !is null, "ValidatorFactory is null");
+
+  assert(testFactory(factory, "Validator"), "Test ValidatorFactory failed");
+}
+
+
