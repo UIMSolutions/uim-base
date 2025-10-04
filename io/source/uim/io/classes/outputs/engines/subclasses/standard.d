@@ -96,7 +96,7 @@ class DStandardOutputEngine : DOutputEngine {
   }
 
   // #region write
-  override IOutputEngine write(string message, uint numberOfLines = 1) {
+  /* override */ IOutputEngine write(string message, uint numberOfLines = 1) {
     std.stdio.write(styleText(message) ~ LF.repeatTxt(numberOfLines));
     return this;
   }

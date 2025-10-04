@@ -23,7 +23,7 @@ class DOutputStyle : UIMObject, IOutputStyle {
     super(name, initData);
   }
 
-  bool initialize(Json[string] initData = null) {
+  override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }

@@ -5,14 +5,13 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs.engines.helpers.factory;
 
-mixin(Version!"test_uim_io");
-
 import uim.io;
+
+mixin(Version!"test_uim_io");
 @safe:
 
-
-class DOutputFactory : DFactory!DOutput{}
-
-auto OutputFormatterFactoryOutputFactory() {
-    return DOutputFactory.instance;
+class DOutputFactory : DFactory!IOutput {
+  mixin(FactoryThis!"Output");
 }
+
+mixin(FactoryCalls!"Output");

@@ -5,13 +5,13 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs.engines.subclasses.memory;
 
-mixin(Version!"test_uim_io");
-
 import uim.io;
+
+mixin(Version!"test_uim_io");
 @safe:
 
 class DMemoryOutputEngine : DOutputEngine {
-  mixin(OutputEngineThis!("Memory"));
+  mixin(OutputEngineThis!"Memory");
 
   override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
@@ -42,7 +42,7 @@ class DMemoryOutputEngine : DOutputEngine {
   // #endregion writeln
 }
 
-mixin(OutputEngineCalls!("Memory"));
+mixin(OutputEngineCalls!"Memory");
 
 unittest {
   auto engine = new DMemoryOutputEngine();

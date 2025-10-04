@@ -43,7 +43,7 @@ class DTextFileOutput : DFileOutputEngine {
   // #endregion writeln
 }
 
-mixin(OutputEngineClass!("TextFile"));
+mixin(OutputEngineCalls!("TextFile"));
 
 unittest {
   auto engine = new DTextFileOutputEngine();

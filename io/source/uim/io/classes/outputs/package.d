@@ -17,6 +17,7 @@ public { // Packages
   import uim.io.classes.outputs.errors;
   import uim.io.classes.outputs.exceptions;
   import uim.io.classes.outputs.formatters;
+  import uim.io.classes.outputs.helpers;
   import uim.io.classes.outputs.styles;
   import uim.io.classes.outputs.tests;
 }
