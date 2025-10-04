@@ -10,14 +10,15 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DOutputFormatterFactory : DFactory!IOutputFormatter {
-    mixin(FactoryThis!("OutputFormatter"));
+class DInputFactory : DFactory!IInput {
+    mixin(FactoryThis!("Input"));
 }
-mixin(FactoryCalls!("OutputFormatter"));
+mixin(FactoryCalls!("Input"));
 
 unittest {
-  auto factory = new DOutputFormatterFactory();
-  assert(factory !is null);
+  auto factory = new DInputFactory();
+  assert(factory !is null, "Creation of InputFactory failed");
 
-  testFactory(factory, "OutputFormatter");
+  assert(testFactory(factory, "Input"), "Test of InputFactory failed");
 }
+

@@ -10,6 +10,3 @@ public {
   import uim.io.classes.outputs.commands.addengine;
   import uim.io.classes.outputs.commands.removeengine;
 }
-
-public { // Additional packages
-}

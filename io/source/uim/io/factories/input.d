@@ -11,17 +11,5 @@ import uim.io;
 @safe:
 
 
-class DInputFactory : DFactory!DInput{}
-
-auto InputFactory() {
-    return DInputFactory.instance;
-}
-
-unittest {
-    assert(InputFactory);
-    assert(InputFactory.create("standard").name == "StandardInput");
-    assert(InputFactory.create("file").name == "FileInput");
-    assert(InputFactory.create("rest").name == "RestInput");
-}
 
 
