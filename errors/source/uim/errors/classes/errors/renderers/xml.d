@@ -5,9 +5,8 @@
 *****************************************************************************************************************/
 module uim.errors.classes.errors.renderers.xml;
 
-mixin(Version!("test_uim_errors"));
-
 import uim.errors;
+mixin(Version!("test_uim_errors"));
 @safe:
 
 class DXmlErrorRenderer : UIMErrorRenderer { 
