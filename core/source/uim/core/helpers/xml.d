@@ -6,5 +6,6 @@
 module uim.core.helpers.xml;
 
 import uim.core;
+
 mixin(Version!("test_uim_core"));
 @safe:

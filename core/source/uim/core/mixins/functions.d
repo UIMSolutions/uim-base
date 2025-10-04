@@ -6,13 +6,9 @@
 module uim.core.mixins.functions;
 
 import uim.core;
-@safe:
 
-version (test_uim_core) {
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
+mixin(Version!("test_uim_core"));
+@safe:
 
 template OFunction(string fName, string fParameters, string fBody) {
   const char[] TFunction = "

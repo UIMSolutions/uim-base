@@ -6,9 +6,9 @@
 module uim.core.convert.json;
 
 import uim.core;
+
 mixin(Version!("test_uim_core"));
 @safe:
-
 
 string toJSONString(T)(T[string] values, bool sorted = NOTSORTED) {
   string result = "{" ~ MapHelper.sortedKeys(values)
