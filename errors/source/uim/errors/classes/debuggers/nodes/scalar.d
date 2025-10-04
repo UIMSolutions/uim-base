@@ -5,9 +5,8 @@
 *****************************************************************************************************************/
 module uim.errors.classes.debuggers.nodes.scalar;
 
-mixin(Version!("test_uim_errors"));
-
 import uim.errors;
+mixin(Version!("test_uim_errors"));
 @safe:
 
 // Dump node for scalar values.
