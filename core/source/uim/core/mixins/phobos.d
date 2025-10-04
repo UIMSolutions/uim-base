@@ -5,12 +5,10 @@
 *****************************************************************************************************************/
 module uim.core.mixins.phobos;
 
-version (test_uim_core) {
-  unittest {
-    import std.stdio;
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
+import uim.core;
+
+mixin(Version!("test_uim_core"));
+@safe:
 
 auto importPhobos(string[] libNames = null) {
   char[] result;
@@ -100,11 +98,16 @@ template ImportPhobos(string[] libNames = null) {
 auto importHelpers(string rootName) {
   return "
     public {
-      import "~rootName~".helpers.collection; 
-      import "~rootName~".helpers.factory; 
-      import "~rootName~".helpers.functions; 
-      import "~rootName~".helpers.mixins; 
-      import "~rootName~".helpers.registry; 
+      import "
+    ~ rootName ~ ".helpers.collection; 
+      import "
+    ~ rootName ~ ".helpers.factory; 
+      import "
+    ~ rootName ~ ".helpers.functions; 
+      import "
+    ~ rootName ~ ".helpers.mixins; 
+      import "
+    ~ rootName ~ ".helpers.registry; 
     }";
 }
 
@@ -112,11 +115,11 @@ template ImportHelpers(string rootName) {
   const char[] ImportHelpers = importHelpers(rootName);
 }
 
-
 string imports(string rootNamespace, string[] additionalNames) {
   import std.algorithm;
   import std.array;
-  return additionalNames.map!(name => "import "~rootNamespace~"."~name~";").join("\n");
+
+  return additionalNames.map!(name => "import " ~ rootNamespace ~ "." ~ name ~ ";").join("\n");
 }
 
 template Imports(string rootNamespace, string[] additionalNames) {

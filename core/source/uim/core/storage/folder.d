@@ -6,6 +6,7 @@
 module uim.core.storage.folder;
 
 import uim.core;
+mixin(Version!("test_uim_core"));
 
 @safe:
 

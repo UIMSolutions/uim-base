@@ -6,8 +6,8 @@
 module uim.core.containers.map_;
 
 import uim.core;
-mixin(Version!("test_uim_core"));
 
+mixin(Version!("test_uim_core"));
 @safe:
 
 /* // #region renameKey
