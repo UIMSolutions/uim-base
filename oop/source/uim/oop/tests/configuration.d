@@ -8,8 +8,9 @@ module uim.oop.tests.configuration;
 mixin(Version!"test_uim_oop");
 
 import uim.oop;
-@safe:
+@safe:#
 
+// Test function for IConfiguration
 bool testConfiguration(IConfiguration config) {
     writeln("Testing configuration: ", config.name);
 

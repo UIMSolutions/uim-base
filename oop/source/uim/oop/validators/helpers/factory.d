@@ -3,9 +3,23 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.oop.validators.tests;
+module uim.oop.validators.helpers.factory;
 
 mixin(Version!"test_uim_oop");
 
 import uim.oop;
 @safe:
+
+class DValidatorFactory : DFactory!IValidator {
+    mixin(FactoryThis!("Validator"));
+}
+mixin(FactoryCalls!("Validator"));
+
+unittest {
+  auto factory = new DValidatorFactory();
+  assert(factory !is null, "Creation of ValidatorFactory failed");
+
+  assert(testFactory(factory, "Validator"), "Test of ValidatorFactory failed");
+}
+
+
