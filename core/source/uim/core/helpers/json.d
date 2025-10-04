@@ -5,9 +5,8 @@
 *****************************************************************************************************************/
 module uim.core.helpers.json;
 
-mixin(Version!("test_uim_core"));
-
 import uim.core;
+mixin(Version!("test_uim_core"));
 @safe:
 
 string jsonValue(bool value) {
