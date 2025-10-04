@@ -5,9 +5,9 @@
 *****************************************************************************************************************/
 module uim.phobos.convert.convert;
 
+import uim.phobos;
 mixin(Version!("test_uim_phobos"));
 
-import uim.phobos;
 
 @safe:
 

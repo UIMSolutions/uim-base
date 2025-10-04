@@ -5,9 +5,9 @@
 *****************************************************************************************************************/
 module uim.phobos.containers.arrays.array_;
 
+import uim.phobos;
 mixin(Version!("test_uim_phobos"));
 
-import uim.phobos;
 @safe:
 
 // #region check

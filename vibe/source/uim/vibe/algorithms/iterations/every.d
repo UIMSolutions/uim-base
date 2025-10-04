@@ -5,9 +5,8 @@
 *****************************************************************************************************************/
 module uim.vibe.algorithms.iterations.every;
 
-mixin(Version!("test_uim_vibe"));
-
 import uim.vibe;
+mixin(Version!("test_uim_vibe"));
 
 @safe:
 
