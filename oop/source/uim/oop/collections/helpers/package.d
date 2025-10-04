@@ -5,6 +5,5 @@
 *****************************************************************************************************************/
 module uim.oop.collections.helpers;
 
-public { // Modules
-  import uim.oop.collections.helpers.mixins;
-}
+import uim.oop;
+mixin(ImportHelpers!"uim.oop.collections");

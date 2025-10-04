@@ -5,3 +5,6 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs.tests;
 
+public {
+  import uim.io.classes.outputs.tests.test;
+}
