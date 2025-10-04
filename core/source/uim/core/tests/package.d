@@ -5,5 +5,6 @@
 *****************************************************************************************************************/
 module uim.core.tests;
 
-public { // Additional packages
+public {
+    import uim.core.tests.test;
 }

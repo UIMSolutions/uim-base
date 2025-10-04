@@ -5,8 +5,5 @@
 *****************************************************************************************************************/
 module uim.io.classes.inputs.engines.helpers;
 
-public { // Modules
-  import uim.io.classes.inputs.engines.helpers.factory;
-  import uim.io.classes.inputs.engines.helpers.functions;
-  import uim.io.classes.inputs.engines.helpers.repository;
-}
+import uim.io;
+mixin(ImportHelpers!"uim.io.classes.inputs.engines");

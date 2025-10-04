@@ -5,4 +5,5 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs.helpers;
 
+import uim.io;
 mixin(ImportHelpers!"uim.io.classes.outputs");

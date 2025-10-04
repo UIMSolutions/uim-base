@@ -5,11 +5,5 @@
 *****************************************************************************************************************/
 module uim.io.classes.error.engines.helpers;
 
-public { // Main modules
-  import uim.io.classes.error.engines.helpers.collection;
-  import uim.io.classes.error.engines.helpers.factory;
-    import uim.io.classes.error.engines.helpers.registry;
-}
-
-public { // Additional packages
-}
+import uim.io;
+mixin(ImportHelpers!"uim.io.classes.error.engines");

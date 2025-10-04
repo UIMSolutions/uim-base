@@ -5,3 +5,6 @@
 *****************************************************************************************************************/
 module uim.io.classes.inputs.engines.tests;
 
+public {
+  import uim.io.classes.inputs.engines.tests.test;
+}
