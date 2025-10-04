@@ -7,12 +7,7 @@ module uim.io.classes.inputs.input;
 
 import uim.io;
 
-@safe:
-
 mixin(Version!"test_uim_io");
-
-import uim.io;
-
 @safe:
 
 class DInput : UIMObject {
@@ -20,16 +15,16 @@ class DInput : UIMObject {
     super();
   }
 
-  protected DInputEngine[string] _engines;
-  protected DInputEngine[string] engines() {
+  protected IInputEngine[string] _engines;
+  protected IInputEngine[string] engines() {
     if (_engines is null) {
       _engines = new DInputEngine[string];
     }
     return _engines;
   }
 
-  static DInput _input;
-  static DInput input() {
+  static IInput _input;
+  static IInput input() {
     if (_input is null) {
       _input = new DInput;
 

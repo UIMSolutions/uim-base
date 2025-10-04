@@ -114,7 +114,7 @@ class DConsole : UIMObject, IConsole {
   }
 
   // Get/set the current output level.
-  int level(int outputLevel = 0) {
+  int level(OutputLevels outputLevel = OutputLevels.NORMAL) {
     if (outputLevel != 0) {
       _level = outputLevel;
     }
@@ -144,7 +144,7 @@ class DConsole : UIMObject, IConsole {
      * present in most shells. Using Console.QUIET for a message means it will always display.
      * While using Console.VERBOSE means it will only display when verbose output is toggled.
      */
-  int out_(string[] message = null, int newLinesToAppend = 1, int outputLevel = NORMAL) {
+  int out_(string[] message = null, int newLinesToAppend = 1, OutputLevels outputLevel = OutputLevels.NORMAL) {
     if (outputLevel > _level) {
       return 0;
     }

@@ -19,6 +19,7 @@ public { // Packages
   import uim.io.classes.erroroutputs.engines.errors;
   import uim.io.classes.erroroutputs.engines.exceptions;
   import uim.io.classes.erroroutputs.engines.helpers;
+  import uim.io.classes.erroroutputs.engines.helpers.mixins;
   import uim.io.classes.erroroutputs.engines.subclasses;
   import uim.io.classes.erroroutputs.engines.tests;
 }

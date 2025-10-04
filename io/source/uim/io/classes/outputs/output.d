@@ -34,7 +34,7 @@ class DOutput : UIMObject, IOutput {
   protected IOutputEngine[string] _engines;
 
   // Returns the list of output engines
-  override IOutputEngine[string] engines() {
+  /* override */ IOutputEngine[string] engines() {
     if (_engines.length == 0) {
       _engines = OutputEngineCollection().engines();
 
@@ -49,7 +49,7 @@ class DOutput : UIMObject, IOutput {
   }
 
   // Returns the default output engine
-  override IOutputEngine defaultEngine() {
+  /* override */ IOutputEngine defaultEngine() {
     return OutputEngineFactory("default");
   }
 
@@ -196,20 +196,20 @@ class DOutput : UIMObject, IOutput {
 
   // #region Output methods
   // Convenience method for out() that wraps message between <info> ta
-  int info(string[] messages, int newLinesToAppend = 1, int outputLevel = NORMAL) {
+  int info(string[] messages, int newLinesToAppend = 1, OutputLevels outputLevel = OutputLevels.NORMAL) {
     string messageType = "info";
     auto outputMessages = wrapMessageWithType(messageType, messages);
 
     // return _writeln(outputMessages, newLinesToAppend, outputLevel);
     return 0;
-  }
+  }  
 
   // Convenience method for out() that wraps message between <comment> tag
-  int comment(string[] outputMessages, int newLinesToAppendToAppend = 1, int outputLevel = NORMAL) {
+  /* int comment(string[] outputMessages, int newLinesToAppendToAppend = 1, OutputLevels OutputLevels.NORMAL) {
     auto message = wrapMessageWithType("comment", outputMessages);
-    // return _writeln(message, newLinesToAppend, outputLevel); */
+    // return _writeln(message, newLinesToAppend, outputLevel); * /
     return 0;
-  }
+  } */
 
   // Convenience method for writeErrorMessages() that wraps message between <warning> tag
   int warning(string[] outputMessages, int newLinesToAppend = 1) {
@@ -233,11 +233,11 @@ class DOutput : UIMObject, IOutput {
   }
 
   // Convenience method for out() that wraps message between <success> tag
-  int success(string[] message, int newLinesToAppend = 1, int outputLevel = NORMAL) {
+  int success(string[] message, int newLinesToAppend = 1, int  ) {
     string messageType = "success";
     message = wrapMessageWithType(messageType, message);
 
-    // return _writeln(message, newLinesToAppend, outputLevel);
+    // return _writeln(message, newLinesToAppend, );
     return 0;
   }
   // #endregion Output methods

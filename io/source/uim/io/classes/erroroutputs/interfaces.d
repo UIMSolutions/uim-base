@@ -5,7 +5,7 @@ import uim.io;
 mixin(Version!"test_uim_io");
 @safe:
 
-interface ErrorOutput : IOutput {
+interface IErrorOutput : IOutput {
 //    void writeError(const(char)[] message);
 //    void writelnError(const(char)[] message);
 }

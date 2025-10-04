@@ -10,7 +10,7 @@ import uim.io;
 mixin(Version!"test_uim_io");
 @safe:
 
-class DErrorOutputRegistry : DObjectRegistry!IErrrorOutput {
+class DErrorOutputRegistry : DObjectRegistry!IErrorOutput {
   mixin(RegistryThis!"ErrorOutput");
 }
 
