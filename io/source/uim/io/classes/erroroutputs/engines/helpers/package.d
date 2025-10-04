@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.io.classes.error.engines.helpers;
+module uim.io.classes.erroroutputs.engines.helpers;
 
 import uim.io;
-mixin(ImportHelpers!"uim.io.classes.error.engines");
+mixin(ImportHelpers!"uim.io.classes.erroroutputs.engines");

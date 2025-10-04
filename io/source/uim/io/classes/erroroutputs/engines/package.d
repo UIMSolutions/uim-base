@@ -5,17 +5,14 @@
 *****************************************************************************************************************/
 module uim.io.classes.erroroutputs.engines;
 
-mixin(Version!"test_uim_io");
-
 import uim.io;
 
+mixin(Version!"test_uim_io");
 @safe:
 
 public { // Main packages
   import uim.io.classes.erroroutputs.engines.engine;
   import uim.io.classes.erroroutputs.engines.interfaces;
-  import uim.io.classes.erroroutputs.engines.mixins;
-  import uim.io.classes.erroroutputs.engines.factory;
 }
 
 public { // Additional packages

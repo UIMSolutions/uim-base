@@ -3,11 +3,11 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.io.classes.outputs.formatters.json;
-
-mixin(Version!"test_uim_io");
+module uim.io.classes.outputs.formatters.subclasses.json;
 
 import uim.io;
+
+mixin(Version!"test_uim_io");
 @safe:
 
 class DJsonOutputFormatter : DOutputFormatter {
@@ -23,5 +23,8 @@ class DJsonOutputFormatter : DOutputFormatter {
 mixin(OutputFormatterCalls!("json"));
 
 unittest {
-  assert(testOutputFormatter(new DJsonOutputFormatter()), "In DJsonOutputFormatter: Test failed");
+  auto formatter = new DJsonOutputFormatter;
+  assert(formatter !is null, "JsonOutputFormatter is null");
+
+  assert(testOutputFormatter(new DJsonOutputFormatter()), "JsonOutputFormatter test failed");
 }

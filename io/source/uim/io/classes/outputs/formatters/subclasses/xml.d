@@ -5,9 +5,9 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs.formatters.subclasses.xml;
 
-mixin(Version!"test_uim_io");
-
 import uim.io;
+
+mixin(Version!"test_uim_io");
 @safe:
 
 class DXmlOutputFormatter : DOutputFormatter {
