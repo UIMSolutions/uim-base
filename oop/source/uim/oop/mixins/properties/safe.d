@@ -5,9 +5,9 @@
 *****************************************************************************************************************/
 module uim.oop.mixins.properties.safe;
 
+import uim.oop;
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 // Mixin for a safe getter 
