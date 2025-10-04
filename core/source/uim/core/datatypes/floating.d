@@ -5,11 +5,10 @@
 *****************************************************************************************************************/
 module uim.core.datatypes.floating;
 
+import uim.core;
 mixin(Version!("test_uim_core"));
 
-import uim.core;
 @safe:
-
 
 // #region fuzzy
 T fuzzy(T)(double fuzzyValue, T minValue, T maxValue, T minFuzzy = 0, T maxFuzzy = 1)

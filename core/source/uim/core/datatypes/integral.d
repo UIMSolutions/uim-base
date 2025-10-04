@@ -5,9 +5,8 @@
 *****************************************************************************************************************/
 module uim.core.datatypes.integral;
 
-mixin(Version!("test_uim_core"));
-
 import uim.core;
+mixin(Version!("test_uim_core"));
 @safe:
 
 /// convert integral values to string with defined length

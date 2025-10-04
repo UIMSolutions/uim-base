@@ -5,8 +5,8 @@
 *****************************************************************************************************************/
 module uim.core.datatypes.datetime;
 
+import uim.core;
 mixin(Version!("test_uim_core"));
 
-import uim.core;
 @safe:
 
