@@ -5,9 +5,8 @@
 *****************************************************************************************************************/
 module uim.core.convert.json;
 
-mixin(Version!("test_uim_core"));
-
 import uim.core;
+mixin(Version!("test_uim_core"));
 @safe:
 
 

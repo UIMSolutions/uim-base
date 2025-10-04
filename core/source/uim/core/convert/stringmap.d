@@ -5,9 +5,8 @@
 *****************************************************************************************************************/
 module uim.core.convert.stringmap;
 
-mixin(Version!("test_uim_core"));
-
 import uim.core;
+mixin(Version!("test_uim_core"));
 @safe:
 
 STRINGAA toStringMap(Json[string] items) {

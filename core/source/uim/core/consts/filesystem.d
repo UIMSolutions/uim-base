@@ -5,9 +5,9 @@
 *****************************************************************************************************************/
 module uim.core.consts.filesystem;
 
+import uim.core;
 mixin(Version!("test_uim_core"));
 
-import uim.core;
 @safe:
 
 const string[] fileExtensions = [
