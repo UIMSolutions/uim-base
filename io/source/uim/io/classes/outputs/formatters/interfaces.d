@@ -33,8 +33,9 @@ interface IOutputFormatter : IObject {
 
     // #region outputType
     // Get the output type on how formatting tags are treated.
-    string outputType();
+    OutputTypes outputType();
+    
     // Set the output type on how formatting tags are treated.
-    IOutputFormatter outputType(string type);
+    IOutputFormatter outputType(OutputTypes type);
     // #endregion outputType
 }

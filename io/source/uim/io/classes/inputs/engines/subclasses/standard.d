@@ -32,7 +32,7 @@ class DStandardInput : DInput {
   protected bool _canReadline;
 
   // Read a value from the stream
-  override string read() {
+  /* override */ string read() {
     string line;
     if (_canReadline) {
       /* line = readline(""); */
@@ -49,7 +49,7 @@ class DStandardInput : DInput {
   }
 
   // Check if data is available on stdin
-  override bool isDataAvailable(int timeToWait = 0) {
+  /* override */ bool isDataAvailable(int timeToWait = 0) {
     auto myreadFds = [_input];
     auto mywriteFds = null;
     auto myerrorFds = null;

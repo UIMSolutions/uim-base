@@ -5,20 +5,18 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs.styles.helpers.registry;
 
-mixin(Version!"test_uim_io");
-
 import uim.io;
+
+mixin(Version!"test_uim_io");
 @safe:
 
-class DStyleRegistry : DRegistry!DStyle {
+class DOutputStyleRegistry : DRegistry!IOutputStyle {
+  mixin(RegistryThis!"OutputStyle");
 }
-
-auto StyleRegistry() {
-  return DStyleRegistry.instance;
-}
+  mixin(RegistryCalls!"OutputStyle");
 
 static this() {
-  StyleRegistry
+  OutputStyleRegistry
     .register("warning", Json([
       "text": Json("yellow"),
       "background": Json("red"),

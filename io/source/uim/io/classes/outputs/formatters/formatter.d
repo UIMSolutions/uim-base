@@ -6,12 +6,13 @@
 module uim.io.classes.outputs.formatters.formatter;
 
 import uim.io;
+import uim.io.classes.outputs.formatters.helpers.mixins;
 
 mixin(Version!"test_uim_io");
 @safe:
 
 class DOutputFormatter : UIMObject, IOutputFormatter {
-  mixin(OutputFormatterThis!());
+  mixin(OutputFormatterThis!"");
 
   override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {

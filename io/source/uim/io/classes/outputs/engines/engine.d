@@ -6,6 +6,7 @@
 module uim.io.classes.outputs.engines.engine;
 
 import uim.io;
+import uim.io.classes.outputs.engines.helpers.mixins;
 
 mixin(Version!"test_uim_io");
 @safe:
@@ -72,7 +73,7 @@ mixin(Version!"test_uim_io");
  * - IOutput
  */
 class DOutputEngine : UIMObject, IOutputEngine {
-  mixin(OutputEngineThis!());
+  mixin(OutputEngineThis!"");
 
   // Raw output constant - no modification of output text.
   static const string LF = "\n";  // TODO = D_EOL;

@@ -33,17 +33,17 @@ class DMarkupOutputStyle : DOutputStyle {
   }
 
   // #region OutputType
-  OutputTypes outputType() {
+  override OutputTypes outputType() {
     return _outputType;
   }
 
-  IOutputStyle outputType(OutputTypes type) {
+  override IOutputStyle outputType(OutputTypes type) {
     _outputType = type;
     return this;
   }
   // #endregion OutputType
 
-  string render(string text, string[string] values, OutputTypes outputType = OutputTypes.RENDER) {
+  override string render(string text, string[string] values, OutputTypes outputType = OutputTypes.RENDER) {
     if (outputType == OutputTypes.RAW) {
       return text;
     }
