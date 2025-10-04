@@ -5,9 +5,8 @@
 *****************************************************************************************************************/
 module uim.oop.exceptions.mixins;
 
-mixin(Version!("test_uim_oop"));
-
 import uim.oop;
+mixin(Version!("test_uim_oop"));
 @safe:
 
 @safe:

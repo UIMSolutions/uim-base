@@ -5,9 +5,8 @@
 *****************************************************************************************************************/
 module uim.oop.exceptions.exception;
 
-mixin(Version!("test_uim_oop"));
-
 import uim.oop;
+mixin(Version!("test_uim_oop"));
 @safe:
 
 class DException : UIMObject, IException {
