@@ -6,8 +6,8 @@
 module uim.core.datatypes.general;
 
 import uim.core;
-mixin(Version!("test_uim_core"));
 
+mixin(Version!("test_uim_core"));
 @safe:
 
 size_t indexIn(T)(T value, T[] values) {

@@ -6,9 +6,8 @@
 module uim.core.datatypes.boolean;
 
 import uim.core;
+
 mixin(Version!("test_uim_core"));
-
-
 @safe:
 
 // char[] BOOL(bool toogleValue) { return cast(char[])((toogleValue) ? `true`:`false`); }
