@@ -11,7 +11,7 @@ import uim.io;
 
 @safe:
 
-class DInputEngineRegistry : DObjectRegistry!IInputEngine {
+class DInputEngineRegistry : DRegistry!IInputEngine {
   mixin(RegistryThis!"InputEngine");
 }
 

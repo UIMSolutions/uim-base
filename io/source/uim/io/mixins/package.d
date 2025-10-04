@@ -13,8 +13,6 @@ public {
   import uim.io.mixins.consoleintegrationtest;
 
   // import uim.io.mixins.error;
-  import uim.io.mixins.input;
-  // import uim.io.mixins.output;
 }
 
 public { // Additional packages

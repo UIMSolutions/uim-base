@@ -10,7 +10,7 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DOutputFormatterRegistry : DObjectRegistry!IOutputFormatter {
+class DOutputFormatterRegistry : DRegistry!IOutputFormatter {
   mixin(RegistryThis!"OutputFormatter");
 }
 

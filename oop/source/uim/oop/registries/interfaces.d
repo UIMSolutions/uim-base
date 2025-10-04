@@ -5,10 +5,9 @@
 *****************************************************************************************************************/
 module uim.oop.registries.interfaces;
 
-mixin(Version!"test_uim_oop");
-
 import uim.oop;
 
+mixin(Version!"test_uim_oop");
 @safe:
 
 interface IRegistry(T) : IHasKeys!T, IHasPaths!T, IObject {

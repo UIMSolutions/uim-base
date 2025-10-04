@@ -10,7 +10,7 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DOutputEngineRegistry : DObjectRegistry!IOutputEngine {
+class DOutputEngineRegistry : DRegistry!IOutputEngine {
   mixin(RegistryThis!"OutputEngine");
 }
 
