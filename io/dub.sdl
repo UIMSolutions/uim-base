@@ -8,6 +8,8 @@ license "Apache-2.0"
 targetname "uim_io"
 targetType "library"
 
+dependency "uim-base:core" version="*"
+dependency "uim-base:phobos" version="*"
 dependency "uim-base:oop" version="*"
 
 // configuration "default" {}

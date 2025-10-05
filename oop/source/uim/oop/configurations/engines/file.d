@@ -5,9 +5,9 @@
 *****************************************************************************************************************/
 module uim.oop.configurations.engines.file;
 
-mixin(Version!"test_uim_oop");
-
 import uim.oop;
+
+mixin(Version!"test_uim_oop");
 @safe:
 
 class DFileConfigEngine : DConfigEngine {
@@ -15,6 +15,3 @@ class DFileConfigEngine : DConfigEngine {
 }
 mixin(ConfigEngineCalls!("File"));    
 
-unittest {
-    // TODO
-}

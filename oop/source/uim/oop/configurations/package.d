@@ -5,9 +5,6 @@
 *****************************************************************************************************************/
 module uim.oop.configurations;
 
-import uim.core;
-mixin(Version!"test_uim_oop");
-
 public { // Packages
     import uim.oop.configurations.engines;
 }

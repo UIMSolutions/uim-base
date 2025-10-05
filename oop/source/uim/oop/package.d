@@ -5,8 +5,6 @@
 *****************************************************************************************************************/
 module uim.oop;
 
-mixin(Version!"test_uim_oop");
-
 // Phobos libraries
 public {
   import std.array;

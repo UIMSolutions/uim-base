@@ -5,11 +5,11 @@
 *****************************************************************************************************************/
 module uim.oop.configurations.engines.engine;
 
-mixin(Version!"test_uim_oop");
-
 import uim.oop;
+
+mixin(Version!"test_uim_oop");
 @safe:
 
 class DConfigEngine : UIMObject, IConfigEngine {
-    mixin(ConfigEngineThis!());    
+  mixin(ConfigEngineThis!());
 }

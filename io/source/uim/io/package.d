@@ -6,6 +6,8 @@
 module uim.io;
 
 public { // uim libraries
+  import uim.phobos;
+  import uim.core;
   import uim.oop;
 }
 

@@ -5,11 +5,6 @@
 *****************************************************************************************************************/
 module uim.io.classes.erroroutputs.engines;
 
-import uim.io;
-
-mixin(Version!"test_uim_io");
-@safe:
-
 public { // Modules
   import uim.io.classes.erroroutputs.engines.engine;
   import uim.io.classes.erroroutputs.engines.interfaces;

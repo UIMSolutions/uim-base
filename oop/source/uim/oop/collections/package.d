@@ -6,8 +6,8 @@
 module uim.oop.collections;
 
 public { // Modules
-  import uim.oop.collections.interfaces;
   import uim.oop.collections.collection;
+  import uim.oop.collections.interfaces;
   import uim.oop.collections.mixins;
   import uim.oop.collections.tests;
 }
