@@ -8,6 +8,7 @@ module uim.io.classes.outputs.output;
 mixin(Version!"test_uim_io");
 
 import uim.io;
+
 @safe:
 
 class DOutput : UIMObject, IOutput {
@@ -34,39 +35,100 @@ class DOutput : UIMObject, IOutput {
   protected IOutputEngine[string] _engines;
 
   // Returns the list of output engines
-  /* override */ IOutputEngine[string] engines() {
+  IOutputEngine[string] engines() {
     if (_engines.length == 0) {
-      _engines = OutputEngineCollection().engines();
-
-      if (_engines.length == 0) {
-        throw new UIMException("No output engines configured.");
-      }
-
-      // Sort the engines by name
-      _engines = _engines.sort!((a, b) => a.name < b.name);
+      throw new UIMException("No output engines configured.");
     }
-    return _engines;
+    return _engines.dup;
   }
 
-  // Returns the default output engine
-  /* override */ IOutputEngine defaultEngine() {
-    return OutputEngineFactory("default");
-  }
-
+  // Returns the selected output engine
   IOutputEngine engine(string name) {
-    auto engine = (name in engines) ? engines[name] : null;
-    if (engine.isNull) {
-      // TODO Errormessage
-      return null;
-    }
+    return hasEngine(name) ? _engines[name] : null;
   }
 
-  IOutput engine(string name, IOutputEngine engine) {
+  // #region has
+  bool hasEngine(string name) {
+    return name in _engines ? true : false;
+  }
+  // #endregion has
+
+  // #region Update/Set/Merge
+  // Returns the output engine
+  IOutput updateEngine(string name, IOutputEngine engine) {
     if (!name.isEmpty) {
       _engines[name] = engine;
     }
     return this;
   }
+
+  IOutput mergeEngine(string name, IOutputEngine engine) {
+    if (!name.isEmpty) {
+      _engines[name] = engine;
+    }
+    return this;
+  }
+
+  IOutput setEngine(string name, IOutputEngine engine) {
+    if (!name.isEmpty) {
+      _engines[name] = engine;
+    }
+    return this;
+  }
+
+  unittest {
+    // Mock IOutputEngine for testing
+    class MockOutputEngine : IOutputEngine {
+      string _name;
+      this(string name) {
+        _name = name;
+      }
+
+      override string name() const {
+        return _name;
+      }
+
+      override DOutput write(uint) {
+        return null;
+      }
+
+      override DOutput write(string[] messages, uint) {
+        return null;
+      }
+
+      override DOutput write(string message, uint) {
+        return null;
+      }
+    }
+
+    auto output = new DOutput();
+
+    // Test updateEngine
+    auto engine1 = new MockOutputEngine("engine1");
+    output.updateEngine("engine1", engine1);
+    assert(output.engines()["engine1"] is engine1);
+
+    // Test mergeEngine
+    auto engine2 = new MockOutputEngine("engine2");
+    output.mergeEngine("engine2", engine2);
+    assert(output.engines()["engine2"] is engine2);
+
+    // Test setEngine
+    auto engine3 = new MockOutputEngine("engine3");
+    output.setEngine("engine3", engine3);
+    assert(output.engines()["engine3"] is engine3);
+
+    // Test that empty name does not set engine
+    auto engine4 = new MockOutputEngine("engine4");
+    output.updateEngine("", engine4);
+    assert(!("engine4" in output.engines()));
+
+    // Test that all methods return this
+    assert(output.updateEngine("engineX", engine1) is output);
+    assert(output.mergeEngine("engineY", engine2) is output);
+    assert(output.setEngine("engineZ", engine3) is output);
+  }
+  // #endregion Update/Set/Merge
 
   unittest {
     // Mock IOutputEngine implementation for testing
@@ -196,13 +258,14 @@ class DOutput : UIMObject, IOutput {
 
   // #region Output methods
   // Convenience method for out() that wraps message between <info> ta
-  int info(string[] messages, int newLinesToAppend = 1, OutputLevels outputLevel = OutputLevels.NORMAL) {
+  int info(string[] messages, int newLinesToAppend = 1, OutputLevels outputLevel = OutputLevels
+      .NORMAL) {
     string messageType = "info";
     auto outputMessages = wrapMessageWithType(messageType, messages);
 
     // return _writeln(outputMessages, newLinesToAppend, outputLevel);
     return 0;
-  }  
+  }
 
   // Convenience method for out() that wraps message between <comment> tag
   /* int comment(string[] outputMessages, int newLinesToAppendToAppend = 1, OutputLevels OutputLevels.NORMAL) {
@@ -233,7 +296,7 @@ class DOutput : UIMObject, IOutput {
   }
 
   // Convenience method for out() that wraps message between <success> tag
-  int success(string[] message, int newLinesToAppend = 1, int  ) {
+  int success(string[] message, int newLinesToAppend = 1, int) {
     string messageType = "success";
     message = wrapMessageWithType(messageType, message);
 

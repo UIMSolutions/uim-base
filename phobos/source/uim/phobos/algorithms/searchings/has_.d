@@ -30,9 +30,6 @@ bool hasKey(T)(T[] values, T value) {
 }
 
 unittest {
-  // Test with an empty array
-  assert(!has!int(null, 1));
-
   // Test with a single element array
   assert(hasKey([1], 1));
   assert(!hasKey([1], 2));

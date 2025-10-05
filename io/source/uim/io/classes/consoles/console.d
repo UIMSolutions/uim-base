@@ -33,9 +33,9 @@ class DConsole : UIMObject, IConsole {
       return false;
     }
 
-    output(StandardOutput);
-    errorOutput(StandardErrorOutput);
-    input(StandardInput);
+    /* output(StandardOutputEngine);
+    errorOutput(StandardErrorOutputEngine);
+    input(StandardInputEngine); */ 
 
     return true;
   }
@@ -102,9 +102,9 @@ class DConsole : UIMObject, IConsole {
     DInput input = null,
     DConsoleHelperRegistry helpers = null
   ) {
-    _output = output.ifNull(StandardOutput);
-    _errorOutput = errOutput.ifNull(StandardErrorOutput);
-    _input = input.ifNull(StandardInput);
+    // _output = output.ifNull(StandardOutput);
+    // _errorOutput = errOutput.ifNull(StandardErrorOutput);
+    // _input = input.ifNull(StandardInput);
     _helpers = helpers.ifNull(new DConsoleHelperRegistry());
     /* _helpers.setIo(this); */
   }
@@ -220,7 +220,7 @@ class DConsole : UIMObject, IConsole {
 
   // Returns a single or multiple linefeeds sequences.
   string nl(uint linefeedMultiplier = 1) {
-    return DOutput.LF.repeatTxt(linefeedMultiplier);
+    return ""; // DOutput.LF.repeatTxt(linefeedMultiplier);
   }
 
   // Outputs a series of minus characters to the standard output, acts as a visual separator.
@@ -237,34 +237,34 @@ class DConsole : UIMObject, IConsole {
 
   // Change the output mode of the stdout stream
   void outputType(string type) {
-    _output.outputType(type);
+    // _output.outputType(type);
   }
 
   // Gets defined styles.
   Json[string] styles() {
-    return _output.styles();
+    return null; // _output.styles();
   }
 
   // Get defined style.
   Json style(string name) {
-    return _output.style(name);
+    return Json(null); // _output.style(name);
   }
 
   // Adds a new output style.
   void style(string name, Json definition) {
-    _output.style(name, definition);
+    // _output.style(name, definition);
   }
 
   // Prompts the user for input based on a list of options, and returns it.
   string askChoice(string promptText, string option, string defaultInput = null) {
     string[] options;
-    if (option.contains(",")) {
+    /* if (option.contains(",")) {
       options = option.split(",");
     } else if (option.contains("/")) {
       options = option.split("/");
     } else {
       options = [option];
-    }
+    } */ 
 
     // return askChoice(string promptText, string[] aoptions, string adefault = null); */
     return null;
@@ -333,16 +333,16 @@ class DConsole : UIMObject, IConsole {
         }); */
 
     string[] outLevels = ["notice", "info"];
-    if (enable == VERBOSE || enable == true) {
+    /* if (enable == VERBOSE || enable == true) {
       outLevels ~= "debug";
-    }
-    if (enable != QUIET) {
+    } */ 
+    // if (enable != QUIET) {
       /* stdout = new DConsoleLog([
                     "types": outLevels,
                     "stream": _output,
                 ]);
             Log.configuration.setEntry("stdout", ["engine": stdout]); */
-    }
+    // }
     /* auto stderr = new DConsoleLog(createmap!(string, Json)
             .set("types", ["emergency", "alert", "critical", "error", "warning"])
             .set("stream", _errorOutput); */

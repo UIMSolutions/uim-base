@@ -67,7 +67,7 @@ class DOutputStyle : UIMObject, IOutputStyle {
   }
 
   // #region replaceCode
-  override string replaceCodes(string[string] styleCodes, string text) {
+  /* override */  string replaceCodes(string[string] styleCodes, string text) {
     styleCodes.keys
       .each!(code => text = replaceCode(code, text));
     return text;
@@ -77,7 +77,7 @@ class DOutputStyle : UIMObject, IOutputStyle {
   // #endregion replaceCode
 
   // #region removeCode
-  override string removeCode(string styleCode, string text) {
+  /* override */  string removeCode(string styleCode, string text) {
     return text.replace("{" ~ styleCode ~ "}", "");
   }
   // #endregion removeCode

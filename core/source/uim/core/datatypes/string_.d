@@ -447,7 +447,9 @@ string mustache(string text, string[] keys, string[] values) {
 }
 
 string mustache(string text, string key, Json value) {
-  return std.string.replace(text, "{" ~ key ~ "}", value.toString);
+  return value.isString 
+    ? mustache(text, key, value.getString)
+    : mustache(text, key, value.toString);
 }
 
 string mustache(string text, string key, string value) {
@@ -463,9 +465,7 @@ unittest {
   assert(mustache("{a}{b}{c}", ["a": "1", "b": "2"]) == "12{c}");
 
   // Test mustache with Json[string] items
-  Json[string] jmap;
-  jmap["x"] = Json("42");
-  jmap["y"] = Json("abc");
+  Json[string] jmap = ["x": Json("42"), "y": Json("abc")];
   assert(mustache("X:{x}, Y:{y}", jmap) == "X:42, Y:abc");
 
   // Test mustache with string[] keys and values

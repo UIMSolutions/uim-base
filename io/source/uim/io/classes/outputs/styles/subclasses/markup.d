@@ -24,7 +24,7 @@ class DMarkupOutputStyle : DOutputStyle {
     super(name, initData);
   }
 
-  bool initialize(Json[string] initData = null) {
+  override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }

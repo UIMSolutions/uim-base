@@ -101,6 +101,35 @@ class DStandardOutputEngine : DOutputEngine {
     return this;
   }
   // #endregion write
+
+  override IOutputEngine write(string[] messages) {
+    foreach (message; messages) {
+      write(message);
+    }
+    return this;
+  }
+
+  override IOutputEngine write(string message) {
+    std.stdio.write(styleText(message));
+    return this;
+  }
+
+  override IOutputEngine writeln(uint numberOfLines = 1u) {
+    std.stdio.writeln(LF.repeatTxt(numberOfLines));
+    return this;
+  }
+
+  override IOutputEngine writeln(string[] messages, uint numberOfLines = 1u) {
+    write(messages);
+    writeln(numberOfLines);
+    return this;
+  }
+
+  override IOutputEngine writeln(string message, uint numberOfLines = 1u) {
+    write(message);
+    writeln(numberOfLines);
+    return this;
+  }
 }
 mixin(OutputEngineCalls!("Standard"));
 
@@ -108,9 +137,8 @@ unittest {
   auto engine = new DStandardOutputEngine();
   assert(engine !is null, "DStandardOutputEngine is null");
 
-  assert(testOutputEngine(engine, "StandardOutputEngine"), "Test DStandardOutputEngine failed");  
+  assert(testOutputEngine(engine, "StandardOutputEngine"), "Test DStandardOutputEngine failed");
 }
-mixin(OutputEngineCalls!("Standard"));
 
 unittest {
   auto output = new DStandardOutputEngine();
