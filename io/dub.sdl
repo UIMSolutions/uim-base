@@ -1,5 +1,5 @@
 name "io"
-description "V in MVC"
+description "IO library for UIM"
 authors "ONS"
 copyright "Copyright © 2018 - 2025, ONS"
 license "Apache-2.0"

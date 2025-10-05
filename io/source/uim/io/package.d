@@ -5,15 +5,13 @@
 *****************************************************************************************************************/
 module uim.io;
 
-mixin(ImportPhobos!());
-
 public { // uim libraries
   import uim.oop;
 }
 
 public { // uim.filesystem libraries
   import uim.io.classes;
-  // import uim.io.collections;
+  import uim.io.commands;
   import uim.io.enumerations;
   import uim.io.errors;
   import uim.io.exceptions;
@@ -23,7 +21,4 @@ public { // uim.filesystem libraries
   import uim.io.mixins;
   import uim.io.registries;
   import uim.io.tests;
-}
-
-public { // Additional packages
 }

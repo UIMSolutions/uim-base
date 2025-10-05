@@ -11,7 +11,6 @@ import uim.oop;
 @safe:
 
 interface ICollection(T) : IKeys!T, IPaths!T {
-    
 }
 
 @safe:

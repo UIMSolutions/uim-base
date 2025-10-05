@@ -5,13 +5,9 @@
 *****************************************************************************************************************/
 module uim.io.classes;
 
-
 public {
   import uim.io.classes.consoles;
   import uim.io.classes.erroroutputs;
   import uim.io.classes.inputs;
   import uim.io.classes.outputs;
-}
-
-public { // Additional packages
 }

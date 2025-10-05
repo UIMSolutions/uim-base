@@ -109,13 +109,13 @@ template ImportHelpers(string rootName) {
   const char[] ImportHelpers = importHelpers(rootName);
 }
 
-string imports(string rootNamespace, string[] additionalNames) {
+string createImports(string namespace, string[] packageNames) {
   import std.algorithm;
   import std.array;
 
-  return additionalNames.map!(name => "import " ~ rootNamespace ~ "." ~ name ~ ";").join("\n");
+  return packageNames.map!(name => "import " ~ namespace ~ "." ~ name ~ ";").join("\n");
 }
 
-template Imports(string rootNamespace, string[] additionalNames) {
-  const char[] Imports = imports(rootNamespace, additionalNames);
+template Imports(string namespace, string[] packageNames) {
+  const char[] Imports = createImports(namespace, packageNames);
 }

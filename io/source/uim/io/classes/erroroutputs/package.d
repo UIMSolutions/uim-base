@@ -17,6 +17,3 @@ public { // Subclasses
     import uim.io.classes.erroroutputs.helpers;
     import uim.io.classes.erroroutputs.tests;
 }
-
-public { // Additional packages
-}
