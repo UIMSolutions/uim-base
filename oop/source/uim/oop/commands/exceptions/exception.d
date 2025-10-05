@@ -28,5 +28,8 @@ class DCommandException : DException {
 mixin(ExceptionCalls!("Command"));
 
 unittest {
-  testException(CommandException);
+  auto exception = new DCommandException();
+  assert(exception !is null, "Failed to create DCommandException instance");
+
+  assert(testException(exception), "Test for DCommandException failed");
 }

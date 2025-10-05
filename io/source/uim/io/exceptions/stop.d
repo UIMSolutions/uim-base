@@ -20,3 +20,9 @@ class DStopException : DConsoleException {
 // unittest {
   // testException(StopException);
 // }
+unittest {
+  auto exception = new DStopException();
+  assert(exception !is null, "Failed to create DStopException instance");
+
+  assert(testException(exception), "Test for DStopException failed");
+}

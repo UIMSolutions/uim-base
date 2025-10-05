@@ -28,3 +28,10 @@ unittest {
 }
 
 */
+
+unittest {
+  auto exception = new DMissingInputConsoleException();
+  assert(exception !is null, "Failed to create DMissingInputConsoleException instance");
+
+  assert(testException(exception), "Test for DMissingInputConsoleException failed");
+}

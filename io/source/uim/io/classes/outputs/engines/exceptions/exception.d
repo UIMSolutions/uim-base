@@ -18,5 +18,8 @@ class DOutputEngineException : DException {
 mixin(ExceptionCalls!("OutputEngine"));
 
 unittest {
-  assert(testException(new DOutputEngineException));
+  auto exception = new DOutputEngineException();
+  assert(exception !is null, "Failed to create DOutputEngineException instance");
+
+  assert(testException(exception), "Test for DOutputEngineException failed");
 }

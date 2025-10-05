@@ -28,5 +28,8 @@ class DMissingHelperException : DConsoleException {
 mixin(ExceptionCalls!("MissingHelper"));
 
 unittest {
-  testException(MissingHelperException);
+  auto exception = new DMissingHelperException();
+  assert(exception !is null, "Failed to create DMissingHelperException instance");
+
+  assert(testException(exception), "Test for DMissingHelperException failed");
 }

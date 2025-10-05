@@ -28,5 +28,8 @@ class DNotCreateCommandException : DCommandException {
 mixin(ExceptionCalls!("NotCreateCommand"));
 
 unittest {
-  testException(CommandsException);
+  auto exception = new NotCreateCommandException();
+  assert(exception !is null, "Failed to create NotCreateCommandException instance");
+
+  assert(testException(exception), "Test for NotCreateCommandException failed");
 }

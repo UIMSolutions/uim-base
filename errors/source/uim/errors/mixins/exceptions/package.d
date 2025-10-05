@@ -9,5 +9,3 @@ public {
   import uim.errors.mixins.exceptions.exception;
 }
 
-public { // Additional packages
-}

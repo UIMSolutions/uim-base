@@ -23,3 +23,10 @@ auto UnknownEditorException() {
 auto UnknownEditorException(string message) {
   return new DInvalidArgumentException(message);
 }
+
+unittest {
+  auto exception = new DUnknownEditorException();
+  assert(exception !is null, "Failed to create DUnknownEditorException instance");
+
+  assert(testException(exception), "Test for DUnknownEditorException failed");
+}

@@ -83,3 +83,10 @@ unittest {
   testException(MissingOptionException);
 }
 */
+
+unittest {
+  auto exception = new DMissingOptionException("Missing option", "optionName", ["option1", "option2"]);
+  assert(exception !is null, "Failed to create DMissingOptionException instance");
+
+  assert(testException(exception), "Test for DMissingOptionException failed");
+}

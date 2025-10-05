@@ -34,3 +34,10 @@ unittest {
   testException(ConsoleException);
 }
 */
+
+unittest {
+  auto exception = new DConsoleException();
+  assert(exception !is null, "Failed to create DConsoleException instance");
+
+  assert(testException(exception), "Test for DConsoleException failed");
+}

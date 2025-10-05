@@ -28,5 +28,8 @@ class DNotFindCommandException : DCommandException {
 mixin(ExceptionCalls!("NotFindCommand"));
 
 unittest {
-  testException(NotFindCommandException);
+  auto exception = new DNotFindCommandException();
+  assert(exception !is null, "Failed to create DNotFindCommandException instance");
+
+  assert(testException(exception), "Test for DNotFindCommandException failed");
 }

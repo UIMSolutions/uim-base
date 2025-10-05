@@ -23,3 +23,10 @@ auto InvalidArgumentException() {
 auto InvalidArgumentException(string message) {
   return new DInvalidArgumentException(message);
 }
+
+unittest {
+  auto exception = new InvalidArgumentException();
+  assert(exception !is null, "Failed to create InvalidArgumentException instance");
+
+  assert(testException(exception), "Test for InvalidArgumentException failed");
+}
