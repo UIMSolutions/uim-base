@@ -10,7 +10,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DFactory(T) : UIMObject, IFactory!T {
+class DFactory(T = UIMObject) : UIMObject, IFactory!T {
   mixin(FactoryThis!());
 
   protected static DFactory!T _instance;

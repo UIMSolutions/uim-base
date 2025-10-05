@@ -5,12 +5,8 @@
 *****************************************************************************************************************/
 module uim.phobos.enumerations.enumerations;
 
-import uim.phobos;
-@safe:
-
-enum SORTORDERS
-{
-    NONE,
-    ASCENDING,
-    DESCENDING
+enum SORTORDERS : int {
+    NONE = 0,
+    ASCENDING = 1,
+    DESCENDING = 2
 }

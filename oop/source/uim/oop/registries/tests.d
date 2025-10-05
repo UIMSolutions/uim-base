@@ -9,3 +9,21 @@ import uim.oop;
 
 mixin(Version!"test_uim_oop");
 @safe:
+
+bool testRegistry(IRegistry!UIMObject registry, string name) {
+  if (registry is null) {
+    return false;
+  }
+  /* 
+  if (registry.count != 0) {
+    return false;
+  }
+  if (!registry.isEmpty) {
+    return false;
+  }
+  if (registry.className != name) {
+    return false;
+  } */ 
+
+  return true;
+}

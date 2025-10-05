@@ -11,7 +11,7 @@ import uim.oop;
 
 @safe:
 
-interface IFactory(T) : IHasKeys!T, IHasPaths!T, IRemoveKeys!T, IRemovePaths!T, IObject {
+interface IFactory(T = UIMObject) : IHasKeys!T, IHasPaths!T, IRemoveKeys!T, IRemovePaths!T, IObject {
   T[string] createMany(string[][] paths, Json[string] options = null);
   T create(string[] path, Json[string] options = null);
 

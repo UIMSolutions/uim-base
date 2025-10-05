@@ -10,7 +10,7 @@ import uim.oop;
 mixin(Version!"test_uim_oop");
 @safe:
 
-interface IRegistry(T) : IHasKeys!T, IHasPaths!T, IObject {
+interface IRegistry(T = UIMObject) : IHasKeys!T, IHasPaths!T, IObject {
   // Registers an object with a specific key.
   bool register(string[] path, T obj);
   bool register(string key, T obj);

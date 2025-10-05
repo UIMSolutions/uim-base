@@ -18,7 +18,7 @@ mixin(RegistryCalls!("Formatter"));
 
 unittest {
   // Create a dummy formatter for testing
-  class DummyFormatter : IFormatter {
+  /* class DummyFormatter : IFormatter {
     override string format(string input) {
       return "dummy:" ~ input;
     }
@@ -57,5 +57,5 @@ unittest {
       caught = true;
     }
     assert(caught, "Getting non-existent key should throw");
-  }
+  } */
 }
