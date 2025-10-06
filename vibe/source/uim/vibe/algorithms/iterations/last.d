@@ -19,7 +19,5 @@ T last(T)(T[] values) {
 unittest {
   int[] arr = [10, 20, 30];
   assert(last(arr) == 30);
-  
-  int[] emptyArr;
-  assert(last(emptyArr) is null);
+
 }

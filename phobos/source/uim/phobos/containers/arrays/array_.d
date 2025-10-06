@@ -325,10 +325,6 @@ unittest {
 
 
 // #region filterValues
-T[] filterValues(T)(T[] values) {
-  return values.filter!(value => !value.isNull).array;
-}
-
 T[] filterValues(T)(T[] values, bool delegate(T value) check) {
   T[] results;
   () @trusted { results = values.filter!(value => check(value)).array; }();
