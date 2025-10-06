@@ -14,14 +14,11 @@ public {
   import uim.vibe.datatypes.json.double_;
   import uim.vibe.datatypes.json.empty;
   import uim.vibe.datatypes.json.filter;
-  import uim.vibe.datatypes.json.first;
   import uim.vibe.datatypes.json.get;
-  import uim.vibe.datatypes.json.has;
   import uim.vibe.datatypes.json.integer;
   import uim.vibe.datatypes.json.integral;
   import uim.vibe.datatypes.json.isset;
   import uim.vibe.datatypes.json.json;
-  import uim.vibe.datatypes.json.keys;
   import uim.vibe.datatypes.json.long_;
   import uim.vibe.datatypes.json.map;
   import uim.vibe.datatypes.json.merge;
@@ -34,4 +31,11 @@ public {
   import uim.vibe.datatypes.json.undefined;
   import uim.vibe.datatypes.json.update;
   import uim.vibe.datatypes.json.values;
+}
+
+public {
+  import uim.vibe.datatypes.json.arrays;
+  import uim.vibe.datatypes.json.collections;
+  import uim.vibe.datatypes.json.functions;
+  import uim.vibe.datatypes.json.objects;
 }

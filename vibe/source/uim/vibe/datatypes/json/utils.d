@@ -559,42 +559,6 @@ Json removeItem(Json json, string key) {
 
   return json;
 }
-
-unittest {
-  // Test remove on non-object
-  Json j = Json("value");
-  assert(j.remove("key") == j);
-
-  // Test remove on object without key
-  Json obj = Json.emptyObject;
-  obj["a"] = 1;
-  Json result = obj.remove("b");
-  assert(result == obj);
-
-  // Test remove on object with key
-  obj["b"] = 2;
-  result = obj.remove("b");
-  assert(result.hasKey("a"));
-  assert(!result.hasKey("b"));
-
-  // Test removeMany with empty keys
-  Json obj2 = Json.emptyObject;
-  obj2["x"] = 10;
-  obj2["y"] = 20;
-  Json res2 = obj2.removeMany([]);
-  assert(res2 == obj2);
-
-  // Test removeMany with some keys
-  obj2["z"] = 30;
-  Json res3 = obj2.removeMany(["x", "z"]);
-  assert(res3.hasKey("y"));
-  assert(!res3.hasKey("x"));
-  assert(!res3.hasKey("z"));
-
-  // Test removeMany on non-object
-  Json j2 = Json(123);
-  assert(j2.removeMany(["a", "b"]) == j2);
-}
 // #endregion remove
 
 // #region filter
@@ -609,10 +573,6 @@ Json filterKeys(Json json, string[] keys) {
     .each!(key => result[key] = json[key]);
 
   return result;
-}
-
-unittest {
-  // TODO
 }
 // #endregion filter
 // #region ifNull

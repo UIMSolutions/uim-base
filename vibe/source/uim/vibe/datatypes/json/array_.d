@@ -17,11 +17,7 @@ bool isArray(Json json, bool strict = true) {
     return false;
   }
 
-  if (!strict) {
-    // TODO: Future: Add support for array Json[]ean, integer, float, and string.
-  }
-  return json != Null!Json
-    ? (json.type == Json.Type.array) : false;
+  return json.type == Json.Type.array;
 }
 
 unittest {
