@@ -10,8 +10,29 @@ import uim.phobos;
 mixin(Version!("test_uim_phobos"));
 @safe:
 
+/**
+  Returns the tail of the array (all elements except the first).
+  
+  Params:
+    values = The array whose tail is to be determined.
+  
+  Returns:
+    The tail of the array, or null if the array has no elements.
+  */
 auto rest(T)(T[] values) {
   return values.length > 1 
     ? values[1 .. $]
     : null;
+}
+///
+unittest {
+  assert([2, 3, 4] == [1, 2, 3, 4].rest);
+  assert([2.0, 3.0, 4.0] == [1.0, 2.0, 3.0, 4.0].rest);
+  assert(["b", "c", "d"] == ["a", "b", "c", "d"].rest);
+
+  assert(null == [1].rest);
+  assert(null == [1.0].rest);
+  assert(null == ["a"].rest);
+
+  assert(null == [].rest);
 }

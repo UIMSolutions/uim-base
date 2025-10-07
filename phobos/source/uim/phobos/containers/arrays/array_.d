@@ -6,18 +6,10 @@
 module uim.phobos.containers.arrays.array_;
 
 import uim.phobos;
-mixin(Version!("test_uim_phobos"));
 
+mixin(Version!("test_uim_phobos"));
 @safe:
 
-
-// #endregion check
-
-// #region size
-size_t size(T)(T[] values) {
-  return values.length;
-}
-// #region size
 
 
 

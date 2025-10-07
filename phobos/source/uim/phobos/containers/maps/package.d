@@ -12,5 +12,6 @@ module uim.phobos.containers.maps;
 */
 public {
   import uim.phobos.containers.maps.keys;
+  import uim.phobos.containers.maps.pairs;
   import uim.phobos.containers.maps.values;
 }
