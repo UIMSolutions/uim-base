@@ -1,4 +1,4 @@
-module uim.phobos.datatypes.arrays.shift;
+module uim.phobos.containers.arrays.shift;
 
 import uim.phobos;
 

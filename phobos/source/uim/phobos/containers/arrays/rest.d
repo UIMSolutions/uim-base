@@ -1,4 +1,4 @@
-module uim.phobos.datatypes.arrays.rest;
+module uim.phobos.containers.arrays.rest;
 
 import uim.phobos;
 

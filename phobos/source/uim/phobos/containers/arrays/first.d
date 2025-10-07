@@ -3,25 +3,25 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.phobos.datatypes.arrays.last;
+module uim.phobos.containers.arrays.first;
 
 import uim.phobos;
 
 mixin(Version!("test_uim_phobos"));
 @safe:
 
-auto last(T)(T[] values) {
+auto first(T)(T[] values) {
   return values.length > 0 
-    ? values[$-1]
+    ? values[0]
     : Null!T;
 }
 
-auto lastMany(T)(T[] values, size_t size) {
+auto firstMany(T)(T[] values, size_t size) {
   if (values.length == 0) {
     return null;
   }
 
   return values.length > size
-    ? values[$-size..$]
+    ? values[0..size]
     : values.dup;
 }

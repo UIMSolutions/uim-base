@@ -1,4 +1,4 @@
-module uim.phobos.datatypes.arrays.isempty;
+module uim.phobos.containers.arrays.isempty;
 
 import uim.phobos;
 

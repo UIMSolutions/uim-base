@@ -1,4 +1,4 @@
-module uim.phobos.datatypes.arrays.zip;
+module uim.phobos.containers.arrays.unzip;
 
 import uim.phobos;
 
