@@ -269,17 +269,7 @@ unittest {
 }
 // #endregion isNull
 
-// #region isEmpty
-bool isEmpty(T)(T[] values) {
-  return values.length == 0;
-}
 
-unittest {
-  int[] x;
-  assert(x.isEmpty);
-  assert(![1, 2, 3, 4].isEmpty);
-  assert([].isEmpty);
-} // #endregion isEmpty
 
 // #region intersect 
 T[] intersect(T)(T[] left, T[] right) {

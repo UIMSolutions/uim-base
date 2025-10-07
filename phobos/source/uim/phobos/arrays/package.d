@@ -7,4 +7,8 @@ module uim.phobos.arrays;
 
 public { 
     import uim.phobos.arrays.first;
+    import uim.phobos.arrays.last;
+    import uim.phobos.arrays.rest;
+    import uim.phobos.arrays.unzip;
+    import uim.phobos.arrays.zip;
 }

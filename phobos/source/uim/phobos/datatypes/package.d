@@ -17,6 +17,6 @@ public {
     import uim.phobos.datatypes.datetime;
  */
   import uim.phobos.datatypes.mixins;
-  import uim.phobos.datatypes.null_;
+  import uim.phobos.datatypes.nulls;
   import uim.phobos.datatypes.uuids;
 }
