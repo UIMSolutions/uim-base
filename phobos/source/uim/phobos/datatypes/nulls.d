@@ -13,10 +13,7 @@ auto Null(T)() {
   return T.init;
 }
 
-auto Null(T:Object)() {
-  return null;
-}
-
+// #region bool
 auto Null(T : bool)() {
   return false;
 }
@@ -27,57 +24,68 @@ unittest {
 }
 // #endregion bool
 
-// #region int
-T Null(T : int)() {
+// #region integers
+auto Null(T: ubyte)() {
   return 0;
 }
 
-T Null(T : int[])() {
+auto Null(T: ushort)() {
+  return 0;
+}
+
+auto Null(T: uint)() {
+  return 0;
+}
+
+auto Null(T: ulong)() {
+  return 0;
+}
+
+auto Null(T: byte)() {
+  return 0;
+}
+
+auto Null(T: short)() {
+  return 0;
+}
+
+auto Null(T: int)() {
+  return 0;
+}
+
+auto Null(T: long)() {
   return 0;
 }
 
 unittest {
   assert(Null!int == 0);
   assert(Null!int != 1);
-}
-// #endregion int
 
-// #region long
-T Null(T : long)() {
-  return 0;
+  assert(Null!long == 0);
+  assert(Null!long != 1);
+}
+// #region integers
+
+auto Null(T:Object)() {
+  return null;
 }
 
-T Null(T : long[])() {
-  return 0;
-}
-// #endregion long
-
-// #region float
+// #region floating
 T Null(T : float)() {
   return 0.0;
 }
 
-T Null(T : float[])() {
-  return 0.0;
-}
-// #endregion float
-
-// #region double
 T Null(T : double)() {
   return 0.0;
 }
 
-T Null(T : double[])() {
+T Null(T : real)() {
   return 0.0;
 }
-// #endregion double
+// #endregion floating
 
 // #region string
 T Null(T : string)() {
-  return null;
-}
-
-T Null(T : string[])() {
   return null;
 }
 
