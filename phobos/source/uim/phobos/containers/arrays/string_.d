@@ -6,14 +6,9 @@
 module uim.phobos.containers.arrays.string_;
 
 import uim.phobos;
+
 mixin(Version!("test_uim_phobos"));
-
 @safe:
-
-
-
-
-
 // #region replace
   string[] replace(string[] texts, string originText, string newText) {
     return texts

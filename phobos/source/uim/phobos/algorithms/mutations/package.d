@@ -486,22 +486,6 @@ unittest { // T[] unshift(T)(ref T[] values, T[] newValues)
 // #endregion unshift
 
 // #region unshift
-/**
- * Unshifts the last elements of an array by a specified number of positions.
- *
- * This function modifies the input array in place by unshifting its last
- * elements to the left by the given number of positions. Elements that are
- * unshifted beyond the beginning of the array are removed.
- *
- * Params:
- *     values = The array to be unshifted. This array is modified in place.
- *     times = The number of positions to unshift the elements. If `times` is
- *             greater than the length of the array, it wraps around using
- *             modulo arithmetic.
- *
- * Returns:
- *     The modified array after the unshift operation.
- */
 T[] unshiftLast(T)(ref T[] values, T[] newValues) {
   if (newValues is null) {
     return values;

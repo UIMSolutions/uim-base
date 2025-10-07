@@ -8,7 +8,6 @@ module uim.phobos.algorithms.searchings;
 public {
   import uim.phobos.algorithms.searchings.contains;
   import uim.phobos.algorithms.searchings.duplicates;
-  import uim.phobos.algorithms.searchings.has_;
   import uim.phobos.algorithms.searchings.positions;
 }
 

@@ -17,23 +17,6 @@ size_t[T] duplicates(T)(in T[] someValues) {
   return results;
 }
 
-/**
- * Counts the number of occurrences of a specific value within an array.
- *
- * This function iterates through the given array and returns the count of
- * elements that match the specified value.
- *
- * Params:
- *     values - The array of values to search through.
- *     value - The value to count within the array.
- *
- * Returns:
- *     The number of times `value` appears in `someValues`.
- *
- * Example:
- *     auto arr = [1, 2, 3, 2, 4];
- *     assert(duplicates(arr, 2) == 2);
- */
 size_t duplicates(T)(T[] values, T search) {
   auto result = values.filter!(value => value == search).count;
   return result > 1 ? result - 1 : 0;
