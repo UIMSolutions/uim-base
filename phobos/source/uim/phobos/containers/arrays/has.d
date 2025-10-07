@@ -11,19 +11,71 @@ mixin(Version!("test_uim_phobos"));
 @safe:
 
 /**
+ * Checks if all specified values exist within the provided array.
+ *
+ * Params:
+ *   values  = The array to search.
+ *   checkValues = The values to look for in the array.
+ *
+ * Returns:
+ *   `true` if all values are found in the array, `false` otherwise.
+ */
+bool hasAll(T)(T[] values, in T[] checkValues) {
+  return checkValues.all!(value => values.has(value));
+}
+///
+unittest {
+  // Test hasAll
+  int[] arrInt = [1, 2, 3, 4, 5];
+  assert(hasAll(arrInt, [2, 3]));
+  assert(!hasAll(arrInt, [2, 6]));
+
+  string[] arrStr = ["apple", "banana", "cherry"];
+  assert(hasAll(arrStr, ["banana", "cherry"]));
+  assert(!hasAll(arrStr, ["banana", "date"]));
+}
+
+/**
+ * Checks if any of the specified values exist within the provided array.
+ *
+ * Params:
+ *   values  = The array to search.
+ *   checkValues = The values to look for in the array.
+ *
+ * Returns:
+ *   `true` if any value is found in the array, `false` otherwise.
+ */
+bool hasAny(T)(T[] values, in T[] checkValues) {
+  return checkValues.any!(value => values.has(value));
+}
+///
+unittest {
+  int[] arrInt = [1, 2, 3, 4, 5];
+  
+  // Test hasAny
+  assert(hasAny(arrInt, [0, 3, 6]));
+  assert(!hasAny(arrInt, [0, 6]));
+
+  // Test with string array
+  string[] arrStr = ["apple", "banana", "cherry"];
+  assert(hasAny(arrStr, ["date", "cherry"]));
+  assert(!hasAny(arrStr, ["date", "fig"]));
+}
+
+/**
  * Checks if the given value exists within the provided array.
  *
  * Params:
  *   values = The array to search.
- *   value = The value to look for in the array.
+ *   checkValue = The value to look for in the array.
  *
  * Returns:
  *   `true` if the value is found in the array, `false` otherwise.
  */
-bool has(T)(T[] values, T value) {
-  return values.canFind(value);
+bool has(T)(T[] values, T checkValue) {
+  return values.canFind(checkValue);
 }
-
+///
 unittest {
   // Test with int array
   int[] arrInt = [1, 2, 3, 4, 5];

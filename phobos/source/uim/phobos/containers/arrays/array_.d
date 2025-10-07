@@ -10,42 +10,7 @@ mixin(Version!("test_uim_phobos"));
 
 @safe:
 
-// #region check
-// #region has
-bool hasAllValues(T)(T[] items, in T[] values) {
-  return values.all!(value => items.hasValue(value));
-}
 
-bool hasAnyValues(T)(T[] items, in T[] values) {
-  return values.any!(value => items.hasValue(value));
-}
-
-bool hasValue(T)(T[] items, in T value) {
-  foreach (item; items) {
-    if (item == value) {
-      return true;
-    }
-  }
-  return false;
-}
-
-unittest {
-  auto test1 = [1, 2, 3, 4, 5];
-
-  // Test simple 
-  assert(test1.hasValue(1) & test1.hasValue(2));
-  assert([1, 2, 3, 4].hasAllValues([1]));
-  assert(![1, 2, 3, 4].hasAllValues([5]));
-  assert([1, 2, 3, 4].hasAllValues([1, 2]));
-  assert(![1, 2, 3, 4].hasAllValues([5, 1]));
-
-  assert([1, 2, 3, 4].hasAnyValues([1]));
-  assert(![1, 2, 3, 4].hasAnyValues([5]));
-  assert([1, 2, 3, 4].hasAnyValues([1, 2]));
-  assert([1, 2, 3, 4].hasAnyValues([1, 2, 5]));
-  assert(![1, 2, 3, 4].hasAnyValues([5, 6]));
-}
-// #endregion has
 // #endregion check
 
 // #region size
@@ -68,24 +33,6 @@ unittest {
   assert(["1", "3", "5"].firstPosition("3") == 1);
 }
 // #endregion firstPosition
-
-// #region filterValues
-T[] filterValues(T)(T[] baseArray, T[] values) {
-  return values.length == 0
-    ? baseArray
-    : baseArray.filter!(item => values.hasValue(item)).array;
-}
-
-unittest {
-  assert([1, 2, 3].filterValues([1, 2]) == [1, 2]);
-  assert([1, 2, 3].filterValues([2]) == [2]);
-  assert([1, 2, 3].filterValues([]) == [1, 2, 3]);
-
-  auto items = [1, 2, 3, 4, 4, 5, 6];
-  assert(items.filterValues([2, 3, 4]) == [2, 3, 4, 4]);
-}
-// #endregion filterValues
-
 
 
 // #region add
@@ -314,32 +261,13 @@ unittest {
 
 
 
-// #region filterValues
-T[] filterValues(T)(T[] values, bool delegate(T value) check) {
-  T[] results;
-  () @trusted { results = values.filter!(value => check(value)).array; }();
-  return results;
-}
-
-unittest {
-  string[] testString = ["1", null, "3"];
-  // assert(testString.filterValues().length == 2);
-
-  int[] testValues = [1, 2, 3];
-  bool foo(int i) {
-    return i > 1;
-  }
-
-  assert(testValues.filterValues(&foo).length == 2);
-}
-// #endregion filterValues
 
 // #region unique
 /// Unique - Reduce duplicates in array
 T[] unique(T)(T[] values) {
   T[] results;
   values.each!((value) {
-    if (!results.hasValue(value)) {
+    if (!results.has(value)) {
       results ~= value;
     }
   });
