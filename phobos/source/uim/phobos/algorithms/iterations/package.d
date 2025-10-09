@@ -6,5 +6,4 @@
 module uim.phobos.algorithms.iterations;
 
 public {
-    import uim.phobos.algorithms.iterations.every;
 }

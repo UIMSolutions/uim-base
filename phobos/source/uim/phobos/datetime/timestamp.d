@@ -11,6 +11,7 @@ import uim.phobos;
 
 enum startUNIX = DateTime(1970, 1, 1, 0, 0, 0);
 
+
 long toTimestamp(SysTime untilTime) {
   return (untilTime - cast(SysTime) startUNIX).total!"hnsecs"();
 }
@@ -24,6 +25,7 @@ SysTime fromTimestamp(string aTimestamp) {
 SysTime fromTimestamp(long aTimestamp) {
   return (cast(SysTime) startUNIX + aTimestamp.hnsecs);
 }
+
 
 long toJSTimestamp(long jsTimestamp) {
   return (fromJSTimestamp(jsTimestamp) - cast(SysTime) startUNIX).total!"msecs"();

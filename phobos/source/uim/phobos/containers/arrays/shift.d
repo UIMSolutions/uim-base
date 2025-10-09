@@ -10,7 +10,19 @@ import uim.phobos;
 mixin(Version!("test_uim_phobos"));
 @safe:
 
-// #region shiftMany
+/** 
+  * Removes and returns the first `times` elements from the `values` array.
+  * If `times` is greater than or equal to the length of `values`, all elements are removed and returned.
+  * If `values` is empty, an empty array is returned.
+  * If `times` is zero, `null` is returned and `values` remains unchanged.
+  *
+  * Params:
+  *   values = The array from which elements will be removed.
+  *   times  = The number of elements to remove from the start of the array (default is 1).
+  *
+  * Returns:
+  *   An array containing the removed elements, or `null` if `times` is zero.
+  */
 T[] shiftMany(T)(ref T[] values, size_t times = 1) {
   T[] results = [];
 
@@ -28,7 +40,7 @@ T[] shiftMany(T)(ref T[] values, size_t times = 1) {
   values = values[times .. $].dup;
   return results;
 }
-
+///
 unittest {
   // Test shiftMany with normal case
   int[] arr1 = [1, 2, 3, 4, 5];
@@ -60,9 +72,17 @@ unittest {
   assert(shifted5.equal([42]));
   assert(arr5.equal([43, 44]));
 }
-// #endregion shiftMany
 
-// #region shift
+/** 
+  * Removes and returns the first element from the `values` array.
+  * If `values` is empty, returns the default value of type `T`.
+  *
+  * Params:
+  *   values = The array from which the first element will be removed.
+  *
+  * Returns:
+  *   The removed element, or the default value of type `T` if `values` is empty.
+  */
 T shift(T)(ref T[] values) {
   if (values.length == 0) {
     return T.init;
@@ -75,7 +95,7 @@ T shift(T)(ref T[] values) {
 
   return value;
 }
-
+///
 unittest {
   // Test shift with single element
   int[] arr6 = [99];
@@ -97,4 +117,3 @@ unittest {
   assert(v1 == 1 && v2 == 2 && v3 == 3);
   assert(arr8.length == 0);
 }
-// #endregion shift

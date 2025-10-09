@@ -10,6 +10,22 @@ import uim.phobos;
 mixin(Version!("test_uim_phobos"));
 @safe:
 
+
+bool hasAll(T)(T[] values, in T[] checkValues...) {
+  return values.hasAll(checkValues.dup);
+}
+
+unittest {
+  // Test hasAll
+  int[] arrInt = [1, 2, 3, 4, 5];
+  assert(arrInt.hasAll(2, 3));
+  assert(!arrInt.hasAll(2, 6));
+
+  string[] arrStr = ["apple", "banana", "cherry"];
+  assert(arrStr.hasAll("banana", "cherry"));
+  assert(!arrStr.hasAll("banana", "date"));
+}
+
 /**
  * Checks if all specified values exist within the provided array.
  *
@@ -27,12 +43,12 @@ bool hasAll(T)(T[] values, in T[] checkValues) {
 unittest {
   // Test hasAll
   int[] arrInt = [1, 2, 3, 4, 5];
-  assert(hasAll(arrInt, [2, 3]));
-  assert(!hasAll(arrInt, [2, 6]));
+  assert(arrInt.hasAll([2, 3]));
+  assert(!arrInt.hasAll([2, 6]));
 
   string[] arrStr = ["apple", "banana", "cherry"];
-  assert(hasAll(arrStr, ["banana", "cherry"]));
-  assert(!hasAll(arrStr, ["banana", "date"]));
+  assert(arrStr.hasAll(["banana", "cherry"]));
+  assert(!arrStr.hasAll(["banana", "date"]));
 }
 
 /**
@@ -53,13 +69,30 @@ unittest {
   int[] arrInt = [1, 2, 3, 4, 5];
   
   // Test hasAny
-  assert(hasAny(arrInt, [0, 3, 6]));
-  assert(!hasAny(arrInt, [0, 6]));
+  assert(arrInt.hasAny([0, 3, 6]));
+  assert(!arrInt.hasAny([0, 6]));
 
   // Test with string array
   string[] arrStr = ["apple", "banana", "cherry"];
-  assert(hasAny(arrStr, ["date", "cherry"]));
-  assert(!hasAny(arrStr, ["date", "fig"]));
+  assert(arrStr.hasAny(["date", "cherry"]));
+  assert(!arrStr.hasAny(["date", "fig"]));
+}
+
+bool hasAny(T)(T[] values, in T[] checkValues...) {
+  return checkValues.any!(value => values.has(value));
+}
+
+unittest {
+  int[] arrInt = [1, 2, 3, 4, 5];
+  
+  // Test hasAny
+  assert(arrInt.hasAny(0, 3, 6));
+  assert(!arrInt.hasAny(0, 6));
+
+  // Test with string array
+  string[] arrStr = ["apple", "banana", "cherry"];
+  assert(arrStr.hasAny("date", "cherry"));
+  assert(!arrStr.hasAny("date", "fig"));
 }
 
 /**
