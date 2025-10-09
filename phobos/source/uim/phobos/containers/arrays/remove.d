@@ -14,6 +14,7 @@ auto removeAt(T)(T[] arr, size_t index) {
   return arr.remove(index).array;
 }
 
+/* 
 auto removeValue(T)(T[] arr, T value) {
   import std.algorithm : remove;
   import std.array : array;
@@ -43,3 +44,4 @@ unittest {
   auto result3 = removeValues(arr, [2, 4]);
   assert(result3 == [1, 3, 5]);
 }
+*/

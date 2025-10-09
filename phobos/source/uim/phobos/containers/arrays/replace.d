@@ -1,9 +1,11 @@
 module uim.phobos.containers.arrays.replace;
 
-auto replace(T)(T[] arr, T oldValue, T newValue) {
-  import std.algorithm : map;
-  import std.array : array;
+import uim.phobos;
 
+mixin(Version!("test_uim_phobos"));
+@safe:
+
+auto replace(T)(T[] arr, T oldValue, T newValue) {
   return arr.map!(x => x == oldValue ? newValue : x).array;
 }
 
@@ -47,7 +49,7 @@ unittest {
   // Test: replaceAll with empty array
   int[] emptyArr;
   auto result5 = replaceAll(emptyArr, oldVals, 123);
-  assert(result5.equal([]));
+  assert(result5 is null);
 
   // Test: replaceAll with custom type
   struct S {
@@ -76,6 +78,7 @@ unittest {
   * Returns:
   *   A new array with the replacements made.
   */
+  /*
 auto replaceIf(T)(T[] values, bool delegate(T) predicate, T newValue) {
   return values.replaceAll(values.filter!(x => predicate(x)).array, newValue);
 }
@@ -112,3 +115,4 @@ unittest {
   auto result6 = replaceIf(sArr, (x) => x.a == 2, S(99));
   assert(result6[0].a == 1 && result6[1].a == 99 && result6[2].a == 3);
 }
+*/

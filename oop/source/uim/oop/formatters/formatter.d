@@ -10,8 +10,11 @@ mixin(Version!"test_uim_oop");
 import uim.oop;
 @safe:
 
-
-// Base class for Formatters
+/** 
+  * A basic implementation of the `IFormatter` interface.
+  *
+  * This class serves as a concrete formatter that can be used directly or extended for more specific formatting needs.
+  */
 class DFormatter : UIMObject, IFormatter {
   /*    mixin TLocatorAware;
     mixin TLog; */

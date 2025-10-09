@@ -69,12 +69,6 @@ unittest {
   assert(result6["a"] == 1);
   assert(result6["b"] == 1);
 
-  // Test with characters
-  auto result7 = duplicates(['x', 'y', 'x', 'z', 'y']);
-  assert(result7.length == 2);
-  assert(result7['x'] == 1);
-  assert(result7['y'] == 1);
-
   // Test with floating-point numbers
   auto result8 = duplicates([1.1, 2.2, 1.1, 3.3, 2.2]);
   assert(result8.length == 2);

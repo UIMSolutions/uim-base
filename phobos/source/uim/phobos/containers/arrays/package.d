@@ -26,7 +26,6 @@ public {
   import uim.phobos.containers.arrays.indexof;
   import uim.phobos.containers.arrays.insert;
   import uim.phobos.containers.arrays.intersect;
-  import uim.phobos.containers.arrays.map;
   import uim.phobos.containers.arrays.merge;
   import uim.phobos.containers.arrays.minmax;
   import uim.phobos.containers.arrays.move;
