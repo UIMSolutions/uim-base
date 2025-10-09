@@ -50,10 +50,10 @@ class DMemoryConfiguration : DConfiguration {
   // #region get
     override Json getEntry(string key) {
       if (key.length == 0) {
-        return Null!Json;
+        return Json(null);
       }
 
-      return _entries.get(key, Null!Json);
+      return _entries.get(key, Json(null));
     }
 
     unittest {

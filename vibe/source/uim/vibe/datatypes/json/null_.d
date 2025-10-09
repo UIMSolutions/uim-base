@@ -24,23 +24,23 @@ T Null(T : Json)() if (is(T == Json)) {
 }
 
 unittest {
-  // Test Null!Json[string]
+  // Test Json(null)[string]
   Json[string] jsMap = ["a": Json("b")];
   jsMap = Null!(Json[string]);
-  assert(Null!(Json[string]).isNull, "Null!Json[string] should return null");
-  assert(jsMap.isNull, "Null!Json[string] should return null");
+  assert(Null!(Json[string]).isNull, "Json(null)[string] should return null");
+  assert(jsMap.isNull, "Json(null)[string] should return null");
 
-  // Test Null!Json[]
+  // Test Json(null)[]
   Json[] jsArr = [Json("a"), Json("b")];
   jsArr = Null!(Json[]);
-  assert(Null!(Json[]).isNull, "Null!Json[] should return null");
-  assert(jsArr.isNull, "Null!Json[] should return null");
+  assert(Null!(Json[]).isNull, "Json(null)[] should return null");
+  assert(jsArr.isNull, "Json(null)[] should return null");
 
-  // Test Null!Json
+  // Test Json(null)
   Json js = Json("test");
-  js = Null!Json;
-  assert(Null!Json.isNull, "Null!Json should return Json(null)");
-  assert(js.isNull, "Null!Json should return Json(null)");
+  js = Json(null);
+  assert(Json(null).isNull, "Json(null) should return Json(null)");
+  assert(js.isNull, "Json(null) should return Json(null)");
 }
 // #endregion Null
 

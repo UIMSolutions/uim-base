@@ -55,34 +55,34 @@ T first(T : Json)(T value) {
 // #region first by type
 Json firstObject(Json json) {
   return json.isArray
-    ? json.toArray.filterObjects.first : Null!Json;
+    ? json.toArray.filterObjects.first : Json(null);
 }
 
 Json firstArray(Json json) {
   return json.isArray
-    ? json.toArray.filterArrays.first : Null!Json;
+    ? json.toArray.filterArrays.first : Json(null);
 }
 
 Json firstValue(Json json) {
   return json.isArray
-    ? json.toArray.filterValues.first : Null!Json;
+    ? json.toArray.filterValues.first : Json(null);
 }
 // #endregion first by type
 
 // #region first by key
 Json firstHasAllKeys(Json json, string[] keys) {
   return json.isArray
-    ? json.toArray.filterHasAllKeys(keys).first : Null!Json;
+    ? json.toArray.filterHasAllKeys(keys).first : Json(null);
 }
 
 Json firstHasAnyKey(Json json, string[] keys) {
   return json.isArray
-    ? json.toArray.filterHasAnyKey(keys).first : Null!Json;
+    ? json.toArray.filterHasAnyKey(keys).first : Json(null);
 }
 
 Json firstHasKey(Json json, string key) {
   return json.isArray
-    ? json.toArray.filterHasKey(key).first : Null!Json;
+    ? json.toArray.filterHasKey(key).first : Json(null);
 }
 // #endregion first by key
 // #endregion Json

@@ -22,7 +22,7 @@ bool testConfiguration(IConfiguration configuration) {
         "1.1": Json(1.1),
         "true": Json(true),
         "false": Json(false),
-        "null": Null!Json
+        "null": Json(null)
     ]);
 
     // writeln("Entries: ", config.entries.toString());

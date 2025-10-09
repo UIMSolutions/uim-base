@@ -10,50 +10,120 @@ import uim.vibe;
 mixin(Version!("test_uim_vibe"));
 @safe:
 
-// #region is
-mixin(IsJsonFunctions!("Boolean"));
+/**
+  * Checks if all specified elements in the array are of boolean type.
+  *
+  * Params:
+  *   values = The array to check.
+  *   indices = Optional indices to check within the array. If not provided, all elements are checked.
+  *
+  * Returns:
+  *   `true` if all specified elements are booleans, `false` otherwise.
+  *
+  * Examples:
+  * ```d
+  * Json[] arr1 = [Json(true), Json(false), Json(1)];
+  * assert(!arr1.isAllBoolean); // false
+  *
+  * Json[] arr2 = [Json(true), Json(false)];
+  * assert(arr2.isAllBoolean); // true
+  *
+  * Json[] arr3 = [Json(true), Json(false), Json(1)];
+  * assert(arr3.isAllBoolean([0, 1])); // true
+  * assert(!arr3.isAllBoolean([0, 2])); // false
+  * ```
+  */
+bool isAllBoolean(Json[] values) {
+  return values.all!(json => json.isBoolean);
+}
+/// 
+unittest {
+    // Test with all booleans
+    Json[] arr1 = [Json(true), Json(false)];
+    assert(isAllBoolean(arr1), "Should be true: all elements are booleans");
 
-bool isBoolean(Json json, bool strict = true) {
-  if (!strict) {
-    if (json.isBoolean) {
-      return true;
-    }
-    
-    if (json.isNull) {
-      return false;
-    }
+    // Test with mixed types
+    Json[] arr2 = [Json(true), Json(1), Json(false)];
+    assert(!isAllBoolean(arr2), "Should be false: not all elements are booleans");
 
-    if (json.isArray) {
-      return json.isAllBoolean;
-    }
+    // Test with empty array
+    Json[] arr3 = [];
+    assert(isAllBoolean(arr3), "Should be true: empty array (vacuously true)");
 
-    if (json.isObject) {
-      return json.isAllBoolean;
-    }
+    // Test with single boolean
+    Json[] arr4 = [Json(true)];
+    assert(isAllBoolean(arr4), "Should be true: single boolean");
 
-    if (json.isUndefined) {
-      return false;
-    }
+    // Test with single non-boolean
+    Json[] arr5 = [Json("string")];
+    assert(!isAllBoolean(arr5), "Should be false: single non-boolean");
+}
 
-    if (json.isEmpty) {
-      return false;
-    }
+/** 
+  * Checks if all specified elements in the array are of boolean type.
+  *
+  * Params:
+  *   values = The array to check.
+  *   indices = Optional indices to check within the array. If not provided, all elements are checked.
+  *
+  * Returns:
+  *   `true` if all specified elements are booleans, `false` otherwise.
+  *
+  * Examples:
+  * ```d
+  * Json[] arr1 = [Json(true), Json(false), Json(1)];
+  * assert(!arr1.isAllBoolean); // false
+  *
+  * Json[] arr2 = [Json(true), Json(false)];
+  * assert(arr2.isAllBoolean); // true
+  *
+  * Json[] arr3 = [Json(true), Json(false), Json(1)];
+  * assert(arr3.isAllBoolean([0, 1])); // true
+  * assert(!arr3.isAllBoolean([0, 2])); // false
+  * ```
+  */
+bool isAllBoolean(Json[] values, size_t[] indices) {
+  return indices.all!(i => i < values.length && values[i].isBoolean);
+}
+/// 
+unittest {
+    // Test with all booleans at specified indices
+    Json[] arr = [Json(true), Json(false), Json(1)];
+    size_t[] indices1 = [0, 1];
+    assert(isAllBoolean(arr, indices1), "Should be true: indices 0 and 1 are booleans");
 
-    if (json.isString) {
-      auto val = json.getString.toLower;
-      return (val == "false") || (val == "no") || (val == "0") ||
-        (val == "true") || (val == "yes") || (val == "1");
-    }
+    // Test with mixed types at specified indices
+    size_t[] indices2 = [0, 2];
+    assert(!isAllBoolean(arr, indices2), "Should be false: index 2 is not a boolean");
 
-    if (json.isLong || json.isInteger) {
-      return (json.getLong == 0) || (json.getLong == 1);
-    }
+    // Test with out-of-bounds index
+    size_t[] indices3 = [0, 3];
+    assert(!isAllBoolean(arr, indices3), "Should be false: index 3 is out of bounds");
 
-    if (json.isDouble) {
-      return (json.getDouble == 0.0) || (json.getDouble == 1.0);
-    }
-  }
+    // Test with empty indices array
+    size_t[] indices4 = [];
+    assert(isAllBoolean(arr, indices4), "Should be true: empty indices (vacuously true)");
 
+    // Test with single boolean index
+    size_t[] indices5 = [1];
+    assert(isAllBoolean(arr, indices5), "Should be true: index 1 is a boolean");
+
+    // Test with single non-boolean index
+    size_t[] indices6 = [2];
+    assert(!isAllBoolean(arr, indices6), "Should be false: index 2 is not a boolean");
+}
+
+bool isAnyBoolean(Json[] values) {
+  return values.any!(json => json.isBoolean);
+}
+
+bool isAnyBoolean(Json json) {
+  return json.isArray
+    ? json.toArray.isAnyBoolean
+    : json.toMap.isAnyBoolean;
+}
+
+bool isBoolean(Json json) {
   return (json.type == Json.Type.bool_);
 }
 

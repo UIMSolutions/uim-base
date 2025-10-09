@@ -14,7 +14,7 @@ mixin(Version!("test_uim_core"));
 T shift(T:Json)(auto ref T[] values) {
   switch (values.length) {
   case 0:
-    return Null!Json;
+    return Json(null);
   case 1:
     T value = values[0];
     values = Json.emptyArray;

@@ -45,7 +45,7 @@ class DSpecialErrorNode : UIMErrorNode {
   // static assert(!__traits(compiles, node._data), "_data should be protected");
 
   // Test with null Json
-  Json jnull = Null!Json;
+  Json jnull = Json(null);
   node.data(jnull);
   assert(node.data() == jnull, "data(Json) should accept null Json");
 } */

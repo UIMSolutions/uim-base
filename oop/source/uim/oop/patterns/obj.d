@@ -71,7 +71,7 @@ class UIMObject : IObject {
     case "memberNames":
       return memberNames.toJson;
     default:
-      return Null!Json;
+      return Json(null);
     }
   } */
 

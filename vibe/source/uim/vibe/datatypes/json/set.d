@@ -171,11 +171,11 @@ Json[string] setArray(Json[string] map, string key) {
 }
 
 Json[string] setNull(Json[string] map, string[] keys) {
-  return map.set(keys, Null!Json);
+  return map.set(keys, Json(null));
 }
 
 Json[string] setNull(Json[string] map, string key) {
-  return map.set(key, Null!Json);
+  return map.set(key, Json(null));
 }
 
 Json[string] set(V : Json, T)(V[string] map, string key, T value) if (!is(V == T)) {
