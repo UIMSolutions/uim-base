@@ -6,14 +6,15 @@
 module uim.vibe.convert.uuid;
 
 import uim.vibe;
+
 mixin(Version!("test_uim_vibe"));
 @safe:
 
-// #region Json
 UUID toUUID(string key, Json value) {
   return value.isObject
     ? UUID(value.getString(key)) : UUID();
 }
+
 
 UUID toUUID(Json value) {
   return value.isString
@@ -27,4 +28,3 @@ unittest {
   auto id = randomUUID;
   assert(Json(id.toString).toUUID == id);
 }
-// #endregion Json

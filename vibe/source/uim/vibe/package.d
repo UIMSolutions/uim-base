@@ -14,20 +14,9 @@ public {
 
 public {
   import uim.vibe.algorithms;
-  /*   import uim.vibe.classes;
-  import uim.vibe.containers;
-  import uim.vibe.datatypes;
- */
   import uim.vibe.convert;
   import uim.vibe.datatypes;
   import uim.vibe.enumerations;
   import uim.vibe.helpers;
-  import uim.vibe.http;
   import uim.vibe.mixins;
-
-  /*   
-  import uim.vibe.io;
-  import uim.vibe.mixins;
-  import uim.vibe.tests;
- */
 }
