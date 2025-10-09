@@ -1,5 +1,10 @@
 module uim.phobos.containers.arrays.remove;
 
+import uim.phobos;
+
+mixin(Version!("test_uim_phobos"));
+@safe:
+
 auto removeAt(T)(T[] arr, size_t index) {
   import std.algorithm : remove;
   import std.array : array;

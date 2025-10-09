@@ -1,5 +1,10 @@
 module uim.phobos.containers.arrays.fold;
 
+import uim.phobos;
+
+mixin(Version!("test_uim_phobos"));
+@safe:
+
 auto foldl(T, U)(T[] arr, U init, U delegate(U, T) dg) {
   foreach (elem; arr) {
     init = dg(init, elem);

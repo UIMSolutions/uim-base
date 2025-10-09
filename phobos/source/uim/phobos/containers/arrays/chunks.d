@@ -16,11 +16,15 @@ mixin(Version!"test_uim_phobos");
   *   The last chunk may be smaller if the total number of elements is not divisible by `chunkSize`.
   * ```
   */
-auto chunks(T)(T[] arr, size_t chunkSize) {
-  import std.algorithm : chunk;
-  import std.array : array;
-
-  return arr.chunk(chunkSize).array;
+auto chunks(T)(T[] arr, size_t chunkSize) pure {
+  T[][] results;
+  if (chunkSize == 0) {
+    return results; // Return empty array if chunkSize is 0
+  }
+  for (size_t i = 0; i < arr.length; i += chunkSize) {
+    results ~= arr[i .. (i + chunkSize > arr.length ? arr.length : i + chunkSize)];
+  }
+  return results;
 }
 ///
 unittest {

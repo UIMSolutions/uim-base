@@ -40,23 +40,21 @@ public {
   import uim.phobos.containers.arrays.rotate;
   import uim.phobos.containers.arrays.sample;
   import uim.phobos.containers.arrays.shuffle;
-  import uim.phobos.containers.arrays.sort;
-  import uim.phobos.containers.arrays.split;
   import uim.phobos.containers.arrays.sorting;
-  import uim.phobos.containers.arrays.splice;
+  import uim.phobos.containers.arrays.split;
+  /* import uim.phobos.containers.arrays.splice;
   import uim.phobos.containers.arrays.sum;
   import uim.phobos.containers.arrays.swap;
   import uim.phobos.containers.arrays.take;
   import uim.phobos.containers.arrays.transpose;
   import uim.phobos.containers.arrays.transform;
   import uim.phobos.containers.arrays.unique;
-  import uim.phobos.containers.arrays.union;
   import uim.phobos.containers.arrays.unzipmap;
   import uim.phobos.containers.arrays.zipmap;
   import uim.phobos.containers.arrays.zipwith;
   import uim.phobos.containers.arrays.zipwithindex;
   import uim.phobos.containers.arrays.zipwithindexes;
-  import uim.phobos.containers.arrays.zipwithmap; 
+  import uim.phobos.containers.arrays.zipwithmap; */ 
 
   import uim.phobos.containers.arrays.every;
   import uim.phobos.containers.arrays.first;

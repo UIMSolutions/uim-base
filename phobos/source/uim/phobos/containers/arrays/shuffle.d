@@ -1,4 +1,4 @@
-module uim.phobos.containers.arrays.group;
+module uim.phobos.containers.arrays.shuffle;
 
 import uim.phobos;
 

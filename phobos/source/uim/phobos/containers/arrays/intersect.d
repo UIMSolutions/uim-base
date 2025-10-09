@@ -1,5 +1,10 @@
 module uim.phobos.containers.arrays.intersect;
 
+import uim.phobos;
+
+mixin(Version!("test_uim_phobos"));
+@safe:
+
 /** Returns the intersection of two arrays as a new array.
  * 
  * Params:
