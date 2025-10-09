@@ -9,7 +9,7 @@ public {
   import uim.vibe.datatypes.json.array_;
   import uim.vibe.datatypes.json.utils;
   import uim.vibe.datatypes.json.biginteger;
-  import uim.vibe.datatypes.json.boolean;
+  import uim.vibe.datatypes.json.booleans;
   import uim.vibe.datatypes.json.convert;
   import uim.vibe.datatypes.json.double_;
   import uim.vibe.datatypes.json.empty;

@@ -189,7 +189,7 @@ Json[string] toJsonMap(double[string] values, string[] excludeKeys = null) {
 Json[string] toJsonMap(string[string] items, string[] excludeKeys = null) {
   Json[string] result;
   items.byKeyValue
-    .filter!(item => !excludeKeys.hasValue(item.key))
+    .filter!(item => !excludeKeys.has(item.key))
     .each!(item => result[item.key] = Json(item.value));
   return result;
 }

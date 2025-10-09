@@ -9,5 +9,6 @@ public {
 /*     import uim.vibe.convert.jsonmap;
     import uim.vibe.convert.string_;
     import uim.vibe.convert.stringmap; */
+    import uim.vibe.convert.tomap; 
     import uim.vibe.convert.uuid; 
 }

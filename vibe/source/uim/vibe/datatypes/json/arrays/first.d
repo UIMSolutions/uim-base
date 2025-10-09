@@ -10,11 +10,9 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-// #region Json[]
-T first(T : Json[])(T value) {
-  return value.length > 0 
-  ? value[0]
-  : Json(null);
+T first(T:Json)(T[] values) {
+  return values.length > 0
+    ? values[0] : Json(null);
 }
 
 // #region first by type

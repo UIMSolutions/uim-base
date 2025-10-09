@@ -14,8 +14,8 @@ string[] keys(Json json, bool sorted = false) {
 
 unittest {
   auto json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": "h"}]}`);
-  assert(json.keys.hasAllValues(["a", "c", "e"]));
-  assert(!json.keys.hasAllValues(["a", "c", "x"]));
+  assert(json.keys.hasAll(["a", "c", "e"]));
+  assert(!json.keys.hasAll(["a", "c", "x"]));
 }
 // #endregion keys
 
