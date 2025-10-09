@@ -46,13 +46,11 @@ public {
 }
 
 public {
-  import uim.phobos.algorithms;
   import uim.phobos.ascii;
   import uim.phobos.base64;
   import uim.phobos.bitmanip;
   import uim.phobos.checkedint;
   import uim.phobos.compiler;
-  import uim.phobos.complex;
   import uim.phobos.concurrency;
   import uim.phobos.constants;
   import uim.phobos.containers;

@@ -1,0 +1,32 @@
+module uim.phobos.containers.arrays.chunks;
+
+import uim.phobos;
+
+mixin(Version!"test_uim_phobos");
+@safe:
+/** 
+  * Splits an array into chunks of a specified size.
+  *
+  * Params:
+  *   arr = The input array to be chunked.
+  *   chunkSize = The size of each chunk.
+  *
+  * Returns:
+  *   An array of arrays, where each inner array is a chunk of the specified size.
+  *   The last chunk may be smaller if the total number of elements is not divisible by `chunkSize`.
+  * ```
+  */
+auto chunks(T)(T[] arr, size_t chunkSize) {
+  import std.algorithm : chunk;
+  import std.array : array;
+
+  return arr.chunk(chunkSize).array;
+}
+///
+unittest {
+  auto result = chunks([1, 2, 3, 4, 5], 2);
+  assert(result.length == 3);
+  assert(result[0] == [1, 2]);
+  assert(result[1] == [3, 4]);
+  assert(result[2] == [5]);
+}
