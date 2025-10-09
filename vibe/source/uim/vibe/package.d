@@ -28,7 +28,6 @@ public {
   /*   
   import uim.vibe.io;
   import uim.vibe.mixins;
-  import uim.vibe.web;
   import uim.vibe.tests;
  */
 }

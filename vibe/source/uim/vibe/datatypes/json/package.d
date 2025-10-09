@@ -23,7 +23,6 @@ public {
   import uim.vibe.datatypes.json.map;
   import uim.vibe.datatypes.json.merge;
   import uim.vibe.datatypes.json.null_;
-  import uim.vibe.datatypes.json.object_;
   import uim.vibe.datatypes.json.remove;
   import uim.vibe.datatypes.json.scalar;
   import uim.vibe.datatypes.json.set;
