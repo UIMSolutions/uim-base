@@ -19,7 +19,7 @@ mixin(Version!("test_uim_phobos"));
   * Returns:
   *   The first element of the array or a Null!T if the array is empty.
   */
-T first(T)(T[] values) pure {
+T first(T)(T[] values) {
   return values.length > 0
     ? values[0] : Null!T;
 }
@@ -68,7 +68,7 @@ unittest {
   * Returns:
   *   An array containing the first 'numberOfValues' elements, a duplicate of the entire array if it has fewer than 'numberOfValues' elements, or null if the array is empty.
   */
-T[] firstMany(T)(T[] values, size_t numberOfValues) pure nothrow {
+T[] firstMany(T)(T[] values, size_t numberOfValues) {
   if (values.length == 0) {
     return null;
   }

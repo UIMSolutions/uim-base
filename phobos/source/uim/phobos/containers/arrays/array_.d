@@ -14,7 +14,7 @@ mixin(Version!("test_uim_phobos"));
 
 
 // #region firstPosition
-size_t firstPosition(T)(in T[] baseArray, in T value) pure nothrow {
+size_t firstPosition(T)(in T[] baseArray, in T value) {
   foreach (index, item; baseArray)
     if (item == value)
       return index;

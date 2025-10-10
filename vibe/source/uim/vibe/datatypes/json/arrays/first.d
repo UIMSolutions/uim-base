@@ -6,21 +6,22 @@
 module uim.vibe.datatypes.json.arrays.first;
 
 import uim.vibe;
+
 mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-T first(T:Json)(T[] values) pure{
+T first(T : Json)(T[] values) {
   return values.length > 0
     ? values[0] : Json(null);
 }
 
 // #region first by type
-Json firstObject(Json[] items) pure{
+Json firstObject(Json[] items) {
   return items.filterObjects.first;
 }
 
-Json firstArray(Json[] items) pure{
+Json firstArray(Json[] items) {
   return items.filterArrays.first;
 }
 

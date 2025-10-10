@@ -117,7 +117,7 @@ final class DImage(T) {
 
     /// Convert a 2D array of chars to a binary Image.
     static DImage fromText(in string txt,
-        in char one = '#', in char zero = '.') pure {
+        in char one = '#', in char zero = '.') {
         auto M = txt
             .strip
             .split

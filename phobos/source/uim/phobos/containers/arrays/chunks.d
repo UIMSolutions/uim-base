@@ -16,7 +16,7 @@ mixin(Version!"test_uim_phobos");
   *   The last chunk may be smaller if the total number of elements is not divisible by `chunkSize`.
   * ```
   */
-auto chunks(T)(T[] arr, size_t chunkSize) pure {
+auto chunks(T)(T[] arr, size_t chunkSize) {
   T[][] results;
   if (chunkSize == 0) {
     return results; // Return empty array if chunkSize is 0

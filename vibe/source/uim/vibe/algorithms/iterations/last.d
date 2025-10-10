@@ -19,7 +19,7 @@ mixin(Version!("test_uim_vibe"));
   * Returns:
   *   The last element of the array if `json` is an array, otherwise `null`.
   */
-Json last(Json json) pure nothrow {
+Json last(Json json) {
   return json.isArray
     ? last(json.toArray) : Json(null);
 }
@@ -31,7 +31,7 @@ unittest {
   assert(result == Json(3), "last should return the last element of the array");
 
   // Test with an empty Json array
-  Json emptyArr = Json([]);
+  Json emptyArr = Json.emptyArray;
   auto emptyResult = last(emptyArr);
   assert(emptyResult == Json(null), "last should return Json(null) for empty array");
 
@@ -51,7 +51,7 @@ unittest {
   * Returns:
   *   An array containing the last 'numberOfValues' elements, a duplicate of the entire array if it has fewer than 'numberOfValues' elements, or null if the array is empty.
   */
-Json[] lastMany(Json json, size_t numberOfValues) pure nothrow {
+Json[] lastMany(Json json, size_t numberOfValues) {
   return json.isArray
     ? lastMany(json.toArray, numberOfValues) : null;
 }
@@ -75,7 +75,7 @@ unittest {
   assert(resultOver == [Json(1), Json(2), Json(3), Json(4)], "lastMany should return all elements");
 
   // Test lastMany with an empty Json array
-  Json emptyArr = Json([]);
+  Json emptyArr = Json.emptyArray;
   auto emptyResult = lastMany(emptyArr, 3);
   assert(emptyResult.length == 0, "lastMany should return an empty array for empty Json array");
 

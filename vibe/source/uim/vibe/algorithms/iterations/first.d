@@ -20,7 +20,7 @@ mixin(Version!("test_uim_vibe"));
   * Returns:
   *   The first element of the array if `json` is an array, otherwise `null`.
   */
-Json first(Json json) pure nothrow {
+Json first(Json json) {
   return json.isArray
     ? first(json.toArray) : Json(null);
 }
@@ -31,7 +31,7 @@ unittest {
   assert(first(nonArray) == Json(null), "Should return null for non-array Json");
 
   // Test: first(Json) with an empty array
-  Json emptyArr = Json([]);
+  Json emptyArr = Json.emptyArray;
   assert(first(emptyArr) == Json(null), "Should return null for empty array");
 
   // Test: first(Json) with a single-element array
@@ -58,7 +58,7 @@ unittest {
   * Returns:
   *   The first element of the array or `null` if the array is empty.
   */
-T first(T : Json)(T[] values) pure nothrow {
+T first(T : Json)(T[] values) {
   return (values.length == 0)
     ? Json(null) : values[0];
 }
@@ -74,7 +74,7 @@ unittest {
 }
 // #region T first(T : Json)(T[] values)
 
-Json[] firstMany(Json json, size_t numberOfValues) pure nothrow {
+Json[] firstMany(Json json, size_t numberOfValues) {
   return json.isArray
     ? firstMany(json.toArray, numberOfValues) : null;
 }
