@@ -7,16 +7,16 @@ module uim.core.datatypes;
 
 public {
   // import uim.core.datatypes.datetime;
-  import uim.core.datatypes.boolean;
   import uim.core.datatypes.datetime;
   import uim.core.datatypes.floating;
   import uim.core.datatypes.general;
   import uim.core.datatypes.integer;
   import uim.core.datatypes.integral;
   import uim.core.datatypes.json;
-  import uim.core.datatypes.string_;
   import uim.core.datatypes.uuid;
 }
 
-public { // Additional packages
+public { // Packages
+  import uim.core.datatypes.booleans;
+  import uim.core.datatypes.strings;
 }
