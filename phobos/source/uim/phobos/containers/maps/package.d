@@ -5,13 +5,7 @@
 *****************************************************************************************************************/
 module uim.phobos.containers.maps;
 
-/* public {
-  import uim.phobos.containers.maps.map_;
-  import uim.phobos.containers.maps.string_;
-}
-*/
 public {
-  import uim.phobos.containers.maps.keys;
+  import uim.phobos.containers.maps.every;
   import uim.phobos.containers.maps.pairs;
-  import uim.phobos.containers.maps.values;
 }

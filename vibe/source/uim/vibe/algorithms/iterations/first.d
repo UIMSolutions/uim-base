@@ -11,18 +11,7 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-
 // #region with array of values
-T first(T)(T[] values) if (!is(T == string)) {
-  return (values.length > 0)
-    ? values[0] : Null!T;
-}
-
-T first(T:string)(T[] values) {
-  return (values.length > 0)
-    ? values[0] : null;
-}
-
 T first(T:Json)(T[] values) {
   return (values.length > 0)
     ? values[0] : Json(null);

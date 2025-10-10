@@ -3,119 +3,119 @@
 		"kind": "module",
 		"file": "source/uim/core/classes/general.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.classes.general"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/classes/package.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.classes"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/consts/filesystem.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.consts.filesystem"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/consts/package.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.consts"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/containers/general.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\nExample:\n$(DDOX_UNITTEST_HEADER __unittest_L25_C1)\n---\n// TODO \n\n---\n$(DDOX_UNITTEST_FOOTER __unittest_L25_C1)\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\nExample:\n$(DDOX_UNITTEST_HEADER __unittest_L25_C1)\n---\n// TODO \n\n---\n$(DDOX_UNITTEST_FOOTER __unittest_L25_C1)\n",
 		"name": "uim.core.containers.general"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/containers/map_.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.containers.map_"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/containers/package.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.containers"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/converts/boolean.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.converts.boolean"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/converts/double_.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.converts.double_"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/converts/html.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.converts.html"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/converts/json.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.converts.json"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/converts/jsonmap.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.converts.jsonmap"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/converts/long_.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.converts.long_"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/converts/package.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.converts"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/converts/string_.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.converts.string_"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/converts/stringmap.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.converts.stringmap"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/converts/uuid.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.converts.uuid"
 	},
 	{
@@ -179,21 +179,21 @@
 				"comment": "Translates boolean to defined values\n"
 			}
 		],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.datatypes.booleans.boolean"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/datatypes/datetime.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.datatypes.datetime"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/datatypes/floating.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.datatypes.floating"
 	},
 	{
@@ -318,14 +318,14 @@
 				"comment": "Concat rightValues to leftValues\nExample:\n$(DDOX_UNITTEST_HEADER __unittest_L89_C1)\n---\nassert([\"a\": \"b\"].concatPostfixInValues(\"abc\") == [\"a\": \"babc\"]);\nassert([\"a\": [1, 2, 3]].concatPostfixInValues([4]) == [\"a\": [1, 2, 3, 4]]);\n\n---\n$(DDOX_UNITTEST_FOOTER __unittest_L89_C1)\n"
 			}
 		],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.datatypes.general"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/datatypes/integer.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.datatypes.integer"
 	},
 	{
@@ -421,21 +421,21 @@
 				"comment": "transform value minOld/maxOld to newMin/newMax\n"
 			}
 		],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.datatypes.integral"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/datatypes/json.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.datatypes.json"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/datatypes/package.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.datatypes"
 	},
 	{
@@ -548,175 +548,175 @@
 				"comment": " Returns camelBacked version of an underscored string.\n returns string in variable form\n"
 			}
 		],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.datatypes.strings.string_"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/datatypes/uuid.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\nExample:\n$(DDOX_UNITTEST_HEADER __unittest_L130_C1)\n---\n/// TODO\n\n---\n$(DDOX_UNITTEST_FOOTER __unittest_L130_C1)\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\nExample:\n$(DDOX_UNITTEST_HEADER __unittest_L130_C1)\n---\n/// TODO\n\n---\n$(DDOX_UNITTEST_FOOTER __unittest_L130_C1)\n",
 		"name": "uim.core.datatypes.uuid"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/enumerations/logs.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.enumerations.logs"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/enumerations/package.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.enumerations"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/enumerations/sort.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.enumerations.sort"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/extras/bitmap.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.extras.bitmap"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/extras/csvhtml.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.extras.csvhtml"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/extras/package.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.extras"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/helpers/array.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.helpers.array"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/helpers/classes.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.helpers.classes"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/helpers/css.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.helpers.css"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/helpers/html.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.helpers.html"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/helpers/json.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.helpers.json"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/helpers/jsonmap.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.helpers.jsonmap"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/helpers/map.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.helpers.map"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/helpers/package.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.helpers"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/helpers/xml.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.helpers.xml"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/io/file.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.io.file"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/io/package.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.io"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/logging/loglevel.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.logging.loglevel"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/logging/package.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.logging"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/mixins/functions.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.mixins.functions"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/mixins/map.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.mixins.map"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/mixins/package.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.mixins"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/mixins/phobos.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.mixins.phobos"
 	},
 	{
@@ -816,14 +816,14 @@
 				"comment": "mixin for string properties\n"
 			}
 		],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.mixins.properties.classical"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/mixins/properties/package.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.mixins.properties"
 	},
 	{
@@ -866,7 +866,7 @@
 				"comment": "select values in array\nExample:\n$(DDOX_UNITTEST_HEADER __unittest_L88_C1)\n---\nassert(1.nallEqual([2, 3]));\n\n---\n$(DDOX_UNITTEST_FOOTER __unittest_L88_C1)\n"
 			}
 		],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core"
 	},
 	{
@@ -880,56 +880,56 @@
 		"kind": "module",
 		"file": "source/uim/core/storage/folder.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.storage.folder"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/storage/link.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.storage.link"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/storage/package.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.storage"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/storage/path.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.storage.path"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/tests/package.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.tests"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/tests/test.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.tests.test"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/web/html.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.web.html"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/web/javascript.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.web.javascript"
 	},
 	{
@@ -1053,21 +1053,21 @@
 				"comment": "Convert keypair to a JsonValue\n"
 			}
 		],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.web.json"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/web/package.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.web"
 	},
 	{
 		"kind": "module",
 		"file": "source/uim/core/web/url.d",
 		"members": [],
-		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)                                                  *\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *\n Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *\n",
+		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\n",
 		"name": "uim.core.web.url"
 	}
 ]

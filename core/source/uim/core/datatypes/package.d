@@ -13,10 +13,10 @@ public {
   import uim.core.datatypes.integer;
   import uim.core.datatypes.integral;
   import uim.core.datatypes.json;
-  import uim.core.datatypes.uuid;
 }
 
 public { // Packages
   import uim.core.datatypes.booleans;
   import uim.core.datatypes.strings;
+  import uim.core.datatypes.uuids;
 }

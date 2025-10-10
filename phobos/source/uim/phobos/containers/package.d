@@ -12,7 +12,6 @@ public {
   import uim.phobos.containers.maps;
   import uim.phobos.containers.rbtree;
   import uim.phobos.containers.slist;
-  import uim.phobos.containers.util;
 }
 
 public { // Additional packages
