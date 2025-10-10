@@ -85,7 +85,7 @@ bool anyArray(Json[string] map) {
   * assert(!isArray(jsonObject)); // false
   * ```
   */
-bool isArray(Json json) {
+bool isArray(Json json) pure {
   return json == Json(null)
     ? false : json.type == Json.Type.array;
 }

@@ -105,41 +105,41 @@ class DConfiguration : IConfiguration {
   mixin(IsMethods!("ArrayEntries", "ArrayEntry", "string"));
   mixin(IsMethods!("MapEntries", "MapEntry", "string"));
 
-  bool isNullEntry(string key) {
+  bool isNullEntry(string key) pure {
     return getEntry(key).isNull;
   }
 
-  bool isEmptyEntry(string key) {
+  bool isEmptyEntry(string key) pure {
     return hasEntry(key)
       ? getEntry(key).isEmpty : false;
   }
 
-  bool isBooleanEntry(string key) {
+  bool isBooleanEntry(string key) pure {
     return hasEntry(key)
       ? getEntry(key).isBoolean : false;
   }
 
-  bool isLongEntry(string key) {
+  bool isLongEntry(string key) pure {
     return hasEntry(key)
       ? getEntry(key).isLong : false;
   }
 
-  bool isDoubleEntry(string key) {
+  bool isDoubleEntry(string key) pure {
     return hasEntry(key)
       ? getEntry(key).isDouble : false;
   }
 
-  bool isStringEntry(string key) {
+  bool isStringEntry(string key) pure {
     return hasEntry(key)
       ? getEntry(key).isString : false;
   }
 
-  bool isArrayEntry(string key) {
+  bool isArrayEntry(string key) pure {
     return hasEntry(key)
       ? getEntry(key).isArray : false;
   }
 
-  bool isMapEntry(string key) {
+  bool isMapEntry(string key)pure{
     return hasEntry(key)
       ? getEntry(key).isMap : false;
   }

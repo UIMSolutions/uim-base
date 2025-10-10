@@ -10,7 +10,6 @@ import uim.vibe;
 mixin(Version!("test_uim_vibe"));
 @safe:
 
-
 /** 
   * Checks if any element in the array is of boolean type.
   *

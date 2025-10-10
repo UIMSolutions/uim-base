@@ -19,7 +19,7 @@ mixin(Version!("test_uim_phobos"));
   * Returns:
   *   The first element of the array or a Null!T if the array is empty.
   */
-T first(T)(T[] values) {
+T first(T)(T[] values) pure {
   return values.length > 0
     ? values[0] : Null!T;
 }
@@ -63,18 +63,19 @@ unittest {
   * 
   * Params:
   *   values = The array to extract elements from.
-  *   size = The number of elements to extract from the start of the array.
+  *   numberOfValues = The number of elements to extract from the start of the array.
   * 
   * Returns:
-  *   An array containing the first 'size' elements, a duplicate of the entire array if it has fewer than 'size' elements, or null if the array is empty.
+  *   An array containing the first 'numberOfValues' elements, a duplicate of the entire array if it has fewer than 'numberOfValues' elements, or null if the array is empty.
   */
-T[] firstMany(T)(T[] values, size_t size) {
+T[] firstMany(T)(T[] values, size_t numberOfValues) pure nothrow {
   if (values.length == 0) {
     return null;
   }
 
-  return values.length > size
-    ? values[0 .. size] : values.dup;
+  return values.length > numberOfValues
+    ? values[0 .. numberOfValues].dup
+    : values.dup;
 }
 ///
 unittest {
