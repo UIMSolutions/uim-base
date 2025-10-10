@@ -10,6 +10,10 @@ import uim.phobos;
 mixin(Version!("test_uim_phobos"));
 @safe:
 
+auto rest(T)(T[] values...) {
+  return test(values.dup);
+}
+
 /**
   Returns the tail of the array (all elements except the first).
   

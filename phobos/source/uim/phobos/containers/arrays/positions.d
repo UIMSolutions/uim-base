@@ -4,6 +4,7 @@
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
 module uim.phobos.containers.arrays.positions;
+
 import uim.phobos;
 
 @safe:

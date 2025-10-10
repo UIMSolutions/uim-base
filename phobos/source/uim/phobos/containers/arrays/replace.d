@@ -1,3 +1,8 @@
+/****************************************************************************************************************
+* Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur) 
+* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
+* Authors: Ozan Nurettin Süel (aka UIManufaktur)
+*****************************************************************************************************************/
 module uim.phobos.containers.arrays.replace;
 
 import uim.phobos;
@@ -13,8 +18,8 @@ auto replace(T)(T[] arr, T oldValue, T newValue) {
   * Replaces all occurrences of `oldValue` in the array with `newValue`.
   *
   * Params:
-  *   arr = The array to modify.
-  *   oldValue = The value to replace.
+  *   values = The array to modify.
+  *   oldValues = The value to replace.
   *   newValue = The value to insert in place of `oldValue`.
   *
   * Returns:
