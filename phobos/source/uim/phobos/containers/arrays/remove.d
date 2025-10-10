@@ -10,13 +10,40 @@ import uim.phobos;
 mixin(Version!("test_uim_phobos"));
 @safe:
 
-auto removeAt(T)(T[] arr, size_t index) {
-  import std.algorithm : remove;
-  import std.array : array;
-  if (index >= arr.length) {
-    throw new Exception("Index out of bounds");
-  }
-  return arr.remove(index).array;
+/**
+  * Removes the element at the specified index from the array.
+  *
+  * Params:
+  *   values = The original array.
+  *   index = The index of the element to remove.
+  *
+  * Returns:
+  *   A new array with the specified element removed.
+  */
+auto removeAt(T)(T[] values, size_t index) {
+  return (index >= values.length) 
+  ? values.dup 
+  : values.dup.remove(index);
+}
+///
+unittest {
+  // Test removing from the middle
+  int[] arr = [10, 20, 30, 40, 50];
+  auto result = removeAt(arr, 2);
+  assert(result == [10, 20, 40, 50]);
+
+  // Test removing first element
+  result = arr.removeAt(0);
+  assert(result == [20, 30, 40, 50]);
+
+  // Test removing last element
+  result = arr.removeAt(arr.length - 1);
+  assert(result == [10, 20, 30, 40]);
+
+  // Test removing from single-element array
+  int[] single = [42];
+  result = single.removeAt(0);
+  assert(result.length == 0);
 }
 
 /* 
