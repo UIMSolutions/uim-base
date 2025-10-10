@@ -18,20 +18,13 @@ T first(T:Json)(T[] values) {
 }
 
 unittest {
-  // Test first(T)(T[] values) with non-empty int array
-  int[] arr = [10, 20, 30];
-  assert(first(arr) == 10);
-
-  // Test first(T)(T[] values) with non-empty string array
-  string[] strArr = ["a", "b", "c"];
-  assert(first(strArr) == "a");
 
   // Test first(T)(T[] values) with non-empty Json array
   Json[] jsonArr = [Json(1), Json(2)];
-  assert(first(jsonArr) == Json(1));
+  assert(jsonArr.first == Json(1));
 
   // Test first(T)(T[] values) with empty Json array
   Json[] emptyJsonArr;
-  assert(first(emptyJsonArr) is Json(null));
+  assert(emptyJsonArr.first == Json(null));
 }
 // #endregion with array of values

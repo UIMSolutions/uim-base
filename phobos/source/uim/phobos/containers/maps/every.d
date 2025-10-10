@@ -76,7 +76,7 @@ unittest {
   *   func = A delegate function that takes a single value as its parameter.
   */
 void every(K, V)(V[K] items, void delegate(V value) @safe func) {
-  items.byValue.each!(v => func(v));
+  items.byValue.each!(value => func(v));
 }
 ///
 unittest {

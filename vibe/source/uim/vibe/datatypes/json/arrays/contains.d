@@ -5,9 +5,9 @@
 *****************************************************************************************************************/
 module uim.vibe.datatypes.json.arrays.contains;
 
-import uim.phobos;
+import uim.vibe;
 
-mixin(Version!("test_uim_phobos"));
+mixin(Version!("test_uim_vibe"));
 @safe:
 
 bool containsAll(Json json, Json[] values) {

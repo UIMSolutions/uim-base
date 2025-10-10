@@ -19,7 +19,7 @@ mixin(Version!("test_uim_vibe"));
   */
 void every(Json data, void delegate(string key, Json value) @safe func) {
   if (data.isObject) {
-    return data.toMap.every(func);
+    data.byKeyValue.each!(kv => func(kv.key, kv.value));
   }
 }
 
@@ -30,8 +30,20 @@ void every(Json data, void delegate(string key, Json value) @safe func) {
   *   data = The JSON data to iterate over (can be an array or an object).
   *   func = A delegate function that takes a single Json value as its parameter.
   */
-void every(Json data, void delegate(Json value) @safe func) {
-  if (data.isArray) {
-    return data.toArray.every(func);
+void every(Json json, void delegate(Json value) @safe func) {
+  if (json.isArray || json.isObject) {
+    json.byValue.each!(value => func(value));
+  }
+}
+
+void everyKey(Json json, void delegate(string key) @safe func) {
+  if (json.isObject) {
+    json.byKeyValue.each!(kv => func(kv.key));
+  }
+}
+
+void everyValue(Json json, void delegate(Json value) @safe func) {
+  if (json.isArray || json.isObject) {
+    json.byValue.each!(v => func(v));
   }
 }
