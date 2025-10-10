@@ -14,6 +14,7 @@ public {
 
 public {
   import uim.vibe.algorithms;
+  import uim.vibe.containers;
   import uim.vibe.convert;
   import uim.vibe.datatypes;
   import uim.vibe.enumerations;

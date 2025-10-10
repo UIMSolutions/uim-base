@@ -81,33 +81,33 @@ T[] firstMany(T)(T[] values, size_t numberOfValues) {
 unittest {
   // Test: firstMany with size less than array length
   int[] arr1 = [10, 20, 30, 40, 50];
-  auto res1 = firstMany(arr1, 3);
+  auto res1 = arr1.firstMany(3);
   assert(res1.equal([10, 20, 30]));
 
   // Test: firstMany with size equal to array length
   int[] arr2 = [1, 2, 3];
-  auto res2 = firstMany(arr2, 3);
+  auto res2 = arr2.firstMany(3);
   assert(res2.equal([1, 2, 3]));
 
   // Test: firstMany with size greater than array length
   int[] arr3 = [7, 8];
-  auto res3 = firstMany(arr3, 5);
+  auto res3 = arr3.firstMany(5);
   assert(res3.equal([7, 8]));
 
   // Test: firstMany with empty array
   int[] arr4 = [];
-  auto res4 = firstMany(arr4, 2);
+  auto res4 = arr4.firstMany(2);
   assert(res4.isEmpty);
 
   // Test: firstMany with size zero
   int[] arr5 = [1, 2, 3];
-  auto res5 = firstMany(arr5, 0);
+  auto res5 = arr5.firstMany(0);
   writeln("res5: ", res5);
   assert(res5.isEmpty);
 
   // Test: firstMany with strings
   string[] arr6 = ["a", "b", "c", "d"];
-  auto res6 = firstMany(arr6, 2);
+  auto res6 = arr6.firstMany(2);
   assert(res6.equal(["a", "b"]));
 }
 

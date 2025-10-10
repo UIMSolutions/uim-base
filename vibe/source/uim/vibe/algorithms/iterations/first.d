@@ -43,8 +43,8 @@ unittest {
   assert(first(multiArr) == Json(1), "Should return the first element for multi-element array");
 
   // Test: first(Json) with a nested array
-  Json nestedArr = Json([[Json("a"), Json("b")], [Json("c")]]);
-  assert(first(nestedArr) == Json(["a", "b"]), "Should return the first nested array");
+  Json nestedArr = [[Json("a"), Json("b")].toJson, [Json("c")].toJson].toJson;
+  assert(first(nestedArr) == ["a", "b"].toJson, "Should return the first nested array");
 }
 // #endregion T first(Json json)
 
@@ -75,6 +75,22 @@ unittest {
 // #region T first(T : Json)(T[] values)
 
 Json[] firstMany(Json json, size_t numberOfValues) {
-  return json.isArray
-    ? firstMany(json.toArray, numberOfValues) : null;
+  if (!json.isArray) {
+    return null;
+  }
+
+  Json[] jsonArray = json.toArray;
+  return firstMany(jsonArray, numberOfValues);
+}
+
+Json[] firstMany(Json[] jsons, size_t numberOfValues) {
+  if (jsons.length == 0) {
+    return null;
+  }
+
+  Json[] result;
+  for (size_t i = 0; i < numberOfValues && i < jsons.length; i++) {
+    result ~= jsons[i];
+  }
+  return result;
 }

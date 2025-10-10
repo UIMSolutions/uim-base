@@ -38,9 +38,16 @@ bool isAnyObject(Json[] values) {
 }
 
 // Check if the JSON value is an object
-bool isObject(Json json, bool strict = true) {
-  if (!strict) {
-    // Future improvement: check for object, integer, and string types
-  }
+bool isObject(Json json) {
   return json.type == Json.Type.object;
+}
+
+bool isObject(Json json, string key) {
+  return json.hasKey(key)
+  ? json[key].isObject : false;
+}
+
+bool isObject(Json[string] map, string key) {
+  return map.hasKey(key)
+  ? map[key].isObject : false;
 }

@@ -41,6 +41,13 @@ unittest {
   assert(valueResult == Json(null), "last should return Json(null) for non-array Json");
 }
 
+Json last(Json[] json) {
+  if (json.length == 0) {
+    return Json(null);
+  }
+  return json[$-1];
+}
+
 /** 
   * Returns an array containing the last 'numberOfValues' elements of the input array.
   *
@@ -83,4 +90,16 @@ unittest {
   Json value = Json("test");
   auto valueResult = lastMany(value, 2);
   assert(valueResult is null, "lastMany should return null for non-array Json");
+}
+
+Json[] lastMany(Json[] jsons, size_t numberOfValues) {
+  if (jsons.length == 0) {
+    return null;
+  }
+
+  Json[] result;
+  for (size_t i = 0; i < numberOfValues && i < jsons.length; i++) {
+    result ~= jsons[jsons.length - 1 - i];
+  }
+  return result;
 }

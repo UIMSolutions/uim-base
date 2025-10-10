@@ -29,6 +29,7 @@ public {
   import uim.vibe.datatypes.json.string_;
   import uim.vibe.datatypes.json.undefined;
   import uim.vibe.datatypes.json.update;
+  import uim.vibe.datatypes.json.utils;
   import uim.vibe.datatypes.json.values;
 }
 
