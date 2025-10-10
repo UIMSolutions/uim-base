@@ -12,7 +12,7 @@ public {
   import uim.core.classes;
   import uim.core.containers;
   import uim.core.consts;
-  import uim.core.convert;
+  import uim.core.converts;
   import uim.core.datatypes;
   import uim.core.enumerations;
   import uim.core.helpers;

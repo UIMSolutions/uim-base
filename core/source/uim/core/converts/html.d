@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.core.convert.html;
+module uim.core.converts.html;
 
 import uim.core;
 
@@ -31,6 +31,7 @@ string readAttributes(Json json, bool sorted = false) {
 }
 
 string readAttributes(string[string] items, bool sorted = false) {
+
   return readAttributes(items.convert((string key, string value) => "%s=\"%s\"".format(key, value)), sorted);
 }
 

@@ -3,18 +3,10 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)                                                                *
 *****************************************************************************************************************/
-module uim.core.convert;
+module uim.core.converts.jsonmap;
 
-public {
-  import uim.core.convert.boolean;
-  import uim.core.convert.double_;
-  import uim.core.convert.html;
-  import uim.core.convert.json;
-  import uim.core.convert.jsonmap;
-  import uim.core.convert.string_;
-  import uim.core.convert.stringmap;
-  import uim.core.convert.uuid;
-}
+import uim.core;
 
-public { // Additional packages
-}
+mixin(Version!("test_uim_core"));
+@safe:
+
