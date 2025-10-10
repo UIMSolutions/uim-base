@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>API documentation</title>
+		<link rel="stylesheet" type="text/css" href="./styles/ddox.css"/>
+		<link rel="stylesheet" href="./prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="./scripts/jquery.js">/**/</script><script type="text/javascript" src="./scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="./symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "./";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">uim
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="./uim/phobos.html">phobos</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">algorithms
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="./uim/phobos/algorithms/iterations.html">iterations</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/algorithms/iterations/every.html">every</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="./uim/phobos/algorithms/searchings.html">searchings</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/algorithms/searchings/contains.html">contains</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/algorithms/searchings/duplicates.html">duplicates</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/algorithms/searchings/positions.html">positions</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/algorithms/comparisons.html">comparisons</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/algorithms/mutations.html">mutations</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/algorithms/setops.html">setops</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/algorithms/sortings.html">sortings</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="./uim/phobos/constants.html">constants</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/constants/constants.html">constants</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="./uim/phobos/containers.html">containers</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="./uim/phobos/containers/arrays.html">arrays</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/containers/arrays/array_.html">array_</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/containers/arrays/first.html">first</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/containers/arrays/json.html">json</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/containers/arrays/last.html">last</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/containers/arrays/string_.html">string_</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="./uim/phobos/containers/maps.html">maps</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/containers/maps/keys.html">keys</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/containers/maps/values.html">values</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/containers/binaryheap.html">binaryheap</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/containers/dlist.html">dlist</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/containers/rbtree.html">rbtree</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/containers/slist.html">slist</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/containers/util.html">util</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="./uim/phobos/convert.html">convert</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/convert/convert.html">convert</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/convert/null_.html">null_</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/convert/uuid.html">uuid</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="./uim/phobos/datatypes.html">datatypes</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="./uim/phobos/datatypes/strings.html">strings</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/datatypes/strings/mutation.html">mutation</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/datatypes/strings/strings.html">strings</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="./uim/phobos/datatypes/uuids.html">uuids</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/datatypes/uuids/uuid.html">uuid</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/datatypes/bigint.html">bigint</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/datatypes/mixins.html">mixins</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/datatypes/nulls.html">nulls</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="./uim/phobos/datetime.html">datetime</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/datetime/timestamp.html">timestamp</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="./uim/phobos/digest.html">digest</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/digest/crc.html">crc</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/digest/hmac.html">hmac</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/digest/md.html">md</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/digest/murmurhash.html">murmurhash</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/digest/ripemd.html">ripemd</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/digest/sha.html">sha</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="./uim/phobos/enumerations.html">enumerations</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/enumerations/enumerations.html">enumerations</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="./uim/phobos/variants.html">variants</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/variants/variant.html">variant</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/algorithm.html">algorithm</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/ascii.html">ascii</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/base64.html">base64</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/bitmanip.html">bitmanip</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/checkedint.html">checkedint</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/compiler.html">compiler</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/complex.html">complex</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/concurrency.html">concurrency</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/csv.html">csv</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/demangle.html">demangle</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/file.html">file</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/format.html">format</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/interfaces.html">interfaces</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/logger.html">logger</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/math.html">math</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/meta.html">meta</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/mixins.html">mixins</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/net.html">net</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/path.html">path</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/random.html">random</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/range.html">range</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/regex.html">regex</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/signals.html">signals</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/socket.html">socket</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/stdint.html">stdint</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/stdio.html">stdio</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/system.html">system</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/traits.html">traits</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/uni.html">uni</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/utf.html">utf</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/windows.html">windows</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/zip.html">zip</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/phobos/zlib.html">zlib</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>API documentation</h1>
+			<table>
+				<col class="caption"/>
+				<tr>
+					<th>Module</th><th>Description</th>
+				</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/algorithms/iterations/every.html">uim.phobos.algorithms.iterations.every</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/algorithms/searchings/contains.html">uim.phobos.algorithms.searchings.contains</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/algorithms/searchings/duplicates.html">uim.phobos.algorithms.searchings.duplicates</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/algorithms/searchings/positions.html">uim.phobos.algorithms.searchings.positions</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/algorithms/comparisons.html">uim.phobos.algorithms.comparisons</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/algorithms/iterations.html">uim.phobos.algorithms.iterations</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/algorithms/mutations.html">uim.phobos.algorithms.mutations</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/algorithms/searchings.html">uim.phobos.algorithms.searchings</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/algorithms/setops.html">uim.phobos.algorithms.setops</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/algorithms/sortings.html">uim.phobos.algorithms.sortings</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/constants/constants.html">uim.phobos.constants.constants</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/containers/arrays/array_.html">uim.phobos.containers.arrays.array_</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/containers/arrays/first.html">uim.phobos.containers.arrays.first</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/containers/arrays/json.html">uim.phobos.containers.arrays.json</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/containers/arrays/last.html">uim.phobos.containers.arrays.last</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/containers/arrays/string_.html">uim.phobos.containers.arrays.string_</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/containers/maps/keys.html">uim.phobos.containers.maps.keys</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/containers/maps/values.html">uim.phobos.containers.maps.values</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/containers/arrays.html">uim.phobos.containers.arrays</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/containers/binaryheap.html">uim.phobos.containers.binaryheap</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/containers/dlist.html">uim.phobos.containers.dlist</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/containers/maps.html">uim.phobos.containers.maps</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/containers/rbtree.html">uim.phobos.containers.rbtree</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/containers/slist.html">uim.phobos.containers.slist</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/containers/util.html">uim.phobos.containers.util</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/convert/convert.html">uim.phobos.convert.convert</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/convert/null_.html">uim.phobos.convert.null_</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/convert/uuid.html">uim.phobos.convert.uuid</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/datatypes/strings/mutation.html">uim.phobos.datatypes.strings.mutation</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/datatypes/strings/strings.html">uim.phobos.datatypes.strings.strings</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/datatypes/uuids/uuid.html">uim.phobos.datatypes.uuids.uuid</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/datatypes/bigint.html">uim.phobos.datatypes.bigint</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/datatypes/mixins.html">uim.phobos.datatypes.mixins</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/datatypes/nulls.html">uim.phobos.datatypes.nulls</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/datatypes/strings.html">uim.phobos.datatypes.strings</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/datatypes/uuids.html">uim.phobos.datatypes.uuids</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/datetime/timestamp.html">uim.phobos.datetime.timestamp</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/digest/crc.html">uim.phobos.digest.crc</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/digest/hmac.html">uim.phobos.digest.hmac</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/digest/md.html">uim.phobos.digest.md</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/digest/murmurhash.html">uim.phobos.digest.murmurhash</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/digest/ripemd.html">uim.phobos.digest.ripemd</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/digest/sha.html">uim.phobos.digest.sha</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/enumerations/enumerations.html">uim.phobos.enumerations.enumerations</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/variants/variant.html">uim.phobos.variants.variant</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/algorithm.html">uim.phobos.algorithm</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/ascii.html">uim.phobos.ascii</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/base64.html">uim.phobos.base64</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/bitmanip.html">uim.phobos.bitmanip</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/checkedint.html">uim.phobos.checkedint</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/compiler.html">uim.phobos.compiler</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/complex.html">uim.phobos.complex</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/concurrency.html">uim.phobos.concurrency</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/constants.html">uim.phobos.constants</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/containers.html">uim.phobos.containers</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/convert.html">uim.phobos.convert</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/csv.html">uim.phobos.csv</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/datatypes.html">uim.phobos.datatypes</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/datetime.html">uim.phobos.datetime</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/demangle.html">uim.phobos.demangle</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/digest.html">uim.phobos.digest</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/enumerations.html">uim.phobos.enumerations</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/file.html">uim.phobos.file</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/format.html">uim.phobos.format</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/interfaces.html">uim.phobos.interfaces</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/logger.html">uim.phobos.logger</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/math.html">uim.phobos.math</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/meta.html">uim.phobos.meta</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/mixins.html">uim.phobos.mixins</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/net.html">uim.phobos.net</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/path.html">uim.phobos.path</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/random.html">uim.phobos.random</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/range.html">uim.phobos.range</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/regex.html">uim.phobos.regex</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/signals.html">uim.phobos.signals</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/socket.html">uim.phobos.socket</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/stdint.html">uim.phobos.stdint</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/stdio.html">uim.phobos.stdio</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/system.html">uim.phobos.system</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/traits.html">uim.phobos.traits</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/uni.html">uim.phobos.uni</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/utf.html">uim.phobos.utf</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/variants.html">uim.phobos.variants</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/windows.html">uim.phobos.windows</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/zip.html">uim.phobos.zip</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos/zlib.html">uim.phobos.zlib</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/phobos.html">uim.phobos</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			</table>
+			<footer>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>
