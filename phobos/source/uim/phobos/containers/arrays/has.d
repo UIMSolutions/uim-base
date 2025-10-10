@@ -10,11 +10,11 @@ import uim.phobos;
 mixin(Version!("test_uim_phobos"));
 @safe:
 
-
+/*
 bool hasAll(T)(T[] values, in T[] checkValues...) {
   return values.hasAll(checkValues.dup);
 }
-
+///
 unittest {
   // Test hasAll
   int[] arrInt = [1, 2, 3, 4, 5];

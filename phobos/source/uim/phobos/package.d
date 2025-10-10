@@ -66,25 +66,14 @@ public {
   import uim.phobos.format;
   import uim.phobos.interfaces;
   import uim.phobos.math;
-  import uim.phobos.meta;
   import uim.phobos.mixins;
-  import uim.phobos.net;
-  import uim.phobos.path;
   import uim.phobos.random;
-  import uim.phobos.range;
-  import uim.phobos.regex;
   import uim.phobos.signals;
-  import uim.phobos.socket;
   import uim.phobos.stdint;
   import uim.phobos.stdio;
   import uim.phobos.system;
-  import uim.phobos.traits;
   import uim.phobos.utf;
-  import uim.phobos.uni;
   import uim.phobos.variants;
-  import uim.phobos.windows;
-  import uim.phobos.zip;
-  import uim.phobos.zlib;
 }
 
 template Version(string name) {

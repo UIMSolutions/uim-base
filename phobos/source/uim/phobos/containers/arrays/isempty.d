@@ -33,28 +33,31 @@ bool isEmpty(T)(T[] values) {
 }
 ///
 unittest {
-    // Test with empty int array
-    int[] arr1;
-    assert(isEmpty(arr1));
+  // Test with empty int array
+  int[] arr1;
+  assert(isEmpty(arr1));
 
-    // Test with non-empty int array
-    int[] arr2 = [1, 2, 3];
-    assert(!isEmpty(arr2));
+  // Test with non-empty int array
+  int[] arr2 = [1, 2, 3];
+  assert(!isEmpty(arr2));
 
-    // Test with empty string array
-    string[] arr3;
-    assert(isEmpty(arr3));
+  // Test with empty string array
+  string[] arr3;
+  assert(isEmpty(arr3));
 
-    // Test with non-empty string array
-    string[] arr4 = ["a", "b"];
-    assert(!isEmpty(arr4));
+  // Test with non-empty string array
+  string[] arr4 = ["a", "b"];
+  assert(!isEmpty(arr4));
 
-    // Test with empty array of structs
-    struct S { int x; }
-    S[] arr5;
-    assert(isEmpty(arr5));
+  // Test with empty array of structs
+  struct S {
+    int x;
+  }
 
-    // Test with non-empty array of structs
-    S[] arr6 = [S(1), S(2)];
-    assert(!isEmpty(arr6));
+  S[] arr5;
+  assert(isEmpty(arr5));
+
+  // Test with non-empty array of structs
+  S[] arr6 = [S(1), S(2)];
+  assert(!isEmpty(arr6));
 }
