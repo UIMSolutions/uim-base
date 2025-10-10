@@ -5,20 +5,7 @@ import uim.core;
 mixin(Version!("test_uim_core"));
 @safe:
 
-/***
-  Replaces placeholders in the source string with corresponding values from the replaceMap.
-  
-  Params:
-  - source: The original string containing placeholders.
-  - replaceMap: A map where keys are placeholder names and values are the strings to replace them with.
-  - placeHolder: A format string for the placeholders, default is "{{%s}}".
-  
-  Returns:
-  - The updated string with placeholders replaced by their corresponding values.
-***/
 string bind(string source, string[string] replaceMap, string placeHolder = "{{%s}}") {
-  import std.string;
-
   string updatedText = source;
   replaceMap.byKeyValue
     .each!(kv => updatedText = std.string.replace(updatedText, placeHolder.format(kv.key), kv
@@ -28,8 +15,6 @@ string bind(string source, string[string] replaceMap, string placeHolder = "{{%s
 }
 ///
 unittest {
-  import uim.core.datatypes.strings.bind : bind;
-
   // Test with string[string] replaceMap
   string source = "Hello, {{name}}! Welcome to {{place}}.";
   string[string] replaceMap = ["name": "Alice", "place": "Wonderland"];
@@ -61,18 +46,6 @@ unittest {
   assert(result == "Hello, {{name}}!");
 }
 
-/*** 
-  Replaces placeholders in the source string with corresponding values from the keys and values arrays.
-  
-  Params:
-  - source: The original string containing placeholders.
-  - keys: An array of placeholder names.
-  - values: An array of strings to replace the placeholders with.
-  - placeHolder: A format string for the placeholders, default is "{{%s}}".
-  
-  Returns:
-  - The updated string with placeholders replaced by their corresponding values.
-***/
 string bind(string source, string[] keys, string[] values, string placeHolder = "{{%s}}") {
   auto length = min(keys.length, values.length);
   if (length == 0) {
