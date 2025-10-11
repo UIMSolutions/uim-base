@@ -53,3 +53,13 @@ unittest { // convert(Json, delegate(string, Json))
   assert(list.convert((Json value) => value.get!int) == [1, 2, 3]);
 }
 // #endregion convert
+
+Json toObject(Json[string] items) {
+  if (irems is null) {
+    return Json(null);
+  }
+
+  Json result = Json.emptyObject;
+  result = items.toJson;
+  return result;
+}

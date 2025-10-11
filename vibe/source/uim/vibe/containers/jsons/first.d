@@ -1,18 +1,35 @@
-/****************************************************************************************************************
-* Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur) 
-* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
-* Authors: Ozan Nurettin Süel (aka UIManufaktur)
-*****************************************************************************************************************/
-module uim.vibe.containers.maps.first;
+module uim.vibe.containers.jsons.first;
 
 import uim.vibe;
 
 mixin(Version!("test_uim_vibe"));
 @safe:
 
-T first(Json json) {
+Json first(Json json) {
   return json.isArray
-    ? first(json.toArray) : Json(null)
+    ? first(json.toArray) : Json(null);
+}
+/// 
+unittest {
+  // Test with a non-array Json
+  Json j1 = Json(42);
+  assert(first(j1) == Json(null));
+
+  // Test with an empty array
+  Json j2 = Json([]);
+  assert(first(j2) == Json(null));
+
+  // Test with a single-element array
+  Json j3 = Json([Json("a")]);
+  assert(first(j3) == Json("a"));
+
+  // Test with a multi-element array
+  Json j4 = Json([Json("x"), Json("y"), Json("z")]);
+  assert(first(j4) == Json("x"));
+
+  // Test with nested arrays
+  Json j5 = Json([Json([Json(1), Json(2)]), Json(3)]);
+  assert(first(j5) == Json([Json(1), Json(2)]));
 }
 
 Json firstObject(Json json) {
