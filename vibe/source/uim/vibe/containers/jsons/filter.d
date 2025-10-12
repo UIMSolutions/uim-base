@@ -31,27 +31,27 @@ Json[] filterObjects(Json json) {
 /// 
 unittest {
     // Test: filterObjects(Json) with array input containing objects and non-objects
-    Json obj1 = ["foo": 1].toJson;
-    Json obj2 = ["bar": 2].toJson;
-    Json arr = [obj1, obj2, Json("str"), Json(42), Json(null)].toJson;
+    Json object1 = ["foo": 1].toJson;
+    Json object2 = ["bar": 2].toJson;
+    Json arr = [object1, object2, Json("str"), Json(42), Json(null)].toJson;
 
     auto result = filterObjects(arr);
     assert(result.length == 2, "Should return 2 objects from Json array");
-    assert(result.canFind(obj1), "Should contain obj1");
-    assert(result.canFind(obj2), "Should contain obj2");
+    assert(result.canFind(object1), "Should contain object1");
+    assert(result.canFind(object2), "Should contain object2");
 
     // Test: filterObjects(Json) with object input containing objects and non-objects
     Json[string] map;
-    map["obj1"] = obj1;
-    map["obj2"] = obj2;
+    map["object1"] = object1;
+    map["object2"] = object2;
     map["str"] = Json("str");
     map["num"] = Json(42);
     Json obj = map.toJson;
 
     auto resultObj = filterObjects(obj);
     assert(resultObj.length == 2, "Should return 2 objects from Json object");
-    assert(resultObj.canFind(obj1), "Should contain obj1");
-    assert(resultObj.canFind(obj2), "Should contain obj2");
+    assert(resultObj.canFind(object1), "Should contain object1");
+    assert(resultObj.canFind(object2), "Should contain object2");
 
     // Test: filterObjects(Json) with non-array/object input (string)
     Json str = Json("hello");

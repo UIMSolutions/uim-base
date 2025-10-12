@@ -23,11 +23,11 @@ mixin(Version!("test_uim_vibe"));
   *
   * Examples:
   * ```d
-  * Json[] arr1 = [Json(true), Json(false), Json(1)];
-  * assert(!arr1.isAllBoolean); // false
+  * Json[] array1 = [Json(true), Json(false), Json(1)];
+  * assert(!array1.isAllBoolean); // false
   *
-  * Json[] arr2 = [Json(true), Json(false)];
-  * assert(arr2.isAllBoolean); // true
+  * Json[] array2 = [Json(true), Json(false)];
+  * assert(array2.isAllBoolean); // true
   *
   * Json[] arr3 = [Json(true), Json(false), Json(1)];
   * assert(arr3.isAllBoolean([0, 1])); // true
@@ -40,12 +40,12 @@ bool isAllBoolean(Json[] values) {
 /// 
 unittest {
   // Test with all booleans
-  Json[] arr1 = [Json(true), Json(false)];
-  assert(isAllBoolean(arr1), "Should be true: all elements are booleans");
+  Json[] array1 = [Json(true), Json(false)];
+  assert(isAllBoolean(array1), "Should be true: all elements are booleans");
 
   // Test with mixed types
-  Json[] arr2 = [Json(true), Json(1), Json(false)];
-  assert(!isAllBoolean(arr2), "Should be false: not all elements are booleans");
+  Json[] array2 = [Json(true), Json(1), Json(false)];
+  assert(!isAllBoolean(array2), "Should be false: not all elements are booleans");
 
   // Test with empty array
   Json[] arr3 = [];
@@ -72,11 +72,11 @@ unittest {
   *
   * Examples:
   * ```d
-  * Json[] arr1 = [Json(true), Json(false), Json(1)];
-  * assert(!arr1.isAllBoolean); // false
+  * Json[] array1 = [Json(true), Json(false), Json(1)];
+  * assert(!array1.isAllBoolean); // false
   *
-  * Json[] arr2 = [Json(true), Json(false)];
-  * assert(arr2.isAllBoolean); // true
+  * Json[] array2 = [Json(true), Json(false)];
+  * assert(array2.isAllBoolean); // true
   *
   * Json[] arr3 = [Json(true), Json(false), Json(1)];
   * assert(arr3.isAllBoolean([0, 1])); // true

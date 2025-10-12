@@ -43,16 +43,16 @@ T[] shiftMany(T)(ref T[] values, size_t times = 1) {
 ///
 unittest {
   // Test shiftMany with normal case
-  int[] arr1 = [1, 2, 3, 4, 5];
-  auto shifted1 = shiftMany(arr1, 2);
+  int[] array1 = [1, 2, 3, 4, 5];
+  auto shifted1 = shiftMany(array1, 2);
   assert(shifted1.equal([1, 2]));
-  assert(arr1.equal([3, 4, 5]));
+  assert(array1.equal([3, 4, 5]));
 
   // Test shiftMany with times = 0
-  int[] arr2 = [10, 20, 30];
-  auto shifted2 = shiftMany(arr2, 0);
+  int[] array2 = [10, 20, 30];
+  auto shifted2 = shiftMany(array2, 0);
   assert(shifted2 == null);
-  assert(arr2.equal([10, 20, 30]));
+  assert(array2.equal([10, 20, 30]));
 
   // Test shiftMany with times >= length
   int[] arr3 = [7, 8, 9];

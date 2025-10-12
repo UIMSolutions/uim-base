@@ -71,8 +71,8 @@ unittest {
   assert(result6[0].a == 1 && result6[1].a == 99 && result6[2].a == 3 && result6[3].a == 99);
 
   // Test: replaceAll with custom type, multiple oldValues
-  S[] oldSArr2 = [S(1), S(3)];
-  auto result7 = replaceAll(sArr, oldSArr2, S(42));
+  S[] oldSarray2 = [S(1), S(3)];
+  auto result7 = replaceAll(sArr, oldSarray2, S(42));
   assert(result7[0].a == 42 && result7[1].a == 2 && result7[2].a == 42 && result7[3].a == 2);
 }
 

@@ -36,27 +36,27 @@ Json[] filterObjects(Json json) {
 /// 
 unittest {
     // Test: filterObjects(Json) with array input containing objects and non-objects
-    Json obj1 = ["foo": 1].toJson;
-    Json obj2 = ["bar": 2].toJson;
-    Json arr = [obj1, obj2, Json("str"), Json(42), Json(null)].toJson;
+    Json object1 = ["foo": 1].toJson;
+    Json object2 = ["bar": 2].toJson;
+    Json arr = [object1, object2, Json("str"), Json(42), Json(null)].toJson;
 
     auto result = filterObjects(arr);
     assert(result.length == 2, "Should return 2 objects from Json array");
-    assert(result.canFind(obj1), "Should contain obj1");
-    assert(result.canFind(obj2), "Should contain obj2");
+    assert(result.canFind(object1), "Should contain object1");
+    assert(result.canFind(object2), "Should contain object2");
 
     // Test: filterObjects(Json) with object input containing objects and non-objects
     Json[string] map;
-    map["obj1"] = obj1;
-    map["obj2"] = obj2;
+    map["object1"] = object1;
+    map["object2"] = object2;
     map["str"] = Json("str");
     map["num"] = Json(42);
     Json obj = map.toJson;
 
     auto resultObj = filterObjects(obj);
     assert(resultObj.length == 2, "Should return 2 objects from Json object");
-    assert(resultObj.canFind(obj1), "Should contain obj1");
-    assert(resultObj.canFind(obj2), "Should contain obj2");
+    assert(resultObj.canFind(object1), "Should contain object1");
+    assert(resultObj.canFind(object2), "Should contain object2");
 
     // Test: filterObjects(Json) with non-array/object input (string)
     Json str = Json("hello");
@@ -82,20 +82,20 @@ unittest {
   // Test: filterObjects returns only objects from mixed Json array
 
   // Prepare test data
-  Json obj1 = ["x": 1, "y": 2].toJson;
-  Json obj2 = ["z": 3].toJson;
+  Json object1 = ["x": 1, "y": 2].toJson;
+  Json object2 = ["z": 3].toJson;
   Json arr = [1, 2, 3].toJson;
   Json str = Json("test");
   Json num = Json(123);
   Json nullVal = Json(null);
 
-  Json[] items = [obj1, arr, str, obj2, num, nullVal];
+  Json[] items = [object1, arr, str, object2, num, nullVal];
 
   auto result = filterObjects(items);
 
   assert(result.length == 2, "Should return 2 objects");
-  assert(result[0] == obj1, "First object should be obj1");
-  assert(result[1] == obj2, "Second object should be obj2");
+  assert(result[0] == object1, "First object should be object1");
+  assert(result[1] == object2, "Second object should be object2");
 
   // Test: filterObjects with no objects
   Json[] noObjects = [arr, str, num, nullVal];
@@ -103,11 +103,11 @@ unittest {
   assert(emptyResult.length == 0, "Should return empty array when no objects");
 
   // Test: filterObjects with all objects
-  Json[] allObjects = [obj1, obj2];
+  Json[] allObjects = [object1, object2];
   auto allResult = filterObjects(allObjects);
   assert(allResult.length == 2, "Should return all objects");
-  assert(allResult[0] == obj1);
-  assert(allResult[1] == obj2);
+  assert(allResult[0] == object1);
+  assert(allResult[1] == object2);
 }
 // #endregion filterObjects
 
@@ -135,33 +135,33 @@ unittest {
   // Test: filterArrays returns only arrays from mixed Json array
 
   // Prepare test data
-  Json obj1 = ["x": 1, "y": 2].toJson;
-  Json obj2 = ["z": 3].toJson;
-  Json arr1 = [1, 2, 3].toJson;
-  Json arr2 = ["a", "b", "c"].toJson;
+  Json object1 = ["x": 1, "y": 2].toJson;
+  Json object2 = ["z": 3].toJson;
+  Json array1 = [1, 2, 3].toJson;
+  Json array2 = ["a", "b", "c"].toJson;
   Json str = Json("test");
   Json num = Json(123);
   Json nullVal = Json(null);
 
-  Json[] items = [obj1, arr1, str, obj2, num, arr2, nullVal];
+  Json[] items = [object1, array1, str, object2, num, array2, nullVal];
 
   auto result = filterArrays(items);
 
   assert(result.length == 2, "Should return 2 arrays");
-  assert(result[0] == arr1, "First array should be arr1");
-  assert(result[1] == arr2, "Second array should be arr2");
+  assert(result[0] == array1, "First array should be array1");
+  assert(result[1] == array2, "Second array should be array2");
 
   // Test: filterArrays with no arrays
-  Json[] noArrays = [obj1, obj2, str, num, nullVal];
+  Json[] noArrays = [object1, object2, str, num, nullVal];
   auto emptyResult = filterArrays(noArrays);
   assert(emptyResult.length == 0, "Should return empty array when no arrays");
 
   // Test: filterArrays with all arrays
-  Json[] allArrays = [arr1, arr2];
+  Json[] allArrays = [array1, array2];
   auto allResult = filterArrays(allArrays);
   assert(allResult.length == 2, "Should return all arrays");
-  assert(allResult[0] == arr1);
-  assert(allResult[1] == arr2);
+  assert(allResult[0] == array1);
+  assert(allResult[1] == array2);
 }
 
 Json[] filterValues(Json[] items) {
@@ -170,20 +170,20 @@ Json[] filterValues(Json[] items) {
 
 unittest {
   // Prepare test data
-  Json obj1 = ["a": 1, "b": 2].toJson;
-  Json obj2 = ["b": 3].toJson;
+  Json object1 = ["a": 1, "b": 2].toJson;
+  Json object2 = ["b": 3].toJson;
   Json arr = [1, 2, 3].toJson;
   Json str = Json("hello");
   Json num = Json(42);
   Json nullVal = Json(null);
 
-  Json[] items = [obj1, arr, str, obj2, num, nullVal];
+  Json[] items = [object1, arr, str, object2, num, nullVal];
 
   // Test filterObjects
   auto objects = filterObjects(items);
   assert(objects.length == 2, "filterObjects should return 2 objects");
-  assert(objects[0] == obj1, "First object should be obj1");
-  assert(objects[1] == obj2, "Second object should be obj2");
+  assert(objects[0] == object1, "First object should be object1");
+  assert(objects[1] == object2, "Second object should be object2");
 
   // Test filterArrays
   auto arrays = filterArrays(items);

@@ -25,12 +25,12 @@ bool isAnyBoolean(Json[] values) {
 ///
 unittest {
   // Test with no booleans
-  Json[] arr1 = [Json(1), Json("string"), Json(2.5)];
-  assert(!isAnyBoolean(arr1), "Should be false: no booleans present");
+  Json[] array1 = [Json(1), Json("string"), Json(2.5)];
+  assert(!isAnyBoolean(array1), "Should be false: no booleans present");
 
   // Test with one boolean at start
-  Json[] arr2 = [Json(true), Json(1), Json("string")];
-  assert(isAnyBoolean(arr2), "Should be true: boolean at index 0");
+  Json[] array2 = [Json(true), Json(1), Json("string")];
+  assert(isAnyBoolean(array2), "Should be true: boolean at index 0");
 
   // Test with one boolean at end
   Json[] arr3 = [Json(1), Json("string"), Json(false)];

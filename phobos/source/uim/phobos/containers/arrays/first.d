@@ -26,13 +26,13 @@ T first(T)(T[] values) {
 ///
 unittest {
   // Test: first with non-empty int array
-  int[] arr1 = [42, 7, 13];
-  auto res1 = first(arr1);
+  int[] array1 = [42, 7, 13];
+  auto res1 = first(array1);
   assert(res1 == 42);
 
   // Test: first with empty int array
-  int[] arr2 = [];
-  auto res2 = first(arr2);
+  int[] array2 = [];
+  auto res2 = first(array2);
   assert(res2 == Null!int);
 
   // Test: first with non-empty string array
@@ -80,13 +80,13 @@ T[] firstMany(T)(T[] values, size_t numberOfValues) {
 ///
 unittest {
   // Test: firstMany with size less than array length
-  int[] arr1 = [10, 20, 30, 40, 50];
-  auto res1 = arr1.firstMany(3);
+  int[] array1 = [10, 20, 30, 40, 50];
+  auto res1 = array1.firstMany(3);
   assert(res1.equal([10, 20, 30]));
 
   // Test: firstMany with size equal to array length
-  int[] arr2 = [1, 2, 3];
-  auto res2 = arr2.firstMany(3);
+  int[] array2 = [1, 2, 3];
+  auto res2 = array2.firstMany(3);
   assert(res2.equal([1, 2, 3]));
 
   // Test: firstMany with size greater than array length

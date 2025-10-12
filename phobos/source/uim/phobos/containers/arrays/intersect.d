@@ -25,9 +25,9 @@ auto intersect(T)(T[] values1, T[] values2) {
 ///
 unittest {
   // Test with integers
-  int[] arr1 = [1, 2, 3, 4, 5];
-  int[] arr2 = [4, 5, 6, 7, 8];
-  auto result = intersect(arr1, arr2);
+  int[] array1 = [1, 2, 3, 4, 5];
+  int[] array2 = [4, 5, 6, 7, 8];
+  auto result = intersect(array1, array2);
   assert(result.equal([4, 5]));
 
   // Test with strings

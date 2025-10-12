@@ -31,8 +31,8 @@ unittest {
   assert(result.equal([1, 3, 4]));
 
   // Test removing a value not present
-  int[] arr2 = [5, 6, 7];
-  auto result2 = without(arr2, 4);
+  int[] array2 = [5, 6, 7];
+  auto result2 = without(array2, 4);
   assert(result2.equal([5, 6, 7]));
 
   // Test with empty array
@@ -78,9 +78,9 @@ unittest {
   assert(result.equal([1, 3, 5]));
 
   // Test removing values not present
-  int[] arr2 = [5, 6, 7];
+  int[] array2 = [5, 6, 7];
   int[] toRemove2 = [8, 9];
-  auto result2 = withoutMany(arr2, toRemove2);
+  auto result2 = withoutMany(array2, toRemove2);
   assert(result2.equal([5, 6, 7]));
 
   // Test with empty array

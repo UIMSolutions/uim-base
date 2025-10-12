@@ -10,9 +10,9 @@ import uim.phobos;
 mixin(Version!("test_uim_phobos"));
 @safe:
 
-auto differences(T)(T[] arr1, T[] arr2) {
+auto differences(T)(T[] array1, T[] array2) {
   import std.algorithm : setDifference;
   import std.array : array;
-  return arr1.setDifference(arr2).array;
+  return array1.setDifference(array2).array;
 }
 

@@ -74,10 +74,10 @@ unittest {
   }
 
   { // Test non-empty array
-    Json jarr2 = Json([Json(1), Json(2)]);
-    assert(!isEmpty(jarr2));
-    assert(!isEmpty(jarr2, true));
-    assert(!isEmpty(jarr2, false));
+    Json jarray2 = Json([Json(1), Json(2)]);
+    assert(!isEmpty(jarray2));
+    assert(!isEmpty(jarray2, true));
+    assert(!isEmpty(jarray2, false));
   }
 
   { // Test empty object

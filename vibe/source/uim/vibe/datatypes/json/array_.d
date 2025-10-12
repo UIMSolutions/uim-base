@@ -49,11 +49,11 @@ bool anyArray(Json json) {
   *
   * Examples:
   * ```d
-  * Json[] arr1 = [Json(1), Json(2), Json(3)];
-  * assert(!arr1.anyArray); // false
+  * Json[] array1 = [Json(1), Json(2), Json(3)];
+  * assert(!array1.anyArray); // false
   *
-  * Json[] arr2 = [Json(1), Json(true), Json(3)];
-  * assert(arr2.anyArray); // true
+  * Json[] array2 = [Json(1), Json(true), Json(3)];
+  * assert(array2.anyArray); // true
   *
   * Json[] arr3 = [Json("a"), Json("b"), Json(false)];
   * assert(arr3.anyArray); // true

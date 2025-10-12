@@ -21,11 +21,11 @@ mixin(Version!("test_uim_phobos"));
   *
   * Examples:
   * ```d
-  * int[] arr1;
-  * assert(isEmpty(arr1)); // true
+  * int[] array1;
+  * assert(isEmpty(array1)); // true
   *
-  * int[] arr2 = [1, 2, 3];
-  * assert(!isEmpty(arr2)); // false
+  * int[] array2 = [1, 2, 3];
+  * assert(!isEmpty(array2)); // false
   * ```
   */
 bool isEmpty(T)(T[] values) {
@@ -34,12 +34,12 @@ bool isEmpty(T)(T[] values) {
 ///
 unittest {
   // Test with empty int array
-  int[] arr1;
-  assert(isEmpty(arr1));
+  int[] array1;
+  assert(isEmpty(array1));
 
   // Test with non-empty int array
-  int[] arr2 = [1, 2, 3];
-  assert(!isEmpty(arr2));
+  int[] array2 = [1, 2, 3];
+  assert(!isEmpty(array2));
 
   // Test with empty string array
   string[] arr3;
