@@ -87,7 +87,8 @@ unittest {
 }
 
 Json[] filterValues(Json[] items) {
-  return items.filter!(item => !item.isArray & !item.isObject).array;
+  return items.filter!(item => !item.isArray & !item.isObject)
+    .filter!(item => !item.isNull).array;
 }
 
 unittest {
@@ -115,10 +116,9 @@ unittest {
 
   // Test filterValues
   auto values = filterValues(items);
-  assert(values.length == 3, "filterValues should return 3 values");
+  assert(values.length == 2, "filterValues should return 2 values");
   assert(values[0] == str, "First value should be str");
   assert(values[1] == num, "Second value should be num");
-  assert(values[2] == nullVal, "Third value should be nullVal");
 }
 // #endregion Filter by type
 

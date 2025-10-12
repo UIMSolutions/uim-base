@@ -103,7 +103,9 @@ unittest {
   Json obj = map.toJson;
 
   auto resultObj = filterArrays(obj);
-  assert(resultObj is null || resultObj.length == 0, "Should return null or empty array for object input");
+  assert(resultObj.length == 2, "Should return 2 arrays from Json object");
+  assert(resultObj.has(array1), "Should contain array1");
+  assert(resultObj.has(array2), "Should contain array2");
 
   // Test: filterArrays with non-array/object input (string)
   Json str = Json("hello");
@@ -137,7 +139,10 @@ unittest {
   // Test: filterValues with array input containing mixed types
   Json arr = [Json("str"), Json(42), ["foo": 1].toJson, Json(null)].toJson;
   auto resultArr = filterValues(arr);
-  assert(resultArr is null || resultArr.length == 0, "Should return null or empty array for array input");
+  writeln("resultArr: ", resultArr.length);
+  assert(resultArr.length == 2, "Should return 2 values from Json array");
+  assert(resultArr.has(Json("str")), "Should contain string value");
+  assert(resultArr.has(Json(42)), "Should contain number value");
 
   // Test: filterValues with object input containing mixed types
   Json[string] map;
@@ -146,7 +151,9 @@ unittest {
   map["obj"] = ["foo": 1].toJson;
   Json obj = map.toJson;
   auto resultObj = filterValues(obj);
-  assert(resultObj is null || resultObj.length == 0, "Should return null or empty array for object input");
+  assert(resultObj.length == 2, "Should return 2 values from Json object");
+  assert(resultObj.has(Json("str")), "Should contain string value");
+  assert(resultObj.has(Json(42)), "Should contain number value");
 
   // Test: filterValues with non-array/object input (string)
   Json str = Json("hello");

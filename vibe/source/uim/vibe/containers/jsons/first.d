@@ -6,6 +6,9 @@ mixin(Version!("test_uim_vibe"));
 @safe:
 
 Json first(Json json) {
+  if (json.isNull || !json.isArray || json.toArray.length == 0) {
+    return Json(null);
+  }
   return json.isArray
     ? uim.phobos.containers.arrays.first.first(json.toArray) : Json(null);
 }

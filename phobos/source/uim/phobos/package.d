@@ -66,6 +66,7 @@ public {
   import uim.phobos.interfaces;
   import uim.phobos.math;
   import uim.phobos.mixins;
+  import uim.phobos.path;
   import uim.phobos.random;
   import uim.phobos.signals;
   import uim.phobos.stdint;

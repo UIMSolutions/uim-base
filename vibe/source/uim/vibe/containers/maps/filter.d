@@ -139,14 +139,10 @@ unittest {
     items["null"] = nullVal;
 
     auto result = filterValues(items);
-
-    // Should return all values in the same order as items.byValue.array
-    assert(result.length == items.length, "Should return all values from Json[string]");
-    assert(result.has(obj1), "Should contain obj1");
-    assert(result.has(arr1), "Should contain arr1");
-    assert(result.has(str1), "Should contain str1");
-    assert(result.has(num1), "Should contain num1");
-    assert(result.has(nullVal), "Should contain nullVal");
+    assert(result.length == 2, "Should return 2 values from Json[string]");
+    assert(result.has(str1), "Should contain the string value");
+    assert(result.has(num1), "Should contain the number value");
+      
 
     // Test: filterValues(Json[string]) with empty map
     Json[string] emptyItems;

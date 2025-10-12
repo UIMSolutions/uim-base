@@ -7,7 +7,6 @@ module uim.vibe.algorithms;
 
 public {
     import uim.vibe.algorithms.comparisons;
-    import uim.vibe.algorithms.iterations;
 /*     import uim.vibe.algorithms.bloom;
     import uim.vibe.algorithms.boyer_moore;
     import uim.vibe.algorithms.dijkstra;

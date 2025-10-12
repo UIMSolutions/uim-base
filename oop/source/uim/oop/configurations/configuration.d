@@ -139,7 +139,7 @@ class DConfiguration : IConfiguration {
       ? getEntry(key).isArray : false;
   }
 
-  bool isMapEntry(string key)pure{
+  bool isMapEntry(string key) {
     return hasEntry(key)
       ? getEntry(key).isMap : false;
   }
