@@ -101,9 +101,9 @@ class DRegistry(T = UIMObject) : UIMObject, IRegistry!T {
     // Test NOSORT
     auto keysNoSort = registry.keys(NOSORT);
     assert(keysNoSort.length == 3);
-    assert(keysNoSort.canFind("a.key"));
-    assert(keysNoSort.canFind("b.key"));
-    assert(keysNoSort.canFind("c.key"));
+    assert(keysNoSort.has("a.key"));
+    assert(keysNoSort.has("b.key"));
+    assert(keysNoSort.has("c.key"));
 
     // Test ASCENDING
     auto keysAsc = registry.keys(ASCENDING);
@@ -213,9 +213,9 @@ class DRegistry(T = UIMObject) : UIMObject, IRegistry!T {
 
     // Test that keys are registered correctly
     auto keys = registry.keys();
-    assert(keys.canFind("key1"));
-    assert(keys.canFind("a.b.c"));
-    assert(keys.canFind("key3"));
+    assert(keys.has("key1"));
+    assert(keys.has("a.b.c"));
+    assert(keys.has("key3"));
 
     // Test unregister
     registry.unregister("key1");

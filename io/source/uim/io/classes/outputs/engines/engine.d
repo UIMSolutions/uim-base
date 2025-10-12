@@ -277,18 +277,18 @@ unittest {
     string styled = output.styleText("<warning>Danger!</warning>");
     assert(styled.startsWith("\033[33;41;1m")); // yellow foreground (33), red background (41), bold (1)
     assert(styled.endsWith("\033[0m"));
-    assert(styled.canFind("Danger!"));
+    assert(styled.has("Danger!"));
 
     // Test styleText with unknown tag (should return as-is or htmlDoubleTag)
     string unknown = output.styleText("<unknown>Test</unknown>");
     // Since htmlDoubleTag is not defined here, just check fallback
-    assert(unknown == "<unknown>Test</unknown>" || unknown.canFind("unknown"));
+    assert(unknown == "<unknown>Test</unknown>" || unknown.has("unknown"));
 
     // Test styleText with nested tags (should not support nesting, so treat as plain)
     string nested = output.styleText("<warning>Danger <info>info</info></warning>");
     // Should strip only the outermost tag or treat as plain text
-    assert(nested.canFind("Danger"));
-    assert(nested.canFind("info"));
+    assert(nested.has("Danger"));
+    assert(nested.has("info"));
 
     // Test write methods (should return this, not throw)
     assert(output.write("Hello") is output);

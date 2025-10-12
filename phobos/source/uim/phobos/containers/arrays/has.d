@@ -106,7 +106,12 @@ unittest {
  *   `true` if the value is found in the array, `false` otherwise.
  */
 bool has(T)(T[] values, T checkValue) {
-  return values.canFind(checkValue);
+  foreach (value; values) {
+    if (value == checkValue) {
+      return true;
+    }
+  }
+  return false;
 }
 ///
 unittest {

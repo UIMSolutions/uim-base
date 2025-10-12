@@ -38,7 +38,7 @@ bool containsAny(string base = null, string[] values = null) {
 
 bool contains(string text, string checkValue) {
   return (text.length == 0 || checkValue.length == 0 || checkValue.length > text.length)
-    ? false : text.canFind(checkValue);
+    ? false : text.indexOf(checkValue) != -1;
 }
 
 unittest { // bool contains(string text, string checkValue)
