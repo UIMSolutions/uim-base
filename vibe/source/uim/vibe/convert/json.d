@@ -55,7 +55,7 @@ unittest { // convert(Json, delegate(string, Json))
 // #endregion convert
 
 Json toObject(Json[string] items) {
-  if (irems is null) {
+  if (items is null) {
     return Json(null);
   }
 

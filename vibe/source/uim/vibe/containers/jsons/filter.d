@@ -21,10 +21,14 @@ mixin(Version!("test_uim_vibe"));
  */
 Json[] filterObjects(Json json) {
   if (json.isArray) {
-    return filterObjects(json.toArray);
+    import uim.vibe.containers.arrays.filter;
+    Json[] items = json.toArray;
+    return items.length > 0 ? uim.vibe.containers.arrays.filter.filterObjects(items) : null;
   }
   if (json.isObject) {
-    return filterObjects(json.toMap);
+    import uim.vibe.containers.maps.filter;
+    Json[string] items = json.toMap;
+    return items.length > 0 ? uim.vibe.containers.maps.filter.filterObjects(items) : null;
   }
   return null;
 }
@@ -73,10 +77,10 @@ unittest {
 // #region filterArrays
 Json[] filterArrays(Json json) {
   if (json.isArray) {
-    return filterArrays(json.toArray);
+    return uim.vibe.containers.arrays.filter.filterArrays(json.toArray);
   }
   if (json.isObject) {
-    return filterArrays(json.toMap);
+    return uim.vibe.containers.maps.filter.filterArrays(json.toMap);
   }
   return null;
 }
@@ -121,10 +125,10 @@ unittest {
 // #region filterValues
 Json[] filterValues(Json json) {
   if (json.isArray) {
-    return filterValues(json.toArray);
+    return uim.vibe.containers.arrays.filter.filterValues(json.toArray);
   }
   if (json.isObject) {
-    return filterValues(json.toMap);
+    return uim.vibe.containers.maps.filter.filterValues(json.toMap);
   }
   return null;
 }

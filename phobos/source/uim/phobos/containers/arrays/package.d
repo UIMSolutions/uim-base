@@ -17,15 +17,19 @@ public {
   import uim.phobos.containers.arrays.distribute;
   import uim.phobos.containers.arrays.drop;
   import uim.phobos.containers.arrays.duplicates;
+  import uim.phobos.containers.arrays.every;
   import uim.phobos.containers.arrays.filtermap;
   import uim.phobos.containers.arrays.find;
+  import uim.phobos.containers.arrays.first;
   import uim.phobos.containers.arrays.flattenmap;
   import uim.phobos.containers.arrays.fold;
   import uim.phobos.containers.arrays.foldright;
+  import uim.phobos.containers.arrays.has;
   import uim.phobos.containers.arrays.group;
   import uim.phobos.containers.arrays.indexof;
   import uim.phobos.containers.arrays.insert;
   import uim.phobos.containers.arrays.intersect;
+  import uim.phobos.containers.arrays.last;
   import uim.phobos.containers.arrays.merge;
   import uim.phobos.containers.arrays.minmax;
   import uim.phobos.containers.arrays.move;
@@ -55,13 +59,9 @@ public {
   import uim.phobos.containers.arrays.zipwithindexes;
   import uim.phobos.containers.arrays.zipwithmap; */ 
 
-  import uim.phobos.containers.arrays.every;
-  import uim.phobos.containers.arrays.first;
-  import uim.phobos.containers.arrays.has;
   import uim.phobos.containers.arrays.isempty;
   import uim.phobos.containers.arrays.filter;
   import uim.phobos.containers.arrays.flatten;
-  import uim.phobos.containers.arrays.last;
   import uim.phobos.containers.arrays.pairs;
   import uim.phobos.containers.arrays.rest;
   import uim.phobos.containers.arrays.shift;

@@ -21,7 +21,7 @@ mixin(Version!("test_uim_vibe"));
  *   An array of JSON objects resulting from the filtering operation.
  */
 Json[] filterObjects(Json[string] items) {
-  return filterObjects(items.byValue.array);
+  return uim.vibe.containers.arrays.filter.filterObjects(items.byValue.array);
 }
 /// 
 unittest {
@@ -72,7 +72,7 @@ unittest {
 // #endregion filterObjects
 
 Json[] filterArrays(Json[string] items) {
-  return filterArrays(items.byValue.array);
+  return uim.vibe.containers.arrays.filter.filterArrays(items.byValue.array);
 }
 /// 
 unittest {
@@ -120,7 +120,7 @@ unittest {
 }
 
 Json[] filterValues(Json[string] items) {
-  return filterValues(items.byValue.array);
+  return uim.vibe.containers.arrays.filter.filterValues(items.byValue.array);
 }
 ///
 unittest {

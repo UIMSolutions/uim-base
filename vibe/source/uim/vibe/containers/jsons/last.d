@@ -7,35 +7,35 @@ mixin(Version!("test_uim_vibe"));
 
 Json last(Json json) {
   return json.isArray
-    ? last(json.toArray) : Json(null);
+    ? uim.phobos.containers.arrays.last.last(json.toArray) : Json(null);
 }
 
 Json lastObject(Json json) {
   return json.isArray
-    ? json.toArray.filterObjects.last : Json(null);
+    ? uim.phobos.containers.arrays.last.last(json.toArray.filterObjects) : Json(null);
 }
 
 Json lastArray(Json json) {
   return json.isArray
-    ? json.toArray.filterArrays.last : Json(null);
+    ? uim.phobos.containers.arrays.last.last(json.toArray.filterArrays) : Json(null);
 }
 
 Json lastValue(Json json) {
   return json.isArray
-    ? json.toArray.filterValues.last : Json(null);
+    ? uim.phobos.containers.arrays.last.last(json.toArray.filterValues) : Json(null);
 }
 
 Json lastHasAllKeys(Json json, string[] keys) {
   return json.isArray
-    ? json.toArray.filterHasAllKeys(keys).last : Json(null);
+    ? uim.phobos.containers.arrays.last.last(json.toArray.filterHasAllKeys(keys)) : Json(null);
 }
 
 Json lastHasAnyKey(Json json, string[] keys) {
   return json.isArray
-    ? json.toArray.filterHasAnyKey(keys).last : Json(null);
+    ? uim.phobos.containers.arrays.last.last(json.toArray.filterHasAnyKey(keys)) : Json(null);
 }
 
 Json lastHasKey(Json json, string key) {
   return json.isArray
-    ? json.toArray.filterHasKey(key).last : Json(null);
+    ? uim.phobos.containers.arrays.last.last(json.toArray.filterHasKey(key)) : Json(null);
 }

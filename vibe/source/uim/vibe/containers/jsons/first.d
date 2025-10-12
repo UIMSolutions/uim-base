@@ -7,7 +7,7 @@ mixin(Version!("test_uim_vibe"));
 
 Json first(Json json) {
   return json.isArray
-    ? first(json.toArray) : Json(null);
+    ? uim.phobos.containers.arrays.first.first(json.toArray) : Json(null);
 }
 /// 
 unittest {
@@ -16,7 +16,7 @@ unittest {
   assert(first(j1) == Json(null));
 
   // Test with an empty array
-  Json j2 = Json([]);
+  Json j2 = Json.emptyArray;
   assert(first(j2) == Json(null));
 
   // Test with a single-element array
@@ -34,30 +34,30 @@ unittest {
 
 Json firstObject(Json json) {
   return json.isArray
-    ? json.toArray.filterObjects.first : Json(null);
+    ? uim.phobos.containers.arrays.first.first(json.filterObjects) : Json(null);
 }
 
 Json firstArray(Json json) {
   return json.isArray
-    ? json.toArray.filterArrays.first : Json(null);
+    ? uim.phobos.containers.arrays.first.first(json.filterArrays) : Json(null);
 }
 
 Json firstValue(Json json) {
   return json.isArray
-    ? json.toArray.filterValues.first : Json(null);
+    ? uim.phobos.containers.arrays.first.first(json.filterValues) : Json(null);
 }
 
 Json firstHasAllKeys(Json json, string[] keys) {
   return json.isArray
-    ? json.toArray.filterHasAllKeys(keys).first : Json(null);
+    ? uim.phobos.containers.arrays.first.first(json.toArray.filterHasAllKeys(keys)) : Json(null);
 }
 
 Json firstHasAnyKey(Json json, string[] keys) {
   return json.isArray
-    ? json.toArray.filterHasAnyKey(keys).first : Json(null);
+    ? uim.phobos.containers.arrays.first.first(json.toArray.filterHasAnyKey(keys)) : Json(null);
 }
 
 Json firstHasKey(Json json, string key) {
   return json.isArray
-    ? json.toArray.filterHasKey(key).first : Json(null);
+    ? uim.phobos.containers.arrays.first.first(json.toArray.filterHasKey(key)) : Json(null);
 }
