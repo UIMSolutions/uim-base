@@ -6,8 +6,7 @@
 module uim.oop.containers.lists;
 
 public {
-  // import uim.oop.containers.lists.list;
-}
-
-public { // Additional packages
+  import uim.oop.containers.lists.list;
+  import uim.oop.containers.lists.interfaces;
+  import uim.oop.containers.lists.mixins;
 }

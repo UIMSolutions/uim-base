@@ -10,7 +10,7 @@ import uim.oop;
 mixin(Version!"test_uim_oop");
 @safe:
 
-class DCollection(T) : UIMObject, ICollection!T {
+class DCollection(T) : DContainer, ICollection!T {
   mixin(CollectionThis!());
 
   protected string _pathSeparator = ".";

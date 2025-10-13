@@ -6,8 +6,7 @@
 module uim.oop.containers.vectors;
 
 public {
-    import uim.oop.containers.vectors.vector;
-}
-
-public { // Additional packages
+  import uim.oop.containers.vectors.vector;
+  import uim.oop.containers.vectors.interfaces;
+  import uim.oop.containers.vectors.mixins;
 }
