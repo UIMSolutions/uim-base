@@ -10,7 +10,7 @@ mixin(Version!"test_uim_oop");
 import uim.oop;
 @safe:
 
-abstract class DContainer(T : UIMObject) {
+abstract class DContainer(T : UIMObject) : IContainer {
   this() {
     initialize;
   }

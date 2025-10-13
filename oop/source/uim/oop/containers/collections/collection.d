@@ -16,6 +16,13 @@ class DCollection(T) : UIMObject, ICollection!T {
   protected string _pathSeparator = ".";
   protected T[string] _items;
 
+  // #region clear
+  bool clear() {
+    _items.clear();
+    return true;
+  }
+  // #endregion clear
+
   T[string] items() {
     return _items.dup;
   }

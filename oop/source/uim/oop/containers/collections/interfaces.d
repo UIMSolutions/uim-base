@@ -11,6 +11,8 @@ import uim.oop;
 @safe:
 
 interface ICollection(T) : IKeys!T, IPaths!T {
+  bool clear();
+  
   // Ensures that this collection contains the specified element (optional operation).
   bool set(string key, T newItem);
 

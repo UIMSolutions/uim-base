@@ -9,6 +9,7 @@ public {
   import uim.oop.containers.maps.map;
   import uim.oop.containers.maps.string_;
   import uim.oop.containers.maps.json;
+  import uim.oop.containers.maps.mixins;
 }
 
 public { // Additional packages

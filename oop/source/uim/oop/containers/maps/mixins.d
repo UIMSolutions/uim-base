@@ -3,12 +3,27 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.containers.lists.list;
+module uim.oop.containers.maps.mixins;
 
 import uim.oop;
 
-mixin(Version!"test_uim_oop");
+mixin(Version!("test_uim_oop"));
 @safe:
 
-interface DList(T) : IList!T, ICollection!T {
+string mapThis(string name = null) {
+    string fullName = name ~ "Map";
+    return objThis(fullName);
+}
+
+template MapThis(string name = null) {
+    const char[] MapThis = mapThis(name);
+}
+
+string mapCalls(string name) {
+    string fullName = name ~ "Map";
+    return objCalls(fullName);
+}
+
+template MapCalls(string name) {
+    const char[] MapCalls = mapCalls(name);
 }
