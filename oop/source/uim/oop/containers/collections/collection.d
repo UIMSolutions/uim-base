@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.containerscollections.collection;
+module uim.oop.containers.collections.collection;
 
 import uim.oop;
 
@@ -17,7 +17,7 @@ class DCollection(T) : DContainer, ICollection!T {
   protected T[string] _items;
 
   // #region clear
-  bool clear() {
+  override bool clear() {
     _items.clear();
     return true;
   }
@@ -26,20 +26,19 @@ class DCollection(T) : DContainer, ICollection!T {
   T[string] items() {
     return _items.dup;
   }
-  
-  size_t size() {
+
+  // #region size
+  // Returns the number of items in the collection.
+  override size_t size() {
     return _items.length;
   }
+  // #endregion size
 
   // #region paths
   string[][] paths(SORTORDERS sortorder = NOSORT) {
     // TODO: Implement sorting for paths
     return _items.keys.map!(key => key.split(_pathSeparator)).array;
   }
-
-    bool isEmpty() {
-      return _items.length == 0;
-    }
 
   // #region has
   bool hasAllPath(string[][] paths) {
@@ -54,9 +53,9 @@ class DCollection(T) : DContainer, ICollection!T {
     return hasKey(path.join(_pathSeparator));
   }
   // #endregion has
-  
+
   // #region get
-    // Gets the entire collection as a map of paths to items.
+  // Gets the entire collection as a map of paths to items.
   T[string] itemsByPath(string[][] paths) {
     T[string] foundItems;
     paths
@@ -169,20 +168,6 @@ class DCollection(T) : DContainer, ICollection!T {
     return keys;
   }
 
-  // #region has
-  bool hasAllKey(string[] keys) {
-    return keys.all!(key => hasKey(key));
-  }
-
-  bool hasAnyKey(string[] keys) {
-    return keys.any!(key => hasKey(key));
-  }
-
-  bool hasKey(string key) {
-    return key in _items ? true : false;
-  }
-  // #endregion has
-
   // #region get
   // Gets the entire collection as a map of paths to items.
   T[string] itemsByKey(in string[] keys) {
@@ -203,8 +188,9 @@ class DCollection(T) : DContainer, ICollection!T {
   // #region set
   // Sets the entire collection to the specified items.
   bool setKeys(T[string] items) {
-    foreach(k, v; _items) {
-      if (!setKey(k, v)) return false;
+    foreach (k, v; _items) {
+      if (!setKey(k, v))
+        return false;
     }
     return true;
   }
@@ -227,8 +213,9 @@ class DCollection(T) : DContainer, ICollection!T {
   // #region update
   // Updates the entire collection to the specified items.
   bool updateKeys(T[string] items) {
-    foreach(k, v; items) {
-      if (!updateKey(k, v)) return false;
+    foreach (k, v; items) {
+      if (!updateKey(k, v))
+        return false;
     }
     return true;
   }
@@ -246,8 +233,9 @@ class DCollection(T) : DContainer, ICollection!T {
   // #region merge
   // Merges the entire collection with the specified items.
   bool mergeKeys(T[string] items) {
-    foreach(k, v; items) {
-      if (!mergeKey(k, v)) return false;
+    foreach (k, v; items) {
+      if (!mergeKey(k, v))
+        return false;
     }
     return true;
   }

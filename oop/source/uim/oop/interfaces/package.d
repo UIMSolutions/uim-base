@@ -12,15 +12,12 @@ public {
   import uim.oop.interfaces.configengine;
   import uim.oop.interfaces.configurable;
   import uim.oop.interfaces.consoleapplication;
-  import uim.oop.interfaces.container;
   import uim.oop.interfaces.containerapplication;
   import uim.oop.interfaces.enumeration;
   import uim.oop.interfaces.fixturestrategy;
   import uim.oop.interfaces.httpapplication;
   import uim.oop.interfaces.iterable;
   import uim.oop.interfaces.keys;
-  import uim.oop.interfaces.list;
-  import uim.oop.interfaces.map;
   import uim.oop.interfaces.named;
   import uim.oop.interfaces.paths;
   import uim.oop.interfaces.pluginapplication;

@@ -11,16 +11,35 @@ import uim.oop;
 
 @safe:
 
-interface IMap(K, V) {
+interface IMap(K, V) : IContainer {
   bool isEmpty();
   size_t length();
 
   bool clear();
-
-  K[] keys();
-  V[] values();
   V[K] entries();
   int hashCode();
+
+  // #region keys
+  K[] keys();
+  bool hasAllKeys(K[] keys);
+  bool hasAnyKey(K[] keys);
+  bool hasKey(K key);
+
+  bool removeKeys(K[] keys);
+  bool removeKey(K key);
+  // #endregion keys
+
+   // #region values
+  V[] values();
+  bool hasAllValues(V[] values);
+  bool hasAnyValue(V[] values);
+  bool hasValue(V value);
+
+  bool removeValues(V[] values);
+  bool removeValue(V value);
+  // #endregion values
+
+
 }
 
 /*

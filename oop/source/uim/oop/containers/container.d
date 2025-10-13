@@ -10,84 +10,43 @@ mixin(Version!"test_uim_oop");
 import uim.oop;
 @safe:
 
-abstract class DContainer(T : UIMObject) : IContainer {
+abstract class DContainer : UIMObject, IContainer {
+  // Default constructor
   this() {
     initialize;
   }
 
-  bool initialize(Json[string] initData = null) {
+  // Initializes this container with optional JSON data.
+  this(string name, Json[string] initData = null) {
+    initialize(initData);
+    name(name);
+  }
+
+  // Initializes this container with optional JSON data.
+  this(Json[string] initData) {
+    initialize(initData);
+  }
+
+  // Initializes this container with optional JSON data.
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
     return true;
   }
 
-  protected T[] _items;
+  // Returns true if this container contains no elements.
+  bool isEmpty() {
+    return size == 0;
+  } 
 
   // Returns the number of elements in this container.*/
-  size_t length() {
-    return _items.length;
+  size_t size() {
+    return 0;
   } 
   
-  T[] items() {
-    return _items.dup;
-  } 
-  // #region add
-  // Adds all of array addItems to this container.
-  void add(T[] newItems) {
-    newItems.each!(item => add(item));
-  }
-
-  // Ensures that this container contains the specified element.
-  void add(T newItem) {
-    _items ~= newItem.dup;
-  }
-
-  // Adds all of the elements in the specified container to this container.
-  void add(DContainer!T itemContainer) {
-    if (itemContainer is null) {
-      return;
-    }
-    add(itemContainer.items);
-  }
-  // #endregion add
-  
-  // Returns true if this container contains the specified element.
-  bool contains(T checkItem) {
-    return _items.any!(item => item == checkItem);
-  }
-  
-  // Returns true if this container contains all of the elements in the specified container.
-  bool containsAll(DContainer!T checkItems) {
-    return checkItems.all!(item => contains(item));
-  }
-
-  bool containsAll(T[] checkItems) {
-    return checkItems.all!(item => contains(item));
-  }
-  
-    // Returns true if this container contains all of the elements in the specified container.
-  bool containsAny(DContainer!T checkItems) {
-    return checkItems.any!(item => contains(item));
-  }
-
-  bool containsAny(T[] checkItems) {
-    return checkItems.any!(item => contains(item));
-  }
-
-  // Returns true if this container contains no elements.*/
-  bool isEmpty() {
-    return _items.length = 0;
-  } 
-
-  bool remove(T[] remove) {
-    remove.each!(item => remove(item));
-  }
-
-  // Removes a single instance of the specified element from this container, if it is present.
-  bool remove(T removeItem) {
-    _items.remove(removeItem);
-  }
-
   // Removes all of the elements from this container */
   bool clear() {
-    _items = null;
+    return true;
   }
 }
