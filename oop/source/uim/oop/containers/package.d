@@ -12,6 +12,7 @@ public { // Packages
   import uim.oop.containers.arrays;
   import uim.oop.containers.lists;
   import uim.oop.containers.maps;
+  import uim.oop.containers.sets;
 }
 
 public { // Modules

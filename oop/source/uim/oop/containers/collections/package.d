@@ -3,11 +3,11 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.collections;
+module uim.oop.containers.collections;
 
 public { // Modules
-  import uim.oop.collections.collection;
-  import uim.oop.collections.interfaces;
-  import uim.oop.collections.mixins;
-  import uim.oop.collections.tests;
+  import uim.oop.containers.collections.collection;
+  import uim.oop.containers.collections.interfaces;
+  import uim.oop.containers.collections.mixins;
+  import uim.oop.containers.collections.tests;
 }

@@ -10,7 +10,7 @@ mixin(Version!"test_uim_oop");
 import uim.oop;
 @safe:
 
-class DMap(K, V) : IMap {
+class DMap(K, V) : IMap!(K, V) {
   this() {}
 
   // #region entries

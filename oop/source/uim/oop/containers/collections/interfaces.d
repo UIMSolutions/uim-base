@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.collections.interfaces;
+module uim.oop.containers.collections.interfaces;
 
 mixin(Version!"test_uim_oop");
 
@@ -11,15 +11,15 @@ import uim.oop;
 @safe:
 
 interface ICollection(T) : IKeys!T, IPaths!T {
+  // Ensures that this collection contains the specified element (optional operation).
+  bool set(string key, T newItem);
+
+  // Returns true if this collection contains no elements.
+  bool isEmpty();
 }
 
 @safe:
 interface ICollection2(T) { // : IIterable!T {
-  // Ensures that this collection contains the specified element (optional operation).
-  bool add(T newItem);
-
-  // Adds all of the elements in the specified collection to this collection (optional operation).
-  bool addAll(ICollection2!T aCollection);
 
   // Removes all of the elements from this collection (optional operation).
   void  clear();
@@ -33,8 +33,6 @@ interface ICollection2(T) { // : IIterable!T {
   // Returns the hash code value for this collection.
   int  hashCode();
 
-  // Returns true if this collection contains no elements.
-  bool isEmpty();
 
   // Returns an iterator over the elements in this collection.
   // Iterator<E>  iterator();

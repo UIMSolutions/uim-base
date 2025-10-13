@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.collections.collection;
+module uim.oop.containerscollections.collection;
 
 import uim.oop;
 
@@ -29,6 +29,10 @@ class DCollection(T) : UIMObject, ICollection!T {
     // TODO: Implement sorting for paths
     return _items.keys.map!(key => key.split(_pathSeparator)).array;
   }
+
+    bool isEmpty() {
+      return _items.length == 0;
+    }
 
   // #region has
   bool hasAllPath(string[][] paths) {
@@ -70,7 +74,7 @@ class DCollection(T) : UIMObject, ICollection!T {
 
   // Sets a specific item in the collection.
   bool setPath(string[] path, T item) {
-    return setKey(path.toKey, item);
+    return set(path.toKey, item);
   }
   // #endregion set
 
