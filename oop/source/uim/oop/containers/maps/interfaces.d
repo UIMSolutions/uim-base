@@ -8,14 +8,9 @@ module uim.oop.containers.maps.interfaces;
 mixin(Version!"test_uim_oop");
 
 import uim.oop;
-
 @safe:
 
 interface IMap(K, V) : IContainer {
-  bool isEmpty();
-  size_t length();
-
-  bool clear();
   V[K] entries();
   int hashCode();
 
@@ -25,12 +20,18 @@ interface IMap(K, V) : IContainer {
   bool hasAnyKey(K[] keys);
   bool hasKey(K key);
 
+  /* bool renameKeys(K[K] keys);
+  bool renameKey(K oldKey, K newKey); */
+
   bool removeKeys(K[] keys);
   bool removeKey(K key);
   // #endregion keys
 
    // #region values
   V[] values();
+  V value(K key);
+  bool value(K key, V newValue);
+
   bool hasAllValues(V[] values);
   bool hasAnyValue(V[] values);
   bool hasValue(V value);
@@ -38,7 +39,6 @@ interface IMap(K, V) : IContainer {
   bool removeValues(V[] values);
   bool removeValue(V value);
   // #endregion values
-
 
 }
 

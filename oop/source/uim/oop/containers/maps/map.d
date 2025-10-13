@@ -24,6 +24,22 @@ class DMap(K, V) : DContainer, IMap!(K, V) {
   @property void entries(V[K] newEntries) {
     _entries = newEntries.dup;
   }
+
+  // #region values
+  // Gets the entire collection as a map of paths to items.
+  T[K] values(in K[] keys) {
+    keys.map!(k => k.correctKey).array;
+    return foundItems;
+  }
+  // #endregion values
+
+  // #region value
+  // Gets a specific item from the collection.
+  T value(string key) {
+    return key in _elements ? _elements[key.correctKey] : null;
+  }
+  // #endregion value
+
   // #endregion entries
 
   // #region size

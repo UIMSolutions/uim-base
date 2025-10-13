@@ -13,182 +13,32 @@ mixin(Version!"test_uim_oop");
 class DCollection(T) : DContainer, ICollection!T {
   mixin(CollectionThis!());
 
-  protected string _pathSeparator = ".";
-  protected T[string] _items;
+  protected T[string] _elements;
 
   // #region clear
   override bool clear() {
-    _items.clear();
+    _elements.clear();
     return true;
   }
   // #endregion clear
 
-  T[string] items() {
-    return _items.dup;
+  // Returns the entire collection as a map of keys to items.
+  T[string] elements() {
+    return _elements.dup;
   }
 
   // #region size
   // Returns the number of items in the collection.
   override size_t size() {
-    return _items.length;
+    return _elements.length;
   }
   // #endregion size
 
-  // #region paths
-  string[][] paths(SORTORDERS sortorder = NOSORT) {
-    // TODO: Implement sorting for paths
-    return _items.keys.map!(key => key.split(_pathSeparator)).array;
-  }
-
-  // #region has
-  bool hasAllPath(string[][] paths) {
-    return paths.all!(path => hasPath(path));
-  }
-
-  bool hasAnyPath(string[][] paths) {
-    return paths.any!(path => hasPath(path));
-  }
-
-  bool hasPath(string[] path) {
-    return hasKey(path.join(_pathSeparator));
-  }
-  // #endregion has
-
-  // #region get
-  // Gets the entire collection as a map of paths to items.
-  T[string] itemsByPath(string[][] paths) {
-    T[string] foundItems;
-    paths
-      .map!(path => path.toKey)
-      .filter!(key => hasKey(key))
-      .each!(key => foundItems[key] = itemByKey(key));
-
-    return foundItems;
-  }
-
-  // Gets a specific item from the collection.
-  T itemByPath(string[] path) {
-    return itemByKey(path.toKey);
-  }
-  // #endregion get
-
-  // #region set
-  // Sets the entire collection to the specified item.
-  bool setPaths(string[][] paths, T item) {
-    return paths.all!(p => setPath(p, item));
-  }
-
-  // Sets a specific item in the collection.
-  bool setPath(string[] path, T item) {
-    return set(path.toKey, item);
-  }
-  // #endregion set
-
-  // #region update
-  // Updates the entire collection to the specified item.
-  bool updatePaths(string[][] paths, T item) {
-    return paths.all!(p => updatePath(p, item));
-  }
-
-  // Updates a specific item in the collection.
-  bool updatePath(string[] path, T item) {
-    return updateKey(path.toKey, item);
-  }
-  // #endregion update
-
-  // #region merge
-  // Merges the entire collection with the specified item.
-  bool mergePaths(string[][] paths, T item) {
-    return paths.all!(p => mergePath(p, item));
-  }
-
-  // Merges a specific item into the collection.
-  bool mergePath(string[] path, T item) {
-    return mergeKey(path.toKey, item);
-  }
-  // #endregion merge
-
-  // #region remove
-  bool removePaths(string[][] paths) {
-    return paths.all!(path => removePath(path));
-  }
-
-  bool removePath(string[] path) {
-    return removeKey(path.toKey);
-  }
-
-  unittest {
-    auto collection = new DCollection!string;
-
-    // Add items with hierarchical keys
-    collection.setKey("a.b.c", "value1");
-    collection.setKey("x.y", "value2");
-    collection.setKey("single", "value3");
-
-    // Remove multiple paths
-    string[][] pathsToRemove = [
-      ["a", "b", "c"],
-      ["x", "y"]
-    ];
-
-    assert(collection.hasPath(["a", "b", "c"]));
-    assert(collection.hasPath(["x", "y"]));
-    assert(collection.hasPath(["single"]));
-
-    bool removed = collection.removePaths(pathsToRemove);
-    assert(removed);
-
-    // Check that removed paths are gone
-    assert(!collection.hasPath(["a", "b", "c"]));
-    assert(!collection.hasPath(["x", "y"]));
-    assert(collection.hasPath(["single"]));
-
-    // Remove single path
-    assert(collection.removePath(["single"]));
-    assert(!collection.hasPath(["single"]));
-
-    // Try removing non-existent path
-    assert(collection.removePath(["not", "exist"])); // Should not throw, returns true/false depending on implementation
-  }
-  // #endregion remove
-  // #endregion paths
-
-  // #region keys
-  string[] keys(SORTORDERS sortorder = NOSORT) {
-    auto keys = _items.keys;
-    if (_items is null) {
-      return null;
-    }
-
-    if (sortorder == ASCENDING) {
-      keys.sort!("a < b");
-    } else if (sortorder == DESCENDING) {
-      keys.sort!("a > b");
-    }
-    return keys;
-  }
-
-  // #region get
-  // Gets the entire collection as a map of paths to items.
-  T[string] itemsByKey(in string[] keys) {
-    T[string] foundItems;
-    auto ks = keys.map!(k => k.correctKey).array;
-    ks = ks.filter!(k => k in _items ? true : false).array;
-    ks.each!(k => foundItems[k] = itemByKey(k));
-
-    return foundItems;
-  }
-
-  // Gets a specific item from the collection.
-  T itemByKey(string key) {
-    return key in _items ? _items[key.correctKey] : null;
-  }
-  // #endregion get
 
   // #region set
   // Sets the entire collection to the specified items.
   bool setKeys(T[string] items) {
-    foreach (k, v; _items) {
+    foreach (k, v; _elements) {
       if (!setKey(k, v))
         return false;
     }
@@ -205,7 +55,7 @@ class DCollection(T) : DContainer, ICollection!T {
 
   // Sets a specific item in the collection.
   bool setKey(string key, T item) {
-    _items[key.correctKey] = item;
+    _elements[key.correctKey] = item;
     return true;
   }
   // #endregion set
@@ -252,7 +102,7 @@ class DCollection(T) : DContainer, ICollection!T {
 
   // #region remove
   bool removeAll() {
-    _items.clear();
+    _elements.clear();
     return true;
   }
 
