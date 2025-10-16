@@ -8,6 +8,3 @@ module uim.core.io;
 public {
   import uim.core.io.file;
 }
-
-public { // Additional packages
-}

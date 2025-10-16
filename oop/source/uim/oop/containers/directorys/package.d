@@ -1,2 +1,13 @@
+/****************************************************************************************************************
+* Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur) 
+* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
+* Authors: Ozan Nurettin Süel (aka UIManufaktur)
+*****************************************************************************************************************/
 module uim.oop.containers.directorys;
 
+public {
+    import uim.oop.containers.directorys.directory;
+    import uim.oop.containers.directorys.mixins;
+    import uim.oop.containers.directorys.interfaces;
+    import uim.oop.containers.directorys.tests;
+}

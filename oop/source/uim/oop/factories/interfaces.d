@@ -8,7 +8,6 @@ module uim.oop.factories.interfaces;
 mixin(Version!"test_uim_oop");
 
 import uim.oop;
-
 @safe:
 
 interface IFactory(T = UIMObject) : IHasKeys!T, IHasPaths!T, IRemoveKeys!T, IRemovePaths!T, IObject {

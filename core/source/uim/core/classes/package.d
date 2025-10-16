@@ -8,6 +8,3 @@ module uim.core.classes;
 public {
   import uim.core.classes.general;
 }
-
-public { // Additional packages
-}
