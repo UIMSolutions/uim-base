@@ -10,44 +10,49 @@ mixin(Version!"test_uim_oop");
 import uim.oop;
 @safe:
 
-interface ICollection(T) : IKeys!T, IPaths!T {
+interface ICollection(V) {
   bool clear();
-  
-  // Ensures that this collection contains the specified element (optional operation).
-  bool set(string key, T newItem);
+
+  // #region has 
+  // Returns true if this collection contains the specified element.
+  bool hasAll(V[] values);
+  // Returns true if this collection contains any of the specified elements.
+  bool hasAny(V[] values);
+  // Returns true if this collection contains the specified element.
+  bool has(V value);
+  // #endregion has
+
+  // #region add
+  // Adds all of the elements in the specified array to this collection (optional operation).
+  bool addAll(V[] values);
+  // Adds any of the elements in the specified array to this collection (optional operation).
+  bool addAny(V[] values);
+  // Adds the specified element to this collection (optional operation).
+  bool add(V value);
+  // #endregion add
 
   // Returns true if this collection contains no elements.
   bool isEmpty();
-}
 
-@safe:
-interface ICollection2(T) { // : IIterable!T {
-
+  // #region remove
   // Removes all of the elements from this collection (optional operation).
-  void  clear();
-
-  // Returns true if this collection contains the specified element.
-  bool contains(T anItem);
-
-  // Returns true if this collection contains all of the elements in the specified collection.
-  bool containsAll(ICollection2!T aCollection);
-
-  // Returns the hash code value for this collection.
-  int  hashCode();
-
-
-  // Returns an iterator over the elements in this collection.
-  // Iterator<E>  iterator();
-
-  // Removes a single instance of the specified element from this collection, if it is present (optional operation).
-  bool remove(T anItem);
-
-  // Removes all of this collection's elements that are also contained in the specified collection (optional operation).
-  bool removeAll(ICollection2!T aCollection);
+  bool removeAll(V[] values);
+  // Removes any of the elements from this collection (optional operation).
+  bool removeAny(V[] values);
+  // Removes the specified element from this collection (optional operation).
+  bool remove(V value);
+  // #endregion remove
 
   // Returns the number of elements in this collection.
   size_t size();
 
+  bool isEqual(ICollection!V other);
+
+  // #region toArray
   // Returns an array containing all of the elements in this collection.
-  T[] toArray();
-} 
+  V[] toArray();
+  V[] toArray(V[] values);
+  // #endregion toArray
+}
+
+ 

@@ -13,7 +13,13 @@ mixin(Version!"test_uim_oop");
 class DCollection(T) : DContainer, ICollection!T {
   mixin(CollectionThis!());
 
+  // #region elements
   protected T[string] _elements;
+  // Returns the entire collection as a map of keys to items.
+  T[string] elements() {
+    return _elements.dup;
+  }
+  // #endregion elements
 
   // #region clear
   override bool clear() {
@@ -22,10 +28,20 @@ class DCollection(T) : DContainer, ICollection!T {
   }
   // #endregion clear
 
-  // Returns the entire collection as a map of keys to items.
-  T[string] elements() {
-    return _elements.dup;
+  // #region has 
+  // Returns true if this collection contains the specified element.
+  bool hasAll(V[] values) {
+    return values.all!(value => has(value));
   }
+  // Returns true if this collection contains any of the specified elements.
+  bool hasAny(V[] values) {
+    return values.any!(value => has(value));
+  }
+  // Returns true if this collection contains the specified element.
+  bool has(V value) {
+    return _elements.contains(value);
+  }
+  // #endregion has
 
   // #region size
   // Returns the number of items in the collection.
@@ -34,86 +50,40 @@ class DCollection(T) : DContainer, ICollection!T {
   }
   // #endregion size
 
-
-  // #region set
-  // Sets the entire collection to the specified items.
-  bool setKeys(T[string] items) {
-    foreach (k, v; _elements) {
-      if (!setKey(k, v))
-        return false;
-    }
-    return true;
-  }
-
-  bool setKeys(string[] keys, T item) {
-    return keys.all!(key => setKey(key, item));
-  }
-
-  void opIndexAssign(string key, T item) {
-    setKey(key, item);
-  }
-
-  // Sets a specific item in the collection.
-  bool setKey(string key, T item) {
-    _elements[key.correctKey] = item;
-    return true;
-  }
-  // #endregion set
-
-  // #region update
-  // Updates the entire collection to the specified items.
-  bool updateKeys(T[string] items) {
-    foreach (k, v; items) {
-      if (!updateKey(k, v))
-        return false;
-    }
-    return true;
-  }
-
-  bool updateKeys(string[] keys, T item) {
-    return keys.all!(key => updateKey(key, item));
-  }
-
-  // Updates a specific item in the collection.
-  bool updateKey(string key, T item) {
-    return (hasKey(key)) ? setKey(key, item) : false;
-  }
-  // #endregion update
-
-  // #region merge
-  // Merges the entire collection with the specified items.
-  bool mergeKeys(T[string] items) {
-    foreach (k, v; items) {
-      if (!mergeKey(k, v))
-        return false;
-    }
-    return true;
-  }
-
-  bool mergeKeys(string[] keys, T item) {
-    return keys.all!(key => mergeKey(key, item));
-  }
-
-  // Merges a specific item into the collection.
-  bool mergeKey(string key, T item) {
-    return (!hasKey(key)) ? setKey(key, item) : false;
-  }
-  // #endregion merge
-
   // #region remove
-  bool removeAll() {
-    _elements.clear();
-    return true;
+  // Removes all of the elements from this collection (optional operation).
+  bool removeAll(V[] values) {
+    return values.any!(value => remove(value));
   }
 
-  bool removeKeys(string[] keys) {
-    return keys.all!(key => removeKey(key));
+  // Removes any of the elements from this collection (optional operation).
+  bool removeAny(V[] values) {
+    return values.any!(value => remove(value));
   }
 
-  bool removeKey(string key) {
-    remove(key.correctKey);
-    return true;
+  // Removes the specified element from this collection (optional operation).
+  bool remove(V value) {
+    return _elements.remove(value);
   }
   // #endregion remove
   // #endregion keys
+
+
+  bool isEqual(ICollection!V other) {
+    if (other is null || size != other.size)
+      return false;
+
+    return hasAll(other.toArray());
+  }
+
+  // #region toArray
+  // Returns an array containing all of the elements in this collection.
+  V[] toArray() {
+    return _elements.byValue.array;
+  }
+
+  V[] toArray(V[] values) {
+    return values.filter!(value => has(value)).array;
+  } 
+  // #endregion toArray
 }
