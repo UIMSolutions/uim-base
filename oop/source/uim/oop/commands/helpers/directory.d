@@ -3,22 +3,22 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.commands.helpers.collection;
+module uim.oop.commands.helpers.directory;
 
 import uim.oop;
 
 mixin(Version!"test_uim_oop");
 @safe:
 
-class DCommandCollection : DCollection!ICommand {
-  mixin(CollectionThis!("Command"));
+class DCommandDirectory : DDirectory!ICommand {
+  mixin(DirectoryThis!("Command"));
 }
 
-mixin(CollectionCalls!("Command"));
+mixin(DirectoryCalls!("Command"));
 
 unittest {
-  auto collection = new DCommandCollection();
-  assert(collection !is null, "Creation of DCommandCollection failed");
+  auto directory = new DCommandDirectory();
+  assert(directory !is null, "Creation of DCommandDirectory failed");
 
-  assert(testCollection(new DCommandCollection, "CommandCollection"), "Test of DCommandCollection failed!");
+  assert(testDirectory(new DCommandDirectory, "CommandDirectory"), "Test of DCommandDirectory failed!");
 }
