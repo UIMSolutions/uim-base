@@ -8,13 +8,9 @@ module uim.oop.formatters.interfaces;
 mixin(Version!"test_uim_oop");
 
 import uim.oop;
+
 @safe:
 
-/**
-    * Interface for formatter objects.
-    *
-    * This interface defines the contract for formatter classes, ensuring they implement necessary methods and properties.
-    */
-
 interface IFormatter : IObject {
+  string format(string input, Json[string] options = null);
 }

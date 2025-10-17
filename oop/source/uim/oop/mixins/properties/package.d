@@ -11,6 +11,3 @@ public {
   import uim.oop.mixins.properties.property;
   import uim.oop.mixins.properties.safe;
 }
-
-public { // Additional packages
-}

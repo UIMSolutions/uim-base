@@ -5,16 +5,12 @@
 *****************************************************************************************************************/
 module uim.oop.direntries.fileinfo;
 
+mixin(Version!"test_uim_oop");
+
 import uim.oop;
 @safe:
 
-version (test_uim_oop) {
-  import std.stdio;
-  
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
+// Represents information about a file and provides methods to access file properties.
 class DFileInfo : UIMObject {
     int getATime() {
         return 0;

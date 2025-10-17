@@ -6,8 +6,5 @@
 module uim.oop.direntries;
 
 public {
-    import uim.oop.direntries.fileinfo;
-}
-
-public { // Additional packages
+  import uim.oop.direntries.fileinfo;
 }
