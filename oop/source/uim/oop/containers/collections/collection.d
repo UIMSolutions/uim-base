@@ -14,9 +14,9 @@ class DCollection(V) : DContainer, ICollection!V {
   mixin(CollectionThis!());
 
   // #region elements
-  protected V[string] _elements;
+  protected V[] _elements;
   // Returns the entire collection as a map of keys to items.
-  V[string] elements() {
+  V[] elements() {
     return _elements.dup;
   }
   // #endregion elements
@@ -49,6 +49,24 @@ class DCollection(V) : DContainer, ICollection!V {
     return _elements.length;
   }
   // #endregion size
+
+  // #region add
+  // Adds all of the elements in the specified array to this collection (optional operation).
+  bool addAll(V[] values) {
+    return values.all!(value => add(value));
+  }
+
+  // Adds any of the elements in the specified array to this collection (optional operation).
+  bool addAny(V[] values) {
+    return values.any!(value => add(value));
+  }
+  
+  // Adds the specified element to this collection (optional operation).
+  bool add(V value) {
+    _elements ~= value;
+    return true;
+  }
+  // #endregion add
 
   // #region remove
   // Removes all of the elements from this collection (optional operation).

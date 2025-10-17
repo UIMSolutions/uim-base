@@ -6,16 +6,17 @@
 module uim.oop.factories.factory;
 
 import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DFactory(T = UIMObject) : UIMObject, IFactory!T {
+class DFactory(K = string, V = UIMObject) : UIMObject, IFactory!V {
   mixin(FactoryThis!());
 
-  protected static DFactory!T _instance;
-  protected T delegate(Json[string] options = null)[string] _workers;
-  public static DFactory!T instance() {
+  protected static DFactory!V _instance;
+  protected V delegate(Json[string] options = null)[K] _workers;
+  public static DFactory!V instance() {
     if (_instance is null) {
       _instance = new DFactory!T;
     }
@@ -37,12 +38,12 @@ class DFactory(T = UIMObject) : UIMObject, IFactory!T {
   protected string _separator = ".";
 
   // #region paths 
-  string[][] paths() {
+  K[][] paths() {
     if (_workers is null) {
       return null;
     }
 
-    string[][] foundPaths;
+    K[][] foundPaths;
     foreach (key; this.keys) {
       if (key is null) {
         continue;
@@ -54,46 +55,46 @@ class DFactory(T = UIMObject) : UIMObject, IFactory!T {
   }
 
   // #region has
-  bool hasAnyPath(string[][] paths) {
-    return paths.any!(path => hasPath(path));
-  }
-
-  bool hasAllPath(string[][] paths) {
+  bool hasAllPath(K[][] paths) {
     return paths.all!(path => hasPath(path));
   }
 
-  bool hasPath(string[] path) {
+  bool hasAnyPath(K[][] paths) {
+    return paths.any!(path => hasPath(path));
+  }
+
+  bool hasPath(K[] path) {
     return hasKey(path.toKey(_separator));
   }
   // #endregion has
 
   // #region set
   // Sets a specific item in the collection.
-  bool setPath(string[] path, T delegate(Json[string] options = null) @safe createFunc) {
+  bool setPath(K[] path, T delegate(Json[string] options = null) @safe createFunc) {
     return setKey(path.toKey, createFunc);
   }
   // #endregion set
 
   // #region update
   // Updates a specific item in the collection.
-  bool updatePath(string[] path, T delegate(Json[string] options = null) @safe createFunc) {
+  bool updatePath(K[] path, T delegate(Json[string] options = null) @safe createFunc) {
     return updateKey(path.toKey, createFunc);
   }
   // #endregion update
 
   // #region merge
   // Merges a specific item into the collection.
-  bool mergePath(string[] path, T delegate(Json[string] options = null) @safe createFunc) {
+  bool mergePath(K[] path, T delegate(Json[string] options = null) @safe createFunc) {
     return mergeKey(path.toKey, createFunc);
   }
   // #endregion merge
 
   // #region remove
-  bool removePaths(string[][] paths) {
+  bool removePaths(K[][] paths) {
     return paths.all!(path => removePath(path));
   }
 
-  bool removePath(string[] path) {
+  bool removePath(K[] path) {
     return removeKey(path.toKey);
   }
   // #endregion remove
@@ -101,7 +102,7 @@ class DFactory(T = UIMObject) : UIMObject, IFactory!T {
   // #endregion paths
 
   // #region keys
-  string[] keys(SORTORDERS sortorder = NOSORT) {
+  K[] keys() {
     auto keys = _workers.keys;
     if (keys is null) {
       return null;
@@ -115,52 +116,78 @@ class DFactory(T = UIMObject) : UIMObject, IFactory!T {
   }
 
   // #region has
+  // Checks if any of the specified keys exist in the collection.
   bool hasAnyKey(string[] keys) {
     return keys.any!(key => hasKey(key));
   }
 
-  bool hasAllKey(string[] keys) {
+  // Checks if all of the specified keys exist in the collection.
+  bool hasAllKey(K[] keys) {
     return keys.all!(key => hasKey(key));
   }
 
-  bool hasKey(string key) {
+  // Checks if a specific key exists in the collection.
+  bool hasKey(K key) {
     return key in _workers ? true : false;
   }
   // #endregion has
 
   // #region set
   // Sets the entire collection to the specified items.
-  bool setKey(string workerName, T delegate(Json[string] options = null) @safe createFunc) {
-    _workers[workerName] = createFunc;
+  bool setKey(K key, T delegate(Json[string] options = null) @safe createFunc) {
+    _workers[key] = createFunc;
     return true;
+  }
+  ///
+  unittest {
+    // Create a factory specialized for string keys and TestProduct values.
+    auto factory = new DFactory!(string, TestProduct);
+
+    // Flag to ensure the delegate is actually invoked.
+    bool invoked = false;
+
+    // Delegate matching the factory's expected signature.
+    TestProduct delegate(Json[string] options = null) @safe createDelegate = (
+      Json[string] options = null) @safe {
+      invoked = true;
+      return new TestProduct("created");
+    };
+
+    // setKey should store the delegate and return true.
+    assert(factory.setKey("key1", createDelegate) == true);
+
+    // create should invoke the stored delegate and return the produced object.
+    auto produced = factory.create("key1");
+    assert(produced !is null);
+    assert(invoked == true);
+    assert(cast(TestProduct)produced.id == "created");
   }
   // #endregion set
 
   // #region update
   // Updates a specific item in the collection.
-  bool updateKey(string key, T delegate(Json[string] options = null) @safe createFunc) {
+  bool updateKey(K key, T delegate(Json[string] options = null) @safe createFunc) {
     return hasKey(key) ? setKey(key, createFunc) : false;
   }
   // #endregion update
 
   // #region merge
   // Merges a specific item into the collection.
-  bool mergeKey(string key, T delegate(Json[string] options = null) @safe createFunc) {
+  bool mergeKey(K key, T delegate(Json[string] options = null) @safe createFunc) {
     return !hasKey(key) ? setKey(key, createFunc) : false;
   }
   // #endregion merge
 
   // #region remove
-  bool removeAll() {
-    _workers.clear;
-    return true;
-  }
-
-  bool removeKeys(string[] keys) {
+  bool removeAllKeys(K[] keys) {
     return keys.all!(key => removeKey(key));
   }
 
-  bool removeKey(string key) {
+  bool removeAnyKeys(K[] keys) {
+    return keys.any!(key => removeKey(key));
+  }
+
+  bool removeKey(K key) {
     remove(key.correctKey);
     return true;
   }
@@ -169,32 +196,32 @@ class DFactory(T = UIMObject) : UIMObject, IFactory!T {
 
   // #region create
   // #region path
-  T[string] createMany(string[][] paths, Json[string] options = null) {
-    T[string] result;
+  V[K] createMany(K[][] paths, Json[string] options = null) {
+    V[K] result;
     foreach (path; paths) {
       result[path.toKey] = create(path, options);
     }
     return result;
   }
 
-  T create(string[] path, Json[string] options = null) @safe {
+  V create(K[] path, Json[string] options = null) @safe {
     return create(path.toKey);
   }
   // #endregion path
 
   // #region key
-  T[string] createMany(string[] keys, Json[string] options = null) {
-    T[string] result;
+  V[K] createMany(K[] keys, Json[string] options = null) {
+    V[K] result;
     keys.each!(key => result[key] = create(key, options));
     return result;
   }
 
-  T opIndex(string key, Json[string] options = null) {
+  V opIndex(K key, Json[string] options = null) {
     return create(key, options);
   }
 
-  T create(string key, Json[string] options = null) @safe {
-    T result;
+  V create(K key, Json[string] options = null) @safe {
+    V result;
     return key.correctKey in _workers
       ? _workers[key.correctKey](options) : result;
   }

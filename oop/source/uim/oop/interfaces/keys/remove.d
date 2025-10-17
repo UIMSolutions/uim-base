@@ -11,13 +11,14 @@ import uim.oop;
 
 @safe:
 
-interface IRemoveKeys(T) {
-  // Removes all keys from the collection.
-  bool removeAll();
+// Interface for removing items by their keys.
+interface IRemoveKeys(K = string) {
+  // Removes all of the given keys from the collection.
+  bool removeAllKey(K[] keys);
 
-  // Removes the given keys from the collection.
-  bool removeKeys(string[] keys);
+  // Removes any of the given keys from the collection.
+  bool removeAnyKey(K[] keys);
 
   // Removes a specific key from the collection.
-  bool removeKey(string key);
+  bool removeKey(K key);
 }
