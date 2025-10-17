@@ -121,6 +121,54 @@ class DDirectoryMap(V) : DMap!(string, V) {
   bool updateAllPath(string[][] paths, V value) {
     return paths.all!(p => updatePath(p, value));
   }
+  /// 
+  unittest {
+    // All paths exist -> should return true and update all
+    auto dir1 = new DDirectoryMap!int;
+    string[] p1 = ["foo", "bar"];
+    string[] p2 = ["baz"];
+
+    dir1.setPath(p1, 1);
+    dir1.setPath(p2, 2);
+
+    bool res = dir1.updateAllPath([p1, p2], 10);
+    assert(res, "updateAllPath should return true when all paths exist");
+    assert(dir1.itemByPath(p1) == 10, "p1 should be updated to 10");
+    assert(dir1.itemByPath(p2) == 10, "p2 should be updated to 10");
+
+    // Mixed existing and non-existing -> should return false,
+    // existing ones encountered before missing will be updated (behavior follows implementation)
+    auto dir2 = new DDirectoryMap!int;
+    string[] existing = ["a"];
+    string[] missing = ["no", "such"];
+
+    dir2.setPath(existing, 5);
+
+    bool res = dir2.updateAllPath([existing, missing], 9);
+    assert(!res, "updateAllPath should return false when at least one path does not exist");
+    // existing path was updated by implementation before failing on missing
+    assert(dir2.itemByPath(existing) == 9, "existing path should have been updated before failure");
+    assert(!dir2.hasPath(missing), "missing path must remain absent");
+
+    // Empty array -> vacuously true and nothing changed
+    auto dir3 = new DDirectoryMap!int;
+    string[] p = ["x"];
+    dir3.setPath(p, 7);
+
+    bool res = dir3.updateAllPath([], 99);
+    assert(res, "updateAllPath with empty array should return true");
+    assert(dir3.itemByPath(p) == 7, "existing items should remain unchanged when no paths provided");
+
+    // Duplicate paths where the path exists -> should return true and be updated
+    auto dir4 = new DDirectoryMap!int;
+    string[] dup = ["dup"];
+
+    dir4.setPath(dup, 3);
+
+    bool res = dir4.updateAllPath([dup, dup], 42);
+    assert(res, "updateAllPath should return true when duplicates include an existing path");
+    assert(dir4.itemByPath(dup) == 42, "duplicate path should be updated to new value");
+  }
   // #endregion updateAllPaths
 
   // #region updateAnyPaths

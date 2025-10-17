@@ -3,15 +3,15 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.containers.directorys.tests;
+module uim.oop.containers.maps.tests.test;
 
 mixin(Version!"test_uim_oop");
 
 import uim.oop;
 @safe:
 
-bool testDirectory(T)(IDirectory!T directory, string instanceName) if (is(T : UIMObject)) {
-  assert(directory !is null, instanceName ~ " directory is null");
+bool testMap(K, V)(IMap!(K, V) map, string instanceName) {
+  assert(map !is null, instanceName ~ " map is null");
   
   return true;
 }
