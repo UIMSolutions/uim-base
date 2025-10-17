@@ -3,22 +3,27 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.interfaces.paths.has;
+module uim.oop.containers.directorys.helpers.mixins;
 
 mixin(Version!"test_uim_oop");
 
 import uim.oop;
-
 @safe:
 
-// Interface for checking the existence of paths.
-interface IHasPaths(K) {
-  // Checks if contains all of the paths.
-  bool hasAllPath(K[][] paths);
+string directoryThis(string name = null) {
+    string fullName = name ~ "Directory";
+    return objThis(fullName);
+}
 
-  // Checks if contains any of the paths.
-  bool hasAnyPath(K[][] paths);
+template DirectoryThis(string name = null) {
+    const char[] DirectoryThis = directoryThis(name);
+}
 
-  // Checks if contains a specific path.
-  bool hasPath(K[] path);
+string directoryCalls(string name) {
+    string fullName = name ~ "Directory";
+    return objCalls(fullName);
+}
+
+template DirectoryCalls(string name) {
+    const char[] DirectoryCalls = directoryCalls(name);
 }

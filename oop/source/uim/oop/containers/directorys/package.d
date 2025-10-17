@@ -5,9 +5,14 @@
 *****************************************************************************************************************/
 module uim.oop.containers.directorys;
 
-public {
-    import uim.oop.containers.directorys.directory;
-    import uim.oop.containers.directorys.mixins;
-    import uim.oop.containers.directorys.interfaces;
-    import uim.oop.containers.directorys.tests;
+public { // Modules
+  import uim.oop.containers.directorys.directory;
+  import uim.oop.containers.directorys.helpers;
+  import uim.oop.containers.directorys.interfaces;
 }
+
+public { // Packages
+  import uim.oop.containers.directorys.tests;
+  import uim.oop.containers.directorys.helpers;
+}
+

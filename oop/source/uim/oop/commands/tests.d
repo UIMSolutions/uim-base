@@ -7,10 +7,11 @@ module uim.oop.commands.tests;
 
 import uim.oop;
 
+mixin(Version!"test_uim_oop");
 @safe:
 
 bool testCommand(ICommand commandToTest) {
-    assert(commandToTest !is null, "commandToTest is null");
+  assert(commandToTest !is null, "commandToTest is null");
 
-    return true;
+  return true;
 }

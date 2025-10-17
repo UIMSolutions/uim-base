@@ -11,6 +11,6 @@ import uim.oop;
 
 @safe:
 
-interface IPaths(T) : IHasPaths!T, IGetPaths!T, IUpdatePaths!T, IRemovePaths!T {
+interface IPaths(K, V) : IHasPaths!K, IGetPaths!K, IUpdatePaths!K, IRemovePaths!K {
   string[][] paths(SORTORDERS sortorder = NOSORT);
 }

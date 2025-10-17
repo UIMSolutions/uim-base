@@ -5,12 +5,6 @@
 *****************************************************************************************************************/
 module uim.oop.containers.directorys.tests;
 
-mixin(Version!"test_uim_oop");
-
-import uim.oop;
-@safe:
-
-bool testDirectory(T)(IDirectory!T directory, string instanceName) if (is(T : UIMObject)) {
-  assert(directory !is null, instanceName ~ " directory is null");
-  return true;
+public {
+    import uim.oop.containers.directorys.tests.test;
 }

@@ -8,12 +8,15 @@ module uim.oop.interfaces.paths.remove;
 mixin(Version!"test_uim_oop");
 
 import uim.oop;
-
 @safe:
 
+// Interface for removing items by paths.
 interface IRemovePaths(T) {
-  // Removes the given paths from the collection.
-  bool removePaths(string[][] paths);
+  // Removes all of the given paths from the collection.
+  bool removeAllPath(string[][] paths);
+
+  // Removes any of the given paths from the collection.
+  bool removeAnyPath(string[][] paths);
 
   // Removes a specific path from the collection.
   bool removePath(string[] path);

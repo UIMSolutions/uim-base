@@ -8,10 +8,13 @@ module uim.oop.interfaces.paths.get;
 mixin(Version!"test_uim_oop");
 
 import uim.oop;
-
 @safe:
 
-interface IGetPaths(T) {
+// Interface for getting items by paths.
+interface IGetPaths(K, V) {
+  // Gets multiple items from the collection.
+  V getManyPath(K[][] paths);
+  
   // Gets a specific item from the collection.
-  T itemByPath(string[] path);
+  V getPath(K[] path);
 }
