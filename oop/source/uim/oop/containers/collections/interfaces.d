@@ -11,8 +11,6 @@ import uim.oop;
 @safe:
 
 interface ICollection(V) : IContainer {
-  bool clear();
-
   // #region has 
   // Returns true if this collection contains the specified element.
   bool hasAll(V[] values);
@@ -31,9 +29,6 @@ interface ICollection(V) : IContainer {
   bool add(V value);
   // #endregion add
 
-  // Returns true if this collection contains no elements.
-  bool isEmpty();
-
   // #region remove
   // Removes all of the elements from this collection (optional operation).
   bool removeAll(V[] values);
@@ -43,8 +38,6 @@ interface ICollection(V) : IContainer {
   bool remove(V value);
   // #endregion remove
 
-  // Returns the number of elements in this collection.
-  size_t size();
 
   bool isEqual(ICollection!V other);
 

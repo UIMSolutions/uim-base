@@ -3,14 +3,14 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.validators.helpers.directory;
+module uim.oop.validators.helpers.collection;
 
 mixin(Version!"test_uim_oop");
 
 import uim.oop;
 @safe:
 
-class DValidatorDirectory : DDirectory!IValidator {  
-    mixin(DirectoryThis!("Validator")); 
+class DValidatorCollection : DCollection!IValidator {  
+    mixin(CollectionThis!("Validator")); 
 }
-mixin(DirectoryCalls!("Validator"));
+mixin(CollectionCalls!("Validator"));

@@ -27,7 +27,7 @@ class DMap(K, V) : DContainer, IMap!(K, V) {
 
   // #region values
   // Gets the entire collection as a map of paths to items.
-  T[K] values(in K[] keys) {
+  V[K] values(in K[] keys) {
     keys.map!(k => k.correctKey).array;
     return foundItems;
   }
@@ -35,7 +35,7 @@ class DMap(K, V) : DContainer, IMap!(K, V) {
 
   // #region value
   // Gets a specific item from the collection.
-  T value(string key) {
+  V value(string key) {
     return key in _elements ? _elements[key.correctKey] : null;
   }
   // #endregion value
@@ -395,9 +395,34 @@ class DMap(K, V) : DContainer, IMap!(K, V) {
   // #endregion has
 
   // #region clear
+  // Removes all of the elements from this map
   override bool clear() {
     _entries = null;
     return true;
   }
+  ///
+  unittest {
+    // clear() on a non-empty map should return true and remove all entries
+    auto map1 = new DMap!(string, int);
+    map1.entries = ["a": 1, "b": 2, "c": 3];
+    assert(map1.size() == 3);
+    assert(map1.clear() == true);
+    assert(map1.size() == 0);
+    assert(!map1.hasKey("a"));
+    assert(!map1.hasKey("b"));
+    assert(!map1.hasKey("c"));
+    assert(!map1.hasValue(1));
+    assert(!map1.hasValue(2));
+    assert(!map1.hasValue(3));
+
+    // clear() on an already empty map should still return true and keep it empty
+    auto map2 = new DMap!(string, int);
+    assert(map2.size() == 0);
+    assert(map2.clear() == true);
+    assert(map2.size() == 0);
+    // still no keys/values
+    assert(!map2.hasKey("nonexistent"));
+    assert(!map2.hasValue(999));
+}
   // #endregion clear
 }
