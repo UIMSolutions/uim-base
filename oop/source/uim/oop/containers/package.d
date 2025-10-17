@@ -5,9 +5,6 @@
 *****************************************************************************************************************/
 module uim.oop.containers;
 
-import uim.core;
-mixin(Version!"test_uim_oop");
-
 public { // Packages
   import uim.oop.containers.arrays;
   import uim.oop.containers.collections;

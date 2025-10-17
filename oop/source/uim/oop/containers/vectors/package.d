@@ -5,8 +5,12 @@
 *****************************************************************************************************************/
 module uim.oop.containers.vectors;
 
-public {
+public { // Packages
+  import uim.oop.containers.vectors.helpers;
+  import uim.oop.containers.vectors.tests;
+}
+
+public { // Modules
   import uim.oop.containers.vectors.vector;
   import uim.oop.containers.vectors.interfaces;
-  import uim.oop.containers.vectors.mixins;
 }
