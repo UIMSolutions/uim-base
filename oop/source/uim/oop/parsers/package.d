@@ -8,19 +8,18 @@ module uim.oop.parsers;
 mixin(Version!"test_uim_oop");
 
 import uim.oop;
+
 @safe:
 
 public { // Core modules
-    import uim.oop.parsers.parser;
+  import uim.oop.parsers.parser;
+  import uim.oop.parsers.interfaces;
 }
 
 public { // Additional modules
-    import uim.oop.parsers.collection;
-    import uim.oop.parsers.factory;
-    import uim.oop.parsers.interfaces;
-    import uim.oop.parsers.mixins;
-    import uim.oop.parsers.registry;
-}
-
-public { // Additional packages
+  import uim.oop.parsers.collection;
+  import uim.oop.parsers.directory;
+  import uim.oop.parsers.factory;
+  import uim.oop.parsers.mixins;
+  import uim.oop.parsers.registry;
 }

@@ -3,45 +3,47 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.parsers.directory;
+module uim.oop.parsers.helpers.collection;
 
 mixin(Version!"test_uim_oop");
 
 import uim.oop;
+
 @safe:
 
 /** 
-  * Parser for directorys of type `IParser`.
+  * Parser for collections of type `IParser`.
   *
-  * This parser provides methods to parse directorys of `IParser` objects.
+  * This parser provides methods to parse collections of `IParser` objects.
   */
-class DParserDirectory : DDirectory!IParser {   
+class DParserCollection : DCollection!IParser {
+  mixin(CollectionThis!("Parser"));
 }
 /// 
 unittest {
-  // Test with empty directory
-  auto emptyParser = new DParserDirectory();
+  // Test with empty collection
+  auto emptyParser = new DParserCollection();
   assert(emptyParser.isEmpty);
 
   // Test with single parser
-  auto singleParser = new DParserDirectory();
+  auto singleParser = new DParserCollection();
   singleParser.add(new Parser("Single"));
   assert(!singleParser.isEmpty);
   assert(singleParser.size == 1);
   assert(singleParser.first.name == "Single");
 
   // Test with multiple parsers
-  auto multiParser = new DParserDirectory();
+  auto multiParser = new DParserCollection();
   multiParser.add(new Parser("First"));
   multiParser.add(new Parser("Second"));
   assert(multiParser.size == 2);
   assert(multiParser.last.name == "Second");
 }
 
-mixin(DirectoryCalls!("Parser"));
+mixin(CollectionCalls!("Parser"));
 
 unittest {
-  // Test that DParserDirectory can be instantiated
-  auto directory = new DParserDirectory();
-  assert(directory !is null, "DParserDirectory instance should not be null");
+  // Test that DParserCollection can be instantiated
+  auto collection = new DParserCollection();
+  assert(collection !is null, "DParserCollection instance should not be null");
 }
