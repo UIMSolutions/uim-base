@@ -5,18 +5,12 @@
 *****************************************************************************************************************/
 module uim.oop.formatters;
 
-public {
-  import uim.oop.formatters.formatter;
-}
-
-public {
+public { // Packages
   import uim.oop.formatters.helpers;
-  import uim.oop.formatters.interfaces;
-
-  version (unittest) {
-    import uim.oop.formatters.tests;
-  }
+  import uim.oop.formatters.tests;
 }
 
-public { // Additional packages
+public { // Modules
+  import uim.oop.formatters.formatter;
+  import uim.oop.formatters.interfaces;
 }
