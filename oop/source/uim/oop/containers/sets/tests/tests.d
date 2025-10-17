@@ -3,14 +3,15 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.containers.sets;
+module uim.oop.containers.sets.tests.test;
 
-public { // Packages
-  import uim.oop.containers.sets.helpers;
-  import uim.oop.containers.sets.tests;
-}
+mixin(Version!"test_uim_oop");
 
-public { // Modules
-  import uim.oop.containers.sets.set;
-  import uim.oop.containers.sets.interfaces;
+import uim.oop;
+@safe:
+
+bool testSet(T)(ISet!T set, string instanceName) if (is(T : UIMObject)) {
+  assert(set !is null, instanceName ~ " set is null");
+  
+  return true;
 }

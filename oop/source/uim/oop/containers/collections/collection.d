@@ -10,13 +10,13 @@ import uim.oop;
 mixin(Version!"test_uim_oop");
 @safe:
 
-class DCollection(T) : DContainer, ICollection!T {
+class DCollection(V) : DContainer, ICollection!V {
   mixin(CollectionThis!());
 
   // #region elements
-  protected T[string] _elements;
+  protected V[string] _elements;
   // Returns the entire collection as a map of keys to items.
-  T[string] elements() {
+  V[string] elements() {
     return _elements.dup;
   }
   // #endregion elements

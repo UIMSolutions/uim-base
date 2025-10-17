@@ -10,7 +10,7 @@ mixin(Version!"test_uim_oop");
 import uim.oop;
 @safe:
 
-interface ICollection(V) {
+interface ICollection(V) : IContainer {
   bool clear();
 
   // #region has 
