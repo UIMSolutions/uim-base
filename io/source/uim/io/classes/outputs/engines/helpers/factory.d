@@ -15,3 +15,10 @@ class DOutputFactory : DFactory!IOutput {
 }
 
 mixin(FactoryCalls!"Output");
+
+unittest {
+  auto factory = new DOutputFactory();
+  assert(factory !is null, "Creation of DOutputFactory failed");
+
+  assert(testFactory(new DOutputFactory, "OutputFactory"), "Test of DOutputFactory failed!");
+}

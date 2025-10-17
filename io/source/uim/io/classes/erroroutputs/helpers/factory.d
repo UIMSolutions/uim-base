@@ -15,3 +15,9 @@ class DErrorOutputFactory : DFactory!IErrorOutput {
 }
 mixin(FactoryCalls!("ErrorOutput"));
 
+unittest {
+  auto factory = new DErrorOutputFactory();
+  assert(factory !is null, "Creation of DErrorOutputFactory failed");
+
+  assert(testFactory(new DErrorOutputFactory, "ErrorOutputFactory"), "Test of DErrorOutputFactory failed!");
+}

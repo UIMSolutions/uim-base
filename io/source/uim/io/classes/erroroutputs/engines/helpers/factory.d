@@ -17,8 +17,8 @@ class DErrorOutputEngineFactory : DFactory!DErrorOutput {
 mixin(FactoryCalls!("ErrorOutputEngine"));
 
 unittest {
-  auto factory = ErrorOutputEngineFactory();
-  assert(factory !is null);
+  auto factory = new DErrorOutputEngineFactory();
+  assert(factory !is null, "Creation of DErrorOutputEngineFactory failed");
 
-  testFactory(factory, "ErrorOutputEngine");
+  assert(testFactory(new DErrorOutputEngineFactory, "ErrorOutputEngineFactory"), "Test of DErrorOutputEngineFactory failed!");
 }

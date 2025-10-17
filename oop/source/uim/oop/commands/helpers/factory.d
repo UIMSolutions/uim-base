@@ -16,8 +16,8 @@ class DCommandFactory : DFactory!ICommand {
 mixin(FactoryCalls!("Command"));
 
 unittest {
-  // Test that DCommandFactory can be instantiated
   auto factory = new DCommandFactory();
-  assert(factory !is null, "DCommandFactory instance should not be null");
+  assert(factory !is null, "Creation of DCommandFactory failed");
 
+  assert(testFactory(new DCommandFactory, "CommandFactory"), "Test of DCommandFactory failed!");
 }

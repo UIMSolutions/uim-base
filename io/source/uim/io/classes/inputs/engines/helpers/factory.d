@@ -17,7 +17,7 @@ mixin(FactoryCalls!("Input"));
 
 unittest {
   auto factory = new DInputFactory();
-  assert(factory !is null);
+  assert(factory !is null, "Creation of DInputFactory failed");
 
-  testFactory(factory, "Input");
+  assert(testFactory(new DInputFactory, "InputFactory"), "Test of DInputFactory failed!");
 }

@@ -10,25 +10,18 @@ import uim.oop;
 mixin(Version!"test_uim_oop");
 @safe:
 
-interface IRegistry(T = UIMObject) : IHasKeys!T, IHasPaths!T, IObject {
+interface IRegistry(K = string, V = IObject) : IHasKeys!K, IHasPaths!K, IObject {
   // Registers an object with a specific key.
-  bool register(string[] path, T obj);
-  bool register(string key, T obj);
+  bool register(K[] path, V obj);
+  bool register(K key, V obj);
 
-  // Unregisters an object by its key.
-  bool unregisterAll();
+  bool unregisterMany(K[][] paths);
+  bool unregisterMany(K[] keys);
 
-  bool unregisterMany(string[][] paths);
-  bool unregisterMany(string[] keys);
-
-  bool unregister(string[] path);
-  bool unregister(string key);
+  bool unregister(K[] path);
+  bool unregister(K key);
 
   // Retrieves an object by its key.
-  T getPath(string[] path);
-  T getKey(string key);
-
-  // Retrieves an object by its key.
-  bool removePath(string[] path);
-  bool removeKey(string key);
+  V getPath(K[] path);
+  V getKey(K key);
 }

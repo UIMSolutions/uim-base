@@ -20,5 +20,5 @@ unittest {
   auto registry = new DCommandRegistry();
   assert(registry !is null, "Creation of DCommandRegistry failed");
 
-  // assert(testRegistry(new DCommandRegistry, "DCommandRegistry"), "Test of DCommandRegistry failed!");
+  assert(testRegistry(new DCommandRegistry, "DCommandRegistry"), "Test of DCommandRegistry failed!");
 }
