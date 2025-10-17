@@ -11,10 +11,10 @@ import uim.oop;
 @safe:
 
 // Interface for getting items by paths.
-interface IGetPaths(K, V) {
+interface IGetPath(K, V) {
   // Gets multiple items from the collection.
   V getManyPath(K[][] paths);
-  
+
   // Gets a specific item from the collection.
   V getPath(K[] path);
 }

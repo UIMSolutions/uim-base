@@ -7,7 +7,6 @@ module uim.oop.containers.directorys;
 
 public { // Modules
   import uim.oop.containers.directorys.directory;
-  import uim.oop.containers.directorys.helpers;
   import uim.oop.containers.directorys.interfaces;
 }
 

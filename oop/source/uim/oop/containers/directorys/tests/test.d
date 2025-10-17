@@ -10,7 +10,8 @@ mixin(Version!"test_uim_oop");
 import uim.oop;
 @safe:
 
-bool testDirectory(T)(IDirectory!T directory, string instanceName) if (is(T : UIMObject)) {
+// Tests the given directory instance.
+bool testDirectory(V)(IDirectory!V directory, string instanceName) if (is(T : UIMObject)) {
   assert(directory !is null, instanceName ~ " directory is null");
   return true;
 }

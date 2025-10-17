@@ -8,6 +8,7 @@ module uim.oop.containers.directorys.directory;
 mixin(Version!"test_uim_oop");
 
 import uim.oop;
+
 @safe:
 
 class DDirectoryMap(V) : DMap!(string, V) {
@@ -15,30 +16,72 @@ class DDirectoryMap(V) : DMap!(string, V) {
 
   // #region pathSeparator
   protected string _pathSeparator = ".";
+
+  // Gets the path separator used in the directory.
   string pathSeparator() {
     return _pathSeparator;
   }
 
-  void pathSeparator(string separator) {
+  // Sets the path separator used in the directory.
+  bool pathSeparator(string separator) {
     _pathSeparator = separator;
   }
   // #endregion pathSeparator
 
   // #region paths
-  override string[][] paths(SORTORDERS sortorder = NOSORT) {
-    // TODO: Implement sorting for paths
+  // Gets all paths in the map, sorted according to the specified order.
+  string[][] paths() {
     return _elements.keys.map!(key => key.split(_pathSeparator)).array;
   }
 
   // #region has
+  // Checks if all specified paths exist in the map.
   bool hasAllPath(string[][] paths) {
     return paths.all!(path => hasPath(path));
   }
+  /// 
+  unittest {
+    // prepare map and paths
+    auto map = new DDirectoryMap!int;
+    string[] path1 = ["foo", "bar"];
+    string[] path2 = ["baz"];
+    string[] path3 = ["qux", "quux"];
 
+    // set some entries
+    assert(map.setPath(path1, 1));
+    assert(map.setPath(path2, 2));
+
+    // all existing paths -> true
+    string[][] allExisting = [path1, path2];
+    assert(map.hasAllPath(allExisting));
+
+    // mixed existing and non-existing -> false
+    string[][] mixed = [path1, path3];
+    assert(!map.hasAllPath(mixed));
+
+    // all non-existing -> false
+    string[][] nonExisting = [path3];
+    assert(!map.hasAllPath(nonExisting));
+
+    // empty array -> vacuously true
+    string[][] empty = [];
+    assert(map.hasAllPath(empty));
+
+    // duplicate paths where the path exists -> true
+    string[][] duplicates = [path1, path1];
+    assert(map.hasAllPath(duplicates));
+  }
+
+  // Checks if any of the specified paths exist in the map.
   bool hasAnyPath(string[][] paths) {
     return paths.any!(path => hasPath(path));
   }
+  /// 
+  /// Params:
+  ///   path = 
+  /// Returns: 
 
+  // Checks if a specific path exists in the map.
   bool hasPath(string[] path) {
     return hasKey(path.join(_pathSeparator));
   }
@@ -58,126 +101,110 @@ class DDirectoryMap(V) : DMap!(string, V) {
 
   // #region set
   // Sets the entire map to the specified item.
-  bool setPaths(string[][] paths, T item) {
-    return paths.all!(p => setPath(p, item));
+  bool setAllPath(string[][] paths, V value) {
+    return paths.all!(p => setPath(p, value));
+  }
+
+  // Sets any of the specified paths to the item.
+  bool setAnyPath(string[][] paths, V value) {
+    return paths.any!(p => setPath(p, value));
   }
 
   // Sets a specific item in the map.
-  bool setPath(string[] path, T item) {
-    return set(path.toKey, item);
+  bool setPath(string[] path, V value) {
+    return set(path.toKey, value);
   }
   // #endregion set
 
   // #region update
-  // #region updatePaths
-  // Updates the entire map to the specified item.
-  bool updatePaths(string[][] paths, T item) {
-    return paths.all!(p => updatePath(p, item));
+  // #region updateAllPaths
+  bool updateAllPath(string[][] paths, V value) {
+    return paths.all!(p => updatePath(p, value));
+  }
+  // #endregion updateAllPaths
+
+  // #region updateAnyPaths
+  bool updateAnyPath(string[][] paths, V value) {
+    return paths.any!(p => updatePath(p, value));
   }
   ///
   unittest {
-    // Test updatePaths for DDirectoryMap!int
-    auto map = new DDirectoryMap!int;
-    string[] path1 = ["foo", "bar"];
-    string[] path2 = ["baz"];
-    string[] path3 = ["foo", "baz"];
+    // At least one path exists -> should return true and update existing ones only
+    auto dir1 = new DDirectoryMap!int;
+    string[] pathExisting1 = ["foo", "bar"];
+    string[] pathExisting2 = ["baz"];
+    string[] pathMissing = ["no", "such"];
 
-    // Insert initial items
-    map.setPath(path1, 100);
-    map.setPath(path2, 200);
+    dir1.setPath(pathExisting1, 10);
+    dir1.setPath(pathExisting2, 20);
 
-    // Update existing paths
-    string[][] pathsToUpdate = [path1, path2];
-    bool updated = map.updatePaths(pathsToUpdate, 999);
-    assert(updated, "updatePaths should return true when all paths exist");
-    assert(map.itemByPath(path1) == 999, "item at path1 should be updated to 999");
-    assert(map.itemByPath(path2) == 999, "item at path2 should be updated to 999");
+    string[][] mix = [pathMissing, pathExisting1];
+    bool updated = dir1.updateAnyPath(mix, 99);
+    assert(updated, "updateAnyPath should return true when at least one path is updated");
+    assert(dir1.itemByPath(pathExisting1) == 99, "existing path should be updated");
+    assert(dir1.itemByPath(pathExisting2) == 20, "other existing path should remain unchanged");
+    assert(!dir1.hasPath(pathMissing), "missing path must remain absent");
 
-    // Update with some non-existing paths
-    string[][] mixedPaths = [path1, path3];
-    updated = map.updatePaths(mixedPaths, 555);
-    assert(!updated, "updatePaths should return false if any path does not exist");
-    assert(map.itemByPath(path1) == 555, "item at path1 should be updated to 555");
-    assert(!map.hasPath(path3), "path3 should not be created by updatePaths");
+    // No paths exist -> should return false and not create entries
+    auto dir2 = new DDirectoryMap!int;
+    string[] p1 = ["a"];
+    string[] p2 = ["b"];
+    string[][] noneExist = [p1, p2];
 
-    // Update with all non-existing paths
-    string[][] nonExistingPaths = [path3];
-    updated = map.updatePaths(nonExistingPaths, 123);
-    assert(!updated, "updatePaths should return false when no paths exist");
-    assert(!map.hasPath(path3), "path3 should not be created by updatePaths");
+    updated = dir2.updateAnyPath(noneExist, 1);
+    assert(!updated, "updateAnyPath should return false when no paths exist");
+    assert(!dir2.hasPath(p1) && !dir2.hasPath(p2), "no new keys should be created");
 
-    // Update with empty paths array
-    updated = map.updatePaths([], 888);
-    assert(updated, "updatePaths with empty array should return true (vacuously true)");
+    // Duplicate paths where the path exists -> should return true and update once
+    auto dir3 = new DDirectoryMap!int;
+    string[] p = ["dup"];
+    dir3.setPath(p, 5);
+
+    string[][] duplicates = [p, p];
+    updated = dir3.updateAnyPath(duplicates, 7);
+    assert(updated, "updateAnyPath should return true when duplicates include an existing path");
+    assert(dir3.itemByPath(p) == 7, "path should be updated to the new value");
   }
-  // #endregion updatePaths
+  // #endregion updateAnyPaths
 
   // #region updatePath
   // Updates a specific item in the map.
-  bool updatePath(string[] path, T item) {
-    return updateKey(path.toKey, item);
+  bool updatePath(string[] path, V value) {
+    return updateKey(path.toKey, value);
   }
   ///
   unittest {
     // Test updatePath for DDirectoryMap!int
-    auto map = new DDirectoryMap!int;
+    auto dir1 = new DDirectoryMap!int;
     string[] path1 = ["foo", "bar"];
     string[] path2 = ["baz"];
     string[] path3 = ["foo", "baz"];
 
     // Insert initial items
-    map.setPath(path1, 100);
-    map.setPath(path2, 200);
+    dir1.setPath(path1, 100);
+    dir1.setPath(path2, 200);
 
     // Update existing path
-    bool updated = map.updatePath(path1, 101);
+    bool updated = dir1.updatePath(path1, 101);
     assert(updated, "updatePath should return true for existing path");
-    assert(map.itemByPath(path1) == 101, "item at path1 should be updated to 101");
+    assert(dir1.itemByPath(path1) == 101, "item at path1 should be updated to 101");
 
     // Update another existing path
-    updated = map.updatePath(path2, 201);
+    updated = dir1.updatePath(path2, 201);
     assert(updated, "updatePath should return true for another existing path");
-    assert(map.itemByPath(path2) == 201, "item at path2 should be updated to 201");
+    assert(dir1.itemByPath(path2) == 201, "item at path2 should be updated to 201");
 
     // Update non-existing path
-    updated = map.updatePath(path3, 300);
+    updated = dir1.updatePath(path3, 300);
     assert(!updated, "updatePath should return false for non-existing path");
-    assert(!map.hasPath(path3), "non-existing path should not be created by updatePath");
+    assert(!dir1.hasPath(path3), "non-existing path should not be created by updatePath");
   }
   // #endregion updatePath
-  /// 
-  unittest {
-    // Test updatePath
-
-    auto map = new DDirectoryMap!int;
-    string[] path1 = ["foo", "bar"];
-    string[] path2 = ["baz"];
-    string[] path3 = ["foo", "baz"];
-
-    // Insert initial items
-    map.setPath(path1, 100);
-    map.setPath(path2, 200);
-
-    // Update existing path
-    bool updated = map.updatePath(path1, 101);
-    assert(updated, "updatePath should return true for existing path");
-    assert(map.itemByPath(path1) == 101, "item at path1 should be updated to 101");
-
-    // Update another existing path
-    updated = map.updatePath(path2, 201);
-    assert(updated, "updatePath should return true for another existing path");
-    assert(map.itemByPath(path2) == 201, "item at path2 should be updated to 201");
-
-    // Update non-existing path
-    updated = map.updatePath(path3, 300);
-    assert(!updated, "updatePath should return false for non-existing path");
-    assert(!map.hasPath(path3), "non-existing path should not be created by updatePath");
-  }
   // #endregion update
 
   // #region merge
   // Merges the entire map with the specified item.
-  bool mergePaths(string[][] paths, T item) {
+  bool mergePaths(string[][] paths, V value) {
     return paths.all!(path => mergePath(path, item));
   }
   /// 
@@ -218,7 +245,7 @@ class DDirectoryMap(V) : DMap!(string, V) {
 
   // #region mergePath
   // Merges a specific item into the map.
-  bool mergePath(string[] path, T item) {
+  bool mergePath(string[] path, V value) {
     return mergeKey(path.toKey, item);
   }
   ///
@@ -282,7 +309,7 @@ class DDirectoryMap(V) : DMap!(string, V) {
     string[] path3 = ["foo", "baz"];
     string[] path4 = ["qux"];
 
-    // Insert items
+    // Inserv values
     map.setPath(path1, 1);
     map.setPath(path2, 2);
 
@@ -331,7 +358,7 @@ class DDirectoryMap(V) : DMap!(string, V) {
       return path.join(sep);
     }
 
-    // Insert items
+    // Inserv values
     map.setPath(path1, 42);
     map.setPath(path2, 99);
 

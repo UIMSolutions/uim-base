@@ -11,13 +11,13 @@ import uim.oop;
 @safe:
 
 // Interface for removing items by paths.
-interface IRemovePaths(T) {
+interface IRemovePaths(K) {
   // Removes all of the given paths from the collection.
-  bool removeAllPath(string[][] paths);
+  bool removeAllPath(K[][] paths);
 
   // Removes any of the given paths from the collection.
-  bool removeAnyPath(string[][] paths);
+  bool removeAnyPath(K[][] paths);
 
   // Removes a specific path from the collection.
-  bool removePath(string[] path);
+  bool removePath(K[] path);
 }
