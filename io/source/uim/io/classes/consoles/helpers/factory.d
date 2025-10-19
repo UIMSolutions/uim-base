@@ -3,20 +3,20 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.io.classes.inputs.engines.helpers.factory;
+module uim.io.classes.consoles.helpers.factory;
+
+mixin(Version!"test_uim_io");
 
 import uim.io;
 
-mixin(Version!"test_uim_io");
 @safe:
 
-class DInputFactory : DFactory!IInput {
-  mixin(FactoryThis!("Input"));
+class DConsoleFactory : DFactory!IConsole {
+  mixin(FactoryThis!"Console");
 }
-
-mixin(FactoryCalls!("Input"));
+mixin(FactoryCalls!"Console");
 
 unittest {
-  auto factory = new DInputFactory();
-  assert(testFactory(factory, "Input"), "Test of DInputFactory failed!");
+  auto factory = ConsoleFactory();
+  assert(testFactory(factory, "Console"), "ConsoleFactory test failed!");
 }

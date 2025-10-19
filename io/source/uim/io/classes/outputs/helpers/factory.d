@@ -11,14 +11,12 @@ mixin(Version!"test_uim_io");
 @safe:
 
 class DOutputFactory : DFactory!IOutput {
-    mixin(FactoryThis!("Output"));
+  mixin(FactoryThis!("Output"));
 }
+
 mixin(FactoryCalls!("Output"));
 
 unittest {
   auto factory = new DOutputFactory();
-  assert(factory !is null, "OutputFactory is null");
-
   assert(testFactory(factory, "Output"), "Test OutputFactory failed");
 }
-

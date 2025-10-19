@@ -18,7 +18,5 @@ mixin(FactoryCalls!("ErrorOutputEngine"));
 
 unittest {
   auto factory = new DErrorOutputEngineFactory();
-  assert(factory !is null, "Creation of DErrorOutputEngineFactory failed");
-
-  assert(testFactory(new DErrorOutputEngineFactory, "ErrorOutputEngineFactory"), "Test of DErrorOutputEngineFactory failed!");
+  assert(testFactory(new DErrorOutputEngineFactory, "ErrorOutputEngine"), "Test of DErrorOutputEngineFactory failed!");
 }

@@ -3,24 +3,25 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.io.classes.consoles.directory;
+module uim.io.classes.consoles.helpers.mixins;
 
 import uim.io;
+
 @safe:
-
-mixin(Version!"test_uim_io");
-
-import uim.io;
-@safe:
-
-
-class DConsoleDirectory : DDirectory!DConsole {
-}
-auto ConsoleDirectory() {
-    return new DConsoleDirectory;
+string consoleThis(string name = null) {
+    string fullName = name ~ "Console";
+    return objThis(fullName);
 }
 
-unittest {
-    auto directory = ConsoleDirectory();
-    assert(directory !is null);
+template ConsoleThis(string name = null) {
+    const char[] ConsoleThis = consoleThis(name);
+}
+
+string consoleCalls(string name) {
+    string fullName = name ~ "Console";
+    return objCalls(fullName);
+}
+
+template ConsoleCalls(string name) {
+    const char[] ConsoleCalls = consoleCalls(name);
 }
