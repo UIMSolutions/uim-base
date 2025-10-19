@@ -11,6 +11,7 @@ import uim.io;
 
 public {
   import uim.io.classes.erroroutputs.engines.helpers.collection;
+  import uim.io.classes.erroroutputs.engines.helpers.directory;
   import uim.io.classes.erroroutputs.engines.helpers.factory;
   import uim.io.classes.erroroutputs.engines.helpers.functions;
   import uim.io.classes.erroroutputs.engines.helpers.mixins;

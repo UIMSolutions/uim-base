@@ -3,13 +3,5 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.commands.helpers;
+module uim.io.classes.consoles.helpers.functions;
 
-public {
-  import uim.oop.commands.helpers.collection;
-  import uim.oop.commands.helpers.directory;
-  import uim.oop.commands.helpers.factory;
-  import uim.oop.commands.helpers.functions;
-  import uim.oop.commands.helpers.mixins;
-  import uim.oop.commands.helpers.registry;
-}

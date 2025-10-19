@@ -3,13 +3,19 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.commands.helpers;
+module uim.io.classes.erroroutputs.helpers.directory;
 
-public {
-  import uim.oop.commands.helpers.collection;
-  import uim.oop.commands.helpers.directory;
-  import uim.oop.commands.helpers.factory;
-  import uim.oop.commands.helpers.functions;
-  import uim.oop.commands.helpers.mixins;
-  import uim.oop.commands.helpers.registry;
+mixin(Version!"test_uim_io");
+
+import uim.io;
+@safe:
+
+class DErrorOutputDirectory : DDirectory!IErrorOutput {
+  mixin(DirectoryThis!("ErrorOutput"));
+}
+mixin(DirectoryCalls!("ErrorOutput"));
+
+unittest {
+  auto directory = ErrorOutputDirectory;
+  assert(testDirectory(directory, "ErrorOutput"), "Test ErrorOutputDirectory failed");
 }
