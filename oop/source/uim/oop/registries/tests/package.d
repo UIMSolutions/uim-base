@@ -5,3 +5,6 @@
 *****************************************************************************************************************/
 module uim.oop.registries.tests;
 
+public {
+  import uim.oop.registries.tests.test;
+}

@@ -9,3 +9,10 @@ mixin(Version!"test_uim_oop");
 
 import uim.oop;
 @safe:
+
+bool testValidator(IValidator validator, string typeName) {
+  assert(validator !is null, "Validator should not be null");
+  assert(validator.name == typeName, "Validator type name does not match");
+  
+  return true;
+}

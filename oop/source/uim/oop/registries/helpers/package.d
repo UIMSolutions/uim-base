@@ -5,3 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.registries.helpers;
 
+public {
+/*   import uim.oop.registries.helpers.collection;
+  import uim.oop.registries.helpers.directory;
+  import uim.oop.registries.helpers.factory; */ 
+  import uim.oop.registries.helpers.functions; 
+  import uim.oop.registries.helpers.mixins;
+}

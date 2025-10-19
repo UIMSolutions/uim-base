@@ -5,5 +5,11 @@
 *****************************************************************************************************************/
 module uim.io.classes.inputs.helpers;
 
-import uim.io;
-mixin(ImportHelpers!"uim.io.classes.inputs");
+public {
+  import uim.io.classes.inputs.helpers.collection;
+  import uim.io.classes.inputs.helpers.directory;
+  import uim.io.classes.inputs.helpers.factory;
+  import uim.io.classes.inputs.helpers.functions;
+  import uim.io.classes.inputs.helpers.mixins;
+  import uim.io.classes.inputs.helpers.registry;
+}

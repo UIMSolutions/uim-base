@@ -18,7 +18,5 @@ mixin(RegistryCalls!"OutputEngine");
 
 unittest {
   auto registry = new DOutputEngineRegistry();
-  assert(registry !is null, "OutputEngineRegistry is null!");
-
   assert(testRegistry(registry, "OutputEngine"), "OutputEngineRegistry test failed!");
 }

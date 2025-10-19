@@ -3,19 +3,19 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.validators.helpers.directory;
+module uim.io.classes.erroroutputs.engines.helpers.directory;
 
-mixin(Version!"test_uim_oop");
+import uim.io;
 
-import uim.oop;
+mixin(Version!"test_uim_io");
 @safe:
 
-class DValidatorDirectory : DDirectory!IValidator {  
-    mixin(DirectoryThis!("Validator")); 
+class DErrorOutputEngineDirectory : DDirectory!DErrorOutputEngine {
+  mixin(DirectoryThis!("ErrorOutputEngine"));
 }
-mixin(DirectoryCalls!("Validator"));
+mixin(DirectoryCalls!("ErrorOutputEngine"));
 
 unittest {
-  auto directory = ValidatorDirectory;
-  assert(testDirectory(directory, "Validator"), "Test ValidatorDirectory failed");
+  auto directory = ErrorOutputEngineDirectory();
+  assert(testDirectory(directory, "ErrorOutputEngine"), "ErrorOutputEngineDirectory failed");
 }
