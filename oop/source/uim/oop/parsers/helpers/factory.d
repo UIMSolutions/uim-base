@@ -11,10 +11,12 @@ import uim.oop;
 
 @safe:
 
-class DParserFactory : DFactory!DParser {
+class DParserFactory : DFactory!IParser {
   mixin(FactoryThis!("Parser"));
 }
+mixin(FactoryCalls!("Parser"));
 
-auto parserFactory() {
-  return DParserFactory.instance;
-}
+unittest {
+  auto factory = new DParserFactory();
+  assert(testFactory(factory, "Parser"), "Test ParserFactory failed");
+}  

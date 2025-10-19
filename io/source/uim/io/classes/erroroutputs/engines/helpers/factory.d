@@ -13,10 +13,9 @@ mixin(Version!"test_uim_io");
 class DErrorOutputEngineFactory : DFactory!DErrorOutput {
   mixin(FactoryThis!("ErrorOutputEngine"));
 }
-
 mixin(FactoryCalls!("ErrorOutputEngine"));
 
 unittest {
   auto factory = new DErrorOutputEngineFactory();
-  assert(testFactory(new DErrorOutputEngineFactory, "ErrorOutputEngine"), "Test of DErrorOutputEngineFactory failed!");
+  assert(testFactory(factory, "ErrorOutputEngine"), "Test of DErrorOutputEngineFactory failed!");
 }

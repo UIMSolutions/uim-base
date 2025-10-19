@@ -14,7 +14,6 @@ import uim.io;
 class DInputFactory : DFactory!IInput {
   mixin(FactoryThis!("Input"));
 }
-
 mixin(FactoryCalls!("Input"));
 
 unittest {

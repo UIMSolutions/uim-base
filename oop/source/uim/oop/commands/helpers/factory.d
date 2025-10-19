@@ -17,7 +17,5 @@ mixin(FactoryCalls!("Command"));
 
 unittest {
   auto factory = new DCommandFactory();
-  assert(factory !is null, "Creation of DCommandFactory failed");
-
-  assert(testFactory(new DCommandFactory, "CommandFactory"), "Test of DCommandFactory failed!");
+  assert(testFactory(factory, "Command"), "Test of DCommandFactory failed!");
 }

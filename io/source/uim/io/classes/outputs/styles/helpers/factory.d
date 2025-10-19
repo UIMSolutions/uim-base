@@ -17,7 +17,5 @@ mixin(FactoryCalls!("OutputStyle"));
 
 unittest {
   auto factory = new DOutputStyleFactory();
-  assert(factory !is null, "Creation of DOutputStyleFactory failed");
-
-  assert(testFactory(new DOutputStyleFactory, "OutputStyleFactory"), "Test of DOutputStyleFactory failed!");
+  assert(testFactory(factory, "OutputStyle"), "Test of DOutputStyleFactory failed!");
 }

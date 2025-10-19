@@ -13,8 +13,7 @@ mixin(Version!"test_uim_io");
 class DInputFactory : DFactory!IInput {
   mixin(FactoryThis!("Input"));
 }
-
-mixin(FactoryCalls!("Input"));
+Calls!("Input"));
 
 unittest {
   auto factory = new DInputFactory();

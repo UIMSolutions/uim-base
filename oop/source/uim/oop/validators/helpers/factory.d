@@ -17,8 +17,6 @@ mixin(FactoryCalls!("Validator"));
 
 unittest {
   auto factory = new DValidatorFactory();
-  assert(factory !is null, "Creation of ValidatorFactory failed");
-
   assert(testFactory(factory, "Validator"), "Test of ValidatorFactory failed");
 }
 
