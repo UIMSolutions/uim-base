@@ -3,13 +3,19 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.io.classes.outputs.styles.helpers;
+module uim.io.classes.outputs.helpers.directory;
 
-public {
-  import uim.io.classes.outputs.styles.helpers.collection;
-  import uim.io.classes.outputs.styles.helpers.directory;
-  import uim.io.classes.outputs.styles.helpers.factory;
-  import uim.io.classes.outputs.styles.helpers.functions;
-  import uim.io.classes.outputs.styles.helpers.mixins;
-  import uim.io.classes.outputs.styles.helpers.registry;
+mixin(Version!"test_uim_io");
+
+import uim.io;
+@safe:
+
+class DOutputDirectory : DDirectory!IOutput {
+  mixin(DirectoryThis!("Output"));
+}
+mixin(DirectoryCalls!("Output"));
+
+unittest {
+  auto directory = OutputDirectory;
+  assert(testDirectory(directory, "Output"), "Test OutputDirectory failed");
 }

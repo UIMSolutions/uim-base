@@ -13,5 +13,9 @@ mixin(Version!"test_uim_io");
 class DOutputRegistry : DRegistry!IOutput {
   mixin(RegistryThis!("Output"));
 }
-
 mixin(RegistryCalls!("Output"));
+
+unittest {
+  auto registry = new DOutputRegistry();
+  assert(testRegistry(registry, "Output"), "Test OutputRegistry failed");
+}

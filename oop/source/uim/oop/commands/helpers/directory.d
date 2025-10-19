@@ -18,7 +18,5 @@ mixin(DirectoryCalls!("Command"));
 
 unittest {
   auto directory = new DCommandDirectory();
-  assert(directory !is null, "Creation of DCommandDirectory failed");
-
   assert(testDirectory(new DCommandDirectory, "CommandDirectory"), "Test of DCommandDirectory failed!");
 }
