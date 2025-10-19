@@ -9,3 +9,13 @@ mixin(Version!"test_uim_io");
 
 import uim.io;
 @safe:
+
+class DOutputFormatterCollection : DCollection!IOutputFormatter {
+  mixin(CollectionThis!("OutputFormatter"));
+}
+mixin(CollectionCalls!("OutputFormatter"));
+
+unittest {
+  auto collection = OutputFormatterCollection;
+  assert(testCollection(collection, "OutputFormatter"), "Test OutputFormatterCollection failed");
+}

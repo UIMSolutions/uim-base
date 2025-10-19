@@ -10,7 +10,12 @@ mixin(Version!"test_uim_oop");
 import uim.oop;
 @safe:
 
-class DValidatorCollection : DCollection!IValidator {  
-    mixin(CollectionThis!("Validator")); 
+class DValidatorCollection : DCollection!IValidator {
+  mixin(CollectionThis!("Validator"));
 }
 mixin(CollectionCalls!("Validator"));
+
+unittest {
+  auto collection = ValidatorCollection;
+  assert(testCollection(collection, "Validator"), "Test ValidatorCollection failed");
+}

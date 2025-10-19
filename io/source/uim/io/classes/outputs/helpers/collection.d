@@ -9,3 +9,13 @@ mixin(Version!"test_uim_io");
 
 import uim.io;
 @safe:
+
+class DOutputCollection : DCollection!IOutput {
+  mixin(CollectionThis!("Output"));
+}
+mixin(CollectionCalls!("Output"));
+
+unittest {
+  auto collection = OutputCollection;
+  assert(testCollection(collection, "Output"), "Test OutputCollection failed");
+}

@@ -10,12 +10,12 @@ import uim.io;
 mixin(Version!"test_uim_io");
 @safe:
 
-class DOutputFactory : DFactory!IOutput {
-  mixin(FactoryThis!"Output");
+class DOutputEngineFactory : DFactory!IOutputEngine {
+  mixin(FactoryThis!"OutputEngine");
 }
-mixin(FactoryCalls!"Output");
+mixin(FactoryCalls!"OutputEngine");
 
 unittest {
-  auto factory = new DOutputFactory();
-  assert(testFactory(factory, "Output"), "Test of DOutputFactory failed!");
+  auto factory = new DOutputEngineFactory();
+  assert(testFactory(factory, "OutputEngine"), "Test of DOutputFactory failed!");
 }

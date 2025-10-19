@@ -5,3 +5,17 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs.engines.helpers.collection;
 
+import uim.io;
+
+mixin(Version!"test_uim_io");
+@safe:
+
+class DOutputEngineCollection : DCollection!IOutputEngine {
+  mixin(CollectionThis!("OutputEngine"));
+}
+mixin(CollectionCalls!("OutputEngine"));
+
+unittest {
+  auto collection = OutputEngineCollection;
+  assert(testCollection(collection, "OutputEngine"), "Test OutputEngineCollection failed");
+}

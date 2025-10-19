@@ -5,4 +5,17 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs.styles.helpers.collection;
 
-// Future work: Implement output style collection
+import uim.io;
+
+mixin(Version!"test_uim_io");
+@safe:
+
+class DOutputStyleCollection : DCollection!IOutputStyle {
+  mixin(CollectionThis!("OutputStyle"));
+}
+mixin(CollectionCalls!("OutputStyle"));
+
+unittest {
+  auto collection = OutputStyleCollection;
+  assert(testCollection(collection, "OutputStyle"), "Test OutputStyleCollection failed");
+}

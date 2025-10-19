@@ -10,7 +10,7 @@ import uim.io;
 mixin(Version!"test_uim_io");
 @safe:
 
-class DErrorOutputEngineFactory : DFactory!DErrorOutput {
+class DErrorOutputEngineFactory : DFactory!IErrorOutput {
   mixin(FactoryThis!("ErrorOutputEngine"));
 }
 mixin(FactoryCalls!("ErrorOutputEngine"));
