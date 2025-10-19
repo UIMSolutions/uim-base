@@ -9,3 +9,10 @@ mixin(Version!"test_uim_io");
 
 import uim.io;
 @safe:
+
+bool isOutput(Object obj) {
+  if (obj is null) {
+    return false;
+  }
+  return cast(IOutput)formatter;
+}

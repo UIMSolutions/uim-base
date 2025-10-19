@@ -5,3 +5,15 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs.formatters.helpers.functions;
 
+mixin(Version!"test_uim_io");
+
+import uim.io;
+
+@safe:
+
+bool isOutputFormatter(Object obj) {
+  if (obj is null) {
+    return false;
+  }
+  return cast(IOutputFormatter)obj;
+}

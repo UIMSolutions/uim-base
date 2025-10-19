@@ -9,3 +9,10 @@ mixin(Version!"test_uim_oop");
 
 import uim.oop;
 @safe:
+
+bool isCommand(Object obj) {
+  if (obj is null) {
+    return false;
+  }
+  return cast(ICommand)obj;
+}

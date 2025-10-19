@@ -18,4 +18,6 @@ mixin(DirectoryCalls!("Output"));
 unittest {
   auto directory = OutputDirectory;
   assert(testDirectory(directory, "Output"), "Test OutputDirectory failed");
+
+  mixin(TestDirectory!("Output"));
 }

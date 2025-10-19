@@ -1,0 +1,7 @@
+module uim.io.classes.erroroutputs.tests.mixins;
+
+import uim.io;
+
+mixin(Version!"test_uim_io");
+@safe:
+
