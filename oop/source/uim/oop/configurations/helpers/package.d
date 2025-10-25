@@ -6,10 +6,10 @@
 module uim.oop.configurations.helpers;
 
 public {
-  import uim.oop.commands.helpers.collection;
-  import uim.oop.commands.helpers.directory;
-  import uim.oop.commands.helpers.factory;
-  import uim.oop.commands.helpers.functions;
-  import uim.oop.commands.helpers.mixins;
-  import uim.oop.commands.helpers.registry;
+  import uim.oop.configurations.helpers.collection;
+  import uim.oop.configurations.helpers.directory;
+  import uim.oop.configurations.helpers.factory;
+  import uim.oop.configurations.helpers.functions;
+  import uim.oop.configurations.helpers.mixins;
+  import uim.oop.configurations.helpers.registry;
 }

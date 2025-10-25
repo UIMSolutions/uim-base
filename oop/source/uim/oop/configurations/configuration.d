@@ -22,22 +22,48 @@ class DConfiguration : IConfiguration {
   this() {
     this.name(this.classname);
     this.entries(new Json[string]);
+    _engine = new DMemoryConfigEngine;
   }
 
   this(Json[string] initData) {
     this.entries(initData);
     this.name(this.classname);
+    _engine = new DMemoryConfigEngine;
   }
 
   this(string newName, Json[string] initData = null) {
     this.entries(initData);
     this.name(newName);
+    _engine = new DMemoryConfigEngine;
   }
 
-  mixin(TProperty!("string", "name"));
+  protected string _name;
+  string name() {
+    return _name;
+  }
+  IConfiguration name(string newName) {
+    _name = newName;
+    return this;
+  }
+  // #endregion name
+
+  // #region engine
+  protected IConfigEngine _engine;
+  IConfiguration engine(IConfigEngine newEngine) {
+    _engine = newEngine;
+    return this;
+  }
+  IConfigEngine engine() {
+    return _engine;
+  }
+  // #endregion engine
 
   // #region entries
-  abstract Json[string] entries();
+  Json[string] entries() {
+    // return _engine.loadConfiguration(this).entries;
+    return engine.entries;
+  }
+
   abstract IConfiguration entries(Json[string] newEntries);
   // #endregion entries
 

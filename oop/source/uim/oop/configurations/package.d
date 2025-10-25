@@ -7,6 +7,7 @@ module uim.oop.configurations;
 
 public { // Packages
     import uim.oop.configurations.engines;
+    import uim.oop.configurations.helpers;
 }
 
 public { // Modules
@@ -22,5 +23,3 @@ public { // Modules
     // import uim.oop.configurations.tests;
 }
 
-public { // Additional packages
-}
