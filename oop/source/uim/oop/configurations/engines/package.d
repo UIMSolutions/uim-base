@@ -10,6 +10,9 @@ public {
   
   import uim.oop.configurations.engines.file;
   import uim.oop.configurations.engines.ini;
+  import uim.oop.configurations.engines.memory;
+  import uim.oop.configurations.engines.xml;
+  import uim.oop.configurations.engines.yaml;
   import uim.oop.configurations.engines.redis;
   import uim.oop.configurations.engines.rest;
 }

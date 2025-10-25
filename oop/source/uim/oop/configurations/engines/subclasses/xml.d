@@ -1,17 +1,16 @@
 /****************************************************************************************************************
 * Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur) 
-* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
+* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt xml.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.configurations.engines.file;
-
-import uim.oop;
+module uim.oop.configurations.engines.subclasses.xml;
 
 mixin(Version!"test_uim_oop");
+
+import uim.oop;
 @safe:
 
-class DFileConfigEngine : DConfigEngine {
-    mixin(ConfigEngineThis!("File"));    
+class DXmlConfigEngine : DConfigEngine {
+    mixin(ConfigEngineThis!("Xml"));    
 }
-mixin(ConfigEngineCalls!("File"));    
-
+mixin(ConfigEngineCalls!("Xml"));    
