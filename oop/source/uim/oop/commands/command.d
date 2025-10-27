@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.commands.command;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 // Base class for commands

@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.containers.vectors.tests.test;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 bool testVector(T)(IVector!T vector, string instanceName) if (is(T : UIMObject)) {

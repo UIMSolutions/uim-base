@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.configurations.engines.subclasses.xml;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 class DXmlConfigEngine : DConfigEngine {

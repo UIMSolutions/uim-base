@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.interfaces.containerapplication;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 // Interface for applications that configure and use a dependency injection container.

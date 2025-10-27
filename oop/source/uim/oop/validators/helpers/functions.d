@@ -1,8 +1,9 @@
 module uim.oop.validators.helpers.functions;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 bool isValidator(Object obj) {

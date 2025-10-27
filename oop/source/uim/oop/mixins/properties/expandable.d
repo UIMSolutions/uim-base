@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.mixins.properties.expandable;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 // Mixin for expandable string datatypes

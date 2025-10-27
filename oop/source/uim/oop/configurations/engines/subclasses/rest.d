@@ -3,11 +3,12 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt rest.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.configurations.engines.rest;
+module uim.oop.configurations.engines.subclasses.rest;
+
+import uim.oop;
 
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 class DRestConfigEngine : DConfigEngine {

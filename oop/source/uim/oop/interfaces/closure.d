@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.interfaces.closure;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 // TODO

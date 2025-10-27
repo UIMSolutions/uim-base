@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.formatters.helpers.mixins;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 string formatterThis(string name = null) {

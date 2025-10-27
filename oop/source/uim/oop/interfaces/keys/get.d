@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.interfaces.keys.get;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 interface IGetKeys(T) {

@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.containers.directorys.tests.test;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 // Tests the given directory instance.

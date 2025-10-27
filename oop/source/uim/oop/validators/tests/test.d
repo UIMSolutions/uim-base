@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.validators.tests.test;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 bool testValidator(IValidator validator, string typeName) {

@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.containers.maps.map;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 class DMap(K, V) : DContainer, IMap!(K, V) {

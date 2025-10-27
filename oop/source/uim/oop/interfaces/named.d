@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.interfaces.named;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 interface IObject {

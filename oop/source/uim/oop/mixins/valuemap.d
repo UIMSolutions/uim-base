@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.mixins.valuemap;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 // TODO: addValue(string key, DValue value) to addValues(string[] keys, DValue[] values) to addValues(DValue[string] values) to addValues(DAttribute[string] attributes) to addValues(DAttribute[] attributes)

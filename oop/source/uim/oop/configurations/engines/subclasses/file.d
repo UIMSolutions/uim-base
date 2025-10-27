@@ -8,6 +8,7 @@ module uim.oop.configurations.engines.subclasses.file;
 import uim.oop;
 
 mixin(Version!"test_uim_oop");
+
 @safe:
 
 class DFileConfigEngine : DConfigEngine {

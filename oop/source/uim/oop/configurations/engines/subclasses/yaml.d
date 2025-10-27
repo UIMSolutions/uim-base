@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.configurations.engines.subclasses.yaml;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 class DYamlConfigEngine : DConfigEngine {

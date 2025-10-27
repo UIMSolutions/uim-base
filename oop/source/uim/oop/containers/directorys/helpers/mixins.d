@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.containers.directorys.helpers.mixins;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 string directoryThis(string name = null) {

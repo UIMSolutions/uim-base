@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.validators.helpers.directory;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 class DValidatorDirectory : DDirectory!IValidator {  

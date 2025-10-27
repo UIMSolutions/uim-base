@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.containers.maps.json;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 class DJsonMap : DMap!(string, Json)  {

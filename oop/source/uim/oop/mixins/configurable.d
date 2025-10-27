@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.mixins.configurable;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 mixin template TConfigurable() {

@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.containers.container;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 abstract class DContainer : UIMObject, IContainer {

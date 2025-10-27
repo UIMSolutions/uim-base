@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.containers.maps.string_;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 class DStringMap : DMap!(string, string) {

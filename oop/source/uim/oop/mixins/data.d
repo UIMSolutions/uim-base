@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.mixins.data;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 /* template `~returnType~`SetData(`~returnType~`) {

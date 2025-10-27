@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.validators.helpers.collection;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 class DValidatorCollection : DCollection!IValidator {

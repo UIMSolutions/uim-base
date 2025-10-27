@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.interfaces.configurable;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 interface IConfigurable {

@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.tests.exception;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 bool testException(IException exception) {

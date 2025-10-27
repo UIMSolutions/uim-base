@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.containers.maps.tests.test;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 bool testMap(K, V)(IMap!(K, V) map, string instanceName) {

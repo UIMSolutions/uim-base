@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.interfaces.paths.change;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 interface IChangePaths(K, V) {

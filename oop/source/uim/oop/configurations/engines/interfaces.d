@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.configurations.engines.interfaces;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 // An interface for creating objects compatible with Configure.load()

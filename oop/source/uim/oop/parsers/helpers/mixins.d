@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.parsers.helpers.mixins;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 

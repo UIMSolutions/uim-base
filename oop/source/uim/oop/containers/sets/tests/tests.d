@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.containers.sets.tests.test;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 bool testSet(T)(ISet!T set, string instanceName) if (is(T : UIMObject)) {

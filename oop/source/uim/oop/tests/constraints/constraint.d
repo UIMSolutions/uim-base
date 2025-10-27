@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.tests.constraints.constraint;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 // A dummy constraint class for testing purposes

@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.interfaces.httpapplication; 
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 // An interface defining the methods that the http server depend on.

@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.containers.vectors.interfaces;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 interface IVector(V) : IList!V {

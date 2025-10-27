@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.interfaces.keys.all;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 interface IKeys(T) : IHasKeys!T, IGetKeys!T, IChangeKeys!T, IRemoveKeys!T {

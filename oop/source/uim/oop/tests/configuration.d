@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.tests.configuration;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 // Test function for IConfiguration

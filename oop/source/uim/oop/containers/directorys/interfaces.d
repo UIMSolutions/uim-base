@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.containers.directorys.interfaces;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 // Interface for directory maps.

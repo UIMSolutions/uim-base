@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.direntries.fileinfo;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 // Represents information about a file and provides methods to access file properties.

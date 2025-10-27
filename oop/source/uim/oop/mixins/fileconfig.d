@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.mixins.fileconfig;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 // mixin template providing utility methods for file based config engines.

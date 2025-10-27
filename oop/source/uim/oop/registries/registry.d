@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.registries.registry;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 class DRegistry(T = UIMObject) : UIMObject, IRegistry!T {

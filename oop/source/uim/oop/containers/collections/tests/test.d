@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.containers.collections.tests.test;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 bool testCollection(T)(ICollection!T collection, string instanceName) if (is(T : UIMObject)) {

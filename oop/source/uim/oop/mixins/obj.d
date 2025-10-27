@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.mixins.obj;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 string objThis(string name) {

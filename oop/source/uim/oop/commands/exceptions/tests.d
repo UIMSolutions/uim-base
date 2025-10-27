@@ -5,7 +5,8 @@
 *****************************************************************************************************************/
 module uim.oop.commands.exceptions.tests;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:

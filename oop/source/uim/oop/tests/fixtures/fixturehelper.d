@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.tests.fixtures.fixturehelper;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 // Helper for managing fixtures.

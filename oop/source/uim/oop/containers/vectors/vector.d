@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.containers.vectors.vector;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 class DVector(V) : IVector!V, DList!V {

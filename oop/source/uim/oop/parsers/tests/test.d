@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.parsers.tests.test;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 bool testParser(T)(IParser!T parser, string instanceName) if (is(T : UIMObject)) {

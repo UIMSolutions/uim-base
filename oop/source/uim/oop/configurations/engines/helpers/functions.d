@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.configurations.engines.helpers.functions;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 bool isConfiguration(Object obj) {

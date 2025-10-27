@@ -5,9 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.interfaces.paths.get;
 
+import uim.oop;
+
 mixin(Version!"test_uim_oop");
 
-import uim.oop;
 @safe:
 
 // Interface for getting items by paths.
