@@ -5,8 +5,8 @@
 *****************************************************************************************************************/
 module uim.oop.parsers.tests.mixins;
 
-mixin(Version!"test_uim_oop");
-
 import uim.oop;
+
+mixin(Version!"test_uim_oop");
 
 @safe:

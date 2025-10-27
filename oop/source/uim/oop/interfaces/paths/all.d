@@ -5,9 +5,9 @@
 *****************************************************************************************************************/
 module uim.oop.interfaces.paths.all;
 
-mixin(Version!"test_uim_oop");
-
 import uim.oop;
+
+mixin(Version!"test_uim_oop");
 
 @safe:
 

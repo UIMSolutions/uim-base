@@ -5,9 +5,9 @@
 *****************************************************************************************************************/
 module uim.oop.parsers.helpers.registry;
 
-mixin(Version!"test_uim_oop");
-
 import uim.oop;
+
+mixin(Version!"test_uim_oop");
 
 @safe:
 
