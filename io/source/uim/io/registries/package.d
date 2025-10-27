@@ -9,5 +9,3 @@ public {
     import uim.io.registries.console;
 }
 
-public { // Additional packages
-}

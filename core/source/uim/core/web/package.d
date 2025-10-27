@@ -12,5 +12,3 @@ public {
   import uim.core.web.url;
 }
 
-public { // Additional packages
-}

@@ -11,5 +11,3 @@ public {
     // import uim.io.tests.output;
 }
 
-public { // Additional packages
-}

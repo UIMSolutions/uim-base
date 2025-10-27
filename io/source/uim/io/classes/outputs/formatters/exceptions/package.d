@@ -5,5 +5,3 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs.formatters.exceptions;
 
-public { // Additional packages
-}

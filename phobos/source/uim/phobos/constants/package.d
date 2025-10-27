@@ -9,5 +9,3 @@ public {
     import uim.phobos.constants.constants;
 }
 
-public { // Additional packages
-}

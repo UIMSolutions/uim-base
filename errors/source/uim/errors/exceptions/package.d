@@ -10,5 +10,4 @@ public {
   import uim.errors.exceptions.unnknowneditor;
 }
 
-public { // Additional packages
-}
+

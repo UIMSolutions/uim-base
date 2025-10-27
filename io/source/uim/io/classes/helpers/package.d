@@ -10,5 +10,3 @@ public {
   // import uim.io.classes.helpformatter;
 }
 
-public { // Additional packages
-}

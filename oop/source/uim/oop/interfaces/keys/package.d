@@ -13,5 +13,3 @@ public {
     import uim.oop.interfaces.keys.update;
 }
 
-public { // Additional packages
-}

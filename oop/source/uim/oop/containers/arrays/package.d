@@ -14,5 +14,3 @@ public {
   // import uim.oop.containers.arrays.string;
 }
 
-public { // Additional packages
-}

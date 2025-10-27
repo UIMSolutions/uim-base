@@ -6,5 +6,3 @@
 *****************************************************************************************************************/
 module uim.io.classes.error.engines.errors;
 
-public { // Additional packages
-}

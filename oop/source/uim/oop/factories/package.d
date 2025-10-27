@@ -16,5 +16,4 @@ public {
   }
 }
 
-public { // Additional packages
-}
+

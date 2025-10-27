@@ -9,5 +9,4 @@ public {
   // TODO import uim.oop.tests.constraints.response.statussuccess;
 }
 
-public { // Additional packages
-}
+

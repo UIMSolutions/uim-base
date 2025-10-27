@@ -15,5 +15,3 @@ public {
   // import uim.io.mixins.error;
 }
 
-public { // Additional packages
-}

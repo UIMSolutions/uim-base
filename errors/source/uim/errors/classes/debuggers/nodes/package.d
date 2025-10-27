@@ -16,5 +16,4 @@ public {
   import uim.errors.classes.debuggers.nodes.special;
 }
 
-public { // Additional packages
-}
+

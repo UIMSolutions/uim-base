@@ -9,5 +9,3 @@ public {
     import uim.io.classes.outputs.errors.error;
 }
 
-public { // Additional packages
-}

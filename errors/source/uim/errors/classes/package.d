@@ -11,5 +11,3 @@ public {
   import uim.errors.classes.middlewares;
 }
 
-public { // Additional packages
-}

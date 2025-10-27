@@ -25,5 +25,3 @@ public {
   import uim.oop.interfaces.stringable;
 }
 
-public { // Additional packages
-}

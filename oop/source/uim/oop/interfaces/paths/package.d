@@ -13,5 +13,3 @@ public {
     import uim.oop.interfaces.paths.remove;
 }
 
-public { // Additional packages
-}

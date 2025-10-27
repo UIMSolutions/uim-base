@@ -9,5 +9,3 @@ public {
   import uim.core.mixins.properties.classical;
 }
 
-public { // Additional packages
-}

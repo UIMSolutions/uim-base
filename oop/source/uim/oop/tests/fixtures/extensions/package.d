@@ -13,5 +13,3 @@ public {
     // TODO import uim.oop.tests.fixtures.extensions.unitstartedsubscriber;
 }
 
-public { // Additional packages
-}

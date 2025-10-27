@@ -14,5 +14,3 @@ public {
     import uim.io.classes.consoles.optionparser;
 }
 
-public { // Additional packages
-}

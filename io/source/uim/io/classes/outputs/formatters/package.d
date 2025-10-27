@@ -20,5 +20,3 @@ public {
     
 }
 
-public { // Additional packages
-}

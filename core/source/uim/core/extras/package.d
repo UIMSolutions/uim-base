@@ -10,5 +10,3 @@ public {
   import uim.core.extras.csvhtml;
 }
 
-public { // Additional packages
-}

@@ -14,8 +14,8 @@ mixin(Version!"test_uim_oop");
 // Interface for getting items by paths.
 interface IGetPath(K, V) {
   // Gets multiple items from the collection.
-  V getManyPath(K[][] paths);
+  V[K] values(K[][] paths);
 
   // Gets a specific item from the collection.
-  V getPath(K[] path);
+  V value(K[] path);
 }

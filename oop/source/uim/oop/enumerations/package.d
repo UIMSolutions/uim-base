@@ -11,5 +11,3 @@ public {
   import uim.oop.enumerations.filemodes;
 }
 
-public { // Additional packages
-}

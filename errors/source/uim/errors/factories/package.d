@@ -11,5 +11,3 @@ public {
     import uim.errors.factories.renderer;
 }
 
-public { // Additional packages
-}

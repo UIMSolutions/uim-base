@@ -11,6 +11,5 @@ public {
     import uim.errors.classes.debuggers.formatters;
 }
 
-public { // Additional packages
-}
+
 

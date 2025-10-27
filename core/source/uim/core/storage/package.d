@@ -12,5 +12,4 @@ public {
   import uim.core.storage.path;
 }
 
-public { // Additional packages
-}
+

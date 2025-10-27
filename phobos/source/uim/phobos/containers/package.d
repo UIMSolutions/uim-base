@@ -13,5 +13,4 @@ public {
   import uim.phobos.containers.slist;
 }
 
-public { // Additional packages
-}
+

@@ -5,5 +5,3 @@
 *****************************************************************************************************************/
 module uim.io.classes.outputs.styles.subclasses;
 
-public { // Additional packages
-}

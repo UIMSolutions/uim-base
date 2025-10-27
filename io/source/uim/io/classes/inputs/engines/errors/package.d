@@ -5,5 +5,3 @@
 *****************************************************************************************************************/
 module uim.io.classes.inputs.engines.errors;
 
-public { // Additional packages
-}

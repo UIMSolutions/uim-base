@@ -15,5 +15,3 @@ public { // Helper modules
   import uim.errors.classes.errors.renderers;
 }
 
-public { // Additional packages
-}

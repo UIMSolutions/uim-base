@@ -10,5 +10,3 @@ public {
   import uim.io.classes.outputs.engines.commands.create;
 }
 
-public { // Additional packages
-}

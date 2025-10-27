@@ -17,5 +17,3 @@ public {
   import uim.core.converts.uuid;
 }
 
-public { // Additional packages
-}

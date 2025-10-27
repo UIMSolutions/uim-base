@@ -13,5 +13,3 @@ public {
   // TODO import uim.io.tests.constraints.exitcode;  
 }
 
-public { // Additional packages
-}

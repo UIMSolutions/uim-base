@@ -10,5 +10,4 @@ public {
   import uim.errors.interfaces.errors.renderer;
 }
 
-public { // Additional packages
-}
+

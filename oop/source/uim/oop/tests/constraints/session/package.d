@@ -11,5 +11,3 @@ public {
     // TODO import uim.oop.tests.constraints.session.sessionhaskey;
 }
 
-public { // Additional packages
-}

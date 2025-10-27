@@ -10,5 +10,3 @@ public {
     import uim.core.enumerations.sort;
 }
 
-public { // Additional packages
-}

@@ -14,5 +14,3 @@ public {
     // TODO import uim.io.tests.constraints.contents.regexp;
 }
 
-public { // Additional packages
-}

@@ -17,5 +17,3 @@ public {
     import uim.oop.tests.fixtures.schemaloader;
 }
 
-public { // Additional packages
-}

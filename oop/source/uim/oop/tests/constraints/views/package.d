@@ -10,5 +10,3 @@ public {
     // TODO import uim.oop.tests.constraints.views.templatefileequals;
 }
 
-public { // Additional packages
-}

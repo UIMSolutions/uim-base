@@ -11,5 +11,3 @@ public {
   import uim.oop.exceptions.mixins;
 }
 
-public { // Additional packages
-}
