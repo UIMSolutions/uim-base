@@ -155,7 +155,7 @@ class UIMErrorRenderer : UIMObject, IErrorRenderer {
 
   // Clear output buffers so error pages display properly.
   protected void clearOutput() {
-    /*         if (hasAllValues(D_SAPI, ["cli", "Ddbg"])) {
+    /*         if (hasAllValue(D_SAPI, ["cli", "Ddbg"])) {
             return;
         }
         while (ob_get_level()) {
@@ -509,7 +509,7 @@ class UIMErrorRenderer { // }: IErrorRenderer
 
   // Clear output buffers so error pages display properly.
   protected void clearOutput() {
-    /* if (hasAllValues(D_SAPI, ["cli", "Ddbg"])) {
+    /* if (hasAllValue(D_SAPI, ["cli", "Ddbg"])) {
       return;
     }
     while (ob_get_level()) {

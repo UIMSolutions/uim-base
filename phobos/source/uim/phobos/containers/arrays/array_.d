@@ -346,7 +346,7 @@ unittest {
 // #endregion isIn
 
 // #region remove
-auto ref removeValues(T)(auto ref T[] items, T[] values) {
+auto ref removeAllValue(T)(auto ref T[] items, T[] values) {
   T[] items = values.filter!(v => !items.hasValue(v)).array;
   return results;
 }

@@ -12,7 +12,7 @@ import uim.oop;
 @safe:
 
 // Interface for removing items by their keys.
-interface IRemoveKeys(K = string) {
+interface IRemoveAllKeys(K = string) {
   // Removes all of the given keys from the collection.
   bool removeAllKey(K[] keys);
 

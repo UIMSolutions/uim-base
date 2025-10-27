@@ -53,7 +53,7 @@ auto removeValue(T)(T[] arr, T value) {
   return arr.remove(value).array;
 }
 
-auto removeValues(T)(T[] arr, T[] values) {
+auto removeAllValue(T)(T[] arr, T[] values) {
   import std.algorithm : remove;
   import std.array : array;
   return arr.remove(values).array;
@@ -73,7 +73,7 @@ unittest {
   auto result2 = removeValue(arr, 3);
   assert(result2 == [1, 2, 4, 5]);
 
-  auto result3 = removeValues(arr, [2, 4]);
+  auto result3 = removeAllValue(arr, [2, 4]);
   assert(result3 == [1, 3, 5]);
 }
 */

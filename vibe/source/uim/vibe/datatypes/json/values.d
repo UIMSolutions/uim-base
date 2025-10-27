@@ -23,9 +23,9 @@ Json[] values(Json json, string[] keys) {
 unittest {
   auto json = parseJsonString(`{"a": "A", "b": "B", "c": "C"}`);
 
-  /*   assert(json.hasAllValues(Json("A"), Json("B"), Json("C")));
-  assert(json.hasAllValues([Json("A"), Json("B"), Json("C")]));
-  assert(!json.hasAllValues([Json("A"), Json("B"), Json("D")])); */
+  /*   assert(json.hasAllValue(Json("A"), Json("B"), Json("C")));
+  assert(json.hasAllValue([Json("A"), Json("B"), Json("C")]));
+  assert(!json.hasAllValue([Json("A"), Json("B"), Json("D")])); */
 }
 // #endregion values
 

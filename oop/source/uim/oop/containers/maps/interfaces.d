@@ -24,7 +24,8 @@ interface IMap(K, V) : IContainer {
   /* bool renameKeys(K[K] keys);
   bool renameKey(K oldKey, K newKey); */
 
-  bool removeKeys(K[] keys);
+  bool removeAllKeys(K[] keys);
+  bool removeAnyKeys(K[] keys);
   bool removeKey(K key);
   // #endregion keys
 
@@ -33,11 +34,12 @@ interface IMap(K, V) : IContainer {
   V value(K key);
   bool value(K key, V newValue);
 
-  bool hasAllValues(V[] values);
+  bool hasAllValue(V[] values);
   bool hasAnyValue(V[] values);
   bool hasValue(V value);
 
-  bool removeValues(V[] values);
+  bool removeAllValue(V[] values);
+  bool removeAnyValue(V[] values);
   bool removeValue(V value);
   // #endregion values
 

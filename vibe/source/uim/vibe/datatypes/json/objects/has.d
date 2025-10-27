@@ -11,19 +11,19 @@ mixin(Version!("test_uim_vibe"));
 @safe:
 
 // #region value
-// #region hasAllValues
-bool hasAllValues(T)(Json json, T[] values, bool deepSearch = false) {
+// #region hasAllValue
+bool hasAllValue(T)(Json json, T[] values, bool deepSearch = false) {
   return values.all!(value => hasValue(json, value, deepSearch));
 }
 
 unittest {
   auto json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": "h"}], "i": "j"}`);
-  assert(json.hasAllValues([Json("b"), Json("j")]));
-  // assert(json.hasAllValues([Json("h"), Json(1)], true));
+  assert(json.hasAllValue([Json("b"), Json("j")]));
+  // assert(json.hasAllValue([Json("h"), Json(1)], true));
 }
-// #endregion hasAllValues
+// #endregion hasAllValue
 
-// #region hasAnyValues
+// #region hasAnyValue
 // Search if json has any of the values
 bool hasAnyValue(T)(Json json, T[] values, bool deepSearch = false) {
   return values.any!(value => hasValue(json, value, deepSearch));
@@ -31,10 +31,10 @@ bool hasAnyValue(T)(Json json, T[] values, bool deepSearch = false) {
 
 unittest {
   auto json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": "h"}], "i": "j"}`);
-  assert(json.hasAllValues([Json("b"), Json("j")]));
-  // assert(json.hasAllValues([Json("h"), Json(1)], true));
+  assert(json.hasAllValue([Json("b"), Json("j")]));
+  // assert(json.hasAllValue([Json("h"), Json(1)], true));
 }
-// #endregion hasAnyValues
+// #endregion hasAnyValue
 
 // #region hasValue
 // Search if jsonData has value

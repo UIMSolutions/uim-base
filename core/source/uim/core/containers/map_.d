@@ -61,7 +61,7 @@ unittest {
   assert(test2.hasAnyValue([Json("A"), Json("y"), Json("C")]));
   assert(!test2.hasAnyValue([Json("x"), Json("y"), Json("z")]));
 
-  assert(test2.hasAllValues([Json("A"), Json("B"), Json("C")]));
-  assert(!test2.hasAllValues([Json("A"), Json("X"), Json("C")]));
+  assert(test2.hasAllValue([Json("A"), Json("B"), Json("C")]));
+  assert(!test2.hasAllValue([Json("A"), Json("X"), Json("C")]));
 }
 // #endregion hasValue */

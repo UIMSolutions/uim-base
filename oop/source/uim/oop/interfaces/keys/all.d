@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-interface IKeys(T) : IHasKeys!T, IGetKeys!T, IChangeKeys!T, IRemoveKeys!T {
+interface IKeys(T) : IHasKeys!T, IGetKeys!T, IChangeKeys!T, IRemoveAllKeys!T {
   // Returns an array containing all of the keys in this collection.
   string[] keys(SORTORDERS sortorder = NOSORT);
 }

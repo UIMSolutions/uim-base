@@ -123,42 +123,42 @@ class DMap(K, V) : DContainer, IMap!(K, V) {
   // #endregion opIndex
 
   // #region remove
-  // #region removeKeys
+  // #region removeAllKeys
   // Remove multiple keys from the map
-  bool removeKeys(K[] keys) {
+  bool removeAllKeys(K[] keys) {
     keys.all!(key => removeKey(key));
   }
   /// 
   unittest {
-    // Test removeKeys removes multiple keys
+    // Test removeAllKeys removes multiple keys
     auto map1 = new DMap!(string, int);
     map1.entries = ["a": 1, "b": 2, "c": 3, "d": 4];
-    map1.removeKeys(["b", "d"]);
+    map1.removeAllKeys(["b", "d"]);
     assert(map1.entries == ["a": 1, "c": 3]);
     assert(!map1.hasKey("b"));
     assert(!map1.hasKey("d"));
     assert(map1.hasKey("a"));
     assert(map1.hasKey("c"));
 
-    // Test removeKeys with empty array (should not remove anything)
+    // Test removeAllKeys with empty array (should not remove anything)
     auto map2 = new DMap!(string, int);
     map2.entries = ["x": 10, "y": 20];
-    map2.removeKeys([]);
+    map2.removeAllKeys([]);
     assert(map2.entries == ["x": 10, "y": 20]);
 
-    // Test removeKeys with keys not present (should not throw, just ignore)
+    // Test removeAllKeys with keys not present (should not throw, just ignore)
     auto map3 = new DMap!(string, int);
     map3.entries = ["foo": 100, "bar": 200];
-    map3.removeKeys(["baz", "qux"]);
+    map3.removeAllKeys(["baz", "qux"]);
     assert(map3.entries == ["foo": 100, "bar": 200]);
 
-    // Test removeKeys removes all keys
+    // Test removeAllKeys removes all keys
     auto map4 = new DMap!(int, string);
     map4.entries = [1: "one", 2: "two", 3: "three"];
-    map4.removeKeys([1, 2, 3]);
+    map4.removeAllKeys([1, 2, 3]);
     assert(map.entries.length == 0);
   }
-  // #endregion removeKeys
+  // #endregion removeAllKeys
 
   // #region removeKey
   // Remove a single key from the map
@@ -225,24 +225,24 @@ class DMap(K, V) : DContainer, IMap!(K, V) {
   }
 
   // #region has
-  // #region hasAllValues
+  // #region hasAllValue
   // Check if all values are present in the map
-  bool hasAllValues(V[] values) {
+  bool hasAllValue(V[] values) {
     return values.all!(value => hasValue(value));
   }
   /// 
   unittest {
-    // Test hasAllValues with all values present
+    // Test hasAllValue with all values present
     auto map1 = new DMap!(string, int);
     map1.entries = ["a": 1, "b": 2, "c": 3];
-    assert(map1.hasAllValues([1, 2, 3]) == true);
+    assert(map1.hasAllValue([1, 2, 3]) == true);
 
-    // Test hasAllValues with some values missing
+    // Test hasAllValue with some values missing
     auto map2 = new DMap!(string, int);
     map2.entries = ["a": 1, "b": 2];
-    assert(map2.hasAllValues([1, 2, 3]) == false);
+    assert(map2.hasAllValue([1, 2, 3]) == false);
   }
-  // #endregion hasAllValues
+  // #endregion hasAllValue
 
   // #region hasAnyValue
   // Check if any value is present in the map
@@ -306,17 +306,17 @@ class DMap(K, V) : DContainer, IMap!(K, V) {
   // #endregion has
 
   // #region remove
-  // #region removeValues
+  // #region removeAllValue
   // Remove multiple values from the map
-  bool removeValues(V[] values) {
+  bool removeAllValue(V[] values) {
     return values.all!(value => removeValue(value));
   }
   ///
   unittest {
-    // Test removeValues removes multiple values
+    // Test removeAllValue removes multiple values
     auto map1 = new DMap!(string, int);
     map1.entries = ["a": 1, "b": 2, "c": 3, "d": 2];
-    bool result1 = map1.removeValues([2, 3]);
+    bool result1 = map1.removeAllValue([2, 3]);
     // Only first occurrence of each value is removed
     assert(result1 == true);
     // "b":2 and "c":3 should be removed, "d":2 remains because only one "2" is removed
@@ -325,21 +325,21 @@ class DMap(K, V) : DContainer, IMap!(K, V) {
     assert(map1.hasValue(2));
     assert(map1.hasValue(1));
 
-    // Test removeValues with values not present
+    // Test removeAllValue with values not present
     auto map2 = new DMap!(string, int);
     map2.entries = ["x": 10, "y": 20];
-    bool result2 = map2.removeValues([30, 40]);
+    bool result2 = map2.removeAllValue([30, 40]);
     assert(result2 == false); // none removed
     assert(map2.entries == ["x": 10, "y": 20]);
 
-    // Test removeValues with empty values array (should not remove anything)
+    // Test removeAllValue with empty values array (should not remove anything)
     auto map3 = new DMap!(string, int);
     map3.entries = ["foo": 100, "bar": 200];
-    bool result3 = map3.removeValues([]);
+    bool result3 = map3.removeAllValue([]);
     assert(result3 == true); // vacuously true
     assert(map3.entries == ["foo": 100, "bar": 200]);
   }
-  // #endregion removeValues
+  // #endregion removeAllValue
 
   // #region removeValue
   // Remove a specific value from the map
