@@ -19,5 +19,5 @@ mixin(DirectoriesCalls!("Configuration"));
 
 unittest {
   auto directories = new DConfigurationDirectories();
-  assert(testDirectories(new DConfigurationDirectories, "ConfigurationDirectories"), "Test of DConfigurationDirectories failed!");
+  assert(testDirectory(new DConfigurationDirectories, "ConfigurationDirectories"), "Test of DConfigurationDirectories failed!");
 }

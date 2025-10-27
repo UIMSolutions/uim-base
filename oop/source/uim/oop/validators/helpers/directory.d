@@ -18,5 +18,5 @@ mixin(DirectoriesCalls!("Validator"));
 
 unittest {
   auto directories = ValidatorDirectories;
-  assert(testDirectories(directories, "Validator"), "Test ValidatorDirectories failed");
+  assert(testDirectory(directories, "Validator"), "Test ValidatorDirectories failed");
 }

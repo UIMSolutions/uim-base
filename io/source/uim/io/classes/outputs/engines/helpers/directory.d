@@ -17,5 +17,5 @@ mixin(DirectoriesCalls!("OutputEngine"));
 
 unittest {
   auto directories = OutputEngineDirectories;
-  assert(testDirectories(directories, "OutputEngine"), "Test OutputEngineDirectories failed");
+  assert(testDirectory(directories, "OutputEngine"), "Test OutputEngineDirectories failed");
 }

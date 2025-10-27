@@ -17,5 +17,5 @@ mixin(DirectoriesCalls!("OutputFormatter"));
 
 unittest {
   auto directories = OutputFormatterDirectories;
-  assert(testDirectories(directories, "OutputFormatter"), "Test OutputFormatterDirectories failed");
+  assert(testDirectory(directories, "OutputFormatter"), "Test OutputFormatterDirectories failed");
 }

@@ -18,5 +18,5 @@ mixin(DirectoriesCalls!("Parser"));
 
 unittest {
   auto directories = new DParserDirectories();
-  assert(testDirectories(directories, "Parser"), "Test ParserDirectories failed");
+  assert(testDirectory(directories, "Parser"), "Test ParserDirectories failed");
 }

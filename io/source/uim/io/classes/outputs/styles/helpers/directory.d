@@ -17,5 +17,5 @@ mixin(DirectoriesCalls!("OutputStyle"));
 
 unittest {
   auto directories = OutputStyleDirectories;
-  assert(testDirectories(directories, "OutputStyle"), "Test OutputStyleDirectories failed");
+  assert(testDirectory(directories, "OutputStyle"), "Test OutputStyleDirectories failed");
 }
