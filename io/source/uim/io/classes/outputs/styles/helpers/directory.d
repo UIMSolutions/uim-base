@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.io.classes.outputs.styles.helpers.directories;
+module uim.io.classes.outputs.styles.helpers.directory;
 
 import uim.io;
 
@@ -11,9 +11,9 @@ mixin(Version!"test_uim_io");
 @safe:
 
 class DOutputStyleDirectories : DDirectory!IOutputStyle {
-  mixin(DirectoriesThis!("OutputStyle"));
+  mixin(DirectoryThis!("OutputStyle"));
 }
-mixin(DirectoriesCalls!("OutputStyle"));
+mixin(DirectoryCalls!("OutputStyle"));
 
 unittest {
   auto directories = OutputStyleDirectories;

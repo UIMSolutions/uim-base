@@ -7,7 +7,7 @@ module uim.oop.commands.helpers;
 
 public {
   import uim.oop.commands.helpers.collection;
-  import uim.oop.commands.helpers.directories;
+  import uim.oop.commands.helpers.directory;
   import uim.oop.commands.helpers.factory;
   import uim.oop.commands.helpers.functions;
   import uim.oop.commands.helpers.mixins;

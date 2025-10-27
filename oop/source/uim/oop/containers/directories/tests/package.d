@@ -3,8 +3,8 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.containers.directoriess.tests;
+module uim.oop.containers.directories.tests;
 
 public {
-    import uim.oop.containers.directoriess.tests.test;
+    import uim.oop.containers.directories.tests.test;
 }

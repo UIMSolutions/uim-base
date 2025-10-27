@@ -7,7 +7,7 @@ module uim.io.classes.inputs.engines.helpers;
 
 public {
     import uim.io.classes.inputs.engines.helpers.collection;
-    import uim.io.classes.inputs.engines.helpers.directories;
+    import uim.io.classes.inputs.engines.helpers.directory;
     import uim.io.classes.inputs.engines.helpers.factory;
     import uim.io.classes.inputs.engines.helpers.functions;
     import uim.io.classes.inputs.engines.helpers.mixins;

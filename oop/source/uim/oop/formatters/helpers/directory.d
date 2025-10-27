@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.formatters.helpers.directories;
+module uim.oop.formatters.helpers.directory;
 
 mixin(Version!"test_uim_oop");
 
@@ -12,9 +12,9 @@ import uim.oop;
 @safe:
 
 class DFormatterDirectories : DDirectory!IFormatter {
-  mixin(DirectoriesThis!("Formatter"));
+  mixin(DirectoryThis!("Formatter"));
 }
-mixin(DirectoriesCalls!("Formatter"));
+mixin(DirectoryCalls!("Formatter"));
 
 unittest {
   auto directories = FormatterDirectories;

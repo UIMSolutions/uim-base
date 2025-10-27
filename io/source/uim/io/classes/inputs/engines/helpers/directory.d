@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.io.classes.inputs.engines.helpers.directories;
+module uim.io.classes.inputs.engines.helpers.directory;
 
 import uim.io;
 
@@ -11,9 +11,9 @@ mixin(Version!"test_uim_io");
 @safe:
 
 class DInputEngineDirectories : DDirectory!IInputEngine {
-  mixin(DirectoriesThis!("InputEngine"));
+  mixin(DirectoryThis!("InputEngine"));
 }
-mixin(DirectoriesCalls!("InputEngine"));
+mixin(DirectoryCalls!("InputEngine"));
 
 unittest {
   auto directories = InputEngineDirectories;
