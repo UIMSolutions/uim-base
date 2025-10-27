@@ -38,8 +38,10 @@ class DMap(K, V) : DContainer, IMap!(K, V) {
   V value(string key) {
     return key in _elements ? _elements[key.correctKey] : null;
   }
+  bool value(string key, V value) {
+    return _entries[key.correctKey] = value;
+  }
   // #endregion value
-
   // #endregion entries
 
   // #region size
@@ -61,19 +63,19 @@ class DMap(K, V) : DContainer, IMap!(K, V) {
   }
 
   // #region has
-  // #region hasAllKeys
+  // #region hasAllKey
   // Check if all keys are present in the map
-  bool hasAllKeys(K[] keys) {
+  bool hasAllKey(K[] keys) {
     return keys.all!(key => hasKey(key));
   }
-  // #endregion hasAllKeys
+  // #endregion hasAllKey
 
-  // #region hasAnyKeys
+  // #region hasAnyKey
   // Check if any key is present in the map
   bool hasAnyKey(K[] keys) {
     return keys.any!(key => hasKey(key));
   }
-  // #endregion hasAnyKeys
+  // #endregion hasAnyKey
 
   // #region hasKey
   // Check if a specific key is present in the map
@@ -160,8 +162,9 @@ class DMap(K, V) : DContainer, IMap!(K, V) {
 
   // #region removeKey
   // Remove a single key from the map
-  void removeKey(K key) {
+  bool removeKey(K key) {
     _entries.remove(key);
+    return true;
   }
   /// 
   unittest {

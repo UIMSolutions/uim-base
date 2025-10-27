@@ -50,9 +50,9 @@ Json firstValue(Json json) {
     ? uim.phobos.containers.arrays.first.first(json.filterValues) : Json(null);
 }
 
-Json firstHasAllKeys(Json json, string[] keys) {
+Json firstHasAllKey(Json json, string[] keys) {
   return json.isArray
-    ? uim.phobos.containers.arrays.first.first(json.toArray.filterHasAllKeys(keys)) : Json(null);
+    ? uim.phobos.containers.arrays.first.first(json.toArray.filterHasAllKey(keys)) : Json(null);
 }
 
 Json firstHasAnyKey(Json json, string[] keys) {

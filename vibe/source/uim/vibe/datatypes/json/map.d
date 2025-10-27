@@ -48,7 +48,7 @@ mixin(Version!("test_uim_vibe"));
   assert(map.length == 4 && map.hasKey("d"));
 
   map.set("e", Json("x")).set("f", Json("x"));
-  assert(map.length == 6 && map.hasAllKeys(["d", "e", "f"]));
+  assert(map.length == 6 && map.hasAllKey(["d", "e", "f"]));
 
   map = Json.emptyObject;
   map["a"] = "A";

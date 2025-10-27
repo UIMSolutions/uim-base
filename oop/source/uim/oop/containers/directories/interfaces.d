@@ -12,7 +12,7 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 // Interface for directories maps.
-interface IDirectoryMap(V) : IMap!(string, V), IHasPaths!string, IGetPath!(string, V), IChangePaths!(string, V), IRemovePath!string {
+interface IDirectory(V) : IMap!(string, V), IHasPaths!string, IGetPath!(string, V), IChangePaths!(string, V), IRemovePaths!string {
   // Gets the path separator used in the directories.
   bool pathSeparator(string separator);
 

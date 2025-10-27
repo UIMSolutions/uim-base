@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.containers.directories.directories;
+module uim.oop.containers.directories.directory;
 
 mixin(Version!"test_uim_oop");
 
@@ -11,8 +11,8 @@ import uim.oop;
 
 @safe:
 
-class DDirectoryMap(V) : DMap!(string, V) {
-  mixin(MapThis!("Directories"));
+class DDirectory(V) : DMap!(string, V), IDirectory!V {
+  mixin(DirectoryThis!());
 
   // #region pathSeparator
   protected string _pathSeparator = ".";
@@ -89,8 +89,8 @@ class DDirectoryMap(V) : DMap!(string, V) {
 
   // #region get
   // Gets the entire map as a map of paths to items.
-  T[string] itemsByPath(string[][] paths) {
-    T[string] foundItems;
+  V[string] itemsByPath(string[][] paths) {
+    V[string] foundItems;
     paths
       .map!(path => path.toKey)
       .filter!(key => hasKey(key))

@@ -13,28 +13,28 @@ mixin(Version!("test_uim_core"));
 /* // #region renameKey
 unittest {
   auto jsonMap = ["a": Json(1), "b": Json(2), "c": Json(3), "d": Json(4)];
-  assert(jsonMap.hasAllKeys(["a", "b", "c", "d"]));
+  assert(jsonMap.hasAllKey(["a", "b", "c", "d"]));
   jsonMap.renameKey("a", "x");
-  assert(jsonMap.hasAllKeys(["x", "b", "c", "d"]) && !jsonMap.hasKey("a"));
+  assert(jsonMap.hasAllKey(["x", "b", "c", "d"]) && !jsonMap.hasKey("a"));
 
   jsonMap = ["a": Json(1), "b": Json(2), "c": Json(3), "d": Json(4)];
-  assert(jsonMap.hasAllKeys(["a", "b", "c", "d"]));
+  assert(jsonMap.hasAllKey(["a", "b", "c", "d"]));
   jsonMap.renameKeys(["a", "b"], ["x", "y", "z"]); // keys.length < others.length
-  assert(jsonMap.hasAllKeys(["x", "y", "c", "d"]) && !jsonMap.hasAnyKey([
+  assert(jsonMap.hasAllKey(["x", "y", "c", "d"]) && !jsonMap.hasAnyKey([
       "a", "b"
     ]));
 
   jsonMap = ["a": Json(1), "b": Json(2), "c": Json(3), "d": Json(4)];
-  assert(jsonMap.hasAllKeys(["a", "b", "c", "d"]));
+  assert(jsonMap.hasAllKey(["a", "b", "c", "d"]));
   jsonMap.renameKeys(["a", "b", "c"], ["x", "y"]); // keys.length > others.length
-  assert(jsonMap.hasAllKeys(["x", "y", "c", "d"]) && !jsonMap.hasAnyKey([
+  assert(jsonMap.hasAllKey(["x", "y", "c", "d"]) && !jsonMap.hasAnyKey([
       "a", "b"
     ]));
 
   jsonMap = ["a": Json(1), "b": Json(2), "c": Json(3), "d": Json(4)];
-  assert(jsonMap.hasAllKeys(["a", "b", "c", "d"]));
+  assert(jsonMap.hasAllKey(["a", "b", "c", "d"]));
   jsonMap.renameKeys(["a": "x", "b": "y"]);
-  assert(jsonMap.hasAllKeys(["x", "y", "c", "d"]) && !jsonMap.hasAnyKey([
+  assert(jsonMap.hasAllKey(["x", "y", "c", "d"]) && !jsonMap.hasAnyKey([
       "a", "b"
     ]));
 }

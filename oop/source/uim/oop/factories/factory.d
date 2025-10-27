@@ -70,21 +70,21 @@ class DFactory(K = string, V = UIMObject) : UIMObject, IFactory!V {
 
   // #region set
   // Sets a specific item in the collection.
-  bool setPath(K[] path, T delegate(Json[string] options = null) @safe createFunc) {
+  bool setPath(K[] path, V delegate(Json[string] options = null) @safe createFunc) {
     return setKey(path.toKey, createFunc);
   }
   // #endregion set
 
   // #region update
   // Updates a specific item in the collection.
-  bool updatePath(K[] path, T delegate(Json[string] options = null) @safe createFunc) {
+  bool updatePath(K[] path, V delegate(Json[string] options = null) @safe createFunc) {
     return updateKey(path.toKey, createFunc);
   }
   // #endregion update
 
   // #region merge
   // Merges a specific item into the collection.
-  bool mergePath(K[] path, T delegate(Json[string] options = null) @safe createFunc) {
+  bool mergePath(K[] path, V delegate(Json[string] options = null) @safe createFunc) {
     return mergeKey(path.toKey, createFunc);
   }
   // #endregion merge
@@ -134,7 +134,7 @@ class DFactory(K = string, V = UIMObject) : UIMObject, IFactory!V {
 
   // #region set
   // Sets the entire collection to the specified items.
-  bool setKey(K key, T delegate(Json[string] options = null) @safe createFunc) {
+  bool setKey(K key, V delegate(Json[string] options = null) @safe createFunc) {
     _workers[key] = createFunc;
     return true;
   }
@@ -166,20 +166,20 @@ class DFactory(K = string, V = UIMObject) : UIMObject, IFactory!V {
 
   // #region update
   // Updates a specific item in the collection.
-  bool updateKey(K key, T delegate(Json[string] options = null) @safe createFunc) {
+  bool updateKey(K key, V delegate(Json[string] options = null) @safe createFunc) {
     return hasKey(key) ? setKey(key, createFunc) : false;
   }
   // #endregion update
 
   // #region merge
   // Merges a specific item into the collection.
-  bool mergeKey(K key, T delegate(Json[string] options = null) @safe createFunc) {
+  bool mergeKey(K key, V delegate(Json[string] options = null) @safe createFunc) {
     return !hasKey(key) ? setKey(key, createFunc) : false;
   }
   // #endregion merge
 
   // #region remove
-  bool removeAllKeys(K[] keys) {
+  bool removeAllKey(K[] keys) {
     return keys.all!(key => removeKey(key));
   }
 

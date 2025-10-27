@@ -25,9 +25,9 @@ Json lastValue(Json json) {
     ? uim.phobos.containers.arrays.last.last(json.toArray.filterValues) : Json(null);
 }
 
-Json lastHasAllKeys(Json json, string[] keys) {
+Json lastHasAllKey(Json json, string[] keys) {
   return json.isArray
-    ? uim.phobos.containers.arrays.last.last(json.toArray.filterHasAllKeys(keys)) : Json(null);
+    ? uim.phobos.containers.arrays.last.last(json.toArray.filterHasAllKey(keys)) : Json(null);
 }
 
 Json lastHasAnyKey(Json json, string[] keys) {

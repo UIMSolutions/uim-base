@@ -106,7 +106,7 @@ unittest {
   /* assert([id, id2, id3].toJson.hasKey(id));
   assert(![id, id2, id3].toJson.hasKey(id4)); */
 
-  // assert([id, id2, id3].toJson.hasAllKeys(id, id2, id3));
+  // assert([id, id2, id3].toJson.hasAllKey(id, id2, id3));
   // assert(id.toJson.get!string == id.toString);
 
   // assert(UUID(toJson("id", id)["id"].get!string) == id); */

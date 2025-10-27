@@ -13,11 +13,11 @@ mixin(Version!"test_uim_oop");
 
 interface IMap(K, V) : IContainer {
   V[K] entries();
-  int hashCode();
+  // int hashCode();
 
   // #region keys
   K[] keys();
-  bool hasAllKeys(K[] keys);
+  bool hasAllKey(K[] keys);
   bool hasAnyKey(K[] keys);
   bool hasKey(K key);
 

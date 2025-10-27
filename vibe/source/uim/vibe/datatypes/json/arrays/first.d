@@ -31,8 +31,8 @@ Json firstValue(Json[] items) {
 // #endregion first by type
 
 // #region first by key
-Json firstHasAllKeys(Json[] items, string[] keys) {
-  return items.filterHasAllKeys(keys).first;
+Json firstHasAllKey(Json[] items, string[] keys) {
+  return items.filterHasAllKey(keys).first;
 }
 
 Json firstHasAnyKey(Json[] items, string[] keys) {
@@ -69,9 +69,9 @@ Json firstValue(Json json) {
 // #endregion first by type
 
 // #region first by key
-Json firstHasAllKeys(Json json, string[] keys) {
+Json firstHasAllKey(Json json, string[] keys) {
   return json.isArray
-    ? json.toArray.filterHasAllKeys(keys).first : Json(null);
+    ? json.toArray.filterHasAllKey(keys).first : Json(null);
 }
 
 Json firstHasAnyKey(Json json, string[] keys) {

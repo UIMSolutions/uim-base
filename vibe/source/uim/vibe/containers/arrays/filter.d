@@ -123,8 +123,8 @@ unittest {
 // #endregion Filter by type
 
 // #region Filter by key
-Json[] filterHasAllKeys(Json[] items, string[] keys) {
-  return items.filterObjects.filter!(item => item.hasAllKeys(keys)).array;
+Json[] filterHasAllKey(Json[] items, string[] keys) {
+  return items.filterObjects.filter!(item => item.hasAllKey(keys)).array;
 }
 
 Json[] filterHasAnyKey(Json[] items, string[] keys) {
