@@ -3,14 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.commands.interfaces;
+module uim.oop.configurations.engines.tests;
 
-import uim.oop;
-
-mixin(Version!"test_uim_oop");
-
-@safe:
-
-interface ICommand : IObject {
-  bool execute(Json[string] options = null);
+public {
+  import uim.oop.configurations.engines.tests.mixins;
+  import uim.oop.configurations.engines.tests.test;
 }

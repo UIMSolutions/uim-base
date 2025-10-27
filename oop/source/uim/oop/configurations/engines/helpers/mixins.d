@@ -10,20 +10,20 @@ import uim.oop;
 mixin(Version!"test_uim_oop");
 @safe:
 
-string commandThis(string name = null) {
-    string fullName = name ~ "Command";
+string ConfigurationThis(string name = null) {
+    string fullName = name ~ "Configuration";
     return objThis(fullName);
 }
 
-template CommandThis(string name = null) {
-    const char[] CommandThis = commandThis(name);
+template ConfigurationThis(string name = null) {
+    const char[] ConfigurationThis = ConfigurationThis(name);
 }
 
-string commandCalls(string name) {
-    string fullName = name ~ "Command";
+string ConfigurationCalls(string name) {
+    string fullName = name ~ "Configuration";
     return objCalls(fullName);
 }
 
-template CommandCalls(string name) {
-    const char[] CommandCalls = commandCalls(name);
+template ConfigurationCalls(string name) {
+    const char[] ConfigurationCalls = ConfigurationCalls(name);
 }

@@ -10,9 +10,9 @@ mixin(Version!"test_uim_oop");
 import uim.oop;
 @safe:
 
-bool isCommand(Object obj) {
+bool isConfiguration(Object obj) {
   if (obj is null) {
     return false;
   }
-  return cast(ICommand)obj;
+  return cast(IConfiguration)obj;
 }

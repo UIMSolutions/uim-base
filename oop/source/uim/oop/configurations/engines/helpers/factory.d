@@ -10,12 +10,12 @@ import uim.oop;
 mixin(Version!"test_uim_oop");
 @safe:
 
-class DCommandFactory : DFactory!ICommand {
-  mixin(FactoryThis!("Command"));
+class DConfigurationFactory : DFactory!IConfiguration {
+  mixin(FactoryThis!("Configuration"));
 }
-mixin(FactoryCalls!("Command"));
+mixin(FactoryCalls!("Configuration"));
 
 unittest {
-  auto factory = new DCommandFactory();
-  assert(testFactory(factory, "Command"), "Test of DCommandFactory failed!");
+  auto factory = new DConfigurationFactory();
+  assert(testFactory(factory, "Configuration"), "Test of DConfigurationFactory failed!");
 }

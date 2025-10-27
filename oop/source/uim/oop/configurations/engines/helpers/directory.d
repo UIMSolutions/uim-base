@@ -10,13 +10,13 @@ import uim.oop;
 mixin(Version!"test_uim_oop");
 @safe:
 
-class DCommandDirectory : DDirectory!ICommand {
-  mixin(DirectoryThis!("Command"));
+class DConfigurationDirectory : DDirectory!IConfiguration {
+  mixin(DirectoryThis!("Configuration"));
 }
 
-mixin(DirectoryCalls!("Command"));
+mixin(DirectoryCalls!("Configuration"));
 
 unittest {
-  auto directory = new DCommandDirectory();
-  assert(testDirectory(new DCommandDirectory, "CommandDirectory"), "Test of DCommandDirectory failed!");
+  auto directory = new DConfigurationDirectory();
+  assert(testDirectory(new DConfigurationDirectory, "ConfigurationDirectory"), "Test of DConfigurationDirectory failed!");
 }

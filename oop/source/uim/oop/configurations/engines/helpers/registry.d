@@ -10,15 +10,15 @@ import uim.oop;
 mixin(Version!"test_uim_oop");
 @safe:
 
-class DCommandRegistry : DRegistry!DCommand {
-  mixin(RegistryThis!("Command"));
+class DConfigurationRegistry : DRegistry!DConfiguration {
+  mixin(RegistryThis!("Configuration"));
 }
 
-mixin(RegistryCalls!("Command"));
+mixin(RegistryCalls!("Configuration"));
 
 unittest {
-  auto registry = new DCommandRegistry();
-  assert(registry !is null, "Creation of DCommandRegistry failed");
+  auto registry = new DConfigurationRegistry();
+  assert(registry !is null, "Creation of DConfigurationRegistry failed");
 
-  assert(testRegistry(new DCommandRegistry, "DCommandRegistry"), "Test of DCommandRegistry failed!");
+  assert(testRegistry(new DConfigurationRegistry, "DConfigurationRegistry"), "Test of DConfigurationRegistry failed!");
 }

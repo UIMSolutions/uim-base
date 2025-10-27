@@ -11,5 +11,7 @@ public {
 }
 
 public {  
+  import uim.oop.configurations.engines.helpers;
   import uim.oop.configurations.engines.subclasses;
+  import uim.oop.configurations.engines.tests;
 }
