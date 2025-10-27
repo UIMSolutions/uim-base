@@ -12,7 +12,7 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 // Interface for checking the existence of paths.
-interface IHasPaths(K) {
+interface IHasPaths(K = string) {
   // Checks if contains all of the paths.
   bool hasAllPath(K[][] paths);
 

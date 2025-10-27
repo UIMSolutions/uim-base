@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-interface IChangePaths(K, V) {
+interface IChangePaths(K = string, V = UIMObject) {
   // #region set
   // Sets all of the specified items in the collection.
   bool setAllPath(K[][] paths, V item);

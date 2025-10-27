@@ -11,19 +11,19 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DRegistry(T = UIMObject) : UIMObject, IRegistry!T {
+class DRegistry(V = UIMObject) : UIMObject, IRegistry!V {
   mixin(RegistryThis!());
 
   // #region Singleton
-  protected static DRegistry!T _instance;
-  public static DRegistry!T instance() {
+  protected static DRegistry!V _instance;
+  public static DRegistry!V instance() {
     return (_instance is null)
-      ? _instance = new DRegistry!T : _instance;
+      ? _instance = new DRegistry!V : _instance;
   }
   // #endregion Singleton
 
-  protected T[string] _registeredObjects;
-  protected T _nullValue = null;
+  protected V[string] _registeredObjects;
+  protected V _nullValue = null;
   protected string _separator = ".";
 
   size_t size() {
@@ -32,36 +32,32 @@ class DRegistry(T = UIMObject) : UIMObject, IRegistry!T {
 
   // #region path
   // #region has
-  bool hasAnyPath(string[][] paths) {
-    return paths.any!(path => hasPath(path));
-  }
-
   bool hasAllPath(string[][] paths) {
     return paths.all!(path => hasPath(path));
+  }
+
+  bool hasAnyPath(string[][] paths) {
+    return paths.any!(path => hasPath(path));
   }
 
   bool hasPath(string[] path) {
     return hasKey(path.toKey(_separator));
   }
-
-  unittest {
-    /*     auto registry = new DRegistry!string;
-    registry.register("a.b.c", "value");
-    assert(registry.hasPath(["a", "b", "c"]));
-    assert(!registry.hasPath(["a", "b", "x"]));
- */
-  }
   // #endregion has
 
   // #region get
-  T getPath(string[] path) {
-    return getKey(path.toKey(_separator));
+  T value(string[] path) {
+    return value(path.toKey(_separator));
   }
   // #endregion get
 
   // #region remove
-  bool removePaths(string[][] paths) {
+  bool removeAllPath(string[][] paths) {
     return paths.all!(path => removePath(path));
+  }
+
+  bool removeAnyPath(string[][] paths) {
+    return paths.any!(path => removePath(path));
   }
 
   bool removePath(string[] path) {
@@ -165,18 +161,18 @@ class DRegistry(T = UIMObject) : UIMObject, IRegistry!T {
 
   // #region register
   // Allow assignment via indexing
-  void opIndexAssign(string key, T newObject) {
+  void opIndexAssign(string key, V newObject) {
     register(key, newObject);
   }
 
   // Register an object with a path
-  bool register(string[] path, T newObject) {
+  bool register(string[] path, V newObject) {
     this.register(path.toKey(_separator), newObject);
     return true;
   }
 
   // Register an object with a key
-  bool register(string key, T newObject) {
+  bool register(string key, V newObject) {
     _registeredObjects[key.correctKey] = newObject;
     return true;
   }
@@ -259,20 +255,3 @@ class DRegistry(T = UIMObject) : UIMObject, IRegistry!T {
   }
   // #endregion unregister
 }
-
-unittest {
-  /* class Test {
-    this() {      
-    }
-    this(string newName) {
-      this().name(newName);      
-    }
-    mixin(TProperty!("string", "name"));
-  }
-
-  class TestRegistry : DRegistry!Test {}
-
-  assert(TestRegistry.registry.length == 0);
-  assert(TestRegistry.registry.length == 0); */
-}
-

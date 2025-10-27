@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DMap(K, V) : DContainer, IMap!(K, V) {
+class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
   this() {
   }
 
@@ -340,6 +340,10 @@ class DMap(K, V) : DContainer, IMap!(K, V) {
     assert(map3.entries == ["foo": 100, "bar": 200]);
   }
   // #endregion removeAllValue
+
+  bool removeAnyValue(V[] values) {
+    return values.any!(value => removeValue(value));
+  }
 
   // #region removeValue
   // Remove a specific value from the map

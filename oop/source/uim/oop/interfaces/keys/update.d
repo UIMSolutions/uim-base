@@ -12,7 +12,7 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 // Interface for updating items by their keys.
-interface IChangeKeys(K, V) {
+interface IChangeKeys(K = string, V = UIMObject) {
   // #region set
   // Adds all given items to the collection.
   bool setAllKey(V[K] items);

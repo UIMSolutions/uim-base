@@ -13,6 +13,6 @@ mixin(Version!"test_uim_oop");
 
 interface IKeys(K = string, V = UIMObject) : IHasKeys!(K), IGetKeys!(K, V), IChangeKeys!(K, V), IRemoveAllKeys!(K) {
   // Returns an array containing all of the keys in this collection.
-  K[] keys(SORTORDERS sortorder = NOSORT);
+  K[] keys();
 }
 

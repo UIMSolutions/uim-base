@@ -11,6 +11,6 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-interface IPaths(K, V) : IHasPaths!K, IGetPaths!K, IChangePaths!K, IRemovePaths!K {
-  string[][] paths(SORTORDERS sortorder = NOSORT);
+interface IPaths(K = string, V = UIMObject) : IHasPaths!K, IGetPaths!(K, V), IChangePaths!(K, V), IRemovePaths!K {
+  string[][] paths();
 }
