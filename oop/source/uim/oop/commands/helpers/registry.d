@@ -8,6 +8,7 @@ module uim.oop.commands.helpers.registry;
 import uim.oop;
 
 mixin(Version!"test_uim_oop");
+
 @safe:
 
 class DCommandRegistry : DRegistry!DCommand {

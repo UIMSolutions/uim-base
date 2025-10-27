@@ -8,6 +8,7 @@ module uim.oop.configurations.engines.helpers.directory;
 import uim.oop;
 
 mixin(Version!"test_uim_oop");
+
 @safe:
 
 class DConfigurationDirectory : DDirectory!IConfiguration {

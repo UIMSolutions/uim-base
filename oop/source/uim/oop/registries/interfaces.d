@@ -8,6 +8,7 @@ module uim.oop.registries.interfaces;
 import uim.oop;
 
 mixin(Version!"test_uim_oop");
+
 @safe:
 
 interface IRegistry(K = string, V = IObject) : IHasKeys!K, IHasPaths!K, IObject {

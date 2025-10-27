@@ -8,6 +8,7 @@ module uim.oop.commands.helpers.factory;
 import uim.oop;
 
 mixin(Version!"test_uim_oop");
+
 @safe:
 
 class DCommandFactory : DFactory!ICommand {

@@ -8,6 +8,7 @@ module uim.oop.configurations.helpers.mixins;
 import uim.oop;
 
 mixin(Version!"test_uim_oop");
+
 @safe:
 
 string configurationThis(string name = null) {

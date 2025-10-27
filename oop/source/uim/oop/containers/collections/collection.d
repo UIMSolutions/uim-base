@@ -8,6 +8,7 @@ module uim.oop.containers.collections.collection;
 import uim.oop;
 
 mixin(Version!"test_uim_oop");
+
 @safe:
 
 class DCollection(V) : DContainer, ICollection!V {

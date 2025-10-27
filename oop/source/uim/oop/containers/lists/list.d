@@ -8,6 +8,7 @@ module uim.oop.containers.lists.list;
 import uim.oop;
 
 mixin(Version!"test_uim_oop");
+
 @safe:
 
 interface DList(T) : IList!T, ICollection!T {

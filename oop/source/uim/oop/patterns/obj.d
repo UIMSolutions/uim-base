@@ -8,6 +8,7 @@ module uim.oop.patterns.obj;
 import uim.oop;
 
 mixin(Version!"test_uim_oop");
+
 @safe:
 
 class UIMObject : IObject {

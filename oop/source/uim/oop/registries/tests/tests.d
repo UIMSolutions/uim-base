@@ -8,6 +8,7 @@ module uim.oop.registries.tests.tests;
 import uim.oop;
 
 mixin(Version!"test_uim_oop");
+
 @safe:
 
 bool testRegistry(V)(IRegistry!V registry, string name) {

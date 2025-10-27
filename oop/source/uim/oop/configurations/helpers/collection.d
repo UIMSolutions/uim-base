@@ -8,6 +8,7 @@ module uim.oop.configurations.helpers.collection;
 import uim.oop;
 
 mixin(Version!"test_uim_oop");
+
 @safe:
 
 class DConfigurationCollection : DCollection!IConfiguration {
