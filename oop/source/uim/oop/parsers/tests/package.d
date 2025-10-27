@@ -7,4 +7,5 @@ module uim.oop.parsers.tests;
 
 public {
   import uim.oop.parsers.tests.test;
+  import uim.oop.parsers.tests.mixins;
 }

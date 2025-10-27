@@ -3,17 +3,22 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.parsers.helpers.functions;
-
-mixin(Version!"test_uim_oop");
+module uim.oop.configurations.engines.helpers.registry;
 
 import uim.oop;
 
+mixin(Version!"test_uim_oop");
 @safe:
 
-bool isParser(Object obj) {
-  if (obj is null) {
-    return false;
-  }
-  return cast(IParser)obj !is null;
+class DCommandRegistry : DRegistry!DCommand {
+  mixin(RegistryThis!("Command"));
+}
+
+mixin(RegistryCalls!("Command"));
+
+unittest {
+  auto registry = new DCommandRegistry();
+  assert(registry !is null, "Creation of DCommandRegistry failed");
+
+  assert(testRegistry(new DCommandRegistry, "DCommandRegistry"), "Test of DCommandRegistry failed!");
 }

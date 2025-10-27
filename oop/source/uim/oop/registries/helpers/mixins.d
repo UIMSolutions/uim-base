@@ -8,7 +8,6 @@ module uim.oop.registries.helpers.mixins;
 mixin(Version!"test_uim_oop");
 
 import uim.oop;
-@safe:
 
 @safe:
 string registryThis(string name = null) {

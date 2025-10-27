@@ -3,13 +3,16 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.configurations.engines;
+module uim.oop.configurations.engines.helpers.functions;
 
-public {
-  import uim.oop.configurations.engines.engine;
-  import uim.oop.configurations.engines.interfaces;
-}
+mixin(Version!"test_uim_oop");
 
-public {  
-  import uim.oop.configurations.engines.subclasses;
+import uim.oop;
+@safe:
+
+bool isCommand(Object obj) {
+  if (obj is null) {
+    return false;
+  }
+  return cast(ICommand)obj;
 }

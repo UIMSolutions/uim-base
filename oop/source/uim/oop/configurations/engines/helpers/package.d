@@ -3,9 +3,13 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.registries.helpers;
+module uim.oop.configurations.engines.helpers;
 
-import uim.oop;
-
-mixin(Version!"test_uim_oop");
-@safe:
+public {
+  import uim.oop.configurations.engines.helpers.collection;
+  import uim.oop.configurations.engines.helpers.directory;
+  import uim.oop.configurations.engines.helpers.factory;
+  import uim.oop.configurations.engines.helpers.functions;
+  import uim.oop.configurations.engines.helpers.mixins;
+  import uim.oop.configurations.engines.helpers.registry;
+}
