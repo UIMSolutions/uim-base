@@ -7,7 +7,7 @@ module uim.io.classes.erroroutputs.helpers;
 
 public {
     import uim.io.classes.erroroutputs.helpers.collection;
-    import uim.io.classes.erroroutputs.helpers.directory;
+    import uim.io.classes.erroroutputs.helpers.directories;
     import uim.io.classes.erroroutputs.helpers.factory;
     import uim.io.classes.erroroutputs.helpers.functions;
     import uim.io.classes.erroroutputs.helpers.mixins;

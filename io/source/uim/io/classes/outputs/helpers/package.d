@@ -7,7 +7,7 @@ module uim.io.classes.outputs.helpers;
 
 public {
   import uim.io.classes.outputs.helpers.collection;
-  import uim.io.classes.outputs.helpers.directory;
+  import uim.io.classes.outputs.helpers.directories;
   import uim.io.classes.outputs.helpers.factory;
   import uim.io.classes.outputs.helpers.functions;
   import uim.io.classes.outputs.helpers.mixins;

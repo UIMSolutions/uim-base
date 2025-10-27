@@ -10,12 +10,8 @@ public { // Base module
 }
 
 public { // Additional modules
-  import uim.oop.commands.enumeration;
+  import uim.oop.commands.exceptions;
   import uim.oop.commands.helpers;
   import uim.oop.commands.interfaces;
-}
-
-public { // Additional packages
-  import uim.oop.commands.exceptions;
   import uim.oop.commands.tests; 
 }

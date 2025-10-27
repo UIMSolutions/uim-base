@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.registries.tests.tests;
+module uim.oop.containers.directoriess.helpers.mixins;
 
 import uim.oop;
 
@@ -11,20 +11,20 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-bool testRegistry(V)(IRegistry!V registry, string name) {
-  if (registry is null) {
-    return false;
-  }
-  /* 
-  if (registry.count != 0) {
-    return false;
-  }
-  if (!registry.isEmpty) {
-    return false;
-  }
-  if (registry.className != name) {
-    return false;
-  } */ 
+string directoriesThis(string name = null) {
+    string fullName = name ~ "Directories";
+    return objThis(fullName);
+}
 
-  return true;
+template DirectoriesThis(string name = null) {
+    const char[] DirectoriesThis = directoriesThis(name);
+}
+
+string directoriesCalls(string name) {
+    string fullName = name ~ "Directories";
+    return objCalls(fullName);
+}
+
+template DirectoriesCalls(string name) {
+    const char[] DirectoriesCalls = directoriesCalls(name);
 }

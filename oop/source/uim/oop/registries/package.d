@@ -12,9 +12,6 @@ public { // Main package
 public { // Additional packages
     import uim.oop.registries.helpers;
     import uim.oop.registries.interfaces;
-    import uim.oop.registries.mixins;
     import uim.oop.registries.tests;
 }
 
-public { // Additional modules
-}

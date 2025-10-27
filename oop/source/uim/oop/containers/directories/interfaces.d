@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.containers.directorys.interfaces;
+module uim.oop.containers.directoriess.interfaces;
 
 import uim.oop;
 
@@ -11,12 +11,12 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-// Interface for directory maps.
+// Interface for directories maps.
 interface IDirectoryMap(V) : IMap!(string, V), IHasPaths!string, IGetPath!(string, V), IChangePaths!(string, V), IRemovePath!string {
-  // Gets the path separator used in the directory.
+  // Gets the path separator used in the directories.
   bool pathSeparator(string separator);
 
-  // Sets the path separator used in the directory.
+  // Sets the path separator used in the directories.
   string pathSeparator();
 
   // Gets all paths in the map, sorted according to the specified order.

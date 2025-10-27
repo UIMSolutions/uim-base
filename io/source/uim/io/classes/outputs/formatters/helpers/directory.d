@@ -3,19 +3,19 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.io.classes.outputs.formatters.helpers.directory;
+module uim.io.classes.outputs.formatters.helpers.directories;
 
 mixin(Version!"test_uim_io");
 
 import uim.io;
 @safe:
 
-class DOutputFormatterDirectory : DDirectory!IOutputFormatter {
-  mixin(DirectoryThis!("OutputFormatter"));
+class DOutputFormatterDirectories : DDirectory!IOutputFormatter {
+  mixin(DirectoriesThis!("OutputFormatter"));
 }
-mixin(DirectoryCalls!("OutputFormatter"));
+mixin(DirectoriesCalls!("OutputFormatter"));
 
 unittest {
-  auto directory = OutputFormatterDirectory;
-  assert(testDirectory(directory, "OutputFormatter"), "Test OutputFormatterDirectory failed");
+  auto directories = OutputFormatterDirectories;
+  assert(testDirectories(directories, "OutputFormatter"), "Test OutputFormatterDirectories failed");
 }

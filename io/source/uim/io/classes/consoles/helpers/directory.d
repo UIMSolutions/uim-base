@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.io.classes.consoles.helpers.directory;
+module uim.io.classes.consoles.helpers.directories;
 
 mixin(Version!"test_uim_io");
 
@@ -11,13 +11,13 @@ import uim.io;
 @safe:
 
 
-class DConsoleDirectory : DDirectory!DConsole {
+class DConsoleDirectories : DDirectory!DConsole {
 }
-auto ConsoleDirectory() {
-    return new DConsoleDirectory;
+auto ConsoleDirectories() {
+    return new DConsoleDirectories;
 }
 
 unittest {
-    auto directory = ConsoleDirectory();
-    assert(directory !is null);
+    auto directories = ConsoleDirectories();
+    assert(directories !is null);
 }

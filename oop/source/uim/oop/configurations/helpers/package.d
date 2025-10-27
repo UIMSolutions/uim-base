@@ -7,7 +7,7 @@ module uim.oop.configurations.helpers;
 
 public {
   import uim.oop.configurations.helpers.collection;
-  import uim.oop.configurations.helpers.directory;
+  import uim.oop.configurations.helpers.directories;
   import uim.oop.configurations.helpers.factory;
   import uim.oop.configurations.helpers.functions;
   import uim.oop.configurations.helpers.mixins;

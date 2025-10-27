@@ -12,5 +12,3 @@ public {
     import uim.oop.patterns.obj;
 }
 
-public { // Additional modules
-}

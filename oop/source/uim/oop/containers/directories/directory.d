@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.containers.directorys.directory;
+module uim.oop.containers.directoriess.directories;
 
 mixin(Version!"test_uim_oop");
 
@@ -12,17 +12,17 @@ import uim.oop;
 @safe:
 
 class DDirectoryMap(V) : DMap!(string, V) {
-  mixin(MapThis!("Directory"));
+  mixin(MapThis!("Directories"));
 
   // #region pathSeparator
   protected string _pathSeparator = ".";
 
-  // Gets the path separator used in the directory.
+  // Gets the path separator used in the directories.
   string pathSeparator() {
     return _pathSeparator;
   }
 
-  // Sets the path separator used in the directory.
+  // Sets the path separator used in the directories.
   bool pathSeparator(string separator) {
     _pathSeparator = separator;
   }

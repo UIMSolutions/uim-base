@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.parsers.helpers.directory;
+module uim.oop.parsers.helpers.directories;
 
 mixin(Version!"test_uim_oop");
 
@@ -11,12 +11,12 @@ import uim.oop;
 
 @safe:
 
-class DParserDirectory : DDirectory!IParser {
-  mixin(DirectoryThis!("Parser"));
+class DParserDirectories : DDirectory!IParser {
+  mixin(DirectoriesThis!("Parser"));
 }
-mixin(DirectoryCalls!("Parser"));
+mixin(DirectoriesCalls!("Parser"));
 
 unittest {
-  auto directory = new DParserDirectory();
-  assert(testDirectory(directory, "Parser"), "Test ParserDirectory failed");
+  auto directories = new DParserDirectories();
+  assert(testDirectories(directories, "Parser"), "Test ParserDirectories failed");
 }

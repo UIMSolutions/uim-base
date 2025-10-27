@@ -401,10 +401,10 @@ class DConsole : UIMObject, IConsole {
             writeln("Creating file {fileCreationPath}");
         }
  */ /* try {
-            // Create the directory using the current user permissions.
-            directory = dirname(fileCreationPath);
-            if (!filehasKey(directory)) {
-                createFolder(directory, 0777 ^ umask(), true);
+            // Create the directories using the current user permissions.
+            directories = dirname(fileCreationPath);
+            if (!filehasKey(directories)) {
+                createFolder(directories, 0777 ^ umask(), true);
             }
             file = new DSplFileObject(fileCreationPath, "w");
         } catch (RuntimeException) {

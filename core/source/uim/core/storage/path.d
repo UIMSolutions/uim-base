@@ -86,8 +86,8 @@ auto dirEntryInfos(string aPath) {
     results ~= info; return true; 
   }
 
-  debug writeln(__MODULE__~" - listDirectory(aPath, &dirEntryInfo))");
-  listDirectory(aPath, &dirEntryInfo);
+  debug writeln(__MODULE__~" - listDirectories(aPath, &dirEntryInfo))");
+  listDirectories(aPath, &dirEntryInfo);
 
   debug writeln(__MODULE__~" - Results %s)".format(results)); */
   return results;
@@ -98,7 +98,7 @@ auto dirNames(string aPath, bool aFullName = false) {
   debug writeln(__MODULE__ ~ " - dirNames(string %s, bool fullName = false)".format(aPath));
 
   string[] results;
-  /* string[] results = dirEntryInfos(aPath).filter!(a => a.isDirectory).map!(a => a.name).array;
+  /* string[] results = dirEntryInfos(aPath).filter!(a => a.isDirectories).map!(a => a.name).array;
   if (aFullName) results = results.map!(a => aPath~"/"~a).array;
  */
 

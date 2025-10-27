@@ -3,19 +3,19 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.io.classes.inputs.helpers.directory;
+module uim.io.classes.inputs.helpers.directories;
 
 mixin(Version!"test_uim_io");
 
 import uim.io;
 @safe:
 
-class DInputDirectory : DDirectory!IInput {
-  mixin(DirectoryThis!("Input"));
+class DInputDirectories : DDirectory!IInput {
+  mixin(DirectoriesThis!("Input"));
 }
-mixin(DirectoryCalls!("Input"));
+mixin(DirectoriesCalls!("Input"));
 
 unittest {
-  auto directory = InputDirectory;
-  assert(testDirectory(directory, "Input"), "Test InputDirectory failed");
+  auto directories = InputDirectories;
+  assert(testDirectories(directories, "Input"), "Test InputDirectories failed");
 }

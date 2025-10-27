@@ -99,7 +99,7 @@ unittest {
 Json[] loadJsonsFromDirectories(string[] dirNames) {
   return dirNames
     .filter!(dir => dir.exists) // string[]
-    .map!(dir => loadJsonsFromDirectory(dir)) // Json[][]
+    .map!(dir => loadJsonsFromDirectories(dir)) // Json[][]
     .array // Json[][]
     .join;
 }
@@ -109,8 +109,8 @@ unittest {
 }
 
 /// Load existing json file in directories
-Json[] loadJsonsFromDirectory(string dirName) {
-  // debug writeln("In loadJsonsFromDirectory("~dirName~")");
+Json[] loadJsonsFromDirectories(string dirName) {
+  // debug writeln("In loadJsonsFromDirectories("~dirName~")");
   // debug writeln("Found ", fileNames(dirName).length, " files");
   // TODO return loadJsons(fileNames(dirName, true));
   return null;

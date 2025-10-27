@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.configurations.engines.helpers.directory;
+module uim.oop.configurations.engines.helpers.directories;
 
 import uim.oop;
 
@@ -11,13 +11,13 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DConfigurationDirectory : DDirectory!IConfiguration {
-  mixin(DirectoryThis!("Configuration"));
+class DConfigurationDirectories : DDirectory!IConfiguration {
+  mixin(DirectoriesThis!("Configuration"));
 }
 
-mixin(DirectoryCalls!("Configuration"));
+mixin(DirectoriesCalls!("Configuration"));
 
 unittest {
-  auto directory = new DConfigurationDirectory();
-  assert(testDirectory(new DConfigurationDirectory, "ConfigurationDirectory"), "Test of DConfigurationDirectory failed!");
+  auto directories = new DConfigurationDirectories();
+  assert(testDirectories(new DConfigurationDirectories, "ConfigurationDirectories"), "Test of DConfigurationDirectories failed!");
 }

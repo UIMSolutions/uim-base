@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.validators.helpers.directory;
+module uim.oop.validators.helpers.directories;
 
 import uim.oop;
 
@@ -11,12 +11,12 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DValidatorDirectory : DDirectory!IValidator {  
-    mixin(DirectoryThis!("Validator")); 
+class DValidatorDirectories : DDirectory!IValidator {  
+    mixin(DirectoriesThis!("Validator")); 
 }
-mixin(DirectoryCalls!("Validator"));
+mixin(DirectoriesCalls!("Validator"));
 
 unittest {
-  auto directory = ValidatorDirectory;
-  assert(testDirectory(directory, "Validator"), "Test ValidatorDirectory failed");
+  auto directories = ValidatorDirectories;
+  assert(testDirectories(directories, "Validator"), "Test ValidatorDirectories failed");
 }

@@ -7,7 +7,7 @@ module uim.oop.validators.helpers;
 
 public {
   import uim.oop.validators.helpers.collection;
-  import uim.oop.validators.helpers.directory;
+  import uim.oop.validators.helpers.directories;
   import uim.oop.validators.helpers.factory;
   import uim.oop.validators.helpers.functions;
   import uim.oop.validators.helpers.mixins;
