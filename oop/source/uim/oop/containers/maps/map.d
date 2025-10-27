@@ -25,25 +25,6 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
     _entries = newEntries.dup;
   }
 
-  // #region values
-  // Gets the entire collection as a map of paths to items.
-  V[K] values(in K[] keys) {
-    keys.map!(k => k.correctKey).array;
-    return foundItems;
-  }
-  // #endregion values
-
-  // #region value
-  // Gets a specific item from the collection.
-  V value(string key) {
-    return key in _elements ? _elements[key.correctKey] : null;
-  }
-  bool value(string key, V value) {
-    return _entries[key.correctKey] = value;
-  }
-  // #endregion value
-  // #endregion entries
-
   // #region size
   override size_t size() {
     return _entries.length;
@@ -123,42 +104,48 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
   // #endregion opIndex
 
   // #region remove
-  // #region removeAllKeys
+  // #region removeAllKey
   // Remove multiple keys from the map
-  bool removeAllKeys(K[] keys) {
+  bool removeAllKey(K[] keys) {
     keys.all!(key => removeKey(key));
   }
   /// 
   unittest {
-    // Test removeAllKeys removes multiple keys
+    // Test removeAllKey removes multiple keys
     auto map1 = new DMap!(string, int);
     map1.entries = ["a": 1, "b": 2, "c": 3, "d": 4];
-    map1.removeAllKeys(["b", "d"]);
+    map1.removeAllKey(["b", "d"]);
     assert(map1.entries == ["a": 1, "c": 3]);
     assert(!map1.hasKey("b"));
     assert(!map1.hasKey("d"));
     assert(map1.hasKey("a"));
     assert(map1.hasKey("c"));
 
-    // Test removeAllKeys with empty array (should not remove anything)
+    // Test removeAllKey with empty array (should not remove anything)
     auto map2 = new DMap!(string, int);
     map2.entries = ["x": 10, "y": 20];
-    map2.removeAllKeys([]);
+    map2.removeAllKey([]);
     assert(map2.entries == ["x": 10, "y": 20]);
 
-    // Test removeAllKeys with keys not present (should not throw, just ignore)
+    // Test removeAllKey with keys not present (should not throw, just ignore)
     auto map3 = new DMap!(string, int);
     map3.entries = ["foo": 100, "bar": 200];
-    map3.removeAllKeys(["baz", "qux"]);
+    map3.removeAllKey(["baz", "qux"]);
     assert(map3.entries == ["foo": 100, "bar": 200]);
 
-    // Test removeAllKeys removes all keys
+    // Test removeAllKey removes all keys
     auto map4 = new DMap!(int, string);
     map4.entries = [1: "one", 2: "two", 3: "three"];
-    map4.removeAllKeys([1, 2, 3]);
+    map4.removeAllKey([1, 2, 3]);
     assert(map.entries.length == 0);
   }
-  // #endregion removeAllKeys
+  // #endregion removeAllKey
+
+  // #region removeAnyKey
+  bool removeAnyKey(K[] keys) {
+    keys.any!(key => removeKey(key));
+  }
+  // #endregion removeAnyKey
 
   // #region removeKey
   // Remove a single key from the map
@@ -203,8 +190,28 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
 
   // #region values
   // Return all of the values of the object's own properties.
-  V[] values() {
-    return _entries.values.dup;
+  V[K] values(string[][] paths) {
+    V[K] result;
+    foreach (path; paths) {
+      result[path.toKey] = value(path);
+    }
+    return result;
+  }
+
+  V[K] values(string[] keys) {
+    V[K] result;
+    foreach (key; keys) {
+      result[key] = value(key);
+    }
+    return result;
+  }
+
+  V value(string[] path) {
+    return value(path.toKey);
+  }
+
+  V value(string key) {
+    return key in _entries ? _entries[key.correctedKey] : null;
   }
   ///
   unittest {
@@ -341,9 +348,11 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
   }
   // #endregion removeAllValue
 
+  // #region removeAnyValue
   bool removeAnyValue(V[] values) {
     return values.any!(value => removeValue(value));
   }
+  // #endregion removeAnyValue
 
   // #region removeValue
   // Remove a specific value from the map
@@ -430,6 +439,177 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
     // still no keys/values
     assert(!map2.hasKey("nonexistent"));
     assert(!map2.hasValue(999));
-}
+  }
   // #endregion clear
+
+  // #region set
+  // #region setAllKey
+  bool setAllKey(V[K] items) {
+    return items.byKey.all!(key => value(key, items[key]));
+  }
+
+  bool setAllKey(K[] keys, V newValue) {
+    return items.byKey.all!(key => value(key, items[key]));
+  }
+  // #endregion setAllKey
+
+  // #region setAnyKey
+  bool setAnyKey(V[K] items) {
+    return items.byKey.any!(key => setKey(key, items[key]));
+  }
+
+  bool setAnyKey(K[] keys, V newValue) {
+    return keys.any!(key => setKey(key, newValue));
+  }
+  // #endregion setAnyKey
+
+  // #region setKey
+  bool setKey(K key, V newValue) {
+    _entries[key] = newValue;
+    return true;
+  }
+  // #endregion setKey
+  // #endregion set
+
+  // #region update
+  // #region updateAllKey
+  bool updateAllKey(V[K] items) {
+    return items.byKey.all!(key => value(key, items[key]));
+  }
+
+  bool updateAllKey(K[] keys, V newValue) {
+    return items.byKey.all!(key => value(key, items[key]));
+  }
+  // #endregion updateAllKey
+
+  // #region updateAnyKey
+  bool updateAnyKey(V[K] items) {
+    return items.byKey.any!(key => updateKey(key, items[key]));
+  }
+
+  bool updateAnyKey(K[] keys, V newValue) {
+    return keys.any!(key => updateKey(key, newValue));
+  }
+  // #endregion updateAnyKey
+
+  // #region updateKey
+  bool updateKey(K key, V newValue) {
+    if (key in _entries) {
+      return setKey(key, newValue);
+    }
+    return false;
+  }
+  // #endregion updateKey
+  // #endregion update
+
+  // #region merge
+  // #region mergeAllKey
+  bool mergeAllKey(V[K] items) {
+    return items.byKey.all!(key => value(key, items[key]));
+  }
+
+  bool mergeAllKey(K[] keys, V newValue) {
+    return items.byKey.all!(key => value(key, items[key]));
+  }
+  // #endregion mergeAllKey
+
+  // #region mergeAnyKey
+  bool mergeAnyKey(V[K] items) {
+    return items.byKey.any!(key => mergeKey(key, items[key]));
+  }
+
+  bool mergeAnyKey(K[] keys, V newValue) {
+    return keys.any!(key => mergeKey(key, newValue));
+  }
+  // #endregion mergeAnyKey
+
+  // #region mergeKey
+  bool mergeKey(K key, V newValue) {
+    if (key !in _entries) {
+      return setKey(key, newValue);
+    }
+    return true;
+  }
+  // #endregion mergeKey
+  // #endregion merge
+  // #endregion keys
+
+  // #region paths
+  // #region hasPaths
+  bool hasAllPath(string[][] paths) {
+    return paths.all!(p => hasPath(p));
+  }
+
+  bool hasAnyPath(string[][] paths) {
+    return paths.any!(p => hasPath(p));
+  }
+
+  bool hasPath(string[] path) {
+    return hasKey(path.toKey);
+  }
+  // #endregion hasPaths
+
+  // #region setPath
+  bool setAllPath(string[][] paths, V newValue) {
+    return paths.all!(p => setPath(p, newValue));
+  }
+
+  bool setAnyPath(string[][] paths, V newValue) {
+    return paths.any!(p => setPath(p, newValue));
+  }
+
+  bool setPath(string[] path, V newValue) {
+    return hasKey(path.toKey)
+      ? set(path.toKey, newValue) : true;
+  }
+  // #endregion setPath
+
+  // #region updatePath
+  bool updateAllPath(string[][] paths, V newValue) {
+    return paths.all!(p => updatePath(p, newValue));
+  }
+
+  bool updateAnyPath(string[][] paths, V newValue) {
+    return paths.any!(p => updatePath(p, newValue));
+  }
+
+  bool updatePath(string[] path, V newValue) {
+    return hasPath(path)
+      ? setPath(path, newValue) : true;
+  }
+  // #endregion updatePath
+
+  // #region mergePath
+  bool mergeAllPath(string[][] paths, V newValue) {
+    return paths.all!(p => mergePath(p, newValue));
+  }
+
+  bool mergeAnyPath(string[][] paths, V newValue) {
+    return paths.any!(p => mergePath(p, newValue));
+  }
+
+  bool mergePath(string[] path, V newValue) {
+    return !hasPath(path)
+      ? setPath(path, newValue) : true;
+  }
+  // #endregion mergePath
+
+  // #region removePath
+    // Removes all of the given paths from the collection.
+  bool removeAllPath(K[][] paths) {
+    return paths.all!(p => removePath(p));
+  }
+
+  // Removes any of the given paths from the collection.
+  bool removeAnyPath(K[][] paths) {
+    return paths.any!(p => removePath(p));
+  }
+
+  // Removes a specific path from the collection.
+  bool removePath(K[] path) {
+    return removeKey(path.toKey);
+  } 
+  // #endregion removePath
+
+  // #endregion paths
 }

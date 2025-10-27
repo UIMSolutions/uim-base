@@ -18,16 +18,16 @@ interface IChangeKeys(K = string, V = UIMObject) {
   bool setAllKey(V[K] items);
   
   // Adds all given items to the collection.
-  bool setAKey(K[] keys, V items);
+  bool setAllKey(K[] keys, V newValue);
 
   // Adds any of the given items to the collection.
   bool setAnyKey(V[K] items);
 
   // Adds any of the given items to the collection.
-  bool setAnyKey(K[] keys, V items);
+  bool setAnyKey(K[] keys, V newValue);
 
   // Adds a specific item to the collection.
-  bool setKey(K key, V llitem);
+  bool setKey(K key, V newValue);
   // #endregion set
 
   // #region update
@@ -35,16 +35,16 @@ interface IChangeKeys(K = string, V = UIMObject) {
   bool updateAllKey(V[K] items);
 
   // Updates all given items in the collection.
-  bool updateAllKeys(K[] keys, V items);
+  bool updateAllKeys(K[] keys, V newValue);
 
   // Updates any of the given items in the collection.
   bool updateAnyKey(V[K] items);
 
   // Updates any of the given items in the collection.
-  bool updateAnyKeys(K[] keys, V items);
+  bool updateAnyKeys(K[] keys, V newValue);
 
   // Updates a specific item in the collection.
-  bool updateKey(K key, V item);
+  bool updateKey(K key, V newValue);
   // #endregion update
 
   // #region merge
@@ -52,15 +52,15 @@ interface IChangeKeys(K = string, V = UIMObject) {
   bool mergeAllKey(V[K] items);
   
   // Merges all given items into the collection.
-  bool mergeAllKey(K[] keys, V items);
+  bool mergeAllKey(K[] keys, V itemnewValues);
 
   // Merges any of the given items into the collection.
   bool mergeAnyKey(V[K] items);
 
   // Merges any of the given items into the collection.
-  bool mergeAnyKey(K[] keys, V items);
+  bool mergeAnyKey(K[] keys, V newValue);
 
   // Merges a specific item into the collection.
-  bool mergeKey(K key, V item);
+  bool mergeKey(K key, V newValue);
   // #endregion merge
 }

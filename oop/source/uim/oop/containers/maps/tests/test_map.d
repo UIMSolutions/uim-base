@@ -1,4 +1,4 @@
-module uim.oop.containers.maps.test_map;
+module uim.oop.containers.maps.tests.test_map;
 
 import uim.oop.containers.maps.map;
 

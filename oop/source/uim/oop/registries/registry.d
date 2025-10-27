@@ -149,7 +149,7 @@ class DRegistry(V = UIMObject) : UIMObject, IRegistry!V {
   // #endregion get
 
   // #region remove
-  bool removeAllKeys(string[] keys) {
+  bool removeAllKey(string[] keys) {
     return keys.all!(key => removeKey(key));
   }
   bool removeKey(string key) {

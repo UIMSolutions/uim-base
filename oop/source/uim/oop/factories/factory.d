@@ -183,7 +183,7 @@ class DFactory(K = string, V = UIMObject) : UIMObject, IFactory!V {
     return keys.all!(key => removeKey(key));
   }
 
-  bool removeAnyKeys(K[] keys) {
+  bool removeAnyKey(K[] keys) {
     return keys.any!(key => removeKey(key));
   }
 

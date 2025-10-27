@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DDirectory(V) : DMap!(string, V), IDirectory!V {
+class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   mixin(DirectoryThis!());
 
   // #region pathSeparator
@@ -252,12 +252,12 @@ class DDirectory(V) : DMap!(string, V), IDirectory!V {
 
   // #region merge
   // Merges the entire map with the specified item.
-  bool mergePaths(string[][] paths, V value) {
+  bool mergePath(string[][] paths, V value) {
     return paths.all!(path => mergePath(path, item));
   }
   /// 
   unittest {
-    // Test mergePaths
+    // Test mergePath
 
     auto map = new DDirectoryMap!int;
     string[] path1 = ["foo", "bar"];
@@ -272,14 +272,14 @@ class DDirectory(V) : DMap!(string, V), IDirectory!V {
     // Define a merge function for int (assume DMap uses addition for merge)
     // Merge into existing paths
     string[][] pathsToMerge = [path1, path2];
-    bool merged = map.mergePaths(pathsToMerge, 10);
-    assert(merged, "mergePaths should return true when all paths are merged");
+    bool merged = map.mergePath(pathsToMerge, 10);
+    assert(merged, "mergePath should return true when all paths are merged");
     assert(map.itemByPath(path1) == 11, "path1 should be merged to 11");
     assert(map.itemByPath(path2) == 12, "path2 should be merged to 12");
 
     // Merge into non-existing paths (should create or fail depending on DMap's mergeKey logic)
     string[][] nonExistingPaths = [path3, path4];
-    merged = map.mergePaths(nonExistingPaths, 5);
+    merged = map.mergePath(nonExistingPaths, 5);
     // If mergeKey creates missing keys, these should exist now
     assert(map.hasPath(path3), "path3 should exist after merge if mergeKey creates keys");
     assert(map.hasPath(path4), "path4 should exist after merge if mergeKey creates keys");
@@ -287,8 +287,8 @@ class DDirectory(V) : DMap!(string, V), IDirectory!V {
     assert(map.itemByPath(path4) == 5, "path4 should be set to 5 after merge");
 
     // Merge with empty paths
-    merged = map.mergePaths([], 100);
-    assert(merged, "mergePaths with empty array should return true (vacuously true)");
+    merged = map.mergePath([], 100);
+    assert(merged, "mergePath with empty array should return true (vacuously true)");
   }
 
   // #region mergePath

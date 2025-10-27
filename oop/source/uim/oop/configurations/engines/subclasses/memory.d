@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DMemoryConfigEngine : DConfigEngine {
+class DMemoryConfigEngine : DConfigEngine, IConfigEngine {
   // #region entries
     protected Json[string] _entries;
     override Json[string] entries() {

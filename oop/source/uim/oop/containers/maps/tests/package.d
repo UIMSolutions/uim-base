@@ -6,5 +6,6 @@
 module uim.oop.containers.maps.tests;
 
 public {
+    import uim.oop.containers.maps.tests.mixins;
     import uim.oop.containers.maps.tests.test;
 }   

@@ -7,13 +7,11 @@ module uim.oop.containers.maps;
 
 public { // Packages
   import uim.oop.containers.maps.helpers;
+  import uim.oop.containers.maps.subclasses;
   import uim.oop.containers.maps.tests;
 }
 
 public { // Modules
   import uim.oop.containers.maps.interfaces;
   import uim.oop.containers.maps.map;
-  
-  import uim.oop.containers.maps.string_;
-  import uim.oop.containers.maps.json;
 }
