@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-interface IMap(K, V) : IPaths!(K, V), IKeys!(K, V), IContainer {
+interface IMap(K, V) : IKeys!(K, V), IContainer {
   bool hasAllValue(V[] values);
   bool hasAnyValue(V[] values);
   bool hasValue(V value);

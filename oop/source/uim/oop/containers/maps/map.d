@@ -24,6 +24,7 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
   @property void entries(V[K] newEntries) {
     _entries = newEntries.dup;
   }
+  // #endregion entries
 
   // #region size
   override size_t size() {
@@ -190,24 +191,12 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
 
   // #region values
   // Return all of the values of the object's own properties.
-  V[K] values(string[][] paths) {
-    V[K] result;
-    foreach (path; paths) {
-      result[path.toKey] = value(path);
-    }
-    return result;
-  }
-
   V[K] values(string[] keys) {
     V[K] result;
     foreach (key; keys) {
       result[key] = value(key);
     }
     return result;
-  }
-
-  V value(string[] path) {
-    return value(path.toKey);
   }
 
   V value(string key) {
@@ -533,83 +522,4 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
   // #endregion mergeKey
   // #endregion merge
   // #endregion keys
-
-  // #region paths
-  // #region hasPaths
-  bool hasAllPath(string[][] paths) {
-    return paths.all!(p => hasPath(p));
-  }
-
-  bool hasAnyPath(string[][] paths) {
-    return paths.any!(p => hasPath(p));
-  }
-
-  bool hasPath(string[] path) {
-    return hasKey(path.toKey);
-  }
-  // #endregion hasPaths
-
-  // #region setPath
-  bool setAllPath(string[][] paths, V newValue) {
-    return paths.all!(p => setPath(p, newValue));
-  }
-
-  bool setAnyPath(string[][] paths, V newValue) {
-    return paths.any!(p => setPath(p, newValue));
-  }
-
-  bool setPath(string[] path, V newValue) {
-    return hasKey(path.toKey)
-      ? set(path.toKey, newValue) : true;
-  }
-  // #endregion setPath
-
-  // #region updatePath
-  bool updateAllPath(string[][] paths, V newValue) {
-    return paths.all!(p => updatePath(p, newValue));
-  }
-
-  bool updateAnyPath(string[][] paths, V newValue) {
-    return paths.any!(p => updatePath(p, newValue));
-  }
-
-  bool updatePath(string[] path, V newValue) {
-    return hasPath(path)
-      ? setPath(path, newValue) : true;
-  }
-  // #endregion updatePath
-
-  // #region mergePath
-  bool mergeAllPath(string[][] paths, V newValue) {
-    return paths.all!(p => mergePath(p, newValue));
-  }
-
-  bool mergeAnyPath(string[][] paths, V newValue) {
-    return paths.any!(p => mergePath(p, newValue));
-  }
-
-  bool mergePath(string[] path, V newValue) {
-    return !hasPath(path)
-      ? setPath(path, newValue) : true;
-  }
-  // #endregion mergePath
-
-  // #region removePath
-    // Removes all of the given paths from the collection.
-  bool removeAllPath(K[][] paths) {
-    return paths.all!(p => removePath(p));
-  }
-
-  // Removes any of the given paths from the collection.
-  bool removeAnyPath(K[][] paths) {
-    return paths.any!(p => removePath(p));
-  }
-
-  // Removes a specific path from the collection.
-  bool removePath(K[] path) {
-    return removeKey(path.toKey);
-  } 
-  // #endregion removePath
-
-  // #endregion paths
 }

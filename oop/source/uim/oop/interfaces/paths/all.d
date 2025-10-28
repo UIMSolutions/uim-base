@@ -12,5 +12,5 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 interface IPaths(K = string, V = UIMObject) : IHasPaths!K, IGetPaths!(K, V), IChangePaths!(K, V), IRemovePaths!K {
-  string[][] paths();
+  // string[][] paths();
 }

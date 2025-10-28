@@ -21,58 +21,86 @@ mixin(Version!"test_uim_oop");
 class DConfiguration : IConfiguration {
   this() {
     this.name(this.classname);
-    this.entries(new Json[string]);
-    _engine = new DMemoryConfigEngine;
+    initialize();
   }
 
   this(Json[string] initData) {
-    this.entries(initData);
     this.name(this.classname);
-    _engine = new DMemoryConfigEngine;
+    initialize(initData);
   }
 
   this(string newName, Json[string] initData = null) {
-    this.entries(initData);
     this.name(newName);
-    _engine = new DMemoryConfigEngine;
+    initialize(initData);
   }
 
+  bool initialize(Json[string] initData = null) {
+    engine("default");
+    if (initData !is null) {
+      if (initData.hasKey("name")) {
+        name(initData.getString("name"));
+      }
+      if (initData.hasKey("engine")) {
+        engine(initData.getString("engine"));
+      }
+      if (initData.hasKey("entries")) {
+        entries(initData.getJson("entries"));
+      }
+    }
+    return true;
+  }
+
+  // #region name
   protected string _name;
   string name() {
-    return _name;
+    return _name.dup;
   }
+
   IConfiguration name(string newName) {
-    _name = newName;
+    _name = newName.dup;
     return this;
   }
   // #endregion name
 
   // #region engine
   protected IConfigEngine _engine;
+  IConfiguration engine(string name) {
+    return engine(ConfigEngineFactory.create(name));
+  }
+
   IConfiguration engine(IConfigEngine newEngine) {
-    _engine = newEngine;
+    _engine = newEngine.dup;
     return this;
   }
+
   IConfigEngine engine() {
-    return _engine;
+    return _engine.dup;
   }
   // #endregion engine
 
   // #region entries
   Json[string] entries() {
-    // return _engine.loadConfiguration(this).entries;
-    return engine.entries;
+    return engine is null ? new Json[string] : engine.entries.dup;
   }
 
-  abstract IConfiguration entries(Json[string] newEntries);
+  IConfiguration entries(Json[string] newEntries) {
+    if (engine !is null) {
+      engine.entries = newEntries.dup;
+    }
+    return this;
+  }
   // #endregion entries
 
   // #region keys
-  abstract string[] entryKeys();
+  string[] entryKeys() {
+    return entries.keys.dup;
+  }
   // #endregion keys
 
   // #region values
-  abstract Json[] entryValues();
+  Json[] entryValues() {
+    return entries.values.dup;
+  }
   // #endregion values
 
   // #region has
@@ -86,7 +114,9 @@ class DConfiguration : IConfiguration {
   mixin(HasMethods!("EntryValues", "EntryValue", "Json[string]"));
   mixin(HasMethods!("EntryValues", "EntryValue", "Json"));
 
-  abstract bool hasEntry(string key);
+  bool hasEntry(string key) {
+    return entries.hasKey(key);
+  }
 
   bool hasEntryValue(bool value) {
     return hasEntryValue(value.toJson);
@@ -112,7 +142,9 @@ class DConfiguration : IConfiguration {
     return hasEntryValue(value.toJson);
   }
 
-  abstract bool hasEntryValue(Json value);
+  bool hasEntryValue(Json value) {
+    return entries.values.any!(v => v == value);
+  }
 
   unittest {
     auto config = MemoryConfiguration;
@@ -403,11 +435,7 @@ class DConfiguration : IConfiguration {
       ? setEntry(key, value) : this;
   }
 
-  unittest {
-    auto config = MemoryConfiguration;
 
-    // TODO 
-  }
   // #endregion update
 
   // #region merge

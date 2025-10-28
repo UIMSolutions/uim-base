@@ -29,6 +29,21 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   // #endregion pathSeparator
 
   // #region paths
+  // #region values
+  // Return all of the values of the object's own properties.
+  V[K] values(string[][] paths) {
+    V[K] result;
+    foreach (path; paths) {
+      result[path.toKey] = value(path);
+    }
+    return result;
+  }
+
+  V value(string[] path) {
+    return value(path.toKey);
+  }
+  // #endregion values
+
   // Gets all paths in the map, sorted according to the specified order.
   string[][] paths() {
     return _elements.keys.map!(key => key.split(_pathSeparator)).array;

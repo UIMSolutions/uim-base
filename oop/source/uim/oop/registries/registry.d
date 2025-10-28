@@ -46,7 +46,7 @@ class DRegistry(V = UIMObject) : UIMObject, IRegistry!V {
   // #endregion has
 
   // #region get
-  T value(string[] path) {
+  V value(string[] path) {
     return value(path.toKey(_separator));
   }
   // #endregion get
@@ -68,21 +68,15 @@ class DRegistry(V = UIMObject) : UIMObject, IRegistry!V {
 
   // #region keys
   // Get all keys in the registry
-  string[] keys(SORTORDERS sortorder = NOSORT) {
+  string[] keys() {
     auto keys = _registeredObjects.keys;
     if (keys is null) {
       return null;
     }
 
-    if (sortorder == ASCENDING) {
-      keys.sort!("a < b");
-    } else if (sortorder == DESCENDING) {
-      keys.sort!("a > b");
-    }
-
     return keys;
   }
-
+  ///
   unittest {
     // Dummy type for registry
     class Dummy {
@@ -129,13 +123,6 @@ class DRegistry(V = UIMObject) : UIMObject, IRegistry!V {
 
   bool hasKey(string key) {
     return key.correctKey in _registeredObjects ? true : false;
-  }
-
-  unittest {
-    /*     auto registry = new DRegistry!string;
-    registry.register("a.b.c", "value");
-    assert(registry.hasKey("a.b.c"));
-    assert(!registry.hasKey("a.b.x")); */
   }
   // #endregion has
 

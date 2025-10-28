@@ -35,13 +35,13 @@ interface IChangeKeys(K = string, V = UIMObject) {
   bool updateAllKey(V[K] items);
 
   // Updates all given items in the collection.
-  bool updateAllKeys(K[] keys, V newValue);
+  bool updateAllKey(K[] keys, V newValue);
 
   // Updates any of the given items in the collection.
   bool updateAnyKey(V[K] items);
 
   // Updates any of the given items in the collection.
-  bool updateAnyKeys(K[] keys, V newValue);
+  bool updateAnyKey(K[] keys, V newValue);
 
   // Updates a specific item in the collection.
   bool updateKey(K key, V newValue);
