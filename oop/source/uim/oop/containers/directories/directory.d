@@ -31,8 +31,8 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   // #region paths
   // #region values
   // Return all of the values of the object's own properties.
-  V[K] values(string[][] paths) {
-    V[K] result;
+  V[string] values(string[][] paths) {
+    V[string] result;
     foreach (path; paths) {
       result[path.toKey] = value(path);
     }
@@ -57,7 +57,7 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   /// 
   unittest {
     // prepare map and paths
-    auto map = new DDirectoryMap!int;
+    auto map = new DDirectory!int;
     string[] path1 = ["foo", "bar"];
     string[] path2 = ["baz"];
     string[] path3 = ["qux", "quux"];
@@ -91,11 +91,7 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   bool hasAnyPath(string[][] paths) {
     return paths.any!(path => hasPath(path));
   }
-  /// 
-  /// Params:
-  ///   path = 
-  /// Returns: 
-
+  
   // Checks if a specific path exists in the map.
   bool hasPath(string[] path) {
     return hasKey(path.join(_pathSeparator));
@@ -139,7 +135,7 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   /// 
   unittest {
     // All paths exist -> should return true and update all
-    auto dir1 = new DDirectoryMap!int;
+    auto dir1 = new DDirectory!int;
     string[] p1 = ["foo", "bar"];
     string[] p2 = ["baz"];
 
@@ -153,7 +149,7 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
 
     // Mixed existing and non-existing -> should return false,
     // existing ones encountered before missing will be updated (behavior follows implementation)
-    auto dir2 = new DDirectoryMap!int;
+    auto dir2 = new DDirectory!int;
     string[] existing = ["a"];
     string[] missing = ["no", "such"];
 
@@ -166,7 +162,7 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
     assert(!dir2.hasPath(missing), "missing path must remain absent");
 
     // Empty array -> vacuously true and nothing changed
-    auto dir3 = new DDirectoryMap!int;
+    auto dir3 = new DDirectory!int;
     string[] p = ["x"];
     dir3.setPath(p, 7);
 
@@ -175,7 +171,7 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
     assert(dir3.itemByPath(p) == 7, "existing items should remain unchanged when no paths provided");
 
     // Duplicate paths where the path exists -> should return true and be updated
-    auto dir4 = new DDirectoryMap!int;
+    auto dir4 = new DDirectory!int;
     string[] dup = ["dup"];
 
     dir4.setPath(dup, 3);
@@ -193,7 +189,7 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   ///
   unittest {
     // At least one path exists -> should return true and update existing ones only
-    auto dir1 = new DDirectoryMap!int;
+    auto dir1 = new DDirectory!int;
     string[] pathExisting1 = ["foo", "bar"];
     string[] pathExisting2 = ["baz"];
     string[] pathMissing = ["no", "such"];
@@ -209,7 +205,7 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
     assert(!dir1.hasPath(pathMissing), "missing path must remain absent");
 
     // No paths exist -> should return false and not create entries
-    auto dir2 = new DDirectoryMap!int;
+    auto dir2 = new DDirectory!int;
     string[] p1 = ["a"];
     string[] p2 = ["b"];
     string[][] noneExist = [p1, p2];
@@ -219,7 +215,7 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
     assert(!dir2.hasPath(p1) && !dir2.hasPath(p2), "no new keys should be created");
 
     // Duplicate paths where the path exists -> should return true and update once
-    auto dir3 = new DDirectoryMap!int;
+    auto dir3 = new DDirectory!int;
     string[] p = ["dup"];
     dir3.setPath(p, 5);
 
@@ -237,8 +233,8 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   }
   ///
   unittest {
-    // Test updatePath for DDirectoryMap!int
-    auto dir1 = new DDirectoryMap!int;
+    // Test updatePath for DDirectory!int
+    auto dir1 = new DDirectory!int;
     string[] path1 = ["foo", "bar"];
     string[] path2 = ["baz"];
     string[] path3 = ["foo", "baz"];
@@ -274,7 +270,7 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   unittest {
     // Test mergePath
 
-    auto map = new DDirectoryMap!int;
+    auto map = new DDirectory!int;
     string[] path1 = ["foo", "bar"];
     string[] path2 = ["baz"];
     string[] path3 = ["foo", "baz"];
@@ -313,8 +309,8 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   }
   ///
   unittest {
-    // Test mergePath for DDirectoryMap!int
-    auto map = new DDirectoryMap!int;
+    // Test mergePath for DDirectory!int
+    auto map = new DDirectory!int;
     string[] path1 = ["foo", "bar"];
     string[] path2 = ["baz"];
     string[] path3 = ["foo", "baz"];
@@ -366,7 +362,7 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   unittest {
     // Test removeAnyPaths
 
-    auto map = new DDirectoryMap!int;
+    auto map = new DDirectory!int;
     string[] path1 = ["foo", "bar"];
     string[] path2 = ["baz"];
     string[] path3 = ["foo", "baz"];
@@ -411,7 +407,7 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   ///
   unittest {
     // Create a test map
-    auto map = new DDirectoryMap!int;
+    auto map = new DDirectory!int;
     string[] path1 = ["foo", "bar"];
     string[] path2 = ["baz"];
     string[] path3 = ["foo", "baz"];
