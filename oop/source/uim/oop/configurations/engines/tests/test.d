@@ -11,8 +11,8 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-bool testConfiguration(IConfiguration Configuration) {
-  assert(Configuration !is null, "In testConfiguration: Configuration is null");
+bool testConfigEngine(IConfigEngine ConfigEngine) {
+  assert(ConfigEngine !is null, "In testConfigEngine: ConfigEngine is null");
 
   return true;
 }

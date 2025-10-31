@@ -11,9 +11,9 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-bool isConfiguration(Object obj) {
+bool isConfigEngine(Object obj) {
   if (obj is null) {
     return false;
   }
-  return cast(IConfiguration)obj;
+  return cast(IConfigEngine)obj;
 }

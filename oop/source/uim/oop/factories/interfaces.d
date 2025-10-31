@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-interface IFactory(V = UIMObject) : IHasKeys!string, IHasPaths!string, IRemoveAllKey!string, IRemovePaths!string, IObject {
+interface IFactory(V = IObject) : IHasKeys!string, IHasPaths!string, IRemoveAllKey!string, IRemovePaths!string, IObject {
   V[string] createMany(string[][] paths, Json[string] options = null);
   V create(string[] path, Json[string] options = null);
 

@@ -11,13 +11,13 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DConfigurationDirectories : DDirectory!IConfiguration {
-  mixin(DirectoryThis!("Configuration"));
+class DConfigEngineDirectories : DDirectory!IConfigEngine {
+  mixin(DirectoryThis!("ConfigEngine"));
 }
 
-mixin(DirectoryCalls!("Configuration"));
+mixin(DirectoryCalls!("ConfigEngine"));
 
 unittest {
-  auto directories = new DConfigurationDirectories();
-  assert(testDirectory(new DConfigurationDirectories, "ConfigurationDirectories"), "Test of DConfigurationDirectories failed!");
+  auto directories = new DConfigEngineDirectories();
+  assert(testDirectory(new DConfigEngineDirectories, "ConfigEngineDirectories"), "Test of DConfigEngineDirectories failed!");
 }

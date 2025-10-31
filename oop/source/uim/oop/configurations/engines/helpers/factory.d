@@ -11,12 +11,12 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DConfigurationFactory : DFactory!IConfiguration {
-  mixin(FactoryThis!("Configuration"));
+class DConfigEngineFactory : DFactory!IConfigEngine {
+  mixin(FactoryThis!("ConfigEngine"));
 }
-mixin(FactoryCalls!("Configuration"));
+mixin(FactoryCalls!("ConfigEngine"));
 
 unittest {
-  auto factory = new DConfigurationFactory();
-  assert(testFactory(factory, "Configuration"), "Test of DConfigurationFactory failed!");
+  auto factory = new DConfigEngineFactory();
+  assert(testFactory(factory, "ConfigEngine"), "Test of DConfigEngineFactory failed!");
 }

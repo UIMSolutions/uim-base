@@ -11,13 +11,13 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DConfigurationCollection : DCollection!IConfiguration {
-  mixin(CollectionThis!("Configuration"));
+class DConfigEngineCollection : DCollection!IConfigEngine {
+  mixin(CollectionThis!("ConfigEngine"));
 }
 
-mixin(CollectionCalls!("Configuration"));
+mixin(CollectionCalls!("ConfigEngine"));
 
 unittest {
-  auto collection = new DConfigurationCollection();
-  assert(testCollection(new DConfigurationCollection, "ConfigurationCollection"), "Test of DConfigurationCollection failed!");
+  auto collection = new DConfigEngineCollection();
+  assert(testCollection(new DConfigEngineCollection, "ConfigEngineCollection"), "Test of DConfigEngineCollection failed!");
 }

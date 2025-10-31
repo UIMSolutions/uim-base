@@ -11,18 +11,18 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-interface IRegistry(K = string, V = IObject) : IHasKeys!K, IHasPaths!K, IObject {
+interface IRegistry(V = IObject) : IHasKeys!string, IHasPaths!string, IObject {
   // Registers an object with a specific key.
-  bool register(K[] path, V obj);
-  bool register(K key, V obj);
+  bool register(string[] path, V obj);
+  bool register(string key, V obj);
 
-  bool unregisterMany(K[][] paths);
-  bool unregisterMany(K[] keys);
+  bool unregisterMany(string[][] paths);
+  bool unregisterMany(string[] keys);
 
-  bool unregister(K[] path);
-  bool unregister(K key);
+  bool unregister(string[] path);
+  bool unregister(string key);
 
   // Retrieves an object by its key.
-  V getPath(K[] path);
-  V getKey(K key);
+  V value(string[] path);
+  V value(string key);
 }

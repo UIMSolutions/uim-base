@@ -11,15 +11,15 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DConfigurationRegistry : DRegistry!DConfiguration {
-  mixin(RegistryThis!("Configuration"));
+class DConfigEngineRegistry : DRegistry!DConfigEngine {
+  mixin(RegistryThis!("ConfigEngine"));
 }
 
-mixin(RegistryCalls!("Configuration"));
+mixin(RegistryCalls!("ConfigEngine"));
 
 unittest {
-  auto registry = new DConfigurationRegistry();
-  assert(registry !is null, "Creation of DConfigurationRegistry failed");
+  auto registry = new DConfigEngineRegistry();
+  assert(registry !is null, "Creation of DConfigEngineRegistry failed");
 
-  assert(testRegistry(new DConfigurationRegistry, "DConfigurationRegistry"), "Test of DConfigurationRegistry failed!");
+  assert(testRegistry(new DConfigEngineRegistry, "DConfigEngineRegistry"), "Test of DConfigEngineRegistry failed!");
 }

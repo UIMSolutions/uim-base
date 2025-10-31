@@ -14,159 +14,186 @@ mixin(Version!"test_uim_oop");
 class DConfigEngine : UIMObject, IConfigEngine {
   mixin(ConfigEngineThis!());
 
+  // #region keys
+  string[] keys() {
+    // TODO : Implement in subclasses
+    return null;
+  }
+  // #endregion keys
+
+  // #region values
+  Json[] values() {
+    // TODO : Implement in subclasses
+    return _null;
+  }
+  // #endregion values
+
   // #region path
   // #region has
-  bool hasAllEntry(string[][] paths) {
-    return paths.all!(path => hasEntry(path));
-  }
-  bool hasAnyEntry(string[][] paths) {
-    return paths.any!(path => hasEntry(path));
+  bool hasAllPath(string[][] paths) {
+    return paths.all!(path => hasKey(path));
   }
 
-  bool hasEntry(string[] path) {
-    return hasEntry(path.toKey(_separator));
+  bool hasAnyPath(string[][] paths) {
+    return paths.any!(path => hasKey(path));
+  }
+
+  bool hasPath(string[] path) {
+    return hasKey(path.toKey(_separator));
   }
   // #endregion has
 
   // #region set
-  bool setAllEntry(string[][] paths, Json value) {
-    return paths.all!(path => setEntry(path, value));
-  }
-  bool setAnyEntry(string[][] paths, Json value) {
-    return paths.any!(path => setEntry(path, value));
+  bool setAllPath(string[][] paths, Json value) {
+    return paths.all!(path => setKey(path, value));
   }
 
-  bool setEntry(string[] path, Json value) {
-    return setEntry(path.toKey(_separator), value);
+  bool setAnyPath(string[][] paths, Json value) {
+    return paths.any!(path => setKey(path, value));
+  }
+
+  bool setPath(string[] path, Json value) {
+    return setKey(path.toKey(_separator), value);
   }
   // #endregion set
 
   // #region merge
-  bool mergeAllEntries(string[][] paths, Json value) {
-    return paths.all!(path => mergeEntry(path, value));
-  }
-  bool mergeAnyEntries(string[][] paths, Json value) {
-    return paths.any!(path => mergeEntry(path, value));
+  bool mergeAllPath(string[][] paths, Json value) {
+    return paths.all!(path => mergeKey(path, value));
   }
 
-  bool mergeEntry(string[] path, Json value) {
-    return mergeEntry(path.toKey(_separator), value);
+  bool mergeAnyPath(string[][] paths, Json value) {
+    return paths.any!(path => mergeKey(path, value));
+  }
+
+  bool mergePath(string[] path, Json value) {
+    return mergeKey(path.toKey(_separator), value);
   }
   // #endregion merge
 
   // #region update
-  bool updateAllEntries(string[][] paths, Json value) {
-    return paths.all!(path => updateEntry(path, value));
-  }
-  bool updateAnyEntries(string[][] paths, Json value) {
-    return paths.any!(path => updateEntry(path, value));
+  bool updateAllPath(string[][] paths, Json value) {
+    return paths.all!(path => updateKey(path, value));
   }
 
-  bool updateEntry(string[] path, Json value) {
-    return updateEntry(path.toKey(_separator), value);
+  bool updateAnyPath(string[][] paths, Json value) {
+    return paths.any!(path => updateKey(path, value));
+  }
+
+  bool updatePath(string[] path, Json value) {
+    return updateKey(path.toKey(_separator), value);
   }
   // #endregion update
 
   // #region remove
-  bool removeAllEntries(string[][] paths) {
-    return paths.all!(path => removeEntry(path));
-  }
-  bool removeAnyEntries(string[][] paths) {
-    return paths.any!(path => removeEntry(path));
+  bool removeAllPath(string[][] paths) {
+    return paths.all!(path => removeKey(path));
   }
 
-  bool removeEntry(string[] path) {
-    return removeEntry(path.toKey(_separator));
+  bool removeAnyPath(string[][] paths) {
+    return paths.any!(path => removeKey(path));
+  }
+
+  bool removePath(string[] path) {
+    return removeKey(path.toKey(_separator));
   }
   // #endregion remove
   // #endregion paths
 
   // #region keys
   // #region has
-  bool hasAllEntry(string[] keys) {
-    return keys.all!(key => hasEntry(key));
-  }
-  bool hasAnyEntry(string[] keys) {
-    return keys.any!(key => hasEntry(key));
+  bool hasAllKey(string[] keys) {
+    return keys.all!(key => hasKey(key));
   }
 
-  bool hasEntry(string key) {
-    return hasEntry(key.toKey(_separator));
+  bool hasAnyKey(string[] keys) {
+    return keys.any!(key => hasKey(key));
+  }
+
+  bool hasKey(string key) {
+    return hasKey(key.toKey(_separator));
   }
   // #endregion has
 
   // #region set
-  bool setAllEntry(Json[string] values) {
-    return values.all!(kv => setEntry(kv.key, kv.value));
-  }
-  bool setAnyEntry(Json[string] values) {
-    return values.any!(kv => setEntry(kv.key, kv.value));
+  bool setAllKey(Json[string] values) {
+    return values.all!(kv => setKey(kv.key, kv.value));
   }
 
-  bool setAllEntry(string[] keys, Json value) {
-    return keys.all!(key => setEntry(key, value));
-  }
-  bool setAnyEntry(string[] keys, Json value) {
-    return keys.any!(key => setEntry(key, value));
+  bool setAnyKey(Json[string] values) {
+    return values.any!(kv => setKey(kv.key, kv.value));
   }
 
-  bool setEntry(string key, Json value) {
+  bool setAllKey(string[] keys, Json value) {
+    return keys.all!(key => setKey(key, value));
+  }
+
+  bool setAnyKey(string[] keys, Json value) {
+    return keys.any!(key => setKey(key, value));
+  }
+
+  bool setKey(string key, Json value) {
     // TODO: Implement in subclasses
     return false; // to be implemented in subclasses
   }
   // #endregion set
 
   // #region merge
-  bool mergeAllEntries(Json[string] values) {
-    return values.all!(kv => mergeEntry(kv.key, kv.value));
-  }
-  bool mergeAnyEntries(Json[string] values) {
-    return values.any!(kv => mergeEntry(kv.key, kv.value));
+  bool mergeAllKey(Json[string] values) {
+    return values.all!(kv => mergeKey(kv.key, kv.value));
   }
 
-  bool mergeAllEntries(string[] keys, Json value) {
-    return keys.all!(key => mergeEntry(key, value));
+  bool mergeAnyKey(Json[string] values) {
+    return values.any!(kv => mergeKey(kv.key, kv.value));
   }
-  bool mergeAnyEntries(string[] keys, Json value) {
-    return keys.any!(key => mergeEntry(key, value));
-  } 
 
-  bool mergeEntry(string key, Json value) {
+  bool mergeAllKey(string[] keys, Json value) {
+    return keys.all!(key => mergeKey(key, value));
+  }
+
+  bool mergeAnyKey(string[] keys, Json value) {
+    return keys.any!(key => mergeKey(key, value));
+  }
+
+  bool mergeKey(string key, Json value) {
     // TODO: Implement in subclasses
     return false; // to be implemented in subclasses
   }
   // #endregion merge
 
   // #region update
-  bool updateAllEntries(Json[string] values) {
-    return values.all!(kv => updateEntry(kv.key, kv.value));
-  }
-  bool updateAnyEntries(Json[string] values) {
-    return values.any!(kv => updateEntry(kv.key, kv.value));
+  bool updateAllKey(Json[string] values) {
+    return values.all!(kv => updateKey(kv.key, kv.value));
   }
 
-  bool updateAllEntries(string[] keys, Json value) {
-    return keys.all!(key => updateEntry(key, value));
-  }
-  bool updateAnyEntries(string[] keys, Json value) {
-    return keys.any!(key => updateEntry(key, value));
+  bool updateAnyKey(Json[string] values) {
+    return values.any!(kv => updateKey(kv.key, kv.value));
   }
 
-  bool updateEntry(string key, Json value) {
+  bool updateAllKey(string[] keys, Json value) {
+    return keys.all!(key => updateKey(key, value));
+  }
+
+  bool updateAnyKey(string[] keys, Json value) {
+    return keys.any!(key => updateKey(key, value));
+  }
+
+  bool updateKey(string key, Json value) {
     // TODO: Implement in subclasses
     return false; // to be implemented in subclasses
   }
   // #endregion update
 
   // #region remove
-  bool removeAllEntries(string[] keys) {
-    return keys.all!(key => removeEntry(key));
-  }
-  bool removeAnyEntries(string[] keys) {
-    return keys.any!(key => removeEntry(key));
+  bool removeAllKey(string[] keys) {
+    return keys.all!(key => removeKey(key));
   }
 
-  bool removeEntry(string key) {
+  bool removeAnyKey(string[] keys) {
+    return keys.any!(key => removeKey(key));
+  }
+
+  bool removeKey(string key) {
     // TODO: Implement in subclasses
     return false; // to be implemented in subclasses
   }
