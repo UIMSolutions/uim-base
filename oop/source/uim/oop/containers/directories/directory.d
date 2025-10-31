@@ -91,7 +91,7 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   bool hasAnyPath(string[][] paths) {
     return paths.any!(path => hasPath(path));
   }
-  
+
   // Checks if a specific path exists in the map.
   bool hasPath(string[] path) {
     return hasKey(path.join(_pathSeparator));
@@ -128,7 +128,7 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   // #endregion set
 
   // #region update
-  // #region updateAllPaths
+  // #region updateAllPath
   bool updateAllPath(string[][] paths, V value) {
     return paths.all!(p => updatePath(p, value));
   }
@@ -180,7 +180,7 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
     assert(res, "updateAllPath should return true when duplicates include an existing path");
     assert(dir4.itemByPath(dup) == 42, "duplicate path should be updated to new value");
   }
-  // #endregion updateAllPaths
+  // #endregion updateAllPath
 
   // #region updateAnyPaths
   bool updateAnyPath(string[][] paths, V value) {
@@ -262,45 +262,17 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   // #endregion update
 
   // #region merge
-  // Merges the entire map with the specified item.
-  bool mergePath(string[][] paths, V value) {
-    return paths.all!(path => mergePath(path, item));
+  // #region mergeAllPath
+  bool mergeAllPath(string[][] paths, V value) {
+    return paths.all!(p => mergePath(p, value));
   }
-  /// 
-  unittest {
-    // Test mergePath
+  // #endregion mergeAllPath
 
-    auto map = new DDirectory!int;
-    string[] path1 = ["foo", "bar"];
-    string[] path2 = ["baz"];
-    string[] path3 = ["foo", "baz"];
-    string[] path4 = ["qux"];
-
-    // Insert initial items
-    map.setPath(path1, 1);
-    map.setPath(path2, 2);
-
-    // Define a merge function for int (assume DMap uses addition for merge)
-    // Merge into existing paths
-    string[][] pathsToMerge = [path1, path2];
-    bool merged = map.mergePath(pathsToMerge, 10);
-    assert(merged, "mergePath should return true when all paths are merged");
-    assert(map.itemByPath(path1) == 11, "path1 should be merged to 11");
-    assert(map.itemByPath(path2) == 12, "path2 should be merged to 12");
-
-    // Merge into non-existing paths (should create or fail depending on DMap's mergeKey logic)
-    string[][] nonExistingPaths = [path3, path4];
-    merged = map.mergePath(nonExistingPaths, 5);
-    // If mergeKey creates missing keys, these should exist now
-    assert(map.hasPath(path3), "path3 should exist after merge if mergeKey creates keys");
-    assert(map.hasPath(path4), "path4 should exist after merge if mergeKey creates keys");
-    assert(map.itemByPath(path3) == 5, "path3 should be set to 5 after merge");
-    assert(map.itemByPath(path4) == 5, "path4 should be set to 5 after merge");
-
-    // Merge with empty paths
-    merged = map.mergePath([], 100);
-    assert(merged, "mergePath with empty array should return true (vacuously true)");
+  // #region mergeAnyPath
+  bool mergeAnyPath(string[][] paths, V value) {
+    return paths.any!(p => mergePath(p, value));
   }
+  // #endregion mergeAnyPath
 
   // #region mergePath
   // Merges a specific item into the map.
@@ -310,94 +282,94 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   ///
   unittest {
     // Test mergePath for DDirectory!int
-    auto map = new DDirectory!int;
+    auto directory = new DDirectory!int;
     string[] path1 = ["foo", "bar"];
     string[] path2 = ["baz"];
     string[] path3 = ["foo", "baz"];
 
     // Insert initial items
-    map.setPath(path1, 10);
-    map.setPath(path2, 20);
+    directory.setPath(path1, 10);
+    directory.setPath(path2, 20);
 
     // Merge into existing path (assume mergeKey does addition)
-    bool merged = map.mergePath(path1, 5);
+    bool merged = directory.mergePath(path1, 5);
     assert(merged, "mergePath should return true for existing path");
-    assert(map.itemByPath(path1) == 15, "item at path1 should be merged to 15");
+    assert(directory.itemByPath(path1) == 15, "item at path1 should be merged to 15");
 
     // Merge into another existing path
-    merged = map.mergePath(path2, 7);
+    merged = directory.mergePath(path2, 7);
     assert(merged, "mergePath should return true for another existing path");
-    assert(map.itemByPath(path2) == 27, "item at path2 should be merged to 27");
+    assert(directory.itemByPath(path2) == 27, "item at path2 should be merged to 27");
 
     // Merge into non-existing path (should create if mergeKey creates keys)
-    merged = map.mergePath(path3, 100);
+    merged = directory.mergePath(path3, 100);
     assert(merged, "mergePath should return true for non-existing path if mergeKey creates keys");
-    assert(map.hasPath(path3), "path3 should exist after merge");
-    assert(map.itemByPath(path3) == 100, "item at path3 should be set to 100 after merge");
+    assert(directory.hasPath(path3), "path3 should exist after merge");
+    assert(directory.itemByPath(path3) == 100, "item at path3 should be set to 100 after merge");
 
     // Merge with empty path
     string[] emptyPath = [];
-    merged = map.mergePath(emptyPath, 50);
+    merged = directory.mergePath(emptyPath, 50);
     assert(merged, "mergePath should return true for empty path if mergeKey creates keys");
-    assert(map.hasPath(emptyPath), "empty path should exist after merge");
-    assert(map.itemByPath(emptyPath) == 50, "item at empty path should be set to 50 after merge");
+    assert(directory.hasPath(emptyPath), "empty path should exist after merge");
+    assert(directory.itemByPath(emptyPath) == 50, "item at empty path should be set to 50 after merge");
   }
   // #endregion mergePath
   // #endregion merge
 
-  // #region remove
-  // #region removeAllPaths
+    // #region remove
+  // #region removeAllPath
   // Removes all specified paths were 
-  bool removeAllPaths(string[][] paths) {
+  bool removeAllPath(string[][] paths) {
     return paths.all!(path => removePath(path));
   }
-  // #endregion removeAllPaths
+  // #endregion removeAllPath
 
-  // #region removeAnyPaths
+  // #region removeAnyPath
   // Removes any specified paths were found
-  bool removeAnyPaths(string[][] paths) {
+  bool removeAnyPath(string[][] paths) {
     return paths.any!(path => removePath(path));
   }
   ///
   unittest {
-    // Test removeAnyPaths
+    // Test removeAnyPath
 
-    auto map = new DDirectory!int;
+    auto directory = new DDirectory!int;
     string[] path1 = ["foo", "bar"];
     string[] path2 = ["baz"];
     string[] path3 = ["foo", "baz"];
     string[] path4 = ["qux"];
 
-    // Inserv values
-    map.setPath(path1, 1);
-    map.setPath(path2, 2);
+    // Insert values
+    directory.setPath(path1, 1);
+    directory.setPath(path2, 2);
 
     // Case 1: At least one path exists
     string[][] paths = [path1, path3, path4];
-    assert(map.hasPath(path1));
-    assert(!map.hasPath(path3));
-    assert(!map.hasPath(path4));
-    bool result = map.removeAnyPaths(paths);
-    assert(result, "removeAnyPaths should return true when at least one path is removed");
-    assert(!map.hasPath(path1), "path1 should be removed");
-    assert(!map.hasPath(path3), "path3 should remain absent");
-    assert(!map.hasPath(path4), "path4 should remain absent");
+    assert(directory.hasPath(path1));
+    assert(!directory.hasPath(path3));
+    assert(!directory.hasPath(path4));
+    bool result = directory.removeAnyPath(paths);
+    assert(result, "removeAnyPath should return true when at least one path is removed");
+    assert(!directory.hasPath(path1), "path1 should be removed");
+    assert(!directory.hasPath(path3), "path3 should remain absent");
+    assert(!directory.hasPath(path4), "path4 should remain absent");
 
     // Case 2: No paths exist
     string[][] nonExisting = [path3, path4];
-    result = map.removeAnyPaths(nonExisting);
-    assert(!result, "removeAnyPaths should return false when no paths are removed");
+    result = directory.removeAnyPath(nonExisting);
+    assert(!result, "removeAnyPath should return false when no paths are removed");
 
     // Case 3: Multiple existing paths
-    map.setPath(path1, 10);
-    map.setPath(path2, 20);
+    directory.setPath(path1, 10);
+    directory.setPath(path2, 20);
     string[][] multiPaths = [path1, path2];
-    result = map.removeAnyPaths(multiPaths);
-    assert(result, "removeAnyPaths should return true when multiple paths are removed");
-    assert(!map.hasPath(path1));
-    assert(!map.hasPath(path2));
+    result = directory.removeAnyPath(multiPaths);
+    assert(result, "removeAnyPath should return true when multiple paths are removed");
+    assert(!directory.hasPath(path1));
+    assert(!directory.hasPath(path2));
   }
-  // #endregion removeAnyPaths
+  // #endregion removeAnyPath
 
   // #region removePath
   // Removes a specific item from the map.

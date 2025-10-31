@@ -11,24 +11,24 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-interface IFactory(K = string, V = UIMObject) : IHasKeys!K, IHasPaths!K, IRemoveAllKey!K, IRemovePaths!K, IObject {
-  V[K] createMany(K[][] paths, Json[string] options = null);
-  V create(K[] path, Json[string] options = null);
+interface IFactory(V = UIMObject) : IHasKeys!string, IHasPaths!string, IRemoveAllKey!string, IRemovePaths!string, IObject {
+  V[string] createMany(string[][] paths, Json[string] options = null);
+  V create(string[] path, Json[string] options = null);
 
-  V[K] createMany(K[] keys, Json[string] options = null);
-  V create(K key, Json[string] options = null);
+  V[string] createMany(string[] keys, Json[string] options = null);
+  V create(string key, Json[string] options = null);
 
   // #region change
   // Sets a specific item in the collection.
-  bool setPath(K[] path, V delegate(Json[string] options = null) @safe createFunc);
-  bool setKey(K key, V delegate(Json[string] options = null) @safe createFunc);
+  bool setPath(string[] path, V delegate(Json[string] options = null) @safe createFunc);
+  bool setKey(string key, V delegate(Json[string] options = null) @safe createFunc);
 
   // Updates a specific item in the collection.
-  bool updatePath(K[] path, V delegate(Json[string] options = null) @safe createFunc);
-  bool updateKey(K key, V delegate(Json[string] options = null) @safe createFunc);
+  bool updatePath(string[] path, V delegate(Json[string] options = null) @safe createFunc);
+  bool updateKey(string key, V delegate(Json[string] options = null) @safe createFunc);
 
   // Merges a specific item into the collection.
-  bool mergePath(K[] path, V delegate(Json[string] options = null) @safe createFunc);
-  bool mergeKey(K key, V delegate(Json[string] options = null) @safe createFunc);
+  bool mergePath(string[] path, V delegate(Json[string] options = null) @safe createFunc);
+  bool mergeKey(string key, V delegate(Json[string] options = null) @safe createFunc);
   // #region change
 }

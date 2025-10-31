@@ -127,7 +127,7 @@ class DRegistry(V = UIMObject) : UIMObject, IRegistry!V {
   // #endregion has
 
   // #region get
-  T getKey(string key) {
+  string getKey(string key) {
     auto correctedKey = key.correctKey;
     return correctedKey in _registeredObjects
       ? _registeredObjects[correctedKey]
