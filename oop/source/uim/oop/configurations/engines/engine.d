@@ -22,11 +22,59 @@ class DConfigEngine : UIMObject, IConfigEngine {
   // #endregion keys
 
   // #region values
-  Json[] values() {
+  abstract Json[] values() {
+    return keys.map!(key => value(key)).array;
+  }
+
+  Json[] values(string[][] paths) {
+    return paths.map!(path => value(path)).array;
+  }
+
+  Json[] values(string[] keys) {
+    return keys.map!(key => value(key)).array;
+  }
+
+  Json value(string[] path) {
+    return value(path.toKey(_separator));
+  }
+
+  abstract Json value(string key);
+  // #endregion values
+
+  bool isEmpty() {
+    return size == 0;
+  }
+
+  // #region size
+  size_t size() {
     // TODO : Implement in subclasses
-    return _null;
+    return 0;
+  }
+  // #endregion size
+
+  // #region hasAllValue
+  bool hasAllValue(Json[] values) {
+    return values.all!(value => hasValue(value));
+  }
+  // #endregion hasAllValue
+
+  bool hasAnyValue(Json[] values) {
+    return values.any!(value => hasValue(value));
+  }
+
+  bool hasValue(Json value) {
+    return false;
   }
   // #endregion values
+
+  string pathSeparator() {
+    return _separator;
+  }
+
+  bool pathSeparator(string separator) {
+    _separator = separator;
+    return true;
+  }
 
   // #region path
   // #region has
@@ -199,4 +247,22 @@ class DConfigEngine : UIMObject, IConfigEngine {
   }
   // #endregion remove
   // #endregion keys
+
+  bool removeAllValue(Json[] values) {
+    return values.all!(value => removeValue(value));
+  }
+
+  bool removeAnyValue(Json[] values) {
+    return values.any!(value => removeValue(value));
+  }
+
+  bool removeValue(Json value) {
+    // TODO: Implement in subclasses
+    return false; // to be implemented in subclasses
+  }
+
+  bool clear() {
+    // TODO: Implement in subclasses
+    return false; // to be implemented in subclasses
+  }
 }

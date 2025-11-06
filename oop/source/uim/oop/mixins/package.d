@@ -14,7 +14,6 @@ public {
 
 public {
   import uim.oop.mixins.cloneable;
-  import uim.oop.mixins.configengine;
   import uim.oop.mixins.configurable;
   import uim.oop.mixins.configuration;
   import uim.oop.mixins.conventions;

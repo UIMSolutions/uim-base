@@ -19,7 +19,5 @@ mixin(RegistryCalls!("ConfigEngine"));
 
 unittest {
   auto registry = new DConfigEngineRegistry();
-  assert(registry !is null, "Creation of DConfigEngineRegistry failed");
-
   assert(testRegistry(new DConfigEngineRegistry, "DConfigEngineRegistry"), "Test of DConfigEngineRegistry failed!");
 }

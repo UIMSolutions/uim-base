@@ -14,7 +14,7 @@ mixin(Version!"test_uim_oop");
 class DMemoryConfigEngine : DConfigEngine, IConfigEngine {
   mixin(ConfigEngineThis!("Memory"));
 
-    protected Json[string] _entries;
+  protected Json[string] _entries;
 
   // #region keys
   override string[] keys() {
@@ -26,65 +26,67 @@ class DMemoryConfigEngine : DConfigEngine, IConfigEngine {
   override Json[] values() {
     return _entries.values;
   }
+  override Json[] values(string[] keys) {
+    return _entries.filter!(kv => keys.contains(kv.key)).values;
+  }
   // #endregion values
-  
+
   // #region has
-    override bool hasKey(string key) {
-      return _entries.hasKey(key);
-    }
-      
-    override bool hasValue(Json value) {
-      return _entries.values.any!(v => v == value);
-    }
+  override bool hasKey(string key) {
+    return _entries.hasKey(key);
+  }
+
+  override bool hasValue(Json value) {
+    return _entries.values.any!(v => v == value);
+  }
   // #endregion has
 
   // #region get
-    override Json value(string key) {
-      if (key.length == 0) {
-        return Json(null);
-      }
-
-      return key in _entries ? _entries[key] : Json(null);
+  override Json value(string key) {
+    if (key.length == 0) {
+      return Json(null);
     }
 
-    unittest {
-      auto config = MemoryConfigEngine;
-      // TODO
-    }
+    return key in _entries ? _entries[key] : Json(null);
+  }
+
+  unittest {
+    auto config = MemoryConfigEngine;
+    // TODO
+  }
   // #endregion get
 
   // #region set
-    override bool setKey(string key, Json value) {
-      if (key.length == 0) {
-        return this;
-      }
-
-      _entries[key] = value;
-      return true;
+  override bool setKey(string key, Json value) {
+    if (key.length == 0) {
+      return this;
     }
 
-    unittest{
-      auto config = MemoryConfigEngine;
+    _entries[key] = value;
+    return true;
+  }
 
-      // TODO 
-    }
+  unittest {
+    auto config = MemoryConfigEngine;
+
+    // TODO 
+  }
   // #endregion set
 
-  // #endregion remove
-    override bool removeKey(string key) {
-      if (key.length == 0) {
-        return this;
-      }
-
-      _entries.remove(key);
-      return true;
+  // #region removeKey
+  override bool removeKey(string key) {
+    if (key.length == 0) {
+      return false;
     }
 
-    unittest {
-      auto config = MemoryConfigEngine;
-      // TODO
+    if (!hasKey(key)) {
+      return false;
     }
-  // #endregion remove
+
+    _entries.remove(key);
+    return hasKey(key);
+  }
+  // #endregion removeKey
 
   // #region clone
   bool clone() {
@@ -98,5 +100,5 @@ mixin(ConfigEngineCalls!("Memory"));
 
 unittest {
   auto configuration = MemoryConfigEngine;
-  assert(testConfiguration(MemoryConfigEngine, "Memory"), "MemoryConfigEngine test failed") ;
+  assert(testConfiguration(MemoryConfigEngine, "Memory"), "MemoryConfigEngine test failed");
 }

@@ -27,4 +27,8 @@ class DFormatter : UIMObject, IFormatter {
 
     return true;
   }
+
+  string format(string input, Json[string] options) {
+    return input;
+  }
 }

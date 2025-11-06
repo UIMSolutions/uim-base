@@ -11,20 +11,24 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-string ConfigEngineThis(string name = null) {
-    string fullName = name ~ "ConfigEngine";
-    return objThis(fullName);
+string configEngineThis(string name = null) {
+  string fullName = name ~ "ConfigEngine";
+  return objThis(fullName);
 }
 
 template ConfigEngineThis(string name = null) {
-    const char[] ConfigEngineThis = ConfigEngineThis(name);
+  const char[] ConfigEngineThis = configEngineThis(name);
 }
 
-string ConfigEngineCalls(string name) {
-    string fullName = name ~ "ConfigEngine";
-    return objCalls(fullName);
+string configEngineCalls(string name) {
+  string fullName = name ~ "ConfigEngine";
+  return objCalls(fullName);
 }
 
 template ConfigEngineCalls(string name) {
-    const char[] ConfigEngineCalls = ConfigEngineCalls(name);
+  const char[] ConfigEngineCalls = configEngineCalls(name);
+}
+
+mixin template TConfigEngine() {
+
 }

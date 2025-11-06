@@ -1,9 +1,10 @@
+
 /****************************************************************************************************************
 * Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur) 
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.configurations.engines.interfaces;
+module uim.oop.interfaces.values.get;
 
 import uim.oop;
 
@@ -11,16 +12,11 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-// An interface for creating objects compatible with Configure.load()
-interface IConfigEngine : IDirectory!Json {
-  // #region read methods
-  Json[] values();
-  Json[] values(string[][] paths);
-  Json[] values(string[] keys);
+interface IGetValues(K = string, V = UIMObject) {
+  V[] values();
+  V[] values(K[][] path);
+  V[] values(K[] keys);
 
-  Json value(string[] path);
-  Json value(string key);
-
-  string[] keys();
-  // #endregion read methods
+  V value(K[] path);
+  V value(K key);
 }

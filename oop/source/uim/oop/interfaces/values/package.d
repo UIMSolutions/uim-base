@@ -3,24 +3,12 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.configurations.engines.interfaces;
+module uim.oop.interfaces.values;
 
-import uim.oop;
-
-mixin(Version!"test_uim_oop");
-
-@safe:
-
-// An interface for creating objects compatible with Configure.load()
-interface IConfigEngine : IDirectory!Json {
-  // #region read methods
-  Json[] values();
-  Json[] values(string[][] paths);
-  Json[] values(string[] keys);
-
-  Json value(string[] path);
-  Json value(string key);
-
-  string[] keys();
-  // #endregion read methods
+public {
+  import uim.oop.interfaces.values.all;
+  import uim.oop.interfaces.values.change;
+  import uim.oop.interfaces.values.get;
+  import uim.oop.interfaces.values.has;
+  import uim.oop.interfaces.values.remove;
 }
