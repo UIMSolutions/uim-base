@@ -11,11 +11,6 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-interface IGetKeys(K = string, V = UIMObject) {
-  // Gets the entire collection as a map of paths to items.
-  V[K] values(K[] keys);
-
-  // Gets a specific item from the collection.
-  V value(K key);
+interface IGetKeys(K = string) {
+  K[] keys();
 }
-

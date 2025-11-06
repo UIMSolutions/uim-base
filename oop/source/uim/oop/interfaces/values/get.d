@@ -14,7 +14,7 @@ mixin(Version!"test_uim_oop");
 
 interface IGetValues(K = string, V = UIMObject) {
   V[] values();
-  V[] values(K[][] path);
+  V[] values(K[][] paths);
   V[] values(K[] keys);
 
   V value(K[] path);
