@@ -54,20 +54,90 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
   // #endregion hasPath
   // #endregion has
 
-    // #region set
+  // #region set
+  // #region setAllPath
   // Sets the entire map to the specified item.
   bool setAllPath(K[][] paths, V value) {
     return paths.all!(p => setPath(p, value));
   }
+  // #endregion setAllPath
 
+  // #region setAnyPath
   // Sets any of the specified paths to the item.
   bool setAnyPath(K[][] paths, V value) {
     return paths.any!(p => setPath(p, value));
   }
+  // #endregion setAnyPath
 
+  // #region setPath
   // Sets a specific item in the map.
   abstract bool setPath(K[] path, V value);
+  // #endregion setPath
   // #endregion set
+
+  // #region update
+  // #region updateAllPath
+  // Updates the entire map to the specified item.
+  bool updateAllPath(K[][] paths, V value) {
+    return paths.all!(p => updatePath(p, value));
+  }
+  // #endregion updateAllPath
+
+  // #region updateAnyPath
+  // Updates any of the specified paths to the item.
+  bool updateAnyPath(K[][] paths, V value) {
+    return paths.any!(p => updatePath(p, value));
+  }
+  // #endregion updateAnyPath
+
+  // #region updatePath
+  // Updates a specific item in the map.
+  bool updatePath(K[] path, V value) {
+    return hasPath(path) ? setPath(path, value) : false;
+  }
+  // #endregion updatePath
+  // #endregion update
+
+  // #region merge
+  // #region mergeAllPath
+  // Merges the entire map to the specified item.
+  bool mergeAllPath(K[][] paths, V value) {
+    return paths.all!(p => mergePath(p, value));
+  }
+  // #endregion mergeAllPath
+
+  // #region mergeAnyPath
+  // Merges any of the specified paths to the item.
+  bool mergeAnyPath(K[][] paths, V value) {
+    return paths.any!(p => mergePath(p, value));
+  }
+  // #endregion mergeAnyPath
+
+  // #region mergePath
+  // Merges a specific item in the map.
+  abstract bool mergePath(K[] path, V value);
+  // #endregion mergePath
+  // #endregion merge
+
+  // #region remove
+  // #region removeAllPath
+  // Remove multiple paths from the map
+  bool removeAllPath(K[][] paths) {
+    paths.all!(path => removePath(path));
+  }
+  // #endregion removeAllPath
+
+  // #region removeAnyPath
+  bool removeAnyPath(K[][] paths) {
+    paths.any!(path => removePath(path));
+  }
+  // #endregion removeAnyPath
+
+  // #region removePath
+  // Remove a single path from the map
+  abstract bool removePath(K[] path);
+  // #endregion removePath
+  // #endregion remove
   // #endregion paths
 
   // #region keys
@@ -120,10 +190,11 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
   }
   // #endregion opIndexAssign
 
+  // #region get
   // #region opIndex
   // Retrieve a value by its key from the map
   V opIndex(K key) {
-    return _entries[key];
+    return value(key);
   }
   ///
   unittest {
@@ -141,6 +212,94 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
     assert(map[2] == "two");
   }
   // #endregion opIndex
+  // #endregion get
+
+  // #region set
+  // #region setAllKey
+  bool setAllKey(V[K] items) {
+    return items.byKey.all!(key => value(key, items[key]));
+  }
+
+  bool setAllKey(K[] keys, V newValue) {
+    return items.byKey.all!(key => value(key, items[key]));
+  }
+  // #endregion setAllKey
+
+  // #region setAnyKey
+  bool setAnyKey(V[K] items) {
+    return items.byKey.any!(key => setKey(key, items[key]));
+  }
+
+  bool setAnyKey(K[] keys, V newValue) {
+    return keys.any!(key => setKey(key, newValue));
+  }
+  // #endregion setAnyKey
+
+  // #region setKey
+  bool setKey(K key, V newValue) {
+    _entries[key] = newValue;
+    return true;
+  }
+  // #endregion setKey
+  // #endregion set
+
+  // #region update
+  // #region updateAllKey
+  bool updateAllKey(V[K] items) {
+    return items.byKey.all!(key => value(key, items[key]));
+  }
+
+  bool updateAllKey(K[] keys, V newValue) {
+    return items.byKey.all!(key => value(key, items[key]));
+  }
+  // #endregion updateAllKey
+
+  // #region updateAnyKey
+  bool updateAnyKey(V[K] items) {
+    return items.byKey.any!(key => updateKey(key, items[key]));
+  }
+
+  bool updateAnyKey(K[] keys, V newValue) {
+    return keys.any!(key => updateKey(key, newValue));
+  }
+  // #endregion updateAnyKey
+
+  // #region updateKey
+  bool updateKey(K key, V newValue) {
+    _entries[key] = newValue;
+    return true;
+  }
+  // #endregion updateKey
+  // #endregion update
+
+  // #region merge
+  // #region mergeAllKey
+  bool mergeAllKey(V[K] items) {
+    return items.byKey.all!(key => value(key, items[key]));
+  }
+
+  bool mergeAllKey(K[] keys, V newValue) {
+    return items.byKey.all!(key => value(key, items[key]));
+  }
+  // #endregion mergeAllKey
+
+  // #region mergeAnyKey
+  bool mergeAnyKey(V[K] items) {
+    return items.byKey.any!(key => mergeKey(key, items[key]));
+  }
+
+  bool mergeAnyKey(K[] keys, V newValue) {
+    return keys.any!(key => mergeKey(key, newValue));
+  }
+  // #endregion mergeAnyKey
+
+  // #region mergeKey
+  bool mergeKey(K key, V newValue) {
+    _entries[key] = newValue;
+    return true;
+  }
+  // #endregion mergeKey
+  // #endregion merge
 
   // #region remove
   // #region removeAllKey
@@ -483,96 +642,5 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
     assert(!map2.hasValue(999));
   }
   // #endregion clear
-
-  // #region set
-  // #region setAllKey
-  bool setAllKey(V[K] items) {
-    return items.byKey.all!(key => value(key, items[key]));
-  }
-
-  bool setAllKey(K[] keys, V newValue) {
-    return items.byKey.all!(key => value(key, items[key]));
-  }
-  // #endregion setAllKey
-
-  // #region setAnyKey
-  bool setAnyKey(V[K] items) {
-    return items.byKey.any!(key => setKey(key, items[key]));
-  }
-
-  bool setAnyKey(K[] keys, V newValue) {
-    return keys.any!(key => setKey(key, newValue));
-  }
-  // #endregion setAnyKey
-
-  // #region setKey
-  bool setKey(K key, V newValue) {
-    _entries[key] = newValue;
-    return true;
-  }
-  // #endregion setKey
-  // #endregion set
-
-  // #region update
-  // #region updateAllKey
-  bool updateAllKey(V[K] items) {
-    return items.byKey.all!(key => value(key, items[key]));
-  }
-
-  bool updateAllKey(K[] keys, V newValue) {
-    return items.byKey.all!(key => value(key, items[key]));
-  }
-  // #endregion updateAllKey
-
-  // #region updateAnyKey
-  bool updateAnyKey(V[K] items) {
-    return items.byKey.any!(key => updateKey(key, items[key]));
-  }
-
-  bool updateAnyKey(K[] keys, V newValue) {
-    return keys.any!(key => updateKey(key, newValue));
-  }
-  // #endregion updateAnyKey
-
-  // #region updateKey
-  bool updateKey(K key, V newValue) {
-    if (key in _entries) {
-      return setKey(key, newValue);
-    }
-    return false;
-  }
-  // #endregion updateKey
-  // #endregion update
-
-  // #region merge
-  // #region mergeAllKey
-  bool mergeAllKey(V[K] items) {
-    return items.byKey.all!(key => value(key, items[key]));
-  }
-
-  bool mergeAllKey(K[] keys, V newValue) {
-    return items.byKey.all!(key => value(key, items[key]));
-  }
-  // #endregion mergeAllKey
-
-  // #region mergeAnyKey
-  bool mergeAnyKey(V[K] items) {
-    return items.byKey.any!(key => mergeKey(key, items[key]));
-  }
-
-  bool mergeAnyKey(K[] keys, V newValue) {
-    return keys.any!(key => mergeKey(key, newValue));
-  }
-  // #endregion mergeAnyKey
-
-  // #region mergeKey
-  bool mergeKey(K key, V newValue) {
-    if (key !in _entries) {
-      return setKey(key, newValue);
-    }
-    return true;
-  }
-  // #endregion mergeKey
-  // #endregion merge
-  // #endregion keys
+  // #endregion values
 }

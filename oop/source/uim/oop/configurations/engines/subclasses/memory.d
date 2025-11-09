@@ -16,32 +16,42 @@ class DMemoryConfigEngine : DConfigEngine, IConfigEngine {
 
   protected Json[string] _entries;
 
+  // #region paths
+  override string[][] paths() {
+    return _entries.keys.map!(key => key.split(_separator)).array;
+  }
+  // #endregion paths
+
   // #region keys
   override string[] keys() {
     return _entries.keys;
   }
-  // #endregion keys
-
-  // #region values
-  override Json[] values() {
-    return _entries.values;
-  }
-  override Json[] values(string[] keys) {
-    return _entries.filter!(kv => keys.contains(kv.key)).values;
-  }
-  // #endregion values
 
   // #region has
   override bool hasKey(string key) {
     return _entries.hasKey(key);
   }
-
-  override bool hasValue(Json value) {
-    return _entries.values.any!(v => v == value);
-  }
   // #endregion has
+  // #endregion keys
 
+  // #region values
   // #region get
+  override Json[] values() {
+    return _entries.values;
+  }
+
+  override Json[] values(string[][] path) {
+    return paths.map!(path => value(path)).array;
+  }
+
+  override Json[] values(string[] keys) {
+    return keys.map!(key => value(key)).array;
+  }
+
+  override Json value(string[] path) {
+    return value(path.toKey(_separator));
+  }
+
   override Json value(string key) {
     if (key.length == 0) {
       return Json(null);
@@ -49,12 +59,14 @@ class DMemoryConfigEngine : DConfigEngine, IConfigEngine {
 
     return key in _entries ? _entries[key] : Json(null);
   }
-
-  unittest {
-    auto config = MemoryConfigEngine;
-    // TODO
-  }
   // #endregion get
+
+  // #region has
+  override bool hasValue(Json value) {
+    return _entries.values.any!(v => v == value);
+  }
+  // #endregion has
+  // #endregion values
 
   // #region set
   override bool setKey(string key, Json value) {
