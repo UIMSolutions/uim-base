@@ -7,8 +7,8 @@ module uim.oop.interfaces.keys;
 
 public {
   import uim.oop.interfaces.keys.all;
+  import uim.oop.interfaces.keys.change;
   import uim.oop.interfaces.keys.get;
   import uim.oop.interfaces.keys.has;
   import uim.oop.interfaces.keys.remove;
-  import uim.oop.interfaces.keys.update;
 }

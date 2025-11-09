@@ -29,71 +29,37 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   // #endregion pathSeparator
 
   // #region paths
-  // #region values
-  // Return all of the values of the object's own properties.
-  V[string] values(string[][] paths) {
-    V[string] result;
-    foreach (path; paths) {
-      result[path.toKey] = value(path);
-    }
-    return result;
-  }
-
-  V value(string[] path) {
-    return value(path.toKey);
-  }
-  // #endregion values
-
+  // #region get  
   // Gets all paths in the map, sorted according to the specified order.
-  string[][] paths() {
+  override string[][] paths() {
     return _elements.keys.map!(key => key.split(_pathSeparator)).array;
   }
+  // #endregion get  
+  // #endregion paths
+
+  // #region keys
+  // #region get  
+  override string[] keys() {
+    return _elements.keys.map!(key => key.correctedKey).array;
+  }
+  // #endregion get    
+  // #endregion keys
+
+  // #region values
+  // #region get
+  override V value(string[] path) {
+    return value(path.toKey);
+  }
+
+  override V value(string key) {
+    return key.correctedKey in _entries ? _entries[key.correctedKey] : Null!V;
+  }
+  // #endregion get
+  // #endregion values
 
   // #region has
-  // Checks if all specified paths exist in the map.
-  bool hasAllPath(string[][] paths) {
-    return paths.all!(path => hasPath(path));
-  }
-  /// 
-  unittest {
-    // prepare map and paths
-    auto map = new DDirectory!int;
-    string[] path1 = ["foo", "bar"];
-    string[] path2 = ["baz"];
-    string[] path3 = ["qux", "quux"];
-
-    // set some entries
-    assert(map.setPath(path1, 1));
-    assert(map.setPath(path2, 2));
-
-    // all existing paths -> true
-    string[][] allExisting = [path1, path2];
-    assert(map.hasAllPath(allExisting));
-
-    // mixed existing and non-existing -> false
-    string[][] mixed = [path1, path3];
-    assert(!map.hasAllPath(mixed));
-
-    // all non-existing -> false
-    string[][] nonExisting = [path3];
-    assert(!map.hasAllPath(nonExisting));
-
-    // empty array -> vacuously true
-    string[][] empty = [];
-    assert(map.hasAllPath(empty));
-
-    // duplicate paths where the path exists -> true
-    string[][] duplicates = [path1, path1];
-    assert(map.hasAllPath(duplicates));
-  }
-
-  // Checks if any of the specified paths exist in the map.
-  bool hasAnyPath(string[][] paths) {
-    return paths.any!(path => hasPath(path));
-  }
-
   // Checks if a specific path exists in the map.
-  bool hasPath(string[] path) {
+  override bool hasPath(string[] path) {
     return hasKey(path.join(_pathSeparator));
   }
   // #endregion has
@@ -111,18 +77,8 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   }
 
   // #region set
-  // Sets the entire map to the specified item.
-  bool setAllPath(string[][] paths, V value) {
-    return paths.all!(p => setPath(p, value));
-  }
-
-  // Sets any of the specified paths to the item.
-  bool setAnyPath(string[][] paths, V value) {
-    return paths.any!(p => setPath(p, value));
-  }
-
   // Sets a specific item in the map.
-  bool setPath(string[] path, V value) {
+  override bool setPath(string[] path, V value) {
     return set(path.toKey, value);
   }
   // #endregion set
@@ -317,7 +273,7 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   // #endregion mergePath
   // #endregion merge
 
-    // #region remove
+  // #region remove
   // #region removeAllPath
   // Removes all specified paths were 
   bool removeAllPath(string[][] paths) {
@@ -418,3 +374,37 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   // #endregion remove
   // #endregion paths
 }
+
+// #region tests
+unittest { //   bool hasAllPath(string[][] paths) {
+  // prepare map and paths
+  auto map = new DDirectory!int;
+  string[] path1 = ["foo", "bar"];
+  string[] path2 = ["baz"];
+  string[] path3 = ["qux", "quux"];
+
+  // set some entries
+  assert(map.setPath(path1, 1));
+  assert(map.setPath(path2, 2));
+
+  // all existing paths -> true
+  string[][] allExisting = [path1, path2];
+  assert(map.hasAllPath(allExisting));
+
+  // mixed existing and non-existing -> false
+  string[][] mixed = [path1, path3];
+  assert(!map.hasAllPath(mixed));
+
+  // all non-existing -> false
+  string[][] nonExisting = [path3];
+  assert(!map.hasAllPath(nonExisting));
+
+  // empty array -> vacuously true
+  string[][] empty = [];
+  assert(map.hasAllPath(empty));
+
+  // duplicate paths where the path exists -> true
+  string[][] duplicates = [path1, path1];
+  assert(map.hasAllPath(duplicates));
+}
+// #endregion tests

@@ -11,6 +11,5 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-interface IValues(K = string, V = UIMObject) : IHasValues!(V), IGetValues!(K, V), IChangeValues!(K, V), IRemoveValues!(
-  V) {
+interface IValues(K = string, V = UIMObject) : IHasValues!V, IGetValues!(K, V), IChangeValues!(K, V), IRemoveValues!V {
 }

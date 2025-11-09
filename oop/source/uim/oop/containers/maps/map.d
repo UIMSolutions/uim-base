@@ -32,6 +32,44 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
   }
   // #endregion size
 
+  // #region paths
+  // #region has
+  // #region hasAllPath
+  // Check if all paths are present in the map
+  bool hasAllPath(K[][] paths) {
+    return paths.all!(path => hasPath(path));
+  }
+  // #endregion hasAllPath
+
+  // #region hasAnyPath
+  // Check if any path is present in the map
+  bool hasAnyPath(K[][] paths) {
+    return paths.any!(path => hasPath(path));
+  }
+  // #endregion hasAnyPath
+
+  // #region hasPath
+  // Check if a specific path is present in the map
+  abstract bool hasPath(K[] path);
+  // #endregion hasPath
+  // #endregion has
+
+    // #region set
+  // Sets the entire map to the specified item.
+  bool setAllPath(K[][] paths, V value) {
+    return paths.all!(p => setPath(p, value));
+  }
+
+  // Sets any of the specified paths to the item.
+  bool setAnyPath(K[][] paths, V value) {
+    return paths.any!(p => setPath(p, value));
+  }
+
+  // Sets a specific item in the map.
+  abstract bool setPath(K[] path, V value);
+  // #endregion set
+  // #endregion paths
+
   // #region keys
   // Retrieve all the names of the object's own enumerable properties.
   K[] keys() {
@@ -190,35 +228,6 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
   // #endregion keys
 
   // #region values
-  // Return all of the values of the object's own properties.
-  V[K] values(string[] keys) {
-    V[K] result;
-    foreach (key; keys) {
-      result[key] = value(key);
-    }
-    return result;
-  }
-
-  V value(string key) {
-    return key in _entries ? _entries[key.correctedKey] : null;
-  }
-  ///
-  unittest {
-    auto map1 = new DMap!(string, int);
-    map1.entries = ["x": 10, "y": 20, "z": 30];
-    auto vals1 = map1.values();
-    assert(vals1.sort == [10, 20, 30]);
-
-    auto map2 = new DMap!(int, string);
-    map2.entries = [1: "one", 2: "two"];
-    auto vals2 = map2.values();
-    assert(vals2.sort == ["one", "two"]);
-
-    auto map3 = new DMap!(string, int);
-    map3.entries = null;
-    auto vals3 = map3.values();
-    assert(vals3.length == 0);
-  }
 
   // #region has
   // #region hasAllValue
@@ -300,6 +309,50 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
   }
   // #endregion hasValue
   // #endregion has
+
+  // #region get
+  // #region values
+  V[] values() {
+    return _entries.values.array;
+  }
+
+  V[] values(K[][] paths) {
+    return paths.map!(path => value(path)).array;
+  }
+
+  V[] values(K[] keys) {
+    return keys.map!(key => value(key)).array;
+  }
+  // #endregion values
+
+  // #region value
+  abstract V value(K[] path);
+
+  V value(K key) {
+    return key in _entries ? _entries[key] : Null!V;
+  }
+  ///
+  unittest {
+    auto map1 = new DMap!(string, int);
+    map1.entries = ["x": 10, "y": 20, "z": 30];
+    auto vals1 = map1.values();
+    assert(vals1.sort == [10, 20, 30]);
+
+    auto map2 = new DMap!(int, string);
+    map2.entries = [1: "one", 2: "two"];
+    auto vals2 = map2.values();
+    assert(vals2.sort == ["one", "two"]);
+
+    auto map3 = new DMap!(string, int);
+    map3.entries = null;
+    auto vals3 = map3.values();
+    assert(vals3.length == 0);
+  }
+  // #endregion value
+  // #endregion get
+
+  // #region change
+  // #endregion change
 
   // #region remove
   // #region removeAllValue
