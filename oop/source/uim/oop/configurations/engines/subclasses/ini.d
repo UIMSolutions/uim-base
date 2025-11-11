@@ -12,6 +12,12 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 class DIniConfigEngine : DConfigEngine {
-    mixin(ConfigEngineThis!("Ini"));    
+  mixin(ConfigEngineThis!("Ini"));
 }
-mixin(ConfigEngineCalls!("Ini"));    
+
+mixin(ConfigEngineCalls!("Ini"));
+
+unittest {
+  auto engine = new DIniConfigEngine();
+  assert(testConfigEngine(engine, "Ini"), "Test of IniConfigEngine failed!");
+}

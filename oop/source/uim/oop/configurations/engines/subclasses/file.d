@@ -12,7 +12,12 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 class DFileConfigEngine : DConfigEngine {
-    mixin(ConfigEngineThis!("File"));    
+  mixin(ConfigEngineThis!("File"));
 }
-mixin(ConfigEngineCalls!("File"));    
 
+mixin(ConfigEngineCalls!("File"));
+
+unittest {
+  auto engine = new DFileConfigEngine();
+  assert(testConfigEngine(engine, "File"), "Test of FileConfigEngine failed!");
+}

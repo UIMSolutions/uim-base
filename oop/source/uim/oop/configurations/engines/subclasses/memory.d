@@ -14,7 +14,15 @@ mixin(Version!"test_uim_oop");
 class DMemoryConfigEngine : DConfigEngine, IConfigEngine {
   mixin(ConfigEngineThis!("Memory"));
 
+  // #region entries
   protected Json[string] _entries;
+  override Json[string] entries() {
+    return _entries.dup;
+  }
+  override void entries(Json[string] entries) {
+    _entries = entries.dup;
+  }
+  // #endregion entries
 
   // #region paths
   override string[][] paths() {
@@ -38,10 +46,6 @@ class DMemoryConfigEngine : DConfigEngine, IConfigEngine {
   // #region get
   override Json[] values() {
     return _entries.values;
-  }
-
-  override Json[] values(string[][] path) {
-    return paths.map!(path => value(path)).array;
   }
 
   override Json[] values(string[] keys) {
@@ -71,7 +75,7 @@ class DMemoryConfigEngine : DConfigEngine, IConfigEngine {
   // #region set
   override bool setKey(string key, Json value) {
     if (key.length == 0) {
-      return this;
+      return false;
     }
 
     _entries[key] = value;

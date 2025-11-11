@@ -15,5 +15,5 @@ bool isConfigEngine(Object obj) {
   if (obj is null) {
     return false;
   }
-  return cast(IConfigEngine)obj;
+  return cast(IConfigEngine)obj !is null;
 }

@@ -20,18 +20,18 @@ mixin(Version!"test_uim_oop");
 // Configuration for handling config data = key: string / value: Json
 class DConfiguration : IConfiguration {
   this() {
+    this.initialize();
     this.name(this.classname);
-    initialize();
   }
 
   this(Json[string] initData) {
+    this.initialize(initData);
     this.name(this.classname);
-    initialize(initData);
   }
 
   this(string newName, Json[string] initData = null) {
+    this.initialize(initData);
     this.name(newName);
-    initialize(initData);
   }
 
   bool initialize(Json[string] initData = null) {
@@ -43,9 +43,9 @@ class DConfiguration : IConfiguration {
       if (initData.hasKey("engine")) {
         engine(initData.getString("engine"));
       }
-      if (initData.hasKey("entries")) {
+      /* if (initData.hasKey("entries")) {
         entries(initData.getJson("entries"));
-      }
+      } */
     }
     return true;
   }
@@ -64,17 +64,18 @@ class DConfiguration : IConfiguration {
 
   // #region engine
   protected IConfigEngine _engine;
-  IConfiguration engine(string name) {
-    return engine(ConfigEngineFactory.create(name));
+  void engine(string name) {
+    _engine = ConfigEngineFactory.create(name);
   }
 
-  IConfiguration engine(IConfigEngine newEngine) {
+  /* IConfiguration engine(IConfigEngine newEngine) {
     _engine = newEngine.dup;
     return this;
   }
+  */
 
   IConfigEngine engine() {
-    return _engine.dup;
+    return _engine; // .dup;
   }
   // #endregion engine
 

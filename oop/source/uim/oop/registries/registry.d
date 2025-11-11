@@ -139,11 +139,8 @@ class DRegistry(V = UIMObject) : UIMObject, IRegistry!V {
   // Get all keys in the registry
   string[] keys() {
     auto keys = _registeredObjects.keys;
-    if (keys is null) {
-      return null;
-    }
 
-    return keys;
+    return keys is null ? null : keys;
   }
   ///
   unittest {
@@ -181,6 +178,12 @@ class DRegistry(V = UIMObject) : UIMObject, IRegistry!V {
   // #endregion keys
 
   // #region get
+  // #region values
+  V[] values() {
+    return _registeredObjects.values;
+  }
+  // #endregion values
+
   // #region values
   V[] values(string[] keys) {
     return keys.map!(key => value(key)).array;

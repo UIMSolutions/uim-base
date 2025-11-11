@@ -12,6 +12,12 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 class DRedisConfigEngine : DConfigEngine {
-    mixin(ConfigEngineThis!("Redis"));    
+  mixin(ConfigEngineThis!("Redis"));
 }
-mixin(ConfigEngineCalls!("Redis"));    
+
+mixin(ConfigEngineCalls!("Redis"));
+
+unittest {
+  auto engine = new DRedisConfigEngine();
+  assert(testConfigEngine(engine, "Redis"), "Test of RedisConfigEngine failed!");
+}

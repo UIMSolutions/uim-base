@@ -25,6 +25,9 @@ interface IConfiguration : IObject {
   Json[] entryValues();
   // #endregion values
 
+  void engine(string name);
+  IConfigEngine engine();
+  
   // #region has
   mixin(HasInterfaces!("Entries", "Entry", "string"));
 

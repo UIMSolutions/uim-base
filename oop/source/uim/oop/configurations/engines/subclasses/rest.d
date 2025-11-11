@@ -12,6 +12,12 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 class DRestConfigEngine : DConfigEngine {
-    mixin(ConfigEngineThis!("Rest"));    
+  mixin(ConfigEngineThis!("Rest"));
 }
-mixin(ConfigEngineCalls!("Rest"));    
+
+mixin(ConfigEngineCalls!("Rest"));
+
+unittest {
+  auto engine = new DRestConfigEngine();
+  assert(testConfigEngine(engine, "Rest"), "Test of RestConfigEngine failed!");
+}

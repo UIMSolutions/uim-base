@@ -14,6 +14,15 @@ mixin(Version!"test_uim_oop");
 class DConfigEngine : UIMObject, IConfigEngine {
   mixin(ConfigEngineThis!());
 
+  // #region paths
+  Json[string] entries() {
+    return null;
+  }
+  void entries(Json[string] entries) {
+    // TODO : Implement in subclasses
+  }
+  // #endregion entries
+
   // #region keys
   string[] keys() {
     // TODO : Implement in subclasses
@@ -21,29 +30,11 @@ class DConfigEngine : UIMObject, IConfigEngine {
   }
   // #endregion keys
 
-  // #region values
-  abstract Json[] values() {
-    return keys.map!(key => value(key)).array;
-  }
-
-  Json[] values(string[][] paths) {
-    return paths.map!(path => value(path)).array;
-  }
-
-  Json[] values(string[] keys) {
-    return keys.map!(key => value(key)).array;
-  }
-
-  Json value(string[] path) {
-    return value(path.toKey(_separator));
-  }
-
-  abstract Json value(string key);
-  // #endregion values
-
+  // #region isEmpty
   bool isEmpty() {
     return size == 0;
   }
+  // #endregion isEmpty
 
   // #region size
   size_t size() {
@@ -52,6 +43,7 @@ class DConfigEngine : UIMObject, IConfigEngine {
   }
   // #endregion size
 
+  // #region has
   // #region hasAllValue
   bool hasAllValue(Json[] values) {
     return values.all!(value => hasValue(value));
@@ -65,6 +57,7 @@ class DConfigEngine : UIMObject, IConfigEngine {
   bool hasValue(Json value) {
     return false;
   }
+  // #endregion has
   // #endregion values
 
   // #region pathSeparator
@@ -83,13 +76,13 @@ class DConfigEngine : UIMObject, IConfigEngine {
   // #region has
   // #region hasAllPath
   bool hasAllPath(string[][] paths) {
-    return paths.all!(path => hasKey(path));
+    return paths.all!(path => hasPath(path));
   }
   // #endregion hasAllPath
 
   // #region hasAnyPath
   bool hasAnyPath(string[][] paths) {
-    return paths.any!(path => hasKey(path));
+    return paths.any!(path => hasPath(path));
   }
   // #endregion hasAnyPath
 
@@ -100,16 +93,30 @@ class DConfigEngine : UIMObject, IConfigEngine {
   // #endregion hasPath
   // #endregion has
 
+  // #region get
+  // #region values
+  Json[] values(string[][] paths) {
+    return paths.map!(path => value(path)).array;
+  }
+  // #endregion values
+
+  // #region value
+  Json value(string[] path) {
+    return value(path.toKey(_separator));
+  }
+  // #endregion value  
+  // #endregion get
+
   // #region set
   // #region setAllPath
   bool setAllPath(string[][] paths, Json value) {
-    return paths.all!(path => setKey(path, value));
+    return paths.all!(path => setPath(path, value));
   }
   // #region setAllPath
 
   // #region setAnyPath
   bool setAnyPath(string[][] paths, Json value) {
-    return paths.any!(path => setKey(path, value));
+    return paths.any!(path => setPath(path, value));
   }
   // #endregion setAnyPath
 
@@ -123,13 +130,13 @@ class DConfigEngine : UIMObject, IConfigEngine {
   // #region merge
   // #region mergeAllPath
   bool mergeAllPath(string[][] paths, Json value) {
-    return paths.all!(path => mergeKey(path, value));
+    return paths.all!(path => mergePath(path, value));
   }
-  // #region mergeAllPath
+  // #endregion mergeAllPath
 
   // #region mergeAnyPath
   bool mergeAnyPath(string[][] paths, Json value) {
-    return paths.any!(path => mergeKey(path, value));
+    return paths.any!(path => mergePath(path, value));
   }
   // #endregion mergeAnyPath
 
@@ -143,13 +150,13 @@ class DConfigEngine : UIMObject, IConfigEngine {
   // #region update
   // #region updateAllPath
   bool updateAllPath(string[][] paths, Json value) {
-    return paths.all!(path => updateKey(path, value));
+    return paths.all!(path => updatePath(path, value));
   }
   // #endregion updateAllPath
 
   // #region updateAnyPath
   bool updateAnyPath(string[][] paths, Json value) {
-    return paths.any!(path => updateKey(path, value));
+    return paths.any!(path => updatePath(path, value));
   }
   // #endregion updateAnyPath
 
@@ -163,13 +170,13 @@ class DConfigEngine : UIMObject, IConfigEngine {
   // #region remove
   // #region removeAllPath
   bool removeAllPath(string[][] paths) {
-    return paths.all!(path => removeKey(path));
+    return paths.all!(path => removePath(path));
   }
   // #endregion removeAllPath
 
   // #region removeAnyPath
   bool removeAnyPath(string[][] paths) {
-    return paths.any!(path => removeKey(path));
+    return paths.any!(path => removePath(path));
   }
   // #endregion removeAnyPath
 
@@ -183,26 +190,32 @@ class DConfigEngine : UIMObject, IConfigEngine {
 
   // #region keys
   // #region has
+  // #region hasAllKey
   bool hasAllKey(string[] keys) {
     return keys.all!(key => hasKey(key));
   }
+  // #endregion hasAllKey
 
+  // #region hasAnyKey
   bool hasAnyKey(string[] keys) {
     return keys.any!(key => hasKey(key));
   }
+  // #endregion hasAnyKey
 
+  // #region hasKey
   bool hasKey(string key) {
-    return hasKey(key.toKey(_separator));
+    return hasKey(key.correctedKey);
   }
+  // #endregion hasKey
   // #endregion has
 
   // #region set
   bool setAllKey(Json[string] values) {
-    return values.all!(kv => setKey(kv.key, kv.value));
+    return values.byKeyValue.all!(kv => setKey(kv.key, kv.value));
   }
 
   bool setAnyKey(Json[string] values) {
-    return values.any!(kv => setKey(kv.key, kv.value));
+    return values.byKeyValue.any!(kv => setKey(kv.key, kv.value));
   }
 
   bool setAllKey(string[] keys, Json value) {
@@ -221,11 +234,11 @@ class DConfigEngine : UIMObject, IConfigEngine {
 
   // #region merge
   bool mergeAllKey(Json[string] values) {
-    return values.all!(kv => mergeKey(kv.key, kv.value));
+    return values.byKeyValue.all!(kv => mergeKey(kv.key, kv.value));
   }
 
   bool mergeAnyKey(Json[string] values) {
-    return values.any!(kv => mergeKey(kv.key, kv.value));
+    return values.byKeyValue.any!(kv => mergeKey(kv.key, kv.value));
   }
 
   bool mergeAllKey(string[] keys, Json value) {
@@ -244,11 +257,11 @@ class DConfigEngine : UIMObject, IConfigEngine {
 
   // #region update
   bool updateAllKey(Json[string] values) {
-    return values.all!(kv => updateKey(kv.key, kv.value));
+    return values.byKeyValue.all!(kv => updateKey(kv.key, kv.value));
   }
 
   bool updateAnyKey(Json[string] values) {
-    return values.any!(kv => updateKey(kv.key, kv.value));
+    return values.byKeyValue.any!(kv => updateKey(kv.key, kv.value));
   }
 
   bool updateAllKey(string[] keys, Json value) {
@@ -266,36 +279,66 @@ class DConfigEngine : UIMObject, IConfigEngine {
   // #endregion update
 
   // #region remove
+  // #region removeAllKey
   bool removeAllKey(string[] keys) {
     return keys.all!(key => removeKey(key));
   }
+  // #endregion removeAllKey
 
+  // #region removeAnyKey
   bool removeAnyKey(string[] keys) {
     return keys.any!(key => removeKey(key));
   }
+  // #endregion removeAnyKey
 
+  // #region removeKey
   bool removeKey(string key) {
     // TODO: Implement in subclasses
     return false; // to be implemented in subclasses
   }
+  // #endregion removeAllKey
   // #endregion remove
   // #endregion keys
 
+  // #region get
+  // #region values
+  Json[] values() {
+    return keys.map!(key => value(key)).array;
+  }
+  Json[] values(string[] keys) {
+    return keys.map!(key => value(key)).array;
+  }
+  // #endregion values
+
+  // #region value
+  abstract Json value(string key);
+  // #endregion value
+  // #endregion get
+
+  // #region removeAllValue
   bool removeAllValue(Json[] values) {
     return values.all!(value => removeValue(value));
   }
+  // #endregion removeAllValue
 
+  // #region removeAnyValue
   bool removeAnyValue(Json[] values) {
     return values.any!(value => removeValue(value));
   }
+  // #endregion removeAnyValue
 
+  // #region removeValue
   bool removeValue(Json value) {
     // TODO: Implement in subclasses
     return false; // to be implemented in subclasses
   }
+  // #endregion removeValue
 
+  // #region clear
   bool clear() {
     // TODO: Implement in subclasses
     return false; // to be implemented in subclasses
   }
+  // #endregion clear
+  // #endregion values
 }
