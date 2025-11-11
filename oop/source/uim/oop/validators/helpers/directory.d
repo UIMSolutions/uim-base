@@ -11,12 +11,12 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DValidatorDirectories : DDirectory!IValidator {  
+class DValidatorDirectory : DDirectory!IValidator {  
     mixin(DirectoryThis!("Validator")); 
 }
 mixin(DirectoryCalls!("Validator"));
 
 unittest {
-  auto directories = ValidatorDirectories;
-  assert(testDirectory(directories, "Validator"), "Test ValidatorDirectories failed");
+  auto directory = ValidatorDirectory;
+  assert(testDirectory(directory, "Validator"), "Test ValidatorDirectory failed");
 }

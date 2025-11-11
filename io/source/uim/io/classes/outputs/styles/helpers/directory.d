@@ -10,12 +10,12 @@ import uim.io;
 mixin(Version!"test_uim_io");
 @safe:
 
-class DOutputStyleDirectories : DDirectory!IOutputStyle {
+class DOutputStyleDirectory : DDirectory!IOutputStyle {
   mixin(DirectoryThis!("OutputStyle"));
 }
 mixin(DirectoryCalls!("OutputStyle"));
 
 unittest {
-  auto directories = OutputStyleDirectories;
-  assert(testDirectory(directories, "OutputStyle"), "Test OutputStyleDirectories failed");
+  auto directory = OutputStyleDirectory;
+  assert(testDirectory(directory, "OutputStyle"), "Test OutputStyleDirectory failed");
 }

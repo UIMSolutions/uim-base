@@ -10,13 +10,13 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DConsoleDirectories : DDirectory!DConsole {
+class DConsoleDirectory : DDirectory!DConsole {
 }
-auto ConsoleDirectories() {
-    return new DConsoleDirectories;
+auto ConsoleDirectory() {
+    return new DConsoleDirectory;
 }
 
 unittest {
-    auto directories = ConsoleDirectories();
-    assert(directories !is null);
+    auto directory = ConsoleDirectory();
+    assert(directory !is null);
 }

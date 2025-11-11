@@ -11,12 +11,12 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DParserDirectories : DDirectory!IParser {
+class DParserDirectory : DDirectory!IParser {
   mixin(DirectoryThis!("Parser"));
 }
 mixin(DirectoryCalls!("Parser"));
 
 unittest {
-  auto directories = new DParserDirectories();
-  assert(testDirectory(directories, "Parser"), "Test ParserDirectories failed");
+  auto directory = new DParserDirectory();
+  assert(testDirectory(directory, "Parser"), "Test ParserDirectory failed");
 }

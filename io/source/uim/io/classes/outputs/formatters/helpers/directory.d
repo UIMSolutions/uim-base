@@ -10,12 +10,12 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DOutputFormatterDirectories : DDirectory!IOutputFormatter {
+class DOutputFormatterDirectory : DDirectory!IOutputFormatter {
   mixin(DirectoryThis!("OutputFormatter"));
 }
 mixin(DirectoryCalls!("OutputFormatter"));
 
 unittest {
-  auto directories = OutputFormatterDirectories;
-  assert(testDirectory(directories, "OutputFormatter"), "Test OutputFormatterDirectories failed");
+  auto directory = OutputFormatterDirectory;
+  assert(testDirectory(directory, "OutputFormatter"), "Test OutputFormatterDirectory failed");
 }

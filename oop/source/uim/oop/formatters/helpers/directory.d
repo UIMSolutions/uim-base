@@ -11,12 +11,12 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DFormatterDirectories : DDirectory!IFormatter {
+class DFormatterDirectory : DDirectory!IFormatter {
   mixin(DirectoryThis!("Formatter"));
 }
 mixin(DirectoryCalls!("Formatter"));
 
 unittest {
-  auto directories = FormatterDirectories;
-  assert(testDirectory(directories, "Formatter"), "Test FormatterDirectories failed");
+  auto directory = FormatterDirectory;
+  assert(testDirectory(directory, "Formatter"), "Test FormatterDirectory failed");
 }

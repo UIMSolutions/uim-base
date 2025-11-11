@@ -17,6 +17,6 @@ class DCommandDirectory : DDirectory!ICommand {
 mixin(DirectoryCalls!("Command"));
 
 unittest {
-  auto directories = new DCommandDirectory();
+  auto directory = new DCommandDirectory();
   assert(testDirectory(new DCommandDirectory, "CommandDirectory"), "Test of DCommandDirectory failed!");
 }

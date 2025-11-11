@@ -18,6 +18,6 @@ class DConfigEngineDirectory : DDirectory!IConfigEngine {
 mixin(DirectoryCalls!("ConfigEngine"));
 
 unittest {
-  auto directories = new DConfigEngineDirectory();
+  auto directory = new DConfigEngineDirectory();
   assert(testDirectory(new DConfigEngineDirectory, "ConfigEngineDirectory"), "Test of DConfigEngineDirectory failed!");
 }

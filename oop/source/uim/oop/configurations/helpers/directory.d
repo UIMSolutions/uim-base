@@ -18,6 +18,6 @@ class DConfigurationDirectory : DDirectory!IConfiguration {
 mixin(DirectoryCalls!("Configuration"));
 
 unittest {
-  auto directories = new DConfigurationDirectory();
+  auto directory = new DConfigurationDirectory();
   assert(testDirectory(new DConfigurationDirectory, "ConfigurationDirectory"), "Test of DConfigurationDirectory failed!");
 }
