@@ -20,3 +20,5 @@ unittest {
   auto factory = new DConfigEngineFactory();
   assert(testFactory(factory, "ConfigEngine"), "Test of DConfigEngineFactory failed!");
 }
+
+

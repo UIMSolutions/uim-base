@@ -13,7 +13,11 @@ mixin(Version!"test_uim_oop");
 
 class DRestConfigEngine : DConfigEngine {
   mixin(ConfigEngineThis!("Rest"));
-}
+
+  override IConfigEngine clone() {
+    return new DRestConfigEngine();
+  }
+  }
 
 mixin(ConfigEngineCalls!("Rest"));
 

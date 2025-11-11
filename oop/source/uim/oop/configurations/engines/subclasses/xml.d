@@ -12,6 +12,16 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 class DXmlConfigEngine : DConfigEngine {
-    mixin(ConfigEngineThis!("Xml"));    
+    mixin(ConfigEngineThis!("Xml"));  
+
+      override IConfigEngine clone() {
+    return new DXmlConfigEngine();
+  }  
 }
-mixin(ConfigEngineCalls!("Xml"));    
+mixin(ConfigEngineCalls!("Xml")); 
+
+unittest {
+  auto engine = new DXmlConfigEngine();
+  assert(testConfigEngine(engine, "Xml"), "Test of DXmlConfigEngine failed!");
+}
+

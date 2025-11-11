@@ -33,7 +33,7 @@ class UIMObject : IObject {
     objId(randomUUID);
     name("Object");
 
-    auto config = new DConfiguration;
+    auto config = ConfigurationFactory.create("memory");;
     configuration(config);
     configuration.entries(initData is null ? new Json[string] : initData);
 

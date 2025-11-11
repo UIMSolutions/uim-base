@@ -18,6 +18,7 @@ class DConfigEngine : UIMObject, IConfigEngine {
   Json[string] entries() {
     return null;
   }
+
   void entries(Json[string] entries) {
     // TODO : Implement in subclasses
   }
@@ -93,7 +94,7 @@ class DConfigEngine : UIMObject, IConfigEngine {
   // #endregion has
 
   // #region get
-  string[][] paths() {  
+  string[][] paths() {
     return null;
   }
 
@@ -303,11 +304,13 @@ class DConfigEngine : UIMObject, IConfigEngine {
   // #endregion remove
   // #endregion keys
 
+  // #region values
   // #region get
   // #region values
   Json[] values() {
     return keys.map!(key => value(key)).array;
   }
+
   Json[] values(string[] keys) {
     return keys.map!(key => value(key)).array;
   }
@@ -346,4 +349,8 @@ class DConfigEngine : UIMObject, IConfigEngine {
   }
   // #endregion clear
   // #endregion values
+
+  IConfigEngine clone() {
+    return null;
+  }
 }

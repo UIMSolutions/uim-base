@@ -13,6 +13,10 @@ mixin(Version!"test_uim_oop");
 
 class DIniConfigEngine : DConfigEngine {
   mixin(ConfigEngineThis!("Ini"));
+
+  override IConfigEngine clone() {
+    return new DIniConfigEngine();
+  }
 }
 
 mixin(ConfigEngineCalls!("Ini"));

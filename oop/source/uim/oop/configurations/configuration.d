@@ -56,23 +56,22 @@ class DConfiguration : IConfiguration {
     return _name.dup;
   }
 
-  IConfiguration name(string newName) {
+  void name(string newName) {
     _name = newName.dup;
-    return this;
   }
   // #endregion name
 
   // #region engine
   protected IConfigEngine _engine;
-  void engine(string name) {
+  IConfiguration engine(string name) {
     _engine = ConfigEngineFactory.create(name);
-  }
-
-  /* IConfiguration engine(IConfigEngine newEngine) {
-    _engine = newEngine.dup;
     return this;
   }
-  */
+
+  IConfiguration engine(IConfigEngine newEngine) {
+    _engine = newEngine; //.dup;
+    return this;
+  }
 
   IConfigEngine engine() {
     return _engine; // .dup;
@@ -146,12 +145,6 @@ class DConfiguration : IConfiguration {
   bool hasEntryValue(Json value) {
     return entries.values.any!(v => v == value);
   }
-
-  unittest {
-    auto config = new DConfiguration;
-
-    // TODO
-  }
   // #endregion has
 
   // #region is
@@ -204,7 +197,8 @@ class DConfiguration : IConfiguration {
   }
 
   unittest {
-    auto config = new DConfiguration;
+    auto config = ConfigurationFactory.create("memory");
+    ;
 
     /*         Json[string] values = ["a": Json(1), "b": Json(2), "c": Json(3)];
         config.set("a", true);
@@ -269,10 +263,13 @@ class DConfiguration : IConfiguration {
     return getEntry(key);
   }
 
-  abstract Json getEntry(string key);
+  Json getEntry(string key) {
+    return engine is null ? Json(null) : engine.value(key);
+  }
 
   unittest {
-    auto config = new DConfiguration;
+    auto config = ConfigurationFactory.create("memory");
+    ;
     // TODO
   }
   // #endregion get
@@ -291,7 +288,8 @@ class DConfiguration : IConfiguration {
   }
 
   unittest {
-    auto config = new DConfiguration;
+    auto config = ConfigurationFactory.create("memory");
+    ;
     // TODO
   }
   // #endregion shift
@@ -316,7 +314,8 @@ class DConfiguration : IConfiguration {
 
   unittest {
     // Create a MemoryConfiguration instance (assuming MemoryConfiguration is a concrete implementation)
-    auto config = new DConfiguration();
+    auto config = ConfigurationFactory.create("memory");
+    ();
 
     // Prepare Json[] value
     Json[] arr = [Json(1), Json(2), Json(3)];
@@ -389,13 +388,13 @@ class DConfiguration : IConfiguration {
     return setEntry(key, value);
   }
 
-  abstract IConfiguration setEntry(string key, Json value);
-
-  unittest {
-    auto config = new DConfiguration;
-
-    // TODO 
+  IConfiguration setEntry(string key, Json value) {
+    if (_engine !is null) {
+      _engine.setKey(key, value);
+    }
+    return this;
   }
+
   // #endregion set
 
   // #region update
@@ -435,7 +434,6 @@ class DConfiguration : IConfiguration {
     return hasEntry(key)
       ? setEntry(key, value) : this;
   }
-
 
   // #endregion update
 
@@ -478,7 +476,7 @@ class DConfiguration : IConfiguration {
   }
 
   unittest {
-    auto config = new DConfiguration;
+    auto config = ConfigurationFactory.create("memory");
 
     // TODO 
   }
@@ -492,19 +490,32 @@ class DConfiguration : IConfiguration {
     return this;
   }
 
-  abstract IConfiguration removeEntry(string key);
+  IConfiguration removeEntry(string key) {
+    if (engine !is null) {
+      engine.removeKey(key);
+    }
+    return this;
+  }
 
   unittest {
-    auto config = new DConfiguration;
+    auto config = ConfigurationFactory.create("memory");
+    ;
     // TODO
   }
   // #endregion remove
 
   // #region clone
-  abstract IConfiguration clone();
+  IConfiguration clone() {
+    auto config = new DConfiguration();
+    config.name(this.name);
+    if (engine !is null) {
+      config.engine = engine.clone();
+    }
+    return config;
+  }
 
   unittest {
-    auto config = new DConfiguration;
+    auto config = ConfigurationFactory.create("memory");
     // TODO
   }
   // #endregion clone

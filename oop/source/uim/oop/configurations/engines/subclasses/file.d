@@ -13,6 +13,10 @@ mixin(Version!"test_uim_oop");
 
 class DFileConfigEngine : DConfigEngine {
   mixin(ConfigEngineThis!("File"));
+
+  override IConfigEngine clone() {
+    return new DFileConfigEngine();
+  }
 }
 
 mixin(ConfigEngineCalls!("File"));

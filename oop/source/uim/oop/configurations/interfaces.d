@@ -25,7 +25,8 @@ interface IConfiguration : IObject {
   Json[] entryValues();
   // #endregion values
 
-  void engine(string name);
+  IConfiguration engine(string name);
+  IConfiguration engine(IConfigEngine engine);
   IConfigEngine engine();
   
   // #region has

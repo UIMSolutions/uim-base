@@ -13,6 +13,10 @@ mixin(Version!"test_uim_oop");
 
 class DRedisConfigEngine : DConfigEngine {
   mixin(ConfigEngineThis!("Redis"));
+
+  override IConfigEngine clone() {
+    return new DRedisConfigEngine();
+  }
 }
 
 mixin(ConfigEngineCalls!("Redis"));

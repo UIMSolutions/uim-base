@@ -239,11 +239,11 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
   // #region set
   // #region setAllKey
   bool setAllKey(V[K] items) {
-    return items.byKey.all!(key => value(key, items[key]));
+    return items.byKey.all!(key => setKey(key, items[key]));
   }
 
   bool setAllKey(K[] keys, V newValue) {
-    return items.byKey.all!(key => value(key, items[key]));
+    return keys.all!(key => setKey(key, newValue));
   }
   // #endregion setAllKey
 
@@ -268,11 +268,11 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
   // #region update
   // #region updateAllKey
   bool updateAllKey(V[K] items) {
-    return items.byKey.all!(key => value(key, items[key]));
+    return items.byKey.all!(key => updateKey(key, items[key]));
   }
 
   bool updateAllKey(K[] keys, V newValue) {
-    return items.byKey.all!(key => value(key, items[key]));
+    return keys.all!(key => updateKey(key, newValue));
   }
   // #endregion updateAllKey
 
@@ -297,11 +297,11 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
   // #region merge
   // #region mergeAllKey
   bool mergeAllKey(V[K] items) {
-    return items.byKey.all!(key => value(key, items[key]));
+    return items.byKey.all!(key => mergeKey(key, items[key]));
   }
 
   bool mergeAllKey(K[] keys, V newValue) {
-    return items.byKey.all!(key => value(key, items[key]));
+    return keys.all!(key => mergeKey(key, newValue));
   }
   // #endregion mergeAllKey
 
@@ -327,7 +327,7 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
   // #region removeAllKey
   // Remove multiple keys from the map
   bool removeAllKey(K[] keys) {
-    keys.all!(key => removeKey(key));
+    return keys.all!(key => removeKey(key));
   }
   /// 
   unittest {
@@ -363,7 +363,7 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
 
   // #region removeAnyKey
   bool removeAnyKey(K[] keys) {
-    keys.any!(key => removeKey(key));
+    return keys.any!(key => removeKey(key));
   }
   // #endregion removeAnyKey
 
