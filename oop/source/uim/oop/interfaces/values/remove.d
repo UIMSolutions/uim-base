@@ -12,7 +12,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-interface IRemoveValues(V = UIMObject) {
+interface IRemoveValues(K = string, V = UIMObject) {
   bool removeAllValue(V[] values);
   bool removeAnyValue(V[] values);
   bool removeValue(V value);

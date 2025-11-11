@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-interface IHasKeys(K = string) {
+interface IHasKeys(K = string, V = UIMObject) {
   // Checks if the collection contains all keys.
   bool hasAllKey(K[] keys);
 

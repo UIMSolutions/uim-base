@@ -12,7 +12,7 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 // Interface for removing items by paths.
-interface IRemovePaths(K = string) {
+interface IRemovePaths(K = string, V = UIMObject) {
   // Removes all of the given paths from the collection.
   bool removeAllPath(K[][] paths);
 

@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-interface IHasValues(V = UIMObject) {
+interface IHasValues(K = string, V = UIMObject) {
   bool hasAllValue(V[] values);
   bool hasAnyValue(V[] values);
   bool hasValue(V value);

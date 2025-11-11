@@ -12,7 +12,7 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 // Interface for removing items by their keys.
-interface IRemoveAllKey(K = string) {
+interface IRemoveKeys(K = string, V = UIMObject) {
   // Removes all of the given keys from the collection.
   bool removeAllKey(K[] keys);
 

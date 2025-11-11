@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-interface IRegistry(V = IObject) : IHasKeys!string, IHasPaths!string, IGetValues!(string, V), IObject {
+interface IRegistry(V = UIMObject) : IHasKeys!(string, V), IHasPaths!(string, V), IGetValues!(string, V), IObject {
   // #region paths
   bool register(string[] path, V obj);
 
