@@ -11,6 +11,6 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-interface IGetKeys(K = string) {
+interface IGetKeys(K = string, V = UIMObject) {
   K[] keys();
 }

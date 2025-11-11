@@ -12,6 +12,6 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 // Interface for getting items by paths.
-interface IGetPaths(K = string) {
+interface IGetPaths(K = string, V = UIMObject) {
   K[][] paths();
 }

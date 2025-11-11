@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DConfigEngineRegistry : DRegistry!DConfigEngine {
+class DConfigEngineRegistry : DRegistry!IConfigEngine {
   mixin(RegistryThis!("ConfigEngine"));
 }
 

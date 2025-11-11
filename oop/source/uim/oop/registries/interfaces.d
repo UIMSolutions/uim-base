@@ -11,18 +11,20 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-interface IRegistry(V = IObject) : IHasKeys!string, IHasPaths!string, IObject {
-  // Registers an object with a specific key.
+interface IRegistry(V = IObject) : IHasKeys!string, IHasPaths!string, IGetValues!(string, V), IObject {
+  // #region paths
   bool register(string[] path, V obj);
+
+  bool unregisterAll(string[][] paths);
+  bool unregisterAny(string[][] paths);
+  bool unregister(string[] path);
+  // #endregion paths
+
+  // #region keys
   bool register(string key, V obj);
 
-  bool unregisterMany(string[][] paths);
-  bool unregisterMany(string[] keys);
-
-  bool unregister(string[] path);
+  bool unregisterAll(string[] keys);
+  bool unregisterAny(string[] keys);
   bool unregister(string key);
-
-  // Retrieves an object by its key.
-  V value(string[] path);
-  V value(string key);
+  // #endregion keys
 }

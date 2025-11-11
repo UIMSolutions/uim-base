@@ -32,39 +32,108 @@ class DRegistry(V = UIMObject) : UIMObject, IRegistry!V {
 
   // #region path
   // #region has
+  // #region hasAllPath
   bool hasAllPath(string[][] paths) {
     return paths.all!(path => hasPath(path));
   }
+  // #endregion hasAllPath
 
+  // #region hasAnyPath
   bool hasAnyPath(string[][] paths) {
     return paths.any!(path => hasPath(path));
   }
+  // #endregion hasAnyPath
 
+  // #region hasPath
   bool hasPath(string[] path) {
     return hasKey(path.toKey(_separator));
   }
+  // #endregion hasPath
   // #endregion has
 
   // #region get
+  // #region values
+  V[] values(string[][] paths) {
+    return paths.map!(path => value(path)).array;
+  }
+  // #endregion values
+
+  // #region value
   V value(string[] path) {
     return value(path.toKey(_separator));
   }
+  // #endregion value
   // #endregion get
 
   // #region remove
+  // #region removeAllPath
   bool removeAllPath(string[][] paths) {
     return paths.all!(path => removePath(path));
   }
+  // #endregion removeAllPath
 
+  // #region removeAnyPath
   bool removeAnyPath(string[][] paths) {
     return paths.any!(path => removePath(path));
   }
+  // #endregion removeAnyPath
 
+  // #region removePath
   bool removePath(string[] path) {
     return removeKey(path.toKey);
   }
+  // #endregion removePath
   // #endregion remove
+
+  // #region register
+  // Register an object with a path
+  bool register(string[] path, V newObject) {
+    this.register(path.toKey(_separator), newObject);
+    return true;
+  }
+  // #endregion register
+
+  // #region unregister
+  // #region unregisterAll
+  bool unregisterAll(string[][] paths) {
+    return paths.all!(path => unregister(path));
+  }
+  // #endregion unregisterAll
+
+  // #region unregisterAny
+  bool unregisterAny(string[][] paths) {
+    return paths.any!(path => unregister(path));
+  }
+  // #endregion unregisterAny
+
+  // #region unregister
+  bool unregister(string[] paths) {
+    return unregister(path.toKey(_separator));
+  }
+  // #endregion unregister
+  // #endregion unregister
   // #endregion path
+
+  // #region keys
+  // #region has
+  // #region hasAllKey
+  bool hasAllKey(string[] keys) {
+    return keys.all!(key => hasKey(key));
+  }
+  // #endregion hasAllKey
+
+  // #region hasAnyKey
+  bool hasAnyKey(string[] keys) {
+    return keys.any!(key => hasKey(key));
+  }
+  // #endregion hasAnyKey
+
+  // #region hasKey
+  bool hasKey(string key) {
+    return key.correctKey in _registeredObjects ? true : false;
+  }
+  // #endregion hasKey
+  // #endregion has
 
   // #region keys
   // Get all keys in the registry
@@ -111,53 +180,52 @@ class DRegistry(V = UIMObject) : UIMObject, IRegistry!V {
   }
   // #endregion keys
 
-  // #region keys
-  // #region has
-  bool hasAnyKey(string[] keys) {
-    return keys.any!(key => hasKey(key));
-  }
-
-  bool hasAllKey(string[] keys) {
-    return keys.all!(key => hasKey(key));
-  }
-
-  bool hasKey(string key) {
-    return key.correctKey in _registeredObjects ? true : false;
-  }
-  // #endregion has
-
   // #region get
+  // #region values
+  V[] values(string[] keys) {
+    return keys.map!(key => value(key)).array;
+  }
+  // #endregion values
+
+  // #region value
   V value(string key) {
     auto correctedKey = key.correctKey;
     return correctedKey in _registeredObjects
-      ? _registeredObjects[correctedKey]
-      : _nullValue;
+      ? _registeredObjects[correctedKey] : _nullValue;
   }
+  // #endregion value
   // #endregion get
 
   // #region remove
+  // #region removeAllKey
   bool removeAllKey(string[] keys) {
     return keys.all!(key => removeKey(key));
   }
+  // #endregion removeAllKey
+
+  // #region removeAnyKey
+  bool removeAnyKey(string[] keys) {
+    return keys.any!(key => removeKey(key));
+  }
+  // #endregion removeAnyKey
+
+  // #region removeKey
   bool removeKey(string key) {
     _registeredObjects.remove(key.correctKey);
     return true;
   }
+  // #endregion removeKey
   // #endregion remove
   // #endregion keys
 
-  // #region register
+  // #region opIndexAssign
   // Allow assignment via indexing
   void opIndexAssign(string key, V newObject) {
     register(key, newObject);
   }
+  // #endregion opIndexAssign
 
-  // Register an object with a path
-  bool register(string[] path, V newObject) {
-    this.register(path.toKey(_separator), newObject);
-    return true;
-  }
-
+  // #region register 
   // Register an object with a key
   bool register(string key, V newObject) {
     _registeredObjects[key.correctKey] = newObject;
@@ -216,29 +284,30 @@ class DRegistry(V = UIMObject) : UIMObject, IRegistry!V {
   // #endregion register
 
   // #region unregister
+  // #region unregisterAll
   bool unregisterAll() {
     _registeredObjects.clear();
     return true;
   }
+  // #endregion unregisterAll
 
-  bool unregisterMany(string[][] paths) {
-    paths.each!(path => unregister(path));
-    return true;
+  // #region unregisterAll
+  bool unregisterAll(string[] keys) {
+    return keys.all!(key => unregister(key));
   }
+  // #endregion unregisterAll
 
-  bool unregisterMany(string[] keys) {
-    keys.each!(key => unregister(key));
-    return true;
+  // #region unregisterAny
+  bool unregisterAny(string[] keys) {
+    return keys.any!(key => unregister(key));
   }
+  // #endregion unregisterAny
 
-  bool unregister(string[] path) {
-    _registeredObjects.remove(path.toKey(_separator));
-    return true;
-  }
-
+  // #region unregister
   bool unregister(string key) {
     _registeredObjects.remove(key);
     return true;
   }
+  // #endregion unregister
   // #endregion unregister
 }

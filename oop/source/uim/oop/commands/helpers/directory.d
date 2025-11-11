@@ -14,7 +14,6 @@ mixin(Version!"test_uim_oop");
 class DCommandDirectory : DDirectory!ICommand {
   mixin(DirectoryThis!("Command"));
 }
-
 mixin(DirectoryCalls!("Command"));
 
 unittest {

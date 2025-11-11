@@ -12,8 +12,5 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 bool isCommand(Object obj) {
-  if (obj is null) {
-    return false;
-  }
-  return cast(ICommand)obj;
+  return obj is null ? false : cast(ICommand)obj !is null;
 }

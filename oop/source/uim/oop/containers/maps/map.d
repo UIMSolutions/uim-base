@@ -12,7 +12,15 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
-  this() {
+  mixin(MapThis!());
+
+  // Initializes this container with optional JSON data.
+  override bool initialize(Json[string] initData = null) {
+    name("Map");
+    if (!super.initialize(initData)) {
+      return false;
+    }
+    return true;
   }
 
   // #region entries
@@ -115,7 +123,9 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
 
   // #region mergePath
   // Merges a specific item in the map.
-  abstract bool mergePath(K[] path, V value);
+  bool mergePath(K[] path, V value) {
+    return !hasPath(path) ? setPath(path, value) : false;
+  }
   // #endregion mergePath
   // #endregion merge
 

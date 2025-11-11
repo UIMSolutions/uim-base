@@ -67,6 +67,8 @@ class DConfigEngine : UIMObject, IConfigEngine {
   }
   // #endregion values
 
+  // #region pathSeparator
+  protected string _separator = ".";
   string pathSeparator() {
     return _separator;
   }
@@ -75,76 +77,107 @@ class DConfigEngine : UIMObject, IConfigEngine {
     _separator = separator;
     return true;
   }
+  // #endregion pathSeparator
 
   // #region path
   // #region has
+  // #region hasAllPath
   bool hasAllPath(string[][] paths) {
     return paths.all!(path => hasKey(path));
   }
+  // #endregion hasAllPath
 
+  // #region hasAnyPath
   bool hasAnyPath(string[][] paths) {
     return paths.any!(path => hasKey(path));
   }
+  // #endregion hasAnyPath
 
+  // #region hasPath
   bool hasPath(string[] path) {
     return hasKey(path.toKey(_separator));
   }
+  // #endregion hasPath
   // #endregion has
 
   // #region set
+  // #region setAllPath
   bool setAllPath(string[][] paths, Json value) {
     return paths.all!(path => setKey(path, value));
   }
+  // #region setAllPath
 
+  // #region setAnyPath
   bool setAnyPath(string[][] paths, Json value) {
     return paths.any!(path => setKey(path, value));
   }
+  // #endregion setAnyPath
 
+  // #region setPath
   bool setPath(string[] path, Json value) {
     return setKey(path.toKey(_separator), value);
   }
+  // #endregion setPath
   // #endregion set
 
   // #region merge
+  // #region mergeAllPath
   bool mergeAllPath(string[][] paths, Json value) {
     return paths.all!(path => mergeKey(path, value));
   }
+  // #region mergeAllPath
 
+  // #region mergeAnyPath
   bool mergeAnyPath(string[][] paths, Json value) {
     return paths.any!(path => mergeKey(path, value));
   }
+  // #endregion mergeAnyPath
 
+  // #region mergePath
   bool mergePath(string[] path, Json value) {
     return mergeKey(path.toKey(_separator), value);
   }
+  // #endregion mergePath
   // #endregion merge
 
   // #region update
+  // #region updateAllPath
   bool updateAllPath(string[][] paths, Json value) {
     return paths.all!(path => updateKey(path, value));
   }
+  // #endregion updateAllPath
 
+  // #region updateAnyPath
   bool updateAnyPath(string[][] paths, Json value) {
     return paths.any!(path => updateKey(path, value));
   }
+  // #endregion updateAnyPath
 
+  // #region updatePath
   bool updatePath(string[] path, Json value) {
     return updateKey(path.toKey(_separator), value);
   }
+  // #endregion updatePath
   // #endregion update
 
   // #region remove
+  // #region removeAllPath
   bool removeAllPath(string[][] paths) {
     return paths.all!(path => removeKey(path));
   }
+  // #endregion removeAllPath
 
+  // #region removeAnyPath
   bool removeAnyPath(string[][] paths) {
     return paths.any!(path => removeKey(path));
   }
+  // #endregion removeAnyPath
 
+  // #region removePath
   bool removePath(string[] path) {
     return removeKey(path.toKey(_separator));
   }
+  // #endregion removePath
   // #endregion remove
   // #endregion paths
 

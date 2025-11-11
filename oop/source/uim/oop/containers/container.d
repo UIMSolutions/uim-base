@@ -12,7 +12,6 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 abstract class DContainer : UIMObject, IContainer {
-  // Default constructor
   this() {
     initialize;
   }
@@ -24,12 +23,13 @@ abstract class DContainer : UIMObject, IContainer {
   }
 
   // Initializes this container with optional JSON data.
-  this(Json[string] initData) {
+  this(Json[string] initData = null) {
     initialize(initData);
   }
 
   // Initializes this container with optional JSON data.
   override bool initialize(Json[string] initData = null) {
+    name("Container");
     if (!super.initialize(initData)) {
       return false;
     }
@@ -39,13 +39,13 @@ abstract class DContainer : UIMObject, IContainer {
   // Returns true if this container contains no elements.
   bool isEmpty() {
     return size == 0;
-  } 
+  }
 
   // Returns the number of elements in this container.*/
   size_t size() {
     return 0;
-  } 
-  
+  }
+
   // Removes all of the elements from this container */
   bool clear() {
     return true;
