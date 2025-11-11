@@ -14,5 +14,9 @@ mixin(Version!"test_uim_oop");
 // An interface for creating objects compatible with Configure.load()
 interface IConfigEngine : IDirectory!Json {
   string[] keys();
-  // #endregion read methods
+
+  // #region entries
+  Json[string] entries();
+  void entries(Json[string] newEntries);
+  // #endregion entries
 }

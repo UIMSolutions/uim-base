@@ -30,18 +30,31 @@ class DCollection(V) : DContainer, ICollection!V {
   // #endregion clear
 
   // #region has 
+  // #region hasAllValue 
   // Returns true if this collection contains the specified element.
-  bool hasAll(V[] values) {
-    return values.all!(value => has(value));
+  bool hasAllValue(V[] values) {
+    return values.all!(value => hasValue(value));
   }
+  // #endregion hasAllValue 
+  
+  // #region hasAnyValue 
   // Returns true if this collection contains any of the specified elements.
-  bool hasAny(V[] values) {
-    return values.any!(value => has(value));
+  bool hasAnyValue(V[] values) {
+    return values.any!(value => hasValue(value));
   }
+  // #endregion hasAnyValue 
+
+  // #region hasValue 
   // Returns true if this collection contains the specified element.
-  bool has(V value) {
-    return _elements.contains(value);
+  bool hasValue(V value) {
+    foreach(k, v; _elements) {
+      if (v == value) {
+        return true;
+      }
+    }
+    return false;
   }
+  // #endregion hasValue 
   // #endregion has
 
   // #region size
@@ -53,17 +66,17 @@ class DCollection(V) : DContainer, ICollection!V {
 
   // #region add
   // Adds all of the elements in the specified array to this collection (optional operation).
-  bool addAll(V[] values) {
-    return values.all!(value => add(value));
+  bool addAllValue(V[] values) {
+    return values.all!(value => addValue(value));
   }
 
   // Adds any of the elements in the specified array to this collection (optional operation).
-  bool addAny(V[] values) {
-    return values.any!(value => add(value));
+  bool addAnyValue(V[] values) {
+    return values.any!(value => addValue(value));
   }
   
   // Adds the specified element to this collection (optional operation).
-  bool add(V value) {
+  bool addValue(V value) {
     _elements ~= value;
     return true;
   }
@@ -71,18 +84,19 @@ class DCollection(V) : DContainer, ICollection!V {
 
   // #region remove
   // Removes all of the elements from this collection (optional operation).
-  bool removeAll(V[] values) {
-    return values.any!(value => remove(value));
+  bool removeAllValue(V[] values) {
+    return values.any!(value => removeValue(value));
   }
 
   // Removes any of the elements from this collection (optional operation).
-  bool removeAny(V[] values) {
-    return values.any!(value => remove(value));
+  bool removeAnyValue(V[] values) {
+    return values.any!(value => removeValue(value));
   }
 
   // Removes the specified element from this collection (optional operation).
-  bool remove(V value) {
-    return _elements.remove(value);
+  bool removeValue(V value) {
+    _elements.remove(value);
+    return true;
   }
   // #endregion remove
   // #endregion keys

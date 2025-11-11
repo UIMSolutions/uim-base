@@ -94,6 +94,10 @@ class DConfigEngine : UIMObject, IConfigEngine {
   // #endregion has
 
   // #region get
+  string[][] paths() {  
+    return null;
+  }
+
   // #region values
   Json[] values(string[][] paths) {
     return paths.map!(path => value(path)).array;
@@ -204,7 +208,7 @@ class DConfigEngine : UIMObject, IConfigEngine {
 
   // #region hasKey
   bool hasKey(string key) {
-    return hasKey(key.correctedKey);
+    return hasKey(key.correctKey);
   }
   // #endregion hasKey
   // #endregion has
@@ -311,7 +315,9 @@ class DConfigEngine : UIMObject, IConfigEngine {
   // #endregion values
 
   // #region value
-  abstract Json value(string key);
+  Json value(string key) {
+    return Json(null);
+  }
   // #endregion value
   // #endregion get
 

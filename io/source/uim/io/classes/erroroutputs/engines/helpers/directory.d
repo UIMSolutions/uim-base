@@ -10,12 +10,12 @@ import uim.io;
 mixin(Version!"test_uim_io");
 @safe:
 
-class DErrorOutputEngineDirectories : DDirectory!DErrorOutputEngine {
+class DErrorOutputEngineDirectory : DDirectory!DErrorOutputEngine {
   mixin(DirectoryThis!("ErrorOutputEngine"));
 }
 mixin(DirectoryCalls!("ErrorOutputEngine"));
 
 unittest {
-  auto directories = ErrorOutputEngineDirectories();
-  assert(testDirectory(directories, "ErrorOutputEngine"), "ErrorOutputEngineDirectories failed");
+  auto directory = ErrorOutputEngineDirectory();
+  assert(testDirectory(directory, "ErrorOutputEngine"), "ErrorOutputEngineDirectory failed");
 }

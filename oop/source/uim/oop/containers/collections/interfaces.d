@@ -14,29 +14,29 @@ mixin(Version!"test_uim_oop");
 interface ICollection(V) : IContainer {
   // #region has 
   // Returns true if this collection contains the specified element.
-  bool hasAll(V[] values);
+  bool hasAllValue(V[] values);
   // Returns true if this collection contains any of the specified elements.
-  bool hasAny(V[] values);
+  bool hasAnyValue(V[] values);
   // Returns true if this collection contains the specified element.
-  bool has(V value);
+  bool hasValue(V value);
   // #endregion has
 
   // #region add
   // Adds all of the elements in the specified array to this collection (optional operation).
-  bool addAll(V[] values);
+  bool addAllValue(V[] values);
   // Adds any of the elements in the specified array to this collection (optional operation).
-  bool addAny(V[] values);
+  bool addAnyValue(V[] values);
   // Adds the specified element to this collection (optional operation).
-  bool add(V value);
+  bool addValue(V value);
   // #endregion add
 
   // #region remove
   // Removes all of the elements from this collection (optional operation).
-  bool removeAll(V[] values);
+  bool removeAllValue(V[] values);
   // Removes any of the elements from this collection (optional operation).
-  bool removeAny(V[] values);
+  bool removeAnyValue(V[] values);
   // Removes the specified element from this collection (optional operation).
-  bool remove(V value);
+  bool removeValue(V value);
   // #endregion remove
 
 

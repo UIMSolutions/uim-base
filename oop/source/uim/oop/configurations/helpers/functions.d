@@ -15,5 +15,5 @@ bool isConfiguration(Object obj) {
   if (obj is null) {
     return false;
   }
-  return cast(IConfiguration)obj;
+  return cast(IConfiguration)obj !is null;
 }
