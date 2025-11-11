@@ -12,21 +12,25 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 class DStringMap : DMap!(string, string) {
-  this() {}
+    this() {
+    }
 }
-auto StringMap() { return new DStringMap; }
+
+auto StringMap() {
+    return new DStringMap;
+}
 
 unittest {
     auto map = StringMap;
-    
+
     map["key1"] = "value1";
     map["key2"] = "value2";
     assert(map.length == 2);
-/*     assert(map["key1"] == "value1");
+    /*     assert(map["key1"] == "value1");
     assert(map["key2"] == "value2"); */
-    
+
     map.removeMany(["key1"]);
     assert(map.length == 1);
-/*     assert(!map.containsKey("key1"));
+    /*     assert(!map.containsKey("key1"));
     assert(map.containsKey("key2")); */
 }

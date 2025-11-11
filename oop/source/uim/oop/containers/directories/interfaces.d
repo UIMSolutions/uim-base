@@ -14,7 +14,7 @@ mixin(Version!"test_uim_oop");
 // Interface for directories maps.
 interface IDirectory(V = UIMObject) : IMap!(string, V) {
   // Gets the path separator used in the directories.
-  bool pathSeparator(string separator);
+  void pathSeparator(string separator);
 
   // Sets the path separator used in the directories.
   string pathSeparator();

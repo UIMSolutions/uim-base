@@ -19,7 +19,7 @@ abstract class DContainer : UIMObject, IContainer {
   // Initializes this container with optional JSON data.
   this(string name, Json[string] initData = null) {
     initialize(initData);
-    name(name);
+    this.name(name);
   }
 
   // Initializes this container with optional JSON data.

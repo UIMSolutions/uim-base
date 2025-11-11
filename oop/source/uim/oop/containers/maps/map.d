@@ -58,9 +58,17 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
 
   // #region hasPath
   // Check if a specific path is present in the map
-  abstract bool hasPath(K[] path);
+  bool hasPath(K[] path) {
+    return false;
+  }
   // #endregion hasPath
   // #endregion has
+
+  // #region get
+  K[][] paths() {
+    return null;
+  }
+  // #endregion get
 
   // #region set
   // #region setAllPath
@@ -79,7 +87,9 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
 
   // #region setPath
   // Sets a specific item in the map.
-  abstract bool setPath(K[] path, V value);
+  bool setPath(K[] path, V value) {
+    return false;
+  }
   // #endregion setPath
   // #endregion set
 
@@ -133,19 +143,21 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
   // #region removeAllPath
   // Remove multiple paths from the map
   bool removeAllPath(K[][] paths) {
-    paths.all!(path => removePath(path));
+    return paths.all!(path => removePath(path));
   }
   // #endregion removeAllPath
 
   // #region removeAnyPath
   bool removeAnyPath(K[][] paths) {
-    paths.any!(path => removePath(path));
+    return paths.any!(path => removePath(path));
   }
   // #endregion removeAnyPath
 
   // #region removePath
   // Remove a single path from the map
-  abstract bool removePath(K[] path);
+  bool removePath(K[] path) {
+    return false;
+  }
   // #endregion removePath
   // #endregion remove
   // #endregion paths
@@ -495,7 +507,9 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
   // #endregion values
 
   // #region value
-  abstract V value(K[] path);
+  V value(K[] path) {
+    return Null!V;
+  }
 
   V value(K key) {
     return key in _entries ? _entries[key] : Null!V;

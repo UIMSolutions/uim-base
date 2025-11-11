@@ -107,7 +107,7 @@ class DRegistry(V = UIMObject) : UIMObject, IRegistry!V {
   // #endregion unregisterAny
 
   // #region unregister
-  bool unregister(string[] paths) {
+  bool unregister(string[] path) {
     return unregister(path.toKey(_separator));
   }
   // #endregion unregister

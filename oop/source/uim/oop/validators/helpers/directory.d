@@ -11,9 +11,10 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DValidatorDirectory : DDirectory!IValidator {  
-    mixin(DirectoryThis!("Validator")); 
+class DValidatorDirectory : DDirectory!IValidator {
+  mixin(DirectoryThis!("Validator"));
 }
+
 mixin(DirectoryCalls!("Validator"));
 
 unittest {

@@ -33,7 +33,7 @@ class UIMObject : IObject {
     objId(randomUUID);
     name("Object");
 
-    auto config = MemoryConfiguration;
+    auto config = new DConfiguration;
     configuration(config);
     configuration.entries(initData is null ? new Json[string] : initData);
 
@@ -49,8 +49,8 @@ class UIMObject : IObject {
 
   mixin(HasMethods!("Members", "Member", "string"));
 
-  bool hasMember(string name) {
-    return memberNames.hasValue(name);
+  bool hasMember(string checkName) {
+    return memberNames.hasValue(checkName);
   }
 
   /*   void opIndexAssign(T)(T value, string name) {

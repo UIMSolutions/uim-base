@@ -35,7 +35,7 @@ class DTransactionStrategy : IFixtureStrategy {
 
     // Hook method
     bool initialize(Json[string] initData = null) {
-        configuration(MemoryConfiguration);
+        configuration(new DConfiguration);
         configuration.entries(initData);
 
         return true;

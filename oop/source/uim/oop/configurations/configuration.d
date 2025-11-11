@@ -148,7 +148,7 @@ class DConfiguration : IConfiguration {
   }
 
   unittest {
-    auto config = MemoryConfiguration;
+    auto config = new DConfiguration;
 
     // TODO
   }
@@ -204,7 +204,7 @@ class DConfiguration : IConfiguration {
   }
 
   unittest {
-    auto config = MemoryConfiguration;
+    auto config = new DConfiguration;
 
     /*         Json[string] values = ["a": Json(1), "b": Json(2), "c": Json(3)];
         config.set("a", true);
@@ -272,7 +272,7 @@ class DConfiguration : IConfiguration {
   abstract Json getEntry(string key);
 
   unittest {
-    auto config = MemoryConfiguration;
+    auto config = new DConfiguration;
     // TODO
   }
   // #endregion get
@@ -291,7 +291,7 @@ class DConfiguration : IConfiguration {
   }
 
   unittest {
-    auto config = MemoryConfiguration;
+    auto config = new DConfiguration;
     // TODO
   }
   // #endregion shift
@@ -316,7 +316,7 @@ class DConfiguration : IConfiguration {
 
   unittest {
     // Create a MemoryConfiguration instance (assuming MemoryConfiguration is a concrete implementation)
-    auto config = MemoryConfiguration();
+    auto config = new DConfiguration();
 
     // Prepare Json[] value
     Json[] arr = [Json(1), Json(2), Json(3)];
@@ -392,7 +392,7 @@ class DConfiguration : IConfiguration {
   abstract IConfiguration setEntry(string key, Json value);
 
   unittest {
-    auto config = MemoryConfiguration;
+    auto config = new DConfiguration;
 
     // TODO 
   }
@@ -478,7 +478,7 @@ class DConfiguration : IConfiguration {
   }
 
   unittest {
-    auto config = MemoryConfiguration;
+    auto config = new DConfiguration;
 
     // TODO 
   }
@@ -495,7 +495,7 @@ class DConfiguration : IConfiguration {
   abstract IConfiguration removeEntry(string key);
 
   unittest {
-    auto config = MemoryConfiguration;
+    auto config = new DConfiguration;
     // TODO
   }
   // #endregion remove
@@ -504,7 +504,7 @@ class DConfiguration : IConfiguration {
   abstract IConfiguration clone();
 
   unittest {
-    auto config = MemoryConfiguration;
+    auto config = new DConfiguration;
     // TODO
   }
   // #endregion clone

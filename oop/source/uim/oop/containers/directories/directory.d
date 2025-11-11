@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.containers.directory.directory;
+module uim.oop.containers.directories.directory;
 
 import uim.oop;
 
@@ -23,7 +23,7 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   }
 
   // Sets the path separator used in the directory.
-  bool pathSeparator(string separator) {
+  void pathSeparator(string separator) {
     _pathSeparator = separator;
   }
   // #endregion pathSeparator
@@ -42,7 +42,7 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   // #region paths
   // Gets all paths in the map, sorted according to the specified order.
   override string[][] paths() {
-    return _elements.keys.map!(key => key.split(_pathSeparator)).array;
+    return _entries.keys.map!(key => key.split(_pathSeparator)).array;
   }
   // #endregion paths
   // #endregion get  
@@ -51,7 +51,7 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   // #region setPath
   // Sets a specific item in the map.
   override bool setPath(string[] path, V value) {
-    return set(path.toKey(_pathSeparator), value);
+    return setKey(path.toKey(_pathSeparator), value);
   }
   // #endregion setPath
   // #endregion set
@@ -107,7 +107,8 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   // #region keys
   // #region get  
   override string[] keys() {
-    return _elements.keys.map!(key => key.correctedKey).array;
+    // return // _elements.keys.map!(key => key.correctKey).array;
+    return null;
   }
   // #endregion get  
 
@@ -115,30 +116,21 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   // #region setKey
   // Sets a specific item in the map.
   override bool setKey(string key, V value) {
-    return set(key.correctedKey, value);
+    _entries[key.correctKey] = value;
+    return true;
   }
   // #endregion setKey
   // #endregion set  
   // #endregion keys
 
-  // #region values
   // #region get
+  // #region values
   override V value(string[] path) {
     return value(path.toKey(_pathSeparator));
   }
 
   override V value(string key) {
-    return key.correctedKey in _entries ? _entries[key.correctedKey] : Null!V;
-  }
-
-  // Gets the entire map as a map of paths to items.
-  V[string] valuesByPath(string[][] paths) {
-    V[string] foundItems;
-    paths
-      .filter!(path => hasPath(path))
-      .each!(path => foundItems[path.toKey(_pathSeparator)] = itemByPath(path));
-
-    return foundItems;
+    return key.correctKey in _entries ? _entries[key.correctKey] : Null!V;
   }
   // #endregion get 
   // #endregion values

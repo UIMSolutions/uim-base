@@ -10,5 +10,5 @@ bool isValidator(Object obj) {
   if (obj is null) {
     return false;
   }
-  return cast(IValidator)obj;
+  return cast(IValidator)obj !is null;
 }

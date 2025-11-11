@@ -29,7 +29,7 @@ class DFactory(V = UIMObject) : UIMObject, IFactory!V {
     }
 
     if (initData.hasKey("separator")) {
-      _separator = initData.getstring("separator");
+      _separator = initData.getString("separator");
     }
 
     return true;
@@ -110,11 +110,6 @@ class DFactory(V = UIMObject) : UIMObject, IFactory!V {
     auto keys = _workers.keys;
     if (keys is null) {
       return null;
-    }
-    if (sortorder == ASCENDING) {
-      keys.sort!("a < b");
-    } else if (sortorder == DESCENDING) {
-      keys.sort!("a > b");
     }
     return keys;
   }

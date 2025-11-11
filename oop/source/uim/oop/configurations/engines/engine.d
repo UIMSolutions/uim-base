@@ -66,9 +66,8 @@ class DConfigEngine : UIMObject, IConfigEngine {
     return _separator;
   }
 
-  bool pathSeparator(string separator) {
+  void pathSeparator(string separator) {
     _separator = separator;
-    return true;
   }
   // #endregion pathSeparator
 

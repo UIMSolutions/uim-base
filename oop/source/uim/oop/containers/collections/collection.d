@@ -47,11 +47,11 @@ class DCollection(V) : DContainer, ICollection!V {
   // #region hasValue 
   // Returns true if this collection contains the specified element.
   bool hasValue(V value) {
-    foreach(k, v; _elements) {
+    /* foreach(v; elements) {
       if (v == value) {
         return true;
       }
-    }
+    } */ 
     return false;
   }
   // #endregion hasValue 
@@ -95,7 +95,7 @@ class DCollection(V) : DContainer, ICollection!V {
 
   // Removes the specified element from this collection (optional operation).
   bool removeValue(V value) {
-    _elements.remove(value);
+    // _elements.remove(value);
     return true;
   }
   // #endregion remove
@@ -106,17 +106,19 @@ class DCollection(V) : DContainer, ICollection!V {
     if (other is null || size != other.size)
       return false;
 
-    return hasAll(other.toArray());
+    return hasAllValue(other.toArray());
   }
 
   // #region toArray
   // Returns an array containing all of the elements in this collection.
   V[] toArray() {
-    return _elements.byValue.array;
+    // return _elements.byValue.array;
+    return null;
   }
 
   V[] toArray(V[] values) {
-    return values.filter!(value => has(value)).array;
+    // return values.filter!(value => hasValue(value)).array;
+    return null;
   } 
   // #endregion toArray
 }
