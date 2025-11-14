@@ -50,7 +50,7 @@ class UIMObject : IObject {
   mixin(HasMethods!("Members", "Member", "string"));
 
   bool hasMember(string checkName) {
-    return memberNames.hasValue(checkName);
+    return memberNames.any!(name => name == checkName);
   }
 
   /*   void opIndexAssign(T)(T value, string name) {

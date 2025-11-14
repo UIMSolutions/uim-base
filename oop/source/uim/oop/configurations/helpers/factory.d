@@ -23,37 +23,37 @@ unittest {
 }
 
 static this() {
-  ConfigurationFactory.set("memory", (Json[string] options = null) @safe {
+  ConfigurationFactory.setKey("memory", (Json[string] options = null) @safe {
     auto config = new DConfiguration();
     return config.engine(ConfigEngineFactory.create("memory"));
   });
 
-  ConfigurationFactory.set("file", (Json[string] options = null) @safe {
+  ConfigurationFactory.setKey("file", (Json[string] options = null) @safe {
     auto config = new DConfiguration();
     return config.engine(ConfigEngineFactory.create("file"));
   });
 
-  ConfigurationFactory.set("ini", (Json[string] options = null) @safe {
+  ConfigurationFactory.setKey("ini", (Json[string] options = null) @safe {
     auto config = new DConfiguration();
     return config.engine(ConfigEngineFactory.create("ini"));
   });
 
-  ConfigurationFactory.set("redis", (Json[string] options = null) @safe {
+  ConfigurationFactory.setKey("redis", (Json[string] options = null) @safe {
     auto config = new DConfiguration();
     return config.engine(ConfigEngineFactory.create("redis"));
   });
 
-  ConfigurationFactory.set("rest", (Json[string] options = null) @safe {
+  ConfigurationFactory.setKey("rest", (Json[string] options = null) @safe {
     auto config = new DConfiguration();
     return config.engine(ConfigEngineFactory.create("rest"));
   });
 
-  ConfigurationFactory.set("xml", (Json[string] options = null) @safe {
+  ConfigurationFactory.setKey("xml", (Json[string] options = null) @safe {
     auto config = new DConfiguration();
     return config.engine(ConfigEngineFactory.create("xml"));
   });
 
-  ConfigurationFactory.set("yaml", (Json[string] options = null) @safe {
+  ConfigurationFactory.setKey("yaml", (Json[string] options = null) @safe {
     auto config = new DConfiguration();
     return config.engine(ConfigEngineFactory.create("yaml"));
   });

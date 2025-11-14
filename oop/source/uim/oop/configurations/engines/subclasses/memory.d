@@ -105,7 +105,7 @@ class DMemoryConfigEngine : DConfigEngine, IConfigEngine {
   // #endregion removeKey
 
   // #region clone
-  IConfigEngine clone() {
+  override IConfigEngine clone() {
     auto engine = new DMemoryConfigEngine();
     engine.entries(entries());
     return engine;

@@ -508,11 +508,19 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
 
   // #region value
   V value(K[] path) {
-    return Null!V;
+    static if (is(V == Json)) {
+      return Json(null);
+    } else {
+      return Null!V;
+    }
   }
 
   V value(K key) {
-    return key in _entries ? _entries[key] : Null!V;
+    static if (is(V == Json)) {
+      return key in _entries ? _entries[key] : Json(null);
+    } else {
+      return key in _entries ? _entries[key] : Null!V;
+    }
   }
   ///
   unittest {
@@ -583,10 +591,10 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
   // Remove a specific value from the map
   bool removeValue(V value) {
     foreach (k, v; _entries) {
-      if (v == value) {
+      /* if (v == value) {
         _entries.remove(k);
         return true; // Remove only the first occurrence
-      }
+      } */
     }
     return false; // Value not found
   }

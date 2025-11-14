@@ -7,7 +7,8 @@ module consoles.uim.io.classes.consoles;
 
 public { // Main
     import uim.io.classes.consoles.console;
-    import uim.io.classes.consoles.collection;
+    import uim.io.classes.consoles.interfaces;
+    import uim.io.classes.consoles.helpers;
 }
 
 public {

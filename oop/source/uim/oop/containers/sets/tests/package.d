@@ -6,5 +6,6 @@
 module uim.oop.containers.sets.tests;
 
 public {
+  import uim.oop.containers.sets.tests.mixins;
   import uim.oop.containers.sets.tests.test;
 }
