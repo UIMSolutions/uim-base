@@ -8,15 +8,15 @@ module uim.io.classes.consoles.helpers.directory;
 mixin(Version!"test_uim_io");
 
 import uim.io;
+
 @safe:
 
 class DConsoleDirectory : DDirectory!DConsole {
+  mixin(DirectoryThis!"Console");
 }
-auto ConsoleDirectory() {
-    return new DConsoleDirectory;
-}
+mixin(DirectoryCalls!"Console");
 
 unittest {
-    auto directory = ConsoleDirectory();
-    assert(directory !is null);
+  auto directory = ConsoleDirectory();
+  assert(directory !is null);
 }

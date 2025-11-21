@@ -5,3 +5,6 @@
 *****************************************************************************************************************/
 module uim.io.classes.consoles.helpers.functions;
 
+bool isConsole(object obj) {
+  return cast(IConsole) obj !is null;
+}

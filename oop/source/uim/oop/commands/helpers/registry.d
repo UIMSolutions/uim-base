@@ -11,6 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
+// Registry for Commands
 class DCommandRegistry : DRegistry!DCommand {
   mixin(RegistryThis!("Command"));
 }
@@ -19,7 +20,5 @@ mixin(RegistryCalls!("Command"));
 
 unittest {
   auto registry = new DCommandRegistry();
-  assert(registry !is null, "Creation of DCommandRegistry failed");
-
   assert(testRegistry(new DCommandRegistry, "DCommandRegistry"), "Test of DCommandRegistry failed!");
 }

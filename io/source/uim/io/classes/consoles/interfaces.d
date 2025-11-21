@@ -10,5 +10,6 @@ import uim.io;
 @safe:
 
 interface IConsole : IObject {
-
+  IConsole output(IOutput newOutput); // Setter for Output
+  IOutput output();                   // Getter for Output
 }

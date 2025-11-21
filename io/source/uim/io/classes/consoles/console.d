@@ -61,7 +61,7 @@ class DConsole : UIMObject, IConsole {
     return _output;
   }
 
-  DConsole output(IOutput newOutput) {
+  IConsole output(IOutput newOutput) {
     _output = newOutput;
     return this;
   }

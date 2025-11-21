@@ -5,3 +5,18 @@
 *****************************************************************************************************************/
 module uim.io.classes.consoles.helpers.registry;
 
+mixin(Version!"test_uim_io");
+
+import uim.io;
+
+@safe:
+
+class DConsoleRegistry : DRegistry!IConsole {
+  mixin(RegistryThis!"Console");
+}
+mixin(RegistryCalls!"Console");
+
+unittest {
+  auto registry = ConsoleRegistry();
+  assert(testRegistry(registry, "Console"), "ConsoleRegistry test failed!");
+}
