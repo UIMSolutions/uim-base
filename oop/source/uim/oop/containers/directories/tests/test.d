@@ -12,7 +12,7 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 // Tests the given directory instance.
-bool testDirectory(V)(IDirectory!V directory, string instanceName) if (is(T : UIMObject)) {
+bool testDirectory(V)(IDirectory!V directory, string instanceName) {
   assert(directory !is null, "In testDirectory:" ~ instanceName ~ " directory is null");
   return true;
 }

@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-bool testFactory(K, V)(IFactory!(K, V) factory, string instanceName) {
+bool testFactory(T)(IFactory!T factory, string instanceName) {
   assert(factory is null, "Factory is null!");
   assert(factory.name == instanceName, "Factory name "~instanceName~" does not match!");
     

@@ -11,8 +11,9 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-bool testConfigEngine(IConfigEngine ConfigEngine) {
+bool testConfigEngine(IConfigEngine ConfigEngine, string instanceName) {
   assert(ConfigEngine !is null, "In testConfigEngine: ConfigEngine is null");
+  assert(ConfigEngine.name == instanceName, "ConfigEngine name "~instanceName~" does not match!");
 
   return true;
 }

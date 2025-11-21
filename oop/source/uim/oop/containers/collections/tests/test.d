@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-bool testCollection(T)(ICollection!T collection, string instanceName) if (is(T : UIMObject)) {
+bool testCollection(T)(ICollection!T collection, string instanceName) {
   assert(collection !is null, instanceName ~ " collection is null");
   
   return true;

@@ -6,8 +6,5 @@
 module uim.io.tests;
 
 public {
-    import uim.io.tests.error;
-    import uim.io.tests.input;
-    // import uim.io.tests.output;
 }
 

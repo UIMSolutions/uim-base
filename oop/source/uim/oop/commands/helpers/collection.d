@@ -19,5 +19,5 @@ mixin(CollectionCalls!("Command"));
 
 unittest {
   auto collection = new DCommandCollection();
-  assert(testCollection(new DCommandCollection, "CommandCollection"), "Test of DCommandCollection failed!");
+  assert(testCollection(collection, "CommandCollection"), "Test of DCommandCollection failed!");
 }
