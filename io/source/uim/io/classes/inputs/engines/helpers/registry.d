@@ -18,7 +18,5 @@ mixin(RegistryCalls!"InputEngine");
 
 unittest {
   auto registry = new DInputEngineRegistry();
-  assert(registry !is null, "Creation of InputEngineRegistry failed!");
-
   assert(testRegistry(registry, "InputEngine"), "Test for InputEngineRegistry failed!");
 }

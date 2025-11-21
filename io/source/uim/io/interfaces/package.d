@@ -9,7 +9,6 @@ public {
   import uim.io.interfaces.collectionaware;
   import uim.io.interfaces.command;
   import uim.io.interfaces.commandcollectionaware;
-  import uim.io.interfaces.commandfactory;
 
   // import uim.io.interfaces.erroroutput;
   import uim.io.interfaces.optionparser;

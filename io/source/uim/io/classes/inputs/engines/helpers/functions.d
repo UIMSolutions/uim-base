@@ -5,3 +5,15 @@
 *****************************************************************************************************************/
 module uim.io.classes.inputs.engines.helpers.functions;
 
+import uim.io;
+
+mixin(Version!"test_uim_io");
+
+@safe:
+
+bool isInputEngine(Object obj) {
+  if (obj is null) {
+    return false;
+  }
+  return cast(IInputEngine) obj !is null;
+}

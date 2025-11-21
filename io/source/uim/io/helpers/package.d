@@ -7,7 +7,6 @@ module consoles.uim.io.helpers;
 
 public {
     import uim.io.helpers.command;
-    import uim.io.helpers.console;
     import uim.io.helpers.registry;
 }
 
