@@ -11,8 +11,10 @@ import uim.io;
 
 @safe:
 
-bool testOutputEngine(IOutputEngine engine) {
+bool testOutputEngine(IOutputEngine engine), string instanceName) {
   assert(engine !is null, "In testOutputEngine: engine is null");
+  assert(instanceName !is null && instanceName.length > 0, "Instance name is null or empty");
+  assert(engine.name == instanceName, "In testOutputEngine: engine name "~instanceName~" does not match!");
 
   // Setup: initialize static members for styles
   engine.style("warning", new DMarkupOutputStyle());

@@ -29,7 +29,7 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
     return _entries.dup;
   }
 
-  @property void entries(V[K] newEntries) {
+  void entries(V[K] newEntries) {
     _entries = newEntries.dup;
   }
   // #endregion entries

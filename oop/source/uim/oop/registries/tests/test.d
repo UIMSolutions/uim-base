@@ -11,10 +11,10 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-bool testRegistry(V)(IRegistry!V registry, string name) {
-  if (registry is null) {
-    return false;
-  }
+bool testRegistry(V)(IRegistry!V registry, string instanceName) {
+  assert(registry !is null, "In testRegistry: registry is null");
+  assert(instanceName !is null && instanceName.length > 0, "Instance name is null or empty");
+  assert(registry.name == instanceName, "In testRegistry: registry name "~instanceName~" does not match!");
   /* 
   if (registry.count != 0) {
     return false;

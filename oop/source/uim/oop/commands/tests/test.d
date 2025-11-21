@@ -11,8 +11,10 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-bool testCommand(ICommand command) {
+bool testCommand(ICommand command, string instanceName) {
   assert(command !is null, "In testCommand: command is null");
+  assert(instanceName !is null && instanceName.length > 0, "Instance name is null or empty");
+  assert(command.name == instanceName, "In testCommand: command name "~instanceName~" does not match!");
 
   return true;
 }

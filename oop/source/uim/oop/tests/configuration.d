@@ -12,7 +12,10 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 // Test function for IConfiguration
-bool testConfiguration(IConfiguration configuration) {
+bool testConfiguration(IConfiguration configuration, string instanceName) {
+    assert(configuration !is null, "In testConfiguration: configuration is null");
+    assert(instanceName !is null && instanceName.length > 0, "Instance name is null or empty");
+    assert(configuration.name == instanceName, "In testConfiguration: configuration name "~instanceName~" does not match!");        
 /*     writeln("Testing configuration: ", configuration.name);
 
     writeln("Init Entries...");

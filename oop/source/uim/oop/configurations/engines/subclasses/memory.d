@@ -116,6 +116,6 @@ class DMemoryConfigEngine : DConfigEngine, IConfigEngine {
 mixin(ConfigEngineCalls!("Memory"));
 
 unittest {
-  auto configuration = MemoryConfigEngine;
-  assert(testConfiguration(MemoryConfigEngine, "Memory"), "MemoryConfigEngine test failed");
+  auto engine = MemoryConfigEngine;
+  assert(testConfigEngine(engine, "Memory"), "MemoryConfigEngine test failed");
 }

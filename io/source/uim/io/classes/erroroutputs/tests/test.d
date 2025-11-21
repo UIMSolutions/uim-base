@@ -10,8 +10,10 @@ import uim.io;
 mixin(Version!"test_uim_io");
 @safe:
 
-bool testErrorOutput(IErrorOutput output) {
+bool testErrorOutput(IErrorOutput output, string instanceName) {
   assert(output !is null, "In testErrorOutput: output is null");
+  assert(instanceName !is null && instanceName.length > 0, "Instance name is null or empty");
+  assert(output.name == instanceName, "In testErrorOutput: output name "~instanceName~" does not match!");
 
   // assert(output.engine("default") !is null, "In testErrorOutput: default engine is null");
 

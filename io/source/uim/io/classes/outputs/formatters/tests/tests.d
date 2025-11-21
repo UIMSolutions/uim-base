@@ -10,7 +10,9 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-bool testOutputFormatter(DOutputFormatter formatter) {
+bool testOutputFormatter(DOutputFormatter formatter, string instanceName) {
+    assert(formatter !is null, "In testOutputFormatter: formatter is null");
+    assert(formatter.name == instanceName, "In testOutputFormatter: formatter name "~instanceName~" does not match!");
     // Test the formatter's initialization
     if (!formatter.initialize()) {
         return false;

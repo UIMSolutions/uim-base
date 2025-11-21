@@ -11,10 +11,10 @@ import uim.io;
 
 @safe:
 
-bool testInputEngine(DInputEngine engine, string typeName) {
-  assert(engine !is null, typeName ~ " engine is null");
-  assert(typeName !is null && typeName.length > 0, "Type name is null or empty");
-  assert(engine.name == typeName, typeName ~ " engine type name mismatch");
+bool testInputEngine(DInputEngine engine, string instanceName) {
+  assert(engine !is null, instanceName ~ " engine is null");
+  assert(instanceName !is null && instanceName.length > 0, "Instance name is null or empty");
+  assert(engine.name == instanceName, instanceName ~ " engine type name mismatch");
 
   return true;
 }
