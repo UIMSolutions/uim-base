@@ -14,5 +14,5 @@ bool isOutput(Object obj) {
   if (obj is null) {
     return false;
   }
-  return cast(IOutput)formatter;
+  return cast(IOutput)obj !is null;
 }

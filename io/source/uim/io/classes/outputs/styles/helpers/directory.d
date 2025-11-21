@@ -4,7 +4,6 @@
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
 module uim.io.classes.outputs.styles.helpers.directory;
-
 import uim.io;
 
 mixin(Version!"test_uim_io");

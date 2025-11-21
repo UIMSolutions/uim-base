@@ -205,7 +205,7 @@ class DConsoleOptionParser : UIMObject, IConsoleOptionParser {
   }
 
   // Returns an array representation of this parser.
-  Json[string] toArray() pure{
+  Json[string] toArray() {
     return [
       /* "command": Json(_command), */
       /* "arguments": Json(_arguments), */

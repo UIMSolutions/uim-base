@@ -6,12 +6,11 @@
 module consoles.uim.io.classes.consoles;
 
 public { // Main
-    import uim.io.classes.consoles.console;
-    import uim.io.classes.consoles.interfaces;
-    import uim.io.classes.consoles.helpers;
+  import uim.io.classes.consoles.console;
+  import uim.io.classes.consoles.interfaces;
+  import uim.io.classes.consoles.helpers;
 }
 
 public {
-    import uim.io.classes.consoles.optionparser;
+  import uim.io.classes.consoles.optionparser;
 }
-

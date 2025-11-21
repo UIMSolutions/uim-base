@@ -5,6 +5,13 @@
 *****************************************************************************************************************/
 module uim.io.classes.consoles.helpers.functions;
 
-bool isConsole(object obj) {
-  return cast(IConsole) obj !is null;
+mixin(Version!"test_uim_io");
+
+import uim.io;
+
+@safe:
+
+bool isConsole(Object obj) {
+  return obj is null
+    ? false : cast(IConsole)obj !is null;
 }
