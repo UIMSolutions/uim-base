@@ -5,12 +5,12 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DInputCollection : DCollection!IInput {
-  mixin(CollectionThis!("Input"));
+class DInputSet : DSet!IInput {
+  mixin(SetThis!("Input"));
 }
-mixin(CollectionCalls!("Input"));
+mixin(SetCalls!("Input"));
 
 unittest {
-  auto collection = InputCollection;
-  assert(testCollection(collection, "Input"), "Test InputCollection failed");
+  auto set = InputSet;
+  assert(testSet(set, "Input"), "Test InputSet failed");
 }

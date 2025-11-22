@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.parsers.helpers.collection;
+module uim.oop.parsers.helpers.list;
 
 import uim.oop;
 
@@ -11,12 +11,12 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DParserCollection : DCollection!IParser {
-  mixin(CollectionThis!("Parser"));
+class DParserList : DList!IParser {
+  mixin(ListThis!("Parser"));
 }
-mixin(CollectionCalls!("Parser"));
+mixin(ListCalls!("Parser"));
 
 unittest {
-  auto collection = ParserCollection;
-  assert(testCollection(collection, "Parser"), "Test ParserCollection failed");
+  auto list = ParserList;
+  assert(testList(list, "Parser"), "Test ParserList failed");
 }
