@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.configurations.engines.helpers.collection;
+module uim.oop.configurations.engines.helpers.list;
 
 import uim.oop;
 
@@ -11,13 +11,13 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DConfigEngineCollection : DCollection!IConfigEngine {
-  mixin(CollectionThis!("ConfigEngine"));
+class DConfigEngineList : DList!IConfigEngine {
+  mixin(ListThis!("ConfigEngine"));
 }
 
-mixin(CollectionCalls!("ConfigEngine"));
+mixin(ListCalls!("ConfigEngine"));
 
 unittest {
-  auto collection = new DConfigEngineCollection();
-  assert(testCollection(new DConfigEngineCollection, "ConfigEngineCollection"), "Test of DConfigEngineCollection failed!");
+  auto list = new DConfigEngineList();
+  assert(testList(new DConfigEngineList, "ConfigEngineList"), "Test of DConfigEngineList failed!");
 }

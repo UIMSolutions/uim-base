@@ -3,14 +3,21 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.io.classes.erroroutputs.helpers;
+module uim.oop.configurations.engines.helpers.set;
 
-public {
-  import uim.io.classes.erroroutputs.helpers.directory;
-  import uim.io.classes.erroroutputs.helpers.factory;
-  import uim.io.classes.erroroutputs.helpers.functions;
-  import uim.io.classes.erroroutputs.helpers.list;
-  import uim.io.classes.erroroutputs.helpers.mixins;
-  import uim.io.classes.erroroutputs.helpers.registry;
-  import uim.io.classes.erroroutputs.helpers.set;
+import uim.oop;
+
+mixin(Version!"test_uim_oop");
+
+@safe:
+
+class DConfigEngineSet : DSet!IConfigEngine {
+  mixin(SetThis!("ConfigEngine"));
+}
+
+mixin(SetCalls!("ConfigEngine"));
+
+unittest {
+  auto set = new DConfigEngineSet();
+  assert(testSet(new DConfigEngineSet, "ConfigEngineSet"), "Test of DConfigEngineSet failed!");
 }
