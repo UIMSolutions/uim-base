@@ -3,14 +3,19 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.commands.helpers;
+module uim.io.classes.erroroutputs.engines.helpers.list;
 
-public {
-  import uim.oop.commands.helpers.directory;
-  import uim.oop.commands.helpers.factory;
-  import uim.oop.commands.helpers.functions;
-  import uim.oop.commands.helpers.list;
-  import uim.oop.commands.helpers.mixins;
-  import uim.oop.commands.helpers.registry;
-  import uim.oop.commands.helpers.set;
+import uim.io;
+
+mixin(Version!"test_uim_io");
+@safe:
+
+class DErrorOutputEngineList : DList!DErrorOutputEngine {
+  mixin(ListThis!("ErrorOutputEngine"));
+}
+mixin(ListCalls!("ErrorOutputEngine"));
+
+unittest {
+  auto list = ErrorOutputEngineList();
+  assert(testList(list, "ErrorOutputEngine"), "ErrorOutputEngineList failed");
 }

@@ -3,21 +3,19 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.commands.helpers.collection;
+module uim.io.classes.erroroutputs.engines.helpers.set;
 
-import uim.oop;
+import uim.io;
 
-mixin(Version!"test_uim_oop");
-
+mixin(Version!"test_uim_io");
 @safe:
 
-class DCommandCollection : DCollection!ICommand {
-  mixin(CollectionThis!("Command"));
+class DErrorOutputEngineSet : DSet!DErrorOutputEngine {
+  mixin(SetThis!("ErrorOutputEngine"));
 }
-
-mixin(CollectionCalls!("Command"));
+mixin(SetCalls!("ErrorOutputEngine"));
 
 unittest {
-  auto collection = new DCommandCollection();
-  assert(testCollection(collection, "CommandCollection"), "Test of DCommandCollection failed!");
+  auto set = ErrorOutputEngineSet();
+  assert(testSet(set, "ErrorOutputEngine"), "ErrorOutputEngineSet failed");
 }
