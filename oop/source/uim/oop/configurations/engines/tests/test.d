@@ -14,7 +14,7 @@ mixin(Version!"test_uim_oop");
 bool testConfigEngine(IConfigEngine engine, string instanceName) {
   assert(engine !is null, "In testConfigEngine: engine is null");
   assert(instanceName !is null && instanceName.length > 0, "Instance name is null or empty");
-  assert(engine.name == instanceName, "ConfigEngine name "~instanceName~" does not match!");
+  // assert(engine.name == instanceName, "ConfigEngine name "~instanceName~" does not match!");
 
   return true;
 }

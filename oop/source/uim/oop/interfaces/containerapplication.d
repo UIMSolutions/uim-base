@@ -12,8 +12,8 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 // Interface for applications that configure and use a dependency injection container.
-interface IContainerApplication {
-    /**
+interface IContainerApplication : IObject {
+	/**
      * Register services to the container
      *
      * Registered services can have instances fetched out of the container
@@ -22,13 +22,13 @@ interface IContainerApplication {
      * Params:
      * \UIM\Core\IContainer container The container to add services to
      */
-    void services(IContainer container);
+	void services(IContainer container);
 
-    /**
+	/**
      * Create a new container and register services.
      *
      * This will `register()` services provided by both the application
      * and any plugins if the application has plugin support.
      */
-    IContainer getContainer();
+	IContainer getContainer();
 }

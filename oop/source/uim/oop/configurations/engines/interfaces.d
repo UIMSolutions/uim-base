@@ -12,7 +12,7 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 // An interface for creating objects compatible with Configure.load()
-interface IConfigEngine : IDirectory!Json {
+interface IConfigEngine : IDirectory!Json, IObject {
   string[] keys();
 
   // #region entries

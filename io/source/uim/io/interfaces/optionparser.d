@@ -9,7 +9,7 @@ import uim.io;
 
 @safe:
 
-interface IConsoleOptionParser {
+interface IConsoleOptionParser : IObject {
   // #region description
   // Sets the description text for shell/task.
   string description();

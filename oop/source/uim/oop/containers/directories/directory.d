@@ -130,7 +130,15 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   }
 
   override V value(string key) {
-    return key.correctKey in _entries ? _entries[key.correctKey] : Null!V;
+    static if (is(V : IObject)) {
+      return key.correctKey in _entries ? _entries[key.correctKey] : null;
+    } else static if (is(V : UIMObject)) {
+      return key.correctKey in _entries ? _entries[key.correctKey] : null;
+    } else static if (is(V == Json)) {
+      return key.correctKey in _entries ? _entries[key.correctKey] : Json(null);
+    } else {
+      return key.correctKey in _entries ? _entries[key.correctKey] : Null!V;      
+    }
   }
   // #endregion get 
   // #endregion values

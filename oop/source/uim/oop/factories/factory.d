@@ -14,6 +14,54 @@ mixin(Version!"test_uim_oop");
 class DFactory(V = UIMObject) : UIMObject, IFactory!V {
   mixin(FactoryThis!());
 
+  // #region IObject
+  // Get the name of the object.
+  override string name() {
+    return super.name;
+  }
+
+  // Get or set the name of the object.
+  override void name(string newName) {
+    super.name(newName);
+  }
+
+  // Compares two IObject instances for equality based on their names.
+  override bool isEqual(IObject other) {
+    if (other is null) {
+      return false;
+    }
+    if (this is other) {
+      return true;
+    }
+    if (this.classinfo !is other.classinfo) {
+      return false;
+    }
+    if (this.name is null && other.name is null) {
+      return true;
+    }
+    if (this.name is null || other.name is null) {
+      return false;
+    }
+    return this.name == other.name;
+    // TODO: Consider adding more properties for comparison if needed.
+  }
+
+  // Returns a string representation comparing two IObject instances.
+  override string toString() {
+    return "DFactory: " ~ this.name;
+  }
+
+  // Creates a clone of the current object.
+  override IObject clone() {
+    auto factory = new DFactory!V;
+    factory.name(this.name);
+    _workers.each!(
+      (key, createFunc) => factory.setKey(key, createFunc)
+    );
+    return factory;
+  }
+  // #endregion IObject
+
   protected static DFactory!V _instance;
   protected V delegate(Json[string] options = null)[string] _workers;
   public static DFactory!V instance() {
