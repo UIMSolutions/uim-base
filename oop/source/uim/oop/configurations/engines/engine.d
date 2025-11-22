@@ -55,12 +55,9 @@ class DConfigEngine : UIMObject, IConfigEngine {
 
   // Creates a clone of the current object.
   override IObject clone() {
-    auto registry = new DRegistry!V;
-    registry.name(this.name);
-    _registeredObjects.each!(
-      (key, obj) => registry.setKey(key, obj)
-    );
-    return registry;
+    auto engine = new DConfigEngine;
+    engine.name(this.name);
+    return engine;
   }
   // #endregion IObject
 

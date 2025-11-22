@@ -95,14 +95,15 @@ class UIMObject : IObject {
   }
 
   // #region IObject
+  protected string _name;
   // Get the name of the object.
   string name() {
-    return super.name;
+    return _name;
   }
 
   // Get or set the name of the object.
   void name(string newName) {
-    super.name(newName);
+    _name = newName.dup;
   }
 
   // Compares two IObject instances for equality based on their names.
@@ -124,18 +125,15 @@ class UIMObject : IObject {
   }
 
   // Returns a string representation comparing two IObject instances.
-  string toString() {
+  override string toString() {
     return "Object: " ~ this.name;
   }
 
   // Creates a clone of the current object.
   IObject clone() {
-    auto registry = new DRegistry!V;
-    registry.name(this.name);
-    _registeredObjects.each!(
-      (key, obj) => registry.setKey(key, obj)
-    );
-    return registry;
+    auto obj = new UIMObject;
+    obj.name(this.name);
+    return obj;
   }
   // #endregion IObject
 

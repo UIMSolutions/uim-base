@@ -50,16 +50,52 @@ class DConfiguration : IConfiguration {
     return true;
   }
 
-  // #region name
-  protected string _name;
+  // #region IObject
+  // Get the name of the object.
   string name() {
-    return _name.dup;
+    return _name;
   }
 
+  // Get or set the name of the object.
   void name(string newName) {
     _name = newName.dup;
   }
-  // #endregion name
+
+  // Compares two IObject instances for equality based on their names.
+  bool isEqual(IObject other) {
+    if (this is other) {
+      return true;
+    }
+    if (this.classinfo !is other.classinfo) {
+      return false;
+    }
+    if (other is null) {
+      return false;
+    }
+    if (this.name is null || other.name is null) {
+      return false;
+    }
+
+    return this.name == other.name;
+    // TODO: Consider adding more properties for comparison if needed.
+  }
+
+  // Returns a string representation comparing two IObject instances.
+  override string toString() {
+    return "DValidator: " ~ this.name;
+  }
+
+  // #region clone
+  IConfiguration clone() {
+    auto config = new DConfiguration();
+    config.name(this.name);
+    if (engine !is null) {
+      config.engine = engine.clone();
+    }
+    return config;
+  }
+  // #endregion clone
+  // #endregion IObject
 
   // #region engine
   protected IConfigEngine _engine;
@@ -502,20 +538,4 @@ class DConfiguration : IConfiguration {
     // TODO
   }
   // #endregion remove
-
-  // #region clone
-  IConfiguration clone() {
-    auto config = new DConfiguration();
-    config.name(this.name);
-    if (engine !is null) {
-      config.engine = engine.clone();
-    }
-    return config;
-  }
-
-  unittest {
-    auto config = ConfigurationFactory.create("memory");
-    // TODO
-  }
-  // #endregion clone
 }

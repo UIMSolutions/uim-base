@@ -4,15 +4,11 @@
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
 module uim.oop.containers.arrays.lifo;
-@safe:
-import uim.core;
 
-version (test_uim_oop) {
-  import std.stdio;
-  
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
+import uim.oop;
+
+mixin(Version!"test_uim_oop");
+
+@safe:
 
 // TODO

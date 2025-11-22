@@ -9,6 +9,7 @@ import uim.core;
 mixin(Version!"test_uim_oop");
 
 public {
+  import uim.oop.containers.arrays.helper;
   // import uim.oop.containers.arrays.obj;
   // import uim.oop.containers.arrays.templ;
   // import uim.oop.containers.arrays.string;

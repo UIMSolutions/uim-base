@@ -55,9 +55,10 @@ class DRegistry(V = UIMObject) : UIMObject, IRegistry!V {
   override IObject clone() {
     auto registry = new DRegistry!V;
     registry.name(this.name);
+    /* 
     _registeredObjects.each!(
       (key, obj) => registry.setKey(key, obj)
-    );
+    ); */
     return registry;
   }
   // #endregion IObject
@@ -75,7 +76,7 @@ class DRegistry(V = UIMObject) : UIMObject, IRegistry!V {
     // auto keys = this._registeredObjects.keys;    
 
     foreach (key; this._registeredObjects.keys) {
-      if (!other._registeredObjects.containsKey(key) ||
+      if (!other._registeredObjects.hasKey(key) ||
           this._registeredObjects[key] !is other._registeredObjects[key]) {
         return false;
       }
