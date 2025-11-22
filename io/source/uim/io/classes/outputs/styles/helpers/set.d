@@ -3,20 +3,19 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.validators.helpers.collection;
+module uim.io.classes.outputs.styles.helpers.set;
 
-import uim.oop;
+import uim.io;
 
-mixin(Version!"test_uim_oop");
-
+mixin(Version!"test_uim_io");
 @safe:
 
-class DValidatorCollection : DCollection!IValidator {
-  mixin(CollectionThis!("Validator"));
+class DOutputStyleSet : DSet!IOutputStyle {
+  mixin(SetThis!("OutputStyle"));
 }
-mixin(CollectionCalls!("Validator"));
+mixin(SetCalls!("OutputStyle"));
 
 unittest {
-  auto collection = ValidatorCollection;
-  assert(testCollection(collection, "Validator"), "Test ValidatorCollection failed");
+  auto set = OutputStyleSet;
+  assert(testSet(set, "OutputStyle"), "Test OutputStyleSet failed");
 }

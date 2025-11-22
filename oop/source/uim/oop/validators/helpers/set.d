@@ -3,14 +3,20 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.validators.helpers;
+module uim.oop.validators.helpers.set;
 
-public {
-  import uim.oop.validators.helpers.directory;
-  import uim.oop.validators.helpers.factory;
-  import uim.oop.validators.helpers.functions;
-  import uim.oop.validators.helpers.list;
-  import uim.oop.validators.helpers.mixins;
-  import uim.oop.validators.helpers.registry;
-  import uim.oop.validators.helpers.set;
+import uim.oop;
+
+mixin(Version!"test_uim_oop");
+
+@safe:
+
+class DValidatorSet : DSet!IValidator {
+  mixin(SetThis!("Validator"));
+}
+mixin(SetCalls!("Validator"));
+
+unittest {
+  auto set = ValidatorSet;
+  assert(testSet(set, "Validator"), "Test ValidatorSet failed");
 }

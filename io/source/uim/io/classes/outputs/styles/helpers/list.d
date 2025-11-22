@@ -3,14 +3,19 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.validators.helpers;
+module uim.io.classes.outputs.styles.helpers.list;
 
-public {
-  import uim.oop.validators.helpers.directory;
-  import uim.oop.validators.helpers.factory;
-  import uim.oop.validators.helpers.functions;
-  import uim.oop.validators.helpers.list;
-  import uim.oop.validators.helpers.mixins;
-  import uim.oop.validators.helpers.registry;
-  import uim.oop.validators.helpers.set;
+import uim.io;
+
+mixin(Version!"test_uim_io");
+@safe:
+
+class DOutputStyleList : DList!IOutputStyle {
+  mixin(ListThis!("OutputStyle"));
+}
+mixin(ListCalls!("OutputStyle"));
+
+unittest {
+  auto list = OutputStyleList;
+  assert(testList(list, "OutputStyle"), "Test OutputStyleList failed");
 }

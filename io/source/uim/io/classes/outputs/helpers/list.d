@@ -3,19 +3,19 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.io.classes.outputs.styles.helpers.collection;
-
-import uim.io;
+module uim.io.classes.outputs.helpers.list;
 
 mixin(Version!"test_uim_io");
+
+import uim.io;
 @safe:
 
-class DOutputStyleCollection : DCollection!IOutputStyle {
-  mixin(CollectionThis!("OutputStyle"));
+class DOutputList : DList!IOutput {
+  mixin(ListThis!("Output"));
 }
-mixin(CollectionCalls!("OutputStyle"));
+mixin(ListCalls!("Output"));
 
 unittest {
-  auto collection = OutputStyleCollection;
-  assert(testCollection(collection, "OutputStyle"), "Test OutputStyleCollection failed");
+  auto list = OutputList;
+  assert(testList(list, "Output"), "Test OutputList failed");
 }
