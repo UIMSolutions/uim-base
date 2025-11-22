@@ -3,19 +3,19 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.io.classes.consoles.helpers.collection;
+module uim.io.classes.consoles.helpers.set;
 
 mixin(Version!"test_uim_io");
 
 import uim.io;
 @safe:
 
-class DConsoleCollection : DCollection!IConsole {
-  mixin(CollectionThis!("Console"));
+class DConsoleSet : DSet!IConsole {
+  mixin(SetThis!("Console"));
 }
-mixin(CollectionCalls!("Console"));
+mixin(SetCalls!("Console"));
 
 unittest {
-  auto collection = ConsoleCollection;
-  assert(testCollection(collection, "Console"), "Test ConsoleCollection failed");
+  auto set = ConsoleSet;
+  assert(testSet(set, "Console"), "Test ConsoleSet failed");
 }

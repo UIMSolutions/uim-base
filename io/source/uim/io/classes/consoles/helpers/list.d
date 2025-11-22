@@ -3,18 +3,19 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.containers.arrays.helper;
+module uim.io.classes.consoles.helpers.list;
 
-import uim.oop;
+mixin(Version!"test_uim_io");
 
-mixin(Version!"test_uim_oop");
-
+import uim.io;
 @safe:
 
-bool hasValue(T : IObject)(T[] items, in T value) {
-  return items.any!(item => item.isEqual(value));
+class DConsoleList : DList!IConsole {
+  mixin(ListThis!("Console"));
 }
+mixin(ListCalls!("Console"));
 
-bool hasValue(T : UIMObject)(T[] items, in T value) {
-  return items.any!(item => item.isEqual(value));
+unittest {
+  auto list = ConsoleList;
+  assert(testList(list, "Console"), "Test ConsoleList failed");
 }

@@ -51,6 +51,7 @@ class DConfiguration : IConfiguration {
   }
 
   // #region IObject
+  protected string _name;
   // Get the name of the object.
   string name() {
     return _name;
@@ -89,9 +90,9 @@ class DConfiguration : IConfiguration {
   IConfiguration clone() {
     auto config = new DConfiguration();
     config.name(this.name);
-    if (engine !is null) {
+    /* if (engine !is null) {
       config.engine = engine.clone();
-    }
+    } */ 
     return config;
   }
   // #endregion clone

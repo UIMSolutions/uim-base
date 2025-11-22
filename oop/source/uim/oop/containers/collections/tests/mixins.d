@@ -3,18 +3,10 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.containers.arrays.helper;
+module uim.oop.containers.collections.tests.mixins;
 
 import uim.oop;
 
 mixin(Version!"test_uim_oop");
 
 @safe:
-
-bool hasValue(T : IObject)(T[] items, in T value) {
-  return items.any!(item => item.isEqual(value));
-}
-
-bool hasValue(T : UIMObject)(T[] items, in T value) {
-  return items.any!(item => item.isEqual(value));
-}

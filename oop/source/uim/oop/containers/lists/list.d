@@ -11,5 +11,5 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-interface DList(T) : IList!T, ICollection!T {
+interface DList(T) : DCollection!T, IList!T {
 }

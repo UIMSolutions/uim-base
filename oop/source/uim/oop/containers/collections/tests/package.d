@@ -6,5 +6,6 @@
 module uim.oop.containers.collections.tests;
 
 public {
+    import uim.oop.containers.collections.tests.mixins;
     import uim.oop.containers.collections.tests.test;
 }
