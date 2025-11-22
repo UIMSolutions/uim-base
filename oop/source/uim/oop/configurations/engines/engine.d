@@ -390,7 +390,7 @@ class DConfigEngine : UIMObject, IConfigEngine {
   // #endregion removeValue
 
   // #region clear
-  bool clear() {
+  void clear() {
     // TODO: Implement in subclasses
     return false; // to be implemented in subclasses
   }

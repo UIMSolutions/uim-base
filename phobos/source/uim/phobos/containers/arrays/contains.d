@@ -36,7 +36,7 @@ bool containsAny(string base = null, string[] values = null) {
 }
 // #endregion containsAny
 
-bool contains(string text, string checkValue) {
+bool hasValue(string text, string checkValue) {
   return (text.length == 0 || checkValue.length == 0 || checkValue.length > text.length)
     ? false : text.indexOf(checkValue) != -1;
 }

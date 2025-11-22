@@ -657,9 +657,8 @@ class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
 
   // #region clear
   // Removes all of the elements from this map
-  override bool clear() {
+  override void clear() {
     _entries = null;
-    return true;
   }
   ///
   unittest {

@@ -6,6 +6,7 @@
 module uim.oop.configurations.engines.helpers.list;
 
 import uim.oop;
+import uim.oop.configurations.engines;
 
 mixin(Version!"test_uim_oop");
 

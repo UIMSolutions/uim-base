@@ -19,7 +19,7 @@ interface IList(T) : IContainer {
   bool add(in T item);
 
   // Check if the set contains the specified item.
-  bool contains(in T item);
+  bool hasValue(in T item);
 
   // Get an item by its index.
   T get(size_t index);
@@ -28,7 +28,7 @@ interface IList(T) : IContainer {
   size_t size();
 
   // Remove an item from the set. Returns true if the item was removed, false if it was not found.
-  bool remove(in T item);
+  bool removeValue(in T item);
 
   // Clear all items from the set.
   void clear();

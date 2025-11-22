@@ -47,7 +47,7 @@ abstract class DContainer : UIMObject, IContainer {
   }
 
   // Removes all of the elements from this container */
-  bool clear() {
+  void clear() {
     return true;
   }
 }

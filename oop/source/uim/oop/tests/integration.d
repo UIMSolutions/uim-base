@@ -276,7 +276,7 @@ mixin template TIntegrationTest() {
      * The response of the dispatched request will be stored as
      * a property. You can use various assert methods to check the response.
      */
-    bool remove(string[] urls) {
+    bool removeValue(string[] urls) {
         _sendRequest(urls, "DELETE");
         return true;
     }

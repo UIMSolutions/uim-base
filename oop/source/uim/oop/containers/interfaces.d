@@ -14,5 +14,5 @@ interface IContainer {
   size_t size();
 
   // Removes all of the elements from this container
-  bool clear();
+  void clear();
 }

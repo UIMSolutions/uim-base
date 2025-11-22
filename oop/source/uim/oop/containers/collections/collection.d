@@ -61,7 +61,7 @@ class DCollection(V) : DContainer, ICollection!V {
 
   // #region isEmpty
   // Check if the set is empty.
-  bool isEmpty() {
+  override bool isEmpty() {
     return size == 0;
   }
   // #endregion isEmpty
@@ -116,9 +116,8 @@ class DCollection(V) : DContainer, ICollection!V {
 
   // Removes all of the elements from this collection (optional operation).
   // #region clear
-  override bool clear() {
+  override void clear() {
     _elements.clear();
-    return true;
   }
   // #endregion clear
 

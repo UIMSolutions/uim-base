@@ -42,7 +42,6 @@ interface ICollection(V) : IContainer {
   // Removes all of the elements from this collection (optional operation).
   void clear();
 
-
   bool isEqual(ICollection!V other);
 
   // #region toArray
