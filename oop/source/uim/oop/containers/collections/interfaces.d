@@ -39,6 +39,9 @@ interface ICollection(V) : IContainer {
   bool removeValue(V value);
   // #endregion remove
 
+  // Removes all of the elements from this collection (optional operation).
+  void clear();
+
 
   bool isEqual(ICollection!V other);
 

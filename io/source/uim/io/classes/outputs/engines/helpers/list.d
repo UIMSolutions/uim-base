@@ -3,24 +3,19 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.containers.lists.list;
+module uim.io.classes.outputs.engines.helpers.list;
 
-import uim.oop;
+import uim.io;
 
-mixin(Version!"test_uim_oop");
-
+mixin(Version!"test_uim_io");
 @safe:
 
-class DList(V) : DCollection!V, IList!V {
-    // Check if the set is empty.
-    bool isEmpty();
+class DOutputEngineList : DList!IOutputEngine {
+  mixin(ListThis!("OutputEngine"));
+}
+mixin(ListCalls!("OutputEngine"));
 
-    // Add an item to the set. Returns true if the item was added, false if it was already present.
-    bool add(in V item);
-
-    // Check if the set contains the specified item.
-    bool contains(in V item);
-
-    // Get an item by its index.
-    V get(size_t index);
+unittest {
+  auto list = OutputEngineList;
+  assert(testList(list, "OutputEngine"), "Test OutputEngineList failed");
 }

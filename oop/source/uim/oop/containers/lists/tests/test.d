@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.containers.lists.list;
+module uim.oop.containers.lists.tests.test;
 
 import uim.oop;
 
@@ -11,16 +11,10 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DList(V) : DCollection!V, IList!V {
-    // Check if the set is empty.
-    bool isEmpty();
+bool testList(T)(IList!T list, string instanceName) {
+  assert(list !is null, instanceName ~ " list is null");
+  assert(instanceName !is null && instanceName.length > 0, "Instance name is null or empty");
+  assert(list.name == instanceName, "In testList: list name "~instanceName~" does not match!");
 
-    // Add an item to the set. Returns true if the item was added, false if it was already present.
-    bool add(in V item);
-
-    // Check if the set contains the specified item.
-    bool contains(in V item);
-
-    // Get an item by its index.
-    V get(size_t index);
+  return true;
 }

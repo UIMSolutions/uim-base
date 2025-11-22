@@ -8,6 +8,7 @@ module uim.oop.containers.vectors.helpers.mixins;
 import uim.oop;
 
 mixin(Version!("test_uim_oop"));
+
 @safe:
 
 string vectorThis(string name = null) {

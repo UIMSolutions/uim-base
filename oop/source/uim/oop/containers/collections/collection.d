@@ -22,12 +22,14 @@ class DCollection(V) : DContainer, ICollection!V {
   }
   // #endregion elements
 
-  // #region clear
-  override bool clear() {
-    _elements.clear();
+  // Add an item to the set. Returns true if the item was added, false if it was already present.
+  bool add(in V item) {
+    if (contains(item)) {
+      return false;
+    }
+    _elements ~= item;
     return true;
   }
-  // #endregion clear
 
   // #region has 
   // #region hasAllValue 
@@ -36,7 +38,7 @@ class DCollection(V) : DContainer, ICollection!V {
     return values.all!(value => hasValue(value));
   }
   // #endregion hasAllValue 
-  
+
   // #region hasAnyValue 
   // Returns true if this collection contains any of the specified elements.
   bool hasAnyValue(V[] values) {
@@ -51,11 +53,18 @@ class DCollection(V) : DContainer, ICollection!V {
       if (v == value) {
         return true;
       }
-    } */ 
+    } */
     return false;
   }
   // #endregion hasValue 
   // #endregion has
+
+  // #region isEmpty
+  // Check if the set is empty.
+  bool isEmpty() {
+    return size == 0;
+  }
+  // #endregion isEmpty
 
   // #region size
   // Returns the number of items in the collection.
@@ -74,7 +83,7 @@ class DCollection(V) : DContainer, ICollection!V {
   bool addAnyValue(V[] values) {
     return values.any!(value => addValue(value));
   }
-  
+
   // Adds the specified element to this collection (optional operation).
   bool addValue(V value) {
     _elements ~= value;
@@ -95,30 +104,40 @@ class DCollection(V) : DContainer, ICollection!V {
 
   // Removes the specified element from this collection (optional operation).
   bool removeValue(V value) {
-    // _elements.remove(value);
+    auto index = _elements.indexOf(value);
+    if (index == -1) {
+      return false;
+    }
+    _elements = _elements[0 .. index] ~ _elements[index + 1 .. $];
     return true;
   }
   // #endregion remove
   // #endregion keys
 
+  // Removes all of the elements from this collection (optional operation).
+  // #region clear
+  override bool clear() {
+    _elements.clear();
+    return true;
+  }
+  // #endregion clear
 
   bool isEqual(ICollection!V other) {
-    if (other is null || size != other.size)
+    if (other is null || size != other.size) {
       return false;
-
+    }
     return hasAllValue(other.toArray());
   }
 
   // #region toArray
   // Returns an array containing all of the elements in this collection.
   V[] toArray() {
-    // return _elements.byValue.array;
-    return null;
+    return _elements.dup;
   }
 
   V[] toArray(V[] values) {
     // return values.filter!(value => hasValue(value)).array;
     return null;
-  } 
+  }
   // #endregion toArray
 }
