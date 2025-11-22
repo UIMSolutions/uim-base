@@ -10,7 +10,7 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DErrorOutputList : DList!IErrorOutput {
+class DErrorOutputList : UIMList!IErrorOutput {
   mixin(ListThis!("ErrorOutput"));
 }
 mixin(ListCalls!("ErrorOutput"));

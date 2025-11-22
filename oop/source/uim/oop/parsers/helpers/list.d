@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DParserList : DList!IParser {
+class DParserList : UIMList!IParser {
   mixin(ListThis!("Parser"));
 }
 mixin(ListCalls!("Parser"));

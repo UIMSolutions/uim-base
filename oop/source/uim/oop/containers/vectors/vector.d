@@ -11,6 +11,6 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DVector(V) : IVector!V, DList!V {
+class DVector(V) : IVector!V, UIMList!V {
   mixin(VectorThis!());  
 }

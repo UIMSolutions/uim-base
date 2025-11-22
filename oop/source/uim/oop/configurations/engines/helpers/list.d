@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DConfigEngineList : DList!IConfigEngine {
+class DConfigEngineList : UIMList!IConfigEngine {
   mixin(ListThis!("ConfigEngine"));
 }
 

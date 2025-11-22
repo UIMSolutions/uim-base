@@ -5,7 +5,7 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DInputList : DList!IInput {
+class DInputList : UIMList!IInput {
   mixin(ListThis!("Input"));
 }
 mixin(ListCalls!("Input"));

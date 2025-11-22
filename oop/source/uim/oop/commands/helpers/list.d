@@ -11,13 +11,13 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DCommandList : DList!ICommand {
+class DCommanUIMList : UIMList!ICommand {
   mixin(ListThis!("Command"));
 }
 
 mixin(ListCalls!("Command"));
 
 unittest {
-  auto list = new DCommandList();
-  assert(testList(list, "CommandList"), "Test of DCommandList failed!");
+  auto list = new DCommanUIMList();
+  assert(testList(list, "CommanUIMList"), "Test of DCommanUIMList failed!");
 }

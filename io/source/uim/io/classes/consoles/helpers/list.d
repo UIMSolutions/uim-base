@@ -10,7 +10,7 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DConsoleList : DList!IConsole {
+class DConsoleList : UIMList!IConsole {
   mixin(ListThis!("Console"));
 }
 mixin(ListCalls!("Console"));

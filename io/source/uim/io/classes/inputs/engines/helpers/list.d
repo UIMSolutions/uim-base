@@ -10,7 +10,7 @@ import uim.io;
 mixin(Version!"test_uim_io");
 @safe:
 
-class DInputEngineList : DList!IInputEngine {
+class DInputEngineList : UIMList!IInputEngine {
   mixin(ListThis!("InputEngine"));
 }
 mixin(ListCalls!("InputEngine"));

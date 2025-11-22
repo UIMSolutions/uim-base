@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DValidatorList : DList!IValidator {
+class DValidatorList : UIMList!IValidator {
   mixin(ListThis!("Validator"));
 }
 mixin(ListCalls!("Validator"));

@@ -10,7 +10,7 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DOutputFormatterList : DList!IOutputFormatter {
+class DOutputFormatterList : UIMList!IOutputFormatter {
   mixin(ListThis!("OutputFormatter"));
 }
 mixin(ListCalls!("OutputFormatter"));

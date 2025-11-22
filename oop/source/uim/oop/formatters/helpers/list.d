@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DFormatterList : DList!IFormatter {
+class DFormatterList : UIMList!IFormatter {
   mixin(ListThis!("Formatter"));
 }
 mixin(ListCalls!("Formatter"));

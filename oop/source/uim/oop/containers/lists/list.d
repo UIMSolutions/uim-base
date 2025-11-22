@@ -11,14 +11,14 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DList(V) : DCollection!V, IList!V {
-    // Check if the set is empty.
+class UIMList(V) : DCollection!V, IList!V {
+    // Check if the list is empty.
     bool isEmpty();
 
-    // Add an item to the set. Returns true if the item was added, false if it was already present.
+    // Add an item to the list. Returns true if the item was added, false if it was already present.
     bool add(in V item);
 
-    // Check if the set contains the specified item.
+    // Check if the list contains the specified item.
     bool contains(in V item);
 
     // Get an item by its index.
