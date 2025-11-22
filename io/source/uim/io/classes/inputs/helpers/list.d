@@ -1,4 +1,4 @@
-module uim.io.classes.inputs.helpers.collection;
+module uim.io.classes.inputs.helpers.list;
 
 mixin(Version!"test_uim_io");
 

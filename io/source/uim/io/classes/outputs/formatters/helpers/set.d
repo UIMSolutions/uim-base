@@ -3,20 +3,19 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.formatters.helpers.collection;
+module uim.io.classes.outputs.formatters.helpers.set;
 
-import uim.oop;
+mixin(Version!"test_uim_io");
 
-mixin(Version!"test_uim_oop");
-
+import uim.io;
 @safe:
 
-class DFormatterCollection : DCollection!IFormatter {
-  mixin(CollectionThis!("Formatter"));
+class DOutputFormatterSet : DSet!IOutputFormatter {
+  mixin(SetThis!("OutputFormatter"));
 }
-mixin(CollectionCalls!("Formatter"));
+mixin(SetCalls!("OutputFormatter"));
 
 unittest {
-  auto collection = FormatterCollection;
-  assert(testCollection(collection, "Formatter"), "Test FormatterCollection failed");
+  auto set = OutputFormatterSet;
+  assert(testSet(set, "OutputFormatter"), "Test OutputFormatterSet failed");
 }

@@ -3,19 +3,19 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.io.classes.outputs.formatters.helpers.collection;
+module uim.io.classes.outputs.formatters.helpers.list;
 
 mixin(Version!"test_uim_io");
 
 import uim.io;
 @safe:
 
-class DOutputFormatterCollection : DCollection!IOutputFormatter {
-  mixin(CollectionThis!("OutputFormatter"));
+class DOutputFormatterList : DList!IOutputFormatter {
+  mixin(ListThis!("OutputFormatter"));
 }
-mixin(CollectionCalls!("OutputFormatter"));
+mixin(ListCalls!("OutputFormatter"));
 
 unittest {
-  auto collection = OutputFormatterCollection;
-  assert(testCollection(collection, "OutputFormatter"), "Test OutputFormatterCollection failed");
+  auto list = OutputFormatterList;
+  assert(testList(list, "OutputFormatter"), "Test OutputFormatterList failed");
 }

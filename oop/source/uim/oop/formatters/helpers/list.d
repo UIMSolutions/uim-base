@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.containers.lists.list;
+module uim.oop.formatters.helpers.list;
 
 import uim.oop;
 
@@ -11,5 +11,12 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-interface IList(V) : ICollection!V, IList!V {
+class DFormatterList : DList!IFormatter {
+  mixin(ListThis!("Formatter"));
+}
+mixin(ListCalls!("Formatter"));
+
+unittest {
+  auto list = FormatterList;
+  assert(testList(list, "Formatter"), "Test FormatterList failed");
 }

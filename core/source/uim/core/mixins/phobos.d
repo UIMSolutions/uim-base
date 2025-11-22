@@ -97,11 +97,13 @@ template ImportPhobos(string[] libNames = null) {
 
 auto importHelpers(string rootName) {
   return "
-    public import {rootName}.helpers.collection; 
+    public import {rootName}.helpers.directory; 
     public import {rootName}.helpers.factory; 
     public import {rootName}.helpers.functions; 
+    public import {rootName}.helpers.list; 
     public import {rootName}.helpers.mixins; 
     public import {rootName}.helpers.registry; 
+    public import {rootName}.helpers.set; 
     ".replace("{rootName}", rootName);
 }
 
