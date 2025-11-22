@@ -14,6 +14,76 @@ mixin(Version!"test_uim_oop");
 class DRegistry(V = UIMObject) : UIMObject, IRegistry!V {
   mixin(RegistryThis!());
 
+  // #region IObject
+  // Get the name of the object.
+  override string name() {
+    return super.name;
+  }
+
+  // Get or set the name of the object.
+  override void name(string newName) {
+    super.name(newName);
+  }
+
+  // Compares two IObject instances for equality based on their names.
+  override bool isEqual(IObject other) {
+    if (other is null) {
+      return false;
+    }
+    if (this is other) {
+      return true;
+    }
+    if (this.classinfo !is other.classinfo) {
+      return false;
+    }
+    if (this.name is null && other.name is null) {
+      return true;
+    }
+    if (this.name is null || other.name is null) {
+      return false;
+    }
+    return this.name == other.name;
+    // TODO: Consider adding more properties for comparison if needed.
+  }
+
+  // Returns a string representation comparing two IObject instances.
+  override string toString() {
+    return "DRegistry: " ~ this.name;
+  }
+
+  // Creates a clone of the current object.
+  override IObject clone() {
+    auto registry = new DRegistry!V;
+    registry.name(this.name);
+    _registeredObjects.each!(
+      (key, obj) => registry.setKey(key, obj)
+    );
+    return registry;
+  }
+  // #endregion IObject
+
+  override bool opEquals(Object o) const {
+    auto other = cast(DRegistry!V)o;
+    if (other is null) {
+      return false;
+    }
+
+    if (this.size != other.size) {
+      return false;
+    }
+
+    // auto keys = this._registeredObjects.keys;    
+
+    foreach (key; this._registeredObjects.keys) {
+      if (!other._registeredObjects.containsKey(key) ||
+          this._registeredObjects[key] !is other._registeredObjects[key]) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   // #region Singleton
   protected static DRegistry!V _instance;
   public static DRegistry!V instance() {

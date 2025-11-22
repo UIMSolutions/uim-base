@@ -19,6 +19,4 @@ interface IConfigEngine : IDirectory!Json, IObject {
   Json[string] entries();
   void entries(Json[string] newEntries);
   // #endregion entries#
-
-  IConfigEngine clone();
 }

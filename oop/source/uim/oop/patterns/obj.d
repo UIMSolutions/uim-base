@@ -33,7 +33,8 @@ class UIMObject : IObject {
     objId(randomUUID);
     name("Object");
 
-    auto config = ConfigurationFactory.create("memory");;
+    auto config = ConfigurationFactory.create("memory");
+    ;
     configuration(config);
     configuration.entries(initData is null ? new Json[string] : initData);
 
@@ -41,7 +42,6 @@ class UIMObject : IObject {
   }
 
   mixin(TProperty!("UUID", "objId"));
-  mixin(TProperty!("string", "name"));
 
   string[] memberNames() {
     return [__traits(allMembers, typeof(this))];
@@ -93,6 +93,52 @@ class UIMObject : IObject {
       .set("classname", this.classname)
       .set("classFullname", this.classFullname);
   }
+
+  // #region IObject
+  // Get the name of the object.
+  string name() {
+    return super.name;
+  }
+
+  // Get or set the name of the object.
+  void name(string newName) {
+    super.name(newName);
+  }
+
+  // Compares two IObject instances for equality based on their names.
+  bool isEqual(IObject other) {
+    if (this !is other) {
+      return false;
+    }
+    if (this.name is null || other.name is null) {
+      return false;
+    }
+/*     if (this.classinfo !is other.classinfo) {
+      return false;
+    }
+    if (other is null) {
+      return false;
+    } */
+    return this.name == other.name;
+    // TODO: Consider adding more properties for comparison if needed.
+  }
+
+  // Returns a string representation comparing two IObject instances.
+  string toString() {
+    return "Object: " ~ this.name;
+  }
+
+  // Creates a clone of the current object.
+  IObject clone() {
+    auto registry = new DRegistry!V;
+    registry.name(this.name);
+    _registeredObjects.each!(
+      (key, obj) => registry.setKey(key, obj)
+    );
+    return registry;
+  }
+  // #endregion IObject
+
 }
 
 class Test : UIMObject {
@@ -110,6 +156,6 @@ class Test : UIMObject {
 }
 
 unittest {
-//   auto obj = new IMObject;
+  //   auto obj = new IMObject;
 
 }
