@@ -10,13 +10,13 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-string ErrorOutputThis(string name = null) {
+string ErrorOutputThis(string name = null, bool overrideMemberNames = true) {
     string fullName = name ~ "ErrorOutput";
-    return objThis(fullName);
+    return objThis(fullName, overrideMemberNames);
 }
 
-template ErrorOutputThis(string name = null) {
-    const char[] ErrorOutputThis = ErrorOutputThis(name);
+template ErrorOutputThis(string name = null, bool overrideMemberNames = true) {
+    const char[] ErrorOutputThis = ErrorOutputThis(name, overrideMemberNames);
 }
 
 string ErrorOutputCalls(string name) {

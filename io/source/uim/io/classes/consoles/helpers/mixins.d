@@ -8,13 +8,13 @@ module uim.io.classes.consoles.helpers.mixins;
 import uim.io;
 
 @safe:
-string consoleThis(string name = null) {
+string consoleThis(string name = null, bool overrideMemberNames = true) {
   string fullName = name ~ "Console";
-  return objThis(fullName);
+  return objThis(fullName, overrideMemberNames);
 }
 
-template ConsoleThis(string name = null) {
-  const char[] ConsoleThis = consoleThis(name);
+template ConsoleThis(string name = null, bool overrideMemberNames = true) {
+  const char[] ConsoleThis = consoleThis(name, overrideMemberNames);
 }
 
 string consoleCalls(string name) {

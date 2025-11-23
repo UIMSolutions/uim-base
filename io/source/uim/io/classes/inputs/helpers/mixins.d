@@ -10,13 +10,13 @@ import uim.io;
 mixin(Version!"test_uim_io");
 @safe:
 
-string inputThis(string name = null) {
+string inputThis(string name = null, bool overrideMemberNames = true) {
     string fullName = name ~ "Input";
-    return objThis(fullName);
+    return objThis(fullName, overrideMemberNames);
 }
 
-template InputThis(string name = null) {
-    const char[] InputThis = inputThis(name);
+template InputThis(string name = null, bool overrideMemberNames = true) {
+    const char[] InputThis = inputThis(name, overrideMemberNames);
 }
 
 string inputCalls(string name) {

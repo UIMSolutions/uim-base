@@ -8,13 +8,13 @@ module uim.io.mixins.argument;
 import uim.io;
 
 @safe:
-string argumentThis(string name = null) {
+string argumentThis(string name = null, bool overrideMemberNames = true) {
     string fullName = name ~ "Argument";
-    return objThis(fullName);
+    return objThis(fullName, overrideMemberNames);
 }
 
-template ArgumentThis(string name = null) {
-    const char[] ArgumentThis = argumentThis(name);
+template ArgumentThis(string name = null, bool overrideMemberNames = true) {
+    const char[] ArgumentThis = argumentThis(name, overrideMemberNames);
 }
 
 string argumentCalls(string name) {

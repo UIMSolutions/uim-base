@@ -10,13 +10,13 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-string outputFormatterThis(string name = null) {
+string outputFormatterThis(string name = null, bool overrideMemberNames = true) {
     string fullName = name ~ "OutputFormatter";
-    return objThis(fullName);
+    return objThis(fullName, overrideMemberNames);
 }
 
-template OutputFormatterThis(string name = null) {
-    const char[] OutputFormatterThis = outputFormatterThis(name);
+template OutputFormatterThis(string name = null, bool overrideMemberNames = true) {
+    const char[] OutputFormatterThis = outputFormatterThis(name, overrideMemberNames);
 }
 
 string outputFormatterCalls(string name) {
