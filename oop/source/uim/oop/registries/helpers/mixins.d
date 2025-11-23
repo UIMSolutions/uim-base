@@ -10,13 +10,13 @@ import uim.oop;
 mixin(Version!"test_uim_oop");
 
 @safe:
-string registryThis(string name = null) {
+string registryThis(string name = null, bool overrideMemberNames = true) {
     string fullName = name ~ "Registry";
-    return objThis(fullName);
+    return objThis(fullName, overrideMemberNames);
 }
 
-template RegistryThis(string name = null) {
-    const char[] RegistryThis = registryThis(name);
+template RegistryThis(string name = null, bool overrideMemberNames = true) {
+    const char[] RegistryThis = registryThis(name, overrideMemberNames);
 }
 
 string registryCalls(string name) {

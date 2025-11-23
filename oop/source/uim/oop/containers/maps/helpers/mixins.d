@@ -10,13 +10,13 @@ import uim.oop;
 mixin(Version!("test_uim_oop"));
 @safe:
 
-string mapThis(string name = null) {
+string mapThis(string name = null, bool overrideMemberNames = true) {
   string fullName = name ~ "Map";
-  return objThis(fullName);
+  return objThis(fullName, overrideMemberNames);
 }
 
-template MapThis(string name = null) {
-  const char[] MapThis = mapThis(name);
+template MapThis(string name = null, bool overrideMemberNames = true) {
+  const char[] MapThis = mapThis(name, overrideMemberNames);
 }
 
 string mapCalls(string name) {

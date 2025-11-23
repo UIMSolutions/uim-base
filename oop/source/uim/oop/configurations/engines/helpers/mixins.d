@@ -11,13 +11,13 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-string configEngineThis(string name = null) {
+string configEngineThis(string name = null, bool overrideMemberNames = true) {
   string fullName = name ~ "ConfigEngine";
-  return objThis(fullName);
+  return objThis(fullName, overrideMemberNames);
 }
 
-template ConfigEngineThis(string name = null) {
-  const char[] ConfigEngineThis = configEngineThis(name);
+template ConfigEngineThis(string name = null, bool overrideMemberNames = true) {
+  const char[] ConfigEngineThis = configEngineThis(name, overrideMemberNames);
 }
 
 string configEngineCalls(string name) {

@@ -11,13 +11,13 @@ mixin(Version!("test_uim_oop"));
 
 @safe:
 
-string vectorThis(string name = null) {
+string vectorThis(string name = null, bool overrideMemberNames = true) {
   string fullName = name ~ "Vector";
-  return objThis(fullName);
+  return objThis(fullName, overrideMemberNames);
 }
 
-template VectorThis(string name = null) {
-  const char[] VectorThis = vectorThis(name);
+template VectorThis(string name = null, bool overrideMemberNames = true) {
+  const char[] VectorThis = vectorThis(name, overrideMemberNames);
 }
 
 string vectorCalls(string name) {

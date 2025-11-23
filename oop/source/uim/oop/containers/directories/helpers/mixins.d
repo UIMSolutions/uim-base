@@ -11,13 +11,13 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-string directoryThis(string name = null) {
+string directoryThis(string name = null, bool overrideMemberNames = true) {
     string fullName = name ~ "Directory";
-    return objThis(fullName);
+    return objThis(fullName, overrideMemberNames);
 }
 
-template DirectoryThis(string name = null) {
-    const char[] DirectoryThis = directoryThis(name);
+template DirectoryThis(string name = null, bool overrideMemberNames = true) {
+    const char[] DirectoryThis = directoryThis(name, overrideMemberNames);
 }
 
 string directoryCalls(string name) {

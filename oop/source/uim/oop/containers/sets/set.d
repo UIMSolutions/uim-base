@@ -26,11 +26,11 @@ class DSet(V) : DCollection!V, ISet!V {
     return _elements.dup;
   }
 
-  size_t size() {
+  override size_t size() {
     return _elements.length;
   } 
 
-  bool add(in V item) {
+  override bool add(in V item) {
     if (hasValue(item)) {
       return false;
     }

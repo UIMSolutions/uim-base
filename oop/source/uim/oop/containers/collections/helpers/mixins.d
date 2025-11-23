@@ -10,13 +10,13 @@ import uim.oop;
 mixin(Version!("test_uim_oop"));
 @safe:
 
-string collectionThis(string name = null) {
+string collectionThis(string name = null, bool overrideMemberNames = true) {
     string fullName = name ~ "Collection";
-    return objThis(fullName);
+    return objThis(fullName, overrideMemberNames);
 }
 
-template CollectionThis(string name = null) {
-    const char[] CollectionThis = collectionThis(name);
+template CollectionThis(string name = null, bool overrideMemberNames = true) {
+    const char[] CollectionThis = collectionThis(name, overrideMemberNames);
 }
 
 string collectionCalls(string name) {

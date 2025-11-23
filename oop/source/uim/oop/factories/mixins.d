@@ -11,13 +11,13 @@ mixin(Version!("test_uim_oop"));
 @safe:
 
 @safe:
-string factoryThis(string name = null) {
+string factoryThis(string name = null, bool overrideMemberNames = true) {
     string fullName = name ~ "Factory";
-    return objThis(fullName);
+    return objThis(fullName, overrideMemberNames);
 }
 
-template FactoryThis(string name = null) {
-    const char[] FactoryThis = factoryThis(name);
+template FactoryThis(string name = null, bool overrideMemberNames = true) {
+    const char[] FactoryThis = factoryThis(name, overrideMemberNames);
 }
 
 string factoryCalls(string name) {

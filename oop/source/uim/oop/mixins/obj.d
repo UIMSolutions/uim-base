@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-string objThis(string name) {
+string objThis(string name, bool overrideMemberNames = true) {
     return `
         this() {
             super("`~ name ~ `");
@@ -21,15 +21,16 @@ string objThis(string name) {
         }
         this(string name, Json[string] initData = null) {
             super(name, initData);
-        }
-        override string[] memberNames() {
+        }` ~ 
+        (overrideMemberNames ? `override ` : ``) ~ 
+        `string[] memberNames() {
             return [__traits(allMembers, typeof(this))];
         }
     `;
 }
 
-template ObjThis(string name) {
-    const char[] ObjThis = objThis(name);
+template ObjThis(string name, bool withOverride = true) {
+    const char[] ObjThis = objThis(name, withOverride);
 }
 
 string objCalls(string name) {

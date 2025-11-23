@@ -10,13 +10,13 @@ mixin(Version!("test_uim_oop"));
 @safe:
 
 @safe:
-string exceptionThis(string name = null) {
+string exceptionThis(string name = null, bool overrideMemberNames = true) {
     string fullName = name ~ "Exception";
-    return objThis(fullName);
+    return objThis(fullName, overrideMemberNames);
 }
 
-template ExceptionThis(string name = null) {
-    const char[] ExceptionThis = exceptionThis(name);
+template ExceptionThis(string name = null, bool overrideMemberNames = true) {
+    const char[] ExceptionThis = exceptionThis(name, overrideMemberNames);
 }
 
 string exceptionCalls(string name) {

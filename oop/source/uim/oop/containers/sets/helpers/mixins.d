@@ -10,13 +10,27 @@ import uim.oop;
 mixin(Version!("test_uim_oop"));
 @safe:
 
-string setThis(string name = null) {
+string setThis(string name = null, bool overrideMemberNames = true) {
     string fullName = name ~ "Set";
-    return objThis(fullName);
+    return `
+        this() {
+            super("`~ fullName ~ `");
+        }
+        this(Json[string] initData) {
+            super("`~ fullName ~ `", initData);
+        }
+        this(string name, Json[string] initData = null) {
+            super(name, initData);
+        }` ~ 
+        (name.length > 0 ? `override ` : ``) ~ 
+        `string[] memberNames() {
+            return [__traits(allMembers, typeof(this))];
+        }
+    `;
 }
 
-template SetThis(string name = null) {
-    const char[] SetThis = setThis(name);
+template SetThis(string name = null, bool overrideMemberNames = true) {
+    const char[] SetThis = setThis(name, overrideMemberNames);
 }
 
 string setCalls(string name) {

@@ -12,13 +12,13 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 
-string parserThis(string name = null) {
+string parserThis(string name = null, bool overrideMemberNames = true) {
     string fullName = name ~ "Parser";
-    return objThis(fullName);
+    return objThis(fullName, overrideMemberNames);
 }
 
-template ParserThis(string name = null) {
-    const char[] ParserThis = parserThis(name);
+template ParserThis(string name = null, bool overrideMemberNames = true) {
+    const char[] ParserThis = parserThis(name, overrideMemberNames);
 }
 
 string parserCalls(string name) {

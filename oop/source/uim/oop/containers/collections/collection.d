@@ -121,12 +121,15 @@ class DCollection(V) : DContainer, ICollection!V {
   }
   // #endregion clear
 
+  // #region isEqual
+  // Compares the specified object with this collection for equality.
   bool isEqual(ICollection!V other) {
     if (other is null || size != other.size) {
       return false;
     }
     return hasAllValue(other.toArray());
   }
+  // #endregion isEqual
 
   // #region toArray
   // Returns an array containing all of the elements in this collection.

@@ -22,14 +22,16 @@ string configurationThis(string name) {
         this(string name, Json[string] initData = null) {
             super(name, initData);
         }
-        string[] memberNames() {
+        }` ~ 
+        (name.length > 0 ? `override ` : ``) ~ 
+        `string[] memberNames() {
             return [__traits(allMembers, typeof(this))];
         }
     `;
 }
 
 template ConfigurationThis(string name) {
-    const char[] ConfigurationThis = configurationThis(name);
+    const char[] ConfigurationThis = configurationThis(name, overrideMemberNames);
 }
 
 string configurationCalls(string name) {

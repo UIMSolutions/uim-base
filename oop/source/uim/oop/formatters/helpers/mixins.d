@@ -11,13 +11,13 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-string formatterThis(string name = null) {
+string formatterThis(string name = null, bool overrideMemberNames = true) {
   string fullName = name ~ "Formatter";
-  return objThis(fullName);
+  return objThis(fullName, overrideMemberNames);
 }
 
-template FormatterThis(string name = null) {
-  const char[] FormatterThis = formatterThis(name);
+template FormatterThis(string name = null, bool overrideMemberNames = true) {
+  const char[] FormatterThis = formatterThis(name, overrideMemberNames);
 }
 
 string formatterCalls(string name) {

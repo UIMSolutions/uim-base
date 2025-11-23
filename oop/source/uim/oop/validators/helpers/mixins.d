@@ -11,13 +11,13 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-string validatorThis(string name = null) {
+string validatorThis(string name = null, bool overrideMemberNames = true) {
     string fullName = name ~ "Validator";
-    return objThis(fullName);
+    return objThis(fullName, overrideMemberNames);
 }
 
-template ValidatorThis(string name = null) {
-    const char[] ValidatorThis = validatorThis(name);
+template ValidatorThis(string name = null, bool overrideMemberNames = true) {
+    const char[] ValidatorThis = validatorThis(name, overrideMemberNames);
 }
 
 string validatorCalls(string name) {
