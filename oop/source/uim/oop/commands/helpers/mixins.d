@@ -11,13 +11,13 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-string commandThis(string name = null) {
+string commandThis(string name = null, bool overrideMemberNames = true) {
     string fullName = name ~ "Command";
-    return objThis(fullName);
+    return objThis(fullName, overrideMemberNames);
 }
 
-template CommandThis(string name = null) {
-    const char[] CommandThis = commandThis(name);
+template CommandThis(string name = null, bool overrideMemberNames = true) {
+    const char[] CommandThis = commandThis(name, overrideMemberNames);
 }
 
 string commandCalls(string name) {

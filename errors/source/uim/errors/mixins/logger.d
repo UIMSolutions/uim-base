@@ -8,13 +8,13 @@ module uim.errors.mixins.logger;
 import uim.errors;
 
 @safe:
-string errorLoggerThis(string name = null) {
+string errorLoggerThis(string name = null, bool overrideMemberNames = true) {
     string fullName = name ~ "ErrorLogger";
-    return objThis(fullName);
+    return objThis(fullName, overrideMemberNames);
 }
 
-template ErrorLoggerThis(string name = null) {
-    const char[] ErrorLoggerThis = errorLoggerThis(name);
+template ErrorLoggerThis(string name = null, bool overrideMemberNames = true) {
+    const char[] ErrorLoggerThis = errorLoggerThis(name, overrideMemberNames);
 }
 
 string errorLoggerCalls(string name) {

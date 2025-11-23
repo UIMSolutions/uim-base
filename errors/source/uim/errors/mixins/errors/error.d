@@ -8,13 +8,13 @@ module uim.errors.mixins.errors.error;
 import uim.errors;
 
 @safe:
-string errorThis(string name = null) {
+string errorThis(string name = null, bool overrideMemberNames = true) {
     string fullName = name ~ "Error";
-    return objThis(fullName);
+    return objThis(fullName, overrideMemberNames);
 }
 
-template ErrorThis(string name = null) {
-    const char[] ErrorThis = errorThis(name);
+template ErrorThis(string name = null, bool overrideMemberNames = true) {
+    const char[] ErrorThis = errorThis(name, overrideMemberNames);
 }
 
 string errorCalls(string name) {

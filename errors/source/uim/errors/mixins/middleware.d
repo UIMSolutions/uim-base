@@ -8,13 +8,13 @@ module uim.errors.mixins.middleware;
 import uim.errors;
 
 @safe:
-string errorMiddlewareThis(string name = null) {
+string errorMiddlewareThis(string name = null, bool overrideMemberNames = true) {
     string fullName = name ~ "ErrorMiddleware";
-    return objThis(fullName);
+    return objThis(fullName, overrideMemberNames);
 }
 
-template ErrorMiddlewareThis(string name = null) {
-    const char[] ErrorMiddlewareThis = errorMiddlewareThis(name);
+template ErrorMiddlewareThis(string name = null, bool overrideMemberNames = true) {
+    const char[] ErrorMiddlewareThis = errorMiddlewareThis(name, overrideMemberNames);
 }
 
 string errorMiddlewareCalls(string name) {

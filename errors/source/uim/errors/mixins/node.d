@@ -8,13 +8,13 @@ module uim.errors.mixins.node;
 import uim.errors;
 
 @safe:
-string errorNodeThis(string name = null) {
+string errorNodeThis(string name = null, bool overrideMemberNames = true) {
     string fullName = name ~ "ErrorNode";
-    return objThis(fullName);
+    return objThis(fullName, overrideMemberNames);
 }
 
-template ErrorNodeThis(string name = null) {
-    const char[] ErrorNodeThis = errorNodeThis(name);
+template ErrorNodeThis(string name = null, bool overrideMemberNames = true) {
+    const char[] ErrorNodeThis = errorNodeThis(name, overrideMemberNames);
 }
 
 string errorNodeCalls(string name) {

@@ -8,13 +8,13 @@ module uim.errors.mixins.trap;
 import uim.errors;
 
 @safe:
-string errorTrapThis(string name = null) {
+string errorTrapThis(string name = null, bool overrideMemberNames = true) {
     string fullName = name ~ "ErrorTrap";
-    return objThis(fullName);
+    return objThis(fullName, overrideMemberNames);
 }
 
-template ErrorTrapThis(string name = null) {
-    const char[] ErrorTrapThis = errorTrapThis(name);
+template ErrorTrapThis(string name = null, bool overrideMemberNames = true) {
+    const char[] ErrorTrapThis = errorTrapThis(name, overrideMemberNames);
 }
 
 string errorTrapCalls(string name) {

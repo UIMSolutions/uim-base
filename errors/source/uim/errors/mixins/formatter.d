@@ -8,13 +8,13 @@ module uim.errors.mixins.formatter;
 import uim.errors;
 
 @safe:
-string errorFormatterThis(string name = null) {
+string errorFormatterThis(string name = null, bool overrideMemberNames = true) {
     string fullName = name ~ "ErrorFormatter";
-    return objThis(fullName);
+    return objThis(fullName, overrideMemberNames);
 }
 
-template ErrorFormatterThis(string name = null) {
-    const char[] ErrorFormatterThis = errorFormatterThis(name);
+template ErrorFormatterThis(string name = null, bool overrideMemberNames = true) {
+    const char[] ErrorFormatterThis = errorFormatterThis(name, overrideMemberNames);
 }
 
 string errorFormatterCalls(string name) {

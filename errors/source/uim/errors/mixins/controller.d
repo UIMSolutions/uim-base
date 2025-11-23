@@ -8,13 +8,13 @@ module uim.errors.mixins.controller;
 import uim.errors;
 
 @safe:
-string errorControllerThis(string name = null) {
+string errorControllerThis(string name = null, bool overrideMemberNames = true) {
     string fullName = name ~ "ErrorController";
-    return objThis(fullName);
+    return objThis(fullName, overrideMemberNames);
 }
 
-template ErrorControllerThis(string name = null) {
-    const char[] ErrorControllerThis = errorControllerThis(name);
+template ErrorControllerThis(string name = null, bool overrideMemberNames = true) {
+    const char[] ErrorControllerThis = errorControllerThis(name, overrideMemberNames);
 }
 
 string errorControllerCalls(string name) {
