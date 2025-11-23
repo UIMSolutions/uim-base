@@ -7,6 +7,8 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 class DSet(V) : DCollection!V, ISet!V {
+  mixin(SetThis!());
+  
   // Check if the set contains the specified item.
   override bool hasValue(in V item) {
     return _elements.canFind(item);

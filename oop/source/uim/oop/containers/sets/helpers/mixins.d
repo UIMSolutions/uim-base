@@ -22,7 +22,7 @@ string setThis(string name = null, bool overrideMemberNames = true) {
         this(string name, Json[string] initData = null) {
             super(name, initData);
         }` ~ 
-        (name.length > 0 ? `override ` : ``) ~ 
+        (overrideMemberNames ? `override ` : ``) ~ 
         `string[] memberNames() {
             return [__traits(allMembers, typeof(this))];
         }
