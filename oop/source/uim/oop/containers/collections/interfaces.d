@@ -42,6 +42,13 @@ interface ICollection(V) : IContainer {
   // Removes all of the elements from this collection (optional operation).
   void clear();
 
+  // Returns true if this collection contains no elements.
+  bool isEmpty();
+
+  // Returns the number of elements in this collection.
+  size_t size();
+  
+  // Compares the specified collection with this collection for equality.
   bool isEqual(ICollection!V other);
 
   // #region toArray

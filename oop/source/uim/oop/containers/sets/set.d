@@ -9,13 +9,27 @@ mixin(Version!"test_uim_oop");
 class DSet(V) : DCollection!V, ISet!V {
   mixin(SetThis!());
   
+    // #region isEmpty
+  // Check if the set is empty.
+  override bool isEmpty() {
+    return super.isEmpty;
+  }
+  // #endregion isEmpty
+
+  // #region size
+  // Returns the number of items in the collection.
+  override size_t size() {
+    return super.size;
+  }
+  // #endregion size
+
   // Check if the set contains the specified item.
-  override bool hasValue(in V item) {
+  override bool hasValue(V item) {
     return _elements.canFind(item);
   }
 
   // Remove an item from the set. Returns true if the item was removed, false if it was not found.
-  override bool removeValue(in V item) {
+  override bool removeValue(V item) {
     auto index = _elements.indexOf(item);
     if (index == -1) {
       return false;
@@ -28,15 +42,18 @@ class DSet(V) : DCollection!V, ISet!V {
     return _elements.dup;
   }
 
-  override size_t size() {
-    return _elements.length;
-  } 
-
-  override bool add(in V item) {
+  override bool add(V item) {
     if (hasValue(item)) {
       return false;
     }
     _elements ~= item;
     return true;
   }
+
+    // #region clear
+  // Removes all of the elements from this collection (optional operation).
+  override void clear() {
+    super.clear();
+  }
+  // #endregion clear
 }

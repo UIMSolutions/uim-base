@@ -23,7 +23,7 @@ class DCollection(V) : DContainer, ICollection!V {
   // #endregion elements
 
   // Add an item to the set. Returns true if the item was added, false if it was already present.
-  bool add(in V item) {
+  bool add(V item) {
     if (contains(item)) {
       return false;
     }
@@ -114,8 +114,8 @@ class DCollection(V) : DContainer, ICollection!V {
   // #endregion remove
   // #endregion keys
 
-  // Removes all of the elements from this collection (optional operation).
   // #region clear
+  // Removes all of the elements from this collection (optional operation).
   override void clear() {
     _elements.clear();
   }

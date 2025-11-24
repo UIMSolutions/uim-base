@@ -11,16 +11,16 @@ interface ISet(T) : IContainer {
   bool isEmpty();
 
   // Add an item to the set. Returns true if the item was added, false if it was already present.
-  bool add(in T item);
+  bool add(T item);
 
   // Check if the set contains the specified item.
-  bool hasValue(in T item);
+  bool hasValue(T item);
 
   // Get the number of items in the set.
   size_t size();
 
   // Remove an item from the set. Returns true if the item was removed, false if it was not found.
-  bool removeValue(in T item);
+  bool removeValue(T item);
 
   // Clear all items from the set.
   void clear();

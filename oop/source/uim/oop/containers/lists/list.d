@@ -14,7 +14,7 @@ mixin(Version!"test_uim_oop");
 class UIMList(V) : DCollection!V, IList!V {
   mixin(ListThis!(null, true));
   // Add an item to the list. Returns true if the item was added, false if it was already present.
-  override bool add(in V item) {
+  override bool add(V item) {
     _elements ~= item; // Append the item to the internal elements array.
     return true;
   }
@@ -34,7 +34,7 @@ class UIMList(V) : DCollection!V, IList!V {
   }
 
   // Get the index of an item in the list. Returns -1 if the item is not found.
-  size_t indexOf(in V item) {
+  size_t indexOf(V item) {
     return _elements.indexOf(item); // Return the index of the item in the list.
   }
 
@@ -44,12 +44,12 @@ class UIMList(V) : DCollection!V, IList!V {
   }
 
   // Check if the list contains a specific item.
-  override bool hasValue(in V item) {
+  override bool hasValue(V item) {
     return _elements.canFind(item); // Check if the item exists in the list.
   }
 
   // Remove an item from the list. Returns true if the item was removed, false if it was not found.
-  override bool removeValue(in V item) {
+  override bool removeValue(V item) {
     auto index = _elements.indexOf(item); // Find the index of the item to be removed.
     if (index == -1) { // Item not found in the list.
       return false; 

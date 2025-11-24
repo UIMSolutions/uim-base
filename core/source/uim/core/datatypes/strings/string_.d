@@ -59,7 +59,7 @@ string quotes(string text, string left, string right) {
 
 // TODO
 /* 
-string indent(in string text, size_t indent = 2) {
+string indent(string text, size_t indent = 2) {
   if (indent == 0) {
     return text;
   }

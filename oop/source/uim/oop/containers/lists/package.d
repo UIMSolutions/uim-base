@@ -9,4 +9,5 @@ public {
   import uim.oop.containers.lists.list;
   import uim.oop.containers.lists.interfaces;
   import uim.oop.containers.lists.helpers;
+  import uim.oop.containers.lists.tests;
 }

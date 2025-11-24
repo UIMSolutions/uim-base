@@ -4,7 +4,7 @@
 
 - OOP structures a software program into simple, reusable pieces of code blueprints called **classes**.
 - These classes are used to create individual **instances of objects**.
-- Each object combines **data** (in the form of fields or attributes) and **code** (in the form of methods or procedures).
+- Each object combines **data** (the form of fields or attributes) and **code** (the form of methods or procedures).
 
 **Key Concepts**:
 

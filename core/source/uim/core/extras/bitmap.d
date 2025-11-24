@@ -21,12 +21,12 @@ final class DImage(T) {
     T[] image;
     private size_t nx_, ny_;
 
-    this(in int nxx = 0, in int nyy = 0, in bool inizialize = true)
+    this(int nxx = 0, in int nyy = 0, in bool inizialize = true)
     pure nothrow {
         allocate(nxx, nyy, inizialize);
     }
 
-    void allocate(in int nxx = 0, in int nyy = 0, in bool inizialize = true)
+    void allocate(int nxx = 0, in int nyy = 0, in bool inizialize = true)
     pure nothrow @safe
     in {
         assert(nxx >= 0 && nyy >= 0);
@@ -71,7 +71,7 @@ final class DImage(T) {
         return ny_;
     }
 
-    ref T opIndex(in size_t x, in size_t y) pure nothrow @safe @nogc
+    ref T opIndex(size_t x, in size_t y) pure nothrow @safe @nogc
     in {
         assert(x < nx_ && y < ny_);
         //assert(x < nx_, format("opIndex, x=%d, nx=%d", x, nx));
@@ -81,7 +81,7 @@ final class DImage(T) {
         return image[x + y * nx_];
     }
 
-    T opIndex(in size_t x, in size_t y) const pure nothrow @safe @nogc
+    T opIndex(size_t x, in size_t y) const pure nothrow @safe @nogc
     in {
         assert(x < nx_ && y < ny_);
         //assert(x < nx_, format("opIndex, x=%d, nx=%d", x, nx));
@@ -91,7 +91,7 @@ final class DImage(T) {
         return image[x + y * nx_];
     }
 
-    T opIndexAssign(in T color, in size_t x, in size_t y)
+    T opIndexAssign(T color, in size_t x, in size_t y)
     pure nothrow @safe @nogc
     in {
         assert(x < nx_ && y < ny_);
@@ -102,7 +102,7 @@ final class DImage(T) {
         return image[x + y * nx_] = color;
     }
 
-    void opIndexUnary(string op)(in size_t x, in size_t y)
+    void opIndexUnary(string op)(size_t x, in size_t y)
     pure nothrow @safe @nogc if (op == "++" || op == "--")
     in {
         assert(x < nx_ && y < ny_);
@@ -111,12 +111,12 @@ final class DImage(T) {
         mixin("image[x + y * nx_] " ~ op ~ ";");
     }
 
-    void clear(in T color = this.black) pure nothrow @safe @nogc {
+    void clear(T color = this.black) pure nothrow @safe @nogc {
         // TODO image ~= color;
     }
 
     /// Convert a 2D array of chars to a binary Image.
-    static DImage fromText(in string txt,
+    static DImage fromText(string txt,
         in char one = '#', in char zero = '.') {
         auto M = txt
             .strip
@@ -133,7 +133,7 @@ final class DImage(T) {
     }
 
     /// The axis origin is at the top left.
-    void textualShow(in char bl = '#', in char wh = '.') const nothrow {
+    void textualShow(char bl = '#', in char wh = '.') const nothrow {
         size_t i = 0;
         foreach (immutable y; 0 .. ny_) {
             foreach (immutable x; 0 .. nx_)
@@ -174,7 +174,7 @@ Image!RGB loadPPM6(ref DImage!RGB img, in string fileName) {
 } */
 
 // TODO 
-/* void savePPM6(in DImage!RGB img, in string fileName)
+/* void savePPM6(DImage!RGB img, in string fileName)
 in {
     assert(img !is null);
     assert(img.nx > 0 && img.nx > 0);

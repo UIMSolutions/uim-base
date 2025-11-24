@@ -26,7 +26,7 @@ mixin(Version!("test_uim_phobos"));
   * // result will be: [2: 1, 3: 2]
   * ```
   */
-size_t[T] duplicates(T)(in T[] someValues) {
+size_t[T] duplicates(T)(T[] someValues) {
   size_t[T] results;
   if (someValues.length < 2) {
     return results; // No duplicates possible in arrays with less than 2 elements
