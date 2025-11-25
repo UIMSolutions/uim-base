@@ -471,7 +471,7 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   // #region hasValue
   // Check if a specific value is present in the map
   bool hasValue(V value) {
-    return _entries.values.array.hasValue(value);
+    return _entries.values.any!(a => a.isEqual(value));
   }
   ///
   unittest {
@@ -522,6 +522,8 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   V value(K[] path) {
     static if (is(V == Json)) {
       return Json(null);
+    } else static if (is(V : Object)) {
+      return null;
     } else {
       return Null!V;
     }
@@ -530,6 +532,8 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   V value(K key) {
     static if (is(V == Json)) {
       return key in _entries ? _entries[key] : Json(null);
+    } else static if (is(V : Object)) {
+      return key in _entries ? _entries[key] : null;
     } else {
       return key in _entries ? _entries[key] : Null!V;
     }
@@ -666,7 +670,7 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
     auto map1 = new DMap!(string, int);
     map1.entries = ["a": 1, "b": 2, "c": 3];
     assert(map1.size() == 3);
-    assert(map1.clear() == true);
+    map1.clear;
     assert(map1.size() == 0);
     assert(!map1.hasKey("a"));
     assert(!map1.hasKey("b"));
@@ -678,7 +682,7 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
     // clear() on an already empty map should still return true and keep it empty
     auto map2 = new DMap!(string, int);
     assert(map2.size() == 0);
-    assert(map2.clear() == true);
+    map2.clear;
     assert(map2.size() == 0);
     // still no keys/values
     assert(!map2.hasKey("nonexistent"));

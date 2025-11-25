@@ -17,12 +17,12 @@ class DJsonMap : DMap!(string, Json)  {
 auto JsonMap() { return new DJsonMap; }
 
 unittest {
-  auto map = JsonMap;
+  auto jmap = JsonMap;
 
-  map["key1"] = Json("value1");
-  map["key2"] = Json("value2");
-  assert(map.length == 2);
-/*   assert(map["key1"].toString == "value1");
+  jmap["key1"] = Json("value1");
+  jmap["key2"] = Json("value2");
+  assert(jmap.length == 2);
+/*   assert(jmap["key1"].toString == "value1");
   assert(map["key2"].toString == "value2");
  */
   /*map.removeMany(["key1"]);

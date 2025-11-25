@@ -7,7 +7,7 @@ unittest {
     auto map = new DMap!(string, int);
     map.entries = ["a": 1, "b": 2, "c": 3];
     assert(map.size() == 3);
-    assert(map.clear() == true);
+    map.clear;
     assert(map.size() == 0);
     assert(!map.hasKey("a"));
     assert(!map.hasKey("b"));

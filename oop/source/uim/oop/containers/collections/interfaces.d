@@ -12,6 +12,11 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 interface ICollection(V) : IContainer {
+  // Compares the specified collection with this collection for equality.
+  bool isEqual(ICollection!V other);
+
+  size_t indexOfValue(V value);
+
   // #region has 
   // Returns true if this collection contains the specified element.
   bool hasAllValue(V[] values);
@@ -38,18 +43,6 @@ interface ICollection(V) : IContainer {
   // Removes the specified element from this collection (optional operation).
   bool removeValue(V value);
   // #endregion remove
-
-  // Removes all of the elements from this collection (optional operation).
-  void clear();
-
-  // Returns true if this collection contains no elements.
-  bool isEmpty();
-
-  // Returns the number of elements in this collection.
-  size_t size();
-  
-  // Compares the specified collection with this collection for equality.
-  bool isEqual(ICollection!V other);
 
   // #region toArray
   // Returns an array containing all of the elements in this collection.

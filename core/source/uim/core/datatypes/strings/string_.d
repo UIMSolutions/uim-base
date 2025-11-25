@@ -494,3 +494,7 @@ unittest {
   // TODO
 }
 // #endregion replace
+
+bool isEqual(string a, string b) {
+  return a == b;
+}

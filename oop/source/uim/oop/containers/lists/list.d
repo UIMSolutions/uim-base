@@ -45,7 +45,12 @@ class UIMList(V) : UIMCollection!V, IList!V {
 
   // Get the index of an item in the list. Returns -1 if the item is not found.
   size_t indexOf(V item) {
-    return _elements.indexOf(item); // Return the index of the item in the list.
+    foreach(i, element; _elements) {
+      if (element.isEqual(item)) {
+        return i; // Return the index if the item is found.
+      }
+    }
+    return -1; // Return -1 if the item is not found.
   }
 
   // Get the size of the list.
@@ -55,12 +60,12 @@ class UIMList(V) : UIMCollection!V, IList!V {
 
   // Check if the list contains a specific item.
   override bool hasValue(V item) {
-    return _elements.canFind(item); // Check if the item exists in the list.
+    return _elements.any!(a => a.isEqual(item)); // Return true if the item is found in the list.
   }
 
   // Remove an item from the list. Returns true if the item was removed, false if it was not found.
   override bool removeValue(V item) {
-    auto index = _elements.indexOf(item); // Find the index of the item to be removed.
+    auto index = indexOfValue(item); // Find the index of the item to be removed.
     if (index == -1) { // Item not found in the list.
       return false; 
     }

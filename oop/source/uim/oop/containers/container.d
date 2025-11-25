@@ -50,7 +50,7 @@ abstract class UIMContainer : UIMObject, IContainer {
   // #region clear
   // Removes all of the elements from this container */
   void clear() {
-    return true;
+    // Default implementation does nothing.
   }
   // #region clear
 }

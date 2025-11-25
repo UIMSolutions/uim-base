@@ -7,7 +7,7 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 // A container is a collection of objects.
-interface IContainer {
+interface IContainer : IObject {
   // Returns true if this collection contains no elements.
   bool isEmpty();
 

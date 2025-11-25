@@ -50,6 +50,7 @@ class UIMCollection(V) : UIMContainer, ICollection!V {
   // #endregion hasValue 
   // #endregion has
 
+
   // #region size
   // Returns the number of items in the collection.
   override size_t size() {
@@ -93,11 +94,26 @@ class UIMCollection(V) : UIMContainer, ICollection!V {
 
   // Removes the specified element from this collection (optional operation).
   bool removeValue(V value) {
-    auto index = _elements.indexOf(value);
-    if (index == -1) {
+    if (_elements.length == 0) {
       return false;
     }
-    _elements = _elements[0 .. index] ~ _elements[index + 1 .. $];
+
+    size_t pos; 
+    bool found = false; 
+    foreach(index, element; _elements) {
+      bool equal = false;
+      () @trusted { equal = (element == value); }();
+      if (equal) {
+        pos = index;
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
+      return false;
+    }
+
+    _elements = _elements[0 .. pos] ~ _elements[pos + 1 .. $];
     return true;
   }
   // #endregion remove
@@ -117,6 +133,15 @@ class UIMCollection(V) : UIMContainer, ICollection!V {
       return false;
     }
     return hasAllValue(other.toArray());
+  }
+
+  size_t indexOfValue(V value) {
+    foreach(i, element; _elements) {
+      if (element.isEqual(value)) {
+        return i; // Return the index if the item is found.
+      }
+    }
+    return -1;
   }
   // #endregion isEqual
 
