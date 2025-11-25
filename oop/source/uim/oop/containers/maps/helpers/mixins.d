@@ -8,6 +8,7 @@ module uim.oop.containers.maps.helpers.mixins;
 import uim.oop;
 
 mixin(Version!("test_uim_oop"));
+
 @safe:
 
 string mapThis(string name = null, bool overrideMemberNames = true) {

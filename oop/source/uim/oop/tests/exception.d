@@ -11,10 +11,10 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-bool testException(IException exception) {
+/* bool testException(IException exception) {
     if (exception is null) {
         return false;
     }
 
     return true;
-}
+} */
