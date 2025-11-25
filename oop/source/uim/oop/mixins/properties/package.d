@@ -3,15 +3,11 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.containers.registries;
+module uim.oop.mixins.properties;
 
-public { // Main package
-    import uim.oop.containers.registries.registry;
+public {
+  import uim.oop.mixins.properties.expandable;
+  import uim.oop.mixins.properties.functional;
+  import uim.oop.mixins.properties.property;
+  import uim.oop.mixins.properties.safe;
 }
-
-public { // Additional packages
-    import uim.oop.containers.registries.helpers;
-    import uim.oop.containers.registries.interfaces;
-    import uim.oop.containers.registries.tests;
-}
-

@@ -3,16 +3,16 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.factories;
+module uim.oop.containers.factories;
 
 public {
-  import uim.oop.factories.factory;
-  import uim.oop.factories.helpers;
-  import uim.oop.factories.interfaces;
-  import uim.oop.factories.mixins;
+  import uim.oop.containers.factories.factory;
+  import uim.oop.containers.factories.helpers;
+  import uim.oop.containers.factories.interfaces;
+  import uim.oop.containers.factories.mixins;
 
   version (unittest) {
-    import uim.oop.factories.tests;
+    import uim.oop.containers.factories.tests;
   }
 }
 

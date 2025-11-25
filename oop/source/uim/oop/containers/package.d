@@ -9,8 +9,10 @@ public { // Packages
   import uim.oop.containers.arrays;
   import uim.oop.containers.collections;
   import uim.oop.containers.directories;
+  import uim.oop.containers.factories;
   import uim.oop.containers.lists;
   import uim.oop.containers.maps;
+  import uim.oop.containers.registries;
   import uim.oop.containers.sets;
   import uim.oop.containers.vectors;
 }

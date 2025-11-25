@@ -3,15 +3,14 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.containers.registries;
+module uim.oop.tests.constraints.constraint;
 
-public { // Main package
-    import uim.oop.containers.registries.registry;
+import uim.oop;
+
+mixin(Version!"test_uim_oop");
+
+@safe:
+
+// A dummy constraint class for testing purposes
+class DConstraint {
 }
-
-public { // Additional packages
-    import uim.oop.containers.registries.helpers;
-    import uim.oop.containers.registries.interfaces;
-    import uim.oop.containers.registries.tests;
-}
-
