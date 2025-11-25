@@ -21,7 +21,7 @@ public {
 public import uim.core;
 
 public {
-  import uim.oop.configurations;
+  /* import uim.oop.configurations;
   import uim.oop.commands;
   import uim.oop.containers;
   import uim.oop.direntries;
@@ -36,6 +36,6 @@ public {
   import uim.oop.parsers;
   import uim.oop.registries;
   import uim.oop.validators;
-  import uim.oop.tests;
+  import uim.oop.tests; */ 
 }
 
