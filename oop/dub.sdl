@@ -10,6 +10,8 @@ targetName "uim-oop"
 targetType "library"
 
 dependency "uim-base:core" version="*"
+dependency "uim-base:phobos" version="*"
+dependency "uim-base:vibe" version="*"
 
 configuration "default" {
 	targetType "library"

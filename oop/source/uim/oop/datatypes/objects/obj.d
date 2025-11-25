@@ -12,7 +12,7 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 class UIMObject : IObject {
-  mixin TConfigurable;
+  // mixin TConfigurable;
 
   this() {
     this.initialize;
@@ -33,25 +33,39 @@ class UIMObject : IObject {
     objId(randomUUID);
     name("Object");
 
-    auto config = ConfigurationFactory.create("memory");
-    ;
+    /* auto config = ConfigurationFactory.create("memory");
     configuration(config);
     configuration.entries(initData is null ? new Json[string] : initData);
-
+    */ 
     return true;
   }
 
-  mixin(TProperty!("UUID", "objId"));
+  // #region Object ID
+  protected UUID _objId;
+  UUID objId() {
+    return _objId;
+  }
+  void objId(UUID newId) {
+    _objId = newId;
+  }
+  // #endregion Object ID
 
+  // #region object member
+  // Get the names of all members of the object.
   string[] memberNames() {
     return [__traits(allMembers, typeof(this))];
   }
-
-  mixin(HasMethods!("Members", "Member", "string"));
-
+  bool hasAllMember(string[] names) {
+    return names.all!(name => hasMember(name));
+  }
+  bool hasAnyMember(string[] names) {
+    return names.any!(name => hasMember(name));
+  }
   bool hasMember(string checkName) {
     return memberNames.any!(name => name == checkName);
   }
+  // #region object member
+
 
   /*   void opIndexAssign(T)(T value, string name) {
     switch(name) {

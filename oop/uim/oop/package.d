@@ -19,9 +19,12 @@ public {
 
 // UIM libraries
 public import uim.core;
+public import uim.phobos;
+public import uim.vibe;
 
 public {
-  import uim.oop.configurations;
+  import uim.oop.datatypes;
+  /* import uim.oop.configurations;
   import uim.oop.containers;
   import uim.oop.containers.maps;
   import uim.oop.direntries;
@@ -35,6 +38,6 @@ public {
   import uim.oop.simple;
   import uim.oop.tests;
   import uim.oop.tools;
-  import uim.oop.validators;
+  import uim.oop.validators; */
 }
 
