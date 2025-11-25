@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-abstract class DContainer : UIMObject, IContainer {
+abstract class UIMContainer : UIMObject, IContainer {
   this() {
     initialize;
   }
@@ -36,18 +36,21 @@ abstract class DContainer : UIMObject, IContainer {
     return true;
   }
 
-  // Returns true if this container contains no elements.
-  bool isEmpty() {
+  // #region isEmpty
+  // Check if the set is empty.
+  override bool isEmpty() {
     return size == 0;
   }
-
+  // #endregion isEmpty
   // Returns the number of elements in this container.*/
   size_t size() {
     return 0;
   }
 
+  // #region clear
   // Removes all of the elements from this container */
   void clear() {
     return true;
   }
+  // #region clear
 }

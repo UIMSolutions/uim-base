@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DCollection(V) : DContainer, ICollection!V {
+class UIMCollection(V) : UIMContainer, ICollection!V {
   mixin(CollectionThis!());
 
   // #region elements
@@ -21,15 +21,6 @@ class DCollection(V) : DContainer, ICollection!V {
     return _elements.dup;
   }
   // #endregion elements
-
-  // Add an item to the set. Returns true if the item was added, false if it was already present.
-  bool add(V item) {
-    if (contains(item)) {
-      return false;
-    }
-    _elements ~= item;
-    return true;
-  }
 
   // #region has 
   // #region hasAllValue 
@@ -59,13 +50,6 @@ class DCollection(V) : DContainer, ICollection!V {
   // #endregion hasValue 
   // #endregion has
 
-  // #region isEmpty
-  // Check if the set is empty.
-  override bool isEmpty() {
-    return size == 0;
-  }
-  // #endregion isEmpty
-
   // #region size
   // Returns the number of items in the collection.
   override size_t size() {
@@ -85,7 +69,12 @@ class DCollection(V) : DContainer, ICollection!V {
   }
 
   // Adds the specified element to this collection (optional operation).
+
+  // Add an item to the set. Returns true if the item was added, false if it was already present.
   bool addValue(V value) {
+    if (hasValue(value)) {
+      return false;
+    }
     _elements ~= value;
     return true;
   }

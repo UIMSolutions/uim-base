@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DMap(K = string, V = UIMObject) : DContainer, IMap!(K, V) {
+class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   mixin(MapThis!());
 
   // Initializes this container with optional JSON data.

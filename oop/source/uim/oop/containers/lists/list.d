@@ -11,15 +11,25 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class UIMList(V) : DCollection!V, IList!V {
+class UIMList(V) : UIMCollection!V, IList!V {
   mixin(ListThis!(null, true));
+
+  // Initializes this container with optional JSON data.
+  override bool initialize(Json[string] initData = null) {
+    name("List");
+    if (!super.initialize(initData)) {
+      return false;
+    }
+    return true;
+  }
+
   // Add an item to the list. Returns true if the item was added, false if it was already present.
-  override bool add(V item) {
+  override bool addValue(V item) {
     _elements ~= item; // Append the item to the internal elements array.
     return true;
   }
 
-  V get(size_t index) {
+  V getValue(size_t index) {
     return _elements[index]; // Return the item at the specified index.
   }
 

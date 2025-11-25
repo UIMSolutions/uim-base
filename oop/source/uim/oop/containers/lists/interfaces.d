@@ -22,7 +22,7 @@ interface IList(T) : IContainer {
   bool hasValue(T item);
 
   // Get an item by its index.
-  T get(size_t index);
+  T getValue(size_t index);
   
   // Get the number of items in the set.
   size_t size();

@@ -120,7 +120,7 @@ class UIMErrorRenderer : UIMObject, IErrorRenderer {
             auto params = _request.getAttribute("params");
             params.set("controller", "Error");
 
-            auto factory = new DControllerFactory(new DContainer());
+            auto factory = new DControllerFactory(new UIMContainer());
             string myClass = factory.controllerClass(_request.withAttribute("params", params));
 
             if (myClass.isEmpty) {
@@ -473,7 +473,7 @@ class UIMErrorRenderer { // }: IErrorRenderer
             auo params = _request.getAttribute("params");
             params["controller"] = "Error";
 
-            auto factory = new DControllerFactory(new DContainer());
+            auto factory = new DControllerFactory(new UIMContainer());
             auto myClass = factory.controllerClass(_request.withAttribute("params", params));
 
             if (!myClass) {

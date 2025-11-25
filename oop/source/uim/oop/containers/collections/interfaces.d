@@ -54,6 +54,8 @@ interface ICollection(V) : IContainer {
   // #region toArray
   // Returns an array containing all of the elements in this collection.
   V[] toArray();
+
+  // Fills the provided array with elements from this collection and returns it.
   V[] toArray(V[] values);
   // #endregion toArray
 }

@@ -112,7 +112,7 @@ class DWebErrorRenderer : UIMErrorRenderer {
       params = request.getAttribute("params");
       params.set("controller", "Error");
 
-      auto factory = new DControllerFactory(new DContainer());
+      auto factory = new DControllerFactory(new UIMContainer());
       // Check including plugin + prefix
       auto classname = factory.controllerClass(request.withAttribute("params", params));
       if (!classname && !params.isEmpty("prefix") && !params.isEmpty("plugin")) {

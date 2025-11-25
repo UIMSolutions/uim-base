@@ -6,7 +6,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DSet(V) : DCollection!V, ISet!V {
+class DSet(V) : UIMCollection!V, ISet!V {
   mixin(SetThis!());
   
     // #region isEmpty
@@ -42,11 +42,11 @@ class DSet(V) : DCollection!V, ISet!V {
     return _elements.dup;
   }
 
-  override bool add(V item) {
-    if (hasValue(item)) {
+  override bool addValue(V value) {
+    if (hasValue(value)) {
       return false;
     }
-    _elements ~= item;
+    _elements ~= value;
     return true;
   }
 
