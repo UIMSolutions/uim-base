@@ -12,3 +12,11 @@ bool isValidator(Object obj) {
   }
   return cast(IValidator)obj !is null;
 }
+
+auto Null(V:IValidator)() {
+  return null;
+}
+
+auto Null(V:DValidator)() {
+  return null;
+}

@@ -117,9 +117,6 @@ class UIMObject : IObject {
     if (cast(IObject)other is null) {
       return false;
     }
-    if (other.hash is null) {
-      return false;
-    }
 
 /*  if (this.classinfo !is other.classinfo) {
       return false;

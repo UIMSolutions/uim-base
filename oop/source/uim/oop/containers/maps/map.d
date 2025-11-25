@@ -524,6 +524,8 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
       return Json(null);
     } else static if (is(V : Object)) {
       return null;
+    } else static if (is(V : IObject)) {
+      return null;
     } else {
       return Null!V;
     }
@@ -533,6 +535,8 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
     static if (is(V == Json)) {
       return key in _entries ? _entries[key] : Json(null);
     } else static if (is(V : Object)) {
+      return key in _entries ? _entries[key] : null;
+    } else static if (is(V : IObject)) {
       return key in _entries ? _entries[key] : null;
     } else {
       return key in _entries ? _entries[key] : Null!V;

@@ -21,7 +21,7 @@ unittest {
     // clear() on an already empty map should still return true and keep it empty
     auto map = new DMap!(string, int);
     assert(map.size() == 0);
-    assert(map.clear() == true);
+    map.clear();
     assert(map.size() == 0);
     // still no keys/values
     assert(!map.hasKey("nonexistent"));

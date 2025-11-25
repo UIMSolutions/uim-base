@@ -17,3 +17,27 @@ bool isParser(Object obj) {
   }
   return cast(IParser)obj !is null;
 }
+
+bool isParser(IObject obj) {
+  if (obj is null) {
+    return false;
+  }
+  return cast(IParser)obj !is null;
+}
+
+
+auto Null(V : IParser)() {
+  return null;
+}
+
+auto Null(V : DParser)() {
+  return null;
+}
+
+unittest {
+  auto parserNull = Null!IParser;
+  assert(parserNull is null, "Test Null!IParser failed");
+
+  auto dparserNull = Null!DParser;
+  assert(dparserNull is null, "Test Null!DParser failed");
+}

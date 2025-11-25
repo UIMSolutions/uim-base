@@ -25,12 +25,13 @@ class UIMSet(V) : UIMCollection!V, ISet!V {
 
   // Check if the set contains the specified item.
   override bool hasValue(V item) {
-    return _elements.canFind(item);
+    return super.hasValue(item);
+    //
   }
 
   // Remove an item from the set. Returns true if the item was removed, false if it was not found.
   override bool removeValue(V item) {
-    auto index = _elements.indexOf(item);
+    auto index = indexOfValue(item);
     if (index == -1) {
       return false;
     }

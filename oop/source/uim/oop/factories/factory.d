@@ -51,6 +51,10 @@ class DFactory(V = UIMObject) : UIMObject, IFactory!V {
     return "DFactory: " ~ this.name;
   }
 
+  bool isEmpty() {
+    return _workers is null || _workers.length == 0;
+  }
+  
   // Creates a clone of the current object.
   override IObject clone() {
     auto factory = new DFactory!V;

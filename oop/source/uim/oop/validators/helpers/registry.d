@@ -24,7 +24,7 @@ unittest {
   assert(registry1 is registry2, "ValidatorRegistry should return the same instance");
 
   // Test that registry can register and retrieve a validator
-  class TestValidator : DUIMValidator {
+  class TestValidator : DValidator {
     override bool validate(DUIMObject obj) {
       return true;
     }

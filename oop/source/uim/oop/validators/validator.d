@@ -12,7 +12,7 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 // Base class for validators
-class DUIMValidator : UIMObject, IValidator {
+class DValidator : UIMObject, IValidator {
   /*    mixin TLocatorAware;
     mixin TLog; */
 
