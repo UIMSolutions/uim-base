@@ -10,7 +10,7 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DConsoleSet : DSet!IConsole {
+class DConsoleSet : UIMSet!IConsole {
   mixin(SetThis!("Console"));
 }
 mixin(SetCalls!("Console"));

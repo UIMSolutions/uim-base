@@ -10,7 +10,7 @@ import uim.io;
 mixin(Version!"test_uim_io");
 @safe:
 
-class DOutputStyleSet : DSet!IOutputStyle {
+class DOutputStyleSet : UIMSet!IOutputStyle {
   mixin(SetThis!("OutputStyle"));
 }
 mixin(SetCalls!("OutputStyle"));

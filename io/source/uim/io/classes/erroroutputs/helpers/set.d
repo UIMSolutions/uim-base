@@ -10,7 +10,7 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DErrorOutputSet : DSet!IErrorOutput {
+class DErrorOutputSet : UIMSet!IErrorOutput {
   mixin(SetThis!("ErrorOutput"));
 }
 mixin(SetCalls!("ErrorOutput"));

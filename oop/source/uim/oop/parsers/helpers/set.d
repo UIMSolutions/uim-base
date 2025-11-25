@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DParserSet : DSet!IParser {
+class DParserSet : UIMSet!IParser {
   mixin(SetThis!("Parser"));
 }
 mixin(SetCalls!("Parser"));

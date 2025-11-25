@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DCommandSet : DSet!ICommand {
+class DCommandSet : UIMSet!ICommand {
   mixin(SetThis!("Command"));
 }
 

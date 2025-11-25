@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DConfigurationSet : DSet!IConfiguration {
+class DConfigurationSet : UIMSet!IConfiguration {
   mixin(SetThis!("Configuration"));
 }
 

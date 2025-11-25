@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DValidatorSet : DSet!IValidator {
+class DValidatorSet : UIMSet!IValidator {
   mixin(SetThis!("Validator"));
 }
 mixin(SetCalls!("Validator"));

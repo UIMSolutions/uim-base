@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DFormatterSet : DSet!IFormatter {
+class DFormatterSet : UIMSet!IFormatter {
   mixin(SetThis!("Formatter"));
 }
 mixin(SetCalls!("Formatter"));

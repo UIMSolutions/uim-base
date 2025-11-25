@@ -10,7 +10,7 @@ import uim.io;
 mixin(Version!"test_uim_io");
 @safe:
 
-class DInputEngineSet : DSet!IInputEngine {
+class DInputEngineSet : UIMSet!IInputEngine {
   mixin(SetThis!("InputEngine"));
 }
 mixin(SetCalls!("InputEngine"));

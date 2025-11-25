@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DConfigEngineSet : DSet!IConfigEngine {
+class DConfigEngineSet : UIMSet!IConfigEngine {
   mixin(SetThis!("ConfigEngine"));
 }
 

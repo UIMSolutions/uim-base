@@ -5,7 +5,7 @@ mixin(Version!"test_uim_io");
 import uim.io;
 @safe:
 
-class DInputSet : DSet!IInput {
+class DInputSet : UIMSet!IInput {
   mixin(SetThis!("Input"));
 }
 mixin(SetCalls!("Input"));

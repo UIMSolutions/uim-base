@@ -6,7 +6,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DSet(V) : UIMCollection!V, ISet!V {
+class UIMSet(V) : UIMCollection!V, ISet!V {
   mixin(SetThis!());
   
     // #region isEmpty
