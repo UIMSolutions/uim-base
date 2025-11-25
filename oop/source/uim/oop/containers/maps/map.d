@@ -32,6 +32,48 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   void entries(V[K] newEntries) {
     _entries = newEntries.dup;
   }
+
+  // #region has
+  bool hasAllEntry(K, V)(V[K] checkEntries) {
+    return checkEntries.keys.all!(key => hasEntry(key, checkEntries[key]));
+  }
+
+  bool hasAllEntry(K, V)(V[K][] checkEntries) {
+    return checkEntries.all!(entry => hasEntry(entry));
+  }
+
+  bool hasAnyEntry(K, V)(V[K] checkEntries) {
+    return checkEntries.keys.any!(key => hasEntry(key, checkEntries[key]));
+  }
+
+  bool hasAnyEntry(K, V)(V[K][] checkEntries) {
+    return checkEntries.any!(entry => hasEntry(entry));
+  }
+
+  bool hasOnlyEntry(K, V)(V[K] checkEntries) {
+    if (_entries.length != checkEntries.length) {
+      return false;
+    }
+    return checkEntries.keys.all!(key => hasEntry(key, checkEntries[key]));
+  }
+
+  bool hasOnlyEntry(K, V)(V[K][] checkEntries) {
+    if (_entries.length != checkEntries.length) {
+      return false;
+    }
+    return checkEntries.all!(entry => hasEntry(entry));
+  }
+
+  bool hasEntry(K, V)(V[K] entry) {
+    auto key = entry.byKey.first;
+    auto value = entry[key];
+    return key in entries && value(key).isEqual(value);
+  }
+
+  bool hasEntry(K, V)(K key, V value) {
+    return key in entries && value(key).isEqual(value);
+  }
+  // #endregion has
   // #endregion entries
 
   // #region size
@@ -216,7 +258,7 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   // #region opIndex
   // Retrieve a value by its key from the map
   V opIndex(K key) {
-    return value(key);
+    return getValue(key);
   }
   ///
   unittest {
@@ -510,16 +552,16 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   }
 
   V[] values(K[][] paths) {
-    return paths.map!(path => value(path)).array;
+    return paths.map!(path => getValue(path)).array;
   }
 
   V[] values(K[] keys) {
-    return keys.map!(key => value(key)).array;
+    return keys.map!(key => getValue(key)).array;
   }
   // #endregion values
 
   // #region value
-  V value(K[] path) {
+  V getValue(K[] path) {
     static if (is(V == Json)) {
       return Json(null);
     } else static if (is(V : Object)) {
@@ -531,7 +573,7 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
     }
   }
 
-  V value(K key) {
+  V getValue(K key) {
     static if (is(V == Json)) {
       return key in _entries ? _entries[key] : Json(null);
     } else static if (is(V : Object)) {
@@ -623,41 +665,35 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
     // Test removeValue removes first occurrence only
     auto map1 = new DMap!(string, int);
     map1.entries = ["a": 1, "b": 2, "c": 2, "d": 3];
-    bool removed = map1.removeValue(2);
-    assert(removed == true);
+    assert(map1.removeValue(2), "Value 2 should be removed");
     // Only "b":2 should be removed, "c":2 remains
     // assert(map1.entries == ["a": 1, "c": 2, "d": 3]);
     assert(map1.hasValue(2), "Value 2 should still be present after removing first occurrence");
 
     // Remove value that is present only once
-    removed = map1.removeValue(3);
-    assert(removed == true);
-    assert(!map1.hasValue(3));
-    // assert(map1.entries == ["a": 1, "c": 2]);
+    assert(map1.removeValue(3), "Value 3 should be removed");
+    assert(!map1.hasValue(3), "Value 3 should be removed");
+    assert(map1.hasOnlyEntry(["a": 1, "c": 2]), "Map should only contain entries 'a':1 and 'c':2");
 
     // Remove value that is not present
-    removed = map1.removeValue(99);
-    assert(removed == false);
+    assert(!map1.removeValue(99), "Removing non-existent value should return false");
     // assert(map1.entries == ["a": 1, "c": 2]);
 
     // Remove all occurrences by repeated calls
-    removed = map1.removeValue(2);
-    assert(removed == true);
+    assert(map1.removeValue(2), "Value 2 should be removed");
     assert(!map1.hasValue(2));
     // assert(map1.entries == ["a": 1]);
 
     // Remove from empty map
     auto map2 = new DMap!(string, int);
     map2.entries = null;
-    removed = map2.removeValue(1);
-    assert(removed == false);
+    assert(!map2.removeValue(1), "Removing from empty map should return false");
 
     // Remove string value
     auto map3 = new DMap!(int, string);
     map3.entries = [1: "foo", 2: "bar", 3: "baz"];
-    removed = map3.removeValue("bar");
-    assert(removed == true);
-    assert(map3.entries == [1: "foo", 3: "baz"]);
+    assert(map3.removeValue("bar"), "Value 'bar' should be removed");
+    assert(map3.hasEntries([1: "foo", 3: "baz"]), "Map should only contain 'foo' and 'baz'");
     assert(!map3.hasValue("bar"));
   }
   // #endregion removeValue

@@ -18,6 +18,6 @@ interface IGetValues(K = string, V = UIMObject) {
   V[] values(K[][] paths);
   V[] values(K[] keys);
 
-  V value(K[] path);
-  V value(K key);
+  V getValue(K[] path);
+  V getValue(K key);
 }

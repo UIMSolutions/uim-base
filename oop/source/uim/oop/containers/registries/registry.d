@@ -135,7 +135,7 @@ class DRegistry(V = UIMObject) : UIMObject, IRegistry!V {
   // #endregion values
 
   // #region value
-  V value(string[] path) {
+  V getValue(string[] path) {
     return value(path.toKey(_separator));
   }
   // #endregion value
@@ -259,7 +259,7 @@ class DRegistry(V = UIMObject) : UIMObject, IRegistry!V {
   // #endregion values
 
   // #region value
-  V value(string key) {
+  V getValue(string key) {
     auto correctedKey = key.correctKey;
     return correctedKey in _registeredObjects
       ? _registeredObjects[correctedKey] : _nullValue;

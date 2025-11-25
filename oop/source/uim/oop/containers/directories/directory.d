@@ -128,11 +128,11 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
 
   // #region get
   // #region values
-  override V value(string[] path) {
-    return value(path.toKey(_pathSeparator));
+  override V getValue(string[] path) {
+    return getValue(path.toKey(_pathSeparator));
   }
 
-  override V value(string key) {
+  override V getValue(string key) {
     static if (is(V : IObject)) {
       return key.correctKey in _entries ? _entries[key.correctKey] : null;
     } else static if (is(V : UIMObject)) {
