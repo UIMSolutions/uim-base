@@ -21,9 +21,9 @@ public {
 public import uim.core;
 
 public {
-  // import uim.oop.configurations;
+  import uim.oop.configurations;
   // import uim.oop.commands;
-  // import uim.oop.containers;
+  import uim.oop.containers;
   import uim.oop.datatypes;
   // import uim.oop.direntries;
   // import uim.oop.enumerations;

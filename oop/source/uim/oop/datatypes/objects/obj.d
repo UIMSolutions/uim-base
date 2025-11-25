@@ -66,6 +66,18 @@ class UIMObject : IObject {
   }
   // #region object member
 
+  // #region name
+  protected string _name;
+  // Get the name of the object.
+  string name() {
+    return _name;
+  }
+
+  // Get or set the name of the object.
+  void name(string newName) {
+    _name = newName.dup;
+  }
+  // #endregion name
 
   /*   void opIndexAssign(T)(T value, string name) {
     switch(name) {
@@ -99,6 +111,8 @@ class UIMObject : IObject {
     return json;
   }
 
+  // #region debugInfo
+  // Provides debug information about the object.
   Json[string] debugInfo(string[] showKeys = null, string[] hideKeys = null) {
     Json[string] info;
 
@@ -107,18 +121,10 @@ class UIMObject : IObject {
       .set("classname", this.classname)
       .set("classFullname", this.classFullname);
   }
+  // #region debugInfo
 
   // #region IObject
-  protected string _name;
-  // Get the name of the object.
-  string name() {
-    return _name;
-  }
-
-  // Get or set the name of the object.
-  void name(string newName) {
-    _name = newName.dup;
-  }
+  
 
   // Compares two IObject instances for equality based on their names.
   bool isEqual(IObject other) {

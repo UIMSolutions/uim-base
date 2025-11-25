@@ -24,9 +24,9 @@ public import uim.vibe;
 
 public {
   import uim.oop.datatypes;
-  /* import uim.oop.configurations;
+  import uim.oop.configurations;
   import uim.oop.containers;
-  import uim.oop.containers.maps;
+  /*  import uim.oop.containers.maps;
   import uim.oop.direntries;
   import uim.oop.enumerations;
   import uim.oop.helpers;
