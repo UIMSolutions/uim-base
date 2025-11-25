@@ -106,12 +106,7 @@ unittest {
  *   `true` if the value is found in the array, `false` otherwise.
  */
 bool has(T)(T[] values, T checkValue) {
-  foreach (value; values) { // TODO
-    /* if (value == checkValue) {
-      return true;
-    } */ 
-  }
-  return false;
+  return values.any!(v => v == checkValue);
 }
 ///
 unittest {

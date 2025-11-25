@@ -16,7 +16,7 @@ bool containsAll(string[] bases, string[] values) {
 }
 
 bool containsAll(string base, string[] values) {
-  return values.all!(value => base.contains(value));
+  return values.all!(value => base.indexOf(value) != -1);
 }
 // #endregion containsAll
 
@@ -32,11 +32,11 @@ bool containsAny(string base = null, string[] values = null) {
   if (base.length == 0 || values.length == 0) {
     return false;
   }
-  return values.any!(value => base.contains(value));
+  return values.any!(value => base.indexOf(value) != -1);
 }
 // #endregion containsAny
 
-bool hasValue(string text, string checkValue) {
+bool contains(string text, string checkValue) {
   return (text.length == 0 || checkValue.length == 0 || checkValue.length > text.length)
     ? false : text.indexOf(checkValue) != -1;
 }

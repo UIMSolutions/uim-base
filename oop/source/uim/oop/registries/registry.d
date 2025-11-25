@@ -75,9 +75,14 @@ class DRegistry(V = UIMObject) : UIMObject, IRegistry!V {
 
     // auto keys = this._registeredObjects.keys;    
 
-    foreach (key; this._registeredObjects.keys) {
-      if (!other._registeredObjects.hasKey(key) ||
-          this._registeredObjects[key] !is other._registeredObjects[key]) {
+    foreach (key; keys) {
+      if (!other.hasKey(key)) {
+        return false;
+      }
+      
+      auto value = value(key);
+      auto otherValue = other.value(key);      
+      if (value !is otherValue) {
         return false;
       }
     }
