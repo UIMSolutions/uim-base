@@ -667,7 +667,7 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
     map1.entries = ["a": 1, "b": 2, "c": 2, "d": 3];
     assert(map1.removeValue(2), "Value 2 should be removed");
     // Only "b":2 should be removed, "c":2 remains
-    // assert(map1.entries == ["a": 1, "c": 2, "d": 3]);
+    assert(map1.entries == ["a": 1, "c": 2, "d": 3]);
     assert(map1.hasValue(2), "Value 2 should still be present after removing first occurrence");
 
     // Remove value that is present only once
