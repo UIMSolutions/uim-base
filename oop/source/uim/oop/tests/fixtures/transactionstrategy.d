@@ -19,7 +19,7 @@ mixin(Version!"test_uim_oop");
  * Any test that calls Connection.rollback(true) will break this strategy.
  */
 class DTransactionStrategy : IFixtureStrategy {
-    mixin TConfigurable;
+    // mixin TConfigurable;
 
     this() {
         initialize;
@@ -35,8 +35,8 @@ class DTransactionStrategy : IFixtureStrategy {
 
     // Hook method
     bool initialize(Json[string] initData = null) {
-        configuration(new DConfiguration);
-        configuration.entries(initData);
+        // configuration(new DConfiguration);
+        // configuration.entries(initData);
 
         return true;
     }

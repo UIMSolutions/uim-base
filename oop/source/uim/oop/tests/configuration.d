@@ -12,7 +12,7 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 // Test function for IConfiguration
-bool testConfiguration(IConfiguration configuration, string instanceName) {
+/* bool testConfiguration(IConfiguration configuration, string instanceName) {
     assert(configuration !is null, "In testConfiguration: configuration is null");
     assert(instanceName !is null && instanceName.length > 0, "Instance name is null or empty");
     assert(configuration.name == instanceName, "In testConfiguration: configuration name "~instanceName~" does not match!");        
@@ -37,7 +37,7 @@ bool testConfiguration(IConfiguration configuration, string instanceName) {
     // writeln("Reading 1... ", config.entries.toString());
     assert(config.getStringEntry("a") == "A", config.name);
     writeln("Reading 2... ", config.entries.toString());
-    assert(config.getStringEntry("b") == "B", config.name); */
+    assert(config.getStringEntry("b") == "B", config.name); 
 
     return true;
-}
+}*/

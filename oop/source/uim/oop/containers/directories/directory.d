@@ -60,6 +60,9 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   // #region removePath
   // Removes a specific item from the map.
   override bool removePath(string[] path) {
+    if (path.length == 0 || !hasPath(path)) {
+      return false;
+    }
     return removeKey(path.toKey(_pathSeparator));
   }
   ///

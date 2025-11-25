@@ -11,6 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
+/* 
 mixin template TConfigurable() {
     protected IConfiguration _configuration;
 
@@ -52,5 +53,5 @@ mixin template TConfigurable() {
         if (configuration) {
             configuration.setEntry(key, newEntries);
         }
-    } */
-}
+    } 
+} */

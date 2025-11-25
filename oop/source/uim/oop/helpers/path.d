@@ -14,29 +14,32 @@ mixin(Version!"test_uim_oop");
 // #region key-path conversion
 // Converts a key string to a path array using the specified separator.
 string[] toPath(string key, string separator = ".") {
+  if (key.length == 0) {
+    return [""];
+  }
   return key.split(separator).correctPath;
 }
 
 unittest {
   // Test 1: Basic usage with default separator
   string key1 = "foo.bar.baz";
-  assert(toPath(key1) == ["foo", "bar", "baz"]);
+  assert(toPath(key1) == ["foo", "bar", "baz"], "Default separator failed");
 
   // Test 2: Custom separator
   string key2 = "foo/bar/baz";
-  assert(toPath(key2, "/") == ["foo", "bar", "baz"]);
+  assert(toPath(key2, "/") == ["foo", "bar", "baz"], "Custom separator failed");
 
   // Test 3: Key with whitespace
   string key3 = " foo . bar . baz ";
-  assert(toPath(key3) == ["foo", "bar", "baz"]);
+  assert(toPath(key3) == ["foo", "bar", "baz"], "Whitespace should be trimmed");
 
   // Test 4: Empty key
   string key4 = "";
-  assert(toPath(key4) == [""]);
+  assert(toPath(key4) == [""], "Empty key should return array with one empty string");
 
   // Test 5: Key with consecutive separators
   string key5 = "foo..baz";
-  assert(toPath(key5) == ["foo", "", "baz"]);
+  assert(toPath(key5) == ["foo", "", "baz"], "Consecutive separators should yield empty segments");
 }
 // #endregion key-path conversion
 

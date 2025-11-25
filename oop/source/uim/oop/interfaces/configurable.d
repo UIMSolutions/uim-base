@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-interface IConfigurable {
+/* interface IConfigurable {
   // Gets configuration
   IConfiguration configuration();
   // Sets configuration
@@ -23,5 +23,5 @@ interface IConfigurable {
 
   /* final Json getConfiguration(string key) {
     return configuration.getEntry(key);
-  } */
-}
+  } 
+}*/ 
