@@ -40,4 +40,4 @@ subPackage "vibe"
 // subPackage "yaml"
 
 buildRequirements "allowWarnings" "silenceDeprecations"
-buildOptions "ignoreDeprecations" 
+buildOptions "ignoreDeprecations" "debugInfo"

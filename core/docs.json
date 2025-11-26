@@ -553,10 +553,10 @@
 	},
 	{
 		"kind": "module",
-		"file": "source/uim/core/datatypes/uuid.d",
+		"file": "source/uim/core/datatypes/uuids/uuid.d",
 		"members": [],
 		"comment": " Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)\n License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.\n Authors: Ozan Nurettin Süel (aka UIManufaktur)\nExample:\n$(DDOX_UNITTEST_HEADER __unittest_L130_C1)\n---\n/// TODO\n\n---\n$(DDOX_UNITTEST_FOOTER __unittest_L130_C1)\n",
-		"name": "uim.core.datatypes.uuid"
+		"name": "uim.core.datatypes.uuids.uuid"
 	},
 	{
 		"kind": "module",

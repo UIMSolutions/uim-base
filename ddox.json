@@ -4,9 +4,9 @@
   "description": "This is the documentation for the UIM Base Library, a foundational library for my UIM projects.",
   "outputDir": "docs",
   "packages": [
-    "vibe",
-    "phobos",
-    "core",
-    "oop"    
+    "source",
+    "phobos/source",
+    "core/source",
+    "oop/source"    
   ]
 }
