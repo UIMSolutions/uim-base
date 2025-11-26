@@ -853,7 +853,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function UIMObject.hasMember</h1><p>Check if the object has the specified member.
+			<h1>Function UIMObject.hasMember</h1><p>Checks if the object has a member with the specified name.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -867,8 +867,32 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</code>
 			</div>
-			
-			
+			<section></section>
+
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="checkName">checkName</td><td> The name of the member to search for.</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>true if a member with the given name exists, false otherwise.
+</p>
+</section>
+<section><h2>Example</h2>
+
+<pre class="code"><code class="lang-d"><span class="kwd">auto </span><span class="pln">obj1 </span><span class="pun">= </span><span class="kwd">new <a href="../../../../../uim/oop/datatypes/objects/obj/UIMObject.html"></span><span class="typ">UIMObject</span></a><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">obj1<wbr/></span><span class="pun">.</span><span class="pln">hasMember</span><span class="pun">(</span><span class="str">"name"</span><span class="pun">)); </span><span class="com">// existing member
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">obj1<wbr/></span><span class="pun">.</span><span class="pln">hasMember</span><span class="pun">(</span><span class="str">"objId"</span><span class="pun">)); </span><span class="com">// existing member
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">obj1<wbr/></span><span class="pun">.</span><span class="pln">hasMember</span><span class="pun">(</span><span class="str">"initialize"</span><span class="pun">)); </span><span class="com">// existing member
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">obj1<wbr/></span><span class="pun">.</span><span class="pln">hasMember</span><span class="pun">(</span><span class="str">"nonExistentMember"</span><span class="pun">)); </span><span class="com">// non-existing member
+
+</span><span class="kwd">auto </span><span class="pln">obj2 </span><span class="pun">= </span><span class="kwd">new <a href="../../../../../uim/oop/datatypes/objects/obj/UIMObject.html"></span><span class="typ">UIMObject</span></a><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">obj2<wbr/></span><span class="pun">.</span><span class="pln">hasMember</span><span class="pun">(</span><span class="str">"Name"</span><span class="pun">)); </span><span class="com">// case sensitivity
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">obj2<wbr/></span><span class="pun">.</span><span class="pln">hasMember</span><span class="pun">(</span><span class="str">"name"</span><span class="pun">)); </span><span class="com">// correct case
+
+</span></code></pre>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

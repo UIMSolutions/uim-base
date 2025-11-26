@@ -53,7 +53,7 @@ class UIMObject : IObject {
     assert(obj.objId != NULL_UUID);
   }
 
-  /// Get the unique object ID.
+  /// Set the unique object ID.
   void objId(UUID newId) {
     _objId = newId;
   }
@@ -75,31 +75,87 @@ class UIMObject : IObject {
   ///
   unittest {
     // Test memberNames returns non-empty array
-    auto obj = new UIMObject;
-    auto members = obj.memberNames();
-    assert(members.length > 0);
+    auto obj1 = new UIMObject;
+    auto members1 = obj1.memberNames();
+    assert(members1.length > 0);
 
     // Test memberNames contains expected base members
-    auto obj = new UIMObject;
-    auto members = obj.memberNames();
-    assert(members.canFind("name"));
-    assert(members.canFind("objId"));
-    assert(members.canFind("initialize"));
+    auto obj2 = new UIMObject;
+    auto members2 = obj2.memberNames();
+    assert(members2.canFind("name"));
+    assert(members2.canFind("objId"));
+    assert(members2.canFind("initialize"));
   }
+
+  /** 
+  Check if the object has all specified members. 
   
-  /// Check if the object has all specified members.
+  Params: 
+    names = The names to check 
+
+  Returns: 
+    Returns 'true' if all members exist, 'false' otherwise
+  */
   bool hasAllMember(string[] names) {
     return names.all!(name => hasMember(name));
   }
+  /// 
+  unittest {
+    // Test hasAllMember with all existing members
+    auto obj1 = new UIMObject;
+    assert(obj1.hasAllMember(["name", "objId"]));
 
-  /// Check if the object has any of the specified members.
+    // Test hasAllMember with some non-existing members
+    auto obj2 = new UIMObject;
+    assert(!obj2.hasAllMember(["name", "nonExistentMember"]));
+  }
+
+  /** 
+  Check if the object has any of the specified members.
+
+  Params: 
+    names = The names to check
+
+  Returns: 
+    Returns 'true' if any member exists, 'false' otherwise
+  */
   bool hasAnyMember(string[] names) {
     return names.any!(name => hasMember(name));
   }
+  ///
+  unittest {
+    // Test hasAnyMember with at least one existing member
+    auto obj1 = new UIMObject;
+    assert(obj1.hasAnyMember(["name", "nonExistentMember"]));
 
-  /// Check if the object has the specified member.
+    // Test hasAnyMember with all existing members
+    auto obj2 = new UIMObject;
+    assert(obj2.hasAnyMember(["name", "objId", "initialize"]));
+  }
+
+  /**
+  Checks if the object has a member with the specified name.
+  
+  Params:
+    checkName = The name of the member to search for.
+  
+  Returns:
+    true if a member with the given name exists, false otherwise.
+  */
   bool hasMember(string checkName) {
     return memberNames.any!(name => name == checkName);
+  }
+  ///
+  unittest {
+    auto obj1 = new UIMObject;
+    assert(obj1.hasMember("name")); // existing member
+    assert(obj1.hasMember("objId")); // existing member
+    assert(obj1.hasMember("initialize")); // existing member
+    assert(!obj1.hasMember("nonExistentMember")); // non-existing member
+
+    auto obj2 = new UIMObject;
+    assert(!obj2.hasMember("Name")); // case sensitivity
+    assert(obj2.hasMember("name")); // correct case
   }
   // #region object member
 

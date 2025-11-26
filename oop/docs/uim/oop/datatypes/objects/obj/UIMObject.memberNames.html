@@ -866,16 +866,16 @@ $('#symbolSearchPane').show();</script>
 			<section><h2>Example</h2>
 
 <pre class="code"><code class="lang-d"><span class="com">// Test memberNames returns non-empty array
-</span><span class="kwd">auto </span><span class="pln">obj </span><span class="pun">= </span><span class="kwd">new <a href="../../../../../uim/oop/datatypes/objects/obj/UIMObject.html"></span><span class="typ">UIMObject</span></a><span class="pun">;
-</span><span class="kwd">auto </span><span class="pln">members </span><span class="pun">= </span><span class="pln">obj<wbr/></span><span class="pun">.</span><span class="pln">memberNames</span><span class="pun">();
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">members<wbr/></span><span class="pun">.</span><span class="pln">length </span><span class="pun">&gt; </span><span class="lit">0</span><span class="pun">);
+</span><span class="kwd">auto </span><span class="pln">obj1 </span><span class="pun">= </span><span class="kwd">new <a href="../../../../../uim/oop/datatypes/objects/obj/UIMObject.html"></span><span class="typ">UIMObject</span></a><span class="pun">;
+</span><span class="kwd">auto </span><span class="pln">members1 </span><span class="pun">= </span><span class="pln">obj1<wbr/></span><span class="pun">.</span><span class="pln">memberNames</span><span class="pun">();
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">members1<wbr/></span><span class="pun">.</span><span class="pln">length </span><span class="pun">&gt; </span><span class="lit">0</span><span class="pun">);
 
 </span><span class="com">// Test memberNames contains expected base members
-</span><span class="kwd">auto </span><span class="pln">obj </span><span class="pun">= </span><span class="kwd">new <a href="../../../../../uim/oop/datatypes/objects/obj/UIMObject.html"></span><span class="typ">UIMObject</span></a><span class="pun">;
-</span><span class="kwd">auto </span><span class="pln">members </span><span class="pun">= </span><span class="pln">obj<wbr/></span><span class="pun">.</span><span class="pln">memberNames</span><span class="pun">();
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">members<wbr/></span><span class="pun">.</span><span class="pln">canFind</span><span class="pun">(</span><span class="str">"name"</span><span class="pun">));
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">members<wbr/></span><span class="pun">.</span><span class="pln">canFind</span><span class="pun">(</span><span class="str">"objId"</span><span class="pun">));
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">members<wbr/></span><span class="pun">.</span><span class="pln">canFind</span><span class="pun">(</span><span class="str">"initialize"</span><span class="pun">));
+</span><span class="kwd">auto </span><span class="pln">obj2 </span><span class="pun">= </span><span class="kwd">new <a href="../../../../../uim/oop/datatypes/objects/obj/UIMObject.html"></span><span class="typ">UIMObject</span></a><span class="pun">;
+</span><span class="kwd">auto </span><span class="pln">members2 </span><span class="pun">= </span><span class="pln">obj2<wbr/></span><span class="pun">.</span><span class="pln">memberNames</span><span class="pun">();
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">members2<wbr/></span><span class="pun">.</span><span class="pln">canFind</span><span class="pun">(</span><span class="str">"name"</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">members2<wbr/></span><span class="pun">.</span><span class="pln">canFind</span><span class="pun">(</span><span class="str">"objId"</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">members2<wbr/></span><span class="pun">.</span><span class="pln">canFind</span><span class="pun">(</span><span class="str">"initialize"</span><span class="pun">));
 
 </span></code></pre>
 </section>

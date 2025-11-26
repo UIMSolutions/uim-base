@@ -16,7 +16,12 @@ class UIMCollection(V) : UIMContainer, ICollection!V {
 
   // #region elements
   protected V[] _elements;
-  // Returns the entire collection as a map of keys to items.
+  /** 
+  Returns an array containing all of the elements in this collection.
+
+  Returns: 
+    An array of elements in the collection
+  */
   V[] elements() {
     return _elements.dup;
   }
@@ -24,9 +29,51 @@ class UIMCollection(V) : UIMContainer, ICollection!V {
 
   // #region has 
   // #region hasAllValue 
-  // Returns true if this collection contains the specified element.
+  /** 
+  Checks if this collection contains all of the specified elements.
+
+  Params: 
+    values = The values to check
+  Returns: 
+    'true' if all values are present, 'false' otherwise
+  */
   bool hasAllValue(V[] values) {
     return values.all!(value => hasValue(value));
+  }
+  /// 
+  unittest {
+    // Test hasAllValue with empty collection
+    auto collection1 = new UIMCollection!int;
+    assert(collection1.hasAllValue([]));
+    assert(!collection1.hasAllValue([1, 2, 3]));
+
+  // Test hasAllValue with single element
+    auto collection2 = new UIMCollection!int;
+    collection2.addValue(1);
+    assert(collection2.hasAllValue([1]));
+    assert(!collection2.hasAllValue([2]));
+    assert(!collection2.hasAllValue([1, 2]));
+
+    // Test hasAllValue with multiple elements
+    auto collection3 = new UIMCollection!int;
+    collection3.addValue(1);
+    collection3.addValue(2);
+    collection3.addValue(3);
+    
+    assert(collection3.hasAllValue([1]));
+    assert(collection3.hasAllValue([1, 2]));
+    assert(collection3.hasAllValue([1, 2, 3]));
+    assert(collection3.hasAllValue([3, 1, 2])); // Order shouldn't matter
+    assert(!collection3.hasAllValue([1, 2, 3, 4]));
+    assert(!collection3.hasAllValue([4]));
+
+    // Test hasAllValue with duplicates in input
+    auto collection4 = new UIMCollection!int;
+    collection4.addValue(1);
+    collection4.addValue(2);
+    
+    assert(collection.hasAllValue([1, 1, 2]));
+    assert(collection.hasAllValue([2, 2, 2]));
   }
   // #endregion hasAllValue 
 
@@ -49,7 +96,6 @@ class UIMCollection(V) : UIMContainer, ICollection!V {
   }
   // #endregion hasValue 
   // #endregion has
-
 
   // #region size
   // Returns the number of items in the collection.
@@ -98,9 +144,9 @@ class UIMCollection(V) : UIMContainer, ICollection!V {
       return false;
     }
 
-    size_t pos; 
-    bool found = false; 
-    foreach(index, element; _elements) {
+    size_t pos;
+    bool found = false;
+    foreach (index, element; _elements) {
       bool equal = false;
       () @trusted { equal = (element == value); }();
       if (equal) {
@@ -137,7 +183,7 @@ class UIMCollection(V) : UIMContainer, ICollection!V {
   }
 
   size_t indexOfValue(V value) {
-    foreach(i, element; _elements) {
+    foreach (i, element; _elements) {
       if (element.isEqual(value)) {
         return i; // Return the index if the item is found.
       }

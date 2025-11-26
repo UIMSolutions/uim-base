@@ -867,8 +867,30 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</code>
 			</div>
-			
-			
+			<section></section>
+
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="names">names</td><td> The names to check</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>Returns 'true' if all members exist, 'false' otherwise
+</p>
+</section>
+<section><h2>Example</h2>
+
+<pre class="code"><code class="lang-d"><span class="com">// Test hasAllMember with all existing members
+</span><span class="kwd">auto </span><span class="pln">obj1 </span><span class="pun">= </span><span class="kwd">new <a href="../../../../../uim/oop/datatypes/objects/obj/UIMObject.html"></span><span class="typ">UIMObject</span></a><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">obj1<wbr/></span><span class="pun">.</span><span class="pln">hasAllMember</span><span class="pun">([</span><span class="str">"name"</span><span class="pun">, </span><span class="str">"objId"</span><span class="pun">]));
+
+</span><span class="com">// Test hasAllMember with some non-existing members
+</span><span class="kwd">auto </span><span class="pln">obj2 </span><span class="pun">= </span><span class="kwd">new <a href="../../../../../uim/oop/datatypes/objects/obj/UIMObject.html"></span><span class="typ">UIMObject</span></a><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">obj2<wbr/></span><span class="pun">.</span><span class="pln">hasAllMember</span><span class="pun">([</span><span class="str">"name"</span><span class="pun">, </span><span class="str">"nonExistentMember"</span><span class="pun">]));
+
+</span></code></pre>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>
