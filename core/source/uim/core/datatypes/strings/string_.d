@@ -495,6 +495,6 @@ unittest {
 }
 // #endregion replace
 
-bool isEqual(string a, string b) {
+bool isEqual(T:string)(T a, T b) {
   return a == b;
-}
+} 

@@ -8,10 +8,8 @@ module uim.phobos.containers.arrays.array_;
 import uim.phobos;
 
 mixin(Version!("test_uim_phobos"));
+
 @safe:
-
-
-
 
 // #region firstPosition
 size_t firstPosition(T)(T[] baseArray, in T value) {

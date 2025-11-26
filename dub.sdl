@@ -14,16 +14,15 @@ dependency "dlib" version="~>1.3.2"
 dependency "colored" version="~>0.0.31"
 dependency "vibe-d" version="~>0.10.2"
 dependency "dyaml" version="~>0.10.0"
-dependency "unit-threaded" version="*"
 
 // uim dependencies
 dependency ":vibe" version="*"
 dependency ":phobos" version="*"
 dependency ":core" version="*"
-dependency ":io" version="*"
-dependency ":errors" version="*"
 dependency ":oop" version="*"
-dependency ":yaml" version="*"
+// dependency ":io" version="*"
+// dependency ":errors" version="*"
+// dependency ":yaml" version="*"
 
 sourceFiles "./source/uim/base.d"
 configuration "test_all" {
@@ -33,9 +32,9 @@ configuration "test_all" {
 
 // Subpackages
 subPackage "core"
-subPackage "io"
-subPackage "errors"
+// subPackage "io"
+// subPackage "errors"
 subPackage "oop"
 subPackage "phobos"
 subPackage "vibe"
-subPackage "yaml"
+// subPackage "yaml"

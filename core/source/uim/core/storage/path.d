@@ -102,9 +102,10 @@ auto dirNames(string aPath, bool aFullName = false) {
   if (aFullName) results = results.map!(a => aPath~"/"~a).array;
  */
 
-  foreach (string name; dirEntries(aPath, SpanMode.breadth)) {
-    writeln(name);
-  }
+  () @trusted {   
+    foreach (string name; dirEntries(aPath, SpanMode.breadth)) {
+      writeln(name);
+  }}();
 
   debug writeln(__MODULE__ ~ " - Results %s)".format(results));
   return results;

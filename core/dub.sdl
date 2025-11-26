@@ -11,11 +11,10 @@ targetType "library"
 
 // Exteral dependencies
 dependency "vibe-d" version="~>0.10.2"
-dependency "unit-threaded" version="~>2.2.2"
 dependency "colored" version="~>0.0.31"
 
-dependency "uim-base:phobos" path=".."
-dependency "uim-base:vibe" path=".."
+dependency "uim-base:phobos" version="*"
+dependency "uim-base:vibe" version="*"
 
 configuration "default" {
 	targetType "library"
