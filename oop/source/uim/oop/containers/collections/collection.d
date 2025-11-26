@@ -11,6 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
+/// Provides a basic collection with methods to add, remove, and check for elements.
 class UIMCollection(V) : UIMContainer, ICollection!V {
   mixin(CollectionThis!());
 
@@ -78,14 +79,30 @@ class UIMCollection(V) : UIMContainer, ICollection!V {
   // #endregion hasAllValue 
 
   // #region hasAnyValue 
-  // Returns true if this collection contains any of the specified elements.
+  /** 
+  Checks if this collection contains any of the specified elements.
+
+  Params: 
+    values = The values to check
+
+  Returns: 
+    'true' if any value is present, 'false' otherwise
+  */
   bool hasAnyValue(V[] values) {
     return values.any!(value => hasValue(value));
   }
   // #endregion hasAnyValue 
 
   // #region hasValue 
-  // Returns true if this collection contains the specified element.
+  /** 
+  Checks if this collection contains the specified element.
+
+  Params: 
+    value = The value to check
+
+  Returns:
+    'true' if the value is present, 'false' otherwise
+  */
   bool hasValue(V value) {
     /* foreach(v; elements) {
       if (v == value) {

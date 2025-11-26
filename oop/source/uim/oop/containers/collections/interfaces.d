@@ -11,6 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
+/// A collection that contains no duplicate elements.
 interface ICollection(V) : IContainer {
   // Compares the specified collection with this collection for equality.
   bool isEqual(Object other);
