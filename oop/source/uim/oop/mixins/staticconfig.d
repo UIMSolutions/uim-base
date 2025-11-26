@@ -90,7 +90,7 @@ mixin template TStaticConfig() {
      *
      * The config value for this key must exist, it can never be null.
      * Params:
-     * string aKey The name of the configuration.
+     * string configName = The name of the configuration.
      */
     static Json getConfigOrFail(string configName) {
         if (configuration.isNullEntry(configName)) {
@@ -154,7 +154,7 @@ mixin template TStaticConfig() {
      *
      * Note that querystring arguments are also parsed and set as values in the returned configuration.
      * Params:
-     * string adsn The DSN string to convert to a configuration array
+     * string adsn = The DSN string to convert to a configuration array
      */
     static Json[string] parseDsn(string adsn) {
         if (dsn.isEmpty) {

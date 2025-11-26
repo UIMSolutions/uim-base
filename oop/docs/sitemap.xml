@@ -64,6 +64,13 @@
 <url><loc>http://127.0.0.1/uim/oop/containers/vectors.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/datatypes/objects/interfaces.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/datatypes/objects/obj.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/datatypes/objects/obj/UIMObject.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/datatypes/objects/obj/UIMObject.hasAllMember.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/datatypes/objects/obj/UIMObject.hasAnyMember.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/datatypes/objects/obj/UIMObject.hasMember.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/datatypes/objects/obj/UIMObject.memberNames.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/datatypes/objects/obj/UIMObject.objId.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/datatypes/objects/obj/UIMObject.objId.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/helpers/key.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/helpers/path.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/interfaces/keys/all.html</loc></url>
@@ -159,7 +166,6 @@
 <url><loc>http://127.0.0.1/uim/oop/tests/connectionhelper.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/tests/connectionhelper/DConnectionHelper.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/tests/connectionhelper/DConnectionHelper.addTestAliases.html</loc></url>
-<url><loc>http://127.0.0.1/uim/oop/tests/connectionhelper/DConnectionHelper.enableQueryLogging.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/tests/constraints.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/tests/containerstub.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/tests/containerstub/TContainerStub.html</loc></url>

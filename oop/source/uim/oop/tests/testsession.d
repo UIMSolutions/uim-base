@@ -17,32 +17,31 @@ mixin(Version!"test_uim_oop");
  * Read only access to the session during testing.
  */
 class DTestSession {
-    protected Json[string] _session = null;
+  protected Json[string] _session = null;
 
-    this(Json[string] sessionData) {
-        _session = sessionData;
+  this(Json[string] sessionData) {
+    _session = sessionData;
+  }
+
+  // Returns true if given variable name is set in session.
+  bool check(string nameToCheck = null) {
+    if (_session is null) {
+      return false;
     }
-    
-    // Returns true if given variable name is set in session.
-    bool check(string nameToCheck = null) {
-        if (_session is null) {
-            return false;
-        }
-        
-        return nameToCheck.isNull
-            ? _session !is null
-            : false; // TODO !Hash.get(_session, nameToCheck).isNull;
+
+    return nameToCheck.isNull
+      ? _session !is null : false; // TODO !Hash.get(_session, nameToCheck).isNull;
+  }
+
+  // Returns given session variable, or all of them, if no parameters given.
+  Json read(string sessionName = null) {
+    if (_session is null) {
+      return Json(null);
     }
-    
-    // Returns given session variable, or all of them, if no parameters given.
-    Json read(string sessionName = null) {
-        if (_session is null) {
-            return Json(null);
-        }
-        // TODO 
-        /* if (sessionName.isNull) {
+    // TODO 
+    /* if (sessionName.isNull) {
             return _session ? _session : Json(null);
-        } */ 
-        return Json(null); // TODO Hash.get(_session, sessionName);
-    } 
+        } */
+    return Json(null); // TODO Hash.get(_session, sessionName);
+  }
 }

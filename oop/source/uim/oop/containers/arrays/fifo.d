@@ -5,13 +5,8 @@
 *****************************************************************************************************************/
 module uim.oop.containers.arrays.fifo;
 
-import uim.core;
-@safe:
+import uim.oop;
 
-version (test_uim_oop) {
-  import std.stdio;
-  
-  unittest {
-    writeln("-----  ", __MODULE__, "\t  -----");
-  }
-}
+mixin(Version!"test_uim_oop");
+
+@safe:

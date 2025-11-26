@@ -54,35 +54,7 @@ mixin template TInstanceConfig() {
     _configWrite(keysToSet, valueToSet, shouldMerge);
   }
 
-  /**
-     * Returns the config.
-     *
-     * ### Usage
-     *
-     * Reading the whole config:
-     *
-     * ```
-     * this.configuration.data;
-     * ```
-     *
-     * Reading a specific value:
-     *
-     * ```
-     * _configuration.hasEntry("key");
-     * ```
-     *
-     * Reading a nested value:
-     *
-     * ```
-     * _configuration.hasEntry("some.nested.key");
-     * ```
-     *
-     * Reading with default value:
-     *
-     * ```
-     * _configuration.hasEntry("some-key", "default-value");
-     * ```
-     */
+  // Returns the config.
   // TODO Kill code?
   /* Json getConfig(string key = null, Json defaultValue = null) {
         if (!_configInitialized) {
@@ -97,7 +69,7 @@ mixin template TInstanceConfig() {
      *
      * The config value for this key must exist, it can never be null.
      * Params:
-     * string keyToGet The key to get.
+     * string key = The key to get.
      */
   Json getConfigOrFail(string key) {
     Json configData = configuration.getEntry(key);

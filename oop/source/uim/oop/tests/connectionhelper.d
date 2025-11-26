@@ -40,13 +40,8 @@ class DConnectionHelper {
         } */
     }
     
-    /**
-     * Enables query logging for all database connections.
-     * Params:
-     * array<int, string>|null aConnections Connection names or null for all.
-     */
+    // Enables query logging for all database connections.
     void enableQueryLogging(Json[string] connections = null) {
-        // TODO
         /* connections = connections.ifEmpyt(ConnectionManager.configured());
         foreach (connection; connections) {
             connection = ConnectionManager.get(connection);
@@ -62,7 +57,6 @@ class DConnectionHelper {
     }
     
     // Drops all tables.
-    // TODO 
     /* 
     void dropTables(string connectionName, string[] tableNames = null) {
         auto connection = ConnectionManager.get(aConnectionName);

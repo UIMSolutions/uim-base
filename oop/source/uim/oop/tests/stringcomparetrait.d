@@ -18,27 +18,29 @@ mixin(Version!"test_uim_oop");
  * before use.
  */
 mixin template TStringCompare() {
-    /**
+  /**
      * The base path for output comparisons
      *
      * Must be initialized before use
      */
-    protected string _compareBasePath;
+  protected string _compareBasePath;
 
-    /**
+  /**
      * Update comparisons to match test changes
      * Initialized with the env variable UPDATE_TEST_COMPARISON_FILES
      */
-    protected bool _updateComparisons;
+  protected bool _updateComparisons;
 
-    /**
-     * Compare the result to the contents of the file
-     * Params:
-     * string aPath partial path to test comparison file
-     */
-    void assertSameAsFile(string partialPath, string testResult) {
-        // TODO
-        /* 
+  /**
+    Compare the result to the contents of the file
+    
+    Params:
+      string partialPath = The partial path to the comparison file
+      string testResult = The result to compare
+  */
+  void assertSameAsFile(string partialPath, string testResult) {
+    // TODO
+    /* 
         if (!filehasKey(partialPath)) {
             partialPath = _compareBasePath ~ partialPath;
         }
@@ -50,5 +52,5 @@ mixin template TStringCompare() {
         expected = file_get_contents(somePath);
         this.assertTextEquals(expected, result, "Content does not match file " ~ somePath);
         */
-    } 
+  }
 }

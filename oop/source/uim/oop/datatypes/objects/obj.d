@@ -11,6 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
+/// Basic implementation of the IObject interface.
 class UIMObject : IObject {
   // mixin TConfigurable;
 
@@ -36,31 +37,67 @@ class UIMObject : IObject {
     /* auto config = ConfigurationFactory.create("memory");
     configuration(config);
     configuration.entries(initData is null ? new Json[string] : initData);
-    */ 
+    */
     return true;
   }
 
   // #region Object ID
   protected UUID _objId;
+  /// Get the unique object ID.
   UUID objId() {
     return _objId;
   }
+  /// 
+  unittest {
+    auto obj = new UIMObject;
+    assert(obj.objId != NULL_UUID);
+  }
+
+  /// Get the unique object ID.
   void objId(UUID newId) {
     _objId = newId;
+  }
+  ///
+  unittest {
+    // Test objId setter with valid UUID
+    auto obj = new UIMObject;
+    auto newId = randomUUID;
+    obj.objId(newId);
+    assert(obj.objId == newId);
   }
   // #endregion Object ID
 
   // #region object member
-  // Get the names of all members of the object.
+  /// Get the names of all members of the object.
   string[] memberNames() {
     return [__traits(allMembers, typeof(this))];
   }
+  ///
+  unittest {
+    // Test memberNames returns non-empty array
+    auto obj = new UIMObject;
+    auto members = obj.memberNames();
+    assert(members.length > 0);
+
+    // Test memberNames contains expected base members
+    auto obj = new UIMObject;
+    auto members = obj.memberNames();
+    assert(members.canFind("name"));
+    assert(members.canFind("objId"));
+    assert(members.canFind("initialize"));
+  }
+  
+  /// Check if the object has all specified members.
   bool hasAllMember(string[] names) {
     return names.all!(name => hasMember(name));
   }
+
+  /// Check if the object has any of the specified members.
   bool hasAnyMember(string[] names) {
     return names.any!(name => hasMember(name));
   }
+
+  /// Check if the object has the specified member.
   bool hasMember(string checkName) {
     return memberNames.any!(name => name == checkName);
   }
@@ -124,7 +161,6 @@ class UIMObject : IObject {
   // #region debugInfo
 
   // #region IObject
-  
 
   // Compares two IObject instances for equality based on their names.
   bool isEqual(IObject other) {
@@ -138,7 +174,7 @@ class UIMObject : IObject {
       return false;
     }
 
-/*  if (this.classinfo !is other.classinfo) {
+    /*  if (this.classinfo !is other.classinfo) {
       return false;
     }
     if (other is null) {

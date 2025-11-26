@@ -161,7 +161,7 @@ mixin template TIntegrationTest() {
      * the current state. Sub-keys will be merged with existing
      * state.
      * Params:
-     * Json[string] data The request data to use.
+     * Json[string] data = The request data to use.
      */
     void configRequest(Json[string] data) {
         _request = array_merge_recursive(someData, _request);
@@ -376,7 +376,7 @@ mixin template TIntegrationTest() {
      * This method will attempt to use the configured exception renderer.
      * If that class does not exist, the built-in renderer will be used.
      * Params:
-     * \Throwable exceptionToHandle Exception to handle.
+     * \Throwable exceptionToHandle = Exception to handle.
      */
     protected void _handleError(Throwable exceptionToHandle) {
         classname = configuration.getEntry("Error.exceptionRenderer");

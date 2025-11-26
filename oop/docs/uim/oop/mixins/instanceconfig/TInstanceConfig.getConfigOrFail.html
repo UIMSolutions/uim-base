@@ -853,7 +853,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function TInstanceConfig.getConfigOrFail</h1><p>Returns the config.
+			<h1>Function TInstanceConfig.getConfigOrFail</h1><p>Returns the config for this specific key.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -867,45 +867,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</code>
 			</div>
-			<section><p>### Usage
-</p>
-
-<p> Reading the whole config:
-</p>
-
-<p> <code class="lang-d"></code>`
- this.configuration.data;
- <code class="lang-d"></code>`
-</p>
-
-<p> Reading a specific value:
-</p>
-
-<p> <code class="lang-d"></code>`
- configuration.hasEntry("key");
- <code class="lang-d"></code>`
-</p>
-
-<p> Reading a nested value:
-</p>
-
-<p> <code class="lang-d"></code>`
- configuration.hasEntry("some.nested.key");
- <code class="lang-d"></code>`
-</p>
-
-<p> Reading with default value:
-</p>
-
-<p> <code class="lang-d"></code>`
- configuration.hasEntry("some-key", "default-value");
- <code class="lang-d"></code>`
-</p>
-
-<p> Returns the config for this specific key.
-</p>
-
-<p> The config value for this key must exist, it can never be null.
+			<section><p>The config value for this key must exist, it can never be null.
 </p>
 </section>
 
