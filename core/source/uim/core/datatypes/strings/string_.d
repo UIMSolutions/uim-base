@@ -495,6 +495,3 @@ unittest {
 }
 // #endregion replace
 
-bool isEqual(T:string)(T a, T b) {
-  return a == b;
-} 

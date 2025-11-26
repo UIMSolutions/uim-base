@@ -16,3 +16,6 @@ dependency "colored" version="~>0.0.31"
 configuration "test_library" {
 	versions "test_uim_phobos"
 }
+
+buildRequirements "allowWarnings" "silenceDeprecations"
+buildOptions "ignoreDeprecations" 

@@ -24,3 +24,6 @@ configuration "test_all" {
 	targetType "library"
 	versions "test_uim_vibe" "test_uim_phobos"
 }
+
+buildRequirements "allowWarnings" "silenceDeprecations"
+buildOptions "ignoreDeprecations" 

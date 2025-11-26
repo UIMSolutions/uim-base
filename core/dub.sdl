@@ -23,3 +23,6 @@ configuration "default" {
 configuration "test_library" {
 	versions "test_uim_core"
 }
+
+buildRequirements "allowWarnings" "silenceDeprecations"
+buildOptions "ignoreDeprecations" 

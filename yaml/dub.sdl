@@ -18,3 +18,6 @@ dependency "uim-base:phobos" path=".."
 configuration "test_uim_yaml" {
 	versions "test_uim_yaml"
 }
+
+buildRequirements "allowWarnings" "silenceDeprecations"
+buildOptions "ignoreDeprecations" 

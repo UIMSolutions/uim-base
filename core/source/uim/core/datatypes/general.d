@@ -91,6 +91,6 @@ unittest {
   assert(["a": [1, 2, 3]].concatPostfixInValues([4]) == ["a": [1, 2, 3, 4]]);
 }
 
-
-
-
+bool isEqual(V)(V a, V b) {
+  return (a == b);
+}
