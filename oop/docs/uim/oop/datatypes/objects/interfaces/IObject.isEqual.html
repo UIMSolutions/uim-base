@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function UIMDirectory.getValue</title>
+		<title>Function IObject.isEqual</title>
 		<link rel="stylesheet" type="text/css" href="../../../../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../../../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../../../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../../../../scripts/ddox.js">/**/</script>
@@ -29,7 +29,7 @@ $('#symbolSearchPane').show();</script>
 						<a href="../../../../../uim/oop.html">oop</a>
 					</div>
 			<ul class="tree-view">
-				<li class="tree-view ">
+				<li class="tree-view collapsed">
 					<div class="package ">
 						<a href="../../../../../uim/oop/containers.html">containers</a>
 					</div>
@@ -102,7 +102,7 @@ $('#symbolSearchPane').show();</script>
 				</li>
 			</ul>
 				</li>
-				<li class="tree-view ">
+				<li class="tree-view collapsed">
 					<div class="package ">
 						<a href="../../../../../uim/oop/containers/directories.html">directories</a>
 					</div>
@@ -132,7 +132,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../../../../uim/oop/containers/directories/directory.html">directory</a>
 					</div>
 				</li>
@@ -401,17 +401,17 @@ $('#symbolSearchPane').show();</script>
 				</li>
 			</ul>
 				</li>
-				<li class="tree-view collapsed">
+				<li class="tree-view ">
 					<div class="package ">
 						<a href="../../../../../uim/oop/datatypes.html">datatypes</a>
 					</div>
 			<ul class="tree-view">
-				<li class="tree-view collapsed">
+				<li class="tree-view ">
 					<div class="package ">objects
 					</div>
 			<ul class="tree-view">
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../../../../uim/oop/datatypes/objects/interfaces.html">interfaces</a>
 					</div>
 				</li>
@@ -421,6 +421,51 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 			</ul>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../uim/oop/enumerations.html">enumerations</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/oop/enumerations/filemodes.html">filemodes</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/oop/enumerations/loglevel.html">loglevel</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../uim/oop/exceptions.html">exceptions</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">helpers
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/oop/exceptions/helpers/mixins.html">mixins</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/oop/exceptions/exception.html">exception</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/oop/exceptions/interfaces.html">interfaces</a>
+					</div>
 				</li>
 			</ul>
 				</li>
@@ -861,32 +906,22 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function UIMDirectory.getValue</h1><p>Gets the value associated with the specified key in the map.
+			<h1>Function IObject.isEqual</h1><p>Compares two IObject instances for equality based on their names.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="kwd">override </span><span class="pln">V</span> <span class="pln">getValue</span>
+			<span class="kwd">abstract </span><span class="typ">bool</span> <span class="pln">isEqual</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">string</span> <span class="pln">key</span>
+			&nbsp;&nbsp;<a href="../../../../../uim/oop/datatypes/objects/interfaces/IObject.html"><span class="typ">IObject</span></a> <span class="pln">other</span>
 			<br/>
-			<span class="pun">)</span><span class="pun">;</span>
+			<span class="pun">)</span><span class="pln"> </span><span class="kwd">@safe</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
-			<section></section>
-
-			<section><h2>Parameters</h2>
-<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
-<tr><td id="key">key</td><td> The key whose associated value is to be returned.</td></tr>
-</table>
-</section>
-<section><h2>Returns</h2>
-<p>The value associated with the specified key, or a default value if the key does not exist.
-</p>
-</section>
-
+			
+			
 			<footer>
 				<table class="license-info">
 					<tr>
