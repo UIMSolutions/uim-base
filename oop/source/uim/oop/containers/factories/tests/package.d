@@ -1,3 +1,5 @@
 module uim.oop.containers.factories.tests;
 
-publixc
+public {
+  import uim.oop.containers.factories.tests.test;
+}

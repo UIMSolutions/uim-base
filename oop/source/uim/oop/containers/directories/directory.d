@@ -11,6 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
+// A dynamic directory implementation using a map with string keys.
 class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   mixin(DirectoryThis!());
 
@@ -31,7 +32,15 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   // #region paths
   // #region has
   // #region hasPath
-  // Checks if a specific path exists in the map.
+  /** 
+    * Checks if a specific path exists in the directory.
+    *
+    * Params:
+    *   path = The path to check, represented as an array of strings.
+    *
+    * Returns:
+    *   true if the path exists, false otherwise.
+    */  
   override bool hasPath(string[] path) {
     return hasKey(path.toKey(_pathSeparator));
   }
