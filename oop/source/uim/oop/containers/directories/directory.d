@@ -71,7 +71,16 @@ class UIMDirectory(V = UIMObject) : UIMMap!(string, V), IDirectory!V {
 
   // #region set
   // #region setAllPath
-  // Sets the entire map to the specified item.
+  /** 
+    * Sets values at the specified paths in the directory.
+    *
+    * Params:
+    *   paths = An array of paths where the values should be set, each represented as an array of strings.
+    *   value = The value to set at the specified paths.
+    *
+    * Returns:
+    *   true if all of the values were successfully set, false otherwise.
+    */
   bool setAllPath(string[][] paths, V value) {
     return paths.all!(p => setPath(p, value));
   }
@@ -103,21 +112,48 @@ class UIMDirectory(V = UIMObject) : UIMMap!(string, V), IDirectory!V {
 
   // #region update
   // #region updateAllPath
-  // Updates the entire map to the specified item.
+  /**
+    * Updates values at the specified paths in the directory.
+    *
+    * Params:
+    *   paths = An array of paths where the values should be updated, each represented as an array of strings.
+    *   value = The value to update at the specified paths.
+    *
+    * Returns:
+    *   true if all of the values were successfully updated, false otherwise.
+    */ 
   bool updateAllPath(string[][] paths, V value) {
     return paths.all!(p => updatePath(p, value));
   }
   // #endregion updateAllPath
 
   // #region updateAnyPath
-  // Updates any of the specified paths to the item.
+  /** 
+    * Updates values at the specified paths in the directory.
+    *
+    * Params:
+    *   paths = An array of paths where the values should be updated, each represented as an array of strings.
+    *   value = The value to update at the specified paths.
+    *
+    * Returns:
+    *   true if any of the values were successfully updated, false otherwise.
+    */
   bool updateAnyPath(string[][] paths, V value) {
     return paths.any!(p => updatePath(p, value));
   }
   // #endregion updateAnyPath
 
   // #region updatePath
-  // Updates a specific item in the map.
+  /** 
+    * Updates a value at the specified path in the directory.
+    *
+    * Params:
+    *   path = The path where the value should be updated, represented as an array of strings.
+    *   value = The value to update at the specified path.
+    *
+    * Returns:
+    *   true if the value was successfully updated, false otherwise.
+    */
   bool updatePath(string[] path, V value) {
     return updateKey(path.toKey(_pathSeparator), value);
   }
@@ -126,21 +162,48 @@ class UIMDirectory(V = UIMObject) : UIMMap!(string, V), IDirectory!V {
 
   // #region merge
   // #region mergeAllPath
-  // Merges the entire map to the specified item.
+  /** 
+    * Merges values at the specified paths in the directory.
+    *
+    * Params:
+    *   paths = An array of paths where the values should be merged, each represented as an array of strings.
+    *   value = The value to merge at the specified paths.
+    *
+    * Returns:
+    *   true if all of the values were successfully merged, false otherwise.
+    */
   bool mergeAllPath(string[][] paths, V value) {
     return paths.all!(p => mergePath(p, value));
   }
   // #endregion mergeAllPath
 
   // #region mergeAnyPath
-  // Merges any of the specified paths to the item.
+  /** 
+    * Merges values at the specified paths in the directory.
+    *
+    * Params:
+    *   paths = An array of paths where the values should be merged, each represented as an array of strings.
+    *   value = The value to merge at the specified paths.
+    *
+    * Returns:
+    *   true if any of the values were successfully merged, false otherwise.
+    */
   bool mergeAnyPath(string[][] paths, V value) {
     return paths.any!(p => mergePath(p, value));
   }
   // #endregion mergeAnyPath
 
   // #region mergePath
-  // Merges a specific item in the map.
+  /** 
+    * Merges a value at the specified path in the directory.
+    *
+    * Params:
+    *   path = The path where the value should be merged, represented as an array of strings.
+    *   value = The value to merge at the specified path.
+    *
+    * Returns:
+    *   true if the value was successfully merged, false otherwise.
+    */
   bool mergePath(string[] path, V value) {
     return mergeKey(path.toKey(_pathSeparator), value);
   }
@@ -244,6 +307,15 @@ class UIMDirectory(V = UIMObject) : UIMMap!(string, V), IDirectory!V {
       .map!(path => value(path)).array;
   }
 
+  /** 
+    * Retrieves values for the specified keys from the map.
+    *
+    * Params:
+    *   keys = An array of keys to retrieve values for. If null, retrieves all values.
+    *
+    * Returns:
+    *   An array of values corresponding to the specified keys, or all values if keys is null.
+    */
   override V[] values(string[] keys = null) {
     if (keys !is null) {
       return keys.map!(key => value(key)).array;
@@ -251,6 +323,15 @@ class UIMDirectory(V = UIMObject) : UIMMap!(string, V), IDirectory!V {
     return _entries.values.array;
   }
 
+  /** 
+    * Gets the value associated with the specified path in the map.
+    *
+    * Params:
+    *   path = The path whose associated value is to be returned, represented as an array of strings.
+    *
+    * Returns:
+    *   The value associated with the specified path, or a default value if the path does not exist.
+    */
   V value(string[] path) {
     return value(path.toKey(_pathSeparator));
   }

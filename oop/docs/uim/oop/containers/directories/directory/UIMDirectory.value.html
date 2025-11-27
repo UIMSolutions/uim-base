@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function UIMDirectory.value</title>
+		<title>UIMDirectory.value - multiple declarations</title>
 		<link rel="stylesheet" type="text/css" href="../../../../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../../../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../../../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../../../../scripts/ddox.js">/**/</script>
@@ -906,7 +906,21 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function UIMDirectory.value</h1><p>Gets the value associated with the specified key in the map.
+			<h1>UIMDirectory.value - multiple declarations</h1>
+			<nav class="page-nav">
+				<ul>
+					<li>
+						<a href="#0">
+							Function <code>UIMDirectory.value</code>
+						</a>
+					</li>
+					<li>
+						<a href="#1">
+							Function <code>UIMDirectory.value</code>
+						</a>
+					</li>
+				</ul>
+			</nav><h2 id="0">Function UIMDirectory.value</h2><p>Gets the value associated with the specified key in the map.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -922,13 +936,38 @@ $('#symbolSearchPane').show();</script>
 			</div>
 			<section></section>
 
-			<section><h2>Parameters</h2>
+			<section><h3>Parameters</h3>
 <table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
 <tr><td id="key">key</td><td> The key whose associated value is to be returned.</td></tr>
 </table>
 </section>
-<section><h2>Returns</h2>
+<section><h3>Returns</h3>
 <p>The value associated with the specified key, or a default value if the key does not exist.
+</p>
+</section>
+<h2 id="1">Function UIMDirectory.value</h2><p>Gets the value associated with the specified path in the map.
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="pln">V</span> <span class="pln">value</span>
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">string</span><span class="pun">[]</span> <span class="pln">path</span>
+			<br/>
+			<span class="pun">)</span><span class="pun">;</span>
+					</div>
+				</code>
+			</div>
+			<section></section>
+
+			<section><h3>Parameters</h3>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="path">path</td><td> The path whose associated value is to be returned, represented as an array of strings.</td></tr>
+</table>
+</section>
+<section><h3>Returns</h3>
+<p>The value associated with the specified path, or a default value if the path does not exist.
 </p>
 </section>
 

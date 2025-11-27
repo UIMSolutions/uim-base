@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function UIMDirectory.values</title>
+		<title>UIMDirectory.values - multiple declarations</title>
 		<link rel="stylesheet" type="text/css" href="../../../../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../../../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../../../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../../../../scripts/ddox.js">/**/</script>
@@ -906,7 +906,21 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function UIMDirectory.values</h1><p>Retrieves values for the specified paths from the map.
+			<h1>UIMDirectory.values - multiple declarations</h1>
+			<nav class="page-nav">
+				<ul>
+					<li>
+						<a href="#0">
+							Function <code>UIMDirectory.values</code>
+						</a>
+					</li>
+					<li>
+						<a href="#1">
+							Function <code>UIMDirectory.values</code>
+						</a>
+					</li>
+				</ul>
+			</nav><h2 id="0">Function UIMDirectory.values</h2><p>Retrieves values for the specified paths from the map.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -922,13 +936,38 @@ $('#symbolSearchPane').show();</script>
 			</div>
 			<section></section>
 
-			<section><h2>Parameters</h2>
+			<section><h3>Parameters</h3>
 <table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
 <tr><td id="paths">paths</td><td> An array of paths to retrieve values for.</td></tr>
 </table>
 </section>
-<section><h2>Returns</h2>
+<section><h3>Returns</h3>
 <p>An array of values corresponding to the specified paths.
+</p>
+</section>
+<h2 id="1">Function UIMDirectory.values</h2><p>Retrieves values for the specified keys from the map.
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="kwd">override </span><span class="pln">V</span><span class="pun">[]</span> <span class="pln">values</span>
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">string</span><span class="pun">[]</span> <span class="pln">keys</span> <span class="pun">=</span> <span class="kwd">null</span>
+			<br/>
+			<span class="pun">)</span><span class="pun">;</span>
+					</div>
+				</code>
+			</div>
+			<section></section>
+
+			<section><h3>Parameters</h3>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="keys">keys</td><td> An array of keys to retrieve values for. If null, retrieves all values.</td></tr>
+</table>
+</section>
+<section><h3>Returns</h3>
+<p>An array of values corresponding to the specified keys, or all values if keys is null.
 </p>
 </section>
 
