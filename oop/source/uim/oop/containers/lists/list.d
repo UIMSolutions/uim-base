@@ -30,7 +30,7 @@ class UIMList(V) : UIMCollection!V, IList!V {
     return true;
   }
 
-  V getValue(size_t index) {
+  V value(size_t index) {
     return _elements[index]; // Return the item at the specified index.
   }
 

@@ -110,8 +110,6 @@ class UIMMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   }
   // #endregion size
 
-  
-
   // #region keys
   // Retrieve all the names of the object's own enumerable properties.
   K[] keys() {
@@ -166,7 +164,7 @@ class UIMMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   // #region opIndex
   // Retrieve a value by its key from the map
   V opIndex(K key) {
-    return getValue(key);
+    return value(key);
   }
   ///
   unittest {
@@ -456,16 +454,6 @@ class UIMMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   // #region get
   // #region values
   /** 
-    * Retrieves all values from the map.
-    *
-    * Returns:
-    *   An array of all values in the map.
-    */
-  V[] values() {
-    return _entries.values.array;
-  }
-
-  /** 
     * Retrieves values for the specified keys from the map.
     *
     * Params:
@@ -474,15 +462,16 @@ class UIMMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
     * Returns:
     *   An array of values corresponding to the specified keys.
     */
-  V[] values(K[] keys) {
-    return keys.map!(key => getValue(key)).array;
+  V[] values(K[] keys = null) {
+    if (keys !is null) {
+      return keys.map!(key => value(key)).array;
+    }
+    return _entries.values.array;
   }
   // #endregion values
-
   // #region value
 
-
-  V getValue(K key) {
+  V value(K key) {
     static if (is(V == Json)) {
       return key in _entries ? _entries[key] : Json(null);
     } else static if (is(V : Object)) {
@@ -639,4 +628,12 @@ class UIMMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   }
   // #endregion clear
   // #endregion values
+
+  V opCall(string key) {
+    return value(key);
+  }
+
+  void opCall(string key, V value) {
+    setKey(key, value);
+  }
 }

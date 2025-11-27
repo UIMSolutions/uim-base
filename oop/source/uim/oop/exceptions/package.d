@@ -7,7 +7,8 @@ module uim.oop.exceptions;
 
 public {
   import uim.oop.exceptions.exception;
-  import uim.oop.exceptions.interface_;
-  import uim.oop.exceptions.mixins;
+  import uim.oop.exceptions.interfaces;
+  import uim.oop.exceptions.helpers;
+  import uim.oop.exceptions.tests;
 }
 

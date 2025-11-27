@@ -14,9 +14,6 @@ mixin(Version!"test_uim_oop");
 
 /// Interface for getting values.
 interface IGetValues(K = string, V = UIMObject) {
-  V[] values();
-  
-  V[] values(K[] keys);
-
-  V getValue(K key);
+  V[] values(K[] keys = null);
+  V value(K key);
 }

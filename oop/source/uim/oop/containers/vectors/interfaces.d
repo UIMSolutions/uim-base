@@ -15,7 +15,7 @@ mixin(Version!"test_uim_oop");
 interface IVector(V) : IList!V {
   /* bool addValue(V item);
   bool removeValue(V item);
-  V getValue(size_t index);
+  V value(size_t index);
   bool set(size_t index, V item);
   size_t indexOf(V item); */
 }

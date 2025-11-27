@@ -29,4 +29,6 @@ unittest {
   assert(map.length == 1);
 /*   assert(!map.containsKey("key1"));
   assert(map.containsKey("key2")); */
+
+  _entries.values.array
 }

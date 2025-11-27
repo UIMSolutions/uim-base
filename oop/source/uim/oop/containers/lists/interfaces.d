@@ -13,6 +13,6 @@ mixin(Version!"test_uim_oop");
 
 interface IList(V) : ICollection!V {
   // Get an item by its index.
-  V getValue(size_t index);
+  V value(size_t index);
 }
 

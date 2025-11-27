@@ -42,7 +42,7 @@ abstract class UIMContainer : UIMObject, IContainer {
     * Checks if this container is empty.
     * Returns: 
     *   'true' if the container is empty, 'false' otherwise
-  */
+    */
   bool isEmpty() {
     return size == 0;
   }
@@ -52,13 +52,15 @@ abstract class UIMContainer : UIMObject, IContainer {
     * Returns the number of elements in this container.
     * Returns: 
     *   The size of the container
-  */
+    */
   size_t size() {
     return 0;
   }
 
   // #region clear
-  // Removes all of the elements from this container */
+  /** 
+    * Clears all elements from this container.
+    */
   void clear() {
     // Default implementation does nothing.
   }

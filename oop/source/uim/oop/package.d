@@ -26,8 +26,8 @@ public {
   import uim.oop.containers;
   import uim.oop.datatypes;
   // import uim.oop.direntries;
-  // import uim.oop.enumerations;
-  //import uim.oop.exceptions;
+  import uim.oop.enumerations;
+  import uim.oop.exceptions;
   // import uim.oop.formatters;
   import uim.oop.helpers;
   import uim.oop.interfaces;

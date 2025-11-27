@@ -6,15 +6,20 @@
 module uim.oop.exceptions.exception;
 
 import uim.oop;
+
 mixin(Version!("test_uim_oop"));
+
 @safe:
 
+/// Base class that all UIM Exceptions extend.
 class UIMException : UIMObject, IException {
   mixin(ExceptionThis!());
 
   override bool initialize(Json[string] options = new Json[string]) {
     _attributes.set(options);
     messageTemplate("default", "");
+    _messageTemplates = new UIMDirectory!string;
+
     return true;
   }
 
@@ -35,25 +40,77 @@ class UIMException : UIMObject, IException {
   // #region messageTemplate
   // Template string that has attributes format() into it.
   protected string _messageTemplate = "";
+  // #region messageTemplates
+  protected IDirectory!string _messageTemplates;
+  // Gets all message templates.
+  string[] messageTemplates() {
+    string[] keys = _messageTemplates.keys();
+    return _messageTemplates.values(keys);
+  }
+
+  /** 
+    * Sets multiple message templates at once.
+    *
+    * Params:
+    *   templates - An associative array of template names to template strings.
+    */
+  void messageTemplates(string[string] newTemplates) {
+    _messageTemplates(newTemplates.dup);
+  }
+  ///
+  unittest {
+    // Test: messageTemplates sets multiple templates
+    auto ex1 = new UIMException;
+    ex1.messageTemplates(["error": "Error: %s", "warning": "Warning: %s"]);
+    assert(ex1.messageTemplate("error") == "Error: %s");
+    assert(ex1.messageTemplate("warning") == "Warning: %s");
+
+    // Test: messageTemplates overwrites existing templates
+    auto ex2 = new UIMException;
+    ex2.messageTemplate("info", "Old info");
+    ex2.messageTemplates(["info": "New info", "debug": "Debug: %s"]);
+    assert(ex2.messageTemplate("info") == "New info");
+    assert(ex2.messageTemplate("debug") == "Debug: %s");
+  
+    // Test: messageTemplates with empty map
+    auto ex3 = new UIMException;
+    ex3.messageTemplate("test", "Test message");
+    ex3.messageTemplates(null);
+    // Should clear or set to empty
+
+    // Test: messageTemplates preserves duplicates
+    auto ex4 = new UIMException;
+    string[string] templates = ["key1": "value1", "key2": "value2"];
+    ex4.messageTemplates(templates);
+    templates["key1"] = "modified";
+    // Verify original is not affected due to .dup
+    assert(ex4.messageTemplate("key1") == "value1");
+
+    // Test: messageTemplates with special characters
+    auto ex5 = new UIMException;
+    ex5.messageTemplates([
+      "special": "Error with %s and %d",
+      "unicode": "Ошибка: %s"
+    ]);
+    assert(ex5.messageTemplate("special") == "Error with %s and %d");
+    assert(ex5.messageTemplate("unicode") == "Ошибка: %s");
+  }
+  // #endregion messageTemplates
+  
+  // #region messageTemplate
+  /** 
+   * Sets multiple message templates at once.
+   * Params:
+   *   newTemplates = An associative array of template names to template strings.
+   */
   string messageTemplate(string templateName = "default") {
-    return (templateName in _stringContents) ? templateName : null;
-  };
+    return _messageTemplates(templateName);
+  }
 
   void messageTemplate(string templateName, string templateText) {
     _stringContents[templateName] = templateText;
-  };
+  }
   // #endregion messageTemplate
-
-  // #region messageTemplates
-  STRINGAA messageTemplates() {
-    return _stringContents;
-  }
-
-  void messageTemplates(string[string] templates) {
-    _stringContents = templates;
-  }
-  // #endregion messageTemplates
-
 
   /* Json toJson(string[] showKeys = null, string[] hideKeys = null) {
     Json json = Json.emptyObject;

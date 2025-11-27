@@ -12,7 +12,7 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 /// Interface for directories maps.
-interface IDirectory(V = UIMObject) : IMap!(string, V), IPaths!(K, V) {
+interface IDirectory(V = UIMObject) : IMap!(string, V), IPaths!(string, V) {
   // Gets the path separator used in the directories.
   void pathSeparator(string separator);
 
@@ -22,7 +22,15 @@ interface IDirectory(V = UIMObject) : IMap!(string, V), IPaths!(K, V) {
   // Gets all paths in the map, sorted according to the specified order.
   // string[][] paths();
 
-  V[] values(K[][] paths);
-  V getValue(K[] path);
+  V[] values(string[][] paths);
+  V[] values(string[] keys = null);
 
+  V value(string[] path);
+  V value(string key);
+
+  V opCall(string[] path);
+  V opCall(string key);
+
+  void opCall(string[] path, V value);
+  void opCall(V[string] entries);
 }

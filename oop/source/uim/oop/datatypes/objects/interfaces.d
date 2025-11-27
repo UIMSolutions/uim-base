@@ -11,19 +11,20 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
+/// Interface for all UIM objects.
 interface IObject {
-  // Get the name of the object.
+  /// Get the name of the object.
   string name(); 
 
-  // Get or set the name of the object.
+  /// Get or set the name of the object.
   void name(string newName); 
 
-  // Compares two IObject instances for equality based on their names.
+  /// Compares two IObject instances for equality based on their names.
   bool isEqual(IObject other); 
 
-  // Returns a string representation comparing two IObject instances.
+  /// Returns a string representation comparing two IObject instances.
   string toString(); 
 
-  // Creates a clone of the current object.
+  /// Creates a clone of the current object.
   IObject clone(); 
 }
