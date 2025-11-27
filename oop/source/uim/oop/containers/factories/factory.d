@@ -11,6 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
+/// A factory class for creating and managing objects of type V.
 class DFactory(V = UIMObject) : UIMObject, IFactory!V {
   mixin(FactoryThis!());
 

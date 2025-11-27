@@ -11,6 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
+/// Tests the given collection for basic validity.
 bool testCollection(T)(ICollection!T collection, string instanceName) {
   assert(collection !is null, instanceName ~ " collection is null");
   

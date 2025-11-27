@@ -11,6 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
+/// An interface defining the behavior of a factory for creating objects of type V.
 interface IFactory(V = IObject) : IHasKeys!(string, V), IHasPaths!(string, V), IRemoveKeys!(string, V), IRemovePaths!(string, V), IObject {
   V[string] createMany(string[][] paths, Json[string] options = null);
   V create(string[] path, Json[string] options = null);

@@ -11,6 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
+/// An interface defining the behavior of a vector (dynamic array).
 interface IVector(V) : IList!V {
   /* bool addValue(V item);
   bool removeValue(V item);

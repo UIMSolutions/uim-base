@@ -11,6 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
+/// A dynamic vector implementation.
 class DVector(V) : IVector!V, UIMList!V {
   mixin(VectorThis!());  
 }

@@ -7,6 +7,7 @@
 <url><loc>http://127.0.0.1/uim/oop/containers/collections/helpers/mixins.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/collections/tests/mixins.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/collections/tests/test.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/containers/collections/tests/test/testCollection.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/collections/collection.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/collections/collection/UIMCollection.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/collections/collection/UIMCollection.elements.html</loc></url>
@@ -24,8 +25,10 @@
 <url><loc>http://127.0.0.1/uim/oop/containers/directories/interfaces.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/directories/tests.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/factories/factory.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/containers/factories/factory/DFactory.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/factories/helpers.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/factories/interfaces.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/containers/factories/interfaces/IFactory.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/factories/mixins.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/factories/tests.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/lists/helpers/mixins.html</loc></url>
@@ -56,8 +59,10 @@
 <url><loc>http://127.0.0.1/uim/oop/containers/vectors/tests/test.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/vectors/helpers.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/vectors/interfaces.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/containers/vectors/interfaces/IVector.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/vectors/tests.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/vectors/vector.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/containers/vectors/vector/DVector.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/arrays.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/collections.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/container.html</loc></url>

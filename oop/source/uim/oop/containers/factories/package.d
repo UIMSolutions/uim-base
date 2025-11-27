@@ -9,7 +9,6 @@ public {
   import uim.oop.containers.factories.factory;
   import uim.oop.containers.factories.helpers;
   import uim.oop.containers.factories.interfaces;
-  import uim.oop.containers.factories.mixins;
 
   version (unittest) {
     import uim.oop.containers.factories.tests;
