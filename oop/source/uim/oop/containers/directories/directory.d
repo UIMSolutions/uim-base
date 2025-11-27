@@ -12,7 +12,7 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 /// A dynamic directory implementation using a map with string keys.
-class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
+class UIMDirectory(V = UIMObject) : UIMMap!(string, V), IDirectory!V {
   mixin(DirectoryThis!());
 
   // #region pathSeparator
@@ -77,7 +77,7 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   ///
   unittest {
     // Create a test map
-    auto map = new DDirectory!int;
+    auto map = new UIMDirectory!int;
     string[] path1 = ["foo", "bar"];
     string[] path2 = ["baz"];
     string[] path3 = ["foo", "baz"];
@@ -160,7 +160,7 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
 // #region tests
 unittest { //   bool hasAllPath(string[][] paths) {
   // prepare map and paths
-  auto map = new DDirectory!int;
+  auto map = new UIMDirectory!int;
   string[] path1 = ["foo", "bar"];
   string[] path2 = ["baz"];
   string[] path3 = ["qux", "quux"];

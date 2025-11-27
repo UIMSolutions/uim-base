@@ -21,8 +21,8 @@
 <url><loc>http://127.0.0.1/uim/oop/containers/directories/helpers/mixins.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/directories/tests/test.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/directories/directory.html</loc></url>
-<url><loc>http://127.0.0.1/uim/oop/containers/directories/directory/DDirectory.html</loc></url>
-<url><loc>http://127.0.0.1/uim/oop/containers/directories/directory/DDirectory.hasPath.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/containers/directories/directory/UIMDirectory.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/containers/directories/directory/UIMDirectory.hasPath.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/directories/helpers.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/directories/interfaces.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/directories/tests.html</loc></url>

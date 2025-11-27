@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DJsonMap : DMap!(string, Json)  {
+class DJsonMap : UIMMap!(string, Json)  {
   this() {}
 }
 auto JsonMap() { return new DJsonMap; }

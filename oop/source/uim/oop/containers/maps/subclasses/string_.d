@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DStringMap : DMap!(string, string) {
+class DStringMap : UIMMap!(string, string) {
     this() {
     }
 }

@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
+class UIMMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   mixin(MapThis!());
 
   // Initializes this container with optional JSON data.
@@ -211,7 +211,7 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   }
   ///
   unittest {
-    auto map = new DMap!(string, int);
+    auto map = new UIMMap!(string, int);
     map.entries = ["a": 1, "b": 2, "c": 3];
     assert(map.keys().sort.array == ["a", "b", "c"]);
   }
@@ -246,7 +246,7 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   }
   /// 
   unittest {
-    auto map = new DMap!(string, int);
+    auto map = new UIMMap!(string, int);
     map["x"] = 42;
     assert(map["x"] == 42);
     map["x"] = 99; // overwrite
@@ -264,7 +264,7 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   unittest {
     {
       // Test opIndex for existing keys
-      auto map = new DMap!(string, int);
+      auto map = new UIMMap!(string, int);
       map.entries = ["alpha": 1, "beta": 2, "gamma": 3];
       assert(map["alpha"] == 1);
       assert(map["beta"] == 2);
@@ -273,7 +273,7 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
 
     {
       // Test opIndex for non-existing keys
-      auto map = new DMap!(string, int);
+      auto map = new UIMMap!(string, int);
       map.entries = ["alpha": 1, "beta": 2];
       assert(map["gamma"] == Null!int);
       assert(map["delta"] == Null!int);
@@ -281,7 +281,7 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
 
     {
       // Test opIndex with integer keys
-      auto map = new DMap!(int, string);
+      auto map = new UIMMap!(int, string);
       map.entries = [1: "one", 2: "two"];
       assert(map[1] == "one");
       assert(map[2] == "two");
@@ -386,7 +386,7 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   /// 
   unittest {
     // Test removeAllKey removes multiple keys
-    auto map1 = new DMap!(string, int);
+    auto map1 = new UIMMap!(string, int);
     map1.entries = ["a": 1, "b": 2, "c": 3, "d": 4];
     map1.removeAllKey(["b", "d"]);
     assert(map1.entries == ["a": 1, "c": 3]);
@@ -396,19 +396,19 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
     assert(map1.hasKey("c"));
 
     // Test removeAllKey with empty array (should not remove anything)
-    auto map2 = new DMap!(string, int);
+    auto map2 = new UIMMap!(string, int);
     map2.entries = ["x": 10, "y": 20];
     map2.removeAllKey([]);
     assert(map2.entries == ["x": 10, "y": 20]);
 
     // Test removeAllKey with keys not present (should not throw, just ignore)
-    auto map3 = new DMap!(string, int);
+    auto map3 = new UIMMap!(string, int);
     map3.entries = ["foo": 100, "bar": 200];
     map3.removeAllKey(["baz", "qux"]);
     assert(map3.entries == ["foo": 100, "bar": 200]);
 
     // Test removeAllKey removes all keys
-    auto map4 = new DMap!(int, string);
+    auto map4 = new UIMMap!(int, string);
     map4.entries = [1: "one", 2: "two", 3: "three"];
     map4.removeAllKey([1, 2, 3]);
     assert(map4.entries.length == 0);
@@ -430,7 +430,7 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   /// 
   unittest {
     // Test removeKey removes an existing key
-    auto map1 = new DMap!(string, int);
+    auto map1 = new UIMMap!(string, int);
     map1.entries = ["a": 1, "b": 2, "c": 3];
     map1.removeKey("b");
     assert(map1.entries == ["a": 1, "c": 3]);
@@ -439,13 +439,13 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
     assert(map1.hasKey("c"));
 
     // Test removeKey with a key not present (should not throw)
-    auto map2 = new DMap!(string, int);
+    auto map2 = new UIMMap!(string, int);
     map2.entries = ["x": 10, "y": 20];
     map2.removeKey("z"); // "z" not present
     assert(map2.entries == ["x": 10, "y": 20]);
 
     // Test removeKey removes all keys one by one
-    auto map3 = new DMap!(int, string);
+    auto map3 = new UIMMap!(int, string);
     map3.entries = [1: "one", 2: "two", 3: "three"];
     map3.removeKey(1);
     map3.removeKey(2);
@@ -453,7 +453,7 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
     assert(map3.entries.length == 0);
 
     // Test removeKey on empty map (should not throw)
-    auto map4 = new DMap!(string, int);
+    auto map4 = new UIMMap!(string, int);
     map4.entries = null;
     map4.removeKey("a");
     assert(map4.entries.length == 0);
@@ -473,12 +473,12 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   /// 
   unittest {
     // Test hasAllValue with all values present
-    auto map1 = new DMap!(string, int);
+    auto map1 = new UIMMap!(string, int);
     map1.entries = ["a": 1, "b": 2, "c": 3];
     assert(map1.hasAllValue([1, 2, 3]) == true);
 
     // Test hasAllValue with some values missing
-    auto map2 = new DMap!(string, int);
+    auto map2 = new UIMMap!(string, int);
     map2.entries = ["a": 1, "b": 2];
     assert(map2.hasAllValue([1, 2, 3]) == false);
   }
@@ -492,7 +492,7 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   /// 
   unittest {
     // Test hasAnyValue with one value present
-    auto map = new DMap!(string, int);
+    auto map = new UIMMap!(string, int);
     map.entries = ["a": 1, "b": 2, "c": 3];
     assert(map.hasAnyValue([2, 4]) == true); // 2 is present
 
@@ -504,7 +504,7 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
     assert(map.hasAnyValue([1, 4]) == true);
 
     // Test hasAnyValue with empty map
-    auto emptyMap = new DMap!(string, int);
+    auto emptyMap = new UIMMap!(string, int);
     emptyMap.entries= null;
     assert(emptyMap.hasAnyValue([1, 2, 3]) == false);
   }
@@ -518,25 +518,25 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   ///
   unittest {
     // Test hasValue with value present
-    auto map1 = new DMap!(string, int);
+    auto map1 = new UIMMap!(string, int);
     map1.entries = ["a": 1, "b": 2, "c": 3];
     assert(map1.hasValue(1) == true);
     assert(map1.hasValue(2) == true);
     assert(map1.hasValue(3) == true);
 
     // Test hasValue with value not present
-    auto map2 = new DMap!(string, int);
+    auto map2 = new UIMMap!(string, int);
     map2.entries = ["a": 1, "b": 2];
     assert(map2.hasValue(3) == false);
     assert(map2.hasValue(0) == false);
 
     // Test hasValue with empty map
-    auto map3 = new DMap!(string, int);
+    auto map3 = new UIMMap!(string, int);
     map3.entries = null;
     assert(map3.hasValue(1) == false);
 
     // Test hasValue with string values
-    auto map4 = new DMap!(int, string);
+    auto map4 = new UIMMap!(int, string);
     map4.entries = [1: "one", 2: "two"];
     assert(map4.hasValue("one") == true);
     assert(map4.hasValue("two") == true);
@@ -586,17 +586,17 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   }
   ///
   unittest {
-    auto map1 = new DMap!(string, int);
+    auto map1 = new UIMMap!(string, int);
     map1.entries = ["x": 10, "y": 20, "z": 30];
     auto vals1 = map1.values();
     assert(vals1.sort.array == [10, 20, 30]);
 
-    auto map2 = new DMap!(int, string);
+    auto map2 = new UIMMap!(int, string);
     map2.entries = [1: "one", 2: "two"];
     auto vals2 = map2.values();
     assert(vals2.sort.array == ["one", "two"]);
 
-    auto map3 = new DMap!(string, int);
+    auto map3 = new UIMMap!(string, int);
     map3.entries = null;
     auto vals3 = map3.values();
     assert(vals3.length == 0);
@@ -616,7 +616,7 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   ///
   unittest {
     // Test removeAllValue removes multiple values
-    auto map1 = new DMap!(string, int);
+    auto map1 = new UIMMap!(string, int);
     map1.entries = ["a": 1, "b": 2, "c": 3, "d": 2];
     bool result1 = map1.removeAllValue([2, 3]);
     // Only first occurrence of each value is removed
@@ -628,14 +628,14 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
     assert(map1.hasValue(1));
 
     // Test removeAllValue with values not present
-    auto map2 = new DMap!(string, int);
+    auto map2 = new UIMMap!(string, int);
     map2.entries = ["x": 10, "y": 20];
     bool result2 = map2.removeAllValue([30, 40]);
     assert(result2 == false); // none removed
     assert(map2.entries == ["x": 10, "y": 20]);
 
     // Test removeAllValue with empty values array (should not remove anything)
-    auto map3 = new DMap!(string, int);
+    auto map3 = new UIMMap!(string, int);
     map3.entries = ["foo": 100, "bar": 200];
     bool result3 = map3.removeAllValue([]);
     assert(result3 == true); // vacuously true
@@ -663,7 +663,7 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   ///
   unittest {
     // Test removeValue removes first occurrence only
-    auto map1 = new DMap!(string, int);
+    auto map1 = new UIMMap!(string, int);
     map1.entries = ["a": 1, "b": 2, "c": 2, "d": 3];
     assert(map1.removeValue(2), "Value 2 should be removed");
     // Only "b":2 should be removed, "c":2 remains
@@ -685,12 +685,12 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
     // assert(map1.entries == ["a": 1]);
 
     // Remove from empty map
-    auto map2 = new DMap!(string, int);
+    auto map2 = new UIMMap!(string, int);
     map2.entries = null;
     assert(!map2.removeValue(1), "Removing from empty map should return false");
 
     // Remove string value
-    auto map3 = new DMap!(int, string);
+    auto map3 = new UIMMap!(int, string);
     map3.entries = [1: "foo", 2: "bar", 3: "baz"];
     assert(map3.removeValue("bar"), "Value 'bar' should be removed");
     assert(map3.hasEntries([1: "foo", 3: "baz"]), "Map should only contain 'foo' and 'baz'");
@@ -707,7 +707,7 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   ///
   unittest {
     // clear() on a non-empty map should return true and remove all entries
-    auto map1 = new DMap!(string, int);
+    auto map1 = new UIMMap!(string, int);
     map1.entries = ["a": 1, "b": 2, "c": 3];
     assert(map1.size() == 3);
     map1.clear;
@@ -720,7 +720,7 @@ class DMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
     assert(!map1.hasValue(3));
 
     // clear() on an already empty map should still return true and keep it empty
-    auto map2 = new DMap!(string, int);
+    auto map2 = new UIMMap!(string, int);
     assert(map2.size() == 0);
     map2.clear;
     assert(map2.size() == 0);
