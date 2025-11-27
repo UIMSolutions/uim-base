@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-// A dynamic directory implementation using a map with string keys.
+/// A dynamic directory implementation using a map with string keys.
 class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   mixin(DirectoryThis!());
 
@@ -156,7 +156,7 @@ class DDirectory(V = UIMObject) : DMap!(string, V), IDirectory!V {
   // #endregion values
 
 }
-
+///
 // #region tests
 unittest { //   bool hasAllPath(string[][] paths) {
   // prepare map and paths
