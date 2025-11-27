@@ -11,6 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
+/// Interface for map containers.
 interface IMap(K, V) : IContainer, IKeys!(K, V), IValues!(K, V) {
     // #region entries
     V[K] entries();

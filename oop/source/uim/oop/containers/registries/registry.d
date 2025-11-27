@@ -11,7 +11,8 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-class DRegistry(V = UIMObject) : UIMObject, IRegistry!V {
+/// A registry class for storing and managing objects of type V.
+class DRegistry(V = UIMObject) : UIMDirectory, IRegistry!V {
   mixin(RegistryThis!());
 
   // #region IObject

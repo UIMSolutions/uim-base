@@ -11,6 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
+/// The base class for all container types.
 abstract class UIMContainer : UIMObject, IContainer {
   this() {
     initialize;
@@ -37,12 +38,21 @@ abstract class UIMContainer : UIMObject, IContainer {
   }
 
   // #region isEmpty
-  // Check if the set is empty.
-  override bool isEmpty() {
+  /** 
+    * Checks if this container is empty.
+    * Returns: 
+    *   'true' if the container is empty, 'false' otherwise
+  */
+  bool isEmpty() {
     return size == 0;
   }
   // #endregion isEmpty
-  // Returns the number of elements in this container.*/
+
+  /** 
+    * Returns the number of elements in this container.
+    * Returns: 
+    *   The size of the container
+  */
   size_t size() {
     return 0;
   }

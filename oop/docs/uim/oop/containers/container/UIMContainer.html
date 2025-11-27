@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Module uim.oop.containers.maps.interfaces</title>
+		<title>Class UIMContainer</title>
 		<link rel="stylesheet" type="text/css" href="../../../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../../../scripts/ddox.js">/**/</script>
@@ -224,7 +224,7 @@ $('#symbolSearchPane').show();</script>
 				</li>
 			</ul>
 				</li>
-				<li class="tree-view ">
+				<li class="tree-view collapsed">
 					<div class="package ">
 						<a href="../../../../uim/oop/containers/maps.html">maps</a>
 					</div>
@@ -270,7 +270,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../../../uim/oop/containers/maps/interfaces.html">interfaces</a>
 					</div>
 				</li>
@@ -395,7 +395,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 				</li>
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../../../uim/oop/containers/container.html">container</a>
 					</div>
 				</li>
@@ -861,10 +861,20 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Module uim.oop.containers.maps.interfaces</h1><p></p>
-			<section></section>
-			<section>
-				<h2>Interfaces</h2>
+			<h1>Class UIMContainer</h1><p>The base class for all container types.
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="kwd">class</span> <span class="typ">UIMContainer</span>
+			<br>&nbsp;&nbsp;: <a href="../../../../uim/oop/datatypes/objects/obj/UIMObject.html"><span class="typ">UIMObject</span></a>
+			<br>&nbsp;&nbsp;, <span class="pln">uim<wbr/></span><span class="pun">.</span><span class="pln">oop<wbr/></span><span class="pun">.</span><span class="pln">containers<wbr/></span><span class="pun">.</span><span class="pln">interfaces<wbr/></span><span class="pun">.</span><span class="typ">IContainer</span>
+			<span class="pun">;</span>
+					</div>
+				</code>
+			</div>
+			
+			<section><h2>Methods</h2>
 				<table>
 					<col class="caption"/>
 					<tr>
@@ -872,15 +882,87 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
-							<code>
-								<a id="IMap" class="public" href="../../../../uim/oop/containers/maps/interfaces/IMap.html">IMap</a>
-							</code>
+							<a href="../../../../uim/oop/containers/container/UIMContainer.isEmpty.html" class="public">
+								<code>isEmpty</code>
+							</a>
+							<span class="tableEntryAnnotation">()</span>
 						</td>
-						<td>Interface for map containers.
+						<td>Checks if this container is empty.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../../../uim/oop/containers/container/UIMContainer.size.html" class="public">
+								<code>size</code>
+							</a>
+							<span class="tableEntryAnnotation">()</span>
+						</td>
+						<td>Returns the number of elements in this container.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../../../uim/oop/datatypes/objects/obj/UIMObject.hasAllMember.html" class="public inherited">
+								<code>hasAllMember</code>
+							</a>
+							<span class="tableEntryAnnotation">(names)</span>
+						</td>
+						<td>Check if the object has all specified members.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../../../uim/oop/datatypes/objects/obj/UIMObject.hasAnyMember.html" class="public inherited">
+								<code>hasAnyMember</code>
+							</a>
+							<span class="tableEntryAnnotation">(names)</span>
+						</td>
+						<td>Check if the object has any of the specified members.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../../../uim/oop/datatypes/objects/obj/UIMObject.hasMember.html" class="public inherited">
+								<code>hasMember</code>
+							</a>
+							<span class="tableEntryAnnotation">(checkName)</span>
+						</td>
+						<td>Checks if the object has a member with the specified name.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../../../uim/oop/datatypes/objects/obj/UIMObject.memberNames.html" class="public inherited">
+								<code>memberNames</code>
+							</a>
+							<span class="tableEntryAnnotation">()</span>
+						</td>
+						<td>Get the names of all members of the object.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../../../uim/oop/datatypes/objects/obj/UIMObject.objId.html" class="public inherited">
+								<code>objId</code>
+							</a>
+							<span class="tableEntryAnnotation">()</span>
+						</td>
+						<td>Get the unique object ID.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../../../uim/oop/datatypes/objects/obj/UIMObject.objId.html" class="public inherited">
+								<code>objId</code>
+							</a>
+							<span class="tableEntryAnnotation">(newId)</span>
+						</td>
+						<td>Set the unique object ID.
 </td>
 					</tr>
 				</table>
 			</section>
+			
 			<footer>
 				<table class="license-info">
 					<tr>

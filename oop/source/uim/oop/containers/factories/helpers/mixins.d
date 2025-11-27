@@ -8,9 +8,9 @@ module uim.oop.containers.factories.helpers.mixins;
 import uim.oop;
 
 mixin(Version!("test_uim_oop"));
-@safe:
 
 @safe:
+
 string factoryThis(string name = null, bool overrideMemberNames = true) {
     string fullName = name ~ "Factory";
     return objThis(fullName, overrideMemberNames);

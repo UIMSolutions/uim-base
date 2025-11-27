@@ -11,7 +11,6 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-/*
 /**
  * A class to contain and retain the session during integration testing.
  * Read only access to the session during testing.

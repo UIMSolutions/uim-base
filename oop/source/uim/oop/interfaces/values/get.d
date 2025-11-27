@@ -12,6 +12,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
+/// Interface for getting values.
 interface IGetValues(K = string, V = UIMObject) {
   V[] values();
   

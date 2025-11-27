@@ -31,13 +31,13 @@ class UIMCollection(V) : UIMContainer, ICollection!V {
   // #region has 
   // #region hasAllValue 
   /** 
-  Checks if this collection contains all of the specified elements.
-
-  Params: 
-    values = The values to check
-  Returns: 
-    'true' if all values are present, 'false' otherwise
-  */
+    * Checks if this collection contains all of the specified elements.
+    * 
+    * Params: 
+    *   values = The values to check
+    * Returns: 
+    *   'true' if all values are present, 'false' otherwise
+    */
   bool hasAllValue(V[] values) {
     return values.all!(value => hasValue(value));
   }
@@ -73,20 +73,19 @@ class UIMCollection(V) : UIMContainer, ICollection!V {
     collection4.addValue(1);
     collection4.addValue(2);
     
-    assert(collection.hasAllValue([1, 1, 2]));
-    assert(collection.hasAllValue([2, 2, 2]));
+    assert(collection4.hasAllValue([1, 1, 2]));
+    assert(collection4.hasAllValue([2, 2, 2]));
   }
   // #endregion hasAllValue 
 
   // #region hasAnyValue 
   /** 
-  Checks if this collection contains any of the specified elements.
-
-  Params: 
-    values = The values to check
-
-  Returns: 
-    'true' if any value is present, 'false' otherwise
+    * Checks if this collection contains any of the specified elements.
+    * 
+    * Params: 
+    *   values = The values to check
+    * Returns: 
+    *   'true' if any value is present, 'false' otherwise
   */
   bool hasAnyValue(V[] values) {
     return values.any!(value => hasValue(value));
@@ -95,13 +94,12 @@ class UIMCollection(V) : UIMContainer, ICollection!V {
 
   // #region hasValue 
   /** 
-  Checks if this collection contains the specified element.
-
-  Params: 
-    value = The value to check
-
-  Returns:
-    'true' if the value is present, 'false' otherwise
+    * Checks if this collection contains the specified element.
+    * 
+    * Params: 
+    *   value = The value to check
+    * Returns: 
+    *   'true' if the value is present, 'false' otherwise
   */
   bool hasValue(V value) {
     /* foreach(v; elements) {

@@ -43,6 +43,7 @@
 <url><loc>http://127.0.0.1/uim/oop/containers/lists/helpers.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/lists/interfaces.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/lists/list.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/containers/lists/list/UIMList.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/lists/tests.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/maps/helpers/mixins.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/maps/subclasses/json.html</loc></url>
@@ -50,6 +51,7 @@
 <url><loc>http://127.0.0.1/uim/oop/containers/maps/tests/test.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/maps/helpers.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/maps/interfaces.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/containers/maps/interfaces/IMap.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/maps/map.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/maps/map/UIMMap.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/maps/map/UIMMap.entries.html</loc></url>
@@ -64,6 +66,7 @@
 <url><loc>http://127.0.0.1/uim/oop/containers/registries/helpers.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/registries/interfaces.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/registries/registry.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/containers/registries/registry/DRegistry.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/registries/tests.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/sets/helpers/mixins.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/sets/tests/test.html</loc></url>
@@ -80,6 +83,15 @@
 <url><loc>http://127.0.0.1/uim/oop/containers/arrays.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/collections.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/container.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/containers/container/UIMContainer.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/containers/container/UIMContainer.isEmpty.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/containers/container/UIMContainer.size.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/datatypes/objects/obj/UIMObject.hasAllMember.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/datatypes/objects/obj/UIMObject.hasAnyMember.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/datatypes/objects/obj/UIMObject.hasMember.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/datatypes/objects/obj/UIMObject.memberNames.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/datatypes/objects/obj/UIMObject.objId.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/datatypes/objects/obj/UIMObject.objId.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/directories.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/factories.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers/lists.html</loc></url>
@@ -109,8 +121,10 @@
 <url><loc>http://127.0.0.1/uim/oop/interfaces/paths/has.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/interfaces/paths/remove.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/interfaces/values/all.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/interfaces/values/all/IValues.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/interfaces/values/change.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/interfaces/values/get.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/interfaces/values/get/IGetValues.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/interfaces/values/has.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/interfaces/values/remove.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/interfaces/appendable.html</loc></url>
@@ -243,6 +257,7 @@
 <url><loc>http://127.0.0.1/uim/oop/tests/stringcomparetrait/TStringCompare.assertSameAsFile.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/tests/stubs.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/tests/testsession.html</loc></url>
+<url><loc>http://127.0.0.1/uim/oop/tests/testsession/DTestSession.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/tests/unitconsecutivetrait.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/containers.html</loc></url>
 <url><loc>http://127.0.0.1/uim/oop/datatypes.html</loc></url>

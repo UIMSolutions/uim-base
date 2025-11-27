@@ -11,5 +11,6 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
+/// Interface for values operations.
 interface IValues(K = string, V = UIMObject) : IHasValues!(K, V), IGetValues!(K, V), IChangeValues!(K, V), IRemoveValues!(K, V) {
 }

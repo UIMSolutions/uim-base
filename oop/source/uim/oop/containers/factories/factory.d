@@ -12,7 +12,7 @@ mixin(Version!"test_uim_oop");
 @safe:
 
 /// A factory class for creating and managing objects of type V.
-class DFactory(V = UIMObject) : UIMObject, IFactory!V {
+class DFactory(V = UIMObject) : UIMDirectory, IFactory!V {
   mixin(FactoryThis!());
 
   // #region IObject
@@ -52,10 +52,6 @@ class DFactory(V = UIMObject) : UIMObject, IFactory!V {
     return "DFactory: " ~ this.name;
   }
 
-  bool isEmpty() {
-    return _workers is null || _workers.length == 0;
-  }
-  
   // Creates a clone of the current object.
   override IObject clone() {
     auto factory = new DFactory!V;
@@ -66,6 +62,13 @@ class DFactory(V = UIMObject) : UIMObject, IFactory!V {
     return factory;
   }
   // #endregion IObject
+
+  // #region IList
+  // Get the size of the list.
+  override size_t size() {
+    return _workers.length; // Return the number of elements in the list.
+  }
+  // #endregion IList
 
   protected static DFactory!V _instance;
   protected V delegate(Json[string] options = null)[string] _workers;

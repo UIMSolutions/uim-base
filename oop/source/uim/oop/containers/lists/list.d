@@ -11,6 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
+/// A list container class implementing IList interface.
 class UIMList(V) : UIMCollection!V, IList!V {
   mixin(ListThis!(null, true));
 
@@ -36,11 +37,6 @@ class UIMList(V) : UIMCollection!V, IList!V {
   // Convert the list to an array.
   override V[] toArray() {
     return _elements.dup; // Return a duplicate of the internal elements array.
-  }
-
-  // Check if the list is empty.
-  override bool isEmpty() {
-    return _elements.length == 0; // Return true if the list has no elements.
   }
 
   // Get the index of an item in the list. Returns -1 if the item is not found.

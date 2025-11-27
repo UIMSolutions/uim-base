@@ -6,15 +6,9 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
+/// A set container class implementing ISet interface.
 class UIMSet(V) : UIMCollection!V, ISet!V {
   mixin(SetThis!());
-  
-    // #region isEmpty
-  // Check if the set is empty.
-  override bool isEmpty() {
-    return super.isEmpty;
-  }
-  // #endregion isEmpty
 
   // #region size
   // Returns the number of items in the collection.

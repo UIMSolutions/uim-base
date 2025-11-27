@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function UIMCollection.hasAllValue</title>
+		<title>Interface IValues</title>
 		<link rel="stylesheet" type="text/css" href="../../../../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../../../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../../../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../../../../scripts/ddox.js">/**/</script>
@@ -29,7 +29,7 @@ $('#symbolSearchPane').show();</script>
 						<a href="../../../../../uim/oop.html">oop</a>
 					</div>
 			<ul class="tree-view">
-				<li class="tree-view ">
+				<li class="tree-view collapsed">
 					<div class="package ">
 						<a href="../../../../../uim/oop/containers.html">containers</a>
 					</div>
@@ -56,7 +56,7 @@ $('#symbolSearchPane').show();</script>
 				</li>
 			</ul>
 				</li>
-				<li class="tree-view ">
+				<li class="tree-view collapsed">
 					<div class="package ">
 						<a href="../../../../../uim/oop/containers/collections.html">collections</a>
 					</div>
@@ -91,7 +91,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../../../../uim/oop/containers/collections/collection.html">collection</a>
 					</div>
 				</li>
@@ -441,7 +441,7 @@ $('#symbolSearchPane').show();</script>
 				</li>
 			</ul>
 				</li>
-				<li class="tree-view collapsed">
+				<li class="tree-view ">
 					<div class="package ">
 						<a href="../../../../../uim/oop/interfaces.html">interfaces</a>
 					</div>
@@ -510,13 +510,13 @@ $('#symbolSearchPane').show();</script>
 				</li>
 			</ul>
 				</li>
-				<li class="tree-view collapsed">
+				<li class="tree-view ">
 					<div class="package ">
 						<a href="../../../../../uim/oop/interfaces/values.html">values</a>
 					</div>
 			<ul class="tree-view">
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../../../../uim/oop/interfaces/values/all.html">all</a>
 					</div>
 				</li>
@@ -861,69 +861,18 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function UIMCollection.hasAllValue</h1><p>Checks if this collection contains all of the specified elements.
+			<h1>Interface IValues</h1><p>Interface for values operations.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">bool</span> <span class="pln">hasAllValue</span>
-			<span class="pun">(</span>
-			<br/>
-			&nbsp;&nbsp;<span class="pln">V</span><span class="pun">[]</span> <span class="pln">values</span>
-			<br/>
-			<span class="pun">)</span><span class="pun">;</span>
+			<span class="kwd">interface</span> <span class="typ">IValues</span>(K, V)
+			<span class="pun">;</span>
 					</div>
 				</code>
 			</div>
-			<section></section>
-
-			<section><h2>Parameters</h2>
-<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
-<tr><td id="values">values</td><td> The values to check</td></tr>
-</table>
-</section>
-<section><h2>Returns</h2>
-<p>'true' if all values are present, 'false' otherwise
-</p>
-</section>
-<section><h2>Example</h2>
-
-<pre class="code"><code class="lang-d"><span class="com">// Test hasAllValue with empty collection
-</span><span class="kwd">auto </span><span class="pln">collection1 </span><span class="pun">= </span><span class="kwd">new <a href="../../../../../uim/oop/containers/collections/collection/UIMCollection.html"></span><span class="typ">UIMCollection</span></a><span class="pun">!</span><span class="typ">int</span><span class="pun">;
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">collection1<wbr/></span><span class="pun">.</span><span class="pln">hasAllValue</span><span class="pun">([]));
-</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">collection1<wbr/></span><span class="pun">.</span><span class="pln">hasAllValue</span><span class="pun">([</span><span class="lit">1</span><span class="pun">, </span><span class="lit">2</span><span class="pun">, </span><span class="lit">3</span><span class="pun">]));
-
-</span><span class="com">// Test hasAllValue with single element
-</span><span class="kwd">auto </span><span class="pln">collection2 </span><span class="pun">= </span><span class="kwd">new <a href="../../../../../uim/oop/containers/collections/collection/UIMCollection.html"></span><span class="typ">UIMCollection</span></a><span class="pun">!</span><span class="typ">int</span><span class="pun">;
-</span><span class="pln">collection2<wbr/></span><span class="pun">.</span><span class="pln">addValue</span><span class="pun">(</span><span class="lit">1</span><span class="pun">);
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">collection2<wbr/></span><span class="pun">.</span><span class="pln">hasAllValue</span><span class="pun">([</span><span class="lit">1</span><span class="pun">]));
-</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">collection2<wbr/></span><span class="pun">.</span><span class="pln">hasAllValue</span><span class="pun">([</span><span class="lit">2</span><span class="pun">]));
-</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">collection2<wbr/></span><span class="pun">.</span><span class="pln">hasAllValue</span><span class="pun">([</span><span class="lit">1</span><span class="pun">, </span><span class="lit">2</span><span class="pun">]));
-
-</span><span class="com">// Test hasAllValue with multiple elements
-</span><span class="kwd">auto </span><span class="pln">collection3 </span><span class="pun">= </span><span class="kwd">new <a href="../../../../../uim/oop/containers/collections/collection/UIMCollection.html"></span><span class="typ">UIMCollection</span></a><span class="pun">!</span><span class="typ">int</span><span class="pun">;
-</span><span class="pln">collection3<wbr/></span><span class="pun">.</span><span class="pln">addValue</span><span class="pun">(</span><span class="lit">1</span><span class="pun">);
-</span><span class="pln">collection3<wbr/></span><span class="pun">.</span><span class="pln">addValue</span><span class="pun">(</span><span class="lit">2</span><span class="pun">);
-</span><span class="pln">collection3<wbr/></span><span class="pun">.</span><span class="pln">addValue</span><span class="pun">(</span><span class="lit">3</span><span class="pun">);
-
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">collection3<wbr/></span><span class="pun">.</span><span class="pln">hasAllValue</span><span class="pun">([</span><span class="lit">1</span><span class="pun">]));
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">collection3<wbr/></span><span class="pun">.</span><span class="pln">hasAllValue</span><span class="pun">([</span><span class="lit">1</span><span class="pun">, </span><span class="lit">2</span><span class="pun">]));
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">collection3<wbr/></span><span class="pun">.</span><span class="pln">hasAllValue</span><span class="pun">([</span><span class="lit">1</span><span class="pun">, </span><span class="lit">2</span><span class="pun">, </span><span class="lit">3</span><span class="pun">]));
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">collection3<wbr/></span><span class="pun">.</span><span class="pln">hasAllValue</span><span class="pun">([</span><span class="lit">3</span><span class="pun">, </span><span class="lit">1</span><span class="pun">, </span><span class="lit">2</span><span class="pun">])); </span><span class="com">// Order shouldn't matter
-</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">collection3<wbr/></span><span class="pun">.</span><span class="pln">hasAllValue</span><span class="pun">([</span><span class="lit">1</span><span class="pun">, </span><span class="lit">2</span><span class="pun">, </span><span class="lit">3</span><span class="pun">, </span><span class="lit">4</span><span class="pun">]));
-</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">collection3<wbr/></span><span class="pun">.</span><span class="pln">hasAllValue</span><span class="pun">([</span><span class="lit">4</span><span class="pun">]));
-
-</span><span class="com">// Test hasAllValue with duplicates in input
-</span><span class="kwd">auto </span><span class="pln">collection4 </span><span class="pun">= </span><span class="kwd">new <a href="../../../../../uim/oop/containers/collections/collection/UIMCollection.html"></span><span class="typ">UIMCollection</span></a><span class="pun">!</span><span class="typ">int</span><span class="pun">;
-</span><span class="pln">collection4<wbr/></span><span class="pun">.</span><span class="pln">addValue</span><span class="pun">(</span><span class="lit">1</span><span class="pun">);
-</span><span class="pln">collection4<wbr/></span><span class="pun">.</span><span class="pln">addValue</span><span class="pun">(</span><span class="lit">2</span><span class="pun">);
-
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">collection4<wbr/></span><span class="pun">.</span><span class="pln">hasAllValue</span><span class="pun">([</span><span class="lit">1</span><span class="pun">, </span><span class="lit">1</span><span class="pun">, </span><span class="lit">2</span><span class="pun">]));
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">collection4<wbr/></span><span class="pun">.</span><span class="pln">hasAllValue</span><span class="pun">([</span><span class="lit">2</span><span class="pun">, </span><span class="lit">2</span><span class="pun">, </span><span class="lit">2</span><span class="pun">]));
-
-</span></code></pre>
-</section>
-
+			
+			
 			<footer>
 				<table class="license-info">
 					<tr>
