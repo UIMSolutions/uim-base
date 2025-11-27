@@ -29,8 +29,22 @@ class UIMDirectory(V = UIMObject) : UIMMap!(string, V), IDirectory!V {
   }
   // #endregion pathSeparator
 
-  // #region paths
+// #region paths
   // #region has
+  // #region hasAllPath
+  // Check if all paths are present in the map
+  bool hasAllPath(K[][] paths) {
+    return paths.all!(path => hasPath(path));
+  }
+  // #endregion hasAllPath
+
+  // #region hasAnyPath
+  // Check if any path is present in the map
+  bool hasAnyPath(K[][] paths) {
+    return paths.any!(path => hasPath(path));
+  }
+  // #endregion hasAnyPath
+
   // #region hasPath
   /** 
     * Checks if a specific path exists in the directory.
@@ -50,15 +64,118 @@ class UIMDirectory(V = UIMObject) : UIMMap!(string, V), IDirectory!V {
   // #region get  
   // #region paths
   // Gets all paths in the map, sorted according to the specified order.
-  override string[][] paths() {
+  override K[][] paths() {
     return _entries.keys.map!(key => key.split(_pathSeparator)).array;
   }
   // #endregion paths
+
+  // #region set
+  // #region setAllPath
+  // Sets the entire map to the specified item.
+  bool setAllPath(K[][] paths, V value) {
+    return paths.all!(p => setPath(p, value));
+  }
+  // #endregion setAllPath
+
+  // #region setAnyPath
+  // Sets any of the specified paths to the item.
+  bool setAnyPath(K[][] paths, V value) {
+    return paths.any!(p => setPath(p, value));
+  }
+  // #endregion setAnyPath
+
+  // #region setPath
+  // Sets a specific item in the map.
+  bool setPath(K[] path, V value) {
+    return false;
+  }
+  // #endregion setPath
+  // #endregion set
+
+  // #region update
+  // #region updateAllPath
+  // Updates the entire map to the specified item.
+  bool updateAllPath(K[][] paths, V value) {
+    return paths.all!(p => updatePath(p, value));
+  }
+  // #endregion updateAllPath
+
+  // #region updateAnyPath
+  // Updates any of the specified paths to the item.
+  bool updateAnyPath(K[][] paths, V value) {
+    return paths.any!(p => updatePath(p, value));
+  }
+  // #endregion updateAnyPath
+
+  // #region updatePath
+  // Updates a specific item in the map.
+  bool updatePath(K[] path, V value) {
+    return hasPath(path) ? setPath(path, value) : false;
+  }
+  // #endregion updatePath
+  // #endregion update
+
+  // #region merge
+  // #region mergeAllPath
+  // Merges the entire map to the specified item.
+  bool mergeAllPath(K[][] paths, V value) {
+    return paths.all!(p => mergePath(p, value));
+  }
+  // #endregion mergeAllPath
+
+  // #region mergeAnyPath
+  // Merges any of the specified paths to the item.
+  bool mergeAnyPath(K[][] paths, V value) {
+    return paths.any!(p => mergePath(p, value));
+  }
+  // #endregion mergeAnyPath
+
+  // #region mergePath
+  // Merges a specific item in the map.
+  bool mergePath(K[] path, V value) {
+    return !hasPath(path) ? setPath(path, value) : false;
+  }
+  // #endregion mergePath
+  // #endregion merge
+
+  // #region remove
+  // #region removeAllPath
+  // Remove multiple paths from the map
+  bool removeAllPath(K[][] paths) {
+    return paths.all!(path => removePath(path));
+  }
+  // #endregion removeAllPath
+
+  // #region removeAnyPath
+  bool removeAnyPath(K[][] paths) {
+    return paths.any!(path => removePath(path));
+  }
+  // #endregion removeAnyPath
+
+  // #region removePath
+  // Remove a single path from the map
+  bool removePath(K[] path) {
+    return false;
+  }
+  // #endregion removePath
+  // #endregion remove
+  // #endregion paths
+
+
   // #endregion get  
 
   // #region set
   // #region setPath
-  // Sets a specific item in the map.
+  /** 
+    * Sets a value at the specified path in the directory.
+    *
+    * Params:
+    *   path = The path where the value should be set, represented as an array of strings.
+    *   value = The value to set at the specified path.
+    *
+    * Returns:
+    *   true if the value was successfully set, false otherwise.
+    */
   override bool setPath(string[] path, V value) {
     return setKey(path.toKey(_pathSeparator), value);
   }
@@ -67,7 +184,15 @@ class UIMDirectory(V = UIMObject) : UIMMap!(string, V), IDirectory!V {
 
   // #region remove
   // #region removePath
-  // Removes a specific item from the map.
+  /** 
+    * Removes the item at the specified path from the directory.
+    *
+    * Params:
+    *   path = The path of the item to remove, represented as an array of strings.
+    *
+    * Returns:
+    *   true if the item was successfully removed, false if the path does not exist.
+    */
   override bool removePath(string[] path) {
     if (path.length == 0 || !hasPath(path)) {
       return false;
@@ -81,11 +206,6 @@ class UIMDirectory(V = UIMObject) : UIMMap!(string, V), IDirectory!V {
     string[] path1 = ["foo", "bar"];
     string[] path2 = ["baz"];
     string[] path3 = ["foo", "baz"];
-
-    // Helper to convert path to key
-    string toKey(string[] path, string sep = ".") {
-      return path.join(sep);
-    }
 
     // Inserv values
     map.setPath(path1, 42);
@@ -117,13 +237,6 @@ class UIMDirectory(V = UIMObject) : UIMMap!(string, V), IDirectory!V {
   // #endregion paths
 
   // #region keys
-  // #region get  
-  override string[] keys() {
-    // return // _elements.keys.map!(key => key.correctKey).array;
-    return null;
-  }
-  // #endregion get  
-
   // #region set
   // #region setKey
   // Sets a specific item in the map.
@@ -137,10 +250,32 @@ class UIMDirectory(V = UIMObject) : UIMMap!(string, V), IDirectory!V {
 
   // #region get
   // #region values
-  override V getValue(string[] path) {
-    return getValue(path.toKey(_pathSeparator));
+    /** 
+    * Retrieves values for the specified paths from the map.
+    *
+    * Params:
+    *   paths = An array of paths to retrieve values for.
+    *
+    * Returns:
+    *   An array of values corresponding to the specified paths.
+    */
+  V[] values(K[][] paths) {
+    return paths.map!(path => getValue(path)).array;
   }
 
+  V getValue(K[] path) {
+    return path.toKey(_pathSeparator);
+  }
+
+  /** 
+    * Gets the value associated with the specified key in the map.
+    *
+    * Params:
+    *   key = The key whose associated value is to be returned.
+    *
+    * Returns:
+    *   The value associated with the specified key, or a default value if the key does not exist.
+    */
   override V getValue(string key) {
     static if (is(V : IObject)) {
       return key.correctKey in _entries ? _entries[key.correctKey] : null;
@@ -157,7 +292,6 @@ class UIMDirectory(V = UIMObject) : UIMMap!(string, V), IDirectory!V {
 
 }
 ///
-// #region tests
 unittest { //   bool hasAllPath(string[][] paths) {
   // prepare map and paths
   auto map = new UIMDirectory!int;
@@ -189,4 +323,3 @@ unittest { //   bool hasAllPath(string[][] paths) {
   string[][] duplicates = [path1, path1];
   assert(map.hasAllPath(duplicates));
 }
-// #endregion tests

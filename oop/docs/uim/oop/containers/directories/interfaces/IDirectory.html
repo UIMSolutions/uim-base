@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Class UIMDirectory</title>
+		<title>Interface IDirectory</title>
 		<link rel="stylesheet" type="text/css" href="../../../../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../../../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../../../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../../../../scripts/ddox.js">/**/</script>
@@ -132,12 +132,12 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../../../../uim/oop/containers/directories/directory.html">directory</a>
 					</div>
 				</li>
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../../../../uim/oop/containers/directories/interfaces.html">interfaces</a>
 					</div>
 				</li>
@@ -861,110 +861,18 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Class UIMDirectory</h1><p>A dynamic directory implementation using a map with string keys.
+			<h1>Interface IDirectory</h1><p>Interface for directories maps.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="kwd">class</span> <span class="typ">UIMDirectory</span>(V)
+			<span class="kwd">interface</span> <span class="typ">IDirectory</span>(V)
 			<span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			<section><h2>Methods</h2>
-				<table>
-					<col class="caption"/>
-					<tr>
-						<th>Name</th><th>Description</th>
-					</tr>
-					<tr>
-						<td>
-							<a href="../../../../../uim/oop/containers/directories/directory/UIMDirectory.getValue.html" class="public">
-								<code>getValue</code>
-							</a>
-							<span class="tableEntryAnnotation">(key)</span>
-						</td>
-						<td>Gets the value associated with the specified key in the map.
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="../../../../../uim/oop/containers/directories/directory/UIMDirectory.hasPath.html" class="public">
-								<code>hasPath</code>
-							</a>
-							<span class="tableEntryAnnotation">(path)</span>
-						</td>
-						<td>Checks if a specific path exists in the directory.
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="../../../../../uim/oop/containers/directories/directory/UIMDirectory.removePath.html" class="public">
-								<code>removePath</code>
-							</a>
-							<span class="tableEntryAnnotation">(path)</span>
-						</td>
-						<td>Removes the item at the specified path from the directory.
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="../../../../../uim/oop/containers/directories/directory/UIMDirectory.setPath.html" class="public">
-								<code>setPath</code>
-							</a>
-							<span class="tableEntryAnnotation">(path, value)</span>
-						</td>
-						<td>Sets a value at the specified path in the directory.
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="../../../../../uim/oop/containers/directories/directory/UIMDirectory.values.html" class="public">
-								<code>values</code>
-							</a>
-							<span class="tableEntryAnnotation">(paths)</span>
-						</td>
-						<td>Retrieves values for the specified paths from the map.
-</td>
-					</tr>
-				</table>
-			</section>
-			<section><h2>Example</h2>
-
-<pre class="code"><code class="lang-d"><span class="pln"> </span><span class="com">//   bool hasAllPath(string[][] paths) {
-// prepare map and paths
-</span><span class="kwd">auto </span><span class="pln">map </span><span class="pun">= </span><span class="kwd">new </span><span class="typ">UIMDirectory</span><span class="pun">!</span><span class="typ">int</span><span class="pun">;
-</span><span class="typ">string</span><span class="pun">[] </span><span class="pln">path1 </span><span class="pun">= [</span><span class="str">"foo"</span><span class="pun">, </span><span class="str">"bar"</span><span class="pun">];
-</span><span class="typ">string</span><span class="pun">[] </span><span class="pln">path2 </span><span class="pun">= [</span><span class="str">"baz"</span><span class="pun">];
-</span><span class="typ">string</span><span class="pun">[] </span><span class="pln">path3 </span><span class="pun">= [</span><span class="str">"qux"</span><span class="pun">, </span><span class="str">"quux"</span><span class="pun">];
-
-</span><span class="com">// set some entries
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">setPath</span><span class="pun">(</span><span class="pln">path1</span><span class="pun">, </span><span class="lit">1</span><span class="pun">));
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">setPath</span><span class="pun">(</span><span class="pln">path2</span><span class="pun">, </span><span class="lit">2</span><span class="pun">));
-
-</span><span class="com">// all existing paths -&gt; true
-</span><span class="typ">string</span><span class="pun">[][] </span><span class="pln">allExisting </span><span class="pun">= [</span><span class="pln">path1</span><span class="pun">, </span><span class="pln">path2</span><span class="pun">];
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">hasAllPath</span><span class="pun">(</span><span class="pln">allExisting</span><span class="pun">));
-
-</span><span class="com">// mixed existing and non-existing -&gt; false
-</span><span class="typ">string</span><span class="pun">[][] </span><span class="pln">mixed </span><span class="pun">= [</span><span class="pln">path1</span><span class="pun">, </span><span class="pln">path3</span><span class="pun">];
-</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">hasAllPath</span><span class="pun">(</span><span class="pln">mixed</span><span class="pun">));
-
-</span><span class="com">// all non-existing -&gt; false
-</span><span class="typ">string</span><span class="pun">[][] </span><span class="pln">nonExisting </span><span class="pun">= [</span><span class="pln">path3</span><span class="pun">];
-</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">hasAllPath</span><span class="pun">(</span><span class="pln">nonExisting</span><span class="pun">));
-
-</span><span class="com">// empty array -&gt; vacuously true
-</span><span class="typ">string</span><span class="pun">[][] </span><span class="pln">empty </span><span class="pun">= [];
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">hasAllPath</span><span class="pun">(</span><span class="pln">empty</span><span class="pun">));
-
-</span><span class="com">// duplicate paths where the path exists -&gt; true
-</span><span class="typ">string</span><span class="pun">[][] </span><span class="pln">duplicates </span><span class="pun">= [</span><span class="pln">path1</span><span class="pun">, </span><span class="pln">path1</span><span class="pun">];
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">hasAllPath</span><span class="pun">(</span><span class="pln">duplicates</span><span class="pun">));
-</span></code></pre>
-</section>
-
+			
 			<footer>
 				<table class="license-info">
 					<tr>

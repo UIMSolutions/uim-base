@@ -886,46 +886,6 @@ $('#symbolSearchPane').show();</script>
 <p>true if the path exists, false otherwise.
 </p>
 </section>
-<section><h2>Example</h2>
-
-<pre class="code"><code class="lang-d"><span class="com">// Create a test map
-</span><span class="kwd">auto </span><span class="pln">map </span><span class="pun">= </span><span class="kwd">new <a href="../../../../../uim/oop/containers/directories/directory/UIMDirectory.html"></span><span class="typ">UIMDirectory</span></a><span class="pun">!</span><span class="typ">int</span><span class="pun">;
-</span><span class="typ">string</span><span class="pun">[] </span><span class="pln">path1 </span><span class="pun">= [</span><span class="str">"foo"</span><span class="pun">, </span><span class="str">"bar"</span><span class="pun">];
-</span><span class="typ">string</span><span class="pun">[] </span><span class="pln">path2 </span><span class="pun">= [</span><span class="str">"baz"</span><span class="pun">];
-</span><span class="typ">string</span><span class="pun">[] </span><span class="pln">path3 </span><span class="pun">= [</span><span class="str">"foo"</span><span class="pun">, </span><span class="str">"baz"</span><span class="pun">];
-
-</span><span class="com">// Helper to convert path to key
-</span><span class="typ">string </span><span class="pln">toKey</span><span class="pun">(</span><span class="typ">string</span><span class="pun">[] <a href="../../../../../uim/oop/containers/directories/directory/UIMDirectory.hasPath.html#path"></span><span class="pln">path</span></a><span class="pun">, </span><span class="typ">string </span><span class="pln">sep </span><span class="pun">= </span><span class="str">"."</span><span class="pun">) {
-  </span><span class="kwd">return </span><span class="pln">path<wbr/></span><span class="pun">.</span><span class="pln">join</span><span class="pun">(</span><span class="pln">sep</span><span class="pun">);
-}
-
-</span><span class="com">// Inserv values
-</span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">setPath</span><span class="pun">(</span><span class="pln">path1</span><span class="pun">, </span><span class="lit">42</span><span class="pun">);
-</span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">setPath</span><span class="pun">(</span><span class="pln">path2</span><span class="pun">, </span><span class="lit">99</span><span class="pun">);
-
-</span><span class="com">// Remove existing path
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">hasPath</span><span class="pun">(</span><span class="pln">path1</span><span class="pun">));
-</span><span class="typ">bool </span><span class="pln">removed </span><span class="pun">= </span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">removePath</span><span class="pun">(</span><span class="pln">path1</span><span class="pun">);
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">removed</span><span class="pun">, </span><span class="str">"removePath should return true for existing path"</span><span class="pun">);
-</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">hasPath</span><span class="pun">(</span><span class="pln">path1</span><span class="pun">), </span><span class="str">"Path should be removed"</span><span class="pun">);
-
-</span><span class="com">// Remove non-existing path
-</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">hasPath</span><span class="pun">(</span><span class="pln">path3</span><span class="pun">));
-</span><span class="pln">removed </span><span class="pun">= </span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">removePath</span><span class="pun">(</span><span class="pln">path3</span><span class="pun">);
-</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">removed</span><span class="pun">, </span><span class="str">"removePath should return false for non-existing path"</span><span class="pun">);
-
-</span><span class="com">// Remove after already removed
-</span><span class="pln">removed </span><span class="pun">= </span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">removePath</span><span class="pun">(</span><span class="pln">path1</span><span class="pun">);
-</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">removed</span><span class="pun">, </span><span class="str">"removePath should return false when removing already removed path"</span><span class="pun">);
-
-</span><span class="com">// Remove another existing path
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">hasPath</span><span class="pun">(</span><span class="pln">path2</span><span class="pun">));
-</span><span class="pln">removed </span><span class="pun">= </span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">removePath</span><span class="pun">(</span><span class="pln">path2</span><span class="pun">);
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">removed</span><span class="pun">, </span><span class="str">"removePath should return true for another existing path"</span><span class="pun">);
-</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">hasPath</span><span class="pun">(</span><span class="pln">path2</span><span class="pun">), </span><span class="str">"Second path should be removed"</span><span class="pun">);
-
-</span></code></pre>
-</section>
 
 			<footer>
 				<table class="license-info">

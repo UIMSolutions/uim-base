@@ -11,7 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-interface IMap(K, V) : IContainer, IKeys!(K, V), IPaths!(K, V), IValues!(K, V) {
+interface IMap(K, V) : IContainer, IKeys!(K, V), IValues!(K, V) {
     // #region entries
     V[K] entries();
     void entries(V[K] newEntries);

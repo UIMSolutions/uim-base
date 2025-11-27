@@ -11,6 +11,7 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
+/// A dynamic map implementation using a D associative array.
 class UIMMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   mixin(MapThis!());
 
@@ -25,19 +26,46 @@ class UIMMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
 
   // #region entries
   protected V[K] _entries;
+  /** 
+    * Gets the entries of the map.
+    *
+    * Returns:
+    *   The current entries of the map as an associative array.
+    */
   V[K] entries() {
     return _entries.dup;
   }
 
+  /** 
+    * Sets the entries of the map.
+    */
   void entries(V[K] newEntries) {
     _entries = newEntries.dup;
   }
 
   // #region has
+  /** 
+    * Checks if all, any, or only specific entries are present in the map.
+    * 
+    * Params: 
+    *   checkEntries = The entries to check
+    * 
+    * Returns: 
+    *   'true' or 'false' based on the check performed
+    */
   bool hasAllEntry(K, V)(V[K] checkEntries) {
     return checkEntries.keys.all!(key => hasEntry(key, checkEntries[key]));
   }
 
+  /** 
+    * Checks if all entries are present in the map.
+    * 
+    * Params: 
+    *   checkEntries = The entries to check
+    * 
+    * Returns: 
+    *   'true' if all entries are present, 'false' otherwise
+    */
   bool hasAllEntry(K, V)(V[K][] checkEntries) {
     return checkEntries.all!(entry => hasEntry(entry));
   }
@@ -82,127 +110,7 @@ class UIMMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
   }
   // #endregion size
 
-  // #region paths
-  // #region has
-  // #region hasAllPath
-  // Check if all paths are present in the map
-  bool hasAllPath(K[][] paths) {
-    return paths.all!(path => hasPath(path));
-  }
-  // #endregion hasAllPath
-
-  // #region hasAnyPath
-  // Check if any path is present in the map
-  bool hasAnyPath(K[][] paths) {
-    return paths.any!(path => hasPath(path));
-  }
-  // #endregion hasAnyPath
-
-  // #region hasPath
-  // Check if a specific path is present in the map
-  bool hasPath(K[] path) {
-    return false;
-  }
-  // #endregion hasPath
-  // #endregion has
-
-  // #region get
-  K[][] paths() {
-    return null;
-  }
-  // #endregion get
-
-  // #region set
-  // #region setAllPath
-  // Sets the entire map to the specified item.
-  bool setAllPath(K[][] paths, V value) {
-    return paths.all!(p => setPath(p, value));
-  }
-  // #endregion setAllPath
-
-  // #region setAnyPath
-  // Sets any of the specified paths to the item.
-  bool setAnyPath(K[][] paths, V value) {
-    return paths.any!(p => setPath(p, value));
-  }
-  // #endregion setAnyPath
-
-  // #region setPath
-  // Sets a specific item in the map.
-  bool setPath(K[] path, V value) {
-    return false;
-  }
-  // #endregion setPath
-  // #endregion set
-
-  // #region update
-  // #region updateAllPath
-  // Updates the entire map to the specified item.
-  bool updateAllPath(K[][] paths, V value) {
-    return paths.all!(p => updatePath(p, value));
-  }
-  // #endregion updateAllPath
-
-  // #region updateAnyPath
-  // Updates any of the specified paths to the item.
-  bool updateAnyPath(K[][] paths, V value) {
-    return paths.any!(p => updatePath(p, value));
-  }
-  // #endregion updateAnyPath
-
-  // #region updatePath
-  // Updates a specific item in the map.
-  bool updatePath(K[] path, V value) {
-    return hasPath(path) ? setPath(path, value) : false;
-  }
-  // #endregion updatePath
-  // #endregion update
-
-  // #region merge
-  // #region mergeAllPath
-  // Merges the entire map to the specified item.
-  bool mergeAllPath(K[][] paths, V value) {
-    return paths.all!(p => mergePath(p, value));
-  }
-  // #endregion mergeAllPath
-
-  // #region mergeAnyPath
-  // Merges any of the specified paths to the item.
-  bool mergeAnyPath(K[][] paths, V value) {
-    return paths.any!(p => mergePath(p, value));
-  }
-  // #endregion mergeAnyPath
-
-  // #region mergePath
-  // Merges a specific item in the map.
-  bool mergePath(K[] path, V value) {
-    return !hasPath(path) ? setPath(path, value) : false;
-  }
-  // #endregion mergePath
-  // #endregion merge
-
-  // #region remove
-  // #region removeAllPath
-  // Remove multiple paths from the map
-  bool removeAllPath(K[][] paths) {
-    return paths.all!(path => removePath(path));
-  }
-  // #endregion removeAllPath
-
-  // #region removeAnyPath
-  bool removeAnyPath(K[][] paths) {
-    return paths.any!(path => removePath(path));
-  }
-  // #endregion removeAnyPath
-
-  // #region removePath
-  // Remove a single path from the map
-  bool removePath(K[] path) {
-    return false;
-  }
-  // #endregion removePath
-  // #endregion remove
-  // #endregion paths
+  
 
   // #region keys
   // Retrieve all the names of the object's own enumerable properties.
@@ -547,31 +455,32 @@ class UIMMap(K = string, V = UIMObject) : UIMContainer, IMap!(K, V) {
 
   // #region get
   // #region values
+  /** 
+    * Retrieves all values from the map.
+    *
+    * Returns:
+    *   An array of all values in the map.
+    */
   V[] values() {
     return _entries.values.array;
   }
 
-  V[] values(K[][] paths) {
-    return paths.map!(path => getValue(path)).array;
-  }
-
+  /** 
+    * Retrieves values for the specified keys from the map.
+    *
+    * Params:
+    *   keys = An array of keys to retrieve values for.
+    *
+    * Returns:
+    *   An array of values corresponding to the specified keys.
+    */
   V[] values(K[] keys) {
     return keys.map!(key => getValue(key)).array;
   }
   // #endregion values
 
   // #region value
-  V getValue(K[] path) {
-    static if (is(V == Json)) {
-      return Json(null);
-    } else static if (is(V : Object)) {
-      return null;
-    } else static if (is(V : IObject)) {
-      return null;
-    } else {
-      return Null!V;
-    }
-  }
+
 
   V getValue(K key) {
     static if (is(V == Json)) {

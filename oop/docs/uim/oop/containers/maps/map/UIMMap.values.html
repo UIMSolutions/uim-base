@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Class UIMDirectory</title>
+		<title>UIMMap.values - multiple declarations</title>
 		<link rel="stylesheet" type="text/css" href="../../../../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../../../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../../../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../../../../scripts/ddox.js">/**/</script>
@@ -102,7 +102,7 @@ $('#symbolSearchPane').show();</script>
 				</li>
 			</ul>
 				</li>
-				<li class="tree-view ">
+				<li class="tree-view collapsed">
 					<div class="package ">
 						<a href="../../../../../uim/oop/containers/directories.html">directories</a>
 					</div>
@@ -132,7 +132,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../../../../uim/oop/containers/directories/directory.html">directory</a>
 					</div>
 				</li>
@@ -224,7 +224,7 @@ $('#symbolSearchPane').show();</script>
 				</li>
 			</ul>
 				</li>
-				<li class="tree-view collapsed">
+				<li class="tree-view ">
 					<div class="package ">
 						<a href="../../../../../uim/oop/containers/maps.html">maps</a>
 					</div>
@@ -275,7 +275,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../../../../uim/oop/containers/maps/map.html">map</a>
 					</div>
 				</li>
@@ -861,107 +861,173 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Class UIMDirectory</h1><p>A dynamic directory implementation using a map with string keys.
+			<h1>UIMMap.values - multiple declarations</h1>
+			<nav class="page-nav">
+				<ul>
+					<li>
+						<a href="#0">
+							Function <code>UIMMap.values</code>
+						</a>
+					</li>
+					<li>
+						<a href="#1">
+							Function <code>UIMMap.values</code>
+						</a>
+					</li>
+				</ul>
+			</nav><h2 id="0">Function UIMMap.values</h2><p>Retrieves all values from the map.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="kwd">class</span> <span class="typ">UIMDirectory</span>(V)
-			<span class="pun">;</span>
+			<span class="pln">V</span><span class="pun">[]</span> <span class="pln">values</span><span class="pun">(</span><span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
-			
-			<section><h2>Methods</h2>
-				<table>
-					<col class="caption"/>
-					<tr>
-						<th>Name</th><th>Description</th>
-					</tr>
-					<tr>
-						<td>
-							<a href="../../../../../uim/oop/containers/directories/directory/UIMDirectory.getValue.html" class="public">
-								<code>getValue</code>
-							</a>
-							<span class="tableEntryAnnotation">(key)</span>
-						</td>
-						<td>Gets the value associated with the specified key in the map.
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="../../../../../uim/oop/containers/directories/directory/UIMDirectory.hasPath.html" class="public">
-								<code>hasPath</code>
-							</a>
-							<span class="tableEntryAnnotation">(path)</span>
-						</td>
-						<td>Checks if a specific path exists in the directory.
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="../../../../../uim/oop/containers/directories/directory/UIMDirectory.removePath.html" class="public">
-								<code>removePath</code>
-							</a>
-							<span class="tableEntryAnnotation">(path)</span>
-						</td>
-						<td>Removes the item at the specified path from the directory.
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="../../../../../uim/oop/containers/directories/directory/UIMDirectory.setPath.html" class="public">
-								<code>setPath</code>
-							</a>
-							<span class="tableEntryAnnotation">(path, value)</span>
-						</td>
-						<td>Sets a value at the specified path in the directory.
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="../../../../../uim/oop/containers/directories/directory/UIMDirectory.values.html" class="public">
-								<code>values</code>
-							</a>
-							<span class="tableEntryAnnotation">(paths)</span>
-						</td>
-						<td>Retrieves values for the specified paths from the map.
-</td>
-					</tr>
-				</table>
-			</section>
-			<section><h2>Example</h2>
+			<section></section>
 
-<pre class="code"><code class="lang-d"><span class="pln"> </span><span class="com">//   bool hasAllPath(string[][] paths) {
-// prepare map and paths
-</span><span class="kwd">auto </span><span class="pln">map </span><span class="pun">= </span><span class="kwd">new </span><span class="typ">UIMDirectory</span><span class="pun">!</span><span class="typ">int</span><span class="pun">;
-</span><span class="typ">string</span><span class="pun">[] </span><span class="pln">path1 </span><span class="pun">= [</span><span class="str">"foo"</span><span class="pun">, </span><span class="str">"bar"</span><span class="pun">];
-</span><span class="typ">string</span><span class="pun">[] </span><span class="pln">path2 </span><span class="pun">= [</span><span class="str">"baz"</span><span class="pun">];
-</span><span class="typ">string</span><span class="pun">[] </span><span class="pln">path3 </span><span class="pun">= [</span><span class="str">"qux"</span><span class="pun">, </span><span class="str">"quux"</span><span class="pun">];
+			<section><h3>Returns</h3>
+<p>An array of all values in the map.
+</p>
+</section>
+<h2 id="1">Function UIMMap.values</h2><p>Retrieves values for the specified keys from the map.
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="pln">V</span><span class="pun">[]</span> <span class="pln">values</span>
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="pln">K</span><span class="pun">[]</span> <span class="pln">keys</span>
+			<br/>
+			<span class="pun">)</span><span class="pun">;</span>
+					</div>
+				</code>
+			</div>
+			<section></section>
 
-</span><span class="com">// set some entries
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">setPath</span><span class="pun">(</span><span class="pln">path1</span><span class="pun">, </span><span class="lit">1</span><span class="pun">));
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">setPath</span><span class="pun">(</span><span class="pln">path2</span><span class="pun">, </span><span class="lit">2</span><span class="pun">));
+			<section><h3>Parameters</h3>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="keys">keys</td><td> An array of keys to retrieve values for.</td></tr>
+</table>
+</section>
+<section><h3>Returns</h3>
+<p>An array of values corresponding to the specified keys.
+</p>
+</section>
+<section><h3>Example</h3>
 
-</span><span class="com">// all existing paths -&gt; true
-</span><span class="typ">string</span><span class="pun">[][] </span><span class="pln">allExisting </span><span class="pun">= [</span><span class="pln">path1</span><span class="pun">, </span><span class="pln">path2</span><span class="pun">];
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">hasAllPath</span><span class="pun">(</span><span class="pln">allExisting</span><span class="pun">));
+<pre class="code"><code class="lang-d"><span class="kwd">auto </span><span class="pln">map1 </span><span class="pun">= </span><span class="kwd">new <a href="../../../../../uim/oop/containers/maps/map/UIMMap.html"></span><span class="typ">UIMMap</span></a><span class="pun">!(</span><span class="typ">string</span><span class="pun">, </span><span class="typ">int</span><span class="pun">);
+</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">entries </span><span class="pun">= [</span><span class="str">"x"</span><span class="pun">: </span><span class="lit">10</span><span class="pun">, </span><span class="str">"y"</span><span class="pun">: </span><span class="lit">20</span><span class="pun">, </span><span class="str">"z"</span><span class="pun">: </span><span class="lit">30</span><span class="pun">];
+</span><span class="kwd">auto </span><span class="pln">vals1 </span><span class="pun">= </span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">values</span><span class="pun">();
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">vals1<wbr/></span><span class="pun">.</span><span class="pln">sort<wbr/></span><span class="pun">.</span><span class="pln">array </span><span class="pun">== [</span><span class="lit">10</span><span class="pun">, </span><span class="lit">20</span><span class="pun">, </span><span class="lit">30</span><span class="pun">]);
 
-</span><span class="com">// mixed existing and non-existing -&gt; false
-</span><span class="typ">string</span><span class="pun">[][] </span><span class="pln">mixed </span><span class="pun">= [</span><span class="pln">path1</span><span class="pun">, </span><span class="pln">path3</span><span class="pun">];
-</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">hasAllPath</span><span class="pun">(</span><span class="pln">mixed</span><span class="pun">));
+</span><span class="kwd">auto </span><span class="pln">map2 </span><span class="pun">= </span><span class="kwd">new <a href="../../../../../uim/oop/containers/maps/map/UIMMap.html"></span><span class="typ">UIMMap</span></a><span class="pun">!(</span><span class="typ">int</span><span class="pun">, </span><span class="typ">string</span><span class="pun">);
+</span><span class="pln">map2<wbr/></span><span class="pun">.</span><span class="pln">entries </span><span class="pun">= [</span><span class="lit">1</span><span class="pun">: </span><span class="str">"one"</span><span class="pun">, </span><span class="lit">2</span><span class="pun">: </span><span class="str">"two"</span><span class="pun">];
+</span><span class="kwd">auto </span><span class="pln">vals2 </span><span class="pun">= </span><span class="pln">map2<wbr/></span><span class="pun">.</span><span class="pln">values</span><span class="pun">();
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">vals2<wbr/></span><span class="pun">.</span><span class="pln">sort<wbr/></span><span class="pun">.</span><span class="pln">array </span><span class="pun">== [</span><span class="str">"one"</span><span class="pun">, </span><span class="str">"two"</span><span class="pun">]);
 
-</span><span class="com">// all non-existing -&gt; false
-</span><span class="typ">string</span><span class="pun">[][] </span><span class="pln">nonExisting </span><span class="pun">= [</span><span class="pln">path3</span><span class="pun">];
-</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">hasAllPath</span><span class="pun">(</span><span class="pln">nonExisting</span><span class="pun">));
+</span><span class="kwd">auto </span><span class="pln">map3 </span><span class="pun">= </span><span class="kwd">new <a href="../../../../../uim/oop/containers/maps/map/UIMMap.html"></span><span class="typ">UIMMap</span></a><span class="pun">!(</span><span class="typ">string</span><span class="pun">, </span><span class="typ">int</span><span class="pun">);
+</span><span class="pln">map3<wbr/></span><span class="pun">.</span><span class="pln">entries </span><span class="pun">= </span><span class="kwd">null</span><span class="pun">;
+</span><span class="kwd">auto </span><span class="pln">vals3 </span><span class="pun">= </span><span class="pln">map3<wbr/></span><span class="pun">.</span><span class="pln">values</span><span class="pun">();
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">vals3<wbr/></span><span class="pun">.</span><span class="pln">length </span><span class="pun">== </span><span class="lit">0</span><span class="pun">);
 
-</span><span class="com">// empty array -&gt; vacuously true
-</span><span class="typ">string</span><span class="pun">[][] </span><span class="pln">empty </span><span class="pun">= [];
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">hasAllPath</span><span class="pun">(</span><span class="pln">empty</span><span class="pun">));
+</span></code></pre>
+</section>
+<section><h3>Example</h3>
 
-</span><span class="com">// duplicate paths where the path exists -&gt; true
-</span><span class="typ">string</span><span class="pun">[][] </span><span class="pln">duplicates </span><span class="pun">= [</span><span class="pln">path1</span><span class="pun">, </span><span class="pln">path1</span><span class="pun">];
-</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">hasAllPath</span><span class="pun">(</span><span class="pln">duplicates</span><span class="pun">));
+<pre class="code"><code class="lang-d"><span class="com">// Test removeAllValue removes multiple values
+</span><span class="kwd">auto </span><span class="pln">map1 </span><span class="pun">= </span><span class="kwd">new <a href="../../../../../uim/oop/containers/maps/map/UIMMap.html"></span><span class="typ">UIMMap</span></a><span class="pun">!(</span><span class="typ">string</span><span class="pun">, </span><span class="typ">int</span><span class="pun">);
+</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">entries </span><span class="pun">= [</span><span class="str">"a"</span><span class="pun">: </span><span class="lit">1</span><span class="pun">, </span><span class="str">"b"</span><span class="pun">: </span><span class="lit">2</span><span class="pun">, </span><span class="str">"c"</span><span class="pun">: </span><span class="lit">3</span><span class="pun">, </span><span class="str">"d"</span><span class="pun">: </span><span class="lit">2</span><span class="pun">];
+</span><span class="typ">bool </span><span class="pln">result1 </span><span class="pun">= </span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">removeAllValue</span><span class="pun">([</span><span class="lit">2</span><span class="pun">, </span><span class="lit">3</span><span class="pun">]);
+</span><span class="com">// Only first occurrence of each value is removed
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">result1 </span><span class="pun">== </span><span class="kwd">true</span><span class="pun">);
+</span><span class="com">// "b":2 and "c":3 should be removed, "d":2 remains because only one "2" is removed
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">entries </span><span class="pun">== [</span><span class="str">"a"</span><span class="pun">: </span><span class="lit">1</span><span class="pun">, </span><span class="str">"d"</span><span class="pun">: </span><span class="lit">2</span><span class="pun">]);
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">hasValue</span><span class="pun">(</span><span class="lit">3</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">hasValue</span><span class="pun">(</span><span class="lit">2</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">hasValue</span><span class="pun">(</span><span class="lit">1</span><span class="pun">));
+
+</span><span class="com">// Test removeAllValue with values not present
+</span><span class="kwd">auto </span><span class="pln">map2 </span><span class="pun">= </span><span class="kwd">new <a href="../../../../../uim/oop/containers/maps/map/UIMMap.html"></span><span class="typ">UIMMap</span></a><span class="pun">!(</span><span class="typ">string</span><span class="pun">, </span><span class="typ">int</span><span class="pun">);
+</span><span class="pln">map2<wbr/></span><span class="pun">.</span><span class="pln">entries </span><span class="pun">= [</span><span class="str">"x"</span><span class="pun">: </span><span class="lit">10</span><span class="pun">, </span><span class="str">"y"</span><span class="pun">: </span><span class="lit">20</span><span class="pun">];
+</span><span class="typ">bool </span><span class="pln">result2 </span><span class="pun">= </span><span class="pln">map2<wbr/></span><span class="pun">.</span><span class="pln">removeAllValue</span><span class="pun">([</span><span class="lit">30</span><span class="pun">, </span><span class="lit">40</span><span class="pun">]);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">result2 </span><span class="pun">== </span><span class="kwd">false</span><span class="pun">); </span><span class="com">// none removed
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map2<wbr/></span><span class="pun">.</span><span class="pln">entries </span><span class="pun">== [</span><span class="str">"x"</span><span class="pun">: </span><span class="lit">10</span><span class="pun">, </span><span class="str">"y"</span><span class="pun">: </span><span class="lit">20</span><span class="pun">]);
+
+</span><span class="com">// Test removeAllValue with empty values array (should not remove anything)
+</span><span class="kwd">auto </span><span class="pln">map3 </span><span class="pun">= </span><span class="kwd">new <a href="../../../../../uim/oop/containers/maps/map/UIMMap.html"></span><span class="typ">UIMMap</span></a><span class="pun">!(</span><span class="typ">string</span><span class="pun">, </span><span class="typ">int</span><span class="pun">);
+</span><span class="pln">map3<wbr/></span><span class="pun">.</span><span class="pln">entries </span><span class="pun">= [</span><span class="str">"foo"</span><span class="pun">: </span><span class="lit">100</span><span class="pun">, </span><span class="str">"bar"</span><span class="pun">: </span><span class="lit">200</span><span class="pun">];
+</span><span class="typ">bool </span><span class="pln">result3 </span><span class="pun">= </span><span class="pln">map3<wbr/></span><span class="pun">.</span><span class="pln">removeAllValue</span><span class="pun">([]);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">result3 </span><span class="pun">== </span><span class="kwd">true</span><span class="pun">); </span><span class="com">// vacuously true
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map3<wbr/></span><span class="pun">.</span><span class="pln">entries </span><span class="pun">== [</span><span class="str">"foo"</span><span class="pun">: </span><span class="lit">100</span><span class="pun">, </span><span class="str">"bar"</span><span class="pun">: </span><span class="lit">200</span><span class="pun">]);
+
+</span></code></pre>
+</section>
+<section><h3>Example</h3>
+
+<pre class="code"><code class="lang-d"><span class="com">// Test removeValue removes first occurrence only
+</span><span class="kwd">auto </span><span class="pln">map1 </span><span class="pun">= </span><span class="kwd">new <a href="../../../../../uim/oop/containers/maps/map/UIMMap.html"></span><span class="typ">UIMMap</span></a><span class="pun">!(</span><span class="typ">string</span><span class="pun">, </span><span class="typ">int</span><span class="pun">);
+</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">entries </span><span class="pun">= [</span><span class="str">"a"</span><span class="pun">: </span><span class="lit">1</span><span class="pun">, </span><span class="str">"b"</span><span class="pun">: </span><span class="lit">2</span><span class="pun">, </span><span class="str">"c"</span><span class="pun">: </span><span class="lit">2</span><span class="pun">, </span><span class="str">"d"</span><span class="pun">: </span><span class="lit">3</span><span class="pun">];
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">removeValue</span><span class="pun">(</span><span class="lit">2</span><span class="pun">), </span><span class="str">"Value 2 should be removed"</span><span class="pun">);
+</span><span class="com">// Only "b":2 should be removed, "c":2 remains
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">entries </span><span class="pun">== [</span><span class="str">"a"</span><span class="pun">: </span><span class="lit">1</span><span class="pun">, </span><span class="str">"c"</span><span class="pun">: </span><span class="lit">2</span><span class="pun">, </span><span class="str">"d"</span><span class="pun">: </span><span class="lit">3</span><span class="pun">]);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">hasValue</span><span class="pun">(</span><span class="lit">2</span><span class="pun">), </span><span class="str">"Value 2 should still be present after removing first occurrence"</span><span class="pun">);
+
+</span><span class="com">// Remove value that is present only once
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">removeValue</span><span class="pun">(</span><span class="lit">3</span><span class="pun">), </span><span class="str">"Value 3 should be removed"</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">hasValue</span><span class="pun">(</span><span class="lit">3</span><span class="pun">), </span><span class="str">"Value 3 should be removed"</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">hasOnlyEntry</span><span class="pun">([</span><span class="str">"a"</span><span class="pun">: </span><span class="lit">1</span><span class="pun">, </span><span class="str">"c"</span><span class="pun">: </span><span class="lit">2</span><span class="pun">]), </span><span class="str">"Map should only contain entries 'a':1 and 'c':2"</span><span class="pun">);
+
+</span><span class="com">// Remove value that is not present
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">removeValue</span><span class="pun">(</span><span class="lit">99</span><span class="pun">), </span><span class="str">"Removing non-existent value should return false"</span><span class="pun">);
+</span><span class="com">// assert(map1.entries == ["a": 1, "c": 2]);
+
+// Remove all occurrences by repeated calls
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">removeValue</span><span class="pun">(</span><span class="lit">2</span><span class="pun">), </span><span class="str">"Value 2 should be removed"</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">hasValue</span><span class="pun">(</span><span class="lit">2</span><span class="pun">));
+</span><span class="com">// assert(map1.entries == ["a": 1]);
+
+// Remove from empty map
+</span><span class="kwd">auto </span><span class="pln">map2 </span><span class="pun">= </span><span class="kwd">new <a href="../../../../../uim/oop/containers/maps/map/UIMMap.html"></span><span class="typ">UIMMap</span></a><span class="pun">!(</span><span class="typ">string</span><span class="pun">, </span><span class="typ">int</span><span class="pun">);
+</span><span class="pln">map2<wbr/></span><span class="pun">.</span><span class="pln">entries </span><span class="pun">= </span><span class="kwd">null</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">map2<wbr/></span><span class="pun">.</span><span class="pln">removeValue</span><span class="pun">(</span><span class="lit">1</span><span class="pun">), </span><span class="str">"Removing from empty map should return false"</span><span class="pun">);
+
+</span><span class="com">// Remove string value
+</span><span class="kwd">auto </span><span class="pln">map3 </span><span class="pun">= </span><span class="kwd">new <a href="../../../../../uim/oop/containers/maps/map/UIMMap.html"></span><span class="typ">UIMMap</span></a><span class="pun">!(</span><span class="typ">int</span><span class="pun">, </span><span class="typ">string</span><span class="pun">);
+</span><span class="pln">map3<wbr/></span><span class="pun">.</span><span class="pln">entries </span><span class="pun">= [</span><span class="lit">1</span><span class="pun">: </span><span class="str">"foo"</span><span class="pun">, </span><span class="lit">2</span><span class="pun">: </span><span class="str">"bar"</span><span class="pun">, </span><span class="lit">3</span><span class="pun">: </span><span class="str">"baz"</span><span class="pun">];
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map3<wbr/></span><span class="pun">.</span><span class="pln">removeValue</span><span class="pun">(</span><span class="str">"bar"</span><span class="pun">), </span><span class="str">"Value 'bar' should be removed"</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map3<wbr/></span><span class="pun">.</span><span class="pln">hasEntries</span><span class="pun">([</span><span class="lit">1</span><span class="pun">: </span><span class="str">"foo"</span><span class="pun">, </span><span class="lit">3</span><span class="pun">: </span><span class="str">"baz"</span><span class="pun">]), </span><span class="str">"Map should only contain 'foo' and 'baz'"</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">map3<wbr/></span><span class="pun">.</span><span class="pln">hasValue</span><span class="pun">(</span><span class="str">"bar"</span><span class="pun">));
+
+</span></code></pre>
+</section>
+<section><h3>Example</h3>
+
+<pre class="code"><code class="lang-d"><span class="com">// clear() on a non-empty map should return true and remove all entries
+</span><span class="kwd">auto </span><span class="pln">map1 </span><span class="pun">= </span><span class="kwd">new <a href="../../../../../uim/oop/containers/maps/map/UIMMap.html"></span><span class="typ">UIMMap</span></a><span class="pun">!(</span><span class="typ">string</span><span class="pun">, </span><span class="typ">int</span><span class="pun">);
+</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">entries </span><span class="pun">= [</span><span class="str">"a"</span><span class="pun">: </span><span class="lit">1</span><span class="pun">, </span><span class="str">"b"</span><span class="pun">: </span><span class="lit">2</span><span class="pun">, </span><span class="str">"c"</span><span class="pun">: </span><span class="lit">3</span><span class="pun">];
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">size</span><span class="pun">() == </span><span class="lit">3</span><span class="pun">);
+</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">clear</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">size</span><span class="pun">() == </span><span class="lit">0</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">hasKey</span><span class="pun">(</span><span class="str">"a"</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">hasKey</span><span class="pun">(</span><span class="str">"b"</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">hasKey</span><span class="pun">(</span><span class="str">"c"</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">hasValue</span><span class="pun">(</span><span class="lit">1</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">hasValue</span><span class="pun">(</span><span class="lit">2</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">hasValue</span><span class="pun">(</span><span class="lit">3</span><span class="pun">));
+
+</span><span class="com">// clear() on an already empty map should still return true and keep it empty
+</span><span class="kwd">auto </span><span class="pln">map2 </span><span class="pun">= </span><span class="kwd">new <a href="../../../../../uim/oop/containers/maps/map/UIMMap.html"></span><span class="typ">UIMMap</span></a><span class="pun">!(</span><span class="typ">string</span><span class="pun">, </span><span class="typ">int</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map2<wbr/></span><span class="pun">.</span><span class="pln">size</span><span class="pun">() == </span><span class="lit">0</span><span class="pun">);
+</span><span class="pln">map2<wbr/></span><span class="pun">.</span><span class="pln">clear</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map2<wbr/></span><span class="pun">.</span><span class="pln">size</span><span class="pun">() == </span><span class="lit">0</span><span class="pun">);
+</span><span class="com">// still no keys/values
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">map2<wbr/></span><span class="pun">.</span><span class="pln">hasKey</span><span class="pun">(</span><span class="str">"nonexistent"</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">map2<wbr/></span><span class="pun">.</span><span class="pln">hasValue</span><span class="pun">(</span><span class="lit">999</span><span class="pun">));
+}
+</span><span class="com">// #endregion clear
+// #endregion values
 </span></code></pre>
 </section>
 
