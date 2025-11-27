@@ -3,19 +3,11 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.interfaces.retrystrategy;
+module uim.oop.exceptions;
 
-import uim.oop;
-
-mixin(Version!"test_uim_oop");
-
-@safe:
-
-/**
- * Used to instruct a CommandRetry object on whether a retry
- * for an action should be performed
- */
-interface IRetryStrategy {
-    // Returns true if the action can be retried, false otherwise.
-    // bool shouldRetry(UIMException failException, int retryCount);
+public {
+  import uim.oop.exceptions.exception;
+  import uim.oop.exceptions.interface_;
+  import uim.oop.exceptions.mixins;
 }
+

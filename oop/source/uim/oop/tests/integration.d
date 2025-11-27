@@ -860,7 +860,7 @@ mixin template TIntegrationTest() {
 
     // Inspect controller to extract possible causes of the failed assertion
     protected string extractVerboseMessage(string originalMessage) {
-        if (cast(DException) _exception) {
+        if (cast(UIMException) _exception) {
             originalMessage ~= extractExceptionMessage(_exception);
         }
         if (_controller.isNull) {
@@ -868,15 +868,15 @@ mixin template TIntegrationTest() {
         }
 
         auto error = _controller.viewBuilder().getVar("error");
-        if (cast(DException) error) {
+        if (cast(UIMException) error) {
             originalMessage ~= this.extractExceptionMessage(this.viewVariable("error"));
         }
         return originalMessage;
     }
 
     // Extract verbose message for existing exception
-    protected string extractExceptionMessage(DException exceptionToExtract) {
-        DException[] exceptions = [exceptionToExtract];
+    protected string extractExceptionMessage(UIMException exceptionToExtract) {
+        UIMException[] exceptions = [exceptionToExtract];
         auto previousException = exceptionToExtract.getPrevious();
         while (!previousException.isNull) {
             exceptions ~= previousException;
