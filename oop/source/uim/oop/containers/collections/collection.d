@@ -18,11 +18,11 @@ class UIMCollection(V) : UIMContainer, ICollection!V {
   // #region elements
   protected V[] _elements;
   /** 
-  Returns an array containing all of the elements in this collection.
-
-  Returns: 
-    An array of elements in the collection
-  */
+    * Returns an array containing all of the elements in this collection.
+    * 
+    * Returns: 
+    *   An array of elements in the collection
+    */
   V[] elements() {
     return _elements.dup;
   }
@@ -86,7 +86,7 @@ class UIMCollection(V) : UIMContainer, ICollection!V {
     *   values = The values to check
     * Returns: 
     *   'true' if any value is present, 'false' otherwise
-  */
+    */
   bool hasAnyValue(V[] values) {
     return values.any!(value => hasValue(value));
   }
@@ -113,7 +113,12 @@ class UIMCollection(V) : UIMContainer, ICollection!V {
   // #endregion has
 
   // #region size
-  // Returns the number of items in the collection.
+  /** 
+    * Returns the number of elements in this collection.
+    *
+    * Returns: 
+    *   The size of the collection
+    */
   override size_t size() {
     return _elements.length;
   }

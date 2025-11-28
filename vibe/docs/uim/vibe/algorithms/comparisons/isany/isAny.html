@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>isAny - multiple declarations</title>
+		<link rel="stylesheet" type="text/css" href="../../../../../styles/ddox.css"/>
+		<link rel="stylesheet" href="../../../../../prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="../../../../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../../../../scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="../../../../../symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "../../../../../";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">uim
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">
+						<a href="../../../../../uim/vibe.html">vibe</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">
+						<a href="../../../../../uim/vibe/algorithms.html">algorithms</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">
+						<a href="../../../../../uim/vibe/algorithms/comparisons.html">comparisons</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/algorithms/comparisons/isall.html">isall</a>
+					</div>
+				</li>
+				<li>
+					<div class="module selected">
+						<a href="../../../../../uim/vibe/algorithms/comparisons/isany.html">isany</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../uim/vibe/containers.html">containers</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">arrays
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/containers/arrays/filter.html">filter</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">maps
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/containers/maps/filter.html">filter</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">convert
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/convert/bson.html">bson</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/convert/json.html">json</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/convert/uuid.html">uuid</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../uim/vibe/datatypes.html">datatypes</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../uim/vibe/datatypes/json.html">json</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../uim/vibe/datatypes/json/arrays.html">arrays</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/arrays/contains.html">contains</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/arrays/first.html">first</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/arrays/shift.html">shift</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">bigintegers
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/bigintegers/biginteger.html">biginteger</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">booleans
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/booleans/all.html">all</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/booleans/boolean.html">boolean</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/booleans/isboolean.html">isboolean</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">objects
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/objects/has.html">has</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/objects/object_.html">object_</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/array_.html">array_</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/convert.html">convert</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/double_.html">double_</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/empty.html">empty</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/get.html">get</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/integer.html">integer</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/integral.html">integral</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/isset.html">isset</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/json.html">json</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/long_.html">long_</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/map.html">map</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/merge.html">merge</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/null_.html">null_</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/remove.html">remove</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/scalar.html">scalar</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/set.html">set</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/string_.html">string_</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/undefined.html">undefined</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/update.html">update</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/utils.html">utils</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/json/values.html">values</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/datatypes/bson.html">bson</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../uim/vibe/enumerations.html">enumerations</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/enumerations/loglevels.html">loglevels</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../uim/vibe/helpers.html">helpers</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/helpers/json.html">json</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../uim/vibe/mixins.html">mixins</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/vibe/mixins/json.html">json</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+				</li>
+			</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>isAny - multiple declarations</h1>
+			<nav class="page-nav">
+				<ul>
+					<li>
+						<a href="#0">
+							Function <code>isAny</code>
+						</a>
+					</li>
+					<li>
+						<a href="#1">
+							Function <code>isAny</code>
+						</a>
+					</li>
+					<li>
+						<a href="#2">
+							Function <code>isAny</code>
+						</a>
+					</li>
+				</ul>
+			</nav><h2 id="0">Function isAny</h2><p>Checks if any element in the JSON structure satisfies the given condition.
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="typ">bool</span> <span class="pln">isAny</span>
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="pln">vibe<wbr/></span><span class="pun">.</span><span class="pln">data<wbr/></span><span class="pun">.</span><span class="pln">json<wbr/></span><span class="pun">.</span><span class="typ">Json</span> <span class="pln">json</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="kwd">@safe</span> <span class="typ">bool</span> <span class="kwd">delegate</span><span class="pun">(</span><span class="typ">string</span><span class="pun">, </span><span class="pln">vibe<wbr/></span><span class="pun">.</span><span class="pln">data<wbr/></span><span class="pun">.</span><span class="pln">json<wbr/></span><span class="pun">.</span><span class="typ">Json</span><span class="pun">)</span> <span class="pln">func</span>
+			<br/>
+			<span class="pun">)</span><span class="pln"> </span><span class="kwd">@safe</span><span class="pun">;</span>
+					</div>
+				</code>
+			</div>
+			<section></section>
+
+			<section><h3>Parameters</h3>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="json">json</td><td> The JSON object or array to check</td></tr>
+<tr><td id="func">func</td><td> A delegate function that takes either (string key, Json value), (string key), or (Json value)
+          and returns a boolean indicating whether the condition is met</td></tr>
+</table>
+</section>
+<section><h3>Returns</h3>
+<p>'true' if any element satisfies the condition, 'false' otherwise
+</p>
+</section>
+<section><h3>Example</h3>
+
+<pre class="code"><code class="lang-d"><span class="pln"> </span><span class="com">// isAny(Json, delegate(string, Json))
+// Test with object containing key-value pairs
+</span><span class="kwd">auto </span><span class="pln">obj </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyObject</span><span class="pun">;
+</span><span class="pln">obj</span><span class="pun">[</span><span class="str">"apple"</span><span class="pun">] = </span><span class="lit">1</span><span class="pun">;
+</span><span class="pln">obj</span><span class="pun">[</span><span class="str">"banana"</span><span class="pun">] = </span><span class="lit">2</span><span class="pun">;
+</span><span class="pln">obj</span><span class="pun">[</span><span class="str">"cherry"</span><span class="pun">] = </span><span class="lit">3</span><span class="pun">;
+
+</span><span class="com">// Should find key-value pair where key length + value &gt; 5
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">obj<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">, </span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">key<wbr/></span><span class="pun">.</span><span class="pln">length </span><span class="pun">+ </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">&gt; </span><span class="lit">5</span><span class="pun">));
+
+</span><span class="com">// Should find key-value pair where value equals 2
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">obj<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">, </span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">== </span><span class="lit">2</span><span class="pun">));
+
+</span><span class="com">// Should find key-value pair where key starts with 'b'
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">obj<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">, </span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">key</span><span class="pun">[</span><span class="lit">0</span><span class="pun">] == </span><span class="str">'b'</span><span class="pun">));
+
+</span><span class="com">// Should not find key-value pair where value &gt; 10
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">obj<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">, </span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">&gt; </span><span class="lit">10</span><span class="pun">));
+
+</span><span class="com">// Should not find key-value pair where key equals "orange"
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">obj<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">, </span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">key </span><span class="pun">== </span><span class="str">"orange"</span><span class="pun">));
+
+</span><span class="com">// Test with empty object
+</span><span class="kwd">auto </span><span class="pln">emptyObj </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyObject</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">emptyObj<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">, </span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="kwd">true</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">emptyObj<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">, </span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="kwd">false</span><span class="pun">));
+
+</span><span class="com">// Test with non-object (array) - should return false
+</span><span class="kwd">auto </span><span class="pln">arr </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyArray</span><span class="pun">;
+</span><span class="pln">arr </span><span class="pun">~= </span><span class="lit">1</span><span class="pun">;
+</span><span class="pln">arr </span><span class="pun">~= </span><span class="lit">2</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">arr<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">, </span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="kwd">true</span><span class="pun">));
+
+</span><span class="com">// Test with non-object (null) - should return false
+</span><span class="kwd">auto </span><span class="pln">nullJson </span><span class="pun">= </span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">nullJson<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">, </span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="kwd">true</span><span class="pun">));
+
+</span><span class="com">// Test with single key-value pair
+</span><span class="kwd">auto </span><span class="pln">singleObj </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyObject</span><span class="pun">;
+</span><span class="pln">singleObj</span><span class="pun">[</span><span class="str">"x"</span><span class="pun">] = </span><span class="lit">42</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">singleObj<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">, </span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">key </span><span class="pun">== </span><span class="str">"x" </span><span class="pun">&amp;&amp; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">== </span><span class="lit">42</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">singleObj<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">, </span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">key </span><span class="pun">== </span><span class="str">"y" </span><span class="pun">|| </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">== </span><span class="lit">0</span><span class="pun">));
+
+</span><span class="com">// Test with all pairs matching
+</span><span class="kwd">auto </span><span class="pln">allMatch </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyObject</span><span class="pun">;
+</span><span class="pln">allMatch</span><span class="pun">[</span><span class="str">"a"</span><span class="pun">] = </span><span class="lit">1</span><span class="pun">;
+</span><span class="pln">allMatch</span><span class="pun">[</span><span class="str">"b"</span><span class="pun">] = </span><span class="lit">2</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">allMatch<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">, </span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">key<wbr/></span><span class="pun">.</span><span class="pln">length </span><span class="pun">== </span><span class="lit">1 </span><span class="pun">&amp;&amp; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">&gt; </span><span class="lit">0</span><span class="pun">));
+
+</span><span class="com">// Test with no pairs matching
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">allMatch<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">, </span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">key<wbr/></span><span class="pun">.</span><span class="pln">length </span><span class="pun">&gt; </span><span class="lit">5 </span><span class="pun">&amp;&amp; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">&lt; </span><span class="lit">0</span><span class="pun">));
+</span><span class="com">// Test with complex condition
+</span><span class="kwd">auto </span><span class="pln">complex1 </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyObject</span><span class="pun">;
+</span><span class="pln">complex1</span><span class="pun">[</span><span class="str">"short"</span><span class="pun">] = </span><span class="lit">100</span><span class="pun">;
+</span><span class="pln">complex1</span><span class="pun">[</span><span class="str">"verylongkey"</span><span class="pun">] = </span><span class="lit">1</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">complex1<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">, </span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">key<wbr/></span><span class="pun">.</span><span class="pln">length </span><span class="pun">&gt; </span><span class="lit">10 </span><span class="pun">&amp;&amp; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">&lt; </span><span class="lit">10</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">complex1<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="pln">key</span><span class="pun">, </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">key<wbr/></span><span class="pun">.</span><span class="pln">length </span><span class="pun">&gt; </span><span class="lit">10 </span><span class="pun">&amp;&amp; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">&lt; </span><span class="lit">10</span><span class="pun">));
+</span></code></pre>
+</section>
+<h2 id="1">Function isAny</h2><p>Checks if any element in the JSON structure satisfies the given condition.
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="typ">bool</span> <span class="pln">isAny</span>
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="pln">vibe<wbr/></span><span class="pun">.</span><span class="pln">data<wbr/></span><span class="pun">.</span><span class="pln">json<wbr/></span><span class="pun">.</span><span class="typ">Json</span> <span class="pln">json</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="kwd">@safe</span> <span class="typ">bool</span> <span class="kwd">delegate</span><span class="pun">(</span><span class="typ">string</span><span class="pun">)</span> <span class="pln">func</span>
+			<br/>
+			<span class="pun">)</span><span class="pln"> </span><span class="kwd">@safe</span><span class="pun">;</span>
+					</div>
+				</code>
+			</div>
+			<section></section>
+
+			<section><h3>Parameters</h3>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="json">json</td><td> The JSON object or array to check</td></tr>
+<tr><td id="func">func</td><td> A delegate function that takes either (string key, Json value), (string key), or (Json value)
+          and returns a boolean indicating whether the condition is met</td></tr>
+</table>
+</section>
+<section><h3>Returns</h3>
+<p>'true' if any element satisfies the condition, 'false' otherwise
+</p>
+</section>
+<section><h3>Example</h3>
+
+<pre class="code"><code class="lang-d"><span class="com">// Test with object containing keys
+</span><span class="kwd">auto </span><span class="pln">obj </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyObject</span><span class="pun">;
+</span><span class="pln">obj</span><span class="pun">[</span><span class="str">"apple"</span><span class="pun">] = </span><span class="lit">1</span><span class="pun">;
+</span><span class="pln">obj</span><span class="pun">[</span><span class="str">"banana"</span><span class="pun">] = </span><span class="lit">2</span><span class="pun">;
+</span><span class="pln">obj</span><span class="pun">[</span><span class="str">"cherry"</span><span class="pun">] = </span><span class="lit">3</span><span class="pun">;
+
+</span><span class="com">// Should find key with length &gt; 5
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">obj<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">) =&gt; </span><span class="pln">key<wbr/></span><span class="pun">.</span><span class="pln">length </span><span class="pun">&gt; </span><span class="lit">5</span><span class="pun">));
+
+</span><span class="com">// Should find key starting with 'a'
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">obj<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">) =&gt; </span><span class="pln">key</span><span class="pun">[</span><span class="lit">0</span><span class="pun">] == </span><span class="str">'a'</span><span class="pun">));
+
+</span><span class="com">// Should not find key with length &gt; 10
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">obj<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">) =&gt; </span><span class="pln">key<wbr/></span><span class="pun">.</span><span class="pln">length </span><span class="pun">&gt; </span><span class="lit">10</span><span class="pun">));
+
+</span><span class="com">// Should not find key starting with 'z'
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">obj<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">) =&gt; </span><span class="pln">key</span><span class="pun">[</span><span class="lit">0</span><span class="pun">] == </span><span class="str">'z'</span><span class="pun">));
+
+</span><span class="com">// Test with empty object
+</span><span class="kwd">auto </span><span class="pln">emptyObj </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyObject</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">emptyObj<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">) =&gt; </span><span class="kwd">true</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">emptyObj<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">) =&gt; </span><span class="kwd">false</span><span class="pun">));
+
+</span><span class="com">// Test with non-object (array) - should return false
+</span><span class="kwd">auto </span><span class="pln">arr </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyArray</span><span class="pun">;
+</span><span class="pln">arr </span><span class="pun">~= </span><span class="lit">1</span><span class="pun">;
+</span><span class="pln">arr </span><span class="pun">~= </span><span class="lit">2</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">arr<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">) =&gt; </span><span class="kwd">true</span><span class="pun">));
+
+</span><span class="com">// Test with non-object (null) - should return false
+</span><span class="kwd">auto </span><span class="pln">nullJson </span><span class="pun">= </span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">nullJson<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">) =&gt; </span><span class="kwd">true</span><span class="pun">));
+
+</span><span class="com">// Test with single key object
+</span><span class="kwd">auto </span><span class="pln">singleObj </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyObject</span><span class="pun">;
+</span><span class="pln">singleObj</span><span class="pun">[</span><span class="str">"x"</span><span class="pun">] = </span><span class="lit">42</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">singleObj<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">) =&gt; </span><span class="pln">key </span><span class="pun">== </span><span class="str">"x"</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">singleObj<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">) =&gt; </span><span class="pln">key </span><span class="pun">== </span><span class="str">"y"</span><span class="pun">));
+
+</span><span class="com">// Test with all keys matching
+</span><span class="kwd">auto </span><span class="pln">allMatch </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyObject</span><span class="pun">;
+</span><span class="pln">allMatch</span><span class="pun">[</span><span class="str">"a"</span><span class="pun">] = </span><span class="lit">1</span><span class="pun">;
+</span><span class="pln">allMatch</span><span class="pun">[</span><span class="str">"b"</span><span class="pun">] = </span><span class="lit">2</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">allMatch<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">) =&gt; </span><span class="pln">key<wbr/></span><span class="pun">.</span><span class="pln">length </span><span class="pun">== </span><span class="lit">1</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">allMatch<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">(</span><span class="pln">key </span><span class="pun">=&gt; </span><span class="pln">key<wbr/></span><span class="pun">.</span><span class="pln">length </span><span class="pun">== </span><span class="lit">1</span><span class="pun">));
+
+</span><span class="com">// Test with no keys matching
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">allMatch<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">) =&gt; </span><span class="pln">key<wbr/></span><span class="pun">.</span><span class="pln">length </span><span class="pun">&gt; </span><span class="lit">5</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">allMatch<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">(</span><span class="pln">key </span><span class="pun">=&gt; </span><span class="pln">key<wbr/></span><span class="pun">.</span><span class="pln">length </span><span class="pun">&gt; </span><span class="lit">5</span><span class="pun">));
+</span></code></pre>
+</section>
+<h2 id="2">Function isAny</h2><p>Checks if any element in the JSON structure satisfies the given condition.
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="typ">bool</span> <span class="pln">isAny</span>
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="pln">vibe<wbr/></span><span class="pun">.</span><span class="pln">data<wbr/></span><span class="pun">.</span><span class="pln">json<wbr/></span><span class="pun">.</span><span class="typ">Json</span> <span class="pln">json</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="kwd">@safe</span> <span class="typ">bool</span> <span class="kwd">delegate</span><span class="pun">(</span><span class="pln">vibe<wbr/></span><span class="pun">.</span><span class="pln">data<wbr/></span><span class="pun">.</span><span class="pln">json<wbr/></span><span class="pun">.</span><span class="typ">Json</span><span class="pun">)</span> <span class="pln">func</span>
+			<br/>
+			<span class="pun">)</span><span class="pln"> </span><span class="kwd">@safe</span><span class="pun">;</span>
+					</div>
+				</code>
+			</div>
+			<section></section>
+
+			<section><h3>Parameters</h3>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="json">json</td><td> The JSON object or array to check</td></tr>
+<tr><td id="func">func</td><td> A delegate function that takes either (string key, Json value), (string key), or (Json value)
+          and returns a boolean indicating whether the condition is met</td></tr>
+</table>
+</section>
+<section><h3>Returns</h3>
+<p>'true' if any element satisfies the condition, 'false' otherwise
+</p>
+</section>
+<section><h3>Example</h3>
+
+<pre class="code"><code class="lang-d"><span class="kwd">auto </span><span class="pln">obj1 </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyObject</span><span class="pun">;
+</span><span class="pln">obj1</span><span class="pun">[</span><span class="str">"a"</span><span class="pun">] = </span><span class="lit">1</span><span class="pun">;
+</span><span class="pln">obj1</span><span class="pun">[</span><span class="str">"b"</span><span class="pun">] = </span><span class="lit">2</span><span class="pun">;
+</span><span class="pln">obj1</span><span class="pun">[</span><span class="str">"c"</span><span class="pun">] = </span><span class="lit">3</span><span class="pun">;
+
+</span><span class="com">// Should find value equal to 2
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">obj1<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">== </span><span class="lit">2</span><span class="pun">));
+
+</span><span class="com">// Should find value greater than 2
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">obj1<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">&gt; </span><span class="lit">2</span><span class="pun">));
+
+</span><span class="com">// Should find value less than 2
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">obj1<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">&lt; </span><span class="lit">2</span><span class="pun">));
+
+</span><span class="com">// Should not find value greater than 10
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">obj1<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">&gt; </span><span class="lit">10</span><span class="pun">));
+
+</span><span class="com">// Should not find value equal to 0
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">obj1<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">== </span><span class="lit">0</span><span class="pun">));
+
+</span><span class="com">// Test isAny with delegate(Json value) on arrays
+</span><span class="kwd">auto </span><span class="pln">arr </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyArray</span><span class="pun">;
+</span><span class="pln">arr </span><span class="pun">~= </span><span class="lit">1</span><span class="pun">;
+</span><span class="pln">arr </span><span class="pun">~= </span><span class="lit">2</span><span class="pun">;
+</span><span class="pln">arr </span><span class="pun">~= </span><span class="lit">3</span><span class="pun">;
+
+</span><span class="com">// Should find value equal to 2
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">arr<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">== </span><span class="lit">2</span><span class="pun">));
+
+</span><span class="com">// Should find value greater than 2
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">arr<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">&gt; </span><span class="lit">2</span><span class="pun">));
+
+</span><span class="com">// Should find value less than 3
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">arr<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">&lt; </span><span class="lit">3</span><span class="pun">));
+
+</span><span class="com">// Should not find value greater than 5
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">arr<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">&gt; </span><span class="lit">5</span><span class="pun">));
+
+</span><span class="com">// Should not find negative value
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">arr<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">&lt; </span><span class="lit">0</span><span class="pun">));
+
+</span><span class="com">// Test isAny with empty collections
+</span><span class="kwd">auto </span><span class="pln">emptyObj </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyObject</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">emptyObj<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="kwd">true</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">emptyObj<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="kwd">false</span><span class="pun">));
+
+</span><span class="kwd">auto </span><span class="pln">emptyArr </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyArray</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">emptyArr<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="kwd">true</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">emptyArr<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="kwd">false</span><span class="pun">));
+
+</span><span class="com">// Test isAny with non-object and non-array types
+</span><span class="kwd">auto </span><span class="pln">nullJson </span><span class="pun">= </span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">nullJson<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="kwd">true</span><span class="pun">));
+
+</span><span class="kwd">auto </span><span class="pln">intJson </span><span class="pun">= </span><span class="typ">Json</span><span class="pun">(</span><span class="lit">42</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">intJson<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="kwd">true</span><span class="pun">));
+
+</span><span class="kwd">auto </span><span class="pln">stringJson </span><span class="pun">= </span><span class="typ">Json</span><span class="pun">(</span><span class="str">"test"</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">stringJson<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="kwd">true</span><span class="pun">));
+
+</span><span class="kwd">auto </span><span class="pln">boolJson </span><span class="pun">= </span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">boolJson<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="kwd">true</span><span class="pun">));
+
+</span><span class="com">// Test isAny with single element collections
+</span><span class="kwd">auto </span><span class="pln">singleObj </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyObject</span><span class="pun">;
+</span><span class="pln">singleObj</span><span class="pun">[</span><span class="str">"x"</span><span class="pun">] = </span><span class="lit">42</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">singleObj<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">== </span><span class="lit">42</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">singleObj<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">== </span><span class="lit">0</span><span class="pun">));
+
+</span><span class="kwd">auto </span><span class="pln">singleArr </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyArray</span><span class="pun">;
+</span><span class="pln">singleArr </span><span class="pun">~= </span><span class="lit">42</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">singleArr<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">== </span><span class="lit">42</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">singleArr<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">== </span><span class="lit">0</span><span class="pun">));
+
+</span><span class="com">// Test isAny with all elements matching
+</span><span class="kwd">auto </span><span class="pln">allMatchObj </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyObject</span><span class="pun">;
+</span><span class="pln">allMatchObj</span><span class="pun">[</span><span class="str">"a"</span><span class="pun">] = </span><span class="lit">1</span><span class="pun">;
+</span><span class="pln">allMatchObj</span><span class="pun">[</span><span class="str">"b"</span><span class="pun">] = </span><span class="lit">2</span><span class="pun">;
+</span><span class="pln">allMatchObj</span><span class="pun">[</span><span class="str">"c"</span><span class="pun">] = </span><span class="lit">3</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">allMatchObj<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">&gt; </span><span class="lit">0</span><span class="pun">));
+
+</span><span class="kwd">auto </span><span class="pln">allMatchArr </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyArray</span><span class="pun">;
+</span><span class="pln">allMatchArr </span><span class="pun">~= </span><span class="lit">1</span><span class="pun">;
+</span><span class="pln">allMatchArr </span><span class="pun">~= </span><span class="lit">2</span><span class="pun">;
+</span><span class="pln">allMatchArr </span><span class="pun">~= </span><span class="lit">3</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">allMatchArr<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">&gt; </span><span class="lit">0</span><span class="pun">));
+
+</span><span class="com">// Test isAny with no elements matching
+</span><span class="kwd">auto </span><span class="pln">noMatchObj </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyObject</span><span class="pun">;
+</span><span class="pln">noMatchObj</span><span class="pun">[</span><span class="str">"a"</span><span class="pun">] = </span><span class="lit">1</span><span class="pun">;
+</span><span class="pln">noMatchObj</span><span class="pun">[</span><span class="str">"b"</span><span class="pun">] = </span><span class="lit">2</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">noMatchObj<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">&gt; </span><span class="lit">10</span><span class="pun">));
+
+</span><span class="kwd">auto </span><span class="pln">noMatchArr </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyArray</span><span class="pun">;
+</span><span class="pln">noMatchArr </span><span class="pun">~= </span><span class="lit">1</span><span class="pun">;
+</span><span class="pln">noMatchArr </span><span class="pun">~= </span><span class="lit">2</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">noMatchArr<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">get</span><span class="pun">!</span><span class="typ">int </span><span class="pun">&gt; </span><span class="lit">10</span><span class="pun">));
+
+</span><span class="com">// Test isAny with mixed types in array
+</span><span class="kwd">auto </span><span class="pln">mixedArr </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyArray</span><span class="pun">;
+</span><span class="pln">mixedArr </span><span class="pun">~= </span><span class="lit">1</span><span class="pun">;
+</span><span class="pln">mixedArr </span><span class="pun">~= </span><span class="str">"string"</span><span class="pun">;
+</span><span class="pln">mixedArr </span><span class="pun">~= </span><span class="kwd">true</span><span class="pun">;
+
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">mixedArr<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">type </span><span class="pun">== </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="typ">Type<wbr/></span><span class="pun">.</span><span class="pln">int_</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">mixedArr<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">type </span><span class="pun">== </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="typ">Type<wbr/></span><span class="pun">.</span><span class="typ">string</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">mixedArr<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">type </span><span class="pun">== </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="typ">Type<wbr/></span><span class="pun">.</span><span class="pln">bool_</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">mixedArr<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">type </span><span class="pun">== </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="typ">Type<wbr/></span><span class="pun">.</span><span class="pln">null_</span><span class="pun">));
+
+</span><span class="com">// Test isAny with nested structures
+</span><span class="kwd">auto </span><span class="pln">nested </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyArray</span><span class="pun">;
+</span><span class="kwd">auto </span><span class="pln">innerObj </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyObject</span><span class="pun">;
+</span><span class="pln">innerObj</span><span class="pun">[</span><span class="str">"x"</span><span class="pun">] = </span><span class="lit">5</span><span class="pun">;
+</span><span class="pln">nested </span><span class="pun">~= </span><span class="pln">innerObj</span><span class="pun">;
+</span><span class="pln">nested </span><span class="pun">~= </span><span class="lit">10</span><span class="pun">;
+
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">nested<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">isObject</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">nested<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">(</span><span class="pln">value </span><span class="pun">=&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">isObject</span><span class="pun">));
+
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">nested<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">((</span><span class="typ">Json </span><span class="pln">value</span><span class="pun">) =&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">type </span><span class="pun">== </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="typ">Type<wbr/></span><span class="pun">.</span><span class="pln">int_</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">nested<wbr/></span><span class="pun">.</span><span class="pln">isAny</span><span class="pun">(</span><span class="pln">value </span><span class="pun">=&gt; </span><span class="pln">value<wbr/></span><span class="pun">.</span><span class="pln">type </span><span class="pun">== </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="typ">Type<wbr/></span><span class="pun">.</span><span class="pln">int_</span><span class="pun">));
+</span></code></pre>
+</section>
+
+			<footer>
+				<table class="license-info">
+					<tr>
+						<th>Authors</th>
+						<td>
+							<p>Ozan Nurettin Süel (aka UIManufaktur)
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>Copyright</th>
+						<td>
+							<p>© 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>License</th>
+						<td>
+							<p>Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.
+</p>
+
+						</td>
+					</tr>
+				</table>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>

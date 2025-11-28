@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url><loc>http://127.0.0.1/index.html</loc></url>
+<url><loc>http://127.0.0.1/uim/vibe/algorithms/comparisons/isall.html</loc></url>
+<url><loc>http://127.0.0.1/uim/vibe/algorithms/comparisons/isany.html</loc></url>
+<url><loc>http://127.0.0.1/uim/vibe/algorithms/comparisons/isany/isAny.html</loc></url>
+<url><loc>http://127.0.0.1/uim/vibe/algorithms/comparisons/isany/isAny.html</loc></url>
+<url><loc>http://127.0.0.1/uim/vibe/algorithms/comparisons/isany/isAny.html</loc></url>
 <url><loc>http://127.0.0.1/uim/vibe/algorithms/comparisons.html</loc></url>
 <url><loc>http://127.0.0.1/uim/vibe/containers/arrays/filter.html</loc></url>
 <url><loc>http://127.0.0.1/uim/vibe/containers/maps/filter.html</loc></url>
