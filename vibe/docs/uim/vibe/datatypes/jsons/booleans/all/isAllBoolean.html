@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>isAllBoolean - multiple declarations</title>
+		<link rel="stylesheet" type="text/css" href="../../../../../../styles/ddox.css"/>
+		<link rel="stylesheet" href="../../../../../../prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="../../../../../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../../../../../scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="../../../../../../symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "../../../../../../";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">uim
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">
+						<a href="../../../../../../uim/vibe.html">vibe</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/vibe/algorithms.html">algorithms</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/vibe/algorithms/comparisons.html">comparisons</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/algorithms/comparisons/isall.html">isall</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/algorithms/comparisons/isany.html">isany</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/vibe/containers.html">containers</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">arrays
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/containers/arrays/filter.html">filter</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">maps
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/containers/maps/filter.html">filter</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">convert
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/convert/bson.html">bson</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/convert/json.html">json</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/convert/uuid.html">uuid</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view ">
+					<div class="package ">
+						<a href="../../../../../../uim/vibe/datatypes.html">datatypes</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons.html">jsons</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/arrays.html">arrays</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/arrays/contains.html">contains</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/arrays/first.html">first</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/arrays/shift.html">shift</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">bigintegers
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/bigintegers/biginteger.html">biginteger</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view ">
+					<div class="package ">booleans
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module selected">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/all.html">all</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/boolean.html">boolean</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean.html">isboolean</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">objects
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/objects/has.html">has</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/objects/object_.html">object_</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/array_.html">array_</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/convert.html">convert</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/double_.html">double_</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/empty.html">empty</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/get.html">get</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/integer.html">integer</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/integral.html">integral</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/isset.html">isset</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/json.html">json</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/long_.html">long_</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/map.html">map</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/merge.html">merge</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/null_.html">null_</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/remove.html">remove</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/scalar.html">scalar</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/set.html">set</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/string_.html">string_</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/undefined.html">undefined</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/update.html">update</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/utils.html">utils</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/values.html">values</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/bson.html">bson</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/vibe/enumerations.html">enumerations</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/enumerations/loglevels.html">loglevels</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/vibe/helpers.html">helpers</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/helpers/json.html">json</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/vibe/mixins.html">mixins</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/mixins/json.html">json</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+				</li>
+			</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>isAllBoolean - multiple declarations</h1>
+			<nav class="page-nav">
+				<ul>
+					<li>
+						<a href="#0">
+							Function <code>isAllBoolean</code>
+						</a>
+					</li>
+					<li>
+						<a href="#1">
+							Function <code>isAllBoolean</code>
+						</a>
+					</li>
+				</ul>
+			</nav><h2 id="0">Function isAllBoolean</h2><p>Checks if all specified elements in the array are of boolean type.
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="typ">bool</span> <span class="pln">isAllBoolean</span>
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="pln">vibe<wbr/></span><span class="pun">.</span><span class="pln">data<wbr/></span><span class="pun">.</span><span class="pln">json<wbr/></span><span class="pun">.</span><span class="typ">Json</span><span class="pun">[]</span> <span class="pln">values</span>
+			<br/>
+			<span class="pun">)</span><span class="pln"> </span><span class="kwd">@safe</span><span class="pun">;</span>
+					</div>
+				</code>
+			</div>
+			<section></section>
+
+			<section><h3>Parameters</h3>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="values">values</td><td> The array to check.</td></tr>
+</table>
+</section>
+<section><h3>Returns</h3>
+<p><code class="lang-d"><span class="kwd">true</span></code> if all specified elements are booleans, <code class="lang-d"><span class="kwd">false</span></code> otherwise.
+</p>
+</section>
+<section><h3>Example</h3>
+
+<pre class="code"><code class="lang-d"><span class="com">// Test with all booleans
+</span><span class="typ">Json</span><span class="pun">[] </span><span class="pln">array1 </span><span class="pun">= [</span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">), </span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">false</span><span class="pun">)];
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">isAllBoolean</span><span class="pun">(</span><span class="pln">array1</span><span class="pun">), </span><span class="str">"Should be true: all elements are booleans"</span><span class="pun">);
+
+</span><span class="com">// Test with mixed types
+</span><span class="typ">Json</span><span class="pun">[] </span><span class="pln">array2 </span><span class="pun">= [</span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">), </span><span class="typ">Json</span><span class="pun">(</span><span class="lit">1</span><span class="pun">), </span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">false</span><span class="pun">)];
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">isAllBoolean</span><span class="pun">(</span><span class="pln">array2</span><span class="pun">), </span><span class="str">"Should be false: not all elements are booleans"</span><span class="pun">);
+
+</span><span class="com">// Test with empty array
+</span><span class="typ">Json</span><span class="pun">[] </span><span class="pln">arr3 </span><span class="pun">= [];
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">isAllBoolean</span><span class="pun">(</span><span class="pln">arr3</span><span class="pun">), </span><span class="str">"Should be true: empty array (vacuously true)"</span><span class="pun">);
+
+</span><span class="com">// Test with single boolean
+</span><span class="typ">Json</span><span class="pun">[] </span><span class="pln">arr4 </span><span class="pun">= [</span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">)];
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">isAllBoolean</span><span class="pun">(</span><span class="pln">arr4</span><span class="pun">), </span><span class="str">"Should be true: single boolean"</span><span class="pun">);
+
+</span><span class="com">// Test with single non-boolean
+</span><span class="typ">Json</span><span class="pun">[] </span><span class="pln">arr5 </span><span class="pun">= [</span><span class="typ">Json</span><span class="pun">(</span><span class="str">"string"</span><span class="pun">)];
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">isAllBoolean</span><span class="pun">(</span><span class="pln">arr5</span><span class="pun">), </span><span class="str">"Should be false: single non-boolean"</span><span class="pun">);
+</span></code></pre>
+</section>
+<h2 id="1">Function isAllBoolean</h2><p>Checks if all specified elements in the array are of boolean type.
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="typ">bool</span> <span class="pln">isAllBoolean</span>
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="pln">vibe<wbr/></span><span class="pun">.</span><span class="pln">data<wbr/></span><span class="pun">.</span><span class="pln">json<wbr/></span><span class="pun">.</span><span class="typ">Json</span><span class="pun">[]</span> <span class="pln">values</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">ulong</span><span class="pun">[]</span> <span class="pln">indices</span>
+			<br/>
+			<span class="pun">)</span><span class="pln"> </span><span class="kwd">@safe</span><span class="pun">;</span>
+					</div>
+				</code>
+			</div>
+			<section></section>
+
+			<section><h3>Parameters</h3>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="values">values</td><td> The array to check.</td></tr>
+<tr><td id="indices">indices</td><td> Optional indices to check within the array. If not provided, all elements are checked.</td></tr>
+</table>
+</section>
+<section><h3>Returns</h3>
+<p><code class="lang-d"><span class="kwd">true</span></code> if all specified elements are booleans, <code class="lang-d"><span class="kwd">false</span></code> otherwise.
+</p>
+</section>
+<section><h3>Examples</h3>
+<p><code class="lang-d"></code>`d
+ Json[] array1 = [Json(true), Json(false), Json(1)];
+ assert(!array1.isAllBoolean); // false
+</p>
+
+<p> Json[] array2 = [Json(true), Json(false)];
+ assert(array2.isAllBoolean); // true
+</p>
+
+<p> Json[] arr3 = [Json(true), Json(false), Json(1)];
+ assert(arr3.isAllBoolean([0, 1])); // true
+ assert(!arr3.isAllBoolean([0, 2])); // false
+ <code class="lang-d"></code>`
+</p>
+</section>
+<section><h3>Example</h3>
+
+<pre class="code"><code class="lang-d"><span class="com">// Test with all booleans at specified indices
+</span><span class="typ">Json</span><span class="pun">[] </span><span class="pln">arr </span><span class="pun">= [</span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">), </span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">false</span><span class="pun">), </span><span class="typ">Json</span><span class="pun">(</span><span class="lit">1</span><span class="pun">)];
+</span><span class="pln">size_t</span><span class="pun">[] </span><span class="pln">indices1 </span><span class="pun">= [</span><span class="lit">0</span><span class="pun">, </span><span class="lit">1</span><span class="pun">];
+</span><span class="kwd">assert</span><span class="pun">(<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/all/isAllBoolean.html"></span><span class="pln">isAllBoolean</span></a><span class="pun">(</span><span class="pln">arr</span><span class="pun">, </span><span class="pln">indices1</span><span class="pun">), </span><span class="str">"Should be true: indices 0 and 1 are booleans"</span><span class="pun">);
+
+</span><span class="com">// Test with mixed types at specified indices
+</span><span class="pln">size_t</span><span class="pun">[] </span><span class="pln">indices2 </span><span class="pun">= [</span><span class="lit">0</span><span class="pun">, </span><span class="lit">2</span><span class="pun">];
+</span><span class="kwd">assert</span><span class="pun">(!<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/all/isAllBoolean.html"></span><span class="pln">isAllBoolean</span></a><span class="pun">(</span><span class="pln">arr</span><span class="pun">, </span><span class="pln">indices2</span><span class="pun">), </span><span class="str">"Should be false: index 2 is not a boolean"</span><span class="pun">);
+
+</span><span class="com">// Test with out-of-bounds index
+</span><span class="pln">size_t</span><span class="pun">[] </span><span class="pln">indices3 </span><span class="pun">= [</span><span class="lit">0</span><span class="pun">, </span><span class="lit">3</span><span class="pun">];
+</span><span class="kwd">assert</span><span class="pun">(!<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/all/isAllBoolean.html"></span><span class="pln">isAllBoolean</span></a><span class="pun">(</span><span class="pln">arr</span><span class="pun">, </span><span class="pln">indices3</span><span class="pun">), </span><span class="str">"Should be false: index 3 is out of bounds"</span><span class="pun">);
+
+</span><span class="com">// Test with empty indices array
+</span><span class="pln">size_t</span><span class="pun">[] </span><span class="pln">indices4 </span><span class="pun">= [];
+</span><span class="kwd">assert</span><span class="pun">(<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/all/isAllBoolean.html"></span><span class="pln">isAllBoolean</span></a><span class="pun">(</span><span class="pln">arr</span><span class="pun">, </span><span class="pln">indices4</span><span class="pun">), </span><span class="str">"Should be true: empty indices (vacuously true)"</span><span class="pun">);
+
+</span><span class="com">// Test with single boolean index
+</span><span class="pln">size_t</span><span class="pun">[] </span><span class="pln">indices5 </span><span class="pun">= [</span><span class="lit">1</span><span class="pun">];
+</span><span class="kwd">assert</span><span class="pun">(<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/all/isAllBoolean.html"></span><span class="pln">isAllBoolean</span></a><span class="pun">(</span><span class="pln">arr</span><span class="pun">, </span><span class="pln">indices5</span><span class="pun">), </span><span class="str">"Should be true: index 1 is a boolean"</span><span class="pun">);
+
+</span><span class="com">// Test with single non-boolean index
+</span><span class="pln">size_t</span><span class="pun">[] </span><span class="pln">indices6 </span><span class="pun">= [</span><span class="lit">2</span><span class="pun">];
+</span><span class="kwd">assert</span><span class="pun">(!<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/all/isAllBoolean.html"></span><span class="pln">isAllBoolean</span></a><span class="pun">(</span><span class="pln">arr</span><span class="pun">, </span><span class="pln">indices6</span><span class="pun">), </span><span class="str">"Should be false: index 2 is not a boolean"</span><span class="pun">);
+</span></code></pre>
+</section>
+
+			<footer>
+				<table class="license-info">
+					<tr>
+						<th>Authors</th>
+						<td>
+							<p>Ozan Nurettin Süel (aka UIManufaktur)
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>Copyright</th>
+						<td>
+							<p>© 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>License</th>
+						<td>
+							<p>Subject to the terms of the Apache false license, as written in the included LICENSE.txt file.         *
+</p>
+
+						</td>
+					</tr>
+				</table>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>

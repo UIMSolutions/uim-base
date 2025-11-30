@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>isAnyBoolean - multiple declarations</title>
+		<link rel="stylesheet" type="text/css" href="../../../../../../styles/ddox.css"/>
+		<link rel="stylesheet" href="../../../../../../prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="../../../../../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../../../../../scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="../../../../../../symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "../../../../../../";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">uim
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">
+						<a href="../../../../../../uim/vibe.html">vibe</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/vibe/algorithms.html">algorithms</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/vibe/algorithms/comparisons.html">comparisons</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/algorithms/comparisons/isall.html">isall</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/algorithms/comparisons/isany.html">isany</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/vibe/containers.html">containers</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">arrays
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/containers/arrays/filter.html">filter</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">maps
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/containers/maps/filter.html">filter</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">convert
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/convert/bson.html">bson</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/convert/json.html">json</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/convert/uuid.html">uuid</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view ">
+					<div class="package ">
+						<a href="../../../../../../uim/vibe/datatypes.html">datatypes</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons.html">jsons</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/arrays.html">arrays</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/arrays/contains.html">contains</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/arrays/first.html">first</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/arrays/shift.html">shift</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">bigintegers
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/bigintegers/biginteger.html">biginteger</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view ">
+					<div class="package ">booleans
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/all.html">all</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/boolean.html">boolean</a>
+					</div>
+				</li>
+				<li>
+					<div class="module selected">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean.html">isboolean</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">objects
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/objects/has.html">has</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/objects/object_.html">object_</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/array_.html">array_</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/convert.html">convert</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/double_.html">double_</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/empty.html">empty</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/get.html">get</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/integer.html">integer</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/integral.html">integral</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/isset.html">isset</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/json.html">json</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/long_.html">long_</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/map.html">map</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/merge.html">merge</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/null_.html">null_</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/remove.html">remove</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/scalar.html">scalar</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/set.html">set</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/string_.html">string_</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/undefined.html">undefined</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/update.html">update</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/utils.html">utils</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/jsons/values.html">values</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/datatypes/bson.html">bson</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/vibe/enumerations.html">enumerations</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/enumerations/loglevels.html">loglevels</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/vibe/helpers.html">helpers</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/helpers/json.html">json</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/vibe/mixins.html">mixins</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/vibe/mixins/json.html">json</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+				</li>
+			</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>isAnyBoolean - multiple declarations</h1>
+			<nav class="page-nav">
+				<ul>
+					<li>
+						<a href="#0">
+							Function <code>isAnyBoolean</code>
+						</a>
+					</li>
+					<li>
+						<a href="#1">
+							Function <code>isAnyBoolean</code>
+						</a>
+					</li>
+					<li>
+						<a href="#2">
+							Function <code>isAnyBoolean</code>
+						</a>
+					</li>
+					<li>
+						<a href="#3">
+							Function <code>isAnyBoolean</code>
+						</a>
+					</li>
+				</ul>
+			</nav><h2 id="0">Function isAnyBoolean</h2><p>Checks if any element in the array is of boolean type.
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="typ">bool</span> <span class="pln">isAnyBoolean</span>
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="pln">vibe<wbr/></span><span class="pun">.</span><span class="pln">data<wbr/></span><span class="pun">.</span><span class="pln">json<wbr/></span><span class="pun">.</span><span class="typ">Json</span><span class="pun">[]</span> <span class="pln">values</span>
+			<br/>
+			<span class="pun">)</span><span class="pln"> </span><span class="kwd">@safe</span><span class="pun">;</span>
+					</div>
+				</code>
+			</div>
+			<section></section>
+
+			<section><h3>Parameters</h3>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="values">values</td><td> The array to check.</td></tr>
+</table>
+</section>
+<section><h3>Returns</h3>
+<p><code class="lang-d"><span class="kwd">true</span></code> if any element is a boolean, <code class="lang-d"><span class="kwd">false</span></code> otherwise.
+</p>
+</section>
+<section><h3>Example</h3>
+
+<pre class="code"><code class="lang-d"><span class="com">// Test with no booleans
+</span><span class="typ">Json</span><span class="pun">[] </span><span class="pln">array1 </span><span class="pun">= [</span><span class="typ">Json</span><span class="pun">(</span><span class="lit">1</span><span class="pun">), </span><span class="typ">Json</span><span class="pun">(</span><span class="str">"string"</span><span class="pun">), </span><span class="typ">Json</span><span class="pun">(</span><span class="lit">2.5</span><span class="pun">)];
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">isAnyBoolean</span><span class="pun">(</span><span class="pln">array1</span><span class="pun">), </span><span class="str">"Should be false: no booleans present"</span><span class="pun">);
+
+</span><span class="com">// Test with one boolean at start
+</span><span class="typ">Json</span><span class="pun">[] </span><span class="pln">array2 </span><span class="pun">= [</span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">), </span><span class="typ">Json</span><span class="pun">(</span><span class="lit">1</span><span class="pun">), </span><span class="typ">Json</span><span class="pun">(</span><span class="str">"string"</span><span class="pun">)];
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">isAnyBoolean</span><span class="pun">(</span><span class="pln">array2</span><span class="pun">), </span><span class="str">"Should be true: boolean at index 0"</span><span class="pun">);
+
+</span><span class="com">// Test with one boolean at end
+</span><span class="typ">Json</span><span class="pun">[] </span><span class="pln">arr3 </span><span class="pun">= [</span><span class="typ">Json</span><span class="pun">(</span><span class="lit">1</span><span class="pun">), </span><span class="typ">Json</span><span class="pun">(</span><span class="str">"string"</span><span class="pun">), </span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">false</span><span class="pun">)];
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">isAnyBoolean</span><span class="pun">(</span><span class="pln">arr3</span><span class="pun">), </span><span class="str">"Should be true: boolean at last index"</span><span class="pun">);
+
+</span><span class="com">// Test with multiple booleans
+</span><span class="typ">Json</span><span class="pun">[] </span><span class="pln">arr4 </span><span class="pun">= [</span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">), </span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">false</span><span class="pun">), </span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">)];
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">isAnyBoolean</span><span class="pun">(</span><span class="pln">arr4</span><span class="pun">), </span><span class="str">"Should be true: all elements are booleans"</span><span class="pun">);
+
+</span><span class="com">// Test with empty array
+</span><span class="typ">Json</span><span class="pun">[] </span><span class="pln">arr5 </span><span class="pun">= [];
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">isAnyBoolean</span><span class="pun">(</span><span class="pln">arr5</span><span class="pun">), </span><span class="str">"Should be false: empty array"</span><span class="pun">);
+
+</span><span class="com">// Test with mixed types
+</span><span class="typ">Json</span><span class="pun">[] </span><span class="pln">arr6 </span><span class="pun">= [</span><span class="typ">Json</span><span class="pun">(</span><span class="lit">1</span><span class="pun">), </span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">), </span><span class="typ">Json</span><span class="pun">(</span><span class="str">"string"</span><span class="pun">), </span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">false</span><span class="pun">)];
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">isAnyBoolean</span><span class="pun">(</span><span class="pln">arr6</span><span class="pun">), </span><span class="str">"Should be true: booleans present in array"</span><span class="pun">);
+</span></code></pre>
+</section>
+<h2 id="1">Function isAnyBoolean</h2><p>Checks if any specified elements in the map are of boolean type.
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="typ">bool</span> <span class="pln">isAnyBoolean</span>
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="pln">vibe<wbr/></span><span class="pun">.</span><span class="pln">data<wbr/></span><span class="pun">.</span><span class="pln">json<wbr/></span><span class="pun">.</span><span class="typ">Json</span><span class="pun">[</span><span class="typ">string</span><span class="pun">]</span> <span class="pln">map</span>
+			<br/>
+			<span class="pun">)</span><span class="pln"> </span><span class="kwd">@safe</span><span class="pun">;</span>
+					</div>
+				</code>
+			</div>
+			<section></section>
+
+			<section><h3>Parameters</h3>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="map">map</td><td> The map to check.</td></tr>
+<tr><td id="keys">keys</td><td> Optional keys to check within the map. If not provided, all elements are checked.</td></tr>
+</table>
+</section>
+<section><h3>Returns</h3>
+<p><code class="lang-d"><span class="kwd">true</span></code> if any specified elements are booleans, <code class="lang-d"><span class="kwd">false</span></code> otherwise.
+</p>
+</section>
+<section><h3>Examples</h3>
+<p><code class="lang-d"></code>`d
+ Json[string] map1 = ["a": Json(1), "b": Json(2), "c": Json(3)];
+ assert(!map1.isAnyBoolean); // false
+</p>
+
+<p> Json[string] map2 = ["a": Json(1), "b": Json(true), "c": Json(3)];
+ assert(map2.isAnyBoolean); // true
+</p>
+
+<p> Json[string] map3 = ["a": Json("a"), "b": Json("b"), "c": Json(false)];
+ assert(map3.isAnyBoolean); // true
+</p>
+
+<p> Json[string] map4 = ["a": Json(1), "b": Json(true), "c": Json(3)];
+ assert(map4.isAnyBoolean(["a", "b"])); // true
+ assert(!map4.isAnyBoolean(["a", "c"])); // false
+ <code class="lang-d"></code>`
+</p>
+</section>
+<section><h3>Example</h3>
+
+<pre class="code"><code class="lang-d"><span class="com">// Test with no booleans in map
+</span><span class="typ">Json</span><span class="pun">[</span><span class="typ">string</span><span class="pun">] </span><span class="pln">map1 </span><span class="pun">= [</span><span class="str">"a"</span><span class="pun">: </span><span class="typ">Json</span><span class="pun">(</span><span class="lit">1</span><span class="pun">), </span><span class="str">"b"</span><span class="pun">: </span><span class="typ">Json</span><span class="pun">(</span><span class="str">"string"</span><span class="pun">), </span><span class="str">"c"</span><span class="pun">: </span><span class="typ">Json</span><span class="pun">(</span><span class="lit">2.5</span><span class="pun">)];
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">map1<wbr/></span><span class="pun">.</span><span class="pln">isAnyBoolean</span><span class="pun">, </span><span class="str">"Should be false: no booleans present in map"</span><span class="pun">);
+
+</span><span class="com">// Test with one boolean value in map
+</span><span class="typ">Json</span><span class="pun">[</span><span class="typ">string</span><span class="pun">] </span><span class="pln">map2 </span><span class="pun">= [</span><span class="str">"a"</span><span class="pun">: </span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">), </span><span class="str">"b"</span><span class="pun">: </span><span class="typ">Json</span><span class="pun">(</span><span class="lit">1</span><span class="pun">), </span><span class="str">"c"</span><span class="pun">: </span><span class="typ">Json</span><span class="pun">(</span><span class="str">"string"</span><span class="pun">)];
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map2<wbr/></span><span class="pun">.</span><span class="pln">isAnyBoolean</span><span class="pun">, </span><span class="str">"Should be true: boolean present at key 'a'"</span><span class="pun">);
+
+</span><span class="com">// Test with boolean at last key
+</span><span class="typ">Json</span><span class="pun">[</span><span class="typ">string</span><span class="pun">] </span><span class="pln">map3 </span><span class="pun">= [</span><span class="str">"a"</span><span class="pun">: </span><span class="typ">Json</span><span class="pun">(</span><span class="lit">1</span><span class="pun">), </span><span class="str">"b"</span><span class="pun">: </span><span class="typ">Json</span><span class="pun">(</span><span class="str">"string"</span><span class="pun">), </span><span class="str">"c"</span><span class="pun">: </span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">false</span><span class="pun">)];
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map3<wbr/></span><span class="pun">.</span><span class="pln">isAnyBoolean</span><span class="pun">, </span><span class="str">"Should be true: boolean present at key 'c'"</span><span class="pun">);
+
+</span><span class="com">// Test with multiple booleans
+</span><span class="typ">Json</span><span class="pun">[</span><span class="typ">string</span><span class="pun">] </span><span class="pln">map4 </span><span class="pun">= [</span><span class="str">"a"</span><span class="pun">: </span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">), </span><span class="str">"b"</span><span class="pun">: </span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">false</span><span class="pun">), </span><span class="str">"c"</span><span class="pun">: </span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">)];
+</span><span class="kwd">assert</span><span class="pun">(<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html"></span><span class="pln">isAnyBoolean</span></a><span class="pun">(</span><span class="pln">map4</span><span class="pun">), </span><span class="str">"Should be true: all values are booleans"</span><span class="pun">);
+
+</span><span class="com">// Test with empty map
+</span><span class="typ">Json</span><span class="pun">[</span><span class="typ">string</span><span class="pun">] </span><span class="pln">map5</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(!<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html"></span><span class="pln">isAnyBoolean</span></a><span class="pun">(</span><span class="pln">map5</span><span class="pun">), </span><span class="str">"Should be false: empty map"</span><span class="pun">);
+
+</span><span class="com">// Test with mixed types
+</span><span class="typ">Json</span><span class="pun">[</span><span class="typ">string</span><span class="pun">] </span><span class="pln">map6 </span><span class="pun">= [
+  </span><span class="str">"a"</span><span class="pun">: </span><span class="typ">Json</span><span class="pun">(</span><span class="lit">1</span><span class="pun">), </span><span class="str">"b"</span><span class="pun">: </span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">), </span><span class="str">"c"</span><span class="pun">: </span><span class="typ">Json</span><span class="pun">(</span><span class="str">"string"</span><span class="pun">), </span><span class="str">"d"</span><span class="pun">: </span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">false</span><span class="pun">)
+];
+</span><span class="kwd">assert</span><span class="pun">(<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html"></span><span class="pln">isAnyBoolean</span></a><span class="pun">(</span><span class="pln">map6</span><span class="pun">), </span><span class="str">"Should be true: booleans present in map"</span><span class="pun">);
+</span></code></pre>
+</section>
+<h2 id="2">Function isAnyBoolean</h2><p>Checks if any specified elements in the map are of boolean type.
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="typ">bool</span> <span class="pln">isAnyBoolean</span>
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="pln">vibe<wbr/></span><span class="pun">.</span><span class="pln">data<wbr/></span><span class="pun">.</span><span class="pln">json<wbr/></span><span class="pun">.</span><span class="typ">Json</span><span class="pun">[</span><span class="typ">string</span><span class="pun">]</span> <span class="pln">map</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">string</span><span class="pun">[]</span> <span class="pln">keys</span>
+			<br/>
+			<span class="pun">)</span><span class="pln"> </span><span class="kwd">@safe</span><span class="pun">;</span>
+					</div>
+				</code>
+			</div>
+			<section></section>
+
+			<section><h3>Parameters</h3>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="map">map</td><td> The map to check.</td></tr>
+<tr><td id="keys">keys</td><td> Optional keys to check within the map. If not provided, all elements are checked.</td></tr>
+</table>
+</section>
+<section><h3>Returns</h3>
+<p><code class="lang-d"><span class="kwd">true</span></code> if any specified elements are booleans, <code class="lang-d"><span class="kwd">false</span></code> otherwise.
+</p>
+</section>
+<section><h3>Examples</h3>
+<p><code class="lang-d"></code>`d
+ Json[string] map1 = ["a": Json(1), "b": Json(2), "c": Json(3)];
+ assert(!map1.isAnyBoolean); // false
+</p>
+
+<p> Json[string] map2 = ["a": Json(1), "b": Json(true), "c": Json(3)];
+ assert(map2.isAnyBoolean); // true
+</p>
+
+<p> Json[string] map3 = ["a": Json("a"), "b": Json("b"), "c": Json(false)];
+ assert(map3.isAnyBoolean); // true
+</p>
+
+<p> Json[string] map4 = ["a": Json(1), "b": Json(true), "c": Json(3)];
+ assert(map4.isAnyBoolean(["a", "b"])); // true
+ assert(!map4.isAnyBoolean(["a", "c"])); // false
+ <code class="lang-d"></code>`
+</p>
+</section>
+<section><h3>Example</h3>
+
+<pre class="code"><code class="lang-d"><span class="com">// Test with keys where some are booleans
+</span><span class="typ">Json</span><span class="pun">[</span><span class="typ">string</span><span class="pun">] <a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html#map"></span><span class="pln">map</span></a><span class="pln"> </span><span class="pun">= [
+  </span><span class="str">"a"</span><span class="pun">: </span><span class="typ">Json</span><span class="pun">(</span><span class="lit">1</span><span class="pun">),
+  </span><span class="str">"b"</span><span class="pun">: </span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">),
+  </span><span class="str">"c"</span><span class="pun">: </span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">false</span><span class="pun">),
+  </span><span class="str">"d"</span><span class="pun">: </span><span class="typ">Json</span><span class="pun">(</span><span class="str">"string"</span><span class="pun">)
+];
+</span><span class="typ">string</span><span class="pun">[] </span><span class="pln">keys1 </span><span class="pun">= [</span><span class="str">"b"</span><span class="pun">, </span><span class="str">"c"</span><span class="pun">];
+</span><span class="kwd">assert</span><span class="pun">(<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html"></span><span class="pln">isAnyBoolean</span></a><span class="pun">(<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html#map"></span><span class="pln">map</span></a><span class="pun">, </span><span class="pln">keys1</span><span class="pun">), </span><span class="str">"Should be true: keys 'b' and 'c' are booleans"</span><span class="pun">);
+
+</span><span class="com">// Test with keys where none are booleans
+</span><span class="typ">string</span><span class="pun">[] </span><span class="pln">keys2 </span><span class="pun">= [</span><span class="str">"a"</span><span class="pun">, </span><span class="str">"d"</span><span class="pun">];
+</span><span class="kwd">assert</span><span class="pun">(!<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html"></span><span class="pln">isAnyBoolean</span></a><span class="pun">(<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html#map"></span><span class="pln">map</span></a><span class="pun">, </span><span class="pln">keys2</span><span class="pun">), </span><span class="str">"Should be false: keys 'a' and 'd' are not booleans"</span><span class="pun">);
+
+</span><span class="com">// Test with keys where one is boolean, one is not
+</span><span class="typ">string</span><span class="pun">[] </span><span class="pln">keys3 </span><span class="pun">= [</span><span class="str">"a"</span><span class="pun">, </span><span class="str">"b"</span><span class="pun">];
+</span><span class="kwd">assert</span><span class="pun">(<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html"></span><span class="pln">isAnyBoolean</span></a><span class="pun">(<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html#map"></span><span class="pln">map</span></a><span class="pun">, </span><span class="pln">keys3</span><span class="pun">), </span><span class="str">"Should be true: key 'b' is boolean"</span><span class="pun">);
+
+</span><span class="com">// Test with keys that do not exist in the map
+</span><span class="typ">string</span><span class="pun">[] </span><span class="pln">keys4 </span><span class="pun">= [</span><span class="str">"x"</span><span class="pun">, </span><span class="str">"y"</span><span class="pun">];
+</span><span class="kwd">assert</span><span class="pun">(!<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html"></span><span class="pln">isAnyBoolean</span></a><span class="pun">(<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html#map"></span><span class="pln">map</span></a><span class="pun">, </span><span class="pln">keys4</span><span class="pun">), </span><span class="str">"Should be false: keys do not exist"</span><span class="pun">);
+
+</span><span class="com">// Test with mixed existing and non-existing keys
+</span><span class="typ">string</span><span class="pun">[] </span><span class="pln">keys5 </span><span class="pun">= [</span><span class="str">"b"</span><span class="pun">, </span><span class="str">"x"</span><span class="pun">];
+</span><span class="kwd">assert</span><span class="pun">(<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html"></span><span class="pln">isAnyBoolean</span></a><span class="pun">(<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html#map"></span><span class="pln">map</span></a><span class="pun">, </span><span class="pln">keys5</span><span class="pun">), </span><span class="str">"Should be true: key 'b' is boolean, 'x' does not exist"</span><span class="pun">);
+
+</span><span class="com">// Test with empty keys array
+</span><span class="typ">string</span><span class="pun">[] </span><span class="pln">keys6 </span><span class="pun">= [];
+</span><span class="kwd">assert</span><span class="pun">(!<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html"></span><span class="pln">isAnyBoolean</span></a><span class="pun">(<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html#map"></span><span class="pln">map</span></a><span class="pun">, </span><span class="pln">keys6</span><span class="pun">), </span><span class="str">"Should be false: empty keys array"</span><span class="pun">);
+
+</span><span class="com">// Test with empty map and non-empty keys
+</span><span class="typ">Json</span><span class="pun">[</span><span class="typ">string</span><span class="pun">] </span><span class="pln">emptyMap</span><span class="pun">;
+</span><span class="typ">string</span><span class="pun">[] </span><span class="pln">keys7 </span><span class="pun">= [</span><span class="str">"a"</span><span class="pun">, </span><span class="str">"b"</span><span class="pun">];
+</span><span class="kwd">assert</span><span class="pun">(!<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html"></span><span class="pln">isAnyBoolean</span></a><span class="pun">(</span><span class="pln">emptyMap</span><span class="pun">, </span><span class="pln">keys7</span><span class="pun">), </span><span class="str">"Should be false: empty map"</span><span class="pun">);
+
+</span><span class="com">// Test with empty map and empty keys
+</span><span class="typ">string</span><span class="pun">[] </span><span class="pln">keys8 </span><span class="pun">= [];
+</span><span class="kwd">assert</span><span class="pun">(!<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html"></span><span class="pln">isAnyBoolean</span></a><span class="pun">(</span><span class="pln">emptyMap</span><span class="pun">, </span><span class="pln">keys8</span><span class="pun">), </span><span class="str">"Should be false: empty map and empty keys"</span><span class="pun">);
+</span></code></pre>
+</section>
+<h2 id="3">Function isAnyBoolean</h2><p>Checks if the given JSON value is a boolean or contains any boolean values if it's an array or object.
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="typ">bool</span> <span class="pln">isAnyBoolean</span>
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="pln">vibe<wbr/></span><span class="pun">.</span><span class="pln">data<wbr/></span><span class="pun">.</span><span class="pln">json<wbr/></span><span class="pun">.</span><span class="typ">Json</span> <span class="pln">json</span>
+			<br/>
+			<span class="pun">)</span><span class="pln"> </span><span class="kwd">@safe</span><span class="pun">;</span>
+					</div>
+				</code>
+			</div>
+			<section></section>
+
+			<section><h3>Parameters</h3>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="json">json</td><td> The JSON value to check.</td></tr>
+</table>
+</section>
+<section><h3>Returns</h3>
+<p><code class="lang-d"><span class="kwd">true</span></code> if the JSON value is a boolean or contains any boolean values, <code class="lang-d"><span class="kwd">false</span></code> otherwise.
+</p>
+</section>
+<section><h3>Example</h3>
+
+<pre class="code"><code class="lang-d"><span class="com">// Test isAnyBoolean(Json) with array containing booleans
+</span><span class="typ">Json </span><span class="pln">arrJson </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyArray</span><span class="pun">;
+</span><span class="pln">arrJson </span><span class="pun">~= </span><span class="kwd">true</span><span class="pun">;
+</span><span class="pln">arrJson </span><span class="pun">~= </span><span class="kwd">false</span><span class="pun">;
+</span><span class="pln">arrJson </span><span class="pun">~= </span><span class="lit">1</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html"></span><span class="pln">isAnyBoolean</span></a><span class="pun">(</span><span class="pln">arrJson</span><span class="pun">), </span><span class="str">"Should be true: array contains booleans"</span><span class="pun">);
+
+</span><span class="com">// Test isAnyBoolean(Json) with array containing no booleans
+</span><span class="typ">Json </span><span class="pln">arrJson2 </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyArray</span><span class="pun">;
+</span><span class="pln">arrJson2 </span><span class="pun">~= </span><span class="lit">1</span><span class="pun">;
+</span><span class="pln">arrJson2 </span><span class="pun">~= </span><span class="str">"string"</span><span class="pun">;
+</span><span class="pln">arrJson2 </span><span class="pun">~= </span><span class="lit">2.5</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(!<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html"></span><span class="pln">isAnyBoolean</span></a><span class="pun">(</span><span class="pln">arrJson2</span><span class="pun">), </span><span class="str">"Should be false: array contains no booleans"</span><span class="pun">);
+
+</span><span class="com">// Test isAnyBoolean(Json) with empty array
+</span><span class="typ">Json </span><span class="pln">arrJson3 </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyArray</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(!<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html"></span><span class="pln">isAnyBoolean</span></a><span class="pun">(</span><span class="pln">arrJson3</span><span class="pun">), </span><span class="str">"Should be false: empty array"</span><span class="pun">);
+
+</span><span class="com">// Test isAnyBoolean(Json) with map containing booleans
+</span><span class="typ">Json </span><span class="pln">mapJson </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyObject</span><span class="pun">;
+</span><span class="pln">mapJson</span><span class="pun">[</span><span class="str">"a"</span><span class="pun">] = </span><span class="typ">Json</span><span class="pun">(</span><span class="lit">1</span><span class="pun">);
+</span><span class="pln">mapJson</span><span class="pun">[</span><span class="str">"b"</span><span class="pun">] = </span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">);
+</span><span class="pln">mapJson</span><span class="pun">[</span><span class="str">"c"</span><span class="pun">] = </span><span class="typ">Json</span><span class="pun">(</span><span class="str">"string"</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html"></span><span class="pln">isAnyBoolean</span></a><span class="pun">(</span><span class="pln">mapJson</span><span class="pun">), </span><span class="str">"Should be true: map contains a boolean"</span><span class="pun">);
+
+</span><span class="com">// Test isAnyBoolean(Json) with map containing no booleans
+</span><span class="typ">Json </span><span class="pln">mapJson2 </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyObject</span><span class="pun">;
+</span><span class="pln">mapJson2</span><span class="pun">[</span><span class="str">"a"</span><span class="pun">] = </span><span class="typ">Json</span><span class="pun">(</span><span class="lit">1</span><span class="pun">);
+</span><span class="pln">mapJson2</span><span class="pun">[</span><span class="str">"b"</span><span class="pun">] = </span><span class="typ">Json</span><span class="pun">(</span><span class="str">"string"</span><span class="pun">);
+</span><span class="pln">mapJson2</span><span class="pun">[</span><span class="str">"c"</span><span class="pun">] = </span><span class="typ">Json</span><span class="pun">(</span><span class="lit">2.5</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(!<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html"></span><span class="pln">isAnyBoolean</span></a><span class="pun">(</span><span class="pln">mapJson2</span><span class="pun">), </span><span class="str">"Should be false: map contains no booleans"</span><span class="pun">);
+
+</span><span class="com">// Test isAnyBoolean(Json) with empty map
+</span><span class="typ">Json </span><span class="pln">mapJson3 </span><span class="pun">= </span><span class="typ">Json<wbr/></span><span class="pun">.</span><span class="pln">emptyObject</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(!<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html"></span><span class="pln">isAnyBoolean</span></a><span class="pun">(</span><span class="pln">mapJson3</span><span class="pun">), </span><span class="str">"Should be false: empty map"</span><span class="pun">);
+
+</span><span class="com">// Test isAnyBoolean(Json) with scalar boolean
+</span><span class="typ">Json </span><span class="pln">scalarBool </span><span class="pun">= </span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html"></span><span class="pln">isAnyBoolean</span></a><span class="pun">(</span><span class="pln">scalarBool</span><span class="pun">), </span><span class="str">"Should be true: scalar boolean is treated as array/map"</span><span class="pun">);
+
+</span><span class="com">// Test isAnyBoolean(Json) with scalar non-boolean
+</span><span class="typ">Json </span><span class="pln">scalarInt </span><span class="pun">= </span><span class="typ">Json</span><span class="pun">(</span><span class="lit">1</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(!<a href="../../../../../../uim/vibe/datatypes/jsons/booleans/isboolean/isAnyBoolean.html"></span><span class="pln">isAnyBoolean</span></a><span class="pun">(</span><span class="pln">scalarInt</span><span class="pun">), </span><span class="str">"Should be false: scalar non-boolean"</span><span class="pun">);
+</span></code></pre>
+</section>
+
+			<footer>
+				<table class="license-info">
+					<tr>
+						<th>Authors</th>
+						<td>
+							<p>Ozan Nurettin Süel (aka UIManufaktur)
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>Copyright</th>
+						<td>
+							<p>© 2018-2025 Ozan Nurettin Süel (aka UIManufaktur)
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>License</th>
+						<td>
+							<p>Subject to the terms of the Apache false license, as written in the included LICENSE.txt file.         *
+</p>
+
+						</td>
+					</tr>
+				</table>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>

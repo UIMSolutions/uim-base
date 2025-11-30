@@ -7,5 +7,5 @@ module uim.vibe.datatypes;
 
 public {
   import uim.vibe.datatypes.bson;
-  import uim.vibe.datatypes.json;
+  import uim.vibe.datatypes.jsons;
 }
