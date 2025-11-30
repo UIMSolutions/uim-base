@@ -13,7 +13,6 @@ public {
   import uim.vibe.datatypes.jsons.double_;
   import uim.vibe.datatypes.jsons.empty;
   import uim.vibe.datatypes.jsons.get;
-  import uim.vibe.datatypes.jsons.integer;
   import uim.vibe.datatypes.jsons.integral;
   import uim.vibe.datatypes.jsons.isset;
   import uim.vibe.datatypes.jsons.json;
@@ -21,7 +20,6 @@ public {
   import uim.vibe.datatypes.jsons.map;
   import uim.vibe.datatypes.jsons.merge;
   import uim.vibe.datatypes.jsons.null_;
-  import uim.vibe.datatypes.jsons.remove;
   import uim.vibe.datatypes.jsons.scalar;
   import uim.vibe.datatypes.jsons.set;
   import uim.vibe.datatypes.jsons.string_;

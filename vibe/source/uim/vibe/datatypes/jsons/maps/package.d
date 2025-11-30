@@ -7,6 +7,8 @@ module uim.vibe.datatypes.jsons.maps;
 
 public {
   import uim.vibe.datatypes.jsons.maps.change;
+  import uim.vibe.datatypes.jsons.maps.create;
   import uim.vibe.datatypes.jsons.maps.integer;
+  import uim.vibe.datatypes.jsons.maps.read;
   import uim.vibe.datatypes.jsons.maps.remove;
 }
