@@ -11,6 +11,7 @@ mixin(Version!("test_uim_vibe"));
 @safe:
 
 // #region Json[string]
+/// Remove all key-value pairs from the map.
 Json[string] removeAll(Json[string] map) {
   // Collect keys first to avoid mutating during iteration
   auto keys = map.keys.array;
@@ -18,11 +19,13 @@ Json[string] removeAll(Json[string] map) {
   return map;
 }
 
+/// Remove the specified keys from the map.
 Json[string] remove(Json[string] map, string[] keys) {
   keys.each!(key => map.remove(key));
   return map;
 }
 
+/// Remove the specified key from the map.
 Json[string] remove(Json[string] map, string key) {
   if (map is null) {
     return map;

@@ -11,6 +11,7 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
+/// Get the first element from a Json array or return null if empty.
 T first(T : Json)(T[] values) {
   return values.length > 0
     ? values[0] : Json(null);
@@ -84,4 +85,3 @@ Json firstHasKey(Json json, string key) {
     ? json.toArray.filterHasKey(key).first : Json(null);
 }
 // #endregion first by key
-// #endregion Json

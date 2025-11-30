@@ -16,23 +16,9 @@ mixin(Version!("test_uim_vibe"));
   *
   * Params:
   *   values = The array to check.
-  *   indices = Optional indices to check within the array. If not provided, all elements are checked.
   *
   * Returns:
   *   `true` if all specified elements are booleans, `false` otherwise.
-  *
-  * Examples:
-  * ```d
-  * Json[] array1 = [Json(true), Json(false), Json(1)];
-  * assert(!array1.isAllBoolean); // false
-  *
-  * Json[] array2 = [Json(true), Json(false)];
-  * assert(array2.isAllBoolean); // true
-  *
-  * Json[] arr3 = [Json(true), Json(false), Json(1)];
-  * assert(arr3.isAllBoolean([0, 1])); // true
-  * assert(!arr3.isAllBoolean([0, 2])); // false
-  * ```
   */
 bool isAllBoolean(Json[] values) {
   return values.all!(json => json.isBoolean);

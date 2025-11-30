@@ -10,6 +10,7 @@ import uim.vibe;
 mixin(Version!("test_uim_vibe"));
 @safe:
 
+/// Get the type name of the Json value as a string.
 string typeName(Json json) {
   if (json.isNull) {
     return "null";

@@ -15,10 +15,22 @@ Json toJson(T)(T value) if (isScalarType!(T)) {
   return Json(value);
 }
 
+/// Convert boolean to Json
 Json toJson(T:bool)(T value) {
   return Json(value);
 }
 
+/// Convert integer to Json
+Json toJson(T:long)(T value) {
+  return Json(value);
+}
+
+/// Convert double to Json
+Json toJson(T:double)(T value) {
+  return Json(value);   
+}
+
+/// Convert string to Json
 Json toJson(T:string)(T value) {
   return Json(value);
 }

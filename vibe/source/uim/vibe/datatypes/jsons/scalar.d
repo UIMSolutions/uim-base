@@ -13,6 +13,7 @@ mixin(Version!("test_uim_vibe"));
 // #region is
 mixin(IsJsonFunctions!("Scalar"));
 
+/// Check if the Json value is a scalar (boolean, integer, float, or string).
 bool isScalar(Json value, bool strict = true) {
   if (!strict) {
     if (value.isBoolean) {
