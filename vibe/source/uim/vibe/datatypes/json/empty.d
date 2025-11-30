@@ -13,6 +13,7 @@ mixin(Version!("test_uim_vibe"));
 // #region is
 mixin(IsJsonFunctions!("Empty"));
 
+/// Check if the Json value is empty (null, empty string, empty array, or empty object).
 bool isEmpty(Json value, bool strict = true) {
   if (!strict) {
     // Furure: Add support for empty boolean, integer, float, and string.

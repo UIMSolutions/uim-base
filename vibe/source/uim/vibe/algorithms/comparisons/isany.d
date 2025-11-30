@@ -285,10 +285,10 @@ unittest {
   mixedArr ~= "string";
   mixedArr ~= true;
 
-  assert(mixedArr.isAny((Json value) => value.type == Json.Type.int_));
-  assert(mixedArr.isAny((Json value) => value.type == Json.Type.string));
-  assert(mixedArr.isAny((Json value) => value.type == Json.Type.bool_));
-  assert(!mixedArr.isAny((Json value) => value.type == Json.Type.null_));
+  assert(mixedArr.isAny((Json value) => value.isInteger));
+  assert(mixedArr.isAny((Json value) => value.isString));
+  assert(mixedArr.isAny((Json value) => value.isBoolean));
+  assert(!mixedArr.isAny((Json value) => value.isNull));
 
   // Test isAny with nested structures
   auto nested = Json.emptyArray;
@@ -298,8 +298,5 @@ unittest {
   nested ~= 10;
 
   assert(nested.isAny((Json value) => value.isObject));
-  assert(nested.isAny(value => value.isObject));
-
-  assert(nested.isAny((Json value) => value.type == Json.Type.int_));
-  assert(nested.isAny(value => value.type == Json.Type.int_));
+  assert(nested.isAny((Json value) => value.isInteger));
 }

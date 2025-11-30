@@ -13,6 +13,7 @@ mixin(Version!("test_uim_vibe"));
 // #region is
 mixin(IsJsonFunctions!("Double"));
 
+/// Check if the Json value is a double (floating-point number).
 bool isDouble(Json value, bool strict = true) {
   if (!strict) {
     // check for boolean, integer, and string types
@@ -109,6 +110,7 @@ unittest { // Json[string]
 // #region get
 mixin(GetJsonValue!("double", "Double", "0.0"));
 
+/// Get the double value from the Json object associated with the specified key.
 double getDouble(Json json) {
   return json.isDouble
     ? json.get!double : 0.0;

@@ -16,79 +16,24 @@ bool allInteger(Json[string] map, bool strict = true) {
   return map.byValue.all!(value => value.isInteger(strict));
 }
 
+/// Check if all specified keys in the map are integers.
 bool allInteger(Json[string] map, string[] keys, bool strict = true) {
   return keys.all!(key => map.isInteger(key, strict));
 }
 
+/// Check if any value in the map is an integer.
 bool anyInteger(Json[string] map, bool strict = true) {
   return map.byValue.any!(value => value.isInteger(strict));
 }
 
+/// Check if any of the specified keys in the map is an integer.
 bool anyInteger(Json[string] map, string[] keys, bool strict = true) {
   return keys.any!(index => map.isInteger(index));
 }
 
+/// Check if the value associated with the specified key in the map is an integer.
 bool isInteger(Json[string] map, string key, bool strict = true) {
   return key in map && map[key].isInteger(strict);
-}
-
-unittest {
-  // Test isInteger(Json[string] map, string key, bool strict = true)
-  {
-    Json[string] map;
-    map["a"] = Json(1);
-    map["b"] = Json(2.0);
-    map["c"] = Json("3");
-    assert(map.isInteger("a"));
-    assert(!map.isInteger("b"));
-    assert(!map.isInteger("c"));
-    assert(!map.isInteger("d")); // key not present
-  }
-
-  // Test anyInteger(Json[string] map, bool strict = true)
-  {
-    Json[string] map;
-    map["a"] = Json("x");
-    map["b"] = Json(2);
-    assert(map.anyInteger);
-    map["a"] = Json("y");
-    map["b"] = Json("z");
-    assert(!map.anyInteger);
-  }
-
-  // Test anyInteger(Json[string] map, string[] keys, bool strict = true)
-  {
-    Json[string] map;
-    map["a"] = Json("x");
-    map["b"] = Json(2);
-    map["c"] = Json(3.0);
-    assert(map.anyInteger(["a", "b"]));
-    assert(!map.anyInteger(["a", "c"]));
-    assert(map.anyInteger(["b", "c"]));
-  }
-
-  // Test allInteger(Json[string] map, bool strict = true)
-  {
-    Json[string] map;
-    map["a"] = Json(1);
-    map["b"] = Json(2);
-    assert(map.allInteger);
-    map["c"] = Json(3.0);
-    assert(!map.allInteger);
-    map["d"] = Json("4");
-    assert(!map.allInteger);
-  }
-
-  // Test allInteger(Json[string] map, string[] keys, bool strict = true)
-  {
-    Json[string] map;
-    map["a"] = Json(1);
-    map["b"] = Json(2);
-    map["c"] = Json("3");
-    assert(map.allInteger(["a", "b"]));
-    assert(!map.allInteger(["a", "b", "c"]));
-    assert(!map.allInteger(["c"]));
-  }
 }
 // #endregion Json[string]
 

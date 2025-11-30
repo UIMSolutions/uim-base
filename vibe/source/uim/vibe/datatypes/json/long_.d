@@ -14,10 +14,12 @@ mixin(Version!("test_uim_vibe"));
 // Check if the Json value is a long integer.
 
 // #region Json[string]
+/// Check if all values in the map are long integers.
 bool isAllLong(Json[string] map, bool strict = true) {
   return map.byValue.all!(value => value.isLong(strict));
 }
 
+/// Check if all values associated with the specified keys in the map are long integers.
 bool isAllLong(Json[string] map, string[] keys, bool strict = true) {
   return keys.all!(key => map.isLong(key, strict));
 }
@@ -26,10 +28,12 @@ bool isAnyLong(Json[string] map, bool strict = true) {
   return map.byValue.any!(value => value.isLong(strict));
 }
 
+/// Check if any value associated with the specified keys in the map is a long integer.
 bool isAnyLong(Json[string] map, string[] keys, bool strict = true) {
   return keys.any!(index => map.isLong(index));
 }
 
+/// Check if the value associated with the specified key in the map is a long integer.
 bool isLong(Json[string] map, string key, bool strict = true) {
   return key in map && map[key].isLong(strict);
 }

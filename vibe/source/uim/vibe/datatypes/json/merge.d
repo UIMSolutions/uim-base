@@ -22,6 +22,7 @@ Json[string] merge(T)(Json[string] items, T[string] values) {
   return items;
 }
 
+/// Merge the specified keys with the given value into the items map.
 Json[string] merge(T)(Json[string] items, string[] keys, T value) {
   keys.each!(key => items.merge(key, value));
   return items;
