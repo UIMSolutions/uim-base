@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache false license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.json.booleans.isboolean;
+module uim.vibe.datatypes.jsons.booleans.isboolean;
 
 import uim.vibe;
 

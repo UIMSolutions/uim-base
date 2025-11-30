@@ -1,4 +1,4 @@
-module uim.vibe.datatypes.json.objects.allkeys;
+module uim.vibe.datatypes.jsons.objects.allkeys;
 
 import uim.vibe;
 

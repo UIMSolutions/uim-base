@@ -1,6 +1,6 @@
-module uim.vibe.datatypes.json.booleans;
+module uim.vibe.datatypes.jsons.booleans;
 
 public {
-    import uim.vibe.datatypes.json.booleans.isboolean;
-    import uim.vibe.datatypes.json.booleans.boolean;
+    import uim.vibe.datatypes.jsons.booleans.isboolean;
+    import uim.vibe.datatypes.jsons.booleans.boolean;
 }

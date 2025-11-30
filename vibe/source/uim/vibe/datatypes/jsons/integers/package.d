@@ -1,2 +1,2 @@
-module uim.vibe.datatypes.json.integers;
+module uim.vibe.datatypes.jsons.integers;
 

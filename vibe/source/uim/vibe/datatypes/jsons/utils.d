@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.json.utils;
+module uim.vibe.datatypes.jsons.utils;
 
 import uim.vibe;
 mixin(Version!("test_uim_vibe"));
@@ -374,7 +374,7 @@ Json updateKey(Json origin, string[string] additional) {
 }
 
 unittest {
-  import uim.vibe.datatypes.json.set;
+  import uim.vibe.datatypes.jsons.set;
 
   Json json = Json.emptyObject;
   json["a"] = "hallo";

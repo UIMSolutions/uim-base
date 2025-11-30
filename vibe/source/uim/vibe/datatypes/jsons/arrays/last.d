@@ -1,2 +1,2 @@
-module uim.vibe.datatypes.json.arrays.last;
+module uim.vibe.datatypes.jsons.arrays.last;
 

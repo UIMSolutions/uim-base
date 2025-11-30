@@ -3,11 +3,11 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.json.arrays;
+module uim.vibe.datatypes.jsons.arrays;
 
 public {
-    import uim.vibe.datatypes.json.arrays.first;
-    import uim.vibe.datatypes.json.arrays.contains;
-    import uim.vibe.datatypes.json.arrays.last;
-    import uim.vibe.datatypes.json.arrays.shift;
+    import uim.vibe.datatypes.jsons.arrays.first;
+    import uim.vibe.datatypes.jsons.arrays.contains;
+    import uim.vibe.datatypes.jsons.arrays.last;
+    import uim.vibe.datatypes.jsons.arrays.shift;
 }
