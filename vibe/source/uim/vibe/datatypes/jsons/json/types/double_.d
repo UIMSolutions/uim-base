@@ -11,15 +11,144 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
+bool allDouble(Json json, string[][] paths, double value) {
+  return paths.any!(path => json.isDouble(path) && json.getDouble(path) == value);
+}
+
+/** 
+  * Checks if the given JSON value at the specified path is of double (floating-point number) type.
+  *
+  * Params:
+  *   json = The JSON value to check.
+  *   paths = The paths within the JSON object to check.
+  *
+  * Returns:
+  *   `true` if the JSON value at the specified path is a double, `false` otherwise.
+  */
+bool allDouble(Json json, string[][] paths) {
+  return paths.any!(path => json.isDouble(path));
+}
+
+/** 
+  * Checks if the given JSON value at the specified keys is of double (floating-point number) type and matches the given value.
+  *
+  * Params:
+  *   json = The JSON value to check.
+  *   keys = The keys within the JSON object to check.
+  *   value = The double value to match.
+  *
+  * Returns:
+  *   `true` if the JSON value at the specified keys is a double and matches the given value, `false` otherwise.
+  */
+bool allDouble(Json json, string[] keys, double value) {
+  return keys.any!(key => json.isDouble(key) && json.getDouble(key) == value);
+}
+
+/** 
+  * Checks if the given JSON value at the specified keys is of double (floating-point number) type.
+  *
+  * Params:
+  *   json = The JSON value to check.
+  *   keys = The keys within the JSON object to check.
+  *
+  * Returns:
+  *   `true` if the JSON value at the specified keys is a double, `false` otherwise.
+  */
+bool allDouble(Json json, string[] keys) {
+  return keys.any!(key => json.isDouble(key));
+}
+
+/** 
+  * Checks if the given JSON value at the specified paths is of double (floating-point number) type.
+  *
+  * Params:
+  *   json = The JSON value to check.
+  *   paths = The paths within the JSON object to check.
+  *
+  * Returns:
+  *   `true` if the JSON value at the specified paths is a double, `false` otherwise.
+  */
+bool anyDouble(Json json, string[][] paths) {
+  return paths.any!(path => json.isDouble(path));
+}
+
+/** 
+  * Checks if the given JSON value at the specified keys is of double (floating-point number) type.
+  *
+  * Params:
+  *   json = The JSON value to check.
+  *   keys = The keys within the JSON object to check.
+  *
+  * Returns:
+  *   `true` if the JSON value at the specified keys is a double, `false` otherwise.
+  */
+bool anyDouble(Json json, string[] keys) {
+  return keys.any!(key => json.isDouble(key));
+}
+
+/** 
+  * Checks if the given JSON value at the specified path is of double (floating-point number) type.
+  *
+  * Params:
+  *   json = The JSON value to check.
+  *   path = The path within the JSON object to check.
+  *
+  * Returns:
+  *   `true` if the JSON value at the specified path is a double, `false` otherwise.
+  */
+bool isDouble(Json json, string[] path) {
+  if (!json.hasPath(path)) {
+    return false;
+  }
+
+  if (path.length == 1) {
+    return json.isDouble(path[0]);
+  }
+
+  return json[path[0]].isDouble(path[1 .. $]);
+}
+
+/** 
+  * Checks if the given JSON value at the specified key is of double (floating-point number) type.
+  *
+  * Params:
+  *   json = The JSON value to check.
+  *   key  = The key within the JSON object to check.
+  *
+  * Returns:
+  *   `true` if the JSON value at the specified key is a double, `false` otherwise.
+  */
 bool isDouble(Json value, string key) {
   return (value.type == Json.Type.float_);
 }
 
-/// Check if the Json value is a double (floating-point number).
-bool isDouble(Json value) {
-  return (value.type == Json.Type.float_);
+/** 
+  * Checks if the given JSON value is of double (floating-point number) type and matches the given value.
+  *
+  * Params:
+  *   json = The JSON value to check.
+  *   value = The double value to match.
+  *
+  * Returns:
+  *   `true` if the JSON value is a double and matches the given value, `false` otherwise.
+  */
+bool isDouble(Json json, double value) {
+  return json.isDouble && json.getDouble == value ;
 }
 
+/** 
+  * Checks if the given JSON value is of double (floating-point number) type.
+  *
+  * Params:
+  *   value = The JSON value to check.
+  *
+  * Returns:
+  *   `true` if the JSON value is a double, `false` otherwise.
+  */
+bool isDouble(Json json) {
+  return (json.type == Json.Type.float_);
+}
+///
 unittest {
   // Test with float value
   Json floatVal = Json(3.14);

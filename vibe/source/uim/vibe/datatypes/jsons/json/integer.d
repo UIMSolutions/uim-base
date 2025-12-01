@@ -41,13 +41,7 @@ bool anyInteger(Json json, bool strict = true) {
   return json.isInteger(strict);
 }
 
-bool anyInteger(Json json, string[][] paths, bool strict = true) {
-  return paths.any!(path => json.isInteger(path, strict));
-}
 
-bool anyInteger(Json json, string[] keys, bool strict = true) {
-  return keys.any!(key => json.isInteger(key, strict));
-}
 
 // #region get
 mixin(GetJsonValue!("int", "Integer", "0"));

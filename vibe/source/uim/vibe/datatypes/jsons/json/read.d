@@ -8,7 +8,16 @@ mixin(Version!("test_uim_vibe"));
 
 mixin(GetJsonValue!("Json", "Json", "Json(null)"));
 
-/// Get the Json value (returns the Json itself).
+/** 
+  * Retrieves the Json value.
+  *
+  * Params:
+  *   json = The JSON value to retrieve.
+  *   defaultValue = The default JSON value to return if the original is null (default is Json(null)).
+  *
+  * Returns:
+  *   The JSON value or the default value if the original is null.
+  */
 Json getJson(Json json, Json defaultValue = Json(null)) {
   return json;
 }

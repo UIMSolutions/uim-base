@@ -11,6 +11,22 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
+bool allInteger(Json json, string[][] paths) {
+  return paths.any!(path => json.isInteger(path));
+}
+
+bool allInteger(Json json, string[] keys) {
+  return keys.any!(key => json.isInteger(key));
+}
+
+bool anyInteger(Json json, string[][] paths) {
+  return paths.any!(path => json.isInteger(path));
+}
+
+bool anyInteger(Json json, string[] keys) {
+  return keys.any!(key => json.isInteger(key));
+}
+
 bool isInteger(Json json, string[] path) {
   if (!json.hasPath(path)) {
     return false;
