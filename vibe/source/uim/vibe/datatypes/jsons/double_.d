@@ -13,56 +13,6 @@ mixin(Version!("test_uim_vibe"));
 // #region is
 mixin(IsJsonFunctions!("Double"));
 
-/// Check if the Json value is a double (floating-point number).
-bool isDouble(Json value, bool strict = true) {
-  if (!strict) {
-    // check for boolean, integer, and string types
-  }
-  return (value.type == Json.Type.float_);
-}
-
-unittest {
-  // Test with float value
-  Json floatVal = Json(3.14);
-  assert(isDouble(floatVal));
-  assert(floatVal.isDouble);
-
-  // Test with integer value
-  Json intVal = Json(42);
-  assert(!isDouble(intVal));
-  assert(!intVal.isDouble);
-
-  // Test with boolean value
-  Json boolVal = Json(true);
-  assert(!isDouble(boolVal));
-  assert(!boolVal.isDouble);
-
-  // Test with string value
-  Json strVal = Json("test");
-  assert(!isDouble(strVal));
-  assert(!strVal.isDouble);
-
-  // Test with null value
-  Json nullVal = Json.init;
-  assert(!isDouble(nullVal));
-  assert(!nullVal.isDouble);
-
-  // Test with array value
-  Json arrVal = Json.emptyArray;
-  assert(!isDouble(arrVal));
-  assert(!arrVal.isDouble);
-
-  // Test with object value
-  Json objVal = Json.emptyObject;
-  assert(!isDouble(objVal));
-  assert(!objVal.isDouble);
-
-  // Test with strict = false (should still only return true for float)
-  assert(isDouble(floatVal, false));
-  assert(!isDouble(intVal, false));
-  assert(!isDouble(boolVal, false));
-  assert(!isDouble(strVal, false));
-}
 
 unittest { // Json[]
   auto a = Json(1.1);

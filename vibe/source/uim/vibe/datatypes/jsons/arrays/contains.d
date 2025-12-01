@@ -8,20 +8,24 @@ module uim.vibe.datatypes.jsons.arrays.contains;
 import uim.vibe;
 
 mixin(Version!("test_uim_vibe"));
+
 @safe:
 
+/// Returns true if the given JSON value contains all of the given values.
 bool containsAll(Json json, Json[] values) {
   return json.isNull
     ? false
     : values.all!(value => json.contains(value));
 }
 
+/// Returns true if the given JSON value contains at least one of the given values.
 bool containsAny(Json json, Json[] values) {
   return json.isNull
     ? false
     : values.any!(value => json.contains(value));
 }
 
+/// Returns true if the given JSON value contains the given value.
 bool contains(Json json, Json value) {
   if (json.isNull) return false;
 
