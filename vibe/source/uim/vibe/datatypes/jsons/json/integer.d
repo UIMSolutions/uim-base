@@ -56,7 +56,7 @@ int getInteger(Json json) {
   return json.isInteger
     ? json.get!int : 0;
 }
-
+/// 
 unittest {
   Json json = Json(1);
   assert(json.getInteger == 1);
