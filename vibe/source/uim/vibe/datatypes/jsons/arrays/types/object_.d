@@ -26,3 +26,11 @@ bool anyObject(Json[] values) {
 bool anyObject(Json[] values, size_t[] indices) {
   return indices.any!(index => values.isObject(index));
 }
+
+bool isObject(Json[] values, size_t index) {
+  if (index >= values.length) {
+    return false;
+  } 
+
+  return values[index].isObject;
+}

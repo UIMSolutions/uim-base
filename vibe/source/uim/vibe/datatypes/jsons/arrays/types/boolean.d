@@ -26,3 +26,11 @@ bool anyBoolean(Json[] values) {
 bool anyBoolean(Json[] values, size_t[] indices) {
   return indices.any!(index => values.isBoolean(index));
 }
+
+bool isBoolean(Json[] values, size_t index) {
+  if (index >= values.length) {
+    return false;
+  } 
+
+  return values[index].isBoolean;
+}

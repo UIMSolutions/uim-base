@@ -50,11 +50,11 @@ bool anyObject(Json json, string[] keys) {
 
 // #region is
 bool isObject(Json json, string key) {
-  if (json.isObject) {
-    return true;
+  if (!json.isObject) {
+    return false;
   }
 
-  return json.isObject && key in json ? json[key].isObject : true;
+  return key in json && json[key].isObject;
 }
 // #endregion is
 // #endregion key

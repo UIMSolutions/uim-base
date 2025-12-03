@@ -8,13 +8,14 @@ module uim.vibe.datatypes.jsons.arrays.types.array_;
 import uim.vibe;
 
 mixin(Version!("test_uim_vibe"));
+
 @safe:
 
 bool allArray(Json json) {
   if (json.isArray) {
     return json.toArray.allArray;
   }
-  if (json.isMap) {
+  if (json.isObject) {
     return json.toMap.allArray;
   }
   return false;
@@ -38,6 +39,13 @@ bool anyArray(Json json) {
   return false;
 }
 
+bool isArray(Json[] values, size_t index) {
+  if (index >= values.length) {
+    return false;
+  } 
+
+  return values[index].isArray;
+}
 /** 
   * Checks if any element in the array is of boolean type.
   *
@@ -61,24 +69,6 @@ bool anyArray(Json json) {
   */
 bool anyArray(Json[] values) {
   return values.any!(json => json.isArray);
-}
-
-bool anyArray(Json[string] map) {
-  return map.byValue.array.anyArray;
-}
-
-
-// #region has Value
-bool hasAllValue(T)(Json json, T[] values) {
-  return values.all!(value => json.hasValue(value));
-}
-
-bool hasAnyValue(T)(Json json, T[] values) {
-  return values.any!(value => json.hasValue(value));
-}
-
-bool hasValue(T)(Json json, T value) {
-  return json.hasValue(value.toJson);
 }
 
 bool hasValue(T : Json)(Json json, T value) {

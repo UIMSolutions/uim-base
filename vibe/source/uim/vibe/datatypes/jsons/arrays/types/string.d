@@ -26,3 +26,11 @@ bool anyString(Json[] values) {
 bool anyString(Json[] values, size_t[] indices) {
   return indices.any!(index => values.isString(index));
 }
+
+bool isString(Json[] values, size_t index) {
+  if (index >= values.length) {
+    return false;
+  } 
+
+  return values[index].isString;
+}

@@ -43,3 +43,16 @@ bool hasKey(Json json, string key) {
   return json.isObject && key in json;
 }
 // #endregion has
+
+// #region has Value
+bool hasAllValue(T)(Json json, T[] values) {
+  return values.all!(value => json.hasValue(value));
+}
+
+bool hasAnyValue(T)(Json json, T[] values) {
+  return values.any!(value => json.hasValue(value));
+}
+
+bool hasValue(T)(Json json, T value) {
+  return json.hasValue(value.toJson);
+}

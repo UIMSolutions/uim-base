@@ -26,3 +26,11 @@ bool anyDouble(Json[] values) {
 bool anyDouble(Json[] values, size_t[] indices) {
   return indices.any!(index => values.isDouble(index));
 }
+
+bool isDouble(Json[] values, size_t index) {
+  if (index >= values.length) {
+    return false;
+  } 
+
+  return values[index].isDouble;
+}

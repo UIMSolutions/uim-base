@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.jsons.arrays.types.integer;
+module uim.vibe.datatypes.jsons.arrays.types.null_;
 
 import uim.vibe;
 
@@ -11,26 +11,26 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-bool allInteger(Json[] values) {
-  return values.all!(value => value.isInteger);
+bool allNull(Json[] values) {
+  return values.all!(value => value.isNull);
 }
 
-bool allInteger(Json[] values, size_t[] indices) {
-  return indices.all!(index => values.isInteger(index));
+bool allNull(Json[] values, size_t[] indices) {
+  return indices.all!(index => values.isNull(index));
 }
 
-bool anyInteger(Json[] values) {
-  return values.any!(value => value.isInteger);
+bool anyNull(Json[] values) {
+  return values.any!(value => value.isNull);
 }
 
-bool anyInteger(Json[] values, size_t[] indices) {
-  return indices.any!(index => values.isInteger(index));
+bool anyNull(Json[] values, size_t[] indices) {
+  return indices.any!(index => values.isNull(index));
 }
 
-bool isInteger(Json[] values, size_t index) {
+bool isNull(Json[] values, size_t index) {
   if (index >= values.length) {
     return false;
   } 
 
-  return values[index].isInteger;
+  return values[index].isNull;
 }
