@@ -8,5 +8,5 @@ public {
   import uim.vibe.datatypes.jsons.json.types.null_;
   import uim.vibe.datatypes.jsons.json.types.object_;
   import uim.vibe.datatypes.jsons.json.types.string_;
-  import uim.vibe.datatypes.jsons.json.types.undefined_;
+  import uim.vibe.datatypes.jsons.json.types.undefined;
 }

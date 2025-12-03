@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.jsons.arrays.array_;
+module uim.vibe.datatypes.jsons.arrays.types.array_;
 
 import uim.vibe;
 
@@ -67,59 +67,6 @@ bool anyArray(Json[string] map) {
   return map.byValue.array.anyArray;
 }
 
-/**
-  * Checks if the given JSON value is an array.
-  *
-  * Params:
-  *   json = The JSON value to check.
-  *
-  * Returns:
-  *   `true` if the JSON value is an array, `false` otherwise.
-  *
-  * Examples:
-  * ```d
-  * auto jsonArray = parseJsonString(`["a", "b", "c"]`);
-  * assert(isArray(jsonArray)); // true
-  *
-  * auto jsonObject = parseJsonString(`{"a": "b"}`);
-  * assert(!isArray(jsonObject)); // false
-  * ```
-  */
-
-/// 
-unittest {
-  // Test: isArray returns true for a JSON array
-  auto arr = parseJsonString(`["x", "y", "z"]`);
-  assert(isArray(arr) == true);
-
-  // Test: isArray returns false for a JSON object
-  auto obj = parseJsonString(`{"key": "value"}`);
-  assert(isArray(obj) == false);
-
-  // Test: isArray returns false for JSON null
-  auto nullJson = Json(null);
-  assert(isArray(nullJson) == false);
-
-  // Test: isArray returns false for a JSON string
-  auto str = parseJsonString(`"hello"`);
-  assert(isArray(str) == false);
-
-  // Test: isArray returns false for a JSON number
-  auto num = parseJsonString(`42`);
-  assert(isArray(num) == false);
-
-  // Test: isArray returns false for a JSON boolean
-  auto boolean = parseJsonString(`true`);
-  assert(isArray(boolean) == false);
-
-  // Test: isArray returns false for an empty JSON array
-  auto emptyArr = parseJsonString(`[]`);
-  assert(isArray(emptyArr) == true);
-
-  // Test: isArray returns false for an empty JSON object
-  auto emptyObj = parseJsonString(`{}`);
-  assert(isArray(emptyObj) == false);
-}
 
 // #region has Value
 bool hasAllValue(T)(Json json, T[] values) {
