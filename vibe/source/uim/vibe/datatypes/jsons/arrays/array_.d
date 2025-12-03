@@ -85,10 +85,7 @@ bool anyArray(Json[string] map) {
   * assert(!isArray(jsonObject)); // false
   * ```
   */
-bool isArray(Json json) {
-  return json == Json(null)
-    ? false : json.type == Json.Type.array;
-}
+
 /// 
 unittest {
   // Test: isArray returns true for a JSON array

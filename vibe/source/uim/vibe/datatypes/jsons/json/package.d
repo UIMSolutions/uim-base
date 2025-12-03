@@ -12,3 +12,7 @@ public {
   import uim.vibe.datatypes.jsons.json.read;
   import uim.vibe.datatypes.jsons.json.remove;
 }
+
+public {
+  import uim.vibe.datatypes.jsons.json.types;
+}

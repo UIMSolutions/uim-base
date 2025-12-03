@@ -11,10 +11,15 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
+// #region path
+// #region all
+// #region value
 bool allDouble(Json json, string[][] paths, double value) {
-  return paths.any!(path => json.isDouble(path) && json.getDouble(path) == value);
+  return paths.all!(path => json.isDouble(path, value));
 }
+// #endregion value
 
+// #region noValue
 /** 
   * Checks if the given JSON value at the specified path is of double (floating-point number) type.
   *
@@ -26,38 +31,19 @@ bool allDouble(Json json, string[][] paths, double value) {
   *   `true` if the JSON value at the specified path is a double, `false` otherwise.
   */
 bool allDouble(Json json, string[][] paths) {
-  return paths.any!(path => json.isDouble(path));
+  return paths.all!(path => json.isDouble(path));
 }
+// #endregion noValue
+// #endregion all
 
-/** 
-  * Checks if the given JSON value at the specified keys is of double (floating-point number) type and matches the given value.
-  *
-  * Params:
-  *   json = The JSON value to check.
-  *   keys = The keys within the JSON object to check.
-  *   value = The double value to match.
-  *
-  * Returns:
-  *   `true` if the JSON value at the specified keys is a double and matches the given value, `false` otherwise.
-  */
-bool allDouble(Json json, string[] keys, double value) {
-  return keys.any!(key => json.isDouble(key) && json.getDouble(key) == value);
+// #region any
+// #region value
+bool anyDouble(Json json, string[][] paths, double value) {
+  return paths.any!(path => json.isDouble(path, value));
 }
+// #endregion value
 
-/** 
-  * Checks if the given JSON value at the specified keys is of double (floating-point number) type.
-  *
-  * Params:
-  *   json = The JSON value to check.
-  *   keys = The keys within the JSON object to check.
-  *
-  * Returns:
-  *   `true` if the JSON value at the specified keys is a double, `false` otherwise.
-  */
-bool allDouble(Json json, string[] keys) {
-  return keys.any!(key => json.isDouble(key));
-}
-
+// #region noValue
 /** 
   * Checks if the given JSON value at the specified paths is of double (floating-point number) type.
   *
@@ -71,21 +57,17 @@ bool allDouble(Json json, string[] keys) {
 bool anyDouble(Json json, string[][] paths) {
   return paths.any!(path => json.isDouble(path));
 }
+// #endregion noValue
+// #endregion any
 
-/** 
-  * Checks if the given JSON value at the specified keys is of double (floating-point number) type.
-  *
-  * Params:
-  *   json = The JSON value to check.
-  *   keys = The keys within the JSON object to check.
-  *
-  * Returns:
-  *   `true` if the JSON value at the specified keys is a double, `false` otherwise.
-  */
-bool anyDouble(Json json, string[] keys) {
-  return keys.any!(key => json.isDouble(key));
+// #region is
+// #region value
+bool isDouble(Json json, string[] path, double value) {
+  return json.isDouble(path) && json.getDouble(path) == value;
 }
+// #endregion value
 
+// #region noValue
 /** 
   * Checks if the given JSON value at the specified path is of double (floating-point number) type.
   *
@@ -107,7 +89,78 @@ bool isDouble(Json json, string[] path) {
 
   return json[path[0]].isDouble(path[1 .. $]);
 }
+// #endregion noValue
+// #endregion is
+// #endregion path
 
+// #region key
+// #region all
+// #region value
+/** 
+  * Checks if the given JSON value at the specified keys is of double (floating-point number) type and matches the given value.
+  *
+  * Params:
+  *   json = The JSON value to check.
+  *   keys = The keys within the JSON object to check.
+  *   value = The double value to match.
+  *
+  * Returns:
+  *   `true` if the JSON value at the specified keys is a double and matches the given value, `false` otherwise.
+  */
+bool allDouble(Json json, string[] keys, double value) {
+  return keys.any!(key => json.isDouble(key) && json.getDouble(key) == value);
+}
+// #endregion value
+
+// #region noValue
+/** 
+  * Checks if the given JSON value at the specified keys is of double (floating-point number) type.
+  *
+  * Params:
+  *   json = The JSON value to check.
+  *   keys = The keys within the JSON object to check.
+  *
+  * Returns:
+  *   `true` if the JSON value at the specified keys is a double, `false` otherwise.
+  */
+bool allDouble(Json json, string[] keys) {
+  return keys.any!(key => json.isDouble(key));
+}
+// #endregion noValue
+// #endregion all
+
+// #region any
+// #region value
+bool anyDouble(Json json, string[] keys, double value) {
+  return keys.any!(key => json.isDouble(key, value));
+}
+// #endregion value
+
+// #region noValue
+/** 
+  * Checks if the given JSON value at the specified keys is of double (floating-point number) type.
+  *
+  * Params:
+  *   json = The JSON value to check.
+  *   keys = The keys within the JSON object to check.
+  *
+  * Returns:
+  *   `true` if the JSON value at the specified keys is a double, `false` otherwise.
+  */
+bool anyDouble(Json json, string[] keys) {
+  return keys.any!(key => json.isDouble(key));
+}
+// #endregion noValue
+// #endregion any
+
+// #region is
+// #region value
+bool isDouble(Json json, string key, double value) {
+  return json.isDouble(key) && json.getDouble(key) == value;
+}
+// #endregion value
+
+// #region noValue
 /** 
   * Checks if the given JSON value at the specified key is of double (floating-point number) type.
   *
@@ -121,7 +174,12 @@ bool isDouble(Json json, string[] path) {
 bool isDouble(Json value, string key) {
   return (value.type == Json.Type.float_);
 }
+// #endregion noValue
+// #endregion is
+// #endregion key
 
+// #region scalar
+// #region value
 /** 
   * Checks if the given JSON value is of double (floating-point number) type and matches the given value.
   *
@@ -135,7 +193,9 @@ bool isDouble(Json value, string key) {
 bool isDouble(Json json, double value) {
   return json.isDouble && json.getDouble == value ;
 }
+// #endregion value
 
+// #region noValue
 /** 
   * Checks if the given JSON value is of double (floating-point number) type.
   *
@@ -178,4 +238,5 @@ unittest {
   Json objVal = Json.emptyObject;
   assert(!objVal.isDouble);
 }
-// #endregion double
+// #endregion noValue
+// #endregion scalar

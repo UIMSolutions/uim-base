@@ -11,7 +11,20 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-// #region null
+// #region path
+// #region all
+bool allNull(Json json, string[][] paths) {
+  return paths.all!(path => json.isNull(path));
+}
+// #endregion all
+
+// #region any
+bool anyNull(Json json, string[][] paths) {
+  return paths.any!(path => json.isNull(path));
+}
+// #endregion any
+
+// #region is
 bool isNull(Json json, string[] path) {
   if (json.isNull || path.length == 0) {
     return true;
@@ -24,7 +37,23 @@ bool isNull(Json json, string[] path) {
 
   return path.length > 1 && json[firstKey].isNull(path[1 .. $]);
 }
+// #endregion is
+// #endregion path
 
+// #region key
+// #region all
+bool allNull(Json json, string[] keys) {
+  return keys.all!(key => json.isNull(key));
+}
+// #endregion all
+
+// #region any
+bool anyNull(Json json, string[] keys) {
+  return keys.any!(key => json.isNull(key));
+}
+// #endregion any
+
+// #region is
 bool isNull(Json json, string key) {
   if (json.isNull) {
     return true;
@@ -32,7 +61,10 @@ bool isNull(Json json, string key) {
 
   return json.isObject && key in json ? json[key].isNull : true;
 }
+// #endregion is
+// #endregion key
 
+// #region scalar
 /** 
   * Checks if the given JSON value is null.
   *
@@ -63,3 +95,4 @@ unittest {
   assert(json.isAnyNull(["x", "y"]));
   assert(!json.isAnyNull(["a", "c"]));
 }
+// #endregion scalar
