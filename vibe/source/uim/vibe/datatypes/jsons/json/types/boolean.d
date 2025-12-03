@@ -299,8 +299,8 @@ unittest {
   * Returns:
   *   `true` if the JSON value at the specified paths is a boolean, `false` otherwise.
   */
-bool anyBoolean(Json json, string[][] paths) {
-  return paths.any!(path => json.isBoolean(path));
+bool anyBoolean(Json json, string[][] paths, bool value) {
+  return paths.any!(path => json.isBoolean(path) && json.getBoolean(path) == value);
 }
 ///
 unittest {

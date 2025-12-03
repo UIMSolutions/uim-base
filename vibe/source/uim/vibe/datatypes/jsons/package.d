@@ -6,7 +6,6 @@
 module uim.vibe.datatypes.jsons;
 
 public {
-  import uim.vibe.datatypes.jsons.array_;
   import uim.vibe.datatypes.jsons.utils;
   import uim.vibe.datatypes.jsons.booleans;
   import uim.vibe.datatypes.jsons.convert;
@@ -14,10 +13,8 @@ public {
   import uim.vibe.datatypes.jsons.empty;
   import uim.vibe.datatypes.jsons.get;
   import uim.vibe.datatypes.jsons.integral;
-  import uim.vibe.datatypes.jsons.isset;
   import uim.vibe.datatypes.jsons.json;
   import uim.vibe.datatypes.jsons.long_;
-  import uim.vibe.datatypes.jsons.map;
   import uim.vibe.datatypes.jsons.merge;
   import uim.vibe.datatypes.jsons.null_;
   import uim.vibe.datatypes.jsons.scalar;
