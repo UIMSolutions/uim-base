@@ -14,5 +14,8 @@ public {
   import uim.vibe.datatypes.jsons.arrays.read;
   import uim.vibe.datatypes.jsons.arrays.remove;
   import uim.vibe.datatypes.jsons.arrays.shift;
+}
+
+public {
   import uim.vibe.datatypes.jsons.arrays.types;
 }

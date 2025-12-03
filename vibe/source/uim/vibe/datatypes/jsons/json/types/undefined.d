@@ -55,11 +55,7 @@ bool anyUndefined(Json json, string[] keys) {
 
 // #region is
 bool isUndefined(Json json, string key) {
-  if (json.isUndefined) {
-    return true;
-  }
-
-  return json.isObject && key in json ? json[key].isUndefined : true;
+  return json.isObject && key in json && json[key].isUndefined;
 }
 // #endregion is
 // #endregion key
@@ -75,7 +71,7 @@ bool isUndefined(Json json, string key) {
   *   `true` if the JSON value is undefined, `false` otherwise.
   */
 bool isUndefined(Json json) {
-  return json == Json(undefined); 
+  return json.type == Json.Type.undefined; 
 }
 /// 
 unittest {

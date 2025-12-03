@@ -11,26 +11,40 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
+// #region all
+// #region noIndex
 bool allBoolean(Json[] values) {
-  return values.all!(value => value.isBoolean);
+  return values.all!(value => uim.vibe.datatypes.jsons.json.types.boolean.isBoolean(value));
 }
+// #endregion noIndex
 
+// #region index  
 bool allBoolean(Json[] values, size_t[] indices) {
   return indices.all!(index => values.isBoolean(index));
 }
+// #endregion index
+// #endregion all
 
+// #region any
+// #region noIndex
 bool anyBoolean(Json[] values) {
-  return values.any!(value => value.isBoolean);
+  return values.any!(value => uim.vibe.datatypes.jsons.json.types.boolean.isBoolean(value));
 }
+// #endregion noIndex
 
+// #region index
 bool anyBoolean(Json[] values, size_t[] indices) {
   return indices.any!(index => values.isBoolean(index));
 }
+// #endregion index
+// #endregion any
 
+// #region is
 bool isBoolean(Json[] values, size_t index) {
   if (index >= values.length) {
     return false;
   } 
 
-  return values[index].isBoolean;
+  return uim.vibe.datatypes.jsons.json.types.boolean.isBoolean(values[index]);
 }
+// #endregion is

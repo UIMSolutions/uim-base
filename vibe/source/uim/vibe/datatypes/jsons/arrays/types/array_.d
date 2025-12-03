@@ -12,7 +12,7 @@ mixin(Version!("test_uim_vibe"));
 @safe:
 
 bool allArray(Json json) {
-  if (json.isArray) {
+  if (uim.vibe.datatypes.jsons.json.types.array_.isArray(json)) {
     return json.toArray.allArray;
   }
   if (json.isObject) {
@@ -22,7 +22,7 @@ bool allArray(Json json) {
 }
 
 bool allArray(Json[] values) {
-  return values.all!(value => value.isArray);
+  return values.all!(value => uim.vibe.datatypes.jsons.json.types.array_.isArray(value));
 }
 
 bool allArray(Json[string] map) {
@@ -30,11 +30,11 @@ bool allArray(Json[string] map) {
 }
 
 bool anyArray(Json json) {
-  if (json.isArray) {
+  if (uim.vibe.datatypes.jsons.json.types.array_.isArray(json)) {
     return json.toArray.anyArray;
   }
-  if (json.isMap) {
-    return json.toMap.anyArray;
+  if (json.isObject) {
+    return uim.vibe.datatypes.jsons.maps.types.array_.anyArray(json.toMap);
   }
   return false;
 }
@@ -44,7 +44,7 @@ bool isArray(Json[] values, size_t index) {
     return false;
   } 
 
-  return values[index].isArray;
+  return uim.vibe.datatypes.jsons.json.types.array_.isArray(values[index]);
 }
 /** 
   * Checks if any element in the array is of boolean type.
@@ -68,11 +68,11 @@ bool isArray(Json[] values, size_t index) {
   * ```
   */
 bool anyArray(Json[] values) {
-  return values.any!(json => json.isArray);
+  return values.any!(json => uim.vibe.datatypes.jsons.json.types.array_.isArray(json));
 }
 
 bool hasValue(T : Json)(Json json, T value) {
-  return json.isArray || json.isObject
+  return uim.vibe.datatypes.jsons.json.types.array_.isArray(json) || json.isObject
     ? json.byValue.any!(v => v == value) : json == value;
 }
 
@@ -104,10 +104,8 @@ unittest {
 // #endregion has
 
 // #region get
-mixin(GetJsonValue!("Json[]", "Array", "null"));
-
 Json[] getArray(Json json) {
-  return json.isArray
+  return uim.vibe.datatypes.jsons.json.types.array_.isArray(json)
     ? json.get!(Json[]) : null;
 }
 

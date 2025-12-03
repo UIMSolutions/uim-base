@@ -12,7 +12,7 @@ mixin(Version!("test_uim_vibe"));
 @safe:
 
 bool allUndefined(Json[] values) {
-  return values.all!(value => value.isUndefined);
+  return values.all!(value => uim.vibe.datatypes.jsons.json.types.undefined.isUndefined(value));
 }
 
 bool allUndefined(Json[] values, size_t[] indices) {
@@ -20,7 +20,7 @@ bool allUndefined(Json[] values, size_t[] indices) {
 }
 
 bool anyUndefined(Json[] values) {
-  return values.any!(value => value.isUndefined);
+  return values.any!(value => uim.vibe.datatypes.jsons.json.types.undefined.isUndefined(value));
 }
 
 bool anyUndefined(Json[] values, size_t[] indices) {
@@ -32,5 +32,5 @@ bool isUndefined(Json[] values, size_t index) {
     return false;
   } 
 
-  return values[index].isUndefined;
+  return uim.vibe.datatypes.jsons.json.types.undefined.isUndefined(values[index]);
 }

@@ -5,7 +5,18 @@
 *****************************************************************************************************************/
 module uim.vibe.datatypes.jsons;
 
-public {
+public { // Packages
+  import uim.vibe.datatypes.jsons.arrays;
+  import uim.vibe.datatypes.jsons.bigintegers;
+  import uim.vibe.datatypes.jsons.collections;
+  import uim.vibe.datatypes.jsons.functions;
+  import uim.vibe.datatypes.jsons.integers;
+  import uim.vibe.datatypes.jsons.json;
+  import uim.vibe.datatypes.jsons.maps;
+  import uim.vibe.datatypes.jsons.objects;
+}
+
+public { // Modules
   import uim.vibe.datatypes.jsons.utils;
   import uim.vibe.datatypes.jsons.booleans;
   import uim.vibe.datatypes.jsons.convert;
@@ -26,11 +37,3 @@ public {
   import uim.vibe.datatypes.jsons.values;
 }
 
-public {
-  import uim.vibe.datatypes.jsons.arrays;
-  import uim.vibe.datatypes.jsons.collections;
-  import uim.vibe.datatypes.jsons.functions;
-  import uim.vibe.datatypes.jsons.objects;
-  import uim.vibe.datatypes.jsons.maps;
-  import uim.vibe.datatypes.jsons.json;
-}

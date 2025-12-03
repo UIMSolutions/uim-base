@@ -12,7 +12,7 @@ mixin(Version!("test_uim_vibe"));
 @safe:
 
 bool allDouble(Json[] values) {
-  return values.all!(value => value.isDouble);
+  return values.all!(value => uim.vibe.datatypes.jsons.json.types.double_.isDouble(value));
 }
 
 bool allDouble(Json[] values, size_t[] indices) {
@@ -20,7 +20,7 @@ bool allDouble(Json[] values, size_t[] indices) {
 }
 
 bool anyDouble(Json[] values) {
-  return values.any!(value => value.isDouble);
+  return values.any!(value => uim.vibe.datatypes.jsons.json.types.double_.isDouble(value));
 }
 
 bool anyDouble(Json[] values, size_t[] indices) {
@@ -32,5 +32,5 @@ bool isDouble(Json[] values, size_t index) {
     return false;
   } 
 
-  return values[index].isDouble;
+  return uim.vibe.datatypes.jsons.json.types.double_.isDouble(values[index]);
 }
