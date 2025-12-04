@@ -13,32 +13,32 @@ mixin(Version!("test_uim_vibe"));
 
 // #region is
 // #region isInteger(Json)
-bool allInteger(Json json, bool strict = true) {
+bool allInteger(Json json) {
   if (json.isObject) {
-    return allInteger(json.to!(Json[string]), strict);
+    return allInteger(json.to!(Json[string]));
   }
   if (json.isArray) {
-    return allInteger(json.to!(Json[]), strict);
+    return allInteger(json.to!(Json[]));
   }
-  return json.isInteger(strict);
+  return json.isInteger;
 }
 
-bool allInteger(Json json, string[][] paths, bool strict = true) {
-  return paths.all!(path => json.isInteger(path, strict));
+bool allInteger(Json json, string[][] paths) {
+  return paths.all!(path => json.isInteger(path));
 }
 
-bool allInteger(Json json, string[] keys, bool strict = true) {
-  return keys.all!(key => json.isInteger(key, strict));
+bool allInteger(Json json, string[] keys) {
+  return keys.all!(key => json.isInteger(key));
 }
 
-bool anyInteger(Json json, bool strict = true) {
+bool anyInteger(Json json) {
   if (json.isObject) {
-    return anyInteger(json.to!(Json[string]), strict);
+    return anyInteger(json.to!(Json[string]));
   }
   if (json.isArray) {
-    return anyInteger(json.to!(Json[]), strict);
+    return anyInteger(json.to!(Json[]));
   }
-  return json.isInteger(strict);
+  return json.isInteger;
 }
 
 

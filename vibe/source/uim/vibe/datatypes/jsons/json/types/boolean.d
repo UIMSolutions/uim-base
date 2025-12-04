@@ -352,6 +352,9 @@ bool isBoolean(Json json, string[] path) {
 }
 // #endregion noValue
 // #endregion is
+
+// #region get
+// #endregion get
 // #endregion path
 
 // #region key
@@ -614,9 +617,13 @@ unittest {
 }
 // #endregion noValue
 // #endregion is
+
+// #region get
+// #endregion get
 // #endregion key
 
 // #region scalar
+// #region is
 // #region value
 bool isBoolean(Json json, bool value) {
   return json.isBoolean && json.getBoolean == value ;
@@ -624,8 +631,27 @@ bool isBoolean(Json json, bool value) {
 // #region noValue
 
 // #region value
+bool isBoolean(Json json, size_t index) {
+  return json.isArray && json[index].isBoolean;
+}
+
 bool isBoolean(Json json) {
   return (json.type == Json.Type.bool_);
 }
 // #endregion value
+// #endregion is
+
+// #region get
+bool getBoolean(Json json, size_t index, bool defaultValue = false) {
+  return json.isBoolean(index) ? json[index].get!(bool) : defaultValue;
+}
+
+bool getBoolean(Json json, string key, bool defaultValue = false) {
+  return json.isBoolean(key) ? json[key].get!(bool) : defaultValue;
+}
+
+bool getBoolean(Json json, bool defaultValue = false) {
+  return json.isBoolean ? json.get!(bool) : defaultValue;
+}
+// #endregion get
 // #endregion scalar
