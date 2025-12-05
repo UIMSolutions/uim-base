@@ -14,13 +14,13 @@ mixin(Version!("test_uim_vibe"));
 // #region path
 // #region all
 // #region value
-bool allString(Json[string] map, string[][] paths, int value) {
+bool isAllString(Json[string] map, string[][] paths, int value) {
   return paths.all!(p => map.isString(p, value));
 }
 // #endregion value
 
 // #region noValue
-bool allString(Json[string] map, string[][] paths) {
+bool isAllString(Json[string] map, string[][] paths) {
   return paths.all!(p => map.isString(p));
 }
 // #endregion noValue
@@ -67,13 +67,13 @@ bool isString(Json[string] map, string[] path) {
 // #region key
 // #region all
 // #region value
-bool allString(Json[string] map, string[] keys, int value) {
+bool isAllString(Json[string] map, string[] keys, int value) {
   return keys.all!(key => map.isString(key, value));
 }
 // #endregion value
 
 // #region noValue
-bool allString(Json[string] map, string[] keys) {
+bool isAllString(Json[string] map, string[] keys) {
   return keys.all!(key => map.isString(key));
 }
 // #endregion noValue
@@ -114,13 +114,13 @@ bool isString(Json[string] map, string key) {
 
 // #region all
 // #region value
-bool allString(Json[string] map, int value) {
+bool isAllString(Json[string] map, int value) {
   return map.byValue.all!(v => v.isString(value));
 }
 // #endregion value
 
 // #region noValue
-bool allString(Json[string] map) {
+bool isAllString(Json[string] map) {
   return map.byValue.all!(v => v.isString);
 }
 // #endregion noValue

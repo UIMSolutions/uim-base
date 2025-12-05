@@ -14,13 +14,13 @@ mixin(Version!("test_uim_vibe"));
 // #region path
 // #region all
 // #region value
-bool allInteger(Json[string] map, string[][] paths, int value) {
+bool isAllInteger(Json[string] map, string[][] paths, int value) {
   return paths.all!(p => map.isInteger(p, value));
 }
 // #endregion value
 
 // #region noValue
-bool allInteger(Json[string] map, string[][] paths) {
+bool isAllInteger(Json[string] map, string[][] paths) {
   return paths.all!(p => map.isInteger(p));
 }
 // #endregion noValue
@@ -28,13 +28,13 @@ bool allInteger(Json[string] map, string[][] paths) {
 
 // #region any
 // #region value
-bool anyInteger(Json[string] map, string[][] paths, int value) {
+bool isAnyInteger(Json[string] map, string[][] paths, int value) {
   return paths.any!(p => map.isInteger(p, value));
 }
 // #endregion value
 
 // #region noValue
-bool anyInteger(Json[string] map, string[][] paths) {
+bool isAnyInteger(Json[string] map, string[][] paths) {
   return paths.any!(p => map.isInteger(p));
 }
 // #endregion noValue
@@ -67,13 +67,13 @@ bool isInteger(Json[string] map, string[] path) {
 // #region key
 // #region all
 // #region value
-bool allInteger(Json[string] map, string[] keys, int value) {
+bool isAllInteger(Json[string] map, string[] keys, int value) {
   return keys.all!(key => map.isInteger(key, value));
 }
 // #endregion value
 
 // #region noValue
-bool allInteger(Json[string] map, string[] keys) {
+bool isAllInteger(Json[string] map, string[] keys) {
   return keys.all!(key => map.isInteger(key));
 }
 // #endregion noValue
@@ -81,13 +81,13 @@ bool allInteger(Json[string] map, string[] keys) {
 
 // #region any
 // #region value
-bool anyInteger(Json[string] map, string[] keys, int value) {
+bool isAnyInteger(Json[string] map, string[] keys, int value) {
   return keys.any!(key => map.isInteger(key, value));
 }
 // #endregion value
 
 // #region noValue
-bool anyInteger(Json[string] map, string[] keys) {
+bool isAnyInteger(Json[string] map, string[] keys) {
   return keys.any!(key => map.isInteger(key));
 }
 // #endregion noValue
@@ -114,13 +114,13 @@ bool isInteger(Json[string] map, string key) {
 
 // #region all
 // #region value
-bool allInteger(Json[string] map, int value) {
+bool isAllInteger(Json[string] map, int value) {
   return map.byValue.all!(v => v.isInteger(value));
 }
 // #endregion value
 
 // #region noValue
-bool allInteger(Json[string] map) {
+bool isAllInteger(Json[string] map) {
   return map.byValue.all!(v => v.isInteger);
 }
 // #endregion noValue
@@ -128,13 +128,13 @@ bool allInteger(Json[string] map) {
 
 // #region any
 // #region value
-bool anyInteger(Json[string] map, int value) {
+bool isAnyInteger(Json[string] map, int value) {
   return map.byValue.any!(v => v.isInteger(value));
 }
 // #endregion value
 
 // #region noValue
-bool anyInteger(Json[string] map) {
+bool isAnyInteger(Json[string] map) {
   return map.byValue.any!(v => v.isInteger);
 }
 // #endregion noValue

@@ -11,30 +11,30 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-bool allArray(Json json) {
+bool isAllArray(Json json) {
   if (uim.vibe.datatypes.jsons.json.types.array_.isArray(json)) {
-    return json.toArray.allArray;
+    return json.toArray.isAllArray;
   }
   if (json.isObject) {
-    return json.toMap.allArray;
+    return json.toMap.isAllArray;
   }
   return false;
 }
 
-bool allArray(Json[] values) {
+bool isAllArray(Json[] values) {
   return values.all!(value => uim.vibe.datatypes.jsons.json.types.array_.isArray(value));
 }
 
-bool allArray(Json[string] map) {
-  return map.byValue.array.allArray;
+bool isAllArray(Json[string] map) {
+  return map.byValue.array.isAllArray;
 }
 
-bool anyArray(Json json) {
+bool isAnyArray(Json json) {
   if (uim.vibe.datatypes.jsons.json.types.array_.isArray(json)) {
-    return json.toArray.anyArray;
+    return json.toArray.isAnyArray;
   }
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.maps.types.array_.anyArray(json.toMap);
+    return uim.vibe.datatypes.jsons.maps.types.array_.isAnyArray(json.toMap);
   }
   return false;
 }
@@ -58,16 +58,16 @@ bool isArray(Json[] values, size_t index) {
   * Examples:
   * ```d
   * Json[] array1 = [Json(1), Json(2), Json(3)];
-  * assert(!array1.anyArray); // false
+  * assert(!array1.isAnyArray); // false
   *
   * Json[] array2 = [Json(1), Json(true), Json(3)];
-  * assert(array2.anyArray); // true
+  * assert(array2.isAnyArray); // true
   *
   * Json[] arr3 = [Json("a"), Json("b"), Json(false)];
-  * assert(arr3.anyArray); // true
+  * assert(arr3.isAnyArray); // true
   * ```
   */
-bool anyArray(Json[] values) {
+bool isAnyArray(Json[] values) {
   return values.any!(json => uim.vibe.datatypes.jsons.json.types.array_.isArray(json));
 }
 

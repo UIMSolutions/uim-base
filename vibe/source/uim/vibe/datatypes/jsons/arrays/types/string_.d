@@ -13,13 +13,13 @@ mixin(Version!("test_uim_vibe"));
 
 // #region all
 // #region noIndex
-bool allString(Json[] values) {
+bool isAllString(Json[] values) {
   return values.all!(value => uim.vibe.datatypes.jsons.json.types.string_.isString(value));
 }
 // #region noIndex
 
 // #region index
-bool allString(Json[] values, size_t[] indices) {
+bool isAllString(Json[] values, size_t[] indices) {
   return indices.all!(index => values.isString(index));
 }
 // #endregion index

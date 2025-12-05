@@ -11,19 +11,19 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-bool allInteger(Json[] values) {
+bool isAllInteger(Json[] values) {
   return values.all!(value => uim.vibe.datatypes.jsons.json.types.integer.isInteger(value));
 }
 
-bool allInteger(Json[] values, size_t[] indices) {
+bool isAllInteger(Json[] values, size_t[] indices) {
   return indices.all!(index => values.isInteger(index));
 }
 
-bool anyInteger(Json[] values) {
+bool isAnyInteger(Json[] values) {
   return values.any!(value => uim.vibe.datatypes.jsons.json.types.integer.isInteger(value));
 }
 
-bool anyInteger(Json[] values, size_t[] indices) {
+bool isAnyInteger(Json[] values, size_t[] indices) {
   return indices.any!(index => values.isInteger(index));
 }
 

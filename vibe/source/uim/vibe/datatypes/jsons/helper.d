@@ -7,34 +7,34 @@ mixin(Version!("test_uim_vibe"));
 @safe:
 
 // #region integer
-bool allInteger(Json json) {
+bool isAllInteger(Json json) {
   if (json.isObject) {
-    return allInteger(json.to!(Json[string]));
+    return isAllInteger(json.to!(Json[string]));
   }
   if (json.isArray) {
-    return allInteger(json.to!(Json[]));
+    return isAllInteger(json.to!(Json[]));
   }
   return json.isInteger;
 }
 
-bool anyInteger(Json json) {
+bool isAnyInteger(Json json) {
   if (json.isObject) {
-    return anyInteger(json.to!(Json[string]));
+    return isAnyInteger(json.to!(Json[string]));
   }
   if (json.isArray) {
-    return anyInteger(json.to!(Json[]));
+    return isAnyInteger(json.to!(Json[]));
   }
   return json.isInteger;
 }
 // #endregion integer
 
 // #region string
-bool allString(Json json) {
+bool isAllString(Json json) {
   if (json.isObject) {
-    return allString(json.to!(Json[string]));
+    return isAllString(json.to!(Json[string]));
   }
   if (json.isArray) {
-    return allString(json.to!(Json[]));
+    return isAllString(json.to!(Json[]));
   }
   return json.isString;
 }
