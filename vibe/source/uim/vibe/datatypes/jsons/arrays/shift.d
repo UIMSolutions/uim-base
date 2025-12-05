@@ -8,6 +8,7 @@ module uim.vibe.datatypes.jsons.arrays.shift;
 import uim.phobos;
 
 mixin(Version!("test_uim_vibe"));
+
 @safe:
 
 /** 

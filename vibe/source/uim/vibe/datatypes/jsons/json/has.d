@@ -7,6 +7,31 @@ mixin(Version!("test_uim_vibe"));
 @safe:
 
 // #region has
+// #region value
+bool hasAllValue(T)(Json json, T[] values) {
+  return values.all!(value => json.hasValue(value));
+}
+
+bool hasAnyValue(T)(Json json, T[] values) {
+  return values.any!(value => json.hasValue(value));
+}
+
+bool hasValue(T)(Json json, T value) {
+  if (json = Json(null)) {
+    return false;
+  }
+
+  if (json.isArray) {
+    return json.get!(Json[]).any!(v => hasValue(v, value));
+  } else if (json.isObject) {
+    return json.get!(Json[string]).any!(v => hasValue(v, value));
+  }
+
+  return json == value.toJson;
+}
+// #endregion value
+
+// #region path
 /** 
   * Checks if the given JSON value has the specified path.
   *
@@ -28,7 +53,9 @@ bool hasPath(Json json, string[] path) {
 
   return path.length > 1 && json[path[0]].hasPath(path[1 .. $]);
 }
+// #endregion path
 
+// #endregion key
 /** 
   * Checks if the given JSON value has the specified key.
   *
@@ -42,17 +69,7 @@ bool hasPath(Json json, string[] path) {
 bool hasKey(Json json, string key) {
   return json.isObject && key in json;
 }
-// #endregion has
+// #endregion key
 
-// #region has Value
-bool hasAllValue(T)(Json json, T[] values) {
-  return values.all!(value => json.hasValue(value));
-}
 
-bool hasAnyValue(T)(Json json, T[] values) {
-  return values.any!(value => json.hasValue(value));
-}
 
-bool hasValue(T)(Json json, T value) {
-  return json.hasValue(value.toJson);
-}

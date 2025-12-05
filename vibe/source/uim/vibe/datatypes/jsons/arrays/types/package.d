@@ -6,12 +6,12 @@
 module uim.vibe.datatypes.jsons.arrays.types;
 
 public {
-  import uim.vibe.datatypes.jsons.arrays.types.array_;
   import uim.vibe.datatypes.jsons.arrays.types.booleans;
-  import uim.vibe.datatypes.jsons.arrays.types.double_;
-  import uim.vibe.datatypes.jsons.arrays.types.integer;
+  import uim.vibe.datatypes.jsons.arrays.types.doubles;
+  import uim.vibe.datatypes.jsons.arrays.types.integers;
+  import uim.vibe.datatypes.jsons.arrays.types.strings;
+  import uim.vibe.datatypes.jsons.arrays.types.array_;
   import uim.vibe.datatypes.jsons.arrays.types.null_;
   import uim.vibe.datatypes.jsons.arrays.types.object_;
-  import uim.vibe.datatypes.jsons.arrays.types.string_;
   import uim.vibe.datatypes.jsons.arrays.types.undefined;
 }

@@ -11,7 +11,7 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-Json[] removeAll(Json[] list) {
+Json[] clear(Json[] list) {
   list = [];
   return list;
 }
