@@ -14,13 +14,13 @@ mixin(Version!("test_uim_vibe"));
 // #region path
 // #region all
 // #region value
-bool allBoolean(Json[string] map, string[][] paths, int value) {
+bool isAllBoolean(Json[string] map, string[][] paths, int value) {
   return paths.all!(p => map.isBoolean(p, value));
 }
 // #endregion value
 
 // #region noValue
-bool allBoolean(Json[string] map, string[][] paths) {
+bool isAllBoolean(Json[string] map, string[][] paths) {
   return paths.all!(p => map.isBoolean(p));
 }
 // #endregion noValue
@@ -28,13 +28,13 @@ bool allBoolean(Json[string] map, string[][] paths) {
 
 // #region any
 // #region value
-bool anyBoolean(Json[string] map, string[][] paths, int value) {
+bool isAnyBoolean(Json[string] map, string[][] paths, int value) {
   return paths.any!(p => map.isBoolean(p, value));
 }
 // #endregion value
 
 // #region noValue
-bool anyBoolean(Json[string] map, string[][] paths) {
+bool isAnyBoolean(Json[string] map, string[][] paths) {
   return paths.any!(p => map.isBoolean(p));
 }
 // #endregion noValue
@@ -67,13 +67,13 @@ bool isBoolean(Json[string] map, string[] path) {
 // #region key
 // #region all
 // #region value
-bool allBoolean(Json[string] map, string[] keys, int value) {
+bool isAllBoolean(Json[string] map, string[] keys, int value) {
   return keys.all!(key => map.isBoolean(key, value));
 }
 // #endregion value
 
 // #region noValue
-bool allBoolean(Json[string] map, string[] keys) {
+bool isAllBoolean(Json[string] map, string[] keys) {
   return keys.all!(key => map.isBoolean(key));
 }
 // #endregion noValue
@@ -81,13 +81,13 @@ bool allBoolean(Json[string] map, string[] keys) {
 
 // #region any
 // #region value
-bool anyBoolean(Json[string] map, string[] keys, int value) {
+bool isAnyBoolean(Json[string] map, string[] keys, int value) {
   return keys.any!(key => map.isBoolean(key, value));
 }
 // #endregion value
 
 // #region noValue
-bool anyBoolean(Json[string] map, string[] keys) {
+bool isAnyBoolean(Json[string] map, string[] keys) {
   return keys.any!(key => map.isBoolean(key));
 }
 // #endregion noValue
@@ -114,13 +114,13 @@ bool isBoolean(Json[string] map, string key) {
 
 // #region all
 // #region value
-bool allBoolean(Json[string] map, int value) {
+bool isAllBoolean(Json[string] map, int value) {
   return map.byValue.all!(v => v.isBoolean(value));
 }
 // #endregion value
 
 // #region noValue
-bool allBoolean(Json[string] map) {
+bool isAllBoolean(Json[string] map) {
   return map.byValue.all!(v => v.isBoolean);
 }
 // #endregion noValue
@@ -128,13 +128,13 @@ bool allBoolean(Json[string] map) {
 
 // #region any
 // #region value
-bool anyBoolean(Json[string] map, int value) {
+bool isAnyBoolean(Json[string] map, int value) {
   return map.byValue.any!(v => v.isBoolean(value));
 }
 // #endregion value
 
 // #region noValue
-bool anyBoolean(Json[string] map) {
+bool isAnyBoolean(Json[string] map) {
   return map.byValue.any!(v => v.isBoolean);
 }
 // #endregion noValue

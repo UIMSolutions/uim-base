@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.jsons.arrays.types.boolean;
+module uim.vibe.datatypes.jsons.arrays.types.booleans.is_;
 
 import uim.vibe;
 
@@ -13,13 +13,13 @@ mixin(Version!("test_uim_vibe"));
 
 // #region all
 // #region noIndex
-bool allBoolean(Json[] values) {
-  return values.all!(value => uim.vibe.datatypes.jsons.json.types.boolean.isBoolean(value));
+bool isAllBoolean(Json[] values) {
+  return values.all!(value => value.isBoolean);
 }
 // #endregion noIndex
 
 // #region index  
-bool allBoolean(Json[] values, size_t[] indices) {
+bool isAllBoolean(Json[] values, size_t[] indices) {
   return indices.all!(index => values.isBoolean(index));
 }
 // #endregion index
@@ -27,13 +27,13 @@ bool allBoolean(Json[] values, size_t[] indices) {
 
 // #region any
 // #region noIndex
-bool anyBoolean(Json[] values) {
-  return values.any!(value => uim.vibe.datatypes.jsons.json.types.boolean.isBoolean(value));
+bool isAnyBoolean(Json[] values) {
+  return values.any!(value => value.isBoolean);
 }
 // #endregion noIndex
 
 // #region index
-bool anyBoolean(Json[] values, size_t[] indices) {
+bool isAnyBoolean(Json[] values, size_t[] indices) {
   return indices.any!(index => values.isBoolean(index));
 }
 // #endregion index
@@ -45,6 +45,6 @@ bool isBoolean(Json[] values, size_t index) {
     return false;
   } 
 
-  return uim.vibe.datatypes.jsons.json.types.boolean.isBoolean(values[index]);
+  return values[index].isBoolean;
 }
 // #endregion is
