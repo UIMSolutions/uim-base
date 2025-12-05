@@ -32,3 +32,6 @@ string typeName(Json json) {
   }
   return "unknown";
 }
+
+// #region integer
+// #endregion integer

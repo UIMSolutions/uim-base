@@ -60,3 +60,18 @@ bool isArray(Json json) {
   return (json.type == Json.Type.array);
 }
 // #endregion scalar
+
+// #region get
+Json[] getArray(Json json, size_t index, Json[] defaultValue = null) {
+  return json.isArray(index) ? json[index].get!(Json[]) : defaultValue;
+}
+
+Json[] getArray(Json json, string key, Json[] defaultValue = null) {
+  return json.isArray(key) ? json[key].get!(Json) : defaultValue;
+}
+
+Json[] getArray(Json json, Json[] defaultValue = null) {
+  return json.isArray ? json.get!(Json[]) : defaultValue;
+}
+// #endregion get
+// #endregion scalar

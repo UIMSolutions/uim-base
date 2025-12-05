@@ -28,13 +28,13 @@ bool allString(Json[string] map, string[][] paths) {
 
 // #region any
 // #region value
-bool anyString(Json[string] map, string[][] paths, int value) {
+bool isAnyString(Json[string] map, string[][] paths, int value) {
   return paths.any!(p => map.isString(p, value));
 }
 // #endregion value
 
 // #region noValue
-bool anyString(Json[string] map, string[][] paths) {
+bool isAnyString(Json[string] map, string[][] paths) {
   return paths.any!(p => map.isString(p));
 }
 // #endregion noValue
@@ -81,13 +81,13 @@ bool allString(Json[string] map, string[] keys) {
 
 // #region any
 // #region value
-bool anyString(Json[string] map, string[] keys, int value) {
+bool isAnyString(Json[string] map, string[] keys, int value) {
   return keys.any!(key => map.isString(key, value));
 }
 // #endregion value
 
 // #region noValue
-bool anyString(Json[string] map, string[] keys) {
+bool isAnyString(Json[string] map, string[] keys) {
   return keys.any!(key => map.isString(key));
 }
 // #endregion noValue
@@ -128,13 +128,13 @@ bool allString(Json[string] map) {
 
 // #region any
 // #region value
-bool anyString(Json[string] map, int value) {
+bool isAnyString(Json[string] map, int value) {
   return map.byValue.any!(v => v.isString(value));
 }
 // #endregion value
 
 // #region noValue
-bool anyString(Json[string] map) {
+bool isAnyString(Json[string] map) {
   return map.byValue.any!(v => v.isString);
 }
 // #endregion noValue

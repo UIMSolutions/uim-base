@@ -64,3 +64,18 @@ bool isObject(Json json) {
   return (json.type == Json.Type.object);
 }
 // #endregion scalar
+
+// #region get
+Json[string] getObject(Json json, size_t index, Json[string] defaultValue = null) {
+  return json.isObject(index) ? json[index].get!(Json[string]) : defaultValue;
+}
+
+Json[string] getObject(Json json, string key, Json[string] defaultValue = null) {
+  return json.isObject(key) ? json[key].get!(Json[string]) : defaultValue;
+}
+
+Json[string] getObject(Json json, Json[string] defaultValue = null) {
+  return json.isObject ? json.get!(Json[string]) : defaultValue;
+}
+// #endregion get
+// #endregion scalar

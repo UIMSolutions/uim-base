@@ -27,13 +27,13 @@ bool allString(Json[] values, size_t[] indices) {
 
 // #region any
 // #region noIndex
-bool anyString(Json[] values) {
+bool isAnyString(Json[] values) {
   return values.any!(value => uim.vibe.datatypes.jsons.json.types.string_.isString(value));
 }
 // #endregion noIndex
 
 // #region index
-bool anyString(Json[] values, size_t[] indices) {
+bool isAnyString(Json[] values, size_t[] indices) {
   return indices.any!(index => values.isString(index));
 }
 // #endregion index

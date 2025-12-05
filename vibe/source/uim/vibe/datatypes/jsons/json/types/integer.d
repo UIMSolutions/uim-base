@@ -204,4 +204,18 @@ bool isInteger(Json json) {
   return (value.type == Json.Type.int_);
 }
 // #endregion noValue
+
+// #region get
+bool getInteger(Json json, size_t index, int defaultValue = 0) {
+  return json.isInteger(index) ? json[index].get!(int) : defaultValue;
+}
+
+bool getInteger(Json json, string key, int defaultValue = 0) {
+  return json.isInteger(key) ? json[key].get!(int) : defaultValue;
+}
+
+bool getInteger(Json json, int defaultValue = 0) {
+  return json.isInteger ? json.get!(int) : defaultValue;
+}
+// #endregion get
 // #endregion scalar
