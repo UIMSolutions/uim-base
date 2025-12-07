@@ -53,6 +53,9 @@ Determines if the specified array value is present in the given array of Jsons.
     true if the specified array value is found in the array, false otherwise.
 */
 bool hasArray(Json[] jsons, Json value) {
-  return jsons.any!(json => json.isArray && json.getArray == value);
+  if (!value.isArray) {
+    return false;
+  }
+  return jsons.any!(json => json.isArray && json == value);
 }
 // #endregion is

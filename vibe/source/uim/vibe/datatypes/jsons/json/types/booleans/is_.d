@@ -636,18 +636,4 @@ bool isBoolean(Json json) {
 }
 // #endregion value
 // #endregion is
-
-// #region get
-bool getBoolean(Json json, size_t index, bool defaultValue = false) {
-  return json.isBoolean(index) ? json[index].get!(bool) : defaultValue;
-}
-
-bool getBoolean(Json json, string key, bool defaultValue = false) {
-  return json.isBoolean(key) ? json[key].get!(bool) : defaultValue;
-}
-
-bool getBoolean(Json json, bool defaultValue = false) {
-  return json.isBoolean ? json.get!(bool) : defaultValue;
-}
-// #endregion get
 // #endregion scalar

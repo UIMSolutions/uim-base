@@ -16,7 +16,7 @@ int getInteger(Json json, size_t index, int defaultValue = 0) {
   return json.isInteger(index) ? json[index].toInteger : defaultValue;
 }
 
-int getInteger(Json json, integer key, int defaultValue = 0) {
+int getInteger(Json json, string key, int defaultValue = 0) {
   return json.isInteger(key) ? json[key].toInteger : defaultValue;
 }
 

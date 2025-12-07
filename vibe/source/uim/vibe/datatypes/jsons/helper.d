@@ -97,7 +97,7 @@ bool isAnyString(Json json) {
 // #region object
 bool isAllObject(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.objects.isAllObject(json.getObject);
+    return uim.vibe.datatypes.jsons.objects.is_.isAllObject(json.getObject);
   }
   if (json.isArray) {
     return uim.vibe.datatypes.jsons.arrays.types.objects.isAllObject(json.getArray);
@@ -107,7 +107,7 @@ bool isAllObject(Json json) {
 
 bool isAnyObject(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.objects.isAnyObject(json.getObject);
+    return uim.vibe.datatypes.jsons.objects.is_.isAnyObject(json.getObject);
   }
   if (json.isArray) {
     return uim.vibe.datatypes.jsons.arrays.types.objects.isAnyObject(json.getArray);

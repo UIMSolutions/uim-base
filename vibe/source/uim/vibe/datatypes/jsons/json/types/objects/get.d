@@ -11,7 +11,7 @@ Json[string] getObject(Json json, size_t index, Json[string] defaultValue = null
   return json.isObject(index) ? json[index].toObject : defaultValue;
 }
 
-Json[string] getObject(Json json, object key, Json[string] defaultValue = null) {
+Json[string] getObject(Json json, string key, Json[string] defaultValue = null) {
   return json.isObject(key) ? json[key].toObject : defaultValue;
 }
 
