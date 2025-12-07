@@ -1,4 +1,4 @@
-module uim.vibe.datatypes.jsons.json.doubles.is_;
+module uim.vibe.datatypes.jsons.json.types.doubles.is_;
 
 import uim.vibe;
 

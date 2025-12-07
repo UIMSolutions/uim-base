@@ -1,4 +1,4 @@
-module uim.vibe.datatypes.jsons.json.arrays.is_;
+module uim.vibe.datatypes.jsons.json.types.arrays.is_;
 
 import uim.vibe;
 
