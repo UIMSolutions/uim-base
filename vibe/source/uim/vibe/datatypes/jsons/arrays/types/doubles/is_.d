@@ -1,7 +1,7 @@
 module uim.vibe.datatypes.jsons.arrays.types.doubles.is_;
 
 import uim.vibe;
-import uim.vibe.datatypes.jsons.json.types.double_;
+import uim.vibe.datatypes.jsons.json.types.doubles;
 
 mixin(Version!("test_uim_vibe"));
 
@@ -10,7 +10,7 @@ mixin(Version!("test_uim_vibe"));
 // #region all
 // #region noIndex
 bool isAllDouble(Json[] values) {
-  return values.all!(value => uim.vibe.datatypes.jsons.json.types.double_.isDouble(value));
+  return values.all!(value => uim.vibe.datatypes.jsons.json.types.doubles.isDouble(value));
 }
 // #endregion noIndex
 
@@ -24,7 +24,7 @@ bool isAllDouble(Json[] values, size_t[] indices) {
 // #region any
 // #region noIndex
 bool isAnyDouble(Json[] values) {
-  return values.any!(value => uim.vibe.datatypes.jsons.json.types.double_.isDouble(value));
+  return values.any!(value => uim.vibe.datatypes.jsons.json.types.doubles.isDouble(value));
 }
 // #endregion noIndex
 
@@ -41,6 +41,6 @@ bool isDouble(Json[] values, size_t index) {
     return false;
   } 
 
-  return uim.vibe.datatypes.jsons.json.types.double_.isDouble(values[index]);
+  return uim.vibe.datatypes.jsons.json.types.doubles.isDouble(values[index]);
 }
 // #endregion is

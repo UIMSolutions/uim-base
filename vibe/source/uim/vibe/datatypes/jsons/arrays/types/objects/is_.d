@@ -8,7 +8,7 @@ mixin(Version!("test_uim_vibe"));
 
 
 bool isAllObject(Json[] values) {
-  return values.all!(value => uim.vibe.datatypes.jsons.json.types.object_.isObject(value));
+  return values.all!(value => uim.vibe.datatypes.jsons.json.types.objects.isObject(value));
 }
 
 bool isAllObject(Json[] values, size_t[] indices) {
@@ -16,7 +16,7 @@ bool isAllObject(Json[] values, size_t[] indices) {
 }
 
 bool isAnyObject(Json[] values) {
-  return values.any!(value => uim.vibe.datatypes.jsons.json.types.object_.isObject(value));
+  return values.any!(value => uim.vibe.datatypes.jsons.json.types.objects.isObject(value));
 }
 
 bool isAnyObject(Json[] values, size_t[] indices) {
@@ -28,5 +28,5 @@ bool isObject(Json[] values, size_t index) {
     return false;
   } 
 
-  return uim.vibe.datatypes.jsons.json.types.object_.isObject(values[index]);
+  return uim.vibe.datatypes.jsons.json.types.objects.isObject(values[index]);
 }

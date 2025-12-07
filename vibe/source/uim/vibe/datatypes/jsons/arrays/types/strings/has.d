@@ -1,6 +1,5 @@
 module uim.vibe.datatypes.jsons.arrays.types.strings.has;
 
-
 import uim.vibe;
 
 mixin(Version!("test_uim_vibe"));
@@ -54,6 +53,6 @@ Determines if the specified string value is present in the given array of Jsons.
     true if the specified string value is found in the array, false otherwise.
 */
 bool hasString(Json[] jsons, string value) {
-  return jsons.any!(json => json.isString && json.getString == value);
+  return jsons.any!(json => uim.vibe.datatypes.jsons.arrays.types.strings.is_.isSString(json.isString) && json.getString == value);
 }
 // #endregion is
