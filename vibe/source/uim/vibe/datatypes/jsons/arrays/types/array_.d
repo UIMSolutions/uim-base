@@ -34,7 +34,7 @@ bool isAnyArray(Json json) {
     return json.toArray.isAnyArray;
   }
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.maps.types.array_.isAnyArray(json.toMap);
+    return uim.vibe.datatypes.jsons.objects.types.array_.isAnyArray(json.toMap);
   }
   return false;
 }

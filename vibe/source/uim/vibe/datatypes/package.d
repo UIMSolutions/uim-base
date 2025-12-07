@@ -9,4 +9,5 @@ public {
   import uim.vibe.datatypes.bson;
   import uim.vibe.datatypes.jsons;
   import uim.vibe.datatypes.uuids;
+  import uim.vibe.datatypes.helpers;
 }
