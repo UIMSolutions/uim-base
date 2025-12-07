@@ -4,45 +4,44 @@ import uim.vibe;
 
 mixin(Version!("test_uim_vibe"));
 
-@safe:
 // #region path
 // #region all
 // #region value
-bool isAllInteger(Json[string] map, string[][] paths, int value) {
-  return paths.all!(p => map.isInteger(p, value));
+bool isAllString(Json[string] map, string[][] paths, int value) {
+  return paths.all!(p => map.isString(p, value));
 }
 // #endregion value
 
 // #region noValue
-bool isAllInteger(Json[string] map, string[][] paths) {
-  return paths.all!(p => map.isInteger(p));
+bool isAllString(Json[string] map, string[][] paths) {
+  return paths.all!(p => map.isString(p));
 }
 // #endregion noValue
 // #endregion all
 
 // #region any
 // #region value
-bool isAnyInteger(Json[string] map, string[][] paths, int value) {
-  return paths.any!(p => map.isInteger(p, value));
+bool isAnyString(Json[string] map, string[][] paths, int value) {
+  return paths.any!(p => map.isString(p, value));
 }
 // #endregion value
 
 // #region noValue
-bool isAnyInteger(Json[string] map, string[][] paths) {
-  return paths.any!(p => map.isInteger(p));
+bool isAnyString(Json[string] map, string[][] paths) {
+  return paths.any!(p => map.isString(p));
 }
 // #endregion noValue
 // #endregion any
 
 // #region is
 // #region value
-bool isInteger(Json[string] map, string[] path, int value) {
-  return map.isInteger(path) && map.getInteger(path) == value;
+bool isString(Json[string] map, string[] path, int value) {
+  return map.isString(path) && map.getString(path) == value;
 }
 // #endregion value
 
 // #region noValue
-bool isInteger(Json[string] map, string[] path) {
+bool isString(Json[string] map, string[] path) {
   if (map.length == 0 || path.length == 0) {
     return false;
   }
@@ -52,7 +51,7 @@ bool isInteger(Json[string] map, string[] path) {
     return false;
   }
 
-  return path.length == 1 ? map.isInteger(root) : map[root].isInteger(path[1 .. $]);
+  return path.length == 1 ? map.isString(root) : map[root].isString(path[1 .. $]);
 }
 // #endregion noValue
 // #endregion is
@@ -61,46 +60,46 @@ bool isInteger(Json[string] map, string[] path) {
 // #region key
 // #region all
 // #region value
-bool isAllInteger(Json[string] map, string[] keys, int value) {
-  return keys.all!(key => map.isInteger(key, value));
+bool isAllString(Json[string] map, string[] keys, int value) {
+  return keys.all!(key => map.isString(key, value));
 }
 // #endregion value
 
 // #region noValue
-bool isAllInteger(Json[string] map, string[] keys) {
-  return keys.all!(key => map.isInteger(key));
+bool isAllString(Json[string] map, string[] keys) {
+  return keys.all!(key => map.isString(key));
 }
 // #endregion noValue
 // #endregion all
 
 // #region any
 // #region value
-bool isAnyInteger(Json[string] map, string[] keys, int value) {
-  return keys.any!(key => map.isInteger(key, value));
+bool isAnyString(Json[string] map, string[] keys, int value) {
+  return keys.any!(key => map.isString(key, value));
 }
 // #endregion value
 
 // #region noValue
-bool isAnyInteger(Json[string] map, string[] keys) {
-  return keys.any!(key => map.isInteger(key));
+bool isAnyString(Json[string] map, string[] keys) {
+  return keys.any!(key => map.isString(key));
 }
 // #endregion noValue
 // #endregion any
 
 // #region is
 // #region value
-bool isInteger(Json[string] map, string key, int value) {
-  return map.isInteger(key) && map.getInteger(key) == value;
+bool isString(Json[string] map, string key, int value) {
+  return map.isString(key) && map.getString(key) == value;
 }
 // #endregion value
 
 // #region noValue
-bool isInteger(Json[string] map, string key) {
+bool isString(Json[string] map, string key) {
   if (map.length == 0 || key.length == 0) {
     return false;
   }
 
-  return key in map && map[key].isInteger;
+  return key in map && map[key].isString;
 }
 // #endregion noValue
 // #endregion is
@@ -108,28 +107,29 @@ bool isInteger(Json[string] map, string key) {
 
 // #region all
 // #region value
-bool isAllInteger(Json[string] map, int value) {
-  return map.byValue.all!(v => v.isInteger(value));
+bool isAllString(Json[string] map, int value) {
+  return map.byValue.all!(v => v.isString(value));
 }
 // #endregion value
 
 // #region noValue
-bool isAllInteger(Json[string] map) {
-  return map.byValue.all!(v => v.isInteger);
+bool isAllString(Json[string] map) {
+  return map.byValue.all!(v => v.isString);
 }
 // #endregion noValue
 // #endregion all
 
 // #region any
 // #region value
-bool isAnyInteger(Json[string] map, int value) {
-  return map.byValue.any!(v => v.isInteger(value));
+bool isAnyString(Json[string] map, int value) {
+  return map.byValue.any!(v => v.isString(value));
 }
 // #endregion value
 
 // #region noValue
-bool isAnyInteger(Json[string] map) {
-  return map.byValue.any!(v => v.isInteger);
+bool isAnyString(Json[string] map) {
+  return map.byValue.any!(v => v.isString);
 }
 // #endregion noValue
 // #endregion any
+

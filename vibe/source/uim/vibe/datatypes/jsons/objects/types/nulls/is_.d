@@ -1,17 +1,10 @@
-/****************************************************************************************************************
-* Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur) 
-* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
-* Authors: Ozan Nurettin Süel (aka UIManufaktur)
-*****************************************************************************************************************/
-module uim.vibe.datatypes.jsons.objects.types.null_;
+module uim.vibe.datatypes.jsons.objects.types.nulls.is_;
 
 import uim.vibe;
 
 mixin(Version!("test_uim_vibe"));
 
-@safe:
-
-// #region path
+@safe:// #region path
 // #region all
 bool isAllNull(Json[string] map, string[][] paths) {
   return paths.all!(p => map.isNull(p));
@@ -75,4 +68,3 @@ bool isAnyNull(Json[string] map) {
   return map.byValue.any!(v => v.isNull);
 }
 // #endregion any
-
