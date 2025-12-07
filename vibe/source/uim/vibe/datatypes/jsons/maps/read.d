@@ -1,7 +1,0 @@
-module uim.vibe.datatypes.jsons.maps.read;
-
-import uim.vibe;
-
-mixin(Version!("test_uim_vibe"));
-
-@safe:

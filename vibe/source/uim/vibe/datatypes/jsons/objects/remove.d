@@ -1,4 +1,4 @@
-module uim.vibe.datatypes.jsons.maps.remove;
+module uim.vibe.datatypes.jsons.objects.remove;
 
 import uim.vibe;
 

@@ -9,20 +9,3 @@ import uim.vibe;
 
 mixin(Version!("test_uim_vibe"));
 @safe:
-
-
-
-
-// #region get
-Json[string] getObject(Json json) {
-  return json.isObject
-    ? json.to!(Json[string])
-    : null;
-}
-// #endregion get
-
-// #region only
-// #endregion only
-
-// #region to
-// #endregion to

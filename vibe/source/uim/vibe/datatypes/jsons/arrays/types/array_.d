@@ -77,9 +77,4 @@ bool hasValue(T : Json)(Json json, T value) {
 }
 // #endregion has
 
-// #region get
-Json[] getArray(Json json) {
-  return uim.vibe.datatypes.jsons.json.types.array_.isArray(json)
-    ? json.get!(Json[]) : null;
-}
-// #endregion get
+

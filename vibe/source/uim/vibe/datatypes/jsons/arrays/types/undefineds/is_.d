@@ -27,5 +27,5 @@ bool isUndefined(Json[] values, size_t index) {
     return false;
   } 
 
-  return values[index].isUndefined;
+  return uim.vibe.datatypes.jsons.json.types.undefined.isUndefined(values[index]);
 }

@@ -9,20 +9,20 @@ mixin(Version!("test_uim_vibe"));
 // #region integer
 bool isAllInteger(Json json) {
   if (json.isObject) {
-    return isAllInteger(json.to!(Json[string]));
+    return isAllInteger(json.getObject);
   }
   if (json.isArray) {
-    return isAllInteger(json.to!(Json[]));
+    return isAllInteger(json.getArray);
   }
   return json.isInteger;
 }
 
 bool isAnyInteger(Json json) {
   if (json.isObject) {
-    return isAnyInteger(json.to!(Json[string]));
+    return isAnyInteger(json.getObject);
   }
   if (json.isArray) {
-    return isAnyInteger(json.to!(Json[]));
+    return isAnyInteger(json.getArray);
   }
   return json.isInteger;
 }
@@ -31,20 +31,20 @@ bool isAnyInteger(Json json) {
 // #region string
 bool isAllString(Json json) {
   if (json.isObject) {
-    return isAllString(json.to!(Json[string]));
+    return isAllString(json.getObject);
   }
   if (json.isArray) {
-    return isAllString(json.to!(Json[]));
+    return isAllString(json.getArray);
   }
   return json.isString;
 }
 
 bool isAnyString(Json json) {
   if (json.isObject) {
-    return isAnyString(json.to!(Json[string]));
+    return isAnyString(json.getObject);
   }
   if (json.isArray) {
-    return isAnyString(json.to!(Json[]));
+    return isAnyString(json.getArray);
   }
   return json.isString;
 }
