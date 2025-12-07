@@ -9,7 +9,7 @@ mixin(Version!("test_uim_vibe"));
 // #region boolean
 bool isAllBoolean(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.boolean.isAllBoolean(json.getObject);
+    return uim.vibe.datatypes.jsons.objects.types.booleans.isAllBoolean(json.getObject);
   }
   if (json.isArray) {
     return uim.vibe.datatypes.jsons.arrays.types.booleans.isAllBoolean(json.getArray);
@@ -19,7 +19,7 @@ bool isAllBoolean(Json json) {
 
 bool isAnyBoolean(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.boolean.isAnyBoolean(json.getObject);
+    return uim.vibe.datatypes.jsons.objects.types.booleans.isAnyBoolean(json.getObject);
   }
   if (json.isArray) {
     return uim.vibe.datatypes.jsons.arrays.types.booleans.isAnyBoolean(json.getArray);
@@ -31,7 +31,7 @@ bool isAnyBoolean(Json json) {
 // #region integer
 bool isAllInteger(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.integer.isAllInteger(json.getObject);
+    return uim.vibe.datatypes.jsons.objects.types.integers.isAllInteger(json.getObject);
   }
   if (json.isArray) {
     return uim.vibe.datatypes.jsons.arrays.types.integers.isAllInteger(json.getArray);
@@ -41,7 +41,7 @@ bool isAllInteger(Json json) {
 
 bool isAnyInteger(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.integer.isAnyInteger(json.getObject);
+    return uim.vibe.datatypes.jsons.objects.types.integers.isAnyInteger(json.getObject);
   }
   if (json.isArray) {
     return uim.vibe.datatypes.jsons.arrays.types.integers.isAnyInteger(json.getArray);
@@ -53,7 +53,7 @@ bool isAnyInteger(Json json) {
 // #region double
 bool isAllDouble(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.double_.isAllDouble(json.getObject);
+    return uim.vibe.datatypes.jsons.objects.types.doubles.isAllDouble(json.getObject);
   }
   if (json.isArray) {
     return uim.vibe.datatypes.jsons.arrays.types.doubles.isAllDouble(json.getArray);
@@ -63,7 +63,7 @@ bool isAllDouble(Json json) {
 
 bool isAnyDouble(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.double_.isAnyDouble(json.getObject);
+    return uim.vibe.datatypes.jsons.objects.types.doubles.isAnyDouble(json.getObject);
   }
   if (json.isArray) {
     return uim.vibe.datatypes.jsons.arrays.types.doubles.isAnyDouble(json.getArray);
@@ -75,7 +75,7 @@ bool isAnyDouble(Json json) {
 // #region string
 bool isAllString(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.string_.isAllString(json.getObject);
+    return uim.vibe.datatypes.jsons.objects.types.strings.isAllString(json.getObject);
   }
   if (json.isArray) {
     return uim.vibe.datatypes.jsons.arrays.types.strings.isAllString(json.getArray);
@@ -85,7 +85,7 @@ bool isAllString(Json json) {
 
 bool isAnyString(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.string_.isAnyString(json.getObject);
+    return uim.vibe.datatypes.jsons.objects.types.strings.isAnyString(json.getObject);
   }
   if (json.isArray) {
     return uim.vibe.datatypes.jsons.arrays.types.strings.isAnyString(json.getArray);
@@ -97,7 +97,7 @@ bool isAnyString(Json json) {
 // #region object
 bool isAllObject(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.object_.isAllObject(json.getObject);
+    return uim.vibe.datatypes.jsons.objects.types.objects.isAllObject(json.getObject);
   }
   if (json.isArray) {
     return uim.vibe.datatypes.jsons.arrays.types.objects.isAllObject(json.getArray);
@@ -107,7 +107,7 @@ bool isAllObject(Json json) {
 
 bool isAnyObject(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.object_.isAnyObject(json.getObject);
+    return uim.vibe.datatypes.jsons.objects.types.objects.isAnyObject(json.getObject);
   }
   if (json.isArray) {
     return uim.vibe.datatypes.jsons.arrays.types.objects.isAnyObject(json.getArray);

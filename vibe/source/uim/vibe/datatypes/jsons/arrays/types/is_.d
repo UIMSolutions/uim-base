@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.jsons.arrays.types.array_;
+module uim.vibe.datatypes.jsons.arrays.types.is_;
 
 import uim.vibe;
 
@@ -12,7 +12,7 @@ mixin(Version!("test_uim_vibe"));
 @safe:
 
 bool isAllArray(Json json) {
-  if (uim.vibe.datatypes.jsons.json.types.array_.isArray(json)) {
+  if (uim.vibe.datatypes.jsons.json.types.arrays.is_.isArray(json)) {
     return json.toArray.isAllArray;
   }
   if (json.isObject) {
@@ -22,7 +22,7 @@ bool isAllArray(Json json) {
 }
 
 bool isAllArray(Json[] values) {
-  return values.all!(value => uim.vibe.datatypes.jsons.json.types.array_.isArray(value));
+  return values.all!(value => uim.vibe.datatypes.jsons.json.types.arrays.is_.isArray(value));
 }
 
 bool isAllArray(Json[string] map) {
@@ -30,11 +30,11 @@ bool isAllArray(Json[string] map) {
 }
 
 bool isAnyArray(Json json) {
-  if (uim.vibe.datatypes.jsons.json.types.array_.isArray(json)) {
+  if (uim.vibe.datatypes.jsons.json.types.arrays.is_.isArray(json)) {
     return json.toArray.isAnyArray;
   }
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.array_.isAnyArray(json.toMap);
+    return uim.vibe.datatypes.jsons.objects.types.arrays.is_.isAnyArray(json.toMap);
   }
   return false;
 }
@@ -44,7 +44,7 @@ bool isArray(Json[] values, size_t index) {
     return false;
   } 
 
-  return uim.vibe.datatypes.jsons.json.types.array_.isArray(values[index]);
+  return uim.vibe.datatypes.jsons.json.types.arrays.is_.isArray(values[index]);
 }
 /** 
   * Checks if any element in the array is of boolean type.
@@ -68,7 +68,7 @@ bool isArray(Json[] values, size_t index) {
   * ```
   */
 bool isAnyArray(Json[] values) {
-  return values.any!(json => uim.vibe.datatypes.jsons.json.types.array_.isArray(json));
+  return values.any!(json => uim.vibe.datatypes.jsons.json.types.arrays.isArray(json));
 }
 
 bool hasValue(T : Json)(Json json, T value) {

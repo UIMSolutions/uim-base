@@ -15,6 +15,5 @@ public { // Packages
 }
 
 public { // Modules
-  import uim.vibe.datatypes.jsons.arrays.types.array_;
-  import uim.vibe.datatypes.jsons.arrays.types.null_;
+  import uim.vibe.datatypes.jsons.arrays.types.is_;
 }
