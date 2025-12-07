@@ -13,13 +13,13 @@ mixin(Version!("test_uim_vibe"));
 
 // #region path
 // #region all
-bool allUndefined(Json json, string[][] paths) {
+bool isAllUndefined(Json json, string[][] paths) {
   return paths.all!(path => json.isUndefined(path));
 }
 // #endregion all
 
 // #region any
-bool anyUndefined(Json json, string[][] paths) {
+bool isAnyUndefined(Json json, string[][] paths) {
   return paths.any!(path => json.isUndefined(path));
 }
 // #endregion any
@@ -42,13 +42,13 @@ bool isUndefined(Json json, string[] path) {
 
 // #region key
 // #region all
-bool allUndefined(Json json, string[] keys) {
+bool isAllUndefined(Json json, string[] keys) {
   return keys.all!(key => json.isUndefined(key));
 }
 // #endregion all
 
 // #region any
-bool anyUndefined(Json json, string[] keys) {
+bool isAnyUndefined(Json json, string[] keys) {
   return keys.any!(key => json.isUndefined(key));
 }
 // #endregion any

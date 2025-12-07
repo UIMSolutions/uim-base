@@ -13,13 +13,13 @@ mixin(Version!("test_uim_vibe"));
 
 // #region path
 // #region all
-bool allObject(Json[string] map, string[][] paths) {
+bool isAllObject(Json[string] map, string[][] paths) {
   return paths.all!(p => map.isObject(p));
 }
 // #endregion all
 
 // #region any
-bool anyObject(Json[string] map, string[][] paths) {
+bool isAnyObject(Json[string] map, string[][] paths) {
   return paths.any!(p => map.isObject(p));
 }
 // #endregion any
@@ -42,13 +42,13 @@ bool isObject(Json[string] map, string[] path) {
 
 // #region key
 // #region all
-bool allObject(Json[string] map, string[] keys) {
+bool isAllObject(Json[string] map, string[] keys) {
   return keys.all!(key => map.isObject(key));
 }
 // #endregion all
 
 // #region any
-bool anyObject(Json[string] map, string[] keys) {
+bool isAnyObject(Json[string] map, string[] keys) {
   return keys.any!(key => map.isObject(key));
 }
 // #endregion any
@@ -65,13 +65,13 @@ bool isObject(Json[string] map, string key) {
 // #endregion key
 
 // #region all
-bool allObject(Json[string] map) {
+bool isAllObject(Json[string] map) {
   return map.byValue.all!(v => v.isObject);
 }
 // #endregion all
 
 // #region any
-bool anyObject(Json[string] map) {
+bool isAnyObject(Json[string] map) {
   return map.byValue.any!(v => v.isObject);
 }
 // #endregion any

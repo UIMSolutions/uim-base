@@ -13,13 +13,13 @@ mixin(Version!("test_uim_vibe"));
 
 // #region path
 // #region all
-bool allNull(Json json, string[][] paths) {
+bool isAllNull(Json json, string[][] paths) {
   return paths.all!(path => json.isNull(path));
 }
 // #endregion all
 
 // #region any
-bool anyNull(Json json, string[][] paths) {
+bool isAnyNull(Json json, string[][] paths) {
   return paths.any!(path => json.isNull(path));
 }
 // #endregion any
@@ -42,13 +42,13 @@ bool isNull(Json json, string[] path) {
 
 // #region key
 // #region all
-bool allNull(Json json, string[] keys) {
+bool isAllNull(Json json, string[] keys) {
   return keys.all!(key => json.isNull(key));
 }
 // #endregion all
 
 // #region any
-bool anyNull(Json json, string[] keys) {
+bool isAnyNull(Json json, string[] keys) {
   return keys.any!(key => json.isNull(key));
 }
 // #endregion any

@@ -9,6 +9,7 @@ public { // Packages
   import uim.vibe.datatypes.jsons.arrays.types.booleans;
   import uim.vibe.datatypes.jsons.arrays.types.doubles;
   import uim.vibe.datatypes.jsons.arrays.types.integers;
+  import uim.vibe.datatypes.jsons.arrays.types.objects;
   import uim.vibe.datatypes.jsons.arrays.types.strings;
   import uim.vibe.datatypes.jsons.arrays.types.undefineds;
 }
@@ -16,5 +17,4 @@ public { // Packages
 public { // Modules
   import uim.vibe.datatypes.jsons.arrays.types.array_;
   import uim.vibe.datatypes.jsons.arrays.types.null_;
-  import uim.vibe.datatypes.jsons.arrays.types.object_;
 }
