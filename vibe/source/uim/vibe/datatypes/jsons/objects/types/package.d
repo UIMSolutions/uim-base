@@ -11,7 +11,6 @@ public {
   import uim.vibe.datatypes.jsons.objects.types.doubles;
   import uim.vibe.datatypes.jsons.objects.types.integers;
   import uim.vibe.datatypes.jsons.objects.types.nulls;
-  import uim.vibe.datatypes.jsons.objects.types.objects;
   import uim.vibe.datatypes.jsons.objects.types.strings;
   import uim.vibe.datatypes.jsons.objects.types.undefineds;
 }

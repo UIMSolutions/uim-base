@@ -8,11 +8,7 @@ mixin(Version!("test_uim_vibe"));
 public {
     import uim.vibe.datatypes.jsons.objects.types;
     
-    import uim.vibe.datatypes.jsons.objects.allkeys;
     import uim.vibe.datatypes.jsons.objects.has;
     import uim.vibe.datatypes.jsons.objects.keys;
-    import uim.vibe.datatypes.jsons.objects.isobject;
-    import uim.vibe.datatypes.jsons.objects.map;
-    import uim.vibe.datatypes.jsons.objects.object_;
-    import uim.vibe.datatypes.jsons.objects.values;
+    import uim.vibe.datatypes.jsons.objects.is_;
 }
