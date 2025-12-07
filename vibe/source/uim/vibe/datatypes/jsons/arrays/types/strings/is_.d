@@ -8,38 +8,38 @@ mixin(Version!("test_uim_vibe"));
 
 // #region all
 // #region noIndex
-bool isAllInteger(Json[] values) {
-  return values.all!(value => value.isInteger);
+bool isAllString(Json[] values) {
+  return values.all!(value => value.isString);
 }
 // #endregion noIndex
 
 // #region index  
-bool isAllInteger(Json[] values, size_t[] indices) {
-  return indices.all!(index => values.isInteger(index));
+bool isAllString(Json[] values, size_t[] indices) {
+  return indices.all!(index => values.isString(index));
 }
 // #endregion index
 // #endregion all
 
 // #region any
 // #region noIndex
-bool isAnyInteger(Json[] values) {
-  return values.any!(value => value.isInteger);
+bool isAnyString(Json[] values) {
+  return values.any!(value => value.isString);
 }
 // #endregion noIndex
 
 // #region index
-bool isAnyInteger(Json[] values, size_t[] indices) {
-  return indices.any!(index => values.isInteger(index));
+bool isAnyString(Json[] values, size_t[] indices) {
+  return indices.any!(index => values.isString(index));
 }
 // #endregion index
 // #endregion any
 
 // #region is
-bool isInteger(Json[] values, size_t index) {
+bool isString(Json[] values, size_t index) {
   if (index >= values.length) {
     return false;
   } 
 
-  return values[index].isInteger;
+  return values[index].isString;
 }
 // #endregion is

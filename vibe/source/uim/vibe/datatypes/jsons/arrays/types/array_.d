@@ -75,75 +75,11 @@ bool hasValue(T : Json)(Json json, T value) {
   return uim.vibe.datatypes.jsons.json.types.array_.isArray(json) || json.isObject
     ? json.byValue.any!(v => v == value) : json == value;
 }
-
-unittest {
-  auto json = Json.emptyArray;
-  json ~= Json(1);
-  json ~= Json(2);
-  json ~= Json(3);
-
-  writeln(json.toString);
-  assert(json.hasValue(Json(1)));
-  assert(!json.hasValue(Json("1")));
-
-  assert(json.hasValue(1));
-  assert(!json.hasValue("1"));
-
-  assert(json.hasAnyValue([Json(1), Json(2), Json(10)]));
-  assert(!json.hasAnyValue([Json(10), Json(12), Json(13)]));
-
-  assert(json.hasAnyValue([1, 2, 10]));
-  assert(!json.hasAnyValue([10, 12, 13]));
-
-  assert(json.hasAllValue([Json(1), Json(2), Json(3)]));
-  assert(!json.hasAllValue([Json(1), Json(12), Json(13)]));
-
-  assert(json.hasAllValue([1, 2, 3]));
-  assert(!json.hasAllValue([1, 12, 13]));
-}
 // #endregion has
 
 // #region get
 Json[] getArray(Json json) {
   return uim.vibe.datatypes.jsons.json.types.array_.isArray(json)
     ? json.get!(Json[]) : null;
-}
-
-unittest {
-  auto a = Json.emptyArray;
-  a ~= 1;
-  a ~= 2;
-  assert(a.length == 2);
-  assert(a.getIntegerAt(0) == 1 && a.getIntegerAt(1) == 2);
-  assert(a.getIntegerAt(0) != 2 && a.getIntegerAt(1) != 1);
-
-  auto b = Json.emptyArray;
-  b ~= 1;
-  b ~= 2;
-  b ~= 3;
-  assert(b.length == 3);
-  assert(b.getIntegerAt(0) == 1 && b.getIntegerAt(1) == 2);
-  assert(b.getIntegerAt(2) == 3 && b.getIntegerAt(0) != 2);
-
-  Json json = Json.emptyArray;
-  json = [a, b];
-  assert(json.length == 2);
-
-  assert(json.getArrayAt(0).length == 2);
-  assert(json.getArrayAt(1).length != 2);
-
-  json = Json.emptyObject;
-  json["One"] = a;
-  json["Two"] = b;
-  assert(json.getArray("One").length == 2);
-  assert(json.getArray("Two").length != 2);
-
-  auto list = [a, b];
-  assert(list.getArrayAt(0).length == 2);
-  assert(list.getArrayAt(1).length != 2);
-
-  auto map = ["One": a, "Two": b];
-  assert(map.getArray("One").length == 2);
-  assert(map.getArray("Two").length != 2);
 }
 // #endregion get

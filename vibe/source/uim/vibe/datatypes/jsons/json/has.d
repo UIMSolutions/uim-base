@@ -22,9 +22,11 @@ bool hasValue(T)(Json json, T value) {
   }
 
   if (json.isArray) {
-    return json.get!(Json[]).any!(v => hasValue(v, value));
+    return json.get!(Json[])
+      .any!(v => hasValue(v, value));
   } else if (json.isObject) {
-    return json.get!(Json[string]).any!(v => hasValue(v, value));
+    return json.get!(Json[string])
+      .any!(v => hasValue(v, value));
   }
 
   return json == value.toJson;
@@ -53,6 +55,38 @@ bool hasPath(Json json, string[] path) {
 
   return path.length > 1 && json[path[0]].hasPath(path[1 .. $]);
 }
+///
+unittest {
+  // Non-object JSON always returns true, even for non-empty paths.
+  auto json1 = Json(1);
+  assert(hasPath(json1, ["foo"]));
+  assert(hasPath(json1, []));
+
+  // An object with an empty path returns true.
+  auto json2 = Json(["a": Json(1)]);
+  assert(hasPath(json2, []));
+
+  // Missing top-level key -> false.
+  auto json3 = Json(["a": Json(1)]);
+  assert(!hasPath(json3, ["b"]));
+
+  // Key present at top-level but path length == 1 -> current implementation returns false.
+  auto json4 = Json(["a": Json(1)]);
+  assert(!hasPath(json4, ["a"]));
+
+  // If the top-level key exists and points to a non-object, a longer path (length > 1) returns true
+  // because the recursive call sees a non-object and returns true.
+  auto json5 = Json(["a": Json(1)]);
+  assert(hasPath(json5, ["a", "b"]));
+
+  // Nested object where the final key exists -> returns false due to path length == 1 at leaf.
+  auto json6 = Json(["a": Json(["b": Json(2)])]);
+  assert(!hasPath(json6, ["a", "b"]));
+
+  // Nested object where an intermediate key exists but final key missing -> false.
+  auto json7 = Json(["a": Json(["b": Json(2)])]);
+  assert(!hasPath(json7, ["a", "c"]));
+}
 // #endregion path
 
 // #endregion key
@@ -69,7 +103,26 @@ bool hasPath(Json json, string[] path) {
 bool hasKey(Json json, string key) {
   return json.isObject && key in json;
 }
+///
+unittest {
+  // Non-object JSON -> always false
+  auto json1 = Json(1);
+  assert(!hasKey(json1, "foo"));
+  assert(!hasKey(json1, ""));
+
+  // Object with keys -> true for present keys, false for absent
+  auto json2 = Json(["a": Json(1), "": Json(2)]);
+  assert(hasKey(json2, "a"));
+  assert(hasKey(json2, ""));
+  assert(!hasKey(json2, "b"));
+
+  // Keys are exact (case-sensitive)
+  auto json3 = Json(["Key": Json(1)]);
+  assert(hasKey(json3, "Key"));
+  assert(!hasKey(json3, "key"));
+
+  // Keys with special characters
+  auto json4 = Json(["weird:key!": Json(42)]);
+  assert(hasKey(json4, "weird:key!"));
+}
 // #endregion key
-
-
-
