@@ -7,9 +7,9 @@ module uim.vibe.datatypes.jsons.objects.types;
 
 public {
   import uim.vibe.datatypes.jsons.objects.types.array_;
-  import uim.vibe.datatypes.jsons.objects.types.boolean;
+  import uim.vibe.datatypes.jsons.objects.types.booleans;
   import uim.vibe.datatypes.jsons.objects.types.double_;
-  import uim.vibe.datatypes.jsons.objects.types.integer;
+  import uim.vibe.datatypes.jsons.objects.types.integers;
   import uim.vibe.datatypes.jsons.objects.types.null_;
   import uim.vibe.datatypes.jsons.objects.types.object_;
   import uim.vibe.datatypes.jsons.objects.types.string_;

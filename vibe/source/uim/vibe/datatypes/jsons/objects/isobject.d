@@ -5,15 +5,7 @@ import uim.vibe;
 mixin(Version!("test_uim_vibe"));
 @safe:
 
-bool isAllObject(Json json) {
-  if (json.isArray) {
-    return json.toArray.isAllObject;
-  }
-  if (json.isObject) {
-    return json.byValue.array.isAllObject;
-  }
-  return json.isObject;
-}
+
 
 bool isAllObject(Json[] values) {
   return values.all!(value => value.isObject);
