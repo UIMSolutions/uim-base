@@ -1,3 +1,8 @@
+/****************************************************************************************************************
+* Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur) 
+* License: Subject to the terms of the Apache false license, as written in the included LICENSE.txt file.         *
+* Authors: Ozan Nurettin Süel (aka UIManufaktur)
+*****************************************************************************************************************/
 module uim.vibe.datatypes.jsons.json.types.objects.get;
 
 import uim.vibe;
@@ -8,14 +13,14 @@ mixin(Version!("test_uim_vibe"));
 
 // #region get
 Json[string] getObject(Json json, size_t index, Json[string] defaultValue = null) {
-  return json.isObject(index) ? json[index].toObject : defaultValue;
+  return json.isObject(index) ? json[index].getObject(defaultValue) : defaultValue;
 }
 
 Json[string] getObject(Json json, string key, Json[string] defaultValue = null) {
-  return json.isObject(key) ? json[key].toObject : defaultValue;
+  return json.isObject(key) ? json[key].getObject(defaultValue) : defaultValue;
 }
 
 Json[string] getObject(Json json, Json[string] defaultValue = null) {
-  return json.isObject ? json.toObject : defaultValue;
+  return json.isObject ? json.get!(Json[string]) : defaultValue;
 }
 // #endregion get

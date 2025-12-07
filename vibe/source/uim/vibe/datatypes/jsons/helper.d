@@ -9,20 +9,20 @@ mixin(Version!("test_uim_vibe"));
 // #region boolean
 bool isAllBoolean(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.booleans.isAllBoolean(json.getObject);
+    return uim.vibe.datatypes.jsons.objects.types.booleans.is_.isAllBoolean(json.getObject);
   }
   if (json.isArray) {
-    return uim.vibe.datatypes.jsons.arrays.types.booleans.isAllBoolean(json.getArray);
+    return uim.vibe.datatypes.jsons.arrays.types.booleans.is_.isAllBoolean(json.getArray);
   }
   return json.isBoolean;
 }
 
 bool isAnyBoolean(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.booleans.isAnyBoolean(json.getObject);
+    return uim.vibe.datatypes.jsons.objects.types.booleans.is_.isAnyBoolean(json.getObject);
   }
   if (json.isArray) {
-    return uim.vibe.datatypes.jsons.arrays.types.booleans.isAnyBoolean(json.getArray);
+    return uim.vibe.datatypes.jsons.arrays.types.booleans.is_.isAnyBoolean(json.getArray);
   }
   return json.isBoolean;
 }
@@ -31,20 +31,20 @@ bool isAnyBoolean(Json json) {
 // #region integer
 bool isAllInteger(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.integers.isAllInteger(json.getObject);
+    return uim.vibe.datatypes.jsons.objects.types.integers.is_.isAllInteger(json.getObject);
   }
   if (json.isArray) {
-    return uim.vibe.datatypes.jsons.arrays.types.integers.isAllInteger(json.getArray);
+    return uim.vibe.datatypes.jsons.arrays.types.integers.is_.isAllInteger(json.getArray);
   }
   return json.isInteger;
 }
 
 bool isAnyInteger(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.integers.isAnyInteger(json.getObject);
+    return uim.vibe.datatypes.jsons.objects.types.integers.is_.isAnyInteger(json.getObject);
   }
   if (json.isArray) {
-    return uim.vibe.datatypes.jsons.arrays.types.integers.isAnyInteger(json.getArray);
+    return uim.vibe.datatypes.jsons.arrays.types.integers.is_.isAnyInteger(json.getArray);
   }
   return json.isInteger;
 }
@@ -53,20 +53,20 @@ bool isAnyInteger(Json json) {
 // #region double
 bool isAllDouble(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.doubles.isAllDouble(json.getObject);
+    return uim.vibe.datatypes.jsons.objects.types.doubles.is_.isAllDouble(json.getObject);
   }
   if (json.isArray) {
-    return uim.vibe.datatypes.jsons.arrays.types.doubles.isAllDouble(json.getArray);
+    return uim.vibe.datatypes.jsons.arrays.types.doubles.is_.isAllDouble(json.getArray);
   }
   return json.isDouble;
 }
 
 bool isAnyDouble(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.doubles.isAnyDouble(json.getObject);
+    return uim.vibe.datatypes.jsons.objects.types.doubles.is_.isAnyDouble(json.getObject);
   }
   if (json.isArray) {
-    return uim.vibe.datatypes.jsons.arrays.types.doubles.isAnyDouble(json.getArray);
+    return uim.vibe.datatypes.jsons.arrays.types.doubles.is_.isAnyDouble(json.getArray);
   }
   return json.isDouble;
 }
@@ -75,20 +75,20 @@ bool isAnyDouble(Json json) {
 // #region string
 bool isAllString(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.strings.isAllString(json.getObject);
+    return uim.vibe.datatypes.jsons.objects.types.strings.is_.isAllString(json.getObject);
   }
   if (json.isArray) {
-    return uim.vibe.datatypes.jsons.arrays.types.strings.isAllString(json.getArray);
+    return uim.vibe.datatypes.jsons.arrays.types.strings.is_.isAllString(json.getArray);
   }
   return json.isString;
 }
 
 bool isAnyString(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.strings.isAnyString(json.getObject);
+    return uim.vibe.datatypes.jsons.objects.types.strings.is_.isAnyString(json.getObject);
   }
   if (json.isArray) {
-    return uim.vibe.datatypes.jsons.arrays.types.strings.isAnyString(json.getArray);
+    return uim.vibe.datatypes.jsons.arrays.types.strings.is_.isAnyString(json.getArray);
   }
   return json.isString;
 }

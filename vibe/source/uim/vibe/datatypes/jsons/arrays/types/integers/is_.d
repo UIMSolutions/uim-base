@@ -9,7 +9,7 @@ mixin(Version!("test_uim_vibe"));
 // #region all
 // #region noIndex
 bool isAllInteger(Json[] values) {
-  return values.all!(value => uim.vibe.datatypes.jsons.json.types.integer.isInteger(value));
+  return values.all!(value => uim.vibe.datatypes.jsons.json.types.integers.is_.isInteger(value));
 }
 // #endregion noIndex
 
@@ -23,7 +23,7 @@ bool isAllInteger(Json[] values, size_t[] indices) {
 // #region any
 // #region noIndex
 bool isAnyInteger(Json[] values) {
-  return values.any!(value => uim.vibe.datatypes.jsons.json.types.integers.isInteger(value));
+  return values.any!(value => uim.vibe.datatypes.jsons.json.types.integers.is_.isInteger(value));
 }
 // #endregion noIndex
 
@@ -40,6 +40,6 @@ bool isInteger(Json[] values, size_t index) {
     return false;
   } 
 
-  return uim.vibe.datatypes.jsons.json.types.integers.isInteger(values[index]);
+  return uim.vibe.datatypes.jsons.json.types.integers.is_.isInteger(values[index]);
 }
 // #endregion is

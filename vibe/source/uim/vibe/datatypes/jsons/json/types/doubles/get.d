@@ -26,11 +26,11 @@ mixin(Version!("test_uim_vibe"));
   *   The double value from the JSON or the default value if not a double.
   */
 double getDouble(Json json, size_t index, double defaultValue = 0.0) {
-  return json.isDouble(index) ? json[index].get!(double) : defaultValue;
+  return json.isDouble(index) ? json[index].getDouble(defaultValue) : defaultValue;
 }
 
 double getDouble(Json json, string key, double defaultValue = 0.0) {
-  return json.isDouble(key) ? json[key].get!(double) : defaultValue;
+  return json.isDouble(key) ? json[key].getDouble(defaultValue) : defaultValue;
 }
 
 double getDouble(Json json, double defaultValue = 0.0) {

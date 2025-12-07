@@ -13,14 +13,14 @@ mixin(Version!("test_uim_vibe"));
 
 // #region get
 int getInteger(Json json, size_t index, int defaultValue = 0) {
-  return json.isInteger(index) ? json[index].toInteger : defaultValue;
+  return json.isInteger(index) ? json[index].getInteger(defaultValue) : defaultValue;
 }
 
 int getInteger(Json json, string key, int defaultValue = 0) {
-  return json.isInteger(key) ? json[key].toInteger : defaultValue;
+  return json.isInteger(key) ? json[key].getInteger(defaultValue) : defaultValue;
 }
 
 int getInteger(Json json, int defaultValue = 0) {
-  return json.isInteger ? json.toInteger : defaultValue;
+  return json.isInteger ? json.get!(int) : defaultValue;
 }
 // #endregion get

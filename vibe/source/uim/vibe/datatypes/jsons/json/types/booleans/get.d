@@ -13,14 +13,14 @@ mixin(Version!("test_uim_vibe"));
 
 // #region get
 bool getBoolean(Json json, size_t index, bool defaultValue = false) {
-  return json.isBoolean(index) ? json[index].toBoolean : defaultValue;
+  return json.isBoolean(index) ? json[index].getBoolean(defaultValue) : defaultValue;
 }
 
 bool getBoolean(Json json, bool key, bool defaultValue = false) {
-  return json.isBoolean(key) ? json[key].toBoolean : defaultValue;
+  return json.isBoolean(key) ? json[key].getBoolean(defaultValue) : defaultValue;
 }
 
 bool getBoolean(Json json, bool defaultValue = false) {
-  return json.isBoolean ? json.toBoolean : defaultValue;
+  return json.isBoolean ? json.get!(bool) : defaultValue;
 }
 // #endregion get
