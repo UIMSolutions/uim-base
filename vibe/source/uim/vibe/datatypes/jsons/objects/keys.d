@@ -20,19 +20,7 @@ unittest {
 // #endregion keys
 
 // #region hasSearch
-// #region Json[string]
-bool hasAllKey(Json[string] items, string[] keys) {
-  return keys.all!(key => hasKey(items, key));
-}
 
-bool hasAnyKey(Json[string] items, string[] keys) {
-  return keys.any!(key => hasKey(items, key));
-}
-
-bool hasKey(Json[string] items, string key) {
-  return key in items ? true : false;
-}
-// #endregion Json[string]
 
 // #region Json[]
 bool hasAllKey(Json[] items, string[] keys) {

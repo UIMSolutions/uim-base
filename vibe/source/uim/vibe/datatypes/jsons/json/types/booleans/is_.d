@@ -1,6 +1,5 @@
 module uim.vibe.datatypes.jsons.json.types.booleans.is_;
 
-
 import uim.vibe;
 
 mixin(Version!("test_uim_vibe"));

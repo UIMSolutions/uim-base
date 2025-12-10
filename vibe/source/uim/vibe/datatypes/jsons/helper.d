@@ -5,7 +5,7 @@ import uim.vibe;
 mixin(Version!("test_uim_vibe"));
 
 @safe:
-
+/* 
 // #region boolean
 bool isAllBoolean(Json json) {
   if (json.isObject) {
@@ -115,3 +115,5 @@ bool isAnyObject(Json json) {
   return json.isObject;
 }
 // #endregion string
+
+*/

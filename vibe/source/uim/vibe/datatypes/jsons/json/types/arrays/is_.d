@@ -54,9 +54,17 @@ bool isAnyArray(Json json, string[] keys) {
 // #endregion any
 
 // #region is
-bool isArray(Json json, string key) {
-  return json.hasKey(key) && json[key].isArray;
+bool isArray(Json json, size_t index) {
+  if (!json.isArray || index >= json.getArray.length) {
+    return false;
+  }
+  return json[index].isArray;
 }
+
+bool isArray(Json json, string key) {
+  return json.isObject && json.hasKey(key) && json[key].isArray;
+}
+
 // #endregion is
 // #endregion key
 

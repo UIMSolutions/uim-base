@@ -82,4 +82,22 @@ unittest {
 // #endregion hasValue
 // #endregion value
 
+// #region key
+// #region hasAllKey
+bool hasAllKey(Json[string] items, string[] keys) {
+  return keys.all!(key => hasKey(items, key));
+}
+// #endregion hasAllKey
 
+// #region hasAnyKey
+bool hasAnyKey(Json[string] items, string[] keys) {
+  return keys.any!(key => hasKey(items, key));
+}
+// #endregion hasAnyKey
+
+// #region hasKey
+bool hasKey(Json[string] items, string key) {
+  return key in items ? true : false;
+}
+// #endregion hasKey
+// #endregion key
