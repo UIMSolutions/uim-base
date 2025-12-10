@@ -11,6 +11,10 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
+bool hasObject(Json[string] obj) {
+  return obj.byValue.any!(v => v.isObject);
+}
+
 // #region value
 // #region hasAllValue
 bool hasAllValue(T)(Json json, T[] values, bool deepSearch = false) {

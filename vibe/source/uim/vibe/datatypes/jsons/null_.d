@@ -50,107 +50,47 @@ unittest {
 // #region is
 // Check if json value is null
 // #region Json[string]
-bool isAllNull(Json[string] map, bool strict = true) {
+bool isAllNull(Json[string] map) {
   if (map is null) {
     return true;
   }
   if (map.length == 0) {
     return false;
   }
-  return map.byValue.all!(value => value.isNull(strict));
+  return map.byValue.all!(value => value.isNull);
 }
 
-bool isAllNull(Json[string] map, string[] keys, bool strict = true) {
-  if (map is null) {
-    return true;
-  }
-  return keys.all!(key => map.isNull(key, strict));
-}
+b
 
-bool isAnyNull(Json[string] map, bool strict = true) {
-  if (map is null) {
-    return true;
-  }
-  return map.byValue.any!(value => value.isNull(strict));
-}
-
-bool isAnyNull(Json[string] map, string[] keys, bool strict = true) {
-  if (map is null) {
-    return true;
-  }
-  return keys.any!(index => map.isNull(index));
-}
-
-bool isNull(Json[string] map) {
-  return (map is null);
-}
-
-bool isNull(Json[string] map, string key, bool strict = true) {
+bool isNull(Json[string] map, string key) {
   if (map.isNull) {
     return true;
   }
-  return key in map && map[key].isNull(strict);
+  return key in map && map[key].isNull;
 }
 
-unittest {
-  // Test isAllNull(Json[string])
-  Json[string] nullMap;
-  assert(isAllNull(nullMap), "null map should be all null");
 
-  Json[string] map1 = ["a": Json(null), "b": Json(null)];
-  assert(isAllNull(map1), "all null values should return true");
-
-  Json[string] map2 = ["a": Json(null), "b": Json("x")];
-  assert(!isAllNull(map2), "not all null values should return false");
-
-  // Test isAllNull(Json[string], string[])
-  string[] keys1 = ["a", "b"];
-  assert(isAllNull(map1, keys1), "all keys null should return true");
-  assert(!isAllNull(map2, keys1), "one key not null should return false");
-
-  string[] keys2 = ["a"];
-  assert(isAllNull(map2, keys2), "single key null should return true");
-
-  // Test isAnyNull(Json[string])
-  assert(isAnyNull(nullMap), "null map should be any null");
-  assert(isAnyNull(map1), "all null values should return true");
-  assert(isAnyNull(map2), "one null value should return true");
-
-  Json[string] map3 = ["a": Json("x"), "b": Json("y")];
-  assert(!isAnyNull(map3), "no null values should return false");
-
-  // Test isAnyNull(Json[string], string[])
-  assert(isAnyNull(map2, keys1), "one key null should return true");
-  assert(!isAnyNull(map3, keys1), "no keys null should return false");
-
-  // Test isNull(Json[string], string)
-  assert(isNull(nullMap, "a"), "null map should be null for any key");
-  assert(isNull(map1, "a"), "key with null value should be null");
-  assert(!isNull(map2, "b"), "key with non-null value should not be null");
-  assert(!isNull(map2, "z"), "missing key should not be null");
-}
-// #endregion Json[string]
 
 // #region Json[]
-bool isAllNull(Json[] list, bool strict = true) {
+bool isAllNull(Json[] list) {
   return list.isNull
     ? true
     : list.all!(value => value.isNull(strict));
 }
 
-bool isAllNull(Json[] list, size_t[] indices, bool strict = true) {
+bool isAllNull(Json[] list, size_t[] indices) {
   return list.isNull
     ? true
     : indices.all!(index => list.isNull(index, strict));
 }
 
-bool isAnyNull(Json[] list, bool strict = true) {
+bool isAnyNull(Json[] list) {
   return list.isNull
     ? true
     : list.any!(value => value.isNull(strict));
 }
 
-bool isAnyNull(Json[] list, size_t[] indices, bool strict = true) {
+bool isAnyNull(Json[] list, size_t[] indices) {
   return list.isNull
     ? true
     : indices.any!(index => list.isNull(index, strict));
@@ -160,7 +100,7 @@ bool isNull(Json[] list) {
   return (list is null); 
 }  
 
-bool isNull(Json[] list, size_t index, bool strict = true) {
+bool isNull(Json[] list, size_t index) {
   if (list is null) {
     return true;
   }
@@ -218,7 +158,7 @@ unittest {
 // #endregion Json[]
 
 // #region Json
-bool isAllNull(Json json, bool strict = true) {
+bool isAllNull(Json json) {
   if (json == Json(null)) {
     return true;
   }
@@ -233,14 +173,14 @@ bool isAllNull(Json json, bool strict = true) {
   return json.isNull(strict);
 }
 
-bool isAllNull(Json json, string[] keys, bool strict = true) {
+bool isAllNull(Json json, string[] keys) {
   if (json == Json(null)) {
     return true;
   }
   return keys.all!(key => json.isNull(key, strict));
 }
 
-bool isAnyNull(Json json, bool strict = true) {
+bool isAnyNull(Json json) {
   if (json == Json(null)) {
     return true;
   }
@@ -255,14 +195,14 @@ bool isAnyNull(Json json, bool strict = true) {
   return json.isNull(strict);
 }
 
-bool isAnyNull(Json json, string[] keys, bool strict = true) {
+bool isAnyNull(Json json, string[] keys) {
   if (json == Json(null)) {
     return true;
   }
   return keys.any!(key => json.isNull(key, strict));
 }
 
-bool isNull(Json json, string[] path, bool strict = true) {
+bool isNull(Json json, string[] path) {
   if (json == Json(null)) {
     return true;
   }

@@ -61,41 +61,18 @@ bool isBoolean(Json[string] obj, string[] path) {
 
 // #region key
 // #region all
-// #region value
-bool isAllBoolean(Json[string] obj, string[] keys, int value) {
-  return keys.all!(key => obj.isBoolean(key, value));
-}
-// #endregion value
-
-// #region noValue
 bool isAllBoolean(Json[string] obj, string[] keys) {
   return keys.all!(key => obj.isBoolean(key));
 }
-// #endregion noValue
 // #endregion all
 
 // #region any
-// #region value
-bool isAnyBoolean(Json[string] obj, string[] keys, int value) {
-  return keys.any!(key => obj.isBoolean(key, value));
-}
-// #endregion value
-
-// #region noValue
 bool isAnyBoolean(Json[string] obj, string[] keys) {
   return keys.any!(key => obj.isBoolean(key));
 }
-// #endregion noValue
 // #endregion any
 
 // #region is
-// #region value
-bool isBoolean(Json[string] obj, string key, int value) {
-  return obj.isBoolean(key) && obj.getBoolean(key) == value;
-}
-// #endregion value
-
-// #region noValue
 bool isBoolean(Json[string] obj, string key) {
   if (obj.length == 0 || key.length == 0) {
     return false;
@@ -103,35 +80,13 @@ bool isBoolean(Json[string] obj, string key) {
 
   return key in obj && obj[key].isBoolean;
 }
-// #endregion noValue
 // #endregion is
 // #endregion key
 
 // #region all
-// #region value
-bool isAllBoolean(Json[string] obj, int value) {
-  return obj.byValue.all!(v => v.isBoolean(value));
-}
-// #endregion value
-
-// #region noValue
 bool isAllBoolean(Json[string] obj) {
   return obj.byValue.all!(v => v.isBoolean);
 }
-// #endregion noValue
 // #endregion all
 
-// #region any
-// #region value
-bool isAnyBoolean(Json[string] obj, int value) {
-  return obj.byValue.any!(v => v.isBoolean(value));
-}
-// #endregion value
-
-// #region noValue
-bool isAnyBoolean(Json[string] obj) {
-  return obj.byValue.any!(v => v.isBoolean);
-}
-// #endregion noValue
-// #endregion any
 

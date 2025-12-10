@@ -68,3 +68,28 @@ bool isAnyNull(Json[string] map) {
   return map.byValue.any!(v => v.isNull);
 }
 // #endregion any
+
+ool isAllNull(Json[string] map, string[] keys) {
+  if (map is null) {
+    return true;
+  }
+  return keys.all!(key => map.isNull(key));
+}
+
+bool isAnyNull(Json[string] map) {
+  if (map is null) {
+    return true;
+  }
+  return map.byValue.any!(value => value.isNull);
+}
+
+bool isAnyNull(Json[string] map, string[] keys) {
+  if (map is null) {
+    return true;
+  }
+  return keys.any!(index => map.isNull(index));
+}
+
+bool isNull(Json[string] map) {
+  return (map is null);
+}
