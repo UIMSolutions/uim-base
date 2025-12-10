@@ -4,7 +4,8 @@ import uim.vibe;
 
 mixin(Version!("test_uim_vibe"));
 
-@safe:// #region path
+@safe:
+// #region path
 // #region all
 bool isAllNull(Json[string] map, string[][] paths) {
   return paths.all!(p => map.isNull(p));
@@ -69,19 +70,13 @@ bool isAnyNull(Json[string] map) {
 }
 // #endregion any
 
-ool isAllNull(Json[string] map, string[] keys) {
+bool isAllNull(Json[string] map, string[] keys) {
   if (map is null) {
-    return true;
+    return false;
   }
   return keys.all!(key => map.isNull(key));
 }
 
-bool isAnyNull(Json[string] map) {
-  if (map is null) {
-    return true;
-  }
-  return map.byValue.any!(value => value.isNull);
-}
 
 bool isAnyNull(Json[string] map, string[] keys) {
   if (map is null) {
@@ -90,6 +85,8 @@ bool isAnyNull(Json[string] map, string[] keys) {
   return keys.any!(index => map.isNull(index));
 }
 
+// #region is
 bool isNull(Json[string] map) {
   return (map is null);
 }
+// #endregion is

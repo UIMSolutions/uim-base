@@ -6,16 +6,14 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-bool isAllNull(Json[] values) {
-  return values.all!(value => uim.vibe.datatypes.jsons.json.types.nulls.isNull(value));
-}
-
 bool isAllNull(Json[] values, size_t[] indices) {
   return indices.all!(index => values.isNull(index));
 }
 
-bool isAnyNull(Json[] values) {
-  return values.any!(value => uim.vibe.datatypes.jsons.json.types.nulls.isNull(value));
+bool isAnyNull(Json[] list, size_t[] indices) {
+  return list.isNull
+    ? false
+    : indices.any!(index => list.isNull(index));
 }
 
 bool isAnyNull(Json[] values, size_t[] indices) {

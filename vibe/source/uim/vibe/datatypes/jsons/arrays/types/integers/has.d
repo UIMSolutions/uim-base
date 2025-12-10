@@ -6,6 +6,12 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
+// #region hasOnly
+bool hasOnlyInteger(Json[] jsons) {
+  return jsons.all!(json => json.isInteger);
+}
+// #endregion hasOnly
+
 // #region all
 /** 
 Determines if all specified integer values are present in the given array of Jsons.

@@ -5,6 +5,19 @@ import uim.vibe;
 mixin(Version!("test_uim_vibe"));
 
 @safe:
+
+bool hasAnyBoolean(Json json) {
+  if (json.isArray) {
+    return json.toArray.hasAnyBoolean;
+  }
+
+  if (json.isObject) {
+    return json.toObject.hasAnyBoolean;
+  }
+
+  return json.isBoolean;
+}
+
 /* 
 // #region boolean
 bool isAllBoolean(Json json) {

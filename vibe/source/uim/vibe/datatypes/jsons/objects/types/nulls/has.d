@@ -6,6 +6,9 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-bool hasNull(Json[string] obj) {
+bool hasAnyNull(Json[string] obj) {
+  if (obj is null) {
+    return false;
+  }
   return obj.byValue.any!(v => v.isNull);
 }
