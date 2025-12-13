@@ -1,3 +1,8 @@
+/****************************************************************************************************************
+* Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur) 
+* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
+* Authors: Ozan Nurettin Süel (aka UIManufaktur)
+*****************************************************************************************************************/
 module uim.vibe.datatypes.jsons.arrays.types.nulls.is_;
 
 import uim.vibe;
@@ -14,10 +19,6 @@ bool isAnyNull(Json[] list, size_t[] indices) {
   return list.isNull
     ? false
     : indices.any!(index => list.isNull(index));
-}
-
-bool isAnyNull(Json[] values, size_t[] indices) {
-  return indices.any!(index => values.isNull(index));
 }
 
 bool isNull(Json[] values, size_t index) {

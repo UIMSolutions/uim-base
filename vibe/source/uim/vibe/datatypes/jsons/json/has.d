@@ -89,7 +89,16 @@ unittest {
 }
 // #endregion path
 
-// #endregion key
+// #region key
+// Check if json has key
+bool hasAllKey(Json json, string[] keys) {
+  return keys.all!(key => hasKey(json, key));
+}
+
+/// Check if Json has key
+bool hasAnyKey(Json json, string[] keys) {
+  return keys.any!(key => hasKey(json, key));
+}
 /** 
   * Checks if the given JSON value has the specified key.
   *

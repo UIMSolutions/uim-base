@@ -1,4 +1,9 @@
-module uim.vibe.datatypes.jsons.arrays.types.objects.get;
+mo/****************************************************************************************************************
+* Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur) 
+* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
+* Authors: Ozan Nurettin Süel (aka UIManufaktur)
+*****************************************************************************************************************/
+moduledule uim.vibe.datatypes.jsons.arrays.types.objects.get;
 
 import uim.vibe;
 

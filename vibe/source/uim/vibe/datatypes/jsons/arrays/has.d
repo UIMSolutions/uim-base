@@ -1,3 +1,8 @@
+/****************************************************************************************************************
+* Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur) 
+* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
+* Authors: Ozan Nurettin Süel (aka UIManufaktur)
+*****************************************************************************************************************/
 module uim.vibe.datatypes.jsons.arrays.has;
 
 import uim.vibe;
@@ -59,3 +64,15 @@ bool hasArray(Json[] jsons, Json value) {
   return jsons.any!(json => json.isArray && json == value);
 }
 // #endregion is
+
+bool hasAllKey(Json[] items, string[] keys) {
+  return keys.all!(key => hasKey(items, key));
+}
+
+bool hasAnyKey(Json[] items, string[] keys) {
+  return keys.any!(key => hasKey(items, key));
+}
+
+bool hasKey(Json[] items, string key) {
+  return items.any!(item => item.hasKey(key));
+}

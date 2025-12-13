@@ -9,6 +9,7 @@ public {
   import uim.vibe.datatypes.jsons.arrays.change;
   import uim.vibe.datatypes.jsons.arrays.contains;
   import uim.vibe.datatypes.jsons.arrays.create;
+  import uim.vibe.datatypes.jsons.arrays.filter;
   import uim.vibe.datatypes.jsons.arrays.first;
   import uim.vibe.datatypes.jsons.arrays.get;
   import uim.vibe.datatypes.jsons.arrays.last;

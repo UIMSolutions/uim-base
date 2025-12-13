@@ -1,3 +1,8 @@
+/****************************************************************************************************************
+* Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur) 
+* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
+* Authors: Ozan Nurettin Süel (aka UIManufaktur)
+*****************************************************************************************************************/
 module uim.vibe.datatypes.jsons.objects.types.nulls.is_;
 
 import uim.vibe;
@@ -37,6 +42,9 @@ bool isNull(Json[string] map, string[] path) {
 // #region key
 // #region all
 bool isAllNull(Json[string] map, string[] keys) {
+  if (map is null) {
+    return false;
+  }
   return keys.all!(key => map.isNull(key));
 }
 // #endregion all
@@ -70,20 +78,6 @@ bool isAnyNull(Json[string] map) {
 }
 // #endregion any
 
-bool isAllNull(Json[string] map, string[] keys) {
-  if (map is null) {
-    return false;
-  }
-  return keys.all!(key => map.isNull(key));
-}
-
-
-bool isAnyNull(Json[string] map, string[] keys) {
-  if (map is null) {
-    return true;
-  }
-  return keys.any!(index => map.isNull(index));
-}
 
 // #region is
 bool isNull(Json[string] map) {

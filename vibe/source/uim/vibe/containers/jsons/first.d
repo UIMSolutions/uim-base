@@ -1,3 +1,8 @@
+/****************************************************************************************************************
+* Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur) 
+* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
+* Authors: Ozan Nurettin Süel (aka UIManufaktur)
+*****************************************************************************************************************/
 module uim.vibe.containers.jsons.first;
 
 import uim.vibe;
@@ -52,7 +57,7 @@ Json firstValue(Json json) {
 
 Json firstHasAllKey(Json json, string[] keys) {
   return json.isArray
-    ? uim.phobos.containers.arrays.first.first(json.toArray.filterHasAllKey(keys)) : Json(null);
+    ? uim.phobos.containers.arrays.first.first(json.filterHasAllKey(keys)) : Json(null);
 }
 
 Json firstHasAnyKey(Json json, string[] keys) {

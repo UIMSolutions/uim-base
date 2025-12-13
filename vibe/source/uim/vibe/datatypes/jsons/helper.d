@@ -18,6 +18,46 @@ bool hasAnyBoolean(Json json) {
   return json.isBoolean;
 }
 
+// #region values
+Json[] filterValues(Json json) {
+  if (json.isNull) {
+    return null;
+  }
+
+  if (json.isArray) {
+    return uim.vibe.containers.arrays.filter.filterValues(json.get!(Json[]));
+  }
+  if (json.isObject) {
+    return uim.vibe.containers.maps.filter.filterValues(json.get!(Json[string]));
+  }
+  return [json];
+}
+// #endregion values
+
+Json[] filterObjects(Json json) {
+  if (json.isArray) {
+    import uim.vibe.containers.arrays.filter;
+    Json[] items = json.toArray;
+    return items.length > 0 ? uim.vibe.containers.arrays.filter.filterObjects(items) : null;
+  }
+  if (json.isObject) {
+    import uim.vibe.containers.maps.filter;
+    Json[string] items = json.toMap;
+    return items.length > 0 ? uim.vibe.containers.maps.filter.filterObjects(items) : null;
+  }
+  return null;
+}
+
+Json[] filterArrays(Json json) {
+  if (json.isArray) {
+    return uim.vibe.containers.arrays.filter.filterArrays(json.toArray);
+  }
+  if (json.isObject) {
+    return uim.vibe.containers.maps.filter.filterArrays(json.toMap);
+  }
+  return null;
+}
+
 /* 
 // #region boolean
 bool isAllBoolean(Json json) {
