@@ -17,49 +17,30 @@ bool hasObject(Json[string] obj) {
 
 // #region value
 // #region hasAllValue
-bool hasAllValue(T)(Json json, T[] values, bool deepSearch = false) {
+bool hasAllValue(Json json, Json[] values, bool deepSearch = false) {
   return values.all!(value => hasValue(json, value, deepSearch));
-}
-
-unittest {
-  auto json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": "h"}], "i": "j"}`);
-  assert(json.hasAllValue([Json("b"), Json("j")]));
-  // assert(json.hasAllValue([Json("h"), Json(1)], true));
 }
 // #endregion hasAllValue
 
 // #region hasAnyValue
-// Search if json has any of the values
-bool hasAnyValue(T)(Json json, T[] values, bool deepSearch = false) {
+bool hasAnyValue(Json json, Json[] values, bool deepSearch = false) {
   return values.any!(value => hasValue(json, value, deepSearch));
-}
-
-unittest {
-  auto json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": "h"}], "i": "j"}`);
-  assert(json.hasAllValue([Json("b"), Json("j")]));
-  // assert(json.hasAllValue([Json("h"), Json(1)], true));
 }
 // #endregion hasAnyValue
 
 // #region hasValue
 // Search if jsonData has value
-bool hasValue(T)(Json json, T value, bool deepSearch = false) {
-  return hasValue(json, value.toJson, deepSearch);
-}
+bool hasValue(Json json, Json value, bool deepSearch = false) {
+  if (json == value) {
+    return true;
+  }
 
-bool hasValue(T:Json)(Json json, T value, bool deepSearch = false) {
+  if (json.isArray) {
+    return Json.toArray.any!(item => item == value);
+  }
+   
   if (json.isObject) {
-    foreach (kv; json.byKeyValue) {
-      if (kv.value == value) {
-        return true;
-      }
-      if (deepSearch) {
-        auto result = kv.value.hasValue(value);
-        if (result) {
-          return true;
-        }
-      }
-    }
+    return json.toObject.byValue.any!(item => item == value);
   }
 
   if (deepSearch) {

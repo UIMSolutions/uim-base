@@ -92,6 +92,10 @@ unittest {
 // #region key
 // Check if json has key
 bool hasAllKey(Json json, string[] keys) {
+  if (!json.isObject || keys.length == 0) {
+    return false;
+  }
+
   return keys.all!(key => hasKey(json, key));
 }
 

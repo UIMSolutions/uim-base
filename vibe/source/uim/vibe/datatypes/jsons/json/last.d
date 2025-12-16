@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.jsons.arrays.last;
+module uim.vibe.datatypes.jsons.json.last;
 
 import uim.vibe;
 
@@ -11,41 +11,37 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
+Json last(Json json) {
+  return json.isArray
+    ? uim.phobos.containers.arrays.last.last(json.toArray) : Json(null);
+}
 
-// #region Object
-Json lastObject(Json[] jsons) {
+Json lastObject(Json json) {
   return json.isArray
     ? uim.phobos.containers.arrays.last.last(json.toArray.filterObjects) : Json(null);
 }
-// #endregion Object
 
-Json lastArray(Json[] jsons) {
+Json lastArray(Json json) {
   return json.isArray
     ? uim.phobos.containers.arrays.last.last(json.toArray.filterArrays) : Json(null);
 }
 
-Json lastScalar(Json[] jsons) {
+Json lastScalar(Json json) {
   return json.isArray
     ? uim.phobos.containers.arrays.last.last(json.toArray.filterValues) : Json(null);
 }
 
-Json lastHasAllKey(Json[] jsons, string[] keys) {
+Json lastHasAllKey(Json json, string[] keys) {
   return json.isArray
-    ? uim.phobos.containers.arrays.last.last(
-      json.toArray.filterHasAllKey(keys)) : Json(null);
+    ? uim.phobos.containers.arrays.last.last(json.toArray.filterHasAllKey(keys)) : Json(null);
 }
 
-Json lastHasAnyKey(Json[] jsons, string[] keys) {
+Json lastHasAnyKey(Json json, string[] keys) {
   return json.isArray
-    ? uim.phobos.containers.arrays.last.last(
-      json.toArray.filterHasAnyKey(keys)) : Json(null);
+    ? uim.phobos.containers.arrays.last.last(json.toArray.filterHasAnyKey(keys)) : Json(null);
 }
 
-Json lastHasKey(Json[] jsons, string key) {
+Json lastHasKey(Json json, string key) {
   return json.isArray
     ? uim.phobos.containers.arrays.last.last(json.toArray.filterHasKey(key)) : Json(null);
-}
-
-Json last(Json[] jsons) {
-  return jsons.length > 0 ? jsons[$ - 1] : Json(null);
 }
