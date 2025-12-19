@@ -61,16 +61,6 @@ bool isArray(Json json, size_t index) {
   return json[index].isArray;
 }
 
-bool isArray(Json json, string key) {
-  return json.isObject && json.hasKey(key) && json[key].isArray;
-}
 
-// #endregion is
-// #endregion key
-
-// #region scalar
-bool isArray(Json json) {
-  return (json.type == Json.Type.array);
-}
 // #endregion scalar
 // #endregion scalar

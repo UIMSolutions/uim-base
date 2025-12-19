@@ -67,3 +67,4 @@ bool isAllObject(Json[string] map) {
   return map.byValue.all!(v => v.isObject);
 }
 // #endregion all
+

@@ -196,48 +196,6 @@ bool isDouble(Json json, double value) {
 // #endregion value
 
 // #region noValue
-/** 
-  * Checks if the given JSON value is of double (floating-point number) type.
-  *
-  * Params:
-  *   value = The JSON value to check.
-  *
-  * Returns:
-  *   `true` if the JSON value is a double, `false` otherwise.
-  */
-bool isDouble(Json json) {
-  return (json.type == Json.Type.float_);
-}
-///
-unittest {
-  // Test with float value
-  Json floatVal = Json(3.14);
-  assert(floatVal.isDouble);
-
-  // Test with integer value
-  Json intVal = Json(42);
-  assert(!intVal.isDouble);
-
-  // Test with boolean value
-  Json boolVal = Json(true);
-  assert(!boolVal.isDouble);
-
-  // Test with string value
-  Json strVal = Json("test");
-  assert(!strVal.isDouble);
-
-  // Test with null value
-  Json nullVal = Json.init;
-  assert(!nullVal.isDouble);
-
-  // Test with array value
-  Json arrVal = Json.emptyArray;
-  assert(!arrVal.isDouble);
-
-  // Test with object value
-  Json objVal = Json.emptyObject;
-  assert(!objVal.isDouble);
-}
 // #endregion noValue
 
 

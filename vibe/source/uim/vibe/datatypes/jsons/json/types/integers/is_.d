@@ -201,9 +201,7 @@ bool isInteger(Json json, int value) {
 // #endregion value
 
 // #region noValue
-bool isInteger(Json json) {
-  return (json.type == Json.Type.int_);
-}
+
 // #endregion noValue
 
 

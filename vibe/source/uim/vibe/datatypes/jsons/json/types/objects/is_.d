@@ -63,11 +63,6 @@ bool isObject(Json json, string key) {
 }
 // #endregion is
 // #endregion key
-
-// #region scalar
-bool isObject(Json json) {
-  return (json.type == Json.Type.object);
-}
 // #endregion scalar
 
 

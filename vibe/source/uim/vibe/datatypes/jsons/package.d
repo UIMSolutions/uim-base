@@ -25,6 +25,7 @@ public { // Modules
   import uim.vibe.datatypes.jsons.scalar;
   import uim.vibe.datatypes.jsons.set;
   import uim.vibe.datatypes.jsons.string_;
+  import uim.vibe.datatypes.jsons.typecheck;
   import uim.vibe.datatypes.jsons.update;
   import uim.vibe.datatypes.jsons.utils;
   import uim.vibe.datatypes.jsons.values;

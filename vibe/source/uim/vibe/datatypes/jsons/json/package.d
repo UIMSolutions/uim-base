@@ -10,6 +10,7 @@ public {
   import uim.vibe.datatypes.jsons.json.convert;
   import uim.vibe.datatypes.jsons.json.create;
   import uim.vibe.datatypes.jsons.json.has;
+  import uim.vibe.datatypes.jsons.json.is_;
   import uim.vibe.datatypes.jsons.json.last;
   import uim.vibe.datatypes.jsons.json.read;
   import uim.vibe.datatypes.jsons.json.remove;

@@ -635,9 +635,7 @@ bool isBoolean(Json json, size_t index) {
   return json.isArray && json[index].isBoolean;
 }
 
-bool isBoolean(Json json) {
-  return (json.type == Json.Type.bool_);
-}
+
 // #endregion value
 // #endregion is
 // #endregion scalar
