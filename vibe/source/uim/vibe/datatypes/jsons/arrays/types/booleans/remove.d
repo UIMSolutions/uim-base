@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.jsons.arrays.types.integers.filter;
+module uim.vibe.datatypes.jsons.arrays.types.booleans.remove;
 
 import uim.vibe;
 
@@ -11,14 +11,14 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-Json[] filterIntegers(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
-  return jsons.filterIntegers.filter!(json => filterFunc(json)).array;
+Json[] removeBooleans(Json[] jsons, bool delegate(Json json) @safe removeFunc) {
+  return jsons.removeBooleans.removeValues(removeFunc);
 }
 
-Json[] filterIntegers(Json[] jsons, size_t[] indices) {
-  return jsons.filterIndices(indices).filterIntegers.array;
+Json[] removeBooleans(Json[] jsons, size_t[] indices) {
+  return jsons.removeIndices(indices).removeBooleans.array;
 }
 
-Json[] filterIntegers(Json[] jsons) {
-  return jsons.filter!(item => item.isInteger).array;
+Json[] removeBooleans(Json[] jsons) {
+  return jsons.filter!(json => !json.isBoolean).array;
 }

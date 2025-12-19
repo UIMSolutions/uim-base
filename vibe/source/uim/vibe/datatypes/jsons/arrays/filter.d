@@ -58,62 +58,8 @@ Json[] filterArrays(Json[] jsons) {
 }
 // #endregion arrays
 
-// #region booleans
-Json[] filterBooleans(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
-  return jsons.filterBoolean.filter!(json => filterFunc(json)).array;
-}
-
-Json[] filterBooleans(Json[] jsons, size_t[] indices) {
-  return jsons.filterIndices(indices).filterBooleans.array;
-}
-
-Json[] filterBooleans(Json[] jsons) {
-  return jsons.filter!(json => json.isBoolean).array;
-}
-// #endregion booleans
-
-// #region integers
-Json[] filterIntegers(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
-  return jsons.filterIntegers.filter!(json => filterFunc(json)).array;
-}
-
-Json[] filterIntegers(Json[] jsons, size_t[] indices) {
-  return jsons.filterIndices(indices).filterIntegers.array;
-}
-
-Json[] filterIntegers(Json[] jsons) {
-  return jsons.filter!(item => item.isInteger).array;
-}
-// #endregion integers
-
-// #region doubles
-Json[] filterDoubles(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
-  return jsons.filterDoubles.filter!(json => filterFunc(json)).array;
-}
-
-Json[] filterDoubles(Json[] jsons, size_t[] indices) {
-  return jsons.filterIndices(indices).filterDoubles.array;
-}
-
-Json[] filterDoubles(Json[] jsons) {
-  return jsons.filter!(item => item.isDouble).array;
-}
-// #endregion doubles
-
-// #region strings
-Json[] filterStrings(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
-  return jsons.filterStrings.filter!(json => filterFunc(json)).array;
-}
-
-Json[] filterStrings(Json[] jsons, size_t[] indices) {
-  return jsons.filterIndices(indices).filterStrings.array;
-}
-
-Json[] filterStrings(Json[] jsons) {
-  return jsons.filter!(item => item.isString).array;
-}
-// #endregion strings
-
+// #region indices
 Json[] filterIndices(Json[] jsons, size_t[] indices) {
   return indices.filter!(index => jsons.length > index).map!(index => jsons[index]).array;
 }
+// #region endindices
