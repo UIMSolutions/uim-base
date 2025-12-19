@@ -12,37 +12,11 @@ mixin(Version!("test_uim_vibe"));
 @safe:
 
 // #region has
-Json[] filterHasAllKey(Json[] jsons, string[] keys) {
-  return jsons.filterObjects.filter!(item => item.hasKey(keys)).array;
-}
-
-Json[] filterHasAnyKey(Json[] jsons, string[] keys) {
-  return jsons.filterObjects.filter!(item => item.hasAnyKey(keys)).array;
-}
-
-Json[] filterHasKey(Json[] jsons, string key) {
-  return jsons.filterObjects.filter!(item => item.hasKey(key)).array;
-}
-// #endregion has
 
 Json[] filterValues(Json[] jsons) {
   return jsons.filter!(item => !item.isArray & !item.isObject)
     .filter!(item => !item.isNull).array;
 }
-
-// #region objects
-Json[] filterObjects(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
-  return jsons.filterObjects.filter!(json => filterFunc(json)).array;
-}
-
-Json[] filterObjects(Json[] jsons, size_t[] indices) {
-  return jsons.filterIndices(indices).filterObjects.array;
-}
-
-Json[] filterObjects(Json[] jsons) {
-  return jsons.filter!(item => item.isObject).array;
-}
-// #endregion objects
 
 // #region arrays
 Json[] filterArrays(Json[] jsons, bool delegate(Json json) @safe filterFunc) {

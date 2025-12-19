@@ -10,4 +10,5 @@ public {
   import uim.vibe.datatypes.jsons.arrays.types.booleans.get;
   import uim.vibe.datatypes.jsons.arrays.types.booleans.is_;
   import uim.vibe.datatypes.jsons.arrays.types.booleans.has;
+  import uim.vibe.datatypes.jsons.arrays.types.booleans.remove;
 }

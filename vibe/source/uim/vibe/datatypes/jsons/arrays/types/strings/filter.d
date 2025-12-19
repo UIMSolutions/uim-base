@@ -20,5 +20,5 @@ Json[] filterStrings(Json[] jsons, size_t[] indices) {
 }
 
 Json[] filterStrings(Json[] jsons) {
-  return jsons.filter!(item => item.isString).array;
+  return jsons.filter!(json => json.isString).array;
 }
