@@ -32,29 +32,7 @@ Json[] remove(Json[] list, size_t index) {
   return list;
 }
 
-// #region has
-Json[] removeHasKey(Json[] items, string[] keys) {
-  return keys.map!(key => removeHasKey(key)).array;
-}
 
-Json[] removeHasKey(Json[] items, string key) {
-  return items.removeObjects.remove!(item => item.hasKey(key)).array;
-}
-// #endregion has
-
-// #region objects
-Json[] removeObjects(Json[] items, bool delegate(Json json) @safe removeFunc) {
-  return items.removeObjects.removeValues(removeFunc);
-}
-
-Json[] removeObjects(Json[] items, size_t[] indices) {
-  return items.removeIndices(indices).removeObjects.array;
-}
-
-Json[] removeObjects(Json[] items) {
-  return items.remove!(item => item.isObject).array;
-}
-// #endregion objects
 
 // #region arrays
 Json[] removeArrays(Json[] items, bool delegate(Json json) @safe removeFunc) {

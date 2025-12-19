@@ -12,5 +12,6 @@ public {
   import uim.vibe.datatypes.jsons.arrays.types.objects.get;
   import uim.vibe.datatypes.jsons.arrays.types.objects.has;
   import uim.vibe.datatypes.jsons.arrays.types.objects.is_;
+  import uim.vibe.datatypes.jsons.arrays.types.objects.last;
   import uim.vibe.datatypes.jsons.arrays.types.objects.remove;
 }

@@ -11,14 +11,26 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-Json[] removeObjects(Json[] items, bool delegate(Json json) @safe removeFunc) {
-  return items.removeObjects.removeValues(removeFunc);
+Json[] removeObjects(Json[] jsons, bool delegate(Json json) @safe removeFunc) {
+  return jsons.removeObjects.removeValues(removeFunc);
 }
 
-Json[] removeObjects(Json[] items, size_t[] indices) {
-  return items.removeIndices(indices).removeObjects.array;
+Json[] removeObjects(Json[] jsons, size_t[] indices) {
+  return jsons.removeIndices(indices).removeObjects.array;
 }
 
-Json[] removeObjects(Json[] items) {
-  return items.filter!(item => !item.isObject).array;
+Json[] removeObjects(Json[] jsons) {
+  return jsons.filter!(json => !json.isObject).array;
+}
+
+Json[] removeObjectsWithKey(Json[] jsons, string[] keys) {
+  return keys.map!(key => removeObjectsWithKey(key)).array;
+}
+
+Json[] removeObjectsWithKey(Json[] jsons, string key) {
+  return jsons.removeObjects.remove!(json => json.hasKey(key)).array;
+}
+
+Json[] removeObjectsWithKeyValue(Json[] jsons, string key, Json value) {
+  return jsons.removeObjects.remove!(json => json.hasKeyValue(key, value)).array;
 }

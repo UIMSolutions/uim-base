@@ -12,11 +12,11 @@ mixin(Version!("test_uim_vibe"));
 @safe:
 
 Json firstArray(Json[] jsons) {
-  return jsons.filterArrays.first;
+  return uim.vibe.datatypes.jsons.arrays.filter.filterArrays(jsons).first;
 }
 
 Json firstScalar(Json[] jsons) {
-  return jsons.filterScalars.first;
+  return uim.vibe.datatypes.jsons.arrays.filter.filterScalars(jsons).first;
 }
 
 Json first(Json[] jsons) {

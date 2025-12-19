@@ -9,7 +9,8 @@ public {
   import uim.vibe.datatypes.jsons.arrays.types.strings.filter;
   import uim.vibe.datatypes.jsons.arrays.types.strings.first;
   import uim.vibe.datatypes.jsons.arrays.types.strings.get;
-  import uim.vibe.datatypes.jsons.arrays.types.strings.is_;
   import uim.vibe.datatypes.jsons.arrays.types.strings.has;
+  import uim.vibe.datatypes.jsons.arrays.types.strings.is_;
+  import uim.vibe.datatypes.jsons.arrays.types.strings.last;
   import uim.vibe.datatypes.jsons.arrays.types.strings.remove;
 }

@@ -32,6 +32,10 @@ Json[] filterArrays(Json[] jsons) {
 }
 // #endregion arrays
 
+Json[] filterScalars(Json[] jsons) {
+  return jsons.filter!(json => json.isScalar).array;
+}
+
 // #region indices
 Json[] filterIndices(Json[] jsons, size_t[] indices) {
   return indices.filter!(index => jsons.length > index).map!(index => jsons[index]).array;

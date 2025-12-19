@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.jsons.arrays.get;
+module uim.vibe.datatypes.jsons.arrays.types.strings.last;
 
 import uim.vibe;
 
@@ -11,6 +11,7 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-Json[] getArray(Json[] jsons, size_t index, Json[] defaultValue = null) {
-  return jsons.length > index && jsons[index].isArray ? jsons[index].toArray(defaultValue) : defaultValue;
+Json lastString(Json[] jsons) {
+  return jsons.filterStrings.last;
 }
+
