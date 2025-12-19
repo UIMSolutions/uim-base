@@ -326,20 +326,6 @@ string[] toStringArray(Json value) {
     ? null : value.toArray.map!(json => json.to!string).array;
 }
 
-Json[] toArray(Json value) {
-  if (value.isNull) {
-    return null;
-  }
-
-  return value.isArray
-    ? value.getArray : [value];
-}
-
-unittest {
-  auto json1 = parseJsonString(`{"versionNumber": 1}`);
-  // TODO create test
-}
-
 Json updateKey(Json origin, Json additional) {
   if (origin.type != additional.type) {
     return origin;
