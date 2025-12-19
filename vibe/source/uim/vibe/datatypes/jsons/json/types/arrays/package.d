@@ -6,7 +6,11 @@
 module uim.vibe.datatypes.jsons.json.types.arrays;
 
 public {
-  import uim.vibe.datatypes.jsons.json.types.arrays.is_;
+  import uim.vibe.datatypes.jsons.json.types.arrays.filter;
+  import uim.vibe.datatypes.jsons.json.types.arrays.first;
   import uim.vibe.datatypes.jsons.json.types.arrays.get;
+  import uim.vibe.datatypes.jsons.json.types.arrays.is_;
   import uim.vibe.datatypes.jsons.json.types.arrays.has;
+  import uim.vibe.datatypes.jsons.json.types.arrays.last;
+  import uim.vibe.datatypes.jsons.json.types.arrays.remove;
 }

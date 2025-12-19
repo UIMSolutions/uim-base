@@ -62,62 +62,6 @@ Json[] removeScalars(Json[] items) {
 }
 // #endregion scalars
 
-// #region booleans
-Json[] removeBooleans(Json[] items, bool delegate(Json json) @safe removeFunc) {
-  return items.removeBoolean.removeValues(removeFunc);
-}
-
-Json[] removeBooleans(Json[] items, size_t[] indices) {
-  return items.removeIndices(indices).removeBooleans.array;
-}
-
-Json[] removeBooleans(Json[] items) {
-  return items.remove!(item => item.isBoolean).array;
-}
-// #endregion booleans
-
-// #region integers
-Json[] removeIntegers(Json[] items, bool delegate(Json json) @safe removeFunc) {
-  return items.removeBoolean.removeValues(removeFunc);
-}
-
-Json[] removeIntegers(Json[] items, size_t[] indices) {
-  return items.removeIndices(indices).removeIntegers;
-}
-
-Json[] removeIntegers(Json[] items) {
-  return items.remove!(item => item.isInteger).array;
-}
-// #endregion integers
-
-// #region doubles
-Json[] removeDoubles(Json[] items, bool delegate(Json json) @safe removeFunc) {
-  return items.removeBoolean.removeValues(removeFunc);
-}
-
-Json[] removeDoubles(Json[] items, size_t[] indices) {
-  return items.removeIndices(indices).removeDoubles;
-}
-
-Json[] removeDoubles(Json[] items) {
-  return items.remove!(item => item.isDouble).array;
-}
-// #endregion doubles
-
-// #region strings
-Json[] removeStrings(Json[] items, bool delegate(Json json) @safe removeFunc) {
-  return items.removeBoolean.removeValues(removeFunc);
-}
-
-Json[] removeStrings(Json[] items, size_t[] indices) {
-  return items.removeIndices(indices).removeStrings;
-}
-
-Json[] removeStrings(Json[] items) {
-  return items.remove!(item => item.isString).array;
-}
-// #endregion strings
-
 // #region values
 Json[] removeValues(Json[] items, size_t[] indices) {
   return items.filter!((_, index) => !indices.contains(index));
