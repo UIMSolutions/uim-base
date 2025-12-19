@@ -4,7 +4,3 @@
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
 module uim.vibe.containers;
-
-public {
-  import uim.vibe.containers.jsons;
-}

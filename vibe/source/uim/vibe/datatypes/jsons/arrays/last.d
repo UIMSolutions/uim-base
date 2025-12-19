@@ -11,39 +11,46 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-
 // #region Object
 Json lastObject(Json[] jsons) {
-  return json.isArray
-    ? uim.phobos.containers.arrays.last.last(json.toArray.filterObjects) : Json(null);
+  return jsons.filterObjects.last;
+}
+
+Json lastWithAllKey(Json[] jsons, string[] keys) {
+  return jsons.filterObjectWithAllKey(keys).last;
+}
+
+Json lastWithAnyKey(Json[] jsons, string[] keys) {
+  return jsons.filterObjectWithAnyKey(keys).last;
+}
+
+Json lastWithKey(Json[] jsons, string key) {
+  return jsons.filterObjectWithKey(key).last;
 }
 // #endregion Object
 
 Json lastArray(Json[] jsons) {
-  return json.isArray
-    ? uim.phobos.containers.arrays.last.last(json.toArray.filterArrays) : Json(null);
+  return jsons.filterArrays.last;
+}
+
+Json lastBoolean(Json[] jsons) {
+  return jsons.filterArrays.last;
+}
+
+Json lastInteger(Json[] jsons) {
+  return jsons.filterIntegers.last;
+}
+
+Json lastDouble(Json[] jsons) {
+  return jsons.filterDoubles.last;
+}
+
+Json lastString(Json[] jsons) {
+  return jsons.filterStrings.last;
 }
 
 Json lastScalar(Json[] jsons) {
-  return json.isArray
-    ? uim.phobos.containers.arrays.last.last(json.toArray.filterValues) : Json(null);
-}
-
-Json lastHasAllKey(Json[] jsons, string[] keys) {
-  return json.isArray
-    ? uim.phobos.containers.arrays.last.last(
-      json.toArray.filterHasAllKey(keys)) : Json(null);
-}
-
-Json lastHasAnyKey(Json[] jsons, string[] keys) {
-  return json.isArray
-    ? uim.phobos.containers.arrays.last.last(
-      json.toArray.filterHasAnyKey(keys)) : Json(null);
-}
-
-Json lastHasKey(Json[] jsons, string key) {
-  return json.isArray
-    ? uim.phobos.containers.arrays.last.last(json.toArray.filterHasKey(key)) : Json(null);
+  return jsons.filterScalars.last;
 }
 
 Json last(Json[] jsons) {

@@ -31,12 +31,12 @@ Json lastScalar(Json json) {
     ? uim.phobos.containers.arrays.last.last(json.toArray.filterValues) : Json(null);
 }
 
-Json lastHasAllKey(Json json, string[] keys) {
+Json lastWithAllKey(Json json, string[] keys) {
   return json.isArray
     ? uim.phobos.containers.arrays.last.last(json.toArray.filterHasAllKey(keys)) : Json(null);
 }
 
-Json lastHasAnyKey(Json json, string[] keys) {
+Json lastWithAnyKey(Json json, string[] keys) {
   return json.isArray
     ? uim.phobos.containers.arrays.last.last(json.toArray.filterHasAnyKey(keys)) : Json(null);
 }
