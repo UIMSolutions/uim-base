@@ -1,7 +1,6 @@
-module uim.vibe.datatypes.jsons.arrays.types.strings.is_;
+module uim.vibe.datatypes.jsons.arrays.types.scalars.is_;
 
 import uim.vibe;
-import uim.vibe.datatypes.jsons.json.types.strings;
 
 mixin(Version!("test_uim_vibe"));
 

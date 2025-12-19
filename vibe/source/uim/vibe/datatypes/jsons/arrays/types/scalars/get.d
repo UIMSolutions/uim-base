@@ -1,4 +1,4 @@
-module uim.vibe.datatypes.jsons.arrays.types.strings.get;
+module uim.vibe.datatypes.jsons.arrays.types.scalars.get;
 
 import uim.vibe;
 
