@@ -10,22 +10,13 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-// #region values
-// Get values from json object
-Json[] values(Json json, string[] keys) {
-  return json.isObject
-    ? keys
-    .filter!(key => json.hasKey(key))
-    .map!(key => json[key])
-    .array : null;
+Json[] values(Json json, Json delegate(Json json) @safe mapFunc) {
+  return json.values.map!(j => mapFunc(j));
 }
 
-unittest {
-  auto json = parseJsonString(`{"a": "A", "b": "B", "c": "C"}`);
-
-  /*   assert(json.hasAllValue(Json("A"), Json("B"), Json("C")));
-  assert(json.hasAllValue([Json("A"), Json("B"), Json("C")]));
-  assert(!json.hasAllValue([Json("A"), Json("B"), Json("D")])); */
+Json[] values(Json json) {
+  if (json.isArray || json.isObject) {
+    return json.byValue.array;
+  }
+  return null;
 }
-// #endregion values
-

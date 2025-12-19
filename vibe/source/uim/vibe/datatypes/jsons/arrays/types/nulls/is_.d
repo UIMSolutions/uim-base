@@ -26,5 +26,5 @@ bool isNull(Json[] values, size_t index) {
     return false;
   } 
 
-  return uim.vibe.datatypes.jsons.json.types.nulls.isNull(values[index]);
+  return uim.vibe.datatypes.jsons.typecheck.isNull(values[index]);
 }

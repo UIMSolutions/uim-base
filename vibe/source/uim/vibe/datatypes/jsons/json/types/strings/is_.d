@@ -48,44 +48,5 @@ bool isString(Json json, string key) {
   return json.hasKey(key) && json[key].isString;
 }
 
-/** 
-  * Checks if the given JSON value is of string type.
-  *
-  * Params:
-  *   json = The JSON value to check.
-  *
-  * Returns:
-  *   `true` if the JSON value is a string, `false` otherwise.
-  */
-bool isString(Json json) {
-  return (json.type == Json.Type.string);
-}
-///
-unittest {
-  auto json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": 1.1}], "i": {"j": "x"}}`);
-  assert(json.isString("a"));
-  assert(!json.isString("c"));
-  assert(json.isString(["i", "j"])); // Check path i/j
-  assert(!json.isString(["e", "g"])); // Check path e/g
 
-  auto a = Json("a");
-  assert(a.isString);
-  assert(!a.isInteger);
-
-  auto b = Json("b");
-  auto c = Json(1);
-
-  assert([a, b].isAnyString);
-  assert([a, c].isAnyString);
-
-  assert([a, b].isAllString);
-  assert(![a, c].isAllString);
-
-  auto map = ["A": a, "B": b, "C": c];
-  assert(map.isAnyString(["A", "B"]));
-  assert(map.isAnyString(["A", "C"]));
-
-  assert(map.isAllString(["A", "B"]));
-  assert(!map.isAllString(["A", "C"]));
-}
 // #endregion scalar

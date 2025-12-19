@@ -25,3 +25,15 @@ bool isInteger(Json json) {
 bool isDouble(Json json) {
   return (json.type == Json.Type.float_);
 }
+
+bool isString(Json json) {
+  return (json.type == Json.Type.string);
+}
+
+bool isNull(Json json) {
+  return json == Json(null); 
+}
+
+bool isUndefined(Json json) {
+  return json.type == Json.Type.undefined; 
+}

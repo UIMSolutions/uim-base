@@ -10,7 +10,7 @@ mixin(Version!("test_uim_vibe"));
 // #region all
 // #region noIndex
 bool isAllString(Json[] values) {
-  return values.all!(value => uim.vibe.datatypes.jsons.json.types.strings.isString(value));
+  return values.all!(value => uim.vibe.datatypes.jsons.typecheck.isString(value));
 }
 // #endregion noIndex
 
@@ -24,7 +24,7 @@ bool isAllString(Json[] values, size_t[] indices) {
 // #region any
 // #region noIndex
 bool isAnyString(Json[] values) {
-  return values.any!(value => uim.vibe.datatypes.jsons.json.types.strings.isString(value));
+  return values.any!(value => uim.vibe.datatypes.jsons.typecheck.isString(value));
 }
 // #endregion noIndex
 
@@ -41,6 +41,6 @@ bool isString(Json[] values, size_t index) {
     return false;
   } 
 
-  return uim.vibe.datatypes.jsons.json.types.strings.isString(values[index]);
+  return uim.vibe.datatypes.jsons.typecheck.isString(values[index]);
 }
 // #endregion is

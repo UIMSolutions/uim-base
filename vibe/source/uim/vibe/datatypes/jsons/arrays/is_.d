@@ -13,23 +13,26 @@ mixin(Version!("test_uim_vibe"));
 
 // #region all
 bool isAllArray(Json[] jsons, size_t[] indices = null) {
+  import uim.vibe.datatypes.jsons.typecheck;
   return (indices is null) 
-    ? jsons.all!(json => json.isArray) 
+    ? jsons.all!(json => uim.vibe.datatypes.jsons.typecheck.isArray(json)) 
     : indices.all!(index => jsons.isArray(index));
 }
 // #endregion all
 
 // #region any
 bool isAnyArray(Json[] jsons, size_t[] indices = null) {
+  import uim.vibe.datatypes.jsons.typecheck;
   return (indices is null) 
-    ? jsons.any!(json => json.isArray) 
+    ? jsons.any!(json => uim.vibe.datatypes.jsons.typecheck.isArray(json)) 
     : indices.any!(index => jsons.isArray(index));
 }
 // #endregion any
 
 // #region is
 bool isArray(Json[] jsons, size_t index) {
-  return jsons.length > index && jsons[index].isArray;
+  import uim.vibe.datatypes.jsons.typecheck;
+  return jsons.length > index && uim.vibe.datatypes.jsons.typecheck.isArray(jsons[index]);
 }
 // #endregion is
 

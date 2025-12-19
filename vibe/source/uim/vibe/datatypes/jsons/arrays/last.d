@@ -11,30 +11,28 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-
-
 Json lastArray(Json[] jsons) {
-  return jsons.filterArrays.last;
+  return uim.vibe.datatypes.jsons.arrays.filter.filterArrays(jsons).last;
 }
 
 Json lastBoolean(Json[] jsons) {
-  return jsons.filterArrays.last;
+  return uim.vibe.datatypes.jsons.arrays.types.booleans.filter.filterBooleans(jsons).last;
 }
 
 Json lastInteger(Json[] jsons) {
-  return jsons.filterIntegers.last;
+  return uim.vibe.datatypes.jsons.arrays.types.integers.filter.filterIntegers(jsons).last;
 }
 
 Json lastDouble(Json[] jsons) {
-  return jsons.filterDoubles.last;
+  return uim.vibe.datatypes.jsons.arrays.types.doubles.filter.filterDoubles(jsons).last;
 }
 
 Json lastString(Json[] jsons) {
-  return jsons.filterStrings.last;
+  return uim.vibe.datatypes.jsons.arrays.types.strings.filter.filterStrings(jsons).last;
 }
 
 Json lastScalar(Json[] jsons) {
-  return jsons.filterScalars.last;
+  return uim.vibe.datatypes.jsons.arrays.types.scalarsfilter.filterScalars(jsons).last;
 }
 
 Json last(Json[] jsons) {

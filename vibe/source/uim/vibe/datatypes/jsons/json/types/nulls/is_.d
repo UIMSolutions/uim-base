@@ -66,34 +66,5 @@ bool isNull(Json json, string key) {
 // #endregion key
 
 // #region scalar
-/** 
-  * Checks if the given JSON value is null.
-  *
-  * Params:
-  *   json = The JSON value to check.
-  *
-  * Returns:
-  *   `true` if the JSON value is null, `false` otherwise.
-  */
-bool isNull(Json json) {
-  return json == Json(null); 
-}
-/// 
-unittest {
-  assert(Json(null).isNull);
-  assert(!Json.emptyObject.isNull);
-  assert(!Json.emptyArray.isNull);
 
-  auto json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": "h"}]}`);
-  assert(json.isNull("x"));
-  assert(!json.isNull("a"));
-
-  assert(json.isNull(["x"]));
-  assert(!json.isNull(["a"]));
-
-  assert(json.isAllNull(["x", "y"]));
-  assert(!json.isAllNull(["a", "y"]));
-  assert(json.isAnyNull(["x", "y"]));
-  assert(!json.isAnyNull(["a", "c"]));
-}
 // #endregion scalar

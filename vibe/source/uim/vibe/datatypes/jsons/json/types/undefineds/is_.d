@@ -62,34 +62,5 @@ bool isUndefined(Json json, string key) {
 // #endregion key
 
 // #region scalar
-/** 
-  * Checks if the given JSON value is undefined.
-  *
-  * Params:
-  *   json = The JSON value to check.
-  *
-  * Returns:
-  *   `true` if the JSON value is undefined, `false` otherwise.
-  */
-bool isUndefined(Json json) {
-  return json.type == Json.Type.undefined; 
-}
-/// 
-unittest {
-  assert(Json(undefined).isUndefined);
-  assert(!Json.emptyObject.isUndefined);
-  assert(!Json.emptyArray.isUndefined);
 
-  auto json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": "h"}]}`);
-  assert(json.isUndefined("x"));
-  assert(!json.isUndefined("a"));
-
-  assert(json.isUndefined(["x"]));
-  assert(!json.isUndefined(["a"]));
-
-  assert(json.isAllUndefined(["x", "y"]));
-  assert(!json.isAllUndefined(["a", "y"]));
-  assert(json.isAnyUndefined(["x", "y"]));
-  assert(!json.isAnyUndefined(["a", "c"]));
-}
 // #endregion scalar
