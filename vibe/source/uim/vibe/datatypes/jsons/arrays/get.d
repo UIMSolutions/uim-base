@@ -12,5 +12,5 @@ mixin(Version!("test_uim_vibe"));
 @safe:
 
 Json[] getArray(Json[] jsons, size_t index, Json[] defaultValue = null) {
-  return jsons.length > index && jsons[index].isArray ? jsons[index].toArray(defaultValue) : defaultValue;
+  return jsons.length > index && jsons[index].isArray ? jsons[index].get!(Json[]) : defaultValue;
 }
