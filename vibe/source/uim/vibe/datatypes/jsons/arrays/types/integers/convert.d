@@ -11,14 +11,43 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
+/** 
+  * Converts the given array of Jsons to an array of integers using the provided conversion function.
+  *
+  * Params:
+  *   jsons = The array of Json objects to convert.
+  *   convertFunc = A delegate function that takes a Json object and returns an integer.
+  *
+  * Returns:
+  *   An array of integers resulting from the conversion.
+  */
 int[] toIntegers(Json[] jsons, int delegate(Json json) @safe convertFunc) {
   return jsons.map!(json => convertFunc(json)).array;
 }
 
+/** 
+  * Converts the given array of Jsons to an array of integers by filtering based on the provided indices.
+  *
+  * Params:
+  *   jsons = The array of Json objects to convert.
+  *   indices = The indices of the Json array to consider for conversion.
+  *
+  * Returns:
+  *   An array of integers resulting from the conversion of the filtered Jsons.
+  */
 int[] toIntegers(Json[] jsons, size_t[] indices) {
   return jsons.filterIntegers(indices).toIntegers;
 }
 
+/** 
+  * Converts the given array of Jsons to an array of integers by filtering for integer values.
+  *
+  * Params:
+  *   jsons = The array of Json objects to convert.
+  *
+  * Returns:
+  *   An array of integers resulting from the conversion of the filtered Jsons.
+  */
 int[] toIntegers(Json[] jsons) {
   return jsons.filterIntegers.map!(json => json.toInteger).array;
 }

@@ -11,14 +11,14 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-Json[] filterStrings(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
-  return jsons.filterStrings.filter!(json => filterFunc(json)).array;
+Json[] filterScalars(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
+  return jsons.filterScalars.filter!(json => filterFunc(json)).array;
 }
 
-Json[] filterStrings(Json[] jsons, size_t[] indices) {
-  return jsons.filterIndices(indices).filterStrings.array;
+Json[] filterScalars(Json[] jsons, size_t[] indices) {
+  return jsons.filterIndices(indices).filterScalars.array;
 }
 
-Json[] filterStrings(Json[] jsons) {
-  return jsons.filter!(json => json.isString).array;
+Json[] filterScalars(Json[] jsons) {
+  return jsons.filter!(json => json.isScalar).array;
 }

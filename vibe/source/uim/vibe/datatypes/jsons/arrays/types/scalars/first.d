@@ -11,7 +11,7 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-Json firstString(Json[] jsons) {
-  return jsons.filterStrings.first;
+Json firstScalar(Json[] jsons) {
+  return jsons.filterScalars.first;
 }
 

@@ -11,7 +11,16 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-Json lastString(Json[] jsons) {
-  return jsons.filterStrings.last;
+/** 
+  * Returns the last JSON scalar value from the given JSON array.
+  *
+  * Params:
+  *   jsons = The JSON array to search.
+  *
+  * Returns:
+  *   The last JSON scalar value, or `Json(null)` if none found.
+  */
+Json lastScalar(Json[] jsons) {
+  return jsons.filterScalars.last;
 }
 

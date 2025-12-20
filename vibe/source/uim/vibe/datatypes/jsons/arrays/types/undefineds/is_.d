@@ -11,10 +11,29 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
+/** 
+  * Checks if all values in the given JSON array are of type `undefined`.
+  *
+  * Params:
+  *   values = The JSON array to check.
+  *
+  * Returns:
+  *   `true` if all values are `undefined`, `false` otherwise.
+  */
 bool isAllUndefined(Json[] values) {
   return values.all!(value => uim.vibe.datatypes.jsons.typecheck.isUndefined(value));
 }
 
+/** 
+  * Checks if all values at the specified indices in the given JSON array are of type `undefined`.
+  *
+  * Params:
+  *   values = The JSON array to check.
+  *   indices = The indices of the values to check.
+  *
+  * Returns:
+  *   `true` if all specified values are `undefined`, `false` otherwise.
+  */
 bool isAllUndefined(Json[] values, size_t[] indices) {
   return indices.all!(index => values.isUndefined(index));
 }
