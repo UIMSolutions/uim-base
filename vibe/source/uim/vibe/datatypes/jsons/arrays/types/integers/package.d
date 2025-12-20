@@ -6,6 +6,7 @@
 module uim.vibe.datatypes.jsons.arrays.types.integers;
 
 public {
+  import uim.vibe.datatypes.jsons.arrays.types.integers.convert;
   import uim.vibe.datatypes.jsons.arrays.types.integers.filter;
   import uim.vibe.datatypes.jsons.arrays.types.integers.first;
   import uim.vibe.datatypes.jsons.arrays.types.integers.get;

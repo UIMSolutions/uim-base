@@ -6,6 +6,7 @@
 module uim.vibe.datatypes.jsons.arrays.types.strings;
 
 public {
+  import uim.vibe.datatypes.jsons.arrays.types.strings.convert;
   import uim.vibe.datatypes.jsons.arrays.types.strings.filter;
   import uim.vibe.datatypes.jsons.arrays.types.strings.first;
   import uim.vibe.datatypes.jsons.arrays.types.strings.get;

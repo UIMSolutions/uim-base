@@ -6,6 +6,7 @@
 module uim.vibe.datatypes.jsons.arrays.types.booleans;
 
 public {
+  import uim.vibe.datatypes.jsons.arrays.types.booleans.convert;
   import uim.vibe.datatypes.jsons.arrays.types.booleans.filter;
   import uim.vibe.datatypes.jsons.arrays.types.booleans.first;
   import uim.vibe.datatypes.jsons.arrays.types.booleans.get;

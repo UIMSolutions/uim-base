@@ -6,6 +6,7 @@
 module uim.vibe.datatypes.jsons.arrays.types.doubles;
 
 public {
+  import uim.vibe.datatypes.jsons.arrays.types.doubles.convert;
   import uim.vibe.datatypes.jsons.arrays.types.doubles.filter;
   import uim.vibe.datatypes.jsons.arrays.types.doubles.first;
   import uim.vibe.datatypes.jsons.arrays.types.doubles.get;
