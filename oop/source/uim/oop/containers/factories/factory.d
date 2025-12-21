@@ -190,7 +190,7 @@ class DFactory(V = UIMObject) : UIMDirectory, IFactory!V {
   // #region set
   // Sets the entire collection to the specified items.
   bool setKey(string key, V delegate(Json[string] options = null) @safe createFunc) {
-    _workers[key] = createFunc;
+    () @trusted { _workers[key] = createFunc; }();
     return true;
   }
   ///

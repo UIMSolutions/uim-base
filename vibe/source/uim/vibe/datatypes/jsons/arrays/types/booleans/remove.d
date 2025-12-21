@@ -35,6 +35,6 @@ Json[] removeBooleans(Json[] jsons) {
 
 protected bool foundBoolean(Json json, bool delegate(Json value) removeFunc) {
   bool found = false;
-  () @trusted { found = json.isBoolean && json.removeFunc; }();
+  () @trusted { found = json.isBoolean && removeFunc(json); }();
   return found;
 }

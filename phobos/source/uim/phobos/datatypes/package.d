@@ -19,5 +19,4 @@ public {
   import uim.phobos.datatypes.mixins;
   import uim.phobos.datatypes.nulls;
   import uim.phobos.datatypes.uuids;
-  import uim.phobos.datatypes.values;
 }

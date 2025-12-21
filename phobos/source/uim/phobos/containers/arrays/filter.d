@@ -146,3 +146,7 @@ unittest {
     strResult = filterValues(strBase, strVals);
     assert(strResult.length == 0);
 }
+
+T[] filterValues(T)(T[] values, size_t[] indices) {
+  return values.filter!((value, index) => indices.hasValue(index)).array;
+}

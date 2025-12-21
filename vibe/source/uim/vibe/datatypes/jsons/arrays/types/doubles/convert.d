@@ -11,14 +11,16 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-double[] toDoubles(Json[] jsons, int delegate(Json json) @safe convertFunc) {
+double[] toDoubles(Json[] jsons, double delegate(Json json) @safe convertFunc) {
   return jsons.map!(json => convertFunc(json)).array;
 }
 
 double[] toDoubles(Json[] jsons, size_t[] indices) {
-  return uim.vibe.datatypes.jsons.arrays.types.doubles.filter.filterDoubles(jsons, indices).toDoubles;
+  import uim.vibe.datatypes.jsons.arrays.types.doubles.filter;
+  return filterDoubles(jsons, indices).toDoubles;
 }
 
 double[] toDoubles(Json[] jsons) {
-  return jsons.filterDoubles.map!(json => json.toDouble).array;
+  import uim.vibe.datatypes.jsons.arrays.types.doubles.filter;
+  return filterDoubles(jsons).map!(json => json.toDouble).array;
 }

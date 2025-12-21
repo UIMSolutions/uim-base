@@ -12,6 +12,7 @@ mixin(Version!("test_uim_vibe"));
 @safe:
 
 Json firstDouble(Json[] jsons) {
-  return jsons.filterDoubles.first;
+  import uim.vibe.datatypes.jsons.arrays.types.doubles.filter;
+  return filterDoubles(jsons).first;
 }
 

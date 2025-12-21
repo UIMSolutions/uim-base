@@ -11,8 +11,10 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-Json[] removeBooleans(Json[] jsons, bool delegate(Json json) @safe removeFunc) {
-  return jsons.removeBooleans.removeValues(removeFunc);
+Json[] removeBooleans(Json[] jsons, bool delegate(Json json) removeFunc) {
+  Json[] results;
+  () @trusted { results = jsons.removeBooleans.removeValues(removeFunc); }();
+  return results;
 }
 
 Json[] removeBooleans(Json[] jsons, size_t[] indices) {

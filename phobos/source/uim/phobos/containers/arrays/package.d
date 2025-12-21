@@ -25,6 +25,7 @@ public {
   import uim.phobos.containers.arrays.fold;
   import uim.phobos.containers.arrays.foldright;
   import uim.phobos.containers.arrays.has;
+  import uim.phobos.containers.arrays.get;
   import uim.phobos.containers.arrays.group;
   import uim.phobos.containers.arrays.indexof;
   import uim.phobos.containers.arrays.insert;

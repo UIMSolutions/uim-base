@@ -11,12 +11,14 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-Json[] filterBooleans(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
-  return jsons.filterBooleans.filter!(json => filterFunc(json)).array;
+Json[] filterBooleans(Json[] jsons, bool delegate(Json json) filterFunc) {
+  Json[] results;
+  () @trusted { results = jsons.filterBooleans.filter!(json => filterFunc(json)).array; }();
+  return results;
 }
 
 Json[] filterBooleans(Json[] jsons, size_t[] indices) {
-  return jsons.filterIndices(indices).filterBooleans.array;
+  return jsons.filterValues(indices).filterBooleans.array;
 }
 
 Json[] filterBooleans(Json[] jsons) {

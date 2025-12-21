@@ -16,7 +16,8 @@ Json[] filterDoubles(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
 }
 
 Json[] filterDoubles(Json[] jsons, size_t[] indices) {
-  return jsons.filterIndices(indices).filterDoubles.array;
+  import uim.vibe.datatypes.jsons.arrays.types.doubles.filter;
+  return filterValues(jsons, indices).filterDoubles.array;
 }
 
 Json[] filterDoubles(Json[] jsons) {
