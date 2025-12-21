@@ -21,8 +21,8 @@ mixin(Version!("test_uim_vibe"));
   * Returns:
   *   A new array of Json values with the specified scalar values removed.
   */
-Json[] removeScalars(Json[] jsons, bool delegate(Json json) @safe removeFunc) {
-  return jsons.removeScalars.removeValues(removeFunc);
+Json[] removeScalars(Json[] jsons, bool delegate(Json json) removeFunc) {
+  return jsons.filter!(json => !foundScalar(json, removeFunc)).array;
 }
 
 Json[] removeScalars(Json[] jsons, size_t[] indices) {
@@ -31,4 +31,20 @@ Json[] removeScalars(Json[] jsons, size_t[] indices) {
 
 Json[] removeScalars(Json[] jsons) {
   return jsons.filter!(json => !json.isScalar).array;
+}
+
+/** 
+  * Helper function to determine if a Json value is a scalar and matches the removal criteria.
+  *
+  * Params:
+  *   json = The Json value to check.
+  *   removeFunc = A delegate function that defines the removal criteria for scalar values.
+  *
+  * Returns:
+  *   `true` if the Json value is a scalar and matches the removal criteria; otherwise, `false`.
+  */
+protected bool foundScalar(Json json, bool delegate(Json value) removeFunc) {
+  bool found = false;
+  () @trusted { found = json.isScalar && json.removeFunc; }();
+  return found;
 }

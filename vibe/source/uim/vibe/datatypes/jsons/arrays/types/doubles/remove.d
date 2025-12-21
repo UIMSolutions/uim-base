@@ -11,8 +11,8 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-Json[] removeDoubles(Json[] items, bool delegate(Json json) @safe removeFunc) {
-  return items.removeDoubles.removeValues(removeFunc);
+Json[] removeDoubles(Json[] items, bool delegate(Json json) removeFunc) {
+  return items.filter!(json => !foundDouble(json, removeFunc)).array;
 }
 
 Json[] removeDoubles(Json[] items, size_t[] indices) {
@@ -21,4 +21,10 @@ Json[] removeDoubles(Json[] items, size_t[] indices) {
 
 Json[] removeDoubles(Json[] items) {
   return items.filter!(item => !item.isDouble).array;
+}
+
+protected bool foundDouble(Json json, bool delegate(Json value) removeFunc) {
+  bool found = false;
+  () @trusted { found = json.isDouble && json.removeFunc; }();
+  return found;
 }

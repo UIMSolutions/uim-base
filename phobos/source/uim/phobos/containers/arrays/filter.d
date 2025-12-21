@@ -20,9 +20,9 @@ mixin(Version!("test_uim_phobos"));
  * Returns:
  *   A new array containing only the elements from `values` for which `check` returns `true`.
  */
-T[] filterValues(T)(T[] values, bool delegate(T value) check) {
+T[] filterValues(T)(T[] values, bool delegate(T value) filterFunc) {
   T[] results;
-  () @trusted { results = values.filter!(value => check(value)).array; }();
+  () @trusted { results = values.filter!(value => filterFunc(value)).array; }();
   return results;
 }
 ///

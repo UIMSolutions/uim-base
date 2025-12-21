@@ -32,11 +32,8 @@ Json[] remove(Json[] list, size_t index) {
   return list;
 }
 
-
-
-// #region arrays
 Json[] removeArrays(Json[] items, bool delegate(Json json) @safe removeFunc) {
-  return items.removeArrays.removeValues(removeFunc);
+  return items.filter!(json => !foundArray(json, removeFunc)).array;
 }
 
 Json[] removeArrays(Json[] items, size_t[] indices) {
@@ -46,4 +43,9 @@ Json[] removeArrays(Json[] items, size_t[] indices) {
 Json[] removeArrays(Json[] items) {
   return items.remove!(item => item.isArray).array;
 }
-// #endregion arrays
+
+protected bool foundArray(Json json, bool delegate(Json value) removeFunc) {
+  bool found = false;
+  () @trusted { found = json.isArray && json.removeFunc; }();
+  return found;
+}

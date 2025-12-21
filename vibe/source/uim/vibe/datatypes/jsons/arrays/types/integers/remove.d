@@ -11,8 +11,8 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-Json[] removeIntegers(Json[] jsons, bool delegate(Json json) @safe removeFunc) {
-  return jsons.removeIntegers.removeValues(removeFunc);
+Json[] removeIntegers(Json[] jsons, bool delegate(Json json) removeFunc) {
+  return jsons.filter!(json => !foundInteger(json, removeFunc)).array;
 }
 
 Json[] removeIntegers(Json[] jsons, size_t[] indices) {
@@ -21,4 +21,10 @@ Json[] removeIntegers(Json[] jsons, size_t[] indices) {
 
 Json[] removeIntegers(Json[] jsons) {
   return jsons.filter!(json => !json.isInteger).array;
+}
+
+protected bool foundInteger(Json json, bool delegate(Json value) removeFunc) {
+  bool found = false;
+  () @trusted { found = json.isInteger && json.removeFunc; }();
+  return found;
 }

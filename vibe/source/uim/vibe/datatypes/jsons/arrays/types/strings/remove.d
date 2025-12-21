@@ -11,8 +11,8 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-Json[] removeStrings(Json[] jsons, bool delegate(Json json) @safe removeFunc) {
-  return jsons.removeStrings.removeValues(removeFunc);
+Json[] removeStrings(Json[] jsons, bool delegate(Json json) removeFunc) {
+  return jsons.filter!(json => !foundString(json, removeFunc)).array;
 }
 
 Json[] removeStrings(Json[] jsons, size_t[] indices) {
@@ -21,4 +21,10 @@ Json[] removeStrings(Json[] jsons, size_t[] indices) {
 
 Json[] removeStrings(Json[] jsons) {
   return jsons.filter!(json => !json.isString).array;
+}
+
+protected bool foundString(Json json, bool delegate(Json value) removeFunc) {
+  bool found = false;
+  () @trusted { found = json.isString && json.removeFunc; }();
+  return found;
 }
