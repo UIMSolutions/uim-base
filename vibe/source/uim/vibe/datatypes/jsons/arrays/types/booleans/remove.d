@@ -11,6 +11,16 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
+/**
+  * Remove boolean Json values from the specified Json array based on a delegate function.
+  *
+  * Params:
+  *   jsons = The Json array to remove boolean values from.
+  *   removeFunc = A delegate function that determines whether a boolean Json value should be removed.
+  *
+  * Returns:
+  *   A new Json array with the specified boolean values removed.
+  */
 Json[] removeBooleans(Json[] jsons, bool delegate(Json json) removeFunc) {
   return jsons.filter!(json => !foundBoolean(json, removeFunc)).array;
 }

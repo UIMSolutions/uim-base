@@ -11,6 +11,16 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
+/** 
+  * Remove double Json values from the specified array of Json values based on a delegate function.
+  *
+  * Params:
+  *   items = The array of Json values to remove double values from.
+  *   removeFunc = A delegate function that takes a Json value and returns true if it should be removed.
+  *
+  * Returns:
+  *   A new array of Json values with the specified double values removed.
+  */
 Json[] removeDoubles(Json[] items, bool delegate(Json json) removeFunc) {
   return items.filter!(json => !foundDouble(json, removeFunc)).array;
 }

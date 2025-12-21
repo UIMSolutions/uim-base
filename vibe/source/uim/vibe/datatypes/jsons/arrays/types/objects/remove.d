@@ -11,6 +11,16 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
+/**
+  Removes objects from the provided Json array based on a delegate function.
+  
+  Params:
+    jsons = The Json array to process.
+    removeFunc = A delegate function that determines whether to remove an object.
+  
+  Returns:
+    A new Json array with the specified objects removed.
+  */
 Json[] removeObjects(Json[] jsons, bool delegate(Json json) removeFunc) {
   return jsons.filter!(json => !foundObject(json, removeFunc)).array;
 }

@@ -11,6 +11,16 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
+/** 
+  * Remove strings from the specified Json array based on a delegate function.
+  *
+  * Params:
+  *   jsons = The Json array to remove strings from.
+  *   removeFunc = A delegate function that determines whether a string should be removed.
+  *
+  * Returns:
+  *   A new Json array with the specified strings removed.
+  */
 Json[] removeStrings(Json[] jsons, bool delegate(Json json) removeFunc) {
   return jsons.filter!(json => !foundString(json, removeFunc)).array;
 }
