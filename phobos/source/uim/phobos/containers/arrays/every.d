@@ -8,8 +8,8 @@ module uim.phobos.containers.arrays.every;
 import uim.phobos;
 
 mixin(Version!"test_uim_phobos");
-@safe:
 
+@safe:
 
 void every(V)(auto ref V[] items, void delegate(V value) @safe func) {
   items.each!(v => func(v));

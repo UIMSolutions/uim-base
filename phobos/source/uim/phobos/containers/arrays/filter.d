@@ -8,9 +8,8 @@ module uim.phobos.containers.arrays.filter;
 import uim.phobos;
 
 mixin(Version!("test_uim_phobos"));
+
 @safe:
-
-
 /**
  * Filters the elements of the input array `values` using the provided `check` delegate.
  *

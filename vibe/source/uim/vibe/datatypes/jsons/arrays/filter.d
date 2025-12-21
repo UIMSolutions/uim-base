@@ -11,13 +11,6 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-// #region has
-
-Json[] filterValues(Json[] jsons) {
-  return jsons.filter!(item => !item.isArray & !item.isObject)
-    .filter!(item => !item.isNull).array;
-}
-
 // #region arrays
 Json[] filterArrays(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
   return jsons.filterArrays.filter!(json => filterFunc(json)).array;

@@ -11,6 +11,16 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
+/**
+  * Removes scalar Json values from the given array based on a provided function.
+  *
+  * Params:
+  *   jsons = The array of Json values to process.
+  *   removeFunc = A delegate function that determines which scalar Json values to remove.
+  *
+  * Returns:
+  *   A new array of Json values with the specified scalar values removed.
+  */
 Json[] removeScalars(Json[] jsons, bool delegate(Json json) @safe removeFunc) {
   return jsons.removeScalars.removeValues(removeFunc);
 }

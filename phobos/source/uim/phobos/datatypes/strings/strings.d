@@ -7,6 +7,8 @@ module uim.phobos.datatypes.strings.strings;
 
 import uim.phobos;
 
+mixin(Version!("test_uim_phobos"));
+
 @safe:
 
 // #region md5

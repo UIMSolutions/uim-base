@@ -6,6 +6,9 @@
 module uim.phobos.datatypes.strings.mutation;
 
 import uim.phobos;
+
+mixin(Version!("test_uim_phobos"));
+
 @safe:
 
 // #region lower

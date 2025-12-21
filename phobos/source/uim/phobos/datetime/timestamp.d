@@ -7,6 +7,8 @@ module uim.phobos.datetime.timestamp;
 
 import uim.phobos;
 
+mixin(Version!("test_uim_phobos"));
+
 @safe:
 
 enum startUNIX = DateTime(1970, 1, 1, 0, 0, 0);

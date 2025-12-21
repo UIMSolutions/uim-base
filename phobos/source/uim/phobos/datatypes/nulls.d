@@ -7,8 +7,9 @@ module uim.phobos.datatypes.nulls;
 
 import uim.phobos;
 
-@safe:
+mixin(Version!("test_uim_phobos"));
 
+@safe:
 /**
   * Returns the null value for the given type T.
   *
