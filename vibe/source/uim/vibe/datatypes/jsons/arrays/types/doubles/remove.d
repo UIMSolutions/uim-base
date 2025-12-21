@@ -26,7 +26,7 @@ Json[] removeDoubles(Json[] items, bool delegate(Json json) removeFunc) {
 }
 
 Json[] removeDoubles(Json[] items, size_t[] indices) {
-  return items.removeIndices(indices).removeDoubles;
+  return items.removeValues(indices).removeDoubles;
 }
 
 Json[] removeDoubles(Json[] items) {

@@ -39,7 +39,7 @@ Json[] filterIntegers(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
   *   A new Json array containing only the integers at the specified indices.
   */
 Json[] filterIntegers(Json[] jsons, size_t[] indices) {
-  return jsons.filterIndices(indices).filterIntegers.array;
+  return jsons.filterValues(indices).filterIntegers.array;
 }
 // #endregion indices
 

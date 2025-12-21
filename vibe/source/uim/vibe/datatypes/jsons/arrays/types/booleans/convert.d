@@ -11,11 +11,12 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-bool[] toBooleans(Json[] jsons, int delegate(Json json) @safe convertFunc) {
+bool[] toBooleans(Json[] jsons, bool delegate(Json json) @safe convertFunc) {
   return jsons.map!(json => convertFunc(json)).array;
 }
 
 bool[] toBooleans(Json[] jsons, size_t[] indices) {
+  import uim.vibe.datatypes.jsons.arrays.types.booleans.filter;
   return jsons.filterBooleans(indices).toBooleans;
 }
 

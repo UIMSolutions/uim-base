@@ -56,11 +56,11 @@ double getDouble(Json value, double defaultValue = 0.0) {
     ? value.get!(double) : defaultValue;
 }
 
-string getString(Json value, string defaultValue = "") {
+string getString(Json value) {
   if (value.isNull) {
-    return defaultValue;
+    return "";
   }
 
   return value.isString  
-    ? value.get!(string) : defaultValue;
+    ? value.get!(string) : "";
 }

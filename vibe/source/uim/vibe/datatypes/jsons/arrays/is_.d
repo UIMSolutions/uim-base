@@ -32,7 +32,7 @@ bool isAnyArray(Json[] jsons, size_t[] indices = null) {
 // #region is
 bool isArray(Json[] jsons, size_t index) {
   import uim.vibe.datatypes.jsons.typecheck;
-  return jsons.length > index && uim.vibe.datatypes.jsons.typecheck.isArray(json, index);
+  return jsons.length > index && uim.vibe.datatypes.jsons.typecheck.isArray(jsons[index]);
 }
 // #endregion is
 

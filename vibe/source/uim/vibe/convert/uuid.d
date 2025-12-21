@@ -10,9 +10,9 @@ import uim.vibe;
 mixin(Version!("test_uim_vibe"));
 @safe:
 
-UUID toUUID(string key, Json value) {
-  return value.isObject
-    ? UUID(value.getString(key)) : UUID();
+UUID toUUID(string key, Json json) {
+  return json.isObject
+    ? UUID(json.getString(key)) : UUID();
 }
 
 

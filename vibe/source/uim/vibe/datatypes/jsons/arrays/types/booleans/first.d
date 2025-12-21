@@ -12,6 +12,7 @@ mixin(Version!("test_uim_vibe"));
 @safe:
 
 Json firstBoolean(Json[] jsons) {
-  return jsons.filterBooleans.first;
+  import uim.vibe.datatypes.jsons.arrays.types.booleans.filter;
+  return filterBooleans(jsons).first;
 }
 

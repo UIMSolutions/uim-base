@@ -42,11 +42,11 @@ Json[] removeArrays(Json[] items, size_t[] indices) {
 }
 
 Json[] removeArrays(Json[] items) {
-  return items.remove!(item => item.isArray).array;
+  return items.filter!(item => !item.isArray).array;
 }
 
-protected bool foundArray(Json json, bool delegate(Json value) removeFunc) {
+protected bool foundArray(Json json, bool delegate(Json value) @safe removeFunc) {
   bool found = false;
-  () @trusted { found = json.isArray && json.removeFunc; }();
+  () @trusted { found = json.isArray && removeFunc(json); }();
   return found;
 }

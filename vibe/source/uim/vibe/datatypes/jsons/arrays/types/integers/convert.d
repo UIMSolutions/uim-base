@@ -36,6 +36,7 @@ int[] toIntegers(Json[] jsons, int delegate(Json json) @safe convertFunc) {
   *   An array of integers resulting from the conversion of the filtered Jsons.
   */
 int[] toIntegers(Json[] jsons, size_t[] indices) {
+  import uim.vibe.datatypes.jsons.arrays.types.integers.filter;
   return jsons.filterIntegers(indices).toIntegers;
 }
 
@@ -49,5 +50,6 @@ int[] toIntegers(Json[] jsons, size_t[] indices) {
   *   An array of integers resulting from the conversion of the filtered Jsons.
   */
 int[] toIntegers(Json[] jsons) {
-  return jsons.filterIntegers.map!(json => json.toInteger).array;
+  import uim.vibe.datatypes.jsons.arrays.types.integers.filter;
+  return jsons.filterIntegers.toIntegers;
 }

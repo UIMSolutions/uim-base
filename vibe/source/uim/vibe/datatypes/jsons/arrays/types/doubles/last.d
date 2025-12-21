@@ -21,6 +21,7 @@ mixin(Version!("test_uim_vibe"));
   *   The last JSON value of type `double`, or `Json(null)` if none found.
   */
 Json lastDouble(Json[] jsons) {
+  import uim.vibe.datatypes.jsons.arrays.types.doubles.filter;
   return jsons.filterDoubles.last;
 }
 

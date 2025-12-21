@@ -8,6 +8,7 @@ mixin(Version!("test_uim_vibe"));
 
 // #region get
 double getDouble(Json[] jsons, size_t index, double defaultValue = 0.0) {
-  return jsons.length > index && jsons[index].isDouble ? jsons[index].getDouble(defaultValue) : defaultValue;
+  import uim.vibe.datatypes.jsons.json.get;
+  return jsons.length > index && jsons[index].isDouble ? getDouble(jsons[index], defaultValue) : defaultValue;
 }
 // #endregion get
