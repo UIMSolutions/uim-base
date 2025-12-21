@@ -21,7 +21,7 @@ mixin(Version!("test_uim_vibe"));
   *   true if all elements are null, false otherwise.
   */
 bool hasOnlyNull(Json[] values) {
-  return values.all!(value => uim.vibe.datatypes.jsons.json.types.nulls.isNull(value));
+  return values.all!(value => value == Json(null));
 }
 
 /**
@@ -34,5 +34,5 @@ bool hasOnlyNull(Json[] values) {
   *   true if any element is null, false otherwise.
   */
 bool hasNull(Json[] values) {
-  return values.any!(value => uim.vibe.datatypes.jsons.json.types.nulls.isNull(value));
+  return values.any!(value => value == Json(null));
 }

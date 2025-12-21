@@ -105,24 +105,23 @@ unittest {
  * Returns:
  *   `true` if the value is found in the array, `false` otherwise.
  */
-bool has(T)(T[] values, T checkValue) {
+bool hasValue(T)(T[] values, T checkValue) {
   return values.any!(v => v == checkValue);
 }
 ///
 unittest {
   // Test with int array
   int[] arrInt = [1, 2, 3, 4, 5];
-  assert(has(arrInt, 3));
-  assert(!has(arrInt, 6));
-
+  assert(hasValue(arrInt, 3));
+  assert(!hasValue(arrInt, 6));
   // Test with string array
   string[] arrStr = ["apple", "banana", "cherry"];
-  assert(has(arrStr, "banana"));
-  assert(!has(arrStr, "date"));
+  assert(hasValue(arrStr, "banana"));
+  assert(!hasValue(arrStr, "date"));
 
   // Test with empty array
   int[] emptyArr;
-  assert(!has(emptyArr, 1));
+  assert(!hasValue(emptyArr, 1));
 
   // Test with custom type
   struct Point {
@@ -130,6 +129,6 @@ unittest {
   }
 
   Point[] points = [Point(1, 2), Point(3, 4)];
-  assert(has(points, Point(1, 2)));
-  assert(!has(points, Point(5, 6)));
+  assert(hasValue(points, Point(1, 2)));
+  assert(!hasValue(points, Point(5, 6)));
 }

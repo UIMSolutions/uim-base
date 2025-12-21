@@ -26,7 +26,8 @@ Json[] removeBooleans(Json[] jsons, bool delegate(Json json) removeFunc) {
 }
 
 Json[] removeBooleans(Json[] jsons, size_t[] indices) {
-  return jsons.removeValues(indices).removeBooleans.array;
+  import uim.phobos.containers.arrays.remove;
+  return uim.phobos.containers.arrays.remove.removeValues(jsons, indices).removeBooleans.array;
 }
 
 Json[] removeBooleans(Json[] jsons) {

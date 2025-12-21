@@ -21,7 +21,7 @@ mixin(Version!("test_uim_vibe"));
   * Returns:
   *   A new Json array with the specified integer values removed.
   */
-Json[] removeIntegers(Json[] jsons, bool delegate(Json json) removeFunc) {
+Json[] removeIntegers(Json[] jsons, bool delegate(Json value) @safe removeFunc) {
   return jsons.filter!(json => !foundInteger(json, removeFunc)).array;
 }
 
@@ -33,8 +33,8 @@ Json[] removeIntegers(Json[] jsons) {
   return jsons.filter!(json => !json.isInteger).array;
 }
 
-protected bool foundInteger(Json json, bool delegate(Json value) removeFunc) {
+protected bool foundInteger(Json json, bool delegate(Json value) @safe removeFunc) {
   bool found = false;
-  () @trusted { found = json.isInteger && json.removeFunc; }();
+  () @trusted { found = json.isInteger && removeFunc(json); }();
   return found;
 }

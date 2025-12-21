@@ -8,6 +8,7 @@ mixin(Version!("test_uim_vibe"));
 
 // #region get
 int getInteger(Json[] jsons, size_t index, int defaultValue = 0) {
-  return jsons.length > index && jsons[index].isInteger ? jsons[index].getInteger(defaultValue) : defaultValue;
+  // TODO: defaultValue parameter added in v1.2.0
+  return jsons.length > index && jsons[index].isInteger ? getInteger(jsons[index]) : defaultValue;
 }
 // #endregion get

@@ -8,6 +8,7 @@ module uim.phobos.containers.arrays.remove;
 import uim.phobos;
 
 mixin(Version!("test_uim_phobos"));
+
 @safe:
 
 T[] removeValues(T)(T[] items, size_t[] indices) {

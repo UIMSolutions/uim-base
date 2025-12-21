@@ -38,7 +38,13 @@ Json[] removeArrays(Json[] items, bool delegate(Json json) @safe removeFunc) {
 }
 
 Json[] removeArrays(Json[] items, size_t[] indices) {
-  return items.filter!((item, index) => !indices.hasValue(index) || !items.isArray(index)).array;
+  Json[] results;
+  foreach (index, item; items) {
+    if (!indices.hasValue(index) || !item.isArray) {
+      results ~= item;
+    }
+  }
+  return results;
 }
 
 Json[] removeArrays(Json[] items) {
