@@ -6,6 +6,7 @@
 module uim.vibe.datatypes.jsons.empty;
 
 import uim.vibe;
+
 mixin(Version!("test_uim_vibe"));
 
 @safe:
@@ -13,7 +14,25 @@ mixin(Version!("test_uim_vibe"));
 // #region is
 mixin(IsJsonFunctions!("Empty"));
 
-/// Check if the Json value is empty (null, empty string, empty array, or empty object).
+/** 
+  * Checks whether the given Json value is empty.
+  * 
+  * A Json value is considered empty if it is:
+  * - Null
+  * - An empty string
+  * - An empty array
+  * - An empty object
+  * 
+  * The `strict` parameter can be used to control the behavior for other types.
+  * If `strict` is false, additional checks for emptiness can be implemented in the future.
+  * 
+  * Params:
+  *   value = The Json value to check.
+  *   strict = Whether to perform strict checking (default: true).
+  * 
+  * Returns:
+  *   true if the Json value is empty, false otherwise.
+  */
 bool isEmpty(Json value, bool strict = true) {
   if (!strict) {
     // Furure: Add support for empty boolean, integer, float, and string.

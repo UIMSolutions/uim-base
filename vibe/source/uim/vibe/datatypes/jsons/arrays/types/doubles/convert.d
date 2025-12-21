@@ -16,7 +16,7 @@ double[] toDoubles(Json[] jsons, int delegate(Json json) @safe convertFunc) {
 }
 
 double[] toDoubles(Json[] jsons, size_t[] indices) {
-  return jsons.filterDoubles(indices).toDoubles;
+  return uim.vibe.datatypes.jsons.arrays.types.doubles.filter.filterDoubles(jsons, indices).toDoubles;
 }
 
 double[] toDoubles(Json[] jsons) {

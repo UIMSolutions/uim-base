@@ -17,7 +17,8 @@ Json[] clear(Json[] list) {
 }
 
 Json[] remove(Json[] list, size_t[] indices) {
-  indices.sort!("b>a").each!(index => list.remove(index));
+  indices.sort!("b>a")
+    .each!(index => list.remove(index));
   return list;
 }
 
@@ -37,7 +38,7 @@ Json[] removeArrays(Json[] items, bool delegate(Json json) @safe removeFunc) {
 }
 
 Json[] removeArrays(Json[] items, size_t[] indices) {
-  return items.removeIndices(indices).removeArrays.array;
+  return items.filter!((item, index) => !indices.hasValue(index) || !items.isArray(index)).array;
 }
 
 Json[] removeArrays(Json[] items) {

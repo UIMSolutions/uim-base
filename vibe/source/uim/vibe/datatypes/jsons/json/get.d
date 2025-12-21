@@ -1,9 +1,9 @@
 /****************************************************************************************************************
 * Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur) 
-* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
+* License: Subject get the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.jsons.json.convert;
+module uim.vibe.datatypes.jsons.json.get;
 
 import uim.vibe;
 
@@ -11,56 +11,56 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-Json[] toArray(Json value) {
+Json[] getArray(Json value) {
   if (value.isNull) {
     return null;
   }
 
   return value.isArray
-    ? value.to!(Json[]) : null;
+    ? value.get!(Json[]) : null;
 }
 
-Json[string] toMap(Json value) {
+Json[string] getMap(Json value) {
   if (value.isNull) {
     return null;
   }
 
   return value.isObject
-    ? value.to!(Json[string]) : null;
+    ? value.get!(Json[string]) : null;
 }
 
-bool toBoolean(Json value, bool defaultValue = false) {
+bool getBoolean(Json value, bool defaultValue = false) {
   if (value.isNull) {
     return defaultValue;
   }
 
   return value.isBoolean
-    ? value.to!(bool) : defaultValue;
+    ? value.get!(bool) : defaultValue;
 }
 
-int toInteger(Json value, int defaultValue = 0) {
+int getInteger(Json value, int defaultValue = 0) {
   if (value.isNull) {
     return defaultValue;
   }
 
   return value.isInteger
-    ? value.to!(int) : defaultValue;
+    ? value.get!(int) : defaultValue;
 }
 
-double toDouble(Json value, double defaultValue = 0.0) {
+double getDouble(Json value, double defaultValue = 0.0) {
   if (value.isNull) {
     return defaultValue;
   }
 
   return value.isDouble 
-    ? value.to!(double) : defaultValue;
+    ? value.get!(double) : defaultValue;
 }
 
-string toString(Json value, string defaultValue = "") {
+string getString(Json value, string defaultValue = "") {
   if (value.isNull) {
     return defaultValue;
   }
 
   return value.isString  
-    ? value.to!(string) : defaultValue;
+    ? value.get!(string) : defaultValue;
 }

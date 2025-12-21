@@ -20,7 +20,4 @@ int getInteger(Json json, string key, int defaultValue = 0) {
   return json.isInteger(key) ? json[key].getInteger(defaultValue) : defaultValue;
 }
 
-int getInteger(Json json, int defaultValue = 0) {
-  return json.isInteger ? json.get!(int) : defaultValue;
-}
 // #endregion get

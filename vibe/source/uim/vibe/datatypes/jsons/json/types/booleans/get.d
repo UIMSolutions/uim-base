@@ -16,11 +16,7 @@ bool getBoolean(Json json, size_t index, bool defaultValue = false) {
   return json.isBoolean(index) ? json[index].getBoolean(defaultValue) : defaultValue;
 }
 
-bool getBoolean(Json json, bool key, bool defaultValue = false) {
+bool getBoolean(Json json, string key, bool defaultValue = false) {
   return json.isBoolean(key) ? json[key].getBoolean(defaultValue) : defaultValue;
-}
-
-bool getBoolean(Json json, bool defaultValue = false) {
-  return json.isBoolean ? json.get!(bool) : defaultValue;
 }
 // #endregion get

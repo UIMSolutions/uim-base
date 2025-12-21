@@ -33,16 +33,6 @@ string[] getStringArray(Json json, string[] defaultValue = null) {
     .array;
 }
 
-string[] getStringArray(Json[] values) {
-  return values
-    .filter!(value => value.isString)
-    .map!(value => value.get!string)
-    .array;
-}
-
-string[] toStringArray(Json[] values) {
-  return values.map!(value => value.to!string).array;
-}
 // #endregion getStringArray
 
 // #region getStringMap

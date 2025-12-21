@@ -26,7 +26,7 @@ Json[] removeBooleans(Json[] jsons, bool delegate(Json json) removeFunc) {
 }
 
 Json[] removeBooleans(Json[] jsons, size_t[] indices) {
-  return jsons.removeIndices(indices).removeBooleans.array;
+  return jsons.removeValues(indices).removeBooleans.array;
 }
 
 Json[] removeBooleans(Json[] jsons) {

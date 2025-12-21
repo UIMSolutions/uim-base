@@ -32,8 +32,4 @@ double getDouble(Json json, size_t index, double defaultValue = 0.0) {
 double getDouble(Json json, string key, double defaultValue = 0.0) {
   return json.isDouble(key) ? json[key].getDouble(defaultValue) : defaultValue;
 }
-
-double getDouble(Json json, double defaultValue = 0.0) {
-  return json.isDouble ? json.get!(double) : defaultValue;
-}
 // #endregion get
