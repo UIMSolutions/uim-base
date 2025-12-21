@@ -22,7 +22,7 @@ Determines if all specified scalar values are present in the given array of Json
   Returns:
     true if all specified scalar values are found in the array, false otherwise.
 */
-bool hasAllScalar(Json[] jsons, scalar[] values) {
+bool hasAllScalar(Json[] jsons, Json[] values) {
   return values.all!(value => jsons.hasScalar(value));
 }
 
@@ -39,7 +39,7 @@ Determines if any of the specified scalar values are present in the given array 
   Returns:
     true if any of the specified scalar values are found in the array, false otherwise.
 */
-bool hasAnyScalar(Json[] jsons, scalar[] values) {
+bool hasAnyScalar(Json[] jsons, Json[] values) {
   return values.any!(value => jsons.hasScalar(value));
 }
 ///
@@ -57,7 +57,7 @@ Determines if the specified scalar value is present in the given array of Jsons.
   Returns:
     true if the specified scalar value is found in the array, false otherwise.
 */
-bool hasScalar(Json[] jsons, scalar value) {
-  return jsons.any!(json => uim.vibe.datatypes.jsons.json.types.scalars.is_.isScalar(json) && json.getScalar == value);
+bool hasScalar(Json[] jsons) {
+  return jsons.any!(json => uim.vibe.datatypes.jsons.json.types.scalars.is_.isScalar(json));
 }
 // #endregion is

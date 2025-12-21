@@ -9,6 +9,15 @@ import uim.phobos;
 
 @safe:
 
+/**
+  * Returns the null value for the given type T.
+  *
+  * Params:
+  *   T = The type to get the null value for.
+  *
+  * Returns:
+  *   The null value for the given type T.
+  */
 auto Null(T)() {
   return T.init;
 }

@@ -16,13 +16,13 @@ Json lastArray(Json[] jsons) {
 }
 
 Json lastInteger(Json[] jsons) {
-  return uim.vibe.datatypes.jsons.arrays.types.integers.filter.filterIntegers(jsons).last;
+  import uim.vibe.datatypes.jsons.arrays.types.integers.filter;
+  return filterIntegers(jsons).last;
 }
 
 Json lastScalar(Json[] jsons) {
-  return uim.vibe.datatypes.jsons.arrays.types.scalarsfilter.filterScalars(jsons).last;
+  import uim.vibe.datatypes.jsons.arrays.types.integers.filter;
+  return filterScalars(jsons).last;
 }
 
-Json last(Json[] jsons) {
-  return jsons.length > 0 ? jsons[$ - 1] : Json(null);
-}
+

@@ -11,6 +11,7 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
+// #region func
 /**
   * Filters the given Json array of integers based on a provided filter function.
   *
@@ -24,7 +25,9 @@ mixin(Version!("test_uim_vibe"));
 Json[] filterIntegers(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
   return jsons.filterIntegers.filter!(json => filterFunc(json)).array;
 }
+// #endregion func
 
+// #region indices
 /** 
   * Filters the given Json array to include only integers at the specified indices.
   *
@@ -38,7 +41,9 @@ Json[] filterIntegers(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
 Json[] filterIntegers(Json[] jsons, size_t[] indices) {
   return jsons.filterIndices(indices).filterIntegers.array;
 }
+// #endregion indices
 
+// #region filter
 /** 
   * Filters the given Json array to include only integer values.
   *
@@ -51,3 +56,4 @@ Json[] filterIntegers(Json[] jsons, size_t[] indices) {
 Json[] filterIntegers(Json[] jsons) {
   return jsons.filter!(item => item.isInteger).array;
 }
+// #endregion filter

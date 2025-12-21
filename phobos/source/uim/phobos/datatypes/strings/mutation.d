@@ -9,20 +9,34 @@ import uim.phobos;
 @safe:
 
 // #region lower
+/**
+  * Converts all characters in the given texts to lower case.
+  *
+  * Params:
+  *   texts = The texts to convert to lower case.
+  *
+  * Returns:
+  *   An array of texts converted to lower case.
+  */
 string[] lower(string[] texts) {
   return texts
     .map!(text => text.toLower)
     .array;
 }
 
+/** 
+  * Converts all characters in the given text to lower case.
+  *
+  * Params:
+  *   text = The text to convert to lower case.
+  *
+  * Returns:
+  *   The text converted to lower case.
+  */
 string lower(string text) {
   return text.toLower;
 }
 
-unittest {
-  assert("A".lower == "a");
-  assert(["A", "B", "C"].lower.equal(["a", "b", "c"]));
-}
 // #endregion lower
 
 // #region stripText

@@ -11,7 +11,15 @@ import uim.phobos;
 
 enum startUNIX = DateTime(1970, 1, 1, 0, 0, 0);
 
-
+/**
+  * Convert SysTime to timestamp (long value)
+  *
+  * Params:
+  *   untilTime = The SysTime to convert to timestamp.
+  *
+  * Returns:
+  *   The timestamp as long value.
+  */
 long toTimestamp(SysTime untilTime) {
   return (untilTime - cast(SysTime) startUNIX).total!"hnsecs"();
 }

@@ -6,6 +6,7 @@
 module uim.phobos.datatypes.strings;
 
 public {
+  import uim.phobos.datatypes.strings.capitalize;
   import uim.phobos.datatypes.strings.mutation;
   import uim.phobos.datatypes.strings.strings;
 }

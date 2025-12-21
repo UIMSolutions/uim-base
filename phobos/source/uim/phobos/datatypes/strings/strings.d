@@ -6,21 +6,8 @@
 module uim.phobos.datatypes.strings.strings;
 
 import uim.phobos;
+
 @safe:
-
-
-// #region capitalize
-string[] capitalize(string[] texts) {
-  return texts
-    .map!(text => std.string.capitalize(text))
-    .array;
-}
-
-unittest {
-  assert("hello".upper == "HELLO");
-  assert(["hello", "ciao", "bonjour"].upper.equal(["HELLO", "CIAO", "BONJOUR"]));
-}
-// #endregion capitalize
 
 // #region md5
 string[] md5(string[] values) {

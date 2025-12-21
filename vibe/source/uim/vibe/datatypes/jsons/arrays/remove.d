@@ -47,39 +47,3 @@ Json[] removeArrays(Json[] items) {
   return items.remove!(item => item.isArray).array;
 }
 // #endregion arrays
-
-// #region scalars
-Json[] removeScalars(Json[] items, bool delegate(Json json) @safe removeFunc) {
-  return items.removeBoolean.removeValues(removeFunc);
-}
-
-Json[] removeScalars(Json[] items, size_t[] indices) {
-  return items.removeIndices(indices).removeScalars.array;
-}
-
-Json[] removeScalars(Json[] items) {
-  return items.remove!(item => !item.isArray && !item.isObject).array;
-}
-// #endregion scalars
-
-// #region values
-Json[] removeValues(Json[] items, size_t[] indices) {
-  return items.filter!((_, index) => !indices.contains(index));
-}
-
-Json[] removeValues(Json[] items, bool delegate(Json json) @safe removeFunc) {
-  return items.removeValues(removeFunc);
-}
-
-Json[] removeValue(Json[] items, size_t index) {
-  if (index == 0) {
-    return items.length > 1 ? items[1..$] : null; 
-  }
-
-  if (index+1 == items.length) {
-    return items.length > 1 ? items[0..$-1] : null; 
-  }
-
-  return items.length > index ? items[0..index] ~ items[index+1..$] : items;
-}
-// #endregion values
