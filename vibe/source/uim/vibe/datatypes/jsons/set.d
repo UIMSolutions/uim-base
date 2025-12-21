@@ -13,10 +13,11 @@ mixin(Version!("test_uim_vibe"));
 
 /// Sets multiple keys to values from a map
 Json setValues(Json json, Json[string] map) {
+  auto result = json; 
   foreach (kv; map.byKeyValue) {
-    json.set(kv.key, kv.value);
+    result.set(kv.key, kv.value);
   }
-  return json;
+  return result;
 }
 
 /// Sets multiple keys to the same value

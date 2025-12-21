@@ -3,21 +3,18 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.jsons.integral;
+module uim.vibe.datatypes.jsons.objects;
 
 import uim.vibe;
 
 mixin(Version!("test_uim_vibe"));
-
 @safe:
 
-// #region is
-mixin(IsJsonFunctions!("Integral"));
-
-bool isIntegral(Json value, bool strict = true) {
-  if (!strict) {
-    // Future: Add support for BigInt and other integral types.
-  }
-  return value.isLong(strict);
+public {
+    import uim.vibe.datatypes.jsons.objects.types;
+    
+    import uim.vibe.datatypes.jsons.objects.filter;
+    import uim.vibe.datatypes.jsons.objects.has;
+    import uim.vibe.datatypes.jsons.objects.keys;
+    import uim.vibe.datatypes.jsons.objects.is_;
 }
-// #endregion is
