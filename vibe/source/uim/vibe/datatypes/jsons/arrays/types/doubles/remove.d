@@ -25,6 +25,16 @@ Json[] removeDoubles(Json[] items, bool delegate(Json json) @safe removeFunc) {
   return items.filter!(json => !foundDouble(json, removeFunc)).array;
 }
 
+/** 
+  * Remove double Json values from the specified array of Json values based on their indices.
+  *
+  * Params:
+  *   items = The array of Json values to remove double values from.
+  *   indices = An array of indices specifying which double values to remove.
+  *
+  * Returns:
+  *   A new array of Json values with the specified double values removed.
+  */
 Json[] removeDoubles(Json[] items, size_t[] indices) {
   return items.removeValues(indices).removeDoubles;
 }

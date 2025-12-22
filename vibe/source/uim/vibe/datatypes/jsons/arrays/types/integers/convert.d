@@ -53,3 +53,22 @@ int[] toIntegers(Json[] jsons) {
   import uim.vibe.datatypes.jsons.arrays.types.integers.filter;
   return jsons.filterIntegers.toIntegers;
 }
+///
+unittest {
+  import uim.vibe.datatypes.jsons.json;
+  import uim.vibe.datatypes.jsons.arrays.types.integers.convert : toIntegers;
+
+  Json[] jsons = [Json(1), Json(2.5), Json(3), Json("4"), Json(5)];
+
+  // Test conversion with delegate function
+  int[] result1 = toIntegers(jsons, (Json json) @safe => json.isInt ? json.get!int : 0);
+  assert(result1 == [1, 0, 3, 0, 5]);
+
+  // Test conversion with indices
+  int[] result2 = toIntegers(jsons, [0, 2, 4]);
+  assert(result2 == [1, 3, 5]);
+
+  // Test conversion without any filters
+  int[] result3 = toIntegers(jsons);
+  assert(result3 == [1, 3, 5]);
+}

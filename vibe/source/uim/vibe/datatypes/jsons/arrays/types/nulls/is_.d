@@ -39,7 +39,7 @@ bool isAllNull(Json[] values, size_t[] indices) {
   *   true if any of the specified indices are null, false otherwise.
   */
 bool isAnyNull(Json[] list, size_t[] indices) {
-  return list.isNull
+  return list.length == 0
     ? false
     : indices.any!(index => list.isNull(index));
 }
