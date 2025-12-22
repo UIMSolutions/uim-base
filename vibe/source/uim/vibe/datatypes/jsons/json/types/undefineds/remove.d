@@ -16,7 +16,7 @@ Json[] removeUndefineds(Json[] jsons, bool delegate(Json json) @safe removeFunc)
 }
 
 Json[] removeUndefineds(Json[] jsons, size_t[] indices) {
-  return jsons.removeIndices(indices).removeUndefineds.array;
+  return jsons.removeValues(indices).removeUndefineds.array;
 }
 
 Json[] removeUndefineds(Json[] jsons) {

@@ -16,7 +16,7 @@ Json[] removeScalars(Json[] jsons, bool delegate(Json json) @safe removeFunc) {
 }
 
 Json[] removeScalars(Json[] jsons, size_t[] indices) {
-  return jsons.removeIndices(indices).removeScalars.array;
+  return jsons.removeValues(indices).removeScalars.array;
 }
 
 Json[] removeScalars(Json[] jsons) {
