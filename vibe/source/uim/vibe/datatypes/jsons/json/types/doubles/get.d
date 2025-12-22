@@ -11,7 +11,6 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-// #region get
 /**
   * Retrieves the double value from the given JSON at the specified index, key, or directly.
   * If the value is not a double, returns the provided default value.
@@ -25,11 +24,15 @@ mixin(Version!("test_uim_vibe"));
   * Returns:
   *   The double value from the JSON or the default value if not a double.
   */
-double getDouble(Json json, size_t index, double defaultValue = 0.0) {
+double getDoubleByIndex(Json json, size_t index, double defaultValue = 0.0) {
   return json.isDouble(index) ? json[index].getDouble(defaultValue) : defaultValue;
 }
 
-double getDouble(Json json, string key, double defaultValue = 0.0) {
+double getDoubleByKey(Json json, string key, double defaultValue = 0.0) { 
   return json.isDouble(key) ? json[key].getDouble(defaultValue) : defaultValue;
 }
-// #endregion get
+
+double getDouble(Json value, double defaultValue = 0.0) {
+  return value.isDouble 
+    ? value.get!(double) : defaultValue;
+}

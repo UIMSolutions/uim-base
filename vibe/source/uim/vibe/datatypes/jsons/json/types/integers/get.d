@@ -11,13 +11,14 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-// #region get
-int getInteger(Json json, size_t index, int defaultValue = 0) {
+int getIntegerByIndex(Json json, size_t index, int defaultValue = 0) {
   return json.isInteger(index) ? json[index].getInteger(defaultValue) : defaultValue;
 }
 
-int getInteger(Json json, string key, int defaultValue = 0) {
+int getIntegerByKey(Json json, string key, int defaultValue = 0) {
   return json.isInteger(key) ? json[key].getInteger(defaultValue) : defaultValue;
 }
 
-// #endregion get
+int getInteger(Json json, int defaultValue = 0) {
+  return json.isInteger ? json.get!(int) : defaultValue;
+}

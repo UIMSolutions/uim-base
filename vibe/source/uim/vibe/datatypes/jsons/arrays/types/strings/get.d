@@ -29,6 +29,6 @@ string[] toStringArray(Json[] jsons, string defaultValue = null) {
   return jsons.map!(value => value.to!string).array;
 }
 
-string getString(Json[] jsons, size_t index, string defaultValue = null) {
+string getStringByIndex(Json[] jsons, size_t index, string defaultValue = null) {
   return jsons.length > index && jsons[index].isString ? jsons[index].getString(defaultValue) : defaultValue;
 }

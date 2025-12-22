@@ -148,5 +148,7 @@ unittest {
 }
 
 T[] filterValues(T)(T[] values, size_t[] indices) {
-  return values.filter!((value, index) => indices.hasValue(index)).array;
+  return indices
+    .filter!(index => values.length > index)
+    .map!(index => values[index]).array;
 }

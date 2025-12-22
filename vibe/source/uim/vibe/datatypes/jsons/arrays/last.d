@@ -12,7 +12,7 @@ mixin(Version!("test_uim_vibe"));
 @safe:
 
 Json lastArray(Json[] jsons) {
-  import uim.vibe.datatypes.jsons.arrays.types.arrays.filter;
+  import uim.vibe.datatypes.jsons.arrays.filter;
   return filterArrays(jsons).last;
 }
 

@@ -61,7 +61,7 @@ unittest {
   Json[] jsons = [Json(1), Json(2.5), Json(3), Json("4"), Json(5)];
 
   // Test conversion with delegate function
-  int[] result1 = toIntegers(jsons, (Json json) @safe => json.isInt ? json.get!int : 0);
+  int[] result1 = toIntegers(jsons, (Json json) @safe => json.isInteger ? json.get!int : 0);
   assert(result1 == [1, 0, 3, 0, 5]);
 
   // Test conversion with indices

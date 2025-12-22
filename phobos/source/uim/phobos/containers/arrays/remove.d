@@ -12,7 +12,13 @@ mixin(Version!("test_uim_phobos"));
 @safe:
 
 T[] removeValues(T)(T[] items, size_t[] indices) {
-  return items.filter!((_, index) => !indices.contains(index));
+  T[] results;
+  foreach(index, item; items) {
+    if (!indices.hasValue(index)) {
+      results ~= items[index];
+    }
+  }
+  return results;
 }
 
 T[] removeValues(T)(T[] items, bool delegate(T t) @safe removeFunc) {
