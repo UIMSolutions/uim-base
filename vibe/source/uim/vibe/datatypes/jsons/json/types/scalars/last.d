@@ -11,7 +11,7 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-Json lastBoolean(Json[] jsons) {
-  return jsons.filterBooleans.last;
+Json lastScalar(Json[] jsons) {
+  return jsons.filterScalars.last;
 }
 

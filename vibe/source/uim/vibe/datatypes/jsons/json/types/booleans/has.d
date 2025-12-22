@@ -11,14 +11,3 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-bool hasAllKey(Json json, string[] keys) {
-  return keys.all!(key => hasKey(json, key));
-}
-
-bool hasAnyKey(Json json, string[] keys) {
-  return keys.any!(key => hasKey(json, key));
-}
-
-bool hasKey(Json json, string key) {
-  return (key in json);
-}

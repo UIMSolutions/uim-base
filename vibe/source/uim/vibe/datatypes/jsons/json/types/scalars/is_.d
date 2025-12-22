@@ -21,7 +21,7 @@ mixin(Version!("test_uim_vibe"));
   * Returns:
   *   `true` if the JSON value at the specified path is a scalar, `false` otherwise.
   */
-bool isScalar(Json json, scalar[] path) {
+bool isScalar(Json json, string[] path) {
   if (json.isNull || !json.hasPath(path)) {
     return false;
   }
@@ -44,7 +44,7 @@ bool isScalar(Json json, scalar[] path) {
   * Returns:
   *   `true` if the JSON value at the specified key is a scalar, `false` otherwise.
   */
-bool isScalar(Json json, scalar key) {
+bool isScalar(Json json, string key) {
   return json.hasKey(key) && json[key].isScalar;
 }
 

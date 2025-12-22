@@ -103,6 +103,8 @@ bool hasAllKey(Json json, string[] keys) {
 bool hasAnyKey(Json json, string[] keys) {
   return keys.any!(key => hasKey(json, key));
 }
+
+// #region hasKey
 /** 
   * Checks if the given JSON value has the specified key.
   *
@@ -138,4 +140,5 @@ unittest {
   auto json4 = Json(["weird:key!": Json(42)]);
   assert(hasKey(json4, "weird:key!"));
 }
+// #endregion hasKey
 // #endregion key

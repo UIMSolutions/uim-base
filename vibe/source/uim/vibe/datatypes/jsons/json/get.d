@@ -12,10 +12,6 @@ mixin(Version!("test_uim_vibe"));
 @safe:
 
 
-Json[string] getMap(Json json) {
-  return json.isObject
-    ? json.get!(Json[string]) : null;
-}
 
 
 

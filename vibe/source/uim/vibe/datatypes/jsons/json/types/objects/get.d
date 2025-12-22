@@ -11,10 +11,15 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-Json[string] getObject(Json json, size_t index, Json[string] defaultValue = null) {
+Json[string] getObjectByIndex(Json json, size_t index, Json[string] defaultValue = null) {
   return json.isObject(index) ? json[index].getObject(defaultValue) : defaultValue;
 }
 
-Json[string] getObject(Json json, string key, Json[string] defaultValue = null) {
+Json[string] getObjectByKey(Json json, string key, Json[string] defaultValue = null) {
   return json.isObject(key) ? json[key].getObject(defaultValue) : defaultValue;
+}
+
+Json[string] getObject(Json json) {
+  return json.isObject
+    ? json.get!(Json[string]) : null;
 }
