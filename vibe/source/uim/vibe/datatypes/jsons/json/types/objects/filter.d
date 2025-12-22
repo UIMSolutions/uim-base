@@ -22,11 +22,8 @@ Json[] filterObjects(Json jsons, size_t[] indices) {
 */
 
 Json[] filterObjects(Json json) {
-  if (json.isArray) {
-    return json.toArray.filter!(item => item.isArray).array;
+  if (json.isArray || json.isObject) {
+    return json.values.filter!(item => item.isObject).array;
   }
-  if (json.isObject) {
-    return json.byValue.filter!(item => item.isArray).array;
-  }
-  return json.isArray ? [json] : null;
+  return json.isObject ? [json] : null;
 }

@@ -6,17 +6,6 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-bool hasAnyBoolean(Json json) {
-  if (json.isArray) {
-    return json.toArray.hasAnyBoolean;
-  }
-
-  if (json.isObject) {
-    return json.toObject.hasAnyBoolean;
-  }
-
-  return json.isBoolean;
-}
 
 // #region values
 Json[] filterValues(Json json) {
@@ -33,20 +22,6 @@ Json[] filterValues(Json json) {
   return [json];
 }
 // #endregion values
-
-Json[] filterObjects(Json json) {
-  if (json.isArray) {
-    import uim.vibe.containers.arrays.filter;
-    Json[] items = json.toArray;
-    return items.length > 0 ? uim.vibe.containers.arrays.filter.filterObjects(items) : null;
-  }
-  if (json.isObject) {
-    import uim.vibe.containers.maps.filter;
-    Json[string] items = json.toMap;
-    return items.length > 0 ? uim.vibe.containers.maps.filter.filterObjects(items) : null;
-  }
-  return null;
-}
 
 Json[] filterArrays(Json json) {
   if (json.isArray) {

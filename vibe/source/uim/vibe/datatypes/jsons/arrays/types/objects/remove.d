@@ -26,7 +26,7 @@ Json[] removeObjects(Json[] jsons, bool delegate(Json json) removeFunc) {
 }
 
 Json[] removeObjects(Json[] jsons, size_t[] indices) {
-  return jsons.removeIndices(indices).removeObjects.array;
+  return jsons.removeValues(indices).removeObjects.array;
 }
 
 Json[] removeObjects(Json[] jsons) {

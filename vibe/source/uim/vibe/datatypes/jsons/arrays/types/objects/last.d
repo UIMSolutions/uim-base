@@ -12,23 +12,31 @@ mixin(Version!("test_uim_vibe"));
 @safe:
 
 Json lastObject(Json[] jsons) {
+  import uim.vibe.datatypes.jsons.arrays.types.objects.filter;
+
   return jsons.filterObjects.last;
 }
 
 Json lastObjectWithAllKey(Json[] jsons, string[] keys) {
+  import uim.vibe.datatypes.jsons.arrays.types.objects.filter;
+
   return jsons.filterObjectsWithAllKey(keys).last;
 }
 
 Json lastObjectWithAnyKey(Json[] jsons, string[] keys) {
+  import uim.vibe.datatypes.jsons.arrays.types.objects.filter;
+
   return jsons.filterObjectsWithAnyKey(keys).last;
 }
 
 Json lastObjectWithKey(Json[] jsons, string key) {
-    return jsons.filterObjectsWithKey(key).last;
+  import uim.vibe.datatypes.jsons.arrays.types.objects.filter;
+
+  return jsons.filterObjectsWithKey(key).last;
 }
 
 Json lastObjectWithoutKey(Json[] jsons, string key) {
-    return jsons.filterObjectsWithoutKey(key).last;
+  import uim.vibe.datatypes.jsons.arrays.types.objects.filter;
+
+  return jsons.filterObjectsWithoutKey(key).last;
 }
-
-

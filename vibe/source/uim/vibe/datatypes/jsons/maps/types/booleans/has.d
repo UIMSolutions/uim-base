@@ -12,3 +12,4 @@ bool hasAnyBoolean(Json[string] obj) {
   }
   return obj.byValue.any!(v => v.isBoolean);
 }
+

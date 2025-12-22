@@ -19,7 +19,7 @@ Json[string] getObjectByKey(Json json, string key, Json[string] defaultValue = n
   return json.isObject(key) ? json[key].getObject(defaultValue) : defaultValue;
 }
 
-Json[string] getObject(Json json) {
+Json[string] getObject(Json json, Json[string] defaultValue = null) {
   return json.isObject
-    ? json.get!(Json[string]) : null;
+    ? json.get!(Json[string]) : defaultValue;
 }
