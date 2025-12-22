@@ -33,16 +33,20 @@ Json[] removeObjects(Json[] jsons) {
   return jsons.filter!(json => !json.isObject).array;
 }
 
-Json[] removeObjectsWithKey(Json[] jsons, string[] keys) {
-  return keys.map!(key => removeObjectsWithKey(key)).array;
+Json[] removeObjectsWithAllKey(Json[] jsons, string[] keys) {
+  return jsons.filter!(json => !json.hasAllKey(keys)).array;
+}
+
+Json[] removeObjectsWithAnyKey(Json[] jsons, string[] keys) {
+  return jsons.filter!(json => !json.hasAnyKey(keys)).array;
 }
 
 Json[] removeObjectsWithKey(Json[] jsons, string key) {
-  return jsons.removeObjects.remove!(json => json.hasKey(key)).array;
+  return jsons.filter!(json => !json.hasKey(key)).array;
 }
 
 Json[] removeObjectsWithKeyValue(Json[] jsons, string key, Json value) {
-  return jsons.removeObjects.remove!(json => json.hasKeyValue(key, value)).array;
+  return jsons.filter!(json => !json.hasKeyValue(key, value)).array;
 }
 
 protected bool foundObject(Json json, bool delegate(Json value) removeFunc) {

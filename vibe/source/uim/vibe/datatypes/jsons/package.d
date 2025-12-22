@@ -22,7 +22,6 @@ public { // Modules
   import uim.vibe.datatypes.jsons.merge;
   import uim.vibe.datatypes.jsons.helper;
   import uim.vibe.datatypes.jsons.null_;
-  import uim.vibe.datatypes.jsons.scalar;
   import uim.vibe.datatypes.jsons.set;
   import uim.vibe.datatypes.jsons.string_;
   import uim.vibe.datatypes.jsons.typecheck;
