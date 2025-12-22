@@ -33,8 +33,6 @@ Json[] removeStrings(Json[] jsons) {
   return jsons.filter!(json => !json.isString).array;
 }
 
-protected bool foundString(Json json, bool delegate(Json value) removeFunc) {
-  bool found = false;
-  () @trusted { found = json.isString && json.removeFunc; }();
-  return found;
+protected bool foundString(Json json, bool delegate(Json value) @safe removeFunc) {
+  return json.isString && removeFunc(json);
 }

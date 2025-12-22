@@ -11,27 +11,10 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-// #region all
-/* 
-bool hasAllArray(Json[] jsons, Json[] values) {
-  return values.all!(value => jsons.hasArray(value));
+bool hasOnlyArray(Json[] jsons) {
+  return jsons.all!(json => isArray(json));
 }
 
-// #endregion all
-
-// #region any
-bool hasAnyArray(Json[] jsons, Json[] values) {
-  return values.any!(value => jsons.hasArray(value));
+bool hasArray(Json[] jsons) {
+  return jsons.any!(json => isArray(json));
 }
-///
-
-// #endregion any
-
-// #region has
-bool hasArray(Json[] jsons, Json value) {
-  if (!value.isArray) {
-    return false;
-  }
-  return jsons.any!(json => json.isArray && json == value);
-} */ 
-// #endregion has

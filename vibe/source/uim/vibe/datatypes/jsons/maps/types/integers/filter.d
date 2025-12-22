@@ -6,14 +6,14 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-Json[] filterIntegers(Json[string] items, bool delegate(Json json) @safe filterFunc) {
+Json[string] filterIntegers(Json[string] items, bool delegate(Json json) @safe filterFunc) {
   return items.filterIntegers.filter!(json => filterFunc(json)).array;
 }
 
-Json[] filterIntegers(Json[string] items, string[] keys) {
+Json[string] filterIntegers(Json[string] items, string[] keys) {
   return items.filterKeys(keys).filter!(json => json.isInteger).array;
 }
 
-Json[] filterIntegers(Json[string] items) {
+Json[string] filterIntegers(Json[string] items) {
   return items.byValue.array.filter!(json => json.isInteger).array;
 }

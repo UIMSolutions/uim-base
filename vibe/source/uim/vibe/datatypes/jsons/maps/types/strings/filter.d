@@ -11,14 +11,24 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-Json[] filterStrings(Json[string] items, bool delegate(Json json) @safe filterFunc) {
+Json[string] filterStrings(Json[string] items, bool delegate(Json json) @safe filterFunc) {
   return items.filterStrings.filter!(json => filterFunc(json)).array;
 }
 
-Json[] filterStrings(Json[string] items, string[] keys) {
+Json[string] filterStrings(Json[string] items, string[] keys) {
   return items.filterKeys(keys).filter!(json => json.isString).array;
 }
 
-Json[] filterStrings(Json[string] items) {
-  return items.byValue.array.filter!(json => json.isString).array;
+Json[string] filterStrings(Json[string] items) {
+  Json[string] results;
+  foreach (k, v; items.byKeyValue) {
+    if (v.isString) {
+      results[k] = v;
+    }
+  }
+  return results;
+}
+
+protected bool foundFilterString(Json json, bool delegate(Json value) @safe filterFunc) {
+  return json.isString && filterFunc(json);
 }
