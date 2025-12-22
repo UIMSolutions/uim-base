@@ -9,6 +9,8 @@ import uim.vibe;
 
 mixin(Version!("test_uim_vibe"));
 
+@safe:
+
 // #region path
 // #region all
 // #region value
