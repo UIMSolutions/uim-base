@@ -9,4 +9,5 @@ public {
   import uim.vibe.datatypes.jsons.maps.types.booleans.filter;
   import uim.vibe.datatypes.jsons.maps.types.booleans.is_;
   import uim.vibe.datatypes.jsons.maps.types.booleans.has;
+  import uim.vibe.datatypes.jsons.maps.types.booleans.remove;
 }

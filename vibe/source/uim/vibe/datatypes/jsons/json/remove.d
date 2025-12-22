@@ -30,6 +30,7 @@ Json remove(Json json, string key) {
     return json;
   }
 
-  json.remove(key);
-  return json;
+  auto result = json;
+  result.remove(key);
+  return result;
 }

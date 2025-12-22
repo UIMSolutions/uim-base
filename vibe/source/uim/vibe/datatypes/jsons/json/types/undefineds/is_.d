@@ -59,7 +59,3 @@ bool isUndefined(Json json, string key) {
 }
 // #endregion is
 // #endregion key
-
-// #region scalar
-
-// #endregion scalar

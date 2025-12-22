@@ -9,4 +9,5 @@ public {
   import uim.vibe.datatypes.jsons.maps.types.doubles.filter;
   import uim.vibe.datatypes.jsons.maps.types.doubles.is_;
   import uim.vibe.datatypes.jsons.maps.types.doubles.has;
+  import uim.vibe.datatypes.jsons.maps.types.doubles.remove;
 }

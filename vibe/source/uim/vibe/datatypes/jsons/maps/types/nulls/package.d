@@ -8,4 +8,5 @@ module uim.vibe.datatypes.jsons.maps.types.nulls;
 public {
   import uim.vibe.datatypes.jsons.maps.types.nulls.is_;
   import uim.vibe.datatypes.jsons.maps.types.nulls.has;
+  import uim.vibe.datatypes.jsons.maps.types.nulls.remove;
 }

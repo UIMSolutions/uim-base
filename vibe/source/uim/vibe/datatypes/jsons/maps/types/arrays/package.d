@@ -9,4 +9,5 @@ public {
   import uim.vibe.datatypes.jsons.maps.types.arrays.filter;
   import uim.vibe.datatypes.jsons.maps.types.arrays.is_;
   import uim.vibe.datatypes.jsons.maps.types.arrays.has;
+  import uim.vibe.datatypes.jsons.maps.types.arrays.remove;
 }
