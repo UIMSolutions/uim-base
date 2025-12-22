@@ -27,17 +27,6 @@ Json[] filterObjects(Json[string] items) {
 // #endregion Objects
 
 // #region Arrays
-Json[] filterArrays(Json[string] items, bool delegate(Json json) @safe filterFunc) {
-  return items.filterArrays.filter!(json => filterFunc(json)).array;
-}
-
-Json[] filterArrays(Json[string] items, string[] keys) {
-  return items.filterKeys(keys).filter!(json => json.isObject).array;
-}
-
-Json[] filterArrays(Json[string] items) {
-  return items.byValue.array.filter!(json => json.isArray).array;
-}
 // #endregion Arrays
 
 // #region Scalars
@@ -54,47 +43,3 @@ Json[] filterScalars(Json[string] items) {
 }
 // #endregion Scalars
 
-// #region Booleans
-Json[] filterBooleans(Json[string] items, bool delegate(Json json) @safe filterFunc) {
-  return items.filterArrays.filter!(json => filterFunc(json)).array;
-}
-
-Json[] filterBooleans(Json[string] items, string[] keys) {
-  return items.filterKeys(keys).filter!(json => json.isBoolean).array;
-}
-
-Json[] filterBooleans(Json[string] items) {
-  return items.byValue.array.filter!(json => json.isBoolean).array;
-}
-// #endregion Booleans
-
-// #region Integers
-// #endregion Integers
-
-// #region Doubles
-Json[] filterDoubles(Json[string] items, bool delegate(Json json) @safe filterFunc) {
-  return items.filterDoubles.filter!(json => filterFunc(json)).array;
-}
-
-Json[] filterDoubles(Json[string] items, string[] keys) {
-  return items.filterKeys(keys).filter!(json => json.isDouble).array;
-}
-
-Json[] filterDoubles(Json[string] items) {
-  return items.byValue.array.filter!(json => json.isDouble).array;
-}
-// #endregion Doubles
-
-// #region Strings
-Json[] filterStrings(Json[string] items, bool delegate(Json json) @safe filterFunc) {
-  return items.filterStrings.filter!(json => filterFunc(json)).array;
-}
-
-Json[] filterStrings(Json[string] items, string[] keys) {
-  return items.filterKeys(keys).filter!(json => json.isString).array;
-}
-
-Json[] filterStrings(Json[string] items) {
-  return items.byValue.array.filter!(json => json.isString).array;
-}
-// #endregion Strings
