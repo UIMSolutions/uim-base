@@ -16,7 +16,7 @@ Json[] filterScalars(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
 }
 
 Json[] filterScalars(Json[] jsons, size_t[] indices) {
-  return jsons.filterIndices(indices).filterScalars.array;
+  return jsons.filterValues(indices).filterScalars.array;
 }
 
 Json[] filterScalars(Json[] jsons) {

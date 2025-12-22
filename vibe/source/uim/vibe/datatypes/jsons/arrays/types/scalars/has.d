@@ -11,53 +11,10 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-// #region all
-/** 
-Determines if all specified scalar values are present in the given array of Jsons.
-  
-  Params:
-    jsons = The array of Jsons to check.
-    values = The scalar values to look for.
-  
-  Returns:
-    true if all specified scalar values are found in the array, false otherwise.
-*/
-bool hasAllScalar(Json[] jsons, Json[] values) {
-  return values.all!(value => jsons.hasScalar(value));
+bool hasOnlyScalar(Json[] jsons) {
+  return jsons.all!(json => isScalar(json));
 }
 
-// #endregion all
-
-// #region any
-/** 
-Determines if any of the specified scalar values are present in the given array of Jsons.
-  
-  Params:
-    jsons = The array of Jsons to check.
-    values = The scalar values to look for.
-  
-  Returns:
-    true if any of the specified scalar values are found in the array, false otherwise.
-*/
-bool hasAnyScalar(Json[] jsons, Json[] values) {
-  return values.any!(value => jsons.hasScalar(value));
-}
-///
-
-// #endregion any
-
-// #region is
-/** 
-Determines if the specified scalar value is present in the given array of Jsons.
-  
-  Params:
-    jsons = The array of Jsons to check.
-    value = The scalar value to look for.
-  
-  Returns:
-    true if the specified scalar value is found in the array, false otherwise.
-*/
 bool hasScalar(Json[] jsons) {
-  return jsons.any!(json => uim.vibe.datatypes.jsons.json.types.scalars.is_.isScalar(json));
+  return jsons.any!(json => isScalar(json));
 }
-// #endregion is

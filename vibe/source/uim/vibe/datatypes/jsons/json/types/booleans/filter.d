@@ -17,7 +17,7 @@ Json[] filterBooleans(Json json, bool delegate(Json json) @safe filterFunc) {
 
 /* 
 Json[] filterBooleans(Json jsons, size_t[] indices) {
-  return jsons.filterIndices(indices).filterArray.array;
+  return jsons.filterValues(indices).filterArray.array;
 }
 */
 

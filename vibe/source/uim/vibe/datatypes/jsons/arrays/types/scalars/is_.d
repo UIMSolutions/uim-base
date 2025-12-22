@@ -9,7 +9,7 @@ mixin(Version!("test_uim_vibe"));
 // #region all
 // #region noIndex
 bool isAllScalar(Json[] values) {
-  return values.all!(value => uim.vibe.datatypes.jsons.typecheck.isScalar(value));
+  return values.all!(value => isScalar(value));
 }
 // #endregion noIndex
 
@@ -23,7 +23,7 @@ bool isAllScalar(Json[] values, size_t[] indices) {
 // #region any
 // #region noIndex
 bool isAnyScalar(Json[] values) {
-  return values.any!(value => uim.vibe.datatypes.jsons.typecheck.isScalar(value));
+  return values.any!(value => isScalar(value));
 }
 // #endregion noIndex
 

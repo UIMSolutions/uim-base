@@ -17,7 +17,7 @@ Json[] filterIntegers(Json json, bool delegate(Json json) @safe filterFunc) {
 
 /* 
 Json[] filterIntegers(Json jsons, size_t[] indices) {
-  return jsons.filterIndices(indices).filterArray.array;
+  return jsons.filterValues(indices).filterArray.array;
 }
 */
 

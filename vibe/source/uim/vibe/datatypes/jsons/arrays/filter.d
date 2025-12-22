@@ -17,7 +17,7 @@ Json[] filterArrays(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
 }
 
 Json[] filterArrays(Json[] jsons, size_t[] indices) {
-  return jsons.filterIndices(indices).filterArrays.array;
+  return jsons.filterValues(indices).filterArrays.array;
 }
 
 Json[] filterArrays(Json[] jsons) {
@@ -30,7 +30,7 @@ Json[] filterScalars(Json[] jsons) {
 }
 
 // #region indices
-Json[] filterIndices(Json[] jsons, size_t[] indices) {
+Json[] filterValues(Json[] jsons, size_t[] indices) {
   return indices.filter!(index => jsons.length > index).map!(index => jsons[index]).array;
 }
 // #region endindices

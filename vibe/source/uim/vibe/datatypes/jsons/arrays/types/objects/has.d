@@ -10,3 +10,11 @@ import uim.vibe;
 mixin(Version!("test_uim_vibe"));
 
 @safe:
+
+bool hasOnlyObject(Json[] jsons) {
+  return jsons.all!(json => isObject(json));
+}
+
+bool hasObject(Json[] jsons) {
+  return jsons.any!(json => isObject(json));
+}
