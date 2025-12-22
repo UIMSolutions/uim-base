@@ -13,4 +13,5 @@ public {
   import uim.vibe.datatypes.jsons.json.types.booleans.has;
   import uim.vibe.datatypes.jsons.json.types.booleans.last;
   import uim.vibe.datatypes.jsons.json.types.booleans.remove;
+  import uim.vibe.datatypes.jsons.json.types.booleans.to_;
 }

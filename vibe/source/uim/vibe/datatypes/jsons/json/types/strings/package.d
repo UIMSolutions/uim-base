@@ -13,4 +13,5 @@ public {
   import uim.vibe.datatypes.jsons.json.types.strings.has;
   import uim.vibe.datatypes.jsons.json.types.strings.last;
   import uim.vibe.datatypes.jsons.json.types.strings.remove;
+  import uim.vibe.datatypes.jsons.json.types.strings.to_;
 }

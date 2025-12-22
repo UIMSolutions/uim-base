@@ -13,4 +13,5 @@ public {
   import uim.vibe.datatypes.jsons.json.types.doubles.has;
   import uim.vibe.datatypes.jsons.json.types.doubles.last;
   import uim.vibe.datatypes.jsons.json.types.doubles.remove;
+  import uim.vibe.datatypes.jsons.json.types.doubles.to_;
 }

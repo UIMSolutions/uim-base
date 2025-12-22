@@ -6,7 +6,12 @@
 module uim.vibe.datatypes.jsons.json.types.objects;
 
 public {
+  import uim.vibe.datatypes.jsons.json.types.objects.filter;
+  import uim.vibe.datatypes.jsons.json.types.objects.first;
   import uim.vibe.datatypes.jsons.json.types.objects.get;
-  import uim.vibe.datatypes.jsons.json.types.objects.is_;
   import uim.vibe.datatypes.jsons.json.types.objects.has;
+  import uim.vibe.datatypes.jsons.json.types.objects.is_;
+  import uim.vibe.datatypes.jsons.json.types.objects.last;
+  import uim.vibe.datatypes.jsons.json.types.objects.remove;
+  import uim.vibe.datatypes.jsons.json.types.objects.to_;
 }
