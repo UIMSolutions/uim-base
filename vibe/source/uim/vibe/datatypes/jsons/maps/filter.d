@@ -1,4 +1,4 @@
-module uim.vibe.datatypes.jsons.objects.filter;
+module uim.vibe.datatypes.jsons.maps.filter;
 
 import uim.vibe;
 

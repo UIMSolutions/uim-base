@@ -1,4 +1,4 @@
-module uim.vibe.datatypes.jsons.objects.types.arrays.has;
+module uim.vibe.datatypes.jsons.maps.types.arrays.has;
 
 import uim.vibe;
 

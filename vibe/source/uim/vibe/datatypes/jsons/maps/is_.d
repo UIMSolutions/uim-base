@@ -1,4 +1,4 @@
-module uim.vibe.datatypes.jsons.objects.is_;
+module uim.vibe.datatypes.jsons.maps.is_;
 
 import uim.vibe;
 

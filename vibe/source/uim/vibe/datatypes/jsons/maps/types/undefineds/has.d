@@ -1,4 +1,4 @@
-module uim.vibe.datatypes.jsons.objects.types.undefineds.has;
+module uim.vibe.datatypes.jsons.maps.types.undefineds.has;
 
 import uim.vibe;
 

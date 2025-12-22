@@ -1,4 +1,4 @@
-module uim.vibe.datatypes.jsons.objects.types.booleans.has;
+module uim.vibe.datatypes.jsons.maps.types.booleans.has;
 
 import uim.vibe;
 

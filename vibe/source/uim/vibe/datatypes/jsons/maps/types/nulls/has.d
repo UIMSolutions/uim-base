@@ -1,4 +1,4 @@
-module uim.vibe.datatypes.jsons.objects.types.nulls.has;
+module uim.vibe.datatypes.jsons.maps.types.nulls.has;
 
 import uim.vibe;
 

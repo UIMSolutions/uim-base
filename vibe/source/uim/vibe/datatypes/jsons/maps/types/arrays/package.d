@@ -3,10 +3,10 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.jsons.objects.types.arrays;
+module uim.vibe.datatypes.jsons.maps.types.arrays;
 
 public {
-  import uim.vibe.datatypes.jsons.objects.types.arrays.filter;
-  import uim.vibe.datatypes.jsons.objects.types.arrays.is_;
-  import uim.vibe.datatypes.jsons.objects.types.arrays.has;
+  import uim.vibe.datatypes.jsons.maps.types.arrays.filter;
+  import uim.vibe.datatypes.jsons.maps.types.arrays.is_;
+  import uim.vibe.datatypes.jsons.maps.types.arrays.has;
 }

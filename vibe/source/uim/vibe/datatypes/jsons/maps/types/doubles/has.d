@@ -1,4 +1,4 @@
-module uim.vibe.datatypes.jsons.objects.types.doubles.has;
+module uim.vibe.datatypes.jsons.maps.types.doubles.has;
 
 import uim.vibe;
 

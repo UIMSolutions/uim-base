@@ -62,7 +62,7 @@ Json[] filterArrays(Json json) {
 // #region boolean
 bool isAllBoolean(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.booleans.is_.isAllBoolean(json.getObject);
+    return uim.vibe.datatypes.jsons.maps.types.booleans.is_.isAllBoolean(json.getObject);
   }
   if (json.isArray) {
     return uim.vibe.datatypes.jsons.arrays.types.booleans.is_.isAllBoolean(json.getArray);
@@ -72,7 +72,7 @@ bool isAllBoolean(Json json) {
 
 bool isAnyBoolean(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.booleans.is_.isAnyBoolean(json.getObject);
+    return uim.vibe.datatypes.jsons.maps.types.booleans.is_.isAnyBoolean(json.getObject);
   }
   if (json.isArray) {
     return uim.vibe.datatypes.jsons.arrays.types.booleans.is_.isAnyBoolean(json.getArray);
@@ -84,7 +84,7 @@ bool isAnyBoolean(Json json) {
 // #region integer
 bool isAllInteger(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.integers.is_.isAllInteger(json.getObject);
+    return uim.vibe.datatypes.jsons.maps.types.integers.is_.isAllInteger(json.getObject);
   }
   if (json.isArray) {
     return uim.vibe.datatypes.jsons.arrays.types.integers.is_.isAllInteger(json.getArray);
@@ -94,7 +94,7 @@ bool isAllInteger(Json json) {
 
 bool isAnyInteger(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.integers.is_.isAnyInteger(json.getObject);
+    return uim.vibe.datatypes.jsons.maps.types.integers.is_.isAnyInteger(json.getObject);
   }
   if (json.isArray) {
     return uim.vibe.datatypes.jsons.arrays.types.integers.is_.isAnyInteger(json.getArray);
@@ -106,7 +106,7 @@ bool isAnyInteger(Json json) {
 // #region double
 bool isAllDouble(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.doubles.is_.isAllDouble(json.getObject);
+    return uim.vibe.datatypes.jsons.maps.types.doubles.is_.isAllDouble(json.getObject);
   }
   if (json.isArray) {
     return uim.vibe.datatypes.jsons.arrays.types.doubles.is_.isAllDouble(json.getArray);
@@ -116,7 +116,7 @@ bool isAllDouble(Json json) {
 
 bool isAnyDouble(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.doubles.is_.isAnyDouble(json.getObject);
+    return uim.vibe.datatypes.jsons.maps.types.doubles.is_.isAnyDouble(json.getObject);
   }
   if (json.isArray) {
     return uim.vibe.datatypes.jsons.arrays.types.doubles.is_.isAnyDouble(json.getArray);
@@ -128,7 +128,7 @@ bool isAnyDouble(Json json) {
 // #region string
 bool isAllString(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.strings.is_.isAllString(json.getObject);
+    return uim.vibe.datatypes.jsons.maps.types.strings.is_.isAllString(json.getObject);
   }
   if (json.isArray) {
     return uim.vibe.datatypes.jsons.arrays.types.strings.is_.isAllString(json.getArray);
@@ -138,7 +138,7 @@ bool isAllString(Json json) {
 
 bool isAnyString(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.types.strings.is_.isAnyString(json.getObject);
+    return uim.vibe.datatypes.jsons.maps.types.strings.is_.isAnyString(json.getObject);
   }
   if (json.isArray) {
     return uim.vibe.datatypes.jsons.arrays.types.strings.is_.isAnyString(json.getArray);
@@ -150,7 +150,7 @@ bool isAnyString(Json json) {
 // #region object
 bool isAllObject(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.is_.isAllObject(json.getObject);
+    return uim.vibe.datatypes.jsons.maps.is_.isAllObject(json.getObject);
   }
   if (json.isArray) {
     return uim.vibe.datatypes.jsons.arrays.types.objects.isAllObject(json.getArray);
@@ -160,7 +160,7 @@ bool isAllObject(Json json) {
 
 bool isAnyObject(Json json) {
   if (json.isObject) {
-    return uim.vibe.datatypes.jsons.objects.is_.isAnyObject(json.getObject);
+    return uim.vibe.datatypes.jsons.maps.is_.isAnyObject(json.getObject);
   }
   if (json.isArray) {
     return uim.vibe.datatypes.jsons.arrays.types.objects.isAnyObject(json.getArray);

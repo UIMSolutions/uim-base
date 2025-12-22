@@ -1,4 +1,4 @@
-module uim.vibe.datatypes.jsons.maps.types.arrays.filter;
+module uim.vibe.datatypes.jsons.maps.types.arrays.filterx;
 
 import uim.vibe;
 
