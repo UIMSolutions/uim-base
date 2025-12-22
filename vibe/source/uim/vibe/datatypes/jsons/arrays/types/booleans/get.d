@@ -11,7 +11,6 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-bool getBoolean(Json[] jsons, size_t index, bool defaultValue = false) {
-  import uim.vibe.datatypes.jsons.json.get;
-  return jsons.length > index && jsons[index].isBoolean ? uim.vibe.datatypes.jsons.json.get.getBoolean(jsons[index], defaultValue) : defaultValue;
+bool getBooleanByIndex(Json[] jsons, size_t index, bool defaultValue = false) {
+  return jsons.length > index && jsons[index].isBoolean ? getBoolean(jsons[index], defaultValue) : defaultValue;
 }

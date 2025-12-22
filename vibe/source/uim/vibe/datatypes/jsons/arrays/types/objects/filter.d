@@ -16,7 +16,7 @@ Json[] filterObjects(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
 }
 
 Json[] filterObjects(Json[] jsons, size_t[] indices) {
-  return jsons.filterIndices(indices).filterObjects.array;
+  return jsons.filterValues(indices).filterObjects.array;
 }
 
 Json[] filterObjects(Json[] jsons) {

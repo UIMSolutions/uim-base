@@ -47,6 +47,3 @@ bool isScalar(Json json, string[] path) {
 bool isScalar(Json json, string key) {
   return json.hasKey(key) && json[key].isScalar;
 }
-
-
-// #endregion scalar

@@ -57,6 +57,7 @@ int[] toIntegers(Json[] jsons) {
 unittest {
   import uim.vibe.datatypes.jsons.json;
   import uim.vibe.datatypes.jsons.arrays.types.integers.convert : toIntegers;
+  import uim.vibe.datatypes.jsons.typecheck;
 
   Json[] jsons = [Json(1), Json(2.5), Json(3), Json("4"), Json(5)];
 

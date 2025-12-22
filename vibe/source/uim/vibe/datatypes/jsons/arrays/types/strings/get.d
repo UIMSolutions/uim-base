@@ -30,5 +30,6 @@ string[] toStringArray(Json[] jsons, string defaultValue = null) {
 }
 
 string getStringByIndex(Json[] jsons, size_t index, string defaultValue = null) {
+  import uim.vibe.datatypes.jsons.typecheck;
   return jsons.length > index && jsons[index].isString ? jsons[index].getString(defaultValue) : defaultValue;
 }

@@ -11,15 +11,15 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-scalar getScalar(Json json, size_t index, string defaultValue = "") {
-  return json.isScalar(index) ? json[index].get!(scalar) : defaultValue;
+Json getScalarByIndex(Json json, size_t index, string defaultValue = "") {
+  return json.isScalar(index) ? json[index] : defaultValue;
 }
 
-scalar getScalar(Json json, scalar key, string defaultValue = "") {
-  return json.isScalar(key) ? json[key].get!(scalar) : defaultValue;
+Json getScalarByKey(Json json, string key, string defaultValue = "") {
+  return json.isScalar(key) ? json[key] : defaultValue;
 }
 
-scalar getScalar(Json value) {
-  return value.isScalar  
-    ? value.get!(scalar) : "";
+Json getScalar(Json json) {
+  return json.isScalar  
+    ? json : Json(null);
 }
