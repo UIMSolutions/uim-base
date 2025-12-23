@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.jsons.maps.types.arrays.remove;
+module uim.vibe.datatypes.jsons.maps.types.scalars.filter;
 
 import uim.vibe;
 
@@ -11,32 +11,24 @@ mixin(Version!("test_uim_vibe"));
 
 @safe:
 
-Json[string] removeArrays(Json[string] items, bool delegate(Json json) @safe removeFunc) {
+Json[string] filterScalars(Json[string] items, bool delegate(Json json) @safe filterFunc) {
+  return items.filterScalars.filter!(json => filterFunc(json)).array;
+}
+
+Json[string] filterScalars(Json[string] items, string[] keys) {
+  return items.filterKeys(keys).filter!(json => json.isString).array;
+}
+
+Json[string] filterScalars(Json[string] items) {
   Json[string] results;
   foreach (k, v; items.byKeyValue) {
-    if (!v.isArray && !removeFunc(v)) {
+    if (v.isString) {
       results[k] = v;
     }
   }
   return results;
 }
 
-Json[string] removeArrays(Json[string] items, string[] keys) {
-  Json[string] results;
-  foreach (k, v; items.byKeyValue) {
-    if (!v.isArray && !(k in keys)) {
-      results[k] = v;
-    }
-  }
-  return results;
-}   
-
-Json[string] removeArrays(Json[string] items) {
-  Json[string] results;
-  foreach (k, v; items.byKeyValue) {
-    if (!v.isArray) {
-      results[k] = v;
-    }
-  }
-  return results;
+protected bool foundFilterString(Json json, bool delegate(Json value) @safe filterFunc) {
+  return json.isString && filterFunc(json);
 }

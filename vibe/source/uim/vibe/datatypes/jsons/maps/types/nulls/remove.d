@@ -10,3 +10,33 @@ import uim.vibe;
 mixin(Version!("test_uim_vibe"));
 
 @safe:
+
+Json[string] removeNulls(Json[string] items, bool delegate(Json json) @safe removeFunc) {
+  Json[string] results;
+  foreach (k, v; items.byKeyValue) {
+    if (!v.isString && !removeFunc(v)) {
+      results[k] = v;
+    }
+  }
+  return results;
+}
+
+Json[string] removeNulls(Json[string] items, string[] keys) {
+  Json[string] results;
+  foreach (k, v; items.byKeyValue) {
+    if (!v.isString && !(k in keys)) {
+      results[k] = v;
+    }
+  }
+  return results;
+}   
+
+Json[string] removeNulls(Json[string] items) {
+  Json[string] results;
+  foreach (k, v; items.byKeyValue) {
+    if (!v.isString) {
+      results[k] = v;
+    }
+  }
+  return results;
+}
