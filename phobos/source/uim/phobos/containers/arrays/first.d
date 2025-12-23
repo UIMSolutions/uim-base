@@ -122,7 +122,7 @@ unittest {
   *   An array of elements from values that are also in anyValues.
   */
 T[] firstAny(T)(T[] values, T[] anyValues) {
-  return values.filter!(value => anyValues.has(value)).array;
+  return values.filter!(value => anyValues.hasValue(value)).array;
 }
 ///
 unittest {

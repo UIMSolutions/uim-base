@@ -6,8 +6,22 @@ mixin(Version!"test_uim_phobos");
 
 @safe:
 
-// #region keys
-Json[string] filterKeys(Json[string] items, string[] keys) {
-  return keys.filter!(key => key in items).map!(key => items[key]).array;
+V[K] filterKeys(K, V)(V[K] map, K[] keys) {
+  V[K] results;
+  foreach (key; keys) {
+    if (map.hasKey(key)) {
+      results[key] = map[key];
+    }
+  }
+  return results;
 }
-// #region keys
+
+V[K] filterKeys(K, V)(V[K] map, bool delegate(K key, V value) @safe filterFunc) {
+  V[K] results;
+  foreach (key, value; map) {
+    if (map.hasKey(key) in map && filterFunc(key, map[key])) {
+      results[key] = value;
+    }
+  }
+  return results;
+}

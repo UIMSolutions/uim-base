@@ -20,7 +20,7 @@ mixin(Version!("test_uim_phobos"));
  *   A new array containing the intersection of the two input arrays.
  */
 auto intersect(T)(T[] values1, T[] values2) {
-  return values1.filter!(value => values2.has(value)).array;
+  return values1.filter!(value => values2.hasValue(value)).array;
 }
 ///
 unittest {

@@ -6,7 +6,10 @@
 module uim.phobos.containers.maps;
 
 public {
+  import uim.phobos.containers.maps.convert;
   import uim.phobos.containers.maps.every;
+  import uim.phobos.containers.maps.has;
   import uim.phobos.containers.maps.filter;
   import uim.phobos.containers.maps.pairs;
+  import uim.phobos.containers.maps.remove;
 }

@@ -87,7 +87,7 @@ T[] filterValues(T)(T[] values, T[] validValues) {
 
   return validValues.length == 0
     ? values.dup 
-    : values.filter!(value => validValues.has(value)).array;
+    : values.filter!(value => validValues.hasValue(value)).array;
 }
 ///
 unittest {

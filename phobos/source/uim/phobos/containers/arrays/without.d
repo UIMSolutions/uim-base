@@ -67,7 +67,7 @@ unittest {
   *   A new array with all occurrences of the specified values removed.
   */
 auto withoutMany(T)(T[] values, T[] toRemove) {
-  return values.filter!(v => !(toRemove.has(v))).array;
+  return values.filter!(v => !(toRemove.hasValue(v))).array;
 }
 ///
 unittest {

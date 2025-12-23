@@ -257,7 +257,7 @@ unittest {
 T[] unique(T)(T[] values) {
   T[] results;
   values.each!((value) {
-    if (!results.has(value)) {
+    if (!results.hasValue(value)) {
       results ~= value;
     }
   });
