@@ -14,7 +14,7 @@ mixin(Version!("test_uim_vibe"));
 Json[string] removeIntegers(Json[string] items, bool delegate(Json json) @safe removeFunc) {
   Json[string] results;
   foreach (k, v; items.byKeyValue) {
-    if (!v.isString && !removeFunc(v)) {
+    if (!v.isInteger && !removeFunc(v)) {
       results[k] = v;
     }
   }
@@ -24,7 +24,7 @@ Json[string] removeIntegers(Json[string] items, bool delegate(Json json) @safe r
 Json[string] removeIntegers(Json[string] items, string[] keys) {
   Json[string] results;
   foreach (k, v; items.byKeyValue) {
-    if (!v.isString && !(k in keys)) {
+    if (!v.isInteger && !(k in keys)) {
       results[k] = v;
     }
   }
@@ -34,7 +34,7 @@ Json[string] removeIntegers(Json[string] items, string[] keys) {
 Json[string] removeIntegers(Json[string] items) {
   Json[string] results;
   foreach (k, v; items.byKeyValue) {
-    if (!v.isString) {
+    if (!v.isInteger) {
       results[k] = v;
     }
   }

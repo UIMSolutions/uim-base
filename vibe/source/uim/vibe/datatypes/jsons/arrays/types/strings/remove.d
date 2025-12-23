@@ -21,7 +21,7 @@ mixin(Version!("test_uim_vibe"));
   * Returns:
   *   A new Json array with the specified strings removed.
   */
-Json[] removeStrings(Json[] jsons, bool delegate(Json json) removeFunc) {
+Json[] removeStrings(Json[] jsons, bool delegate(Json json) @safe removeFunc) {
   return jsons.filter!(json => !foundString(json, removeFunc)).array;
 }
 

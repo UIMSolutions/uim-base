@@ -20,5 +20,6 @@ string[] toStrings(Json[] jsons, size_t[] indices) {
 }
 
 string[] toStrings(Json[] jsons) {
+  import uim.vibe.datatypes.jsons.arrays.types.strings.filter : filterStrings;
   return jsons.filterStrings.map!(json => json.toString).array;
 }

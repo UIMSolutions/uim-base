@@ -8,6 +8,7 @@ module uim.phobos.containers.maps.every;
 import uim.phobos;
 
 mixin(Version!"test_uim_phobos");
+
 @safe:
 
 /** 

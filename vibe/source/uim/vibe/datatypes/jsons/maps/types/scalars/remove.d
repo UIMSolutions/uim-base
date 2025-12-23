@@ -14,7 +14,7 @@ mixin(Version!("test_uim_vibe"));
 Json[string] removeScalars(Json[string] items, bool delegate(Json json) @safe removeFunc) {
   Json[string] results;
   foreach (k, v; items.byKeyValue) {
-    if (!v.isString && !removeFunc(v)) {
+    if (!v.isScalar && !removeFunc(v)) {
       results[k] = v;
     }
   }
@@ -24,7 +24,7 @@ Json[string] removeScalars(Json[string] items, bool delegate(Json json) @safe re
 Json[string] removeScalars(Json[string] items, string[] keys) {
   Json[string] results;
   foreach (k, v; items.byKeyValue) {
-    if (!v.isString && !(k in keys)) {
+    if (!v.isScalar && !(k in keys)) {
       results[k] = v;
     }
   }
@@ -34,7 +34,7 @@ Json[string] removeScalars(Json[string] items, string[] keys) {
 Json[string] removeScalars(Json[string] items) {
   Json[string] results;
   foreach (k, v; items.byKeyValue) {
-    if (!v.isString) {
+    if (!v.isScalar) {
       results[k] = v;
     }
   }

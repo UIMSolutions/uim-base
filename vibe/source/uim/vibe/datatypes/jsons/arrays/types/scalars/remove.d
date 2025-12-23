@@ -21,7 +21,7 @@ mixin(Version!("test_uim_vibe"));
   * Returns:
   *   A new array of Json values with the specified scalar values removed.
   */
-Json[] removeScalars(Json[] jsons, bool delegate(Json json) removeFunc) {
+Json[] removeScalars(Json[] jsons, bool delegate(Json json) @safe removeFunc) {
   return jsons.filter!(json => !foundScalar(json, removeFunc)).array;
 }
 

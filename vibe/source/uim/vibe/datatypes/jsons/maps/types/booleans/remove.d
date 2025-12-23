@@ -34,7 +34,7 @@ Json[string] removeBooleans(Json[string] items, string[] keys) {
 Json[string] removeBooleans(Json[string] items) {
   Json[string] results;
   foreach (k, v; items.byKeyValue) {
-    if (!v.) {
+    if (!v.isBoolean) {
       results[k] = v;
     }
   }
