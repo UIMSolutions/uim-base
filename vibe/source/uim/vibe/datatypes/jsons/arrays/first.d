@@ -16,11 +16,4 @@ Json firstArray(Json[] jsons) {
   return jsons.filterArrays.first;
 }
 
-Json firstScalar(Json[] jsons) {
-  import uim.vibe.datatypes.jsons.arrays.filter;
-  return jsons.filterScalars.first;
-}
 
-Json first(Json[] jsons) {
-  return jsons.length > 0 ? jsons[0] : Json(null);
-}

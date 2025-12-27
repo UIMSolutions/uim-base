@@ -142,3 +142,11 @@ unittest {
 }
 // #endregion hasKey
 // #endregion key
+
+bool hasKeyValue(Json json, string key, Json value) {
+  if (!json.isObject || !json.hasKey(key)) {
+    return false;
+  }
+
+  return json[key] == value;
+}

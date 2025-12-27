@@ -27,33 +27,27 @@ T first(T)(T[] values) {
 unittest {
   // Test: first with non-empty int array
   int[] array1 = [42, 7, 13];
-  auto res1 = first(array1);
-  assert(res1 == 42);
+  assert(first(array1) == 42);
 
   // Test: first with empty int array
   int[] array2 = [];
-  auto res2 = first(array2);
-  assert(res2 == Null!int);
+  assert(first(array2) == Null!int);
 
   // Test: first with non-empty string array
-  string[] arr3 = ["hello", "world"];
-  auto res3 = first(arr3);
-  assert(res3 == "hello");
+  string[] array3 = ["hello", "world"];
+  assert(first(array3) == "hello");
 
   // Test: first with empty string array
-  string[] arr4 = [];
-  auto res4 = first(arr4);
-  assert(res4 == Null!string);
+  string[] array4 = [];
+  assert(first(array4) == Null!string);
 
   // Test: first with single-element array
-  double[] arr5 = [3.14];
-  auto res5 = first(arr5);
-  assert(res5 == 3.14);
+  double[] array5 = [3.14];
+  assert(first(array5) == 3.14);
 
   // Test: first with empty double array
-  double[] arr6 = [];
-  auto res6 = first(arr6);
-  assert(res6 == Null!double);
+  double[] array6 = [];
+  assert(first(array6) == Null!double);
 }
 
 /** 

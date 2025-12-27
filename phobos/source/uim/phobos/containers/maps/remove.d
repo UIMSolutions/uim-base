@@ -21,7 +21,7 @@ mixin(Version!"test_uim_phobos");
   * Returns:
   *   A new map with the specified keys removed.
   */
-V[K] removeKeys(K, V)(V[K] map, K[] keys) {
+V[K] removeKey(K, V)(V[K] map, K[] keys) {
   return removeMap(map, (K key, V value) @safe => keys.hasValue(key));
 }
 /// 
@@ -29,7 +29,7 @@ unittest {
   int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];
 
   // Test removeKeys
-  int[string] result1 = removeKeys(testMap, ["b", "d"]);
+  int[string] result1 = removeKey(testMap, ["b", "d"]);
   int[string] expected1 = [ "a": 1, "c": 3 ];
   assertEquals(expected1, result1);
 
@@ -58,7 +58,7 @@ unittest {
   int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];
 
   // Test removeKeys
-  int[string] result1 = removeKeys(testMap, ["b", "d"]);
+  int[string] result1 = removeKey(testMap, ["b", "d"]);
   int[string] expected1 = [ "a": 1, "c": 3 ];
   assertEquals(expected1, result1);
 
@@ -94,7 +94,7 @@ unittest {
   int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];
 
   // Test removeKeys
-  int[string] result1 = removeKeys(testMap, ["b", "d"]);
+  int[string] result1 = removeKey(testMap, ["b", "d"]);
   int[string] expected1 = [ "a": 1, "c": 3 ];
   assertEquals(expected1, result1);
 

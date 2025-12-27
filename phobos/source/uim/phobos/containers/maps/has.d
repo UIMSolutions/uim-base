@@ -225,3 +225,7 @@ unittest {
   assert(callCount >= 1); // Should stop after finding match
 }
 // #endregion Items
+
+bool hasKeyValue(K, V)(V[K] map, K key, V value) {
+  return map.hasKey(key) ? map[key] == value : false;
+}

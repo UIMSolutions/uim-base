@@ -12,7 +12,7 @@ mixin(Version!("test_uim_core"));
 
 class MapHelper {
   static V[K] create(K, V)() {
-    V[K] result; 
+    V[K] result;
     return result;
   }
 
@@ -26,7 +26,7 @@ class MapHelper {
   }
 
   unittest {
-/*     auto items = MapHelper.create!(string, string)();
+    /*     auto items = MapHelper.create!(string, string)();
     items["a"] = "1";
     items["b"] = "2";
     // assert(MapHelper.clear(items).length == 0); */
@@ -137,18 +137,61 @@ class MapHelper {
     // assert(MapHelper.merge(items, otherItems) == ["a": "1", "b": "2", "c": "3"]);
   }
 
-  static V[K] remove(K, V)(ref V[K] items, K[] keys) {
+  /** 
+    * Removes multiple keys from the map.
+    *
+    * Params:
+    *   items = The original map.
+    *   keys = The keys to remove.
+    *
+    * Returns:
+    *   A new map with the specified keys removed.
+    */
+  V[K] removeKey(K, V)(V[K] items, K[] keys) {
     V[K] results = items.dup;
-    keys.each!(key => results.remove(key));
+    keys.each!(key => results = results.removeKey(key));
     return results;
   }
-
+  ///
   unittest {
-    auto items = MapHelper.create!(string, string)();
-    items["a"] = "1";
-    items["b"] = "2";
-    items["c"] = "3";
-    // assert(MapHelper.remove(items, ["b", "c"]) == ["a": "1"]);
+    // removeKey() should remove multiple keys from the map
+    auto map1 = ["a": 1, "b": 2, "c": 3, "d": 4];
+    auto result = MapHelper.removeKey(map1, ["b", "d"]);
+    assert(result.length == 2);
+    assert("a" in result);
+    assert("c" in result);
+    assert("b" !in result);
+    assert("d" !in result);
+    assert(result["a"] == 1);
+    assert(result["c"] == 3);
+
+    // removeKey() with empty key array should return unchanged map
+    auto map2 = ["a": 1, "b": 2, "c": 3];
+    auto result = MapHelper.removeKey(map2, []);
+    assert(result.length == 3);
+    assert(result == map2);
+
+    // removeKey() with non-existent keys should not modify the map
+    auto map3 = ["a": 1, "b": 2];
+    auto result = MapHelper.removeKey(map3, ["x", "y", "z"]);
+    assert(result.length == 2);
+    assert(result == map3);
+
+    // removeKey() with mixed existing and non-existing keys
+    auto map4 = ["a": 1, "b": 2, "c": 3];
+    auto result = MapHelper.removeKey(map4, ["b", "nonexistent", "c"]);
+    assert(result.length == 1);
+    assert("a" in result);
+    assert(result["a"] == 1);
+    assert("b" !in result);
+    assert("c" !in result);
+
+    // removeKey() removing all keys should result in empty map
+    auto map5 = ["x": 10, "y": 20];
+    auto result = MapHelper.removeKey(map, ["x", "y"]);
+    assert(result.length == 0);
+    assert("x" !in result);
+    assert("y" !in result);
   }
 
   static V[K] remove(K, V)(ref V[K] items, K key) {
@@ -181,13 +224,14 @@ class MapHelper {
 
   static K[] sortedKeys(K, V)(ref V[K] items, SortDir dir = SortDir.ASC) {
     auto keys = items.keys;
-/*     switch (dir) {
+    /*     switch (dir) {
     case SortDir.ASC:
       return keys.sort!("a < b").array;
     case SortDir.DESC:
       return keys.sort!("a > b").array;
     default:
- */      return keys;
+ */
+    return keys;
     // }
   }
 
@@ -195,7 +239,7 @@ class MapHelper {
     auto items = MapHelper.create!(string, string)();
     items["b"] = "2";
     items["a"] = "1";
-/*     // assert(MapHelper.sortedKeys(items, SortDir.ASC) == ["a", "b"]);
+    /*     // assert(MapHelper.sortedKeys(items, SortDir.ASC) == ["a", "b"]);
     // assert(MapHelper.sortedKeys(items, SortDir.DESC) == ["b", "a"]); */
   }
 
@@ -205,7 +249,7 @@ class MapHelper {
   }
 
   unittest {
-/*     auto items = MapHelper.create!(string, string)();
+    /*     auto items = MapHelper.create!(string, string)();
     items["b"] = "2";
     items["a"] = "1";
     // assert(MapHelper.sortedValues(items) == ["1", "2"]); */
@@ -231,7 +275,7 @@ class MapHelper {
   }
 
   unittest {
-/*     auto items = MapHelper.create!(string, string)();
+    /*     auto items = MapHelper.create!(string, string)();
     auto updates = MapHelper.create!(string, string)();
     items["a"] = "1";
     items["b"] = "2";
@@ -249,7 +293,7 @@ class MapHelper {
   }
 
   unittest {
-/*     auto items = MapHelper.create!(string, string)();
+    /*     auto items = MapHelper.create!(string, string)();
     items["a"] = "1";
     items["b"] = "2";
     // assert(MapHelper.update(items, ["a", "b"], "3") == ["a": "3", "b": "3"]);
