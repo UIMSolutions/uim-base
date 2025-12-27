@@ -10,21 +10,3 @@ import uim.vibe;
 mixin(Version!("test_uim_vibe"));
 @safe:
 
-UUID toUUID(string key, Json json) {
-  return json.isObject
-    ? UUID(json.getString(key)) : UUID();
-}
-
-
-UUID toUUID(Json value) {
-  return value.isString
-    ? UUID(value.getString) : UUID();
-}
-
-unittest {
-  assert(toUUID(Json()) == UUID());
-  assert(toUUID(Json("00000000-0000-0000-0000-000000000000")) == UUID());
-
-  auto id = randomUUID;
-  assert(Json(id.toString).toUUID == id);
-}

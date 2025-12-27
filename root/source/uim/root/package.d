@@ -35,6 +35,7 @@ public {
   import std.traits;
   import std.typecons;
   import std.uni;
+  import std.uuid;  
   import std.utf;
   import std.uuid;
   import std.zip;
