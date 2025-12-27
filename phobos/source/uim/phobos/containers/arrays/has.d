@@ -7,7 +7,8 @@ module uim.phobos.containers.arrays.has;
 
 import uim.phobos;
 
-mixin(Version!("test_uim_phobos"));
+mixin(Version!"test_uim_phobos");
+
 @safe:
 
 /*
@@ -95,16 +96,75 @@ unittest {
   assert(!arrStr.hasAny("date", "fig"));
 }
 
+// #region Values
 /**
- * Checks if the given value exists within the provided array.
- *
- * Params:
- *   values = The array to search.
- *   checkValue = The value to look for in the array.
- *
- * Returns:
- *   `true` if the value is found in the array, `false` otherwise.
- */
+  * Checks if all specified values exist within the provided array.
+  *
+  * Params:
+  *   values  = The array to search.
+  *   checkValues = The values to look for in the array.
+  *
+  * Returns:
+  *   `true` if all values are found in the array, `false` otherwise.
+  */
+bool hasAllValue(T)(T[] values, T[] checkValues) {
+  return checkValues.all!(v => values.hasValue(v));
+}
+///
+unittest {
+  // Test hasAllValue
+  int[] arrInt = [1, 2, 3, 4, 5];
+  assert(arrInt.hasAllValue([2, 3]));
+  assert(!arrInt.hasAllValue([2, 6]));
+
+  // Test with string array
+  string[] arrStr = ["apple", "banana", "cherry"];
+  assert(arrStr.hasAllValue(["banana", "cherry"]));
+  assert(!arrStr.hasAllValue(["banana", "date"]));
+}
+
+/** 
+  * Checks if any of the specified values exist within the provided array.
+  *
+  * Params:
+  *   values  = The array to search.
+  *   checkValues = The values to look for in the array.
+  *
+  * Returns:
+  *   `true` if any value is found in the array, `false` otherwise.
+  */
+bool hasAnyValue(T)(T[] values, T[] checkValues) {
+  return checkValues.any!(v => values.hasValue(v));
+}
+///
+unittest {
+  int[] arrInt = [1, 2, 3, 4, 5];
+  
+  // Test hasAllValue
+  assert(arrInt.hasAllValue([2, 3]));
+  assert(!arrInt.hasAllValue([2, 6]));
+
+  // Test hasAnyValue
+  assert(arrInt.hasAnyValue([0, 3, 6]));
+  assert(!arrInt.hasAnyValue([0, 6]));
+
+  // Test with string array
+  string[] arrStr = ["apple", "banana", "cherry"];
+  assert(arrStr.hasAllValue(["banana", "cherry"]));
+  assert(!arrStr.hasAllValue(["banana", "date"]));
+  assert(arrStr.hasAnyValue(["date", "cherry"]));
+  assert(!arrStr.hasAnyValue(["date", "fig"]));
+}
+/** 
+  * Checks if the specified value exists within the provided array.
+  *
+  * Params:
+  *   values  = The array to search.
+  *   checkValue = The value to look for in the array.
+  *
+  * Returns:
+  *   `true` if the value is found in the array, `false` otherwise.
+  */
 bool hasValue(T)(T[] values, T checkValue) {
   return values.any!(v => v == checkValue);
 }
@@ -132,3 +192,4 @@ unittest {
   assert(hasValue(points, Point(1, 2)));
   assert(!hasValue(points, Point(5, 6)));
 }
+// #endregion Values

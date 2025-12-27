@@ -7,7 +7,8 @@ module uim.phobos.containers.arrays.without;
 
 import uim.phobos;
 
-mixin(Version!("test_uim_phobos"));
+mixin(Version!"test_uim_phobos");
+
 @safe:
 
 /** 

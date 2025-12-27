@@ -7,6 +7,8 @@ module uim.phobos.containers.arrays.positions;
 
 import uim.phobos;
 
+mixin(Version!"test_uim_phobos");
+
 @safe:
 // #region positions
 // Creates a associative array with all positions of a value in an array

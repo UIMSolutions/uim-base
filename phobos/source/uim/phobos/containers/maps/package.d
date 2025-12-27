@@ -12,4 +12,5 @@ public {
   import uim.phobos.containers.maps.filter;
   import uim.phobos.containers.maps.pairs;
   import uim.phobos.containers.maps.remove;
+  import uim.phobos.containers.maps.testing;
 }
