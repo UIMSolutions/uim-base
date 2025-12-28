@@ -36,9 +36,9 @@ string pluralize(string word) {
     return "";
   }
 
-  string lowerWord = word.toLower();
-  if (lowerWord in irregulars) {
-    return irregulars[lowerWord];
+  word = word.toLower();
+  if (word in irregulars) {
+    return irregulars[word];
   }
 
   // 2. Rule: -s, -x, -z, -ch, -sh -> add -es
@@ -51,7 +51,7 @@ string pluralize(string word) {
   if (word.endsWith("y") && word.length > 1) {
     char lastConsonant = word[word.length - 2];
     // Check if the penultimate character is not a vowel
-    if (!"aeiou".find(lastConsonant)) {
+    if (!"aeiou".canFind(lastConsonant)) {
       return word[0 .. $ - 1] ~ "ies";
     }
   }
@@ -66,7 +66,9 @@ unittest {
   assert(pluralize("box") == "boxes");
   assert(pluralize("church") == "churches");
   assert(pluralize("baby") == "babies");
+  assert(pluralize("Person") == "people");
   assert(pluralize("person") == "people");
+  assert(pluralize("Order") == "orders");
   assert(pluralize("man") == "men");
 }
 

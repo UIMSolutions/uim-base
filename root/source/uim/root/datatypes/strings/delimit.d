@@ -1,3 +1,8 @@
+/****************************************************************************************************************
+* Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur) 
+* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
+* Authors: Ozan Nurettin Süel (aka UIManufaktur)
+*****************************************************************************************************************/
 module uim.root.datatypes.strings.delimit;
 
 import uim.root;
@@ -38,17 +43,9 @@ unittest {
       The converted text with the specified delimiter.
   */
 string delimit(string text, string delimiter = "_") pure {
-  string result; 
-
-  if (result.isEmpty) {
-    dchar lastChar;
-    foreach (index, c; text) {
-      result ~= std.uni.isUpper(c) && index > 0 && !std.uni.isWhite(lastChar)
-        ? delimiter ~ c : "" ~ c;
-      lastChar = c;
-    }
-  }
-  return result.toLower;
+  string result = std.string.replace(text, "-", delimiter);
+  result = std.string.replace(result, " ", delimiter);
+  return result;
 }
 ///
 unittest {

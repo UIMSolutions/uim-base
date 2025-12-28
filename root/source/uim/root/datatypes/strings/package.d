@@ -11,10 +11,14 @@ public {
   import uim.root.datatypes.strings.delimit;
   import uim.root.datatypes.strings.endswith;
   import uim.root.datatypes.strings.humanize;
+  import uim.root.datatypes.strings.lower;
   import uim.root.datatypes.strings.md5;
   import uim.root.datatypes.strings.mutation;
+  import uim.root.datatypes.strings.pascalize;
   import uim.root.datatypes.strings.pluralize;
   import uim.root.datatypes.strings.strings;
+  import uim.root.datatypes.strings.striptext;
   import uim.root.datatypes.strings.tableize;
   import uim.root.datatypes.strings.underscore;
+  import uim.root.datatypes.strings.upper;
 }

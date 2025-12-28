@@ -23,8 +23,8 @@ string[] pascalize(string[] texts, string delimiter = "_") {
 unittest {
   auto result = pascalize(["hello_world", "foo_bar"], "_");
   assert(result.length == 2);
-  assert(result[0] == "helloWorld");
-  assert(result[1] == "fooBar");
+  assert(result[0] == "HelloWorld");
+  assert(result[1] == "FooBar");
 }
 
 /**
@@ -50,17 +50,11 @@ string pascalize(string text, string delimiter = "_") {
     return "";
   }
 
-  // 2. Start with the first word in lowercase
-  string part1  = words[0].toLower();
-
-  // 3. Capitalize subsequent words and append
-  string part2 = words.length > 1 ? words[1 .. $].map!(word => word.capitalize()).join("") : "";
-
-  return  part1 ~ part2;
+  return words.map!(word => word.capitalize()).join("");
 }
 ///
 unittest {
-  assert(pascalize("hello_world", "_") == "helloWorld");
-  assert(pascalize("foo-bar", "-") == "fooBar");
-  assert(pascalize("multiple delimiters here", " ") == "multipleDelimitersHere");
+  assert(pascalize("hello_world", "_") == "HelloWorld");
+  assert(pascalize("foo-bar", "-") == "FooBar");
+  assert(pascalize("multiple delimiters here", " ") == "MultipleDelimitersHere");
 }

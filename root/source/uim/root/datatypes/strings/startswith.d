@@ -1,0 +1,61 @@
+module uim.root.datatypes.strings.startswith;
+
+import uim.root;
+
+mixin(Version!("test_uim_root"));
+
+@safe:
+
+/**
+  Checks if all strings in the array start with the specified text.
+  
+  Params:
+    values = The array of strings to check.
+    text = The text to check for at the start of each string.
+  
+  Returns:
+      True if all strings start with the specified text, false otherwise.
+  */
+bool allStartsWith(string[] values, string text) {
+  if (text.length == 0 || values.length == 0) {
+    return false;
+  }
+
+  return values.all!(value => startsWith(value, text));
+}
+///
+unittest {
+  auto testValues = ["apple_pie", "apple_crisp", "apple_sauce"];
+
+  assert(allStartsWith(testValues[0 .. 2], "apple") == true);
+  assert(allStartsWith(testValues, "apple") == true);
+  assert(anyStartsWith(testValues, "apple") == true);
+  assert(anyStartsWith(testValues, "banana") == false);
+}
+
+/**
+  Checks if any string in the array starts with the specified text.
+  
+  Params:
+    values = The array of strings to check.
+    text = The text to check for at the start of each string.
+  
+  Returns:
+      True if any string starts with the specified text, false otherwise.
+  */
+bool anyStartsWith(string[] values, string text) {
+  if (text.length == 0 || values.length == 0) {
+    return false;
+  }
+
+  return values.any!(value => startsWith(value, text));
+}
+///
+unittest {
+  auto testValues = ["apple_pie", "apple_crisp", "apple_sauce"];
+
+  assert(allStartsWith(testValues[0 .. 2], "apple") == true);
+  assert(allStartsWith(testValues, "apple") == true);
+  assert(anyStartsWith(testValues, "apple") == true);
+  assert(anyStartsWith(testValues, "banana") == false);
+}

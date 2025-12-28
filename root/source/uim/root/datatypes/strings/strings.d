@@ -79,26 +79,8 @@ string classify(string tableName) {
 }
 // #endregion classify
 
-
-// #region endsWith
-
-
 // #region startsWith
-bool allStartsWith(string[] values, string text) {
-  if (text.length == 0 || values.length == 0) {
-    return false;
-  }
 
-  return values.all!(value => startsWith(value, text));
-}
-
-bool anyStartsWith(string[] values, string text) {
-  if (text.length == 0 || values.length == 0) {
-    return false;
-  }
-
-  return values.any!(value => startsWith(value, text));
-}
 
 unittest { // bool anyStartsWith(string[] values, string text)
   assert(anyStartsWith(["hello", "world"], "he") == true, "Test case 1 failed");

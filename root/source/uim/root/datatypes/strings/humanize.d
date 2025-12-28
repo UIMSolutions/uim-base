@@ -16,15 +16,16 @@ mixin(Version!("test_uim_root"));
   * Returns:
   *   An array of humanized strings.
   */
-string[] humanize(string[] texts, string delimiter = "_") {
-  return texts.map!(text => humanize(text, delimiter)).array;
+string[] humanize(string[] texts) {
+  return texts.map!(text => humanize(text)).array;
 }
 ///
 unittest {
-  auto result = humanize(["hello_world", "foo_bar"], "_");
-  assert(result.length == 2);
-  assert(result[0] == "Hello World");
-  assert(result[1] == "Foo Bar");
+  auto result = ["hello_world", "foo-bar", "multipleDelimitersHere"].humanize;
+  assert(result.length == 3);
+  assert(result[0] == "Hello world");
+  assert(result[1] == "Foo bar");
+  assert(result[2] == "Multiple delimiters here");
 }
 
 /**
@@ -37,18 +38,46 @@ unittest {
   * Returns:
   *   The humanized string.
   */
-string humanize(string text, string delimiter = "_") {
+string humanize(string text) {
+  if (text.empty)
+    return "";
 
-  string result = text; 
-  if (result.isEmpty) {
-    string[] parts = std.string.split(text.replace(delimiter, " "), " ");
-    result = parts.map!(part => std.string.capitalize(part)).join(" ");
+  // 1. Remove '_id' or '-id' suffixes
+  if (text.endsWith("_id"))
+    text = text[0 .. $ - 3];
+  else if (text.endsWith("-id"))
+    text = text[0 .. $ - 3];
+
+  auto app = appender!string();
+  bool isFirst = true;
+
+  foreach (i, c; text) {
+    // 2. Handle word boundaries (separators or camelCase)
+    if (c == '_' || c == '-') {
+      app.put(' ');
+    } else if (i > 0 && isUpper(c) && !isUpper(text[i - 1])) {
+      // Inserts a space before capital letters in camelCase strings
+      app.put(' ');
+      app.put(toLower(c));
+    } else {
+      // 3. Capitalize first letter, lowercase the rest
+      if (isFirst) {
+        app.put(toUpper(c));
+        isFirst = false;
+      } else {
+        app.put(toLower(c));
+      }
+    }
   }
 
-  return result;
+  // 4. Final cleaning: collapse multiple spaces if they exist
+  return app.data.split.join(" ");
 }
 ///
 unittest {
-  assert(humanize("hello_world", "_") == "Hello World");
-  assert(humanize("foo_bar_baz", "_") == "Foo Bar Baz");
+  assert("hello_world".humanize == "Hello world");
+  assert("foo-bar".humanize == "Foo bar");
+  assert("multipleDelimitersHere".humanize == "Multiple delimiters here");
+  assert("user_id".humanize == "User");
+  assert("account-id".humanize == "Account");
 }

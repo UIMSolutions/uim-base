@@ -25,3 +25,11 @@ string[] capitalize(string[] texts) {
     .map!(text => std.string.capitalize(text))
     .array;
 }
+///
+unittest {
+  auto result = capitalize(["hello", "world", "uim"]);
+  assert(result.length == 3);
+  assert(result[0] == "Hello");
+  assert(result[1] == "World");
+  assert(result[2] == "Uim");
+}

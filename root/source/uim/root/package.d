@@ -3,7 +3,7 @@ module uim.root;
 public {
   import std.algorithm;
   import std.array;
-  import std.ascii;
+  // import std.ascii;
   import std.base64;
   import std.bigint;
   import std.bitmanip;
