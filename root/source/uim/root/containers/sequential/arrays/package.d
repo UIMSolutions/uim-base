@@ -1,2 +1,2 @@
-module uim.root.containers.sequential.arrays.packag;
+module uim.root.containers.sequential.arrays;
 
