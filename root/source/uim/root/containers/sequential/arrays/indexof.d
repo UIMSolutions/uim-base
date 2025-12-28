@@ -3,14 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.phobos.containers.maps;
+module uim.phobos.containers.arrays.indexof;
 
-public {
-  import uim.phobos.containers.maps.convert;
-  import uim.phobos.containers.maps.every;
-  import uim.phobos.containers.maps.has;
-  import uim.phobos.containers.maps.filter;
-  import uim.phobos.containers.maps.pairs;
-  import uim.phobos.containers.maps.remove;
-  import uim.phobos.containers.maps.testing;
-}
+import uim.phobos;
+
+mixin(Version!("test_uim_phobos"));
+@safe:

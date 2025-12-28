@@ -3,14 +3,15 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.root.containers.associative.maps;
+module uim.phobos.containers.arrays.deduplicate;
 
-public {
-  import uim.root.containers.associative.maps.convert;
-  import uim.root.containers.associative.maps.every;
-  import uim.root.containers.associative.maps.has;
-  import uim.root.containers.associative.maps.filter;
-  import uim.root.containers.associative.maps.pairs;
-  import uim.root.containers.associative.maps.remove;
-  import uim.root.containers.associative.maps.testing;
+import uim.phobos;
+
+mixin(Version!("test_uim_phobos"));
+@safe:
+
+auto deduplicate(T)(T[] arr) {
+  import std.algorithm : unique;
+  import std.array : array;
+  return arr.dup.unique.array;
 }

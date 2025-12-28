@@ -3,14 +3,10 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.root.containers.associative.maps;
+module uim.phobos.containers.arrays.nat;
 
-public {
-  import uim.root.containers.associative.maps.convert;
-  import uim.root.containers.associative.maps.every;
-  import uim.root.containers.associative.maps.has;
-  import uim.root.containers.associative.maps.filter;
-  import uim.root.containers.associative.maps.pairs;
-  import uim.root.containers.associative.maps.remove;
-  import uim.root.containers.associative.maps.testing;
+auto natArray(T)(T[] arr) if (is(T == ubyte) || is(T == ushort) || is(T == uint) || is(T == ulong) || is(T == byte) || is(T == short) || is(T == int) || is(T == long)) {
+  import std.array : array;
+  import std.algorithm : map;
+  return arr.map!(x => cast(nat)x).array;
 }
