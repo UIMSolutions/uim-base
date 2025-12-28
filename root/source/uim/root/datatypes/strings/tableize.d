@@ -15,7 +15,7 @@ mixin(Version!("test_uim_root"));
   Returns corresponding table names for given model classnames. (["people", "orders"] for the model classes ["Person", "Order"]).
   
   Params:
-    classnames = The model class names to convert.
+    names = The model class names to convert.
   
   Returns:
     The corresponding table names.

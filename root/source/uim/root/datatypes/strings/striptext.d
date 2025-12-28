@@ -27,7 +27,7 @@ string[] stripText(string[] texts, string[] stripchars = null) {
 }
 ///
 unittest {
-  auto results = ["  foo  ", "--bar--", "..baz.."].stripText(" ", "-", ".");
+  auto results = ["  foo  ", "--bar--", "..baz.."].stripText([" ", "-", "."]);
   assert(results.length == 3);
   assert(results[0] == "foo");
   assert(results[1] == "bar");
@@ -65,4 +65,112 @@ unittest {
   assert("--hello--".stripText(["-"]) == "hello");
   assert("..hello..".stripText(["."]) == "hello");
   assert("..--hello--..".stripText([".", "-"]) == "hello");
+}
+
+/** 
+  * Strips the specified characters from the left side of the given texts.
+  *
+  * Params:
+  *   texts = The texts to strip.
+  *   stripchars = The characters to strip. If null or empty, whitespace is stripped.
+  *
+  * Returns:
+  *   An array of stripped texts.
+  */
+string[] stripTextLeft(string[] texts, string[] stripchars = null) {
+  return texts
+    .map!(text => stripTextLeft(text, stripchars))
+    .array;
+}
+///
+unittest {
+  auto results = ["  foo  ", "--bar--", "..baz.."].stripTextLeft([" ", "-", "."]);
+  assert(results.length == 3);
+  assert(results[0] == "foo  ");
+  assert(results[1] == "bar--");
+  assert(results[2] == "baz..");
+}
+
+/** 
+  * Strips the specified characters from the left side of the given text.
+  *
+  * Params:
+  *   text = The text to strip.
+  *   stripchars = The characters to strip. If null or empty, whitespace is stripped.
+  *
+  * Returns:
+  *   The stripped text.
+  */
+string stripTextLeft(string text, string[] stripchars = null) {
+  if (text.isEmpty) {
+    return null;
+  }
+  if (stripchars.isEmpty) {
+    return stripLeft(text);
+  }
+  foreach (c; stripchars) {
+    text = stripLeft(text, c);
+  }
+  return text;
+}
+///
+unittest {
+  assert("  hello  ".stripTextLeft == "hello  ");
+  assert("--hello--".stripTextLeft(["-"]) == "hello--");
+  assert("..hello..".stripTextLeft(["."]) == "hello..");
+  assert("..--hello--..".stripTextLeft([".", "-"]) == "hello--..");
+}
+
+/** 
+  * Strips the specified characters from the right side of the given texts.
+  *
+  * Params:
+  *   texts = The texts to strip.
+  *   stripchars = The characters to strip. If null or empty, whitespace is stripped.
+  *
+  * Returns:
+  *   An array of stripped texts.
+  */
+string[] stripTextRight(string[] texts, string[] stripchars = null) {
+  return texts
+    .map!(text => stripTextRight(text, stripchars))
+    .array;
+}
+///
+unittest {
+  auto results = ["  foo  ", "--bar--", "..baz.."].stripTextRight([" ", "-", "."]);
+  assert(results.length == 3);
+  assert(results[0] == "  foo");
+  assert(results[1] == "--bar");
+  assert(results[2] == "..baz");
+}
+
+/** 
+  * Strips the specified characters from the right side of the given text.
+  *
+  * Params:
+  *   text = The text to strip.
+  *   stripchars = The characters to strip. If null or empty, whitespace is stripped.
+  *
+  * Returns:
+  *   The stripped text.
+  */
+string stripTextRight(string text, string[] stripchars = null) {
+  if (text.isEmpty) {
+    return null;
+  }
+  if (stripchars.isEmpty) {
+    return stripRight(text);
+  }
+  foreach (c; stripchars) {
+    text = stripRight(text, c);
+  }
+  return text;
+}
+///
+unittest {
+  assert("  hello  ".stripTextRight == "  hello");
+  assert("--hello--".stripTextRight(["-"]) == "--hello");
+  assert("..hello..".stripTextRight(["."]) == "..hello");
+  assert("..--hello--..".stripTextRight([".", "-"]) == "..--hello");
 }

@@ -44,6 +44,7 @@ public {
 public {
   import uim.root.containers;
   import uim.root.datatypes;
+  import uim.root.testing;
 }
 
 template Version(string name) {

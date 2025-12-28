@@ -11,22 +11,6 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
-// 1. Irregular Nouns (Extended for 2025)
-static immutable string[string] irregulars;
-shared static this() {
-  irregulars = [
-    "person": "people",
-    "man": "men",
-    "woman": "women",
-    "child": "children",
-    "tooth": "teeth",
-    "foot": "feet",
-    "mouse": "mice",
-    "ox": "oxen",
-    "goose": "geese"
-  ];
-}
-
 /**
   Pluralizes the given English word based on common rules.
   
@@ -41,9 +25,9 @@ string pluralize(string word) {
     return "";
   }
 
-  word = word.toLower();
-  if (word in irregulars) {
-    return irregulars[word];
+  word = word.lower();
+  if (word in pluralIrregulars) {
+    return pluralIrregulars[word];
   }
 
   // 2. Rule: -s, -x, -z, -ch, -sh -> add -es

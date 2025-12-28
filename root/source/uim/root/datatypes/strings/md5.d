@@ -26,8 +26,8 @@ string[] md5(string[] values) {
 unittest {
   auto result = md5(["hello", "world"]);
   assert(result.length == 2);
-  assert(result[0] == "5d41402abc4b2a76b9719d911017c592");
-  assert(result[1] == "7d793037a0760186574b0282f2f435e7");
+  assert(result[0] == "5D41402ABC4B2A76B9719D911017C592");
+  assert(result[1] == "7D793037A0760186574B0282F2F435E7");
 }
 
 /** 
@@ -46,6 +46,6 @@ string md5(string value) {
 }
 ///
 unittest {
-  assert(md5("hello") == "5d41402abc4b2a76b9719d911017c592");
-  assert(md5("world") == "7d793037a0760186574b0282f2f435e7");
+  assert(md5("hello") == "5D41402ABC4B2A76B9719D911017C592");
+  assert(md5("world") == "7D793037A0760186574B0282F2F435E7");
 }

@@ -12,5 +12,4 @@ public {
   import uim.root.containers.associative.maps.filter;
   import uim.root.containers.associative.maps.pairs;
   import uim.root.containers.associative.maps.remove;
-  import uim.root.containers.associative.maps.testing;
 }
