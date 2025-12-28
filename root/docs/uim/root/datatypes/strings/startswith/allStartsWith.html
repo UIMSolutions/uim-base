@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>lower - multiple declarations</title>
+		<title>Function allStartsWith</title>
 		<link rel="stylesheet" type="text/css" href="../../../../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../../../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../../../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../../../../scripts/ddox.js">/**/</script>
@@ -344,17 +344,82 @@ $('#symbolSearchPane').show();</script>
 			<ul class="tree-view">
 				<li>
 					<div class="module ">
+						<a href="../../../../../uim/root/datatypes/strings/camelize.html">camelize</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
 						<a href="../../../../../uim/root/datatypes/strings/capitalize.html">capitalize</a>
 					</div>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
+						<a href="../../../../../uim/root/datatypes/strings/delimit.html">delimit</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/root/datatypes/strings/endswith.html">endswith</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/root/datatypes/strings/humanize.html">humanize</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/root/datatypes/strings/lower.html">lower</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/root/datatypes/strings/md5.html">md5</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
 						<a href="../../../../../uim/root/datatypes/strings/mutation.html">mutation</a>
 					</div>
 				</li>
 				<li>
 					<div class="module ">
+						<a href="../../../../../uim/root/datatypes/strings/pascalize.html">pascalize</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/root/datatypes/strings/pluralize.html">pluralize</a>
+					</div>
+				</li>
+				<li>
+					<div class="module selected">
+						<a href="../../../../../uim/root/datatypes/strings/startswith.html">startswith</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
 						<a href="../../../../../uim/root/datatypes/strings/strings.html">strings</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/root/datatypes/strings/striptext.html">striptext</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/root/datatypes/strings/tableize.html">tableize</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/root/datatypes/strings/underscore.html">underscore</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../uim/root/datatypes/strings/upper.html">upper</a>
 					</div>
 				</li>
 			</ul>
@@ -400,52 +465,15 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>lower - multiple declarations</h1>
-			<nav class="page-nav">
-				<ul>
-					<li>
-						<a href="#0">
-							Function <code>lower</code>
-						</a>
-					</li>
-					<li>
-						<a href="#1">
-							Function <code>lower</code>
-						</a>
-					</li>
-				</ul>
-			</nav><h2 id="0">Function lower</h2><p>Converts all characters in the given texts to lower case.
+			<h1>Function allStartsWith</h1><p>Checks if all strings in the array start with the specified text.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">string</span><span class="pun">[]</span> <span class="pln">lower</span>
+			<span class="typ">bool</span> <span class="pln">allStartsWith</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">string</span><span class="pun">[]</span> <span class="pln">texts</span>
-			<br/>
-			<span class="pun">)</span><span class="pln"> </span><span class="kwd">@safe</span><span class="pun">;</span>
-					</div>
-				</code>
-			</div>
-			<section></section>
-
-			<section><h3>Parameters</h3>
-<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
-<tr><td id="texts">texts</td><td> The texts to convert to lower case.</td></tr>
-</table>
-</section>
-<section><h3>Returns</h3>
-<p>An array of texts converted to lower case.
-</p>
-</section>
-<h2 id="1">Function lower</h2><p>Converts all characters in the given text to lower case.
-</p>
-			<div class="prototype">
-				<code class="lang-d">
-					<div class="single-prototype">
-			<span class="typ">string</span> <span class="pln">lower</span>
-			<span class="pun">(</span>
+			&nbsp;&nbsp;<span class="typ">string</span><span class="pun">[]</span> <span class="pln">values</span><span class="pun">,</span>
 			<br/>
 			&nbsp;&nbsp;<span class="typ">string</span> <span class="pln">text</span>
 			<br/>
@@ -455,14 +483,25 @@ $('#symbolSearchPane').show();</script>
 			</div>
 			<section></section>
 
-			<section><h3>Parameters</h3>
+			<section><h2>Parameters</h2>
 <table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
-<tr><td id="text">text</td><td> The text to convert to lower case.</td></tr>
+<tr><td id="values">values</td><td> The array of strings to check.</td></tr>
+<tr><td id="text">text</td><td> The text to check for at the start of each string.</td></tr>
 </table>
 </section>
-<section><h3>Returns</h3>
-<p>The text converted to lower case.
+<section><h2>Returns</h2>
+<p>True if all strings start with the specified text, false otherwise.
 </p>
+</section>
+<section><h2>Example</h2>
+
+<pre class="code"><code class="lang-d"><span class="kwd">auto </span><span class="pln">testValues </span><span class="pun">= [</span><span class="str">"apple_pie"</span><span class="pun">, </span><span class="str">"apple_crisp"</span><span class="pun">, </span><span class="str">"apple_sauce"</span><span class="pun">];
+
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">allStartsWith</span><span class="pun">(</span><span class="pln">testValues</span><span class="pun">[</span><span class="lit">0 </span><span class="pun">.. </span><span class="lit">2</span><span class="pun">], </span><span class="str">"apple"</span><span class="pun">) == </span><span class="kwd">true</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">allStartsWith</span><span class="pun">(</span><span class="pln">testValues</span><span class="pun">, </span><span class="str">"apple"</span><span class="pun">) == </span><span class="kwd">true</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(<a href="../../../../../uim/root/datatypes/strings/startswith/anyStartsWith.html"></span><span class="pln">anyStartsWith</span></a><span class="pun">(</span><span class="pln">testValues</span><span class="pun">, </span><span class="str">"apple"</span><span class="pun">) == </span><span class="kwd">true</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(<a href="../../../../../uim/root/datatypes/strings/startswith/anyStartsWith.html"></span><span class="pln">anyStartsWith</span></a><span class="pun">(</span><span class="pln">testValues</span><span class="pun">, </span><span class="str">"banana"</span><span class="pun">) == </span><span class="kwd">false</span><span class="pun">);
+</span></code></pre>
 </section>
 
 			<footer>
