@@ -1,4 +1,4 @@
-module uim.root.containers.arrays.compact;
+module uim.root.containers.sequential.arrays.compact;
 
 import uim.root;
 
@@ -16,7 +16,7 @@ mixin(Version!("test_uim_phobos"));
 
     Example:
     ```d
-    import uim.root.containers.arrays.compact : compact;
+    import uim.root.containers.sequential.arrays.compact : compact;
 
     auto arr = [1, null, 2, null, 3];
     auto compactedArr = compact(arr); // Result: [1, 2, 3]

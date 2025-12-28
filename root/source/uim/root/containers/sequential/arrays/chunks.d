@@ -1,4 +1,4 @@
-module uim.root.containers.arrays.chunks;
+module uim.root.containers.sequential.arrays.chunks;
 
 import uim.root;
 

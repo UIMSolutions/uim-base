@@ -1,2 +1,2 @@
-module uim.root.containers.arrays.concat;
+module uim.root.containers.sequential.arrays.concat;
 

@@ -1,4 +1,4 @@
-module uim.root.containers.arrays.get;
+module uim.root.containers.sequential.arrays.get;
 
 import uim.root;
 

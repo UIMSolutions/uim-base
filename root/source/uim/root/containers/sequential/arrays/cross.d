@@ -1,4 +1,4 @@
-module uim.root.containers.arrays.cross;
+module uim.root.containers.sequential.arrays.cross;
 
 import uim.root;
 

@@ -214,8 +214,6 @@ T[] intersect(T)(T[] left, T[] right) {
 }
 // #endregion intersect 
 
-
-
 // Pop the element off the end of array
 // #region pop
 T pop(T)(auto ref T[] values) {
