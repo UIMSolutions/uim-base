@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>API documentation</title>
+		<link rel="stylesheet" type="text/css" href="./styles/ddox.css"/>
+		<link rel="stylesheet" href="./prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="./scripts/jquery.js">/**/</script><script type="text/javascript" src="./scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="./symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "./";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">uim
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">root
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">containers
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="./uim/root/containers/associative.html">associative</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="./uim/root/containers/associative/maps.html">maps</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/associative/maps/convert.html">convert</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/associative/maps/every.html">every</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/associative/maps/filter.html">filter</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/associative/maps/has.html">has</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/associative/maps/is_.html">is_</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/associative/maps/pairs.html">pairs</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/associative/maps/remove.html">remove</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/associative/maps/testing.html">testing</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="./uim/root/containers/sequential.html">sequential</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="./uim/root/containers/sequential/arrays.html">arrays</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/array_.html">array_</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/contains.html">contains</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/deduplicate.html">deduplicate</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/differences.html">differences</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/distribute.html">distribute</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/drop.html">drop</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/duplicates.html">duplicates</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/every.html">every</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/filter.html">filter</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/filtermap.html">filtermap</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/find.html">find</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/first.html">first</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/flatten.html">flatten</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/flattenmap.html">flattenmap</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/fold.html">fold</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/foldright.html">foldright</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/group.html">group</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/has.html">has</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/indexof.html">indexof</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/insert.html">insert</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/intersect.html">intersect</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/isempty.html">isempty</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/last.html">last</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/merge.html">merge</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/minmax.html">minmax</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/move.html">move</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/nat.html">nat</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/pairs.html">pairs</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/partition.html">partition</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/pick.html">pick</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/positions.html">positions</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/remove.html">remove</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/replace.html">replace</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/rest.html">rest</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/reverse.html">reverse</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/rotate.html">rotate</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/sample.html">sample</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/shift.html">shift</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/shuffle.html">shuffle</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/size.html">size</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/sorting.html">sorting</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/split.html">split</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/string_.html">string_</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/unzip.html">unzip</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/without.html">without</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/containers/sequential/arrays/zip.html">zip</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="./uim/root/datatypes.html">datatypes</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="./uim/root/datatypes/strings.html">strings</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="./uim/root/datatypes/strings/capitalize.html">capitalize</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/datatypes/strings/mutation.html">mutation</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/datatypes/strings/strings.html">strings</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="./uim/root/datatypes/uuids.html">uuids</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="./uim/root/datatypes/uuids/null_.html">null_</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/datatypes/uuids/to_.html">to_</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/datatypes/uuids/uuid.html">uuid</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/datatypes/mixins.html">mixins</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./uim/root/datatypes/nulls.html">nulls</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+				</li>
+			</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>API documentation</h1>
+			<table>
+				<col class="caption"/>
+				<tr>
+					<th>Module</th><th>Description</th>
+				</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/associative/maps/convert.html">uim.root.containers.associative.maps.convert</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/associative/maps/every.html">uim.root.containers.associative.maps.every</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/associative/maps/filter.html">uim.root.containers.associative.maps.filter</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/associative/maps/has.html">uim.root.containers.associative.maps.has</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/associative/maps/is_.html">uim.root.containers.associative.maps.is_</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/associative/maps/pairs.html">uim.root.containers.associative.maps.pairs</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/associative/maps/remove.html">uim.root.containers.associative.maps.remove</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/associative/maps/testing.html">uim.root.containers.associative.maps.testing</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/associative/maps.html">uim.root.containers.associative.maps</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/array_.html">uim.root.containers.sequential.arrays.array_</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/contains.html">uim.root.containers.sequential.arrays.contains</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/deduplicate.html">uim.root.containers.sequential.arrays.deduplicate</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/differences.html">uim.root.containers.sequential.arrays.differences</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/distribute.html">uim.root.containers.sequential.arrays.distribute</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/drop.html">uim.root.containers.sequential.arrays.drop</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/duplicates.html">uim.root.containers.sequential.arrays.duplicates</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/every.html">uim.root.containers.sequential.arrays.every</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/filter.html">uim.root.containers.sequential.arrays.filter</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/filtermap.html">uim.root.containers.sequential.arrays.filtermap</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/find.html">uim.root.containers.sequential.arrays.find</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/first.html">uim.root.containers.sequential.arrays.first</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/flatten.html">uim.root.containers.sequential.arrays.flatten</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/flattenmap.html">uim.root.containers.sequential.arrays.flattenmap</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/fold.html">uim.root.containers.sequential.arrays.fold</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/foldright.html">uim.root.containers.sequential.arrays.foldright</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/group.html">uim.root.containers.sequential.arrays.group</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/has.html">uim.root.containers.sequential.arrays.has</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/indexof.html">uim.root.containers.sequential.arrays.indexof</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/insert.html">uim.root.containers.sequential.arrays.insert</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/intersect.html">uim.root.containers.sequential.arrays.intersect</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/isempty.html">uim.root.containers.sequential.arrays.isempty</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/last.html">uim.root.containers.sequential.arrays.last</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/merge.html">uim.root.containers.sequential.arrays.merge</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/minmax.html">uim.root.containers.sequential.arrays.minmax</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/move.html">uim.root.containers.sequential.arrays.move</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/nat.html">uim.root.containers.sequential.arrays.nat</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/pairs.html">uim.root.containers.sequential.arrays.pairs</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/partition.html">uim.root.containers.sequential.arrays.partition</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/pick.html">uim.root.containers.sequential.arrays.pick</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/positions.html">uim.root.containers.sequential.arrays.positions</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/remove.html">uim.root.containers.sequential.arrays.remove</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/replace.html">uim.root.containers.sequential.arrays.replace</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/rest.html">uim.root.containers.sequential.arrays.rest</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/reverse.html">uim.root.containers.sequential.arrays.reverse</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/rotate.html">uim.root.containers.sequential.arrays.rotate</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/sample.html">uim.root.containers.sequential.arrays.sample</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/shift.html">uim.root.containers.sequential.arrays.shift</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/shuffle.html">uim.root.containers.sequential.arrays.shuffle</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/size.html">uim.root.containers.sequential.arrays.size</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/sorting.html">uim.root.containers.sequential.arrays.sorting</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/split.html">uim.root.containers.sequential.arrays.split</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/string_.html">uim.root.containers.sequential.arrays.string_</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/unzip.html">uim.root.containers.sequential.arrays.unzip</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/without.html">uim.root.containers.sequential.arrays.without</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays/zip.html">uim.root.containers.sequential.arrays.zip</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential/arrays.html">uim.root.containers.sequential.arrays</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/associative.html">uim.root.containers.associative</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/containers/sequential.html">uim.root.containers.sequential</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/datatypes/strings/capitalize.html">uim.root.datatypes.strings.capitalize</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/datatypes/strings/mutation.html">uim.root.datatypes.strings.mutation</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/datatypes/strings/strings.html">uim.root.datatypes.strings.strings</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/datatypes/uuids/null_.html">uim.root.datatypes.uuids.null_</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/datatypes/uuids/to_.html">uim.root.datatypes.uuids.to_</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/datatypes/uuids/uuid.html">uim.root.datatypes.uuids.uuid</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/datatypes/mixins.html">uim.root.datatypes.mixins</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/datatypes/nulls.html">uim.root.datatypes.nulls</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/datatypes/strings.html">uim.root.datatypes.strings</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/datatypes/uuids.html">uim.root.datatypes.uuids</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./uim/root/datatypes.html">uim.root.datatypes</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			</table>
+			<footer>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>
