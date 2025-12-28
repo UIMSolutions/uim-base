@@ -1,3 +1,8 @@
+/****************************************************************************************************************
+* Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur) 
+* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
+* Authors: Ozan Nurettin Süel (aka UIManufaktur)
+*****************************************************************************************************************/
 module uim.root.datatypes.strings.striptext;
 
 import uim.root;
@@ -15,10 +20,18 @@ mixin(Version!("test_uim_root"));
   Returns:
       The converted text(s) with underscores.
   */
-string[] stripText(string[] texts, string[] stripchars= null) {
+string[] stripText(string[] texts, string[] stripchars = null) {
   return texts
     .map!(text => stripText(text, stripchars))
     .array;
+}
+///
+unittest {
+  auto results = ["  foo  ", "--bar--", "..baz.."].stripText(" ", "-", ".");
+  assert(results.length == 3);
+  assert(results[0] == "foo");
+  assert(results[1] == "bar");
+  assert(results[2] == "baz");
 }
 
 /**
@@ -45,4 +58,11 @@ string stripText(string text, string[] stripchars = null) {
   }
 
   return text;
+}
+///
+unittest {
+  assert("  hello  ".stripText == "hello");
+  assert("--hello--".stripText(["-"]) == "hello");
+  assert("..hello..".stripText(["."]) == "hello");
+  assert("..--hello--..".stripText([".", "-"]) == "hello");
 }

@@ -11,8 +11,6 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
-
-
 // #region stripTextLeft
 string[] stripTextLeft(string[] texts, string[] stripchars = null) {
   return texts
