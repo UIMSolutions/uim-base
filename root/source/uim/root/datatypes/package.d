@@ -6,17 +6,17 @@
 module uim.root.datatypes;
 
 public {
-  import uim.phobos.datatypes.bigint;
-  import uim.phobos.datatypes.strings;
+  // import uim.root.datatypes.bigint;
+  import uim.root.datatypes.strings;
 
-  /*     import uim.phobos.datatypes.integer;
-    import uim.phobos.datatypes.float;
-    import uim.phobos.datatypes.boolean;
-    import uim.phobos.datatypes.date;
-    import uim.phobos.datatypes.time;
-    import uim.phobos.datatypes.datetime;
+  /*     import uim.root.datatypes.integer;
+    import uim.root.datatypes.float;
+    import uim.root.datatypes.boolean;
+    import uim.root.datatypes.date;
+    import uim.root.datatypes.time;
+    import uim.root.datatypes.datetime;
  */
-  import uim.phobos.datatypes.mixins;
-  import uim.phobos.datatypes.nulls;
-  import uim.phobos.datatypes.uuids;
+  import uim.root.datatypes.mixins;
+  import uim.root.datatypes.nulls;
+  import uim.root.datatypes.uuids;
 }

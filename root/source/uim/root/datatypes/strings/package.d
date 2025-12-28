@@ -3,11 +3,11 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.phobos.datatypes.strings;
+module uim.root.datatypes.strings;
 
 public {
-  import uim.phobos.datatypes.strings.capitalize;
-  import uim.phobos.datatypes.strings.md5;
-  import uim.phobos.datatypes.strings.mutation;
-  import uim.phobos.datatypes.strings.strings;
+  import uim.root.datatypes.strings.capitalize;
+  import uim.root.datatypes.strings.md5;
+  import uim.root.datatypes.strings.mutation;
+  import uim.root.datatypes.strings.strings;
 }

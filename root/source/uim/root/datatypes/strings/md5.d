@@ -1,8 +1,8 @@
-module uim.phobos.datatypes.strings.md5;
+module uim.root.datatypes.strings.md5;
 
-import uim.phobos;
+import uim.root;
 
-mixin(Version!("test_uim_phobos"));
+mixin(Version!("test_uim_root"));
 
 @safe:
 
