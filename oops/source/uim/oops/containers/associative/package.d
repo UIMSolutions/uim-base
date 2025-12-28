@@ -1,2 +1,2 @@
-module uim.root.containers.associative;
+module uim.oops.containers.associative;
 

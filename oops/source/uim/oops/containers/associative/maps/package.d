@@ -1,2 +1,2 @@
-module uim.root.containers.associative.maps;
+module uim.oops.containers.associative.maps;
 

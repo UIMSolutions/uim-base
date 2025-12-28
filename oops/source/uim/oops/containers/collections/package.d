@@ -1,7 +1,7 @@
-module uim.root.containers.collections;
+module uim.oops.containers.collections;
 
 public {
-    import uim.root.containers.collections.lists;
-    import uim.root.containers.collections.arrays;
-    import uim.root.containers.collections.sets;
+    import uim.oops.containers.collections.lists;
+    import uim.oops.containers.collections.arrays;
+    import uim.oops.containers.collections.sets;
 }

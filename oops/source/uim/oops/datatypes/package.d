@@ -1,2 +1,2 @@
-module uim.root.datatypes;
+module uim.oops.datatypes;
 

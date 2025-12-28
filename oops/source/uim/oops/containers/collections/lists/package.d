@@ -1,2 +1,2 @@
-module uim.root.containers.collections;
+module uim.oops.containers.collections;
 

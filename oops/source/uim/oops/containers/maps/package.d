@@ -1,2 +1,2 @@
-module uim.root.containers.maps;
+module uim.oops.containers.maps;
 

@@ -1,4 +1,4 @@
-module uim.root;
+module uim.oops;
 
 public {
   import std.algorithm;
@@ -42,8 +42,8 @@ public {
 }
 
 public {
-  import uim.root.containers;
-  import uim.root.datatypes;
+  import uim.oops.containers;
+  import uim.oops.datatypes;
 }
 
 template Version(string name) {

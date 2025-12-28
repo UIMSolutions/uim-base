@@ -1,2 +1,2 @@
-module uim.root.containers.sequential;
+module uim.oops.containers.sequential;
 

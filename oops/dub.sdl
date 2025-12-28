@@ -1,12 +1,12 @@
-name "root"
-description "Root library for the uim framework"
-homepage "https://www.sueel.de/uim/root"
+name "oops"
+description "Oops library for the uim framework"
+homepage "https://www.sueel.de/uim/oops"
 authors "Ozan Nurettin Süel"
 copyright "Copyright © 2018-2025, Ozan Nurettin Süel"
 license "Apache-2.0"
 
 // target
-targetName "uim-root"
+targetName "uim-oops"
 targetType "library"
 
 // External dependencies
@@ -14,7 +14,7 @@ dependency "vibe-d" version="~>0.10.2"
 dependency "colored" version="~>0.0.31"
 
 configuration "test_library" {
-	versions "test_uim_root"
+	versions "test_uim_oops"
 }
 
 buildRequirements "allowWarnings" "silenceDeprecations"

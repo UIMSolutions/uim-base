@@ -1,2 +1,2 @@
-module uim.root.containers.collections.arrays;
+module uim.oops.containers.collections.arrays;
 
