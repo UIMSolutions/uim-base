@@ -1,0 +1,92 @@
+module uim.root.datatypes.strings.pluralize;
+
+import uim.root;
+
+mixin(Version!("test_uim_root"));
+
+@safe:
+
+// 1. Irregular Nouns (Extended for 2025)
+static immutable string[string] irregulars;
+shared static this() {
+  irregulars = [
+    "person": "people",
+    "man": "men",
+    "woman": "women",
+    "child": "children",
+    "tooth": "teeth",
+    "foot": "feet",
+    "mouse": "mice",
+    "ox": "oxen",
+    "goose": "geese"
+  ];
+}
+
+/**
+  Pluralizes the given English word based on common rules.
+  
+  Params:
+      word = The singular word to pluralize.
+  
+  Returns:
+      The pluralized form of the word.
+  */
+string pluralize(string word) {
+  if (word.length == 0) {
+    return "";
+  }
+
+  string lowerWord = word.toLower();
+  if (lowerWord in irregulars) {
+    return irregulars[lowerWord];
+  }
+
+  // 2. Rule: -s, -x, -z, -ch, -sh -> add -es
+  if (word.endsWith("s") || word.endsWith("x") || word.endsWith("z") ||
+    word.endsWith("ch") || word.endsWith("sh")) {
+    return word ~ "es";
+  }
+
+  // 3. Rule: Consonant + y -> -ies
+  if (word.endsWith("y") && word.length > 1) {
+    char lastConsonant = word[word.length - 2];
+    // Check if the penultimate character is not a vowel
+    if (!"aeiou".find(lastConsonant)) {
+      return word[0 .. $ - 1] ~ "ies";
+    }
+  }
+
+  // 4. Default: add -s
+  return word ~ "s";
+}
+///
+unittest {
+  assert(pluralize("cat") == "cats");
+  assert(pluralize("bus") == "buses");
+  assert(pluralize("box") == "boxes");
+  assert(pluralize("church") == "churches");
+  assert(pluralize("baby") == "babies");
+  assert(pluralize("person") == "people");
+  assert(pluralize("man") == "men");
+}
+
+/**
+  Pluralizes the given English word based on the count.
+  
+  Params:
+      count = The count of items.
+      singular = The singular form of the word.
+  
+  Returns:
+      The appropriate form (singular or plural) based on the count.
+  */
+string pluralizeCount(int count, string singular) {
+    return (count == 1) ? singular : pluralize(singular);
+}
+///
+unittest {
+  assert(pluralizeCount(1, "cat") == "cat");
+  assert(pluralizeCount(2, "cat") == "cats");
+  assert(pluralizeCount(1, "bus") == "bus");
+  assert(pluralizeCount(3, "bus") == "buses");
+} 
