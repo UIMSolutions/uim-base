@@ -1,6 +1,6 @@
-module uim.phobos.containers.arrays.chunks;
+module uim.root.containers.arrays.chunks;
 
-import uim.phobos;
+import uim.root;
 
 mixin(Version!"test_uim_phobos");
 @safe:

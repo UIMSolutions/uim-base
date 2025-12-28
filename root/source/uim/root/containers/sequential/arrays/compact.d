@@ -1,6 +1,6 @@
-module uim.phobos.containers.arrays.compact;
+module uim.root.containers.arrays.compact;
 
-import uim.phobos;
+import uim.root;
 
 mixin(Version!("test_uim_phobos"));
 @safe:
@@ -16,7 +16,7 @@ mixin(Version!("test_uim_phobos"));
 
     Example:
     ```d
-    import uim.phobos.containers.arrays.compact : compact;
+    import uim.root.containers.arrays.compact : compact;
 
     auto arr = [1, null, 2, null, 3];
     auto compactedArr = compact(arr); // Result: [1, 2, 3]

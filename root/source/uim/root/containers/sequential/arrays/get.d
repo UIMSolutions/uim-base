@@ -1,6 +1,6 @@
-module uim.phobos.containers.arrays.get;
+module uim.root.containers.arrays.get;
 
-import uim.phobos;
+import uim.root;
 
 mixin(Version!("test_uim_phobos"));
 

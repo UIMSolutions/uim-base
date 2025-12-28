@@ -1,6 +1,6 @@
-module uim.phobos.containers.arrays.cross;
+module uim.root.containers.arrays.cross;
 
-import uim.phobos;
+import uim.root;
 
 mixin(Version!("test_uim_phobos"));
 @safe:

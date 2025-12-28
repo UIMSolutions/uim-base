@@ -3,9 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.phobos.containers.arrays.drop;
+module uim.root.containers.arrays.drop;
 
-import uim.phobos;
+import uim.root;
 
 mixin(Version!("test_uim_phobos"));
 @safe:
@@ -22,7 +22,7 @@ mixin(Version!("test_uim_phobos"));
     *
     * Example:
     * ```d
-    * import uim.phobos.containers.arrays.drop : drop;
+    * import uim.root.containers.arrays.drop : drop;
     * 
     * auto values = [1, 2, 3, 4, 5];
     * auto result = drop(arr, 2); // result is [3, 4, 5]
