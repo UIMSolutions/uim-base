@@ -39,6 +39,8 @@ public {
   import std.utf;
   import std.uuid;
   import std.zip;
+
+  import vibe.d;
 }
 
 public {
