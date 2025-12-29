@@ -35,29 +35,6 @@ unittest {
 
 // #endregion toString
 
-string toString(short value) {
-  return to!string(value);
-}
-
-string toString(int value) {
-  return to!string(value);
-}
-
-string toString(long value) {
-  return to!string(value);
-}
-
-string toString(double value) {
-  return to!string(value);
-}
-
-string toString(T)(T[] values) {
-  return "[" ~ values.map!(value => value.toString).join(",") ~ "]";
-}
-
-string toString(T : string)(T[] values) {
-  return "[" ~ values.map!(value => `"` ~ value ~ `"`).join(",") ~ "]";
-}
 
 unittest {
   writeln([1, 2, 3].toString);

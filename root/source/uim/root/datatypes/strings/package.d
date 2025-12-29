@@ -9,6 +9,7 @@ public {
   import uim.root.datatypes.strings.camelize;
   import uim.root.datatypes.strings.capitalize;
   import uim.root.datatypes.strings.classify;
+  import uim.root.datatypes.strings.convert;
   import uim.root.datatypes.strings.delimit;
   import uim.root.datatypes.strings.endswith;
   import uim.root.datatypes.strings.humanize;
