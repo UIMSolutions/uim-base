@@ -11,16 +11,14 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
-Json[] filterBooleans(Json[] jsons, bool delegate(Json json) filterFunc) {
-  Json[] results;
-  () @trusted { results = jsons.filterBooleans.filter!(json => filterFunc(json)).array; }();
-  return results;
+Json[] filterBooleans(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
+  jsons.filterValues(filterFunc).filterBooleans;
 }
 
 Json[] filterBooleans(Json[] jsons, size_t[] indices) {
-  return jsons.filterValues(indices).filterBooleans.array;
+  return jsons.filterValues(indices).filterBooleans;
 }
 
 Json[] filterBooleans(Json[] jsons) {
-  return jsons.filter!(json => json.isBoolean).array;
+  return jsons.filterValues((Json json) => json.isBoolean);
 }

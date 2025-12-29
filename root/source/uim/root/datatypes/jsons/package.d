@@ -15,6 +15,7 @@ public { // Packages
 public { // Modules
   import uim.root.datatypes.jsons.convert;
   import uim.root.datatypes.jsons.empty;
+  import uim.root.datatypes.jsons.filter;
   import uim.root.datatypes.jsons.get;
   import uim.root.datatypes.jsons.integral;
   import uim.root.datatypes.jsons.json;

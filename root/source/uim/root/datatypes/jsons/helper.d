@@ -14,21 +14,21 @@ Json[] filterValues(Json json) {
   }
 
   if (json.isArray) {
-    return uim.root.containers.arrays.filter.filterValues(json.get!(Json[]));
+    return filterValues(json.get!(Json[]));
   }
   if (json.isObject) {
-    return uim.root.containers.maps.filter.filterValues(json.get!(Json[string]));
+    return filterValues(json.get!(Json[string]));
   }
   return [json];
 }
 // #endregion values
 
-Json[] filterArrays(Json json) {
+Json filterArrays(Json json) {
   if (json.isArray) {
-    return uim.root.containers.arrays.filter.filterArrays(json.toArray);
+    return filterArrays(json.toArray).toJson;
   }
   if (json.isObject) {
-    return uim.root.containers.maps.filter.filterArrays(json.toMap);
+    return filterArrays(json.toMap).toJson;
   }
   return null;
 }

@@ -12,21 +12,14 @@ mixin(Version!("test_uim_root"));
 @safe:
 
 string[] getStringArray(Json[] jsons, size_t[] indices, string defaultValue = null) {
-  return jsons
-    .getValues(indices)
-    .filterStrings
+  return jsons.filterValues(indices).filterStrings
     .getStringArray(defaultValue);
 }
 
 string[] getStringArray(Json[] jsons, string defaultValue = null) {
-  return jsons
-    .filter!(value => value.isString)
+  return jsons.filterStrings
     .map!(value => value.get!string)
     .array;
-}
-
-string[] toStringArray(Json[] jsons, string defaultValue = null) {
-  return jsons.map!(value => value.to!string).array;
 }
 
 string getStringByIndex(Json[] jsons, size_t index, string defaultValue = null) {

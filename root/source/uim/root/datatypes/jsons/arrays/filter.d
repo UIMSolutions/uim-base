@@ -11,22 +11,16 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
-// #region arrays
 Json[] filterArrays(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
-  return jsons.filterArrays.filter!(json => filterFunc(json)).array;
+  return jsons.filterValues(filterFunc).filterArrays;
 }
 
 Json[] filterArrays(Json[] jsons, size_t[] indices) {
-  return jsons.filterValues(indices).filterArrays.array;
+  return jsons.filterValues(indices).filterArrays;
 }
 
 Json[] filterArrays(Json[] jsons) {
   return jsons.filter!(json => json.isArray).array;
 }
-// #endregion arrays
 
-// #region indices
-Json[] filterValues(Json[] jsons, size_t[] indices) {
-  return indices.filter!(index => jsons.length > index).map!(index => jsons[index]).array;
-}
-// #region endindices
+

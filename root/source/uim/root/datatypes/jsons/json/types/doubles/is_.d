@@ -161,42 +161,7 @@ bool isDouble(Json json, string key, double value) {
 // #endregion value
 
 // #region noValue
-/** 
-  * Checks if the given JSON value at the specified key is of double (floating-point number) type.
-  *
-  * Params:
-  *   json = The JSON value to check.
-  *   key  = The key within the JSON object to check.
-  *
-  * Returns:
-  *   `true` if the JSON value at the specified key is a double, `false` otherwise.
-  */
-bool isDouble(Json value, string key) {
-  return (value.type == Json.Type.float_);
-}
 // #endregion noValue
 // #endregion is
 // #endregion key
 
-// #region scalar
-// #region value
-/** 
-  * Checks if the given JSON value is of double (floating-point number) type and matches the given value.
-  *
-  * Params:
-  *   json = The JSON value to check.
-  *   value = The double value to match.
-  *
-  * Returns:
-  *   `true` if the JSON value is a double and matches the given value, `false` otherwise.
-  */
-bool isDouble(Json json, double value) {
-  return json.isDouble && json.getDouble == value ;
-}
-// #endregion value
-
-// #region noValue
-// #endregion noValue
-
-
-// #endregion scalar
