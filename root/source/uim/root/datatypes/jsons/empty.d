@@ -12,7 +12,6 @@ mixin(Version!("test_uim_root"));
 @safe:
 
 // #region is
-mixin(IsJsonFunctions!("Empty"));
 
 /** 
   * Checks whether the given Json value is empty.
@@ -33,7 +32,7 @@ mixin(IsJsonFunctions!("Empty"));
   * Returns:
   *   true if the Json value is empty, false otherwise.
   */
-bool isEmpty(Json value, bool strict = true) {
+bool isEmpty(Json value) {
   if (!strict) {
     // Furure: Add support for empty boolean, integer, float, and string.
   }

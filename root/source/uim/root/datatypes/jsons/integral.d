@@ -12,9 +12,7 @@ mixin(Version!("test_uim_root"));
 @safe:
 
 // #region is
-mixin(IsJsonFunctions!("Integral"));
-
-bool isIntegral(Json value, bool strict = true) {
+bool isIntegral(Json value) {
   if (!strict) {
     // Future: Add support for BigInt and other integral types.
   }

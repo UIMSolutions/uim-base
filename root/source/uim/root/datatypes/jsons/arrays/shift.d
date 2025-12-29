@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.root.datatypes.jsons.arrays.shift;
 
-import uim.phobos;
+import uim.root;
 
 mixin(Version!("test_uim_root"));
 

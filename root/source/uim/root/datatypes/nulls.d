@@ -104,6 +104,9 @@ T Null(T : UUID)() {
   return UUID();
 }
 
+T Null(T : Json)() if (is(T == Json)) {
+  return Json(null);
+}
 
 // #region Object
 /**

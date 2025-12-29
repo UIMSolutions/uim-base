@@ -11,19 +11,3 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
-// #region Null
-/// Create a null Json value for the specified type.
-T Null(T : Json[string])() {
-  return null;
-}
-
-/// Create a null Json array value.
-T Null(T : Json[])() {
-  return null;
-}
-
-/// Create a null Json value.
-T Null(T : Json)() if (is(T == Json)) {
-  return Json(null);
-}
-// #endregion Null

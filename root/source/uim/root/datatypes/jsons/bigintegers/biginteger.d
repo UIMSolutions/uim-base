@@ -10,9 +10,7 @@ mixin(Version!("test_uim_root"));
 @safe:
 
 // #region is
-mixin(IsJsonFunctions!("BigInteger"));
-
-bool isBigInteger(Json json, bool strict = true) {
+bool isBigInteger(Json json) {
   if (!strict) {
     // TODO: Future: Implement a more generic check for big integers.
   }

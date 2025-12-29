@@ -11,8 +11,6 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
-mixin(GetJsonValue!("Json", "Json", "Json(null)"));
-
 /** 
   * Retrieves the Json value.
   *
