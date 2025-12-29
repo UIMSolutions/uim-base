@@ -11,7 +11,6 @@ public {
   import uim.root.datatypes.jsons.arrays.types.objects.first;
   import uim.root.datatypes.jsons.arrays.types.objects.get;
   import uim.root.datatypes.jsons.arrays.types.objects.has;
-  import uim.root.datatypes.jsons.arrays.types.objects.typecheck;
   import uim.root.datatypes.jsons.arrays.types.objects.last;
   import uim.root.datatypes.jsons.arrays.types.objects.remove;
 }

@@ -10,6 +10,27 @@ import uim.root;
 mixin(Version!("test_uim_root"));
 
 @safe:
+
+bool isAllDouble(Json[] values) {
+  return values.all!(value => isDouble(value));
+}
+
+bool isAllDouble(Json[] values, size_t[] indices) {
+  return indices.all!(index => values.isDouble(index));
+}
+
+bool isAnyDouble(Json[] values) {
+  return values.any!(value => isDouble(value));
+}
+
+bool isAnyDouble(Json[] values, size_t[] indices) {
+  return indices.any!(index => values.isDouble(index));
+}
+
+bool isDouble(Json[] values, size_t index) {
+  return values.getValue(index).isDouble;
+}
+
 bool isAllDouble(Json json, string[][] paths) {
   return paths.any!(path => json.isDouble(path));
 }

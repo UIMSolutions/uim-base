@@ -11,7 +11,6 @@ public {
   import uim.root.datatypes.jsons.arrays.types.booleans.first;
   import uim.root.datatypes.jsons.arrays.types.booleans.get;
   import uim.root.datatypes.jsons.arrays.types.booleans.has;
-  import uim.root.datatypes.jsons.arrays.types.booleans.typecheck;
   import uim.root.datatypes.jsons.arrays.types.booleans.last;
   import uim.root.datatypes.jsons.arrays.types.booleans.remove;
 }

@@ -11,6 +11,18 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
+bool isAllArray(Json[] jsons, size_t[] indices = null) {
+  return indices.all!(index => isArray(jsons, index)); 
+}
+
+bool isAnyArray(Json[] jsons, size_t[] indices = null) {
+  return indices.any!(index => isArray(jsons, index));
+}
+
+bool isArray(Json[] jsons, size_t index) {
+  return jsons.getValue(index).isArray;
+}
+
 bool isAllArray(Json json, string[][] paths) {
   return paths.any!(path => json.isArray(path));
 }

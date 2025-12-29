@@ -27,16 +27,8 @@ bool isAnyNull(Json json, string[][] paths) {
 
 // #region is
 bool isNull(Json json, string[] path) {
-  if (json.isNull || path.length == 0) {
-    return true;
-  }
 
-  auto firstKey = path[0];
-  if (json.isNull(firstKey)) {
-    return true;
-  }
-
-  return path.length > 1 && json[firstKey].isNull(path[1 .. $]);
+  return json.hasPath(path) ? json.getPath(path).isNull : false;
 }
 // #endregion is
 // #endregion path
@@ -56,11 +48,7 @@ bool isAnyNull(Json json, string[] keys) {
 
 // #region is
 bool isNull(Json json, string key) {
-  if (json.isNull) {
-    return true;
-  }
-
-  return json.isObject && key in json ? json[key].isNull : true;
+  return json.hasKey(key) ? json.getKey(key).isNull : false;
 }
 // #endregion is
 // #endregion key
@@ -68,3 +56,21 @@ bool isNull(Json json, string key) {
 // #region scalar
 
 // #endregion scalar
+
+bool isAllNull(Json json, size_t[] indices) {
+  return indices.all!(index => json.isNull(index));
+}
+// #endregion all
+
+// #region any
+bool isAnyNull(Json json, size_t[] indices) {
+  return indices.any!(index => json.isNull(index));
+}
+
+bool isNull(Json json, size_t index) {
+  return json.hasValue(index) ? json[index].isNull : false;
+}
+
+bool isNull(Json json) {
+  return json == Json(null); 
+}

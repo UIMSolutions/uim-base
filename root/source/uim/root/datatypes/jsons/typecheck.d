@@ -25,17 +25,6 @@ bool isObject(Json json) {
   return (json.type == Json.Type.object);
 }
 
-bool isNull(Json json, size_t index) {
-  return json.isArray && index < json.length && json[index].isNull;
-}
-
-bool isNull(Json json, string key) {
-  return json.isObject && json.hasKey(key) && json[key].isNull;
-}
-
-bool isNull(Json json) {
-  return json == Json(null); 
-}
 
 bool isUndefined(Json json, size_t index) {
   return json.isArray && index < json.length && json[index].isUndefined;

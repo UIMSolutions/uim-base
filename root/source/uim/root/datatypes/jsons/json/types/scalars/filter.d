@@ -14,7 +14,7 @@ mixin(Version!("test_uim_root"));
 Json filterScalars(Json json, bool delegate(Json json) @safe filterFunc) {
   if (json.isArray) {
     auto result = Json.emptyArray;
-    foreach (value; json.ByValue) {
+    foreach (value; json.byValue) {
       if (value.isScalar && filterFunc(value)) {
         result.values ~= value;
       }
@@ -23,7 +23,7 @@ Json filterScalars(Json json, bool delegate(Json json) @safe filterFunc) {
   }
   if (json.isObject) {
     auto result = Json.emptyObject;
-    foreach (key, value; json.ByKeyValue) {
+    foreach (key, value; json.byKeyValue) {
       if (value.isScalar && filterFunc(value)) {
         result[key] = value;
       }
@@ -37,7 +37,7 @@ Json filterScalars(Json json, bool delegate(Json json) @safe filterFunc) {
 Json filterScalars(Json json, size_t[] indices) {
   if (json.isArray) {
     auto result = Json.emptyArray;
-    foreach (index, value; json.ByValue) {
+    foreach (index, value; json.byValue) {
       if (value.isScalar && indices.hasValue(index)) {
         result.values ~= value;
       }
@@ -51,7 +51,7 @@ Json filterScalars(Json json, size_t[] indices) {
 Json filterScalars(Json json) {
   if (json.isArray) {
     auto result = Json.emptyArray;
-    foreach (value; json.ByValue) {
+    foreach (value; json.byValue) {
       if (value.isScalar) {
         result.values ~= value;
       }
@@ -60,7 +60,7 @@ Json filterScalars(Json json) {
   }
   if (json.isObject) {
     auto result = Json.emptyObject;
-    foreach (key, value; json.ByKeyValue) {
+    foreach (key, value; json.byKeyValue) {
       if (value.isScalar) {
         result[key] = value;
       }

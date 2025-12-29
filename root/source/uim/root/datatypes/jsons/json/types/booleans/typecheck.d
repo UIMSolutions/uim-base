@@ -11,6 +11,26 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
+bool isAllBoolean(Json[] jsons) {
+  return jsons.all!(json => json.isBoolean);
+}
+
+bool isAllBoolean(Json[] jsons, size_t[] indices) {
+  return indices.all!(index => jsons.isBoolean(index));
+}
+
+bool isAnyBoolean(Json[] jsons) {
+  return jsons.any!(json => isBoolean(json));
+}
+
+bool isAnyBoolean(Json[] jsons, size_t[] indices) {
+  return indices.any!(index => jsons.isBoolean(index));
+}
+
+bool isBoolean(Json[] jsons, size_t index) {
+  return jsons.length > index ? isBoolean(jsons[index]) : false;
+}
+
 bool isAllBoolean(Json json, string[][] paths) {
   return paths.any!(path => json.isBoolean(path));
 }

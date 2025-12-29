@@ -11,6 +11,27 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
+bool isAllInteger(Json[] values) {
+  return values.all!(value => isInteger(value));
+}
+
+bool isAllInteger(Json[] values, size_t[] indices) {
+  return indices.all!(index => values.isInteger(index));
+}
+
+bool isAnyInteger(Json[] values) {
+  return values.any!(value => isInteger(value));
+}
+
+bool isAnyInteger(Json[] values, size_t[] indices) {
+  return indices.any!(index => values.isInteger(index));
+}
+
+bool isInteger(Json[] values, size_t index) {
+  return values.getValue(index).isInteger;
+}
+// #endregion is
+
 bool isAllInteger(Json json, string[][] paths) {
   return paths.any!(path => json.isInteger(path));
 }

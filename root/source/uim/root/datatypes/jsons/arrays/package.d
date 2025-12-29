@@ -17,7 +17,7 @@ public {
   import uim.root.datatypes.jsons.arrays.remove;
   import uim.root.datatypes.jsons.arrays.shift;
   import uim.root.datatypes.jsons.arrays.has;
-  import uim.root.datatypes.jsons.arrays.is_;
+  import uim.root.datatypes.jsons.arrays.typecheck;
 }
 
 public {

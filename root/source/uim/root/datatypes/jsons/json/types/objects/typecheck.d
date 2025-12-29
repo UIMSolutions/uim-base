@@ -11,7 +11,29 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
-// #region path
+// #region Json[]
+bool isAllObject(Json[] values) {
+  return values.all!(value => isObject(value));
+}
+
+bool isAllObject(Json[] values, size_t[] indices) {
+  return indices.all!(index => values.isObject(index));
+}
+
+bool isAnyObject(Json[] values) {
+  return values.any!(value => isObject(value));
+}
+
+bool isAnyObject(Json[] values, size_t[] indices) {
+  return indices.any!(index => values.isObject(index));
+}
+
+bool isObject(Json[] values, size_t index) {
+  return values.getValue(index).isObject;
+}
+// #endregion Json[]
+
+// #region Json
 // #region all
 bool isAllObject(Json json, string[][] paths) {
   return paths.all!(path => json.isObject(path));
@@ -56,5 +78,5 @@ bool isObject(Json json, string key) {
 // #endregion key
 // #endregion scalar
 
+// #endregion Json
 
-// #endregion scalar
