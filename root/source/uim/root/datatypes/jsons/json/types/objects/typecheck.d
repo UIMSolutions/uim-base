@@ -71,7 +71,7 @@ bool isObject(Json json, size_t index) {
 }
 
 bool isObject(Json json, string key) {
-  return json.getKey(key).isObject;
+  return json.getValue(key).isObject;
 }
 
 bool isObject(Json json) {

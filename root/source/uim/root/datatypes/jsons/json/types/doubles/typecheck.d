@@ -52,7 +52,7 @@ bool isAnyDouble(Json json, string[] keys) {
 }
 
 bool isDouble(Json json, string key) {
-  return json.getKey(key).isDouble;
+  return json.getValue(key).isDouble;
 }
 
 bool isAllDouble(Json json, size_t[] indices) {

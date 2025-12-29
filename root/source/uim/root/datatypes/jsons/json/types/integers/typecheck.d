@@ -20,6 +20,10 @@ bool isAnyInteger(Json[string] map, string[][] paths) {
   return paths.any!(path => map.isInteger(path));
 }
 
+bool isInteger(Json[string] map, string[] path) {
+  return map.getPath(path).isInteger;
+}
+
 bool isAllInteger(Json[string] map, string[] keys = null) {
   return keys.length == 0
     ? map.byValue.all!(json => json.isInteger)
@@ -36,68 +40,6 @@ bool isInteger(Json[string] map, string key) {
   return map.getValue(key).isInteger;
 }
 // #endregion value
-
-// #region noValue
-bool isAllInteger(Json[string] map, string[][] paths) {
-  return paths.all!(p => map.isInteger(p));
-}
-// #endregion noValue
-// #endregion all
-
-// #region any
-// #region value
-bool isAnyInteger(Json[string] map, string[][] paths, int value) {
-  return paths.any!(p => map.isInteger(p, value));
-}
-// #endregion value
-
-// #region noValue
-bool isAnyInteger(Json[string] map, string[][] paths) {
-  return paths.any!(p => map.isInteger(p));
-}
-// #endregion noValue
-// #endregion any
-
-// #region is
-// #region value
-bool isInteger(Json[string] map, string[] path, int value) {
-  return map.isInteger(path) && map.getInteger(path) == value;
-}
-// #endregion value
-
-// #region noValue
-bool isInteger(Json[string] map, string[] path) {
-  if (map.length == 0 || path.length == 0) {
-    return false;
-  }
-
-  auto root = path[0];
-  if (!(root in map)) {
-    return false;
-  }
-
-  return path.length == 1 ? map.isInteger(root) : map[root].isInteger(path[1 .. $]);
-}
-// #endregion noValue
-// #endregion is
-// #endregion path
-
-// #region Json[string]
-bool isAllInteger(Json[string] map, string[] keys, int value) {
-  return keys.all!(key => map.isInteger(key, value));
-}
-// #endregion value
-
-// #region noValue
-bool isAllInteger(Json[string] map, string[] keys) {
-  return keys.all!(key => map.isInteger(key));
-}
-// #endregion noValue
-// #endregion all
-bool isAnyInteger(Json[string] map, string[] keys) {
-  return keys.any!(key => map.isInteger(key));
-}
-// #endregion any
 // #endregion Json[string]
 
 // #region Json[]
@@ -144,7 +86,7 @@ bool isAnyInteger(Json json, string[] keys) {
 }
 
 bool isInteger(Json json, string key) {
-  return json.getKey(key).isInteger;
+  return json.getValue(key).isInteger;
 }
 
 bool isAllInteger(Json json, size_t[] indices) {

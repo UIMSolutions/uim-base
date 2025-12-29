@@ -61,7 +61,7 @@ bool isAnyArray(Json json, string[] keys) {
 }
 
 bool isArray(Json json, string key) {
-  return json.getKey(key).isArray;
+  return json.getValue(key).isArray;
 }
 
 bool isAllArray(Json json, size_t[] indices) {

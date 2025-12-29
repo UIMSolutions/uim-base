@@ -48,7 +48,7 @@ bool isAnyNull(Json json, string[] keys) {
 
 // #region is
 bool isNull(Json json, string key) {
-  return json.hasKey(key) ? json.getKey(key).isNull : false;
+  return json.hasKey(key) ? json.getValue(key).isNull : false;
 }
 // #endregion is
 // #endregion key

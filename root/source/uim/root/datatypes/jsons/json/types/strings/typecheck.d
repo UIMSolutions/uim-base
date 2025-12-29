@@ -61,7 +61,7 @@ bool isAnyString(Json json, string[] keys) {
 }
 
 bool isString(Json json, string key) {
-  return json.getKey(key).isString;
+  return json.getValue(key).isString;
 }
 
 bool isAllString(Json json, size_t[] indices) {

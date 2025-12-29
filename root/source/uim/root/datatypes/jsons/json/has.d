@@ -48,9 +48,9 @@ bool hasPath(Json json, string[] path) {
     return false;
   }
 
-  auto first = json.getKey(path[0]);
+  auto first = json.getValue(path[0]);
   if (path.length == 1) {
-    return first;
+    return first != Json(null);
   }
 
   return !first.isNull && path.length > 1 ? first.hasPath(path[1 .. $]) : true;

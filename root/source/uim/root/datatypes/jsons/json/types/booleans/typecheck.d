@@ -52,7 +52,7 @@ bool isAnyBoolean(Json json, string[] keys) {
 }
 
 bool isBoolean(Json json, string key) {
-  return json.getKey(key).isBoolean;
+  return json.getValue(key).isBoolean;
 }
 
 bool isAllBoolean(Json json, size_t[] indices) {

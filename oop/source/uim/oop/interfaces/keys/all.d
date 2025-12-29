@@ -11,6 +11,6 @@ mixin(Version!"test_uim_oop");
 
 @safe:
 
-interface IKeys(K = string, V = UIMObject) : IHasKeys!(K, V), IGetKeys!(K, V), IChangeKeys!(K, V), IRemoveKeys!(K, V) {
+interface IKeys(K = string, V = UIMObject) : IHasKeys!(K, V), IgetValues!(K, V), IChangeKeys!(K, V), IRemoveKeys!(K, V) {
 }
 
