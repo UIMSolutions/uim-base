@@ -49,12 +49,12 @@ bool hasPath(Json json, string[] path) {
     return false;
   }
 
-  // If the first key in the path does not exist, return false
-  if (!json.hasKey(path[0])) {
+  auto first = json.getKey(path[0]);
+  if (first.isNull) {
     return false;
   }
 
-  return path.length > 1 && json[path[0]].hasPath(path[1 .. $]);
+  return path.length > 1 ? first.hasPath(path[1 .. $]) : true;
 }
 ///
 unittest {

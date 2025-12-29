@@ -22,16 +22,7 @@ mixin(Version!("test_uim_root"));
   *   `true` if the JSON value at the specified path is a string, `false` otherwise.
   */
 bool isString(Json json, string[] path) {
-  if (json.isNull || !json.hasPath(path)) {
-    return false;
-  }
-
-  auto firstKey = path[0];
-  if (json.isString(firstKey)) {
-    return true;
-  }
-
-  return path.length > 1 && json[firstKey].isString(path[1 .. $]);
+  return json.getPath(path).isString;
 }
 
 /**
@@ -45,8 +36,6 @@ bool isString(Json json, string[] path) {
   *   `true` if the JSON value at the specified key is a string, `false` otherwise.
   */
 bool isString(Json json, string key) {
-  return json.hasKey(key) && json[key].isString;
+  return json.hasKey(key).isString;
 }
-
-
 // #endregion scalar

@@ -110,15 +110,7 @@ bool isAnyInteger(Json json, string[][] paths) {
 // #region is
 // #region noValue
 bool isInteger(Json json, string[] path) {
-  if (!json.hasPath(path)) {
-    return false;
-  }
-
-  if (path.length == 1) {
-    return json.isInteger(path[0]);
-  }
-
-  return json[path[0]].isInteger(path[1 .. $]);
+  return json.getPath(path).isInteger;
 }
 // #endregion noValue
 

@@ -16,10 +16,9 @@ string[] toStrings(Json[] jsons, string delegate(Json json) @safe convertFunc) {
 }
 
 string[] toStrings(Json[] jsons, size_t[] indices) {
-  return jsons.filterStrings(indices).toStrings;
+  return jsons.filterValues(indices).toStrings;
 }
 
 string[] toStrings(Json[] jsons) {
-  import uim.root.datatypes.jsons.arrays.types.strings.filter : filterStrings;
-  return jsons.filterStrings.map!(json => json.toString).array;
+  return jsons.map!(json => json.toString).array;
 }

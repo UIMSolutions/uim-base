@@ -61,13 +61,6 @@ bool anyDouble(Json json, string[][] paths) {
 // #endregion any
 
 // #region is
-// #region value
-bool isDouble(Json json, string[] path, double value) {
-  return json.isDouble(path) && json.getDouble(path) == value;
-}
-// #endregion value
-
-// #region noValue
 /** 
   * Checks if the given JSON value at the specified path is of double (floating-point number) type.
   *
@@ -79,15 +72,7 @@ bool isDouble(Json json, string[] path, double value) {
   *   `true` if the JSON value at the specified path is a double, `false` otherwise.
   */
 bool isDouble(Json json, string[] path) {
-  if (!json.hasPath(path)) {
-    return false;
-  }
-
-  if (path.length == 1) {
-    return json.isDouble(path[0]);
-  }
-
-  return json[path[0]].isDouble(path[1 .. $]);
+ return json.getPath(path).isDouble;
 }
 // #endregion noValue
 // #endregion is

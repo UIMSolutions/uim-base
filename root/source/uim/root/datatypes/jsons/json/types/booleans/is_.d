@@ -330,68 +330,6 @@ bool isBoolean(Json json, string[] path) {
 
 // #region key
 // #region all
-// #region value
-/**
-  * Checks if the given JSON value at the specified keys is of boolean type.
-  *
-  * Params:
-  *   json = The JSON value to check.
-  *   keys = The keys within the JSON object to check.
-  *   value = The boolean value to match.
-  *
-  * Returns:
-  *   `true` if the JSON value at the specified keys is a boolean, `false` otherwise.
-  */
-bool isAllBoolean(Json json, string[] keys, bool value) {
-  return keys.all!(key => json.isBoolean(key) && json.getBoolean(key) == value);
-}
-///
-unittest {
-  // Test: all keys have the expected boolean value (true)
-  auto json1 = Json.emptyObject;
-  json1["a"] = true;
-  json1["b"] = true;
-  json1["c"] = true;
-  assert(isAllBoolean(json1, ["a", "b", "c"], true), "All keys should be true");
-
-  // Test: all keys have the expected boolean value (false)
-  auto json2 = Json.emptyObject;
-  json2["x"] = false;
-  json2["y"] = false;
-  assert(isAllBoolean(json2, ["x", "y"], false), "All keys should be false");
-
-  // Test: mixed boolean values
-  auto json3 = Json.emptyObject;
-  json3["a"] = true;
-  json3["b"] = false;
-  assert(!isAllBoolean(json3, ["a", "b"], true), "Not all keys are true");
-  assert(!isAllBoolean(json3, ["a", "b"], false), "Not all keys are false");
-
-  // Test: non-boolean value among keys
-  auto json4 = Json.emptyObject;
-  json4["a"] = true;
-  json4["b"] = "not a boolean";
-  assert(!isAllBoolean(json4, ["a", "b"], true), "One key is not a boolean");
-
-  // Test: non-existent key
-  auto json5 = Json.emptyObject;
-  json5["a"] = true;
-  assert(!isAllBoolean(json5, ["a", "b"], true), "One key does not exist");
-
-  // Test: empty keys array (should be vacuously true)
-  auto json6 = Json.emptyObject;
-  json6["a"] = false;
-  assert(isAllBoolean(json6, cast(string[])[], false), "Empty keys array should return true");
-
-  // Test: single key with expected value
-  auto json7 = Json.emptyObject;
-  json7["single"] = true;
-  assert(isAllBoolean(json7, ["single"], true), "Single key is true");
-  assert(!isAllBoolean(json7, ["single"], false), "Single key is not false");
-}
-// #endregion value
-
-// #region noValue
 /** 
   * Checks if the given JSON value at the specified keys is of boolean type.
   *
@@ -451,22 +389,6 @@ unittest {
 // #endregion all
 
 // #region any
-// #region value
-/** 
-  * Checks if any of the given JSON value at the specified keys is of boolean type.
-  *
-  * Params:
-  *   json = The JSON value to check.
-  *   keys = The keys within the JSON object to check.
-  *
-  * Returns:
-  *   `true` if the JSON value at the specified keys is a boolean, `false` otherwise.
-  */
-bool isAnyBoolean(Json json, string[] keys, bool value) {
-  return keys.any!(key => json.isBoolean(key, value));
-}
-// #endregion value
-
 // #region noValue
 /** 
   * Checks if any of the given JSON value at the specified keys is of boolean type.
@@ -548,13 +470,6 @@ unittest {
 // #endregion any
 
 // #region is
-// #region value
-bool isBoolean(Json json, string key, bool value) {
-  return json.isBoolean(key) && json.getBoolean(key) == value;
-}
-// #endregion value
-
-// #region noValue
 /**
   * Checks if the given JSON value at the specified key is of boolean type.
   *
@@ -566,7 +481,7 @@ bool isBoolean(Json json, string key, bool value) {
   *   `true` if the JSON value at the specified key is a boolean, `false` otherwise.
   */
 bool isBoolean(Json json, string key) {
-  return json.hasKey(key) && json[key].isBoolean;
+  return json.getKey(key).isBoolean;
 }
 ///
 unittest {

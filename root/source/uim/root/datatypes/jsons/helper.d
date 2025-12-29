@@ -9,7 +9,7 @@ mixin(Version!("test_uim_root"));
 Json filterArrays(Json json) {
   import uim.root.datatypes.jsons.arrays.filter;
   if (json.isArray) {
-    return filterValues(json.get!(Json[], (Json json) => json.isArray)).toJson;
+    return filterValues(json.get!(Json[]), (Json json) => json.isArray).toJson;
   } 
   /* 
   if (json.isObject) {

@@ -21,7 +21,7 @@ Json getPath(Json json, string[] path) {
     return firstJson;
   }
 
-  return !firstJson.isNull && path.length > 1 && json[path[0]].getPath(path[1 .. $]);
+  return !firstJson.isNull && path.length > 1 ? json[path[0]].getPath(path[1 .. $]) : Json(null);
 }
 
 Json getKey(Json json, string key) {

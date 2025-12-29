@@ -470,14 +470,10 @@ Json removeMany(Json json, string[] keys) {
 }
 
 Json removeItem(Json json, string[] path) {
-  if (!json.isObject) {
+  if (!json.isObject || path.length == 0) {
     return json;
   }
-
-  if (path.length == 0) {
-    return json;
-  }
-
+  
   if (path.length == 1) {
     return removeItem(json, path[0]);
   }

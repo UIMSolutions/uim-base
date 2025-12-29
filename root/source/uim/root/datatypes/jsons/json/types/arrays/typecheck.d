@@ -14,47 +14,33 @@ mixin(Version!("test_uim_root"));
 // #region path
 // #region all
 bool isAllArray(Json json, string[][] paths) {
-  return paths.all!(path => json.isArray(path));
+  return json.isObject ? paths.all!(path => json.isArray(path)) : false;
 }
 // #endregion all
 
 // #region any
 bool isAnyArray(Json json, string[][] paths) {
-  return paths.any!(path => json.isArray(path));
+  return json.isObject ? paths.any!(path => json.isArray(path)) : false;
 }
 // #endregion any
 
 // #region is
 bool isArray(Json json, string[] path) {
-  import uim.root.datatypes.jsons.typecheck;
-  if (json.isArray || path.length == 0) {
-    return true;
-  }
-
-  auto firstKey = path[0];
-  if (json.isArray(firstKey)) {
-    return true;
-  }
-
-  return path.length > 1 && json[firstKey].isArray(path[1 .. $]);
-}
+  return json.getPath(path).isArray;
 // #endregion is
-// #endregion path
 
 // #region key
 // #region all
 bool isAllArray(Json json, string[] keys) {
   import uim.root.datatypes.jsons.typecheck;
-  return keys
-    .all!(key => json.isArray(key));
+  return json.isObject ? keys.all!(key => json.isArray(key)) : false;
 }
 // #endregion all
 
 // #region any
 bool isAnyArray(Json json, string[] keys) {
   import uim.root.datatypes.jsons.typecheck;
-  return keys
-    .any!(key => json.isArray(key));
+  return json.isObject ? keys.any!(key => json.isArray(key)) : false;
 }
 // #endregion any
 // #endregion scalar

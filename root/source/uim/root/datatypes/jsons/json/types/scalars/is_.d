@@ -22,16 +22,7 @@ mixin(Version!("test_uim_root"));
   *   `true` if the JSON value at the specified path is a scalar, `false` otherwise.
   */
 bool isScalar(Json json, string[] path) {
-  if (json.isNull || !json.hasPath(path)) {
-    return false;
-  }
-
-  auto firstKey = path[0];
-  if (json.isScalar(firstKey)) {
-    return true;
-  }
-
-  return path.length > 1 && json[firstKey].isScalar(path[1 .. $]);
+  return json.getPath(path).isScalar;
 }
 
 /**
