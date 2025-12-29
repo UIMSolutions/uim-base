@@ -9,13 +9,15 @@ mixin(Version!("test_uim_root"));
 // #region all
 // #region noIndex
 bool isAllScalar(Json[] jsons) {
-  return jsons.all!(json => isScalar(json));
+  import uim.root.datatypes.jsons.json.types.scalars.is_;
+  return jsons.all!(json => uim.root.datatypes.jsons.json.types.scalars.is_.isScalar(json));
 }
 // #endregion noIndex
 
 // #region index  
 bool isAllScalar(Json[] jsons, size_t[] indices) {
-  return indices.all!(index => jsons.isScalar(index));
+  import uim.root.datatypes.jsons.json.types.scalars.is_;
+  return indices.all!(index => jsons.length > index && uim.root.datatypes.jsons.json.types.scalars.is_.isScalar(jsons[index]));
 }
 // #endregion index
 // #endregion all
@@ -23,19 +25,22 @@ bool isAllScalar(Json[] jsons, size_t[] indices) {
 // #region any
 // #region noIndex
 bool isAnyScalar(Json[] jsons) {
-  return jsons.any!(json => isScalar(json));
+  import uim.root.datatypes.jsons.json.types.scalars.is_;
+  return jsons.any!(json => uim.root.datatypes.jsons.json.types.scalars.is_.isScalar(json));
 }
 // #endregion noIndex
 
 // #region index
 bool isAnyScalar(Json[] jsons, size_t[] indices) {
-  return indices.any!(index => jsons.isScalar(index));
+  import uim.root.datatypes.jsons.json.types.scalars.is_;
+  return indices.any!(index => jsons.length > index && uim.root.datatypes.jsons.json.types.scalars.is_.isScalar(jsons[index]));
 }
 // #endregion index
 // #endregion any
 
 // #region is
 bool isScalar(Json[] values, size_t index) {
-  return values.length > index ? values[index].isScalar : false;
+  import uim.root.datatypes.jsons.json.types.scalars.is_;
+  return values.length > index ? uim.root.datatypes.jsons.json.types.scalars.is_.isScalar(values[index]) : false;
 }
 // #endregion is

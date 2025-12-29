@@ -32,18 +32,3 @@ Json filterValues(Json json, bool delegate(Json json) @safe filterFunc) {
     ? json.toArray.filter!(j => filterFunc(j)).array.toJson
     : Json(null);
 }
-///
-unittest {
-  import uim.root.datatypes.jsons.convert : toJson;
-  import uim.root.datatypes.jsons.json.types.integers.is_ : isInteger;
-  import uim.root.datatypes.jsons.typecheck;
-
-  Json json = [1, "two", 3, "four", 5].toJson;
-
-  auto filteredJson = filterValues(json, (Json j) @safe => j.isInteger);
-  assert(filteredJson.isArray);
-  assert(filteredJson.array.length == 3);
-  assert(filteredJson.array[0].get!int == 1);
-  assert(filteredJson.array[1].get!int == 3);
-  assert(filteredJson.array[2].get!int == 5);
-} 

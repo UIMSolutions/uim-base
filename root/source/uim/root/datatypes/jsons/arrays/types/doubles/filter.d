@@ -12,12 +12,11 @@ mixin(Version!("test_uim_root"));
 @safe:
 
 Json[] filterDoubles(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
-  return jsons.filterDoubles.filterValues((Json json) => filterFunc(json));
+  return jsons.filterDoubles.filterValues(filterFunc);
 }
 
 Json[] filterDoubles(Json[] jsons, size_t[] indices) {
-  import uim.root.datatypes.jsons.arrays.types.doubles.filter;
-  return filterValues(jsons, indices).filterDoubles;
+  return jsons.filterValues(indices).filterDoubles;
 }
 
 Json[] filterDoubles(Json[] jsons) {

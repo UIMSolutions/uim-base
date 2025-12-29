@@ -21,6 +21,6 @@ mixin(Version!("test_uim_root"));
   *   The last JSON scalar value, or `Json(null)` if none found.
   */
 Json lastScalar(Json[] jsons) {
-  return jsons.filterScalars.last;
+  return uim.root.datatypes.jsons.arrays.types.scalars.filter.filterScalars(jsons).last;
 }
 

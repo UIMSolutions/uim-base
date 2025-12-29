@@ -12,6 +12,7 @@ mixin(Version!("test_uim_root"));
 @safe:
 
 Json firstScalar(Json[] jsons) {
+  import uim.root.datatypes.jsons.arrays.types.scalars.filter;
   return jsons.filterScalars.first;
 }
 

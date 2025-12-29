@@ -44,6 +44,10 @@ Json[] removeScalars(Json[] jsons) {
   *   `true` if the Json value is a scalar and matches the removal criteria; otherwise, `false`.
   */
 protected bool foundScalar(Json json, bool delegate(Json value) @safe removeFunc) {
+  return json.isScalar && json.removeFunc;;
+}
+
+protected bool foundScalar(Json json, bool delegate(Json value) removeFunc) {
   bool found = false;
   () @trusted { found = json.isScalar && json.removeFunc; }();
   return found;

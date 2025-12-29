@@ -12,7 +12,7 @@ mixin(Version!("test_uim_root"));
 @safe:
 
 Json[] filterBooleans(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
-  return jsons.filterValues(filterFunc).filterBooleans;
+  return jsons.filterBooleans.filterValues(filterFunc);
 }
 
 Json[] filterBooleans(Json[] jsons, size_t[] indices) {

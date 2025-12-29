@@ -13,24 +13,45 @@ mixin(Version!("test_uim_root"));
 
 Json last(Json json) {
   return json.isArray
-    ? last(json.toArray) : Json(null);
+    ? uim.root.containers.sequential.arrays.last.last(json.toArray) : Json(null);
 }
 
 Json lastObject(Json json) {
   return json.isArray
-    ? last(json.toArray.filterObjects) : Json(null);
+    ? last(json.filterObjects) : Json(null);
 }
 
 Json lastArray(Json json) {
   return json.isArray
-    ? last(json.toArray.filterArrays) : Json(null);
+    ? last(json.filterArrays) : Json(null);
 }
 
 Json lastScalar(Json json) {
   return json.isArray
-    ? last(json.toArray.filterValues) : Json(null);
+    ? last(json.filterScalars) : Json(null);
 }
 
+Json lastBoolean(Json json) {
+  return json.isArray
+    ? last(json.filterBooleans) : Json(null);
+}
+
+Json lastInteger(Json json) {
+  return json.isArray
+    ? last(json.filterIntegers) : Json(null);
+}
+
+Json lastDouble(Json json) {
+  return json.isArray
+    ? last(json.filterDoubles) : Json(null);
+}
+
+Json lastString(Json json) {
+  return json.isArray
+    ? last(json.filterStrings) : Json(null);
+}
+
+/* 
 Json lastWithAllKey(Json json, string[] keys) {
   return json.isArray
     ? last(json.toArray.filterHasAllKey(keys)) : Json(null);
@@ -45,3 +66,4 @@ Json lastHasKey(Json json, string key) {
   return json.isArray
     ? last(json.toArray.filterHasKey(key)) : Json(null);
 }
+*/ 

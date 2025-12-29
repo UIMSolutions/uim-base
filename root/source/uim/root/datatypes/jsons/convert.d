@@ -183,7 +183,7 @@ Json[string] toJsonMap(double[string] values, string[] excludeKeys = null) {
 Json[string] toJsonMap(string[string] items, string[] excludeKeys = null) {
   Json[string] result;
   items.byKeyValue
-    .filter!(item => !excludeKeys.hasKey(item.key))
+    .filter!(item => !excludeKeys.hasValue(item.key))
     .each!(item => result[item.key] = Json(item.value));
   return result;
 }
@@ -218,7 +218,8 @@ string toString(Json[] jsons) {
 string toString(Json json, string[] keys) {
   if (!json.isObject) return json.toString; 
   
-  if (keys.length == 0) keys = json.keys;
+  if (keys.length == 0) return null;
+  
   Json result = Json.emptyObject;
   keys
     .filter!(key => json.hasKey(key))

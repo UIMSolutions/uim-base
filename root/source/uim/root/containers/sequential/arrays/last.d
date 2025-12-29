@@ -19,7 +19,7 @@ mixin(Version!("test_uim_phobos"));
   * Returns:
   *   The last element of the array, or `Null!T` if the array is empty.
   */
-auto last(T)(T[] values) {
+T last(T)(T[] values) {
   return values.length > 0
     ? values[$ - 1] 
     : Null!T;

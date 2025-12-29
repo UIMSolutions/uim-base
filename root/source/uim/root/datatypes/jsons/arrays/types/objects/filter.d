@@ -11,30 +11,34 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
+Json[] filterObjects(Json[] jsons, bool delegate(Json json) filterFunc) {
+  return jsons.filterObjects.filterValues(filterFunc);
+}
+
 Json[] filterObjects(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
-  return jsons.filterObjects.filter!(json => filterFunc(json)).array;
+  return jsons.filterObjects.filterValues(filterFunc);
 }
 
 Json[] filterObjects(Json[] jsons, size_t[] indices) {
-  return jsons.filterValues(indices).filterObjects.array;
+  return jsons.filterValues(indices).filterObjects;
 }
 
 Json[] filterObjects(Json[] jsons) {
-  return jsons.filter!(json => json.isObject).array;
+  return jsons.filterValues((Json json) => json.isObject);
 }
 
 Json[] filterObjectsWithAllKey(Json[] jsons, string[] keys) {
-  return jsons.filterObjects.filter!(json => json.hasAllKey(keys)).array;
+  return jsons.filterObjects.filterValues((Json json) =>json.hasAllKey(keys));
 }
 
 Json[] filterObjectsWithAnyKey(Json[] jsons, string[] keys) {
-  return jsons.filterObjects.filter!(json => json.hasAnyKey(keys)).array;
+  return jsons.filterObjects.filterValues((Json json) => json.hasAnyKey(keys));
 }
 
 Json[] filterObjectsWithKey(Json[] jsons, string key) {
-  return jsons.filterObjects.filter!(json => json.hasKey(key)).array;
+  return jsons.filterObjects.filterValues((Json json) => json.hasKey(key));
 }
 
 Json[] filterObjectsWithoutKey(Json[] jsons, string key) {
-  return jsons.filterObjects.filter!(json => !json.hasKey(key)).array;
+  return jsons.filterObjects.filterValues((Json json) => !json.hasKey(key));
 }

@@ -12,13 +12,13 @@ mixin(Version!("test_uim_root"));
 @safe:
 
 Json[] filterStrings(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
-  return jsons.filterStrings.filter!(json => filterFunc(json)).array;
+  return jsons.filterStrings.filterValues(filterFunc);
 }
 
 Json[] filterStrings(Json[] jsons, size_t[] indices) {
-  return jsons.filterValues(indices).filterStrings.array;
+  return jsons.filterValues(indices).filterStrings;
 }
 
 Json[] filterStrings(Json[] jsons) {
-  return jsons.filter!(json => json.isString).array;
+  return jsons.filterValues((Json json) => json.isString);
 }

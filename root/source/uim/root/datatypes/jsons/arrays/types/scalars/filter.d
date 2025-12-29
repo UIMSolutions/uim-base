@@ -11,14 +11,18 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
+Json[] filterScalars(Json[] jsons, bool delegate(Json json) filterFunc) {
+  return jsons.filterScalars.filterValues(filterFunc);
+}
+
 Json[] filterScalars(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
-  return jsons.filterScalars.filter!(json => filterFunc(json)).array;
+  return jsons.filterScalars.filterValues(filterFunc);
 }
 
 Json[] filterScalars(Json[] jsons, size_t[] indices) {
-  return jsons.filterValues(indices).filterScalars.array;
+  return jsons.filterValues(indices).filterScalars;
 }
 
 Json[] filterScalars(Json[] jsons) {
-  return jsons.filter!(json => json.isScalar).array;
+  return jsons.filterValues((Json json) => json.isScalar);
 }
