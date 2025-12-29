@@ -13,17 +13,6 @@ mixin(Version!("test_uim_root"));
 
 
 
-bool isObject(Json json, size_t index) {
-  return json.isArray && index < json.length && json[index].isObject;
-}
-
-bool isObject(Json json, string key) {
-  return json.isObject && json.hasKey(key) && json[key].isObject;
-}
-
-bool isObject(Json json) {
-  return (json.type == Json.Type.object);
-}
 
 
 bool isUndefined(Json json, size_t index) {

@@ -16,7 +16,7 @@ Json filterScalars(Json json, bool delegate(Json json) @safe filterFunc) {
     auto result = Json.emptyArray;
     foreach (value; json.byValue) {
       if (value.isScalar && filterFunc(value)) {
-        result.values ~= value;
+        result ~= value;
       }
     }
     return result;

@@ -11,7 +11,6 @@ public {
   import uim.root.datatypes.jsons.json.create;
   import uim.root.datatypes.jsons.json.has;
   import uim.root.datatypes.jsons.json.get;
-  import uim.root.datatypes.jsons.json.is_;
   import uim.root.datatypes.jsons.json.last;
   import uim.root.datatypes.jsons.json.read;
   import uim.root.datatypes.jsons.json.remove;

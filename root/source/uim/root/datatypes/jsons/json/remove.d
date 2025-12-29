@@ -6,6 +6,24 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
+// #region Json[]
+Json[] removeStrings(Json[] jsons, bool delegate(Json json) @safe removeFunc) {
+  return jsons.filter!(json => !foundString(json, removeFunc)).array;
+}
+
+Json[] removeStrings(Json[] jsons, size_t[] indices) {
+  return jsons.removeValues(indices).removeStrings;
+}
+
+Json[] removeStrings(Json[] jsons) {
+  return jsons.filter!(json => !json.isString).array;
+}
+
+protected bool foundString(Json json, bool delegate(Json value) @safe removeFunc) {
+  return json.isString && removeFunc(json);
+}
+// #endregion Json[]
+
 Json removeAll(Json json) {
   if (json.isObject) {
     json = Json.emptyObject;

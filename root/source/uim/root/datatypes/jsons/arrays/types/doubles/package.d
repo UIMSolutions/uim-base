@@ -11,7 +11,6 @@ public {
   import uim.root.datatypes.jsons.arrays.types.doubles.first;
   import uim.root.datatypes.jsons.arrays.types.doubles.get;
   import uim.root.datatypes.jsons.arrays.types.doubles.has;
-  import uim.root.datatypes.jsons.arrays.types.doubles.is_;
   import uim.root.datatypes.jsons.arrays.types.doubles.last;
   import uim.root.datatypes.jsons.arrays.types.doubles.remove;
 }

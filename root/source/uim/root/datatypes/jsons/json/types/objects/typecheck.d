@@ -66,17 +66,14 @@ bool isAnyObject(Json json, string[] keys) {
 }
 // #endregion any
 
-// #region is
-bool isObject(Json json, string key) {
-  if (!json.isObject) {
-    return false;
-  }
-
-  return key in json && json[key].isObject;
+bool isObject(Json json, size_t index) {
+  return json.getValue(index).isObject;
 }
-// #endregion is
-// #endregion key
-// #endregion scalar
 
-// #endregion Json
+bool isObject(Json json, string key) {
+  return json.getKey(key).isObject;
+}
 
+bool isObject(Json json) {
+  return (json.type == Json.Type.object);
+}

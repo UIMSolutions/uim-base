@@ -57,10 +57,6 @@ bool isAnyNull(Json[] list, size_t[] indices) {
   *   true if the specified index is null, false otherwise.
   */
 bool isNull(Json[] values, size_t index) {
-  if (index >= values.length) {
-    return false;
-  } 
-
-  return uim.root.datatypes.jsons.typecheck.isNull(values[index]);
+  return values.length > index ? values[index] == Json(null) : false;
 }
 // #endregion is
