@@ -11,6 +11,22 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
+Json getPath(Json json, string[] path) {
+  if (!json.isObject || path.length == 0) {
+    return Json(null);
+  }
+
+  if (path.length == 1) {
+    return json.hasKey(path[0]) ? json[path[0]] : Json(null);
+  }
+
+  // If the first key in the path does not exist, return false
+  if (!json.hasKey(path[0])) {
+    return Json(null);
+  }
+
+  return path.length > 1 && json[path[0]].getPath(path[1 .. $]);
+}
 
 
 

@@ -31,51 +31,6 @@ bool hasPath(Json json, string path, string separator = "/") {
   return hasPath(json, pathItems);
 }
 
-bool hasPath(Json json, string[] path) {
-  if (!json.isObject || path.length == 0) {
-    return false;
-  }
-
-  if (!json.hasKey(path[0])) {
-    return false;
-  }
-
-  return path.length == 1
-    ? true : json[path[0]].hasPath(path[1 .. $]);
-}
-
-unittest {
-  auto json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": "h"}]}`);
-  assert(json.hasPath(["c", "d"]));
-}
-
-/* /// Check if jsonPath items exists
-bool hasPath(Json json, string[] pathItems) {
-  // In Check
-  if (!json.isObject) {
-    return false;
-  }
-
-  // Body
-  auto j = json;
-  foreach (pathItem; pathItems) {
-    if (pathItem in j) {
-      if (pathItems.length > 1) {
-        return hasPath(j[pathItem], pathItems[1 .. $]);
-      } else {
-        return true;
-      }
-    } else {
-      return false;
-    }
-  }
-  return true;
-} */
-///
-unittest {
-  auto json = parseJsonString(`{"a": "b", "c": {"d": 1}, "e": ["f", {"g": "h"}]}`);
-  assert(json.hasPath(["c", "d"]));
-}
 
 /// Reduce Json Object to keys (remove others)
 Json reduceKeys(Json json, string[] keys) {

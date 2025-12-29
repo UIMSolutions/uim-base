@@ -26,6 +26,7 @@ bool isAnyArray(Json json, string[][] paths) {
 
 // #region is
 bool isArray(Json json, string[] path) {
+  import uim.root.datatypes.jsons.typecheck;
   if (json.isArray || path.length == 0) {
     return true;
   }
@@ -43,24 +44,17 @@ bool isArray(Json json, string[] path) {
 // #region key
 // #region all
 bool isAllArray(Json json, string[] keys) {
-  return keys.all!(key => json.isArray(key));
+  import uim.root.datatypes.jsons.typecheck;
+  return keys
+    .all!(key => json.isArray(key));
 }
 // #endregion all
 
 // #region any
 bool isAnyArray(Json json, string[] keys) {
-  return keys.any!(key => json.isArray(key));
+  import uim.root.datatypes.jsons.typecheck;
+  return keys
+    .any!(key => json.isArray(key));
 }
 // #endregion any
-
-// #region is
-bool isArray(Json json, size_t index) {
-  if (!json.isArray || index >= json.getArray.length) {
-    return false;
-  }
-  return json[index].isArray;
-}
-
-
-// #endregion scalar
 // #endregion scalar

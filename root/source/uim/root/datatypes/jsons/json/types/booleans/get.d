@@ -12,11 +12,12 @@ mixin(Version!("test_uim_root"));
 @safe:
 
 bool getBooleanByIndex(Json json, size_t index, bool defaultValue = false) {
-  return json.isBoolean(index) ? json[index].getBoolean(defaultValue) : defaultValue;
+  return json.isArray && index < json.length && json[index].isBoolean
+    ? json[index].getBoolean(defaultValue) : defaultValue;
 }
 
 bool getBooleanByKey(Json json, string key, bool defaultValue = false) {
-  return json.isBoolean(key) ? json[key].getBoolean(defaultValue) : defaultValue;
+  return json.isObject && json.hasKey(key) ? json[key].getBoolean(defaultValue) : defaultValue;
 }
 
 bool getBoolean(Json json, bool defaultValue = false) {

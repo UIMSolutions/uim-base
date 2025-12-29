@@ -12,13 +12,13 @@ mixin(Version!("test_uim_root"));
 @safe:
 
 Json[] getArrayByIndex(Json json, size_t index, Json[] defaultValue = null) {
-  return uim.root.datatypes.jsons.json.types.arrays.is_.isArray(json, index) ? json[index].getArray(defaultValue) : defaultValue;
+  return isArray(json, index) ? json[index].getArray(defaultValue) : defaultValue;
 }
 
 Json[] getArrayByKey(Json json, string key, Json[] defaultValue = null) {
-  return uim.root.datatypes.jsons.json.types.arrays.is_.isArray(json, key) ? json[key].getArray(defaultValue) : defaultValue;
+  return isArray(json, key) ? json[key].getArray(defaultValue) : defaultValue;
 }
 
 Json[] getArray(Json json, Json[] defaultValue = null) {
-  return uim.root.datatypes.jsons.json.types.arrays.is_.isArray(json) ? json.get!(Json[]) : defaultValue;
+  return isArray(json) ? json.get!(Json[]) : defaultValue;
 }

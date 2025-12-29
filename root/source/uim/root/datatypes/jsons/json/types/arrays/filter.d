@@ -13,12 +13,14 @@ mixin(Version!("test_uim_root"));
 
 Json filterArrays(Json json, bool delegate(Json json) @safe filterFunc) {
   if (json.isArray) {
-    return json.filterValues((Json item) => item.isArray).array.toJson;
+    return json.filterValues((Json item) => item.isArray).toJson;
   }
+  /* 
   if (json.isObject) {
-    return json.toMap.filterArrays!(item => item.isArray).array.toJson;
+    return json.toMap.filterArrays!(item => item.isArray).toJson;
   }
-  return json.filterArrays.filter!(j => filterFunc(j)).array.toJson;
+  */
+  return Json(null);
 }
 
 /* 
@@ -31,8 +33,10 @@ Json filterArrays(Json json) {
   if (json.isArray) {
     return json.toArray.filter!(item => item.isArray).array.toJson;
   }
+  /* 
   if (json.isObject) {
-    return json.toMap.filterArrays!(item => item.isArray).array.toJson;
+    return json.toMap.filterArrays(item => item.isArray).array.toJson;
   }
-  return json;
+  */
+  return Json(null);
 }
