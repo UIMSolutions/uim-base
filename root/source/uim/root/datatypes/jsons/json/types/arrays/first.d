@@ -12,6 +12,7 @@ mixin(Version!("test_uim_root"));
 @safe:
 
 Json firstBoolean(Json[] jsons) {
+  import uim.root.datatypes.jsons.arrays.types.booleans.filter;
   return jsons.filterBooleans.first;
 }
 

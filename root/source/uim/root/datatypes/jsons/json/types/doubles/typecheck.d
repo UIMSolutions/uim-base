@@ -10,11 +10,11 @@ import uim.root;
 mixin(Version!("test_uim_root"));
 
 @safe:
-bool isAllBoolean(Json json, string[][] paths) {
+bool isAllDouble(Json json, string[][] paths) {
   return paths.any!(path => json.isDouble(path));
 }
 
-bool isAnyBoolean(Json json, string[][] paths) {
+bool isAnyDouble(Json json, string[][] paths) {
   return paths.any!(path => json.isDouble(path));
 }
 
@@ -22,11 +22,11 @@ bool isDouble(Json json, string[] path) {
   return json.getPath(path).isDouble;
 }
 
-bool isAllBoolean(Json json, string[] keys) {
+bool isAllDouble(Json json, string[] keys) {
   return keys.all!(key => json.isDouble(key));
 }
 
-bool isAnyBoolean(Json json, string[] keys) {
+bool isAnyDouble(Json json, string[] keys) {
   return keys.any!(key => json.isDouble(key));
 }
 
@@ -34,11 +34,11 @@ bool isDouble(Json json, string key) {
   return json.getKey(key).isDouble;
 }
 
-bool isAllBoolean(Json json, size_t[] indices) {
+bool isAllDouble(Json json, size_t[] indices) {
   return indices.all!(index => json.isDouble(index));
 }
 
-bool isAnyBoolean(Json json, size_t[] indices) {
+bool isAnyDouble(Json json, size_t[] indices) {
   return indices.any!(index => json.isDouble(index));
 }
 

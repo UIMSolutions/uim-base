@@ -11,31 +11,43 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
-/** 
-  * Checks if the given JSON value at the specified path is of string type.
-  *
-  * Params:
-  *   json = The JSON value to check.
-  *   path = The path within the JSON object to check.
-  *
-  * Returns:
-  *   `true` if the JSON value at the specified path is a string, `false` otherwise.
-  */
+
+bool isAllString(Json json, string[][] paths) {
+  return paths.any!(path => json.isString(path));
+}
+
+bool isAnyString(Json json, string[][] paths) {
+  return paths.any!(path => json.isString(path));
+}
+
 bool isString(Json json, string[] path) {
   return json.getPath(path).isString;
 }
 
-/**
-  * Checks if the given JSON value at the specified key is of string type.
-  *
-  * Params:
-  *   json = The JSON value to check.
-  *   key  = The key within the JSON object to check.
-  *
-  * Returns:
-  *   `true` if the JSON value at the specified key is a string, `false` otherwise.
-  */
-bool isString(Json json, string key) {
-  return json.hasKey(key).isString;
+bool isAllString(Json json, string[] keys) {
+  return keys.all!(key => json.isString(key));
 }
-// #endregion scalar
+
+bool isAnyString(Json json, string[] keys) {
+  return keys.any!(key => json.isString(key));
+}
+
+bool isString(Json json, string key) {
+  return json.getKey(key).isString;
+}
+
+bool isAllString(Json json, size_t[] indices) {
+  return indices.all!(index => json.isString(index));
+}
+
+bool isAnyString(Json json, size_t[] indices) {
+  return indices.any!(index => json.isString(index));
+}
+
+bool isString(Json json, size_t index) {
+  return json.getValue(index).isString;
+}
+
+bool isString(Json json) {
+  return (json.type == Json.Type.string);
+}

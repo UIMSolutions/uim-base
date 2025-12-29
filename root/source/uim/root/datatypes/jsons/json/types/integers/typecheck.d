@@ -11,11 +11,11 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
-bool isAllBoolean(Json json, string[][] paths) {
+bool isAllInteger(Json json, string[][] paths) {
   return paths.any!(path => json.isInteger(path));
 }
 
-bool isAnyBoolean(Json json, string[][] paths) {
+bool isAnyInteger(Json json, string[][] paths) {
   return paths.any!(path => json.isInteger(path));
 }
 
@@ -23,11 +23,11 @@ bool isInteger(Json json, string[] path) {
   return json.getPath(path).isInteger;
 }
 
-bool isAllBoolean(Json json, string[] keys) {
+bool isAllInteger(Json json, string[] keys) {
   return keys.all!(key => json.isInteger(key));
 }
 
-bool isAnyBoolean(Json json, string[] keys) {
+bool isAnyInteger(Json json, string[] keys) {
   return keys.any!(key => json.isInteger(key));
 }
 
@@ -35,11 +35,11 @@ bool isInteger(Json json, string key) {
   return json.getKey(key).isInteger;
 }
 
-bool isAllBoolean(Json json, size_t[] indices) {
+bool isAllInteger(Json json, size_t[] indices) {
   return indices.all!(index => json.isInteger(index));
 }
 
-bool isAnyBoolean(Json json, size_t[] indices) {
+bool isAnyInteger(Json json, size_t[] indices) {
   return indices.any!(index => json.isInteger(index));
 }
 

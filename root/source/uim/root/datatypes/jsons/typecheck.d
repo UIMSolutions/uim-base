@@ -11,21 +11,8 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
-// #region isArray
-bool isArray(Json json, size_t index) {
-  return json.isArray && index < json.length && json[index].isArray;
-}
 
-bool isArray(Json json, string key) {
-  return json.isObject && json.hasKey(key) && json[key].isArray;
-}
 
-bool isArray(Json json) {
-  return (json.type == Json.Type.array);
-}
-// #endregion isArray
-
-// #region isObject
 bool isObject(Json json, size_t index) {
   return json.isArray && index < json.length && json[index].isObject;
 }
@@ -36,19 +23,6 @@ bool isObject(Json json, string key) {
 
 bool isObject(Json json) {
   return (json.type == Json.Type.object);
-}
-// #endregion isObject
-
-bool isString(Json json, size_t index) {
-  return json.isArray && index < json.length && json[index].isString;
-}
-
-bool isString(Json json, string key) {
-  return json.isObject && json.hasKey(key) && json[key].isString;
-}
-
-bool isString(Json json) {
-  return (json.type == Json.Type.string);
 }
 
 bool isNull(Json json, size_t index) {
