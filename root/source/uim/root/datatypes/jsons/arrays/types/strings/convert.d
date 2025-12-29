@@ -11,7 +11,7 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
-string[] toStrings(Json[] jsons, int delegate(Json json) @safe convertFunc) {
+string[] toStrings(Json[] jsons, string delegate(Json json) @safe convertFunc) {
   return jsons.map!(json => convertFunc(json)).array;
 }
 

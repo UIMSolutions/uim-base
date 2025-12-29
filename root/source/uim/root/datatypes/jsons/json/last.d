@@ -18,52 +18,52 @@ Json last(Json json) {
 
 Json lastObject(Json json) {
   return json.isArray
-    ? last(json.filterObjects) : Json(null);
+    ? uim.root.containers.sequential.arrays.last.last(json.filterObjects) : Json(null);
 }
 
 Json lastArray(Json json) {
   return json.isArray
-    ? last(json.filterArrays) : Json(null);
+    ? uim.root.containers.sequential.arrays.last.last(json.filterArrays) : Json(null);
 }
 
 Json lastScalar(Json json) {
   return json.isArray
-    ? last(json.filterScalars) : Json(null);
+    ? uim.root.containers.sequential.arrays.last.last(json.filterScalars) : Json(null);
 }
 
 Json lastBoolean(Json json) {
   return json.isArray
-    ? last(json.filterBooleans) : Json(null);
+    ? uim.root.containers.sequential.arrays.last.last(json.filterBooleans) : Json(null);
 }
 
 Json lastInteger(Json json) {
   return json.isArray
-    ? last(json.filterIntegers) : Json(null);
+    ? uim.root.containers.sequential.arrays.last.last(json.filterIntegers) : Json(null);
 }
 
 Json lastDouble(Json json) {
   return json.isArray
-    ? last(json.filterDoubles) : Json(null);
+    ? uim.root.containers.sequential.arrays.last.last(json.filterDoubles) : Json(null);
 }
 
 Json lastString(Json json) {
   return json.isArray
-    ? last(json.filterStrings) : Json(null);
+    ? uim.root.containers.sequential.arrays.last.last(json.filterStrings) : Json(null);
 }
 
 /* 
 Json lastWithAllKey(Json json, string[] keys) {
   return json.isArray
-    ? last(json.toArray.filterHasAllKey(keys)) : Json(null);
+    ? uim.root.containers.sequential.arrays.last.last(json.toArray.filterHasAllKey(keys)) : Json(null);
 }
 
 Json lastWithAnyKey(Json json, string[] keys) {
   return json.isArray
-    ? last(json.toArray.filterHasAnyKey(keys)) : Json(null);
+    ? uim.root.containers.sequential.arrays.last.last(json.toArray.filterHasAnyKey(keys)) : Json(null);
 }
 
 Json lastHasKey(Json json, string key) {
   return json.isArray
-    ? last(json.toArray.filterHasKey(key)) : Json(null);
+    ? uim.root.containers.sequential.arrays.last.last(json.toArray.filterHasKey(key)) : Json(null);
 }
 */ 

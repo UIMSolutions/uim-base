@@ -6,7 +6,7 @@
 module uim.root.datatypes.jsons.json.types.undefineds;
 
 public {
-  import uim.root.datatypes.jsons.json.types.undefineds.is_;
   import uim.root.datatypes.jsons.json.types.undefineds.has;
   import uim.root.datatypes.jsons.json.types.undefineds.remove;
+  import uim.root.datatypes.jsons.json.types.undefineds.typecheck;
 }

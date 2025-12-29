@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache false license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.root.datatypes.jsons.json.types.objects.is_;
+module uim.root.datatypes.jsons.json.types.objects.typecheck;
 
 import uim.root;
 
@@ -26,16 +26,7 @@ bool isAnyObject(Json json, string[][] paths) {
 
 // #region is
 bool isObject(Json json, string[] path) {
-  if (json.isObject || path.length == 0) {
-    return true;
-  }
-
-  auto firstKey = path[0];
-  if (json.isObject(firstKey)) {
-    return true;
-  }
-
-  return path.length > 1 && json[firstKey].isObject(path[1 .. $]);
+  return json.getPath(path).isObject;
 }
 // #endregion is
 // #endregion path

@@ -312,23 +312,6 @@ unittest {
 // #endregion any
 
 // #region is
-// #region value
-/** 
-  * Checks if the given JSON value at the specified path is of boolean type.
-  *
-  * Params:
-  *   json = The JSON value to check.
-  *   path = The path within the JSON object to check.
-  *
-  * Returns:
-  *   `true` if the JSON value at the specified path is a boolean, `false` otherwise.
-  */
-bool isBoolean(Json json, string[] path, bool value) {
-  return json.isBoolean(path) && json.getBoolean(path) == value;
-}
-// #endregion value
-
-// #region noValue
 /** 
   * Checks if the given JSON value at the specified path is of boolean type.
   *
@@ -340,21 +323,9 @@ bool isBoolean(Json json, string[] path, bool value) {
   *   `true` if the JSON value at the specified path is a boolean, `false` otherwise.
   */
 bool isBoolean(Json json, string[] path) {
-  if (!json.hasPath(path)) {
-    return false;
-  }
-
-  if (path.length == 1) {
-    return json.isBoolean(path[0]);
-  }
-
-  return json[path[0]].isBoolean(path[1 .. $]);
+  return json.getPath(path).isBoolean(path[0]);
 }
-// #endregion noValue
 // #endregion is
-
-// #region get
-// #endregion get
 // #endregion path
 
 // #region key
@@ -626,7 +597,7 @@ unittest {
 // #region is
 // #region value
 bool isBoolean(Json json, bool value) {
-  return json.isBoolean && json.getBoolean == value ;
+  return json.isBoolean && json.getBoolean == value;
 }
 // #region noValue
 
@@ -634,7 +605,6 @@ bool isBoolean(Json json, bool value) {
 bool isBoolean(Json json, size_t index) {
   return json.isArray && json[index].isBoolean;
 }
-
 
 // #endregion value
 // #endregion is

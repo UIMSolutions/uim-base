@@ -6,12 +6,12 @@
 module uim.root.datatypes.jsons.json.types.objects;
 
 public {
+  import uim.root.datatypes.jsons.json.types.objects.convert;
   import uim.root.datatypes.jsons.json.types.objects.filter;
   import uim.root.datatypes.jsons.json.types.objects.first;
   import uim.root.datatypes.jsons.json.types.objects.get;
   import uim.root.datatypes.jsons.json.types.objects.has;
-  import uim.root.datatypes.jsons.json.types.objects.is_;
+  import uim.root.datatypes.jsons.json.types.objects.typecheck;
   import uim.root.datatypes.jsons.json.types.objects.last;
   import uim.root.datatypes.jsons.json.types.objects.remove;
-  import uim.root.datatypes.jsons.json.types.objects.to_;
 }

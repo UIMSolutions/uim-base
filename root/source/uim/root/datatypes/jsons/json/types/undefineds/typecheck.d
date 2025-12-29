@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache false license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.root.datatypes.jsons.json.types.undefineds.is_;
+module uim.root.datatypes.jsons.json.types.undefineds.typecheck;
 
 import uim.root;
 
@@ -26,16 +26,7 @@ bool isAnyUndefined(Json json, string[][] paths) {
 
 // #region is
 bool isUndefined(Json json, string[] path) {
-  if (json.isUndefined || path.length == 0) {
-    return true;
-  }
-
-  auto firstKey = path[0];
-  if (json.isUndefined(firstKey)) {
-    return true;
-  }
-
-  return path.length > 1 && json[firstKey].isUndefined(path[1 .. $]);
+  return json.getPath(path).isUndefined;
 }
 // #endregion is
 // #endregion path

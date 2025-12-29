@@ -10,10 +10,12 @@ Json filterArrays(Json json) {
   import uim.root.datatypes.jsons.arrays.filter;
   if (json.isArray) {
     return filterValues(json.get!(Json[], (Json json) => json.isArray)).toJson;
-  }
+  } 
+  /* 
   if (json.isObject) {
     return filterMap(json.toMap).toJson;
   }
-  return null;
+  */
+  return Json(null);
 }
 

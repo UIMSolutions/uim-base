@@ -16,17 +16,25 @@ Json getPath(Json json, string[] path) {
     return Json(null);
   }
 
+  auto firstJson = json.getKey(path[0]);
   if (path.length == 1) {
-    return json.hasKey(path[0]) ? json[path[0]] : Json(null);
+    return firstJson;
   }
 
-  // If the first key in the path does not exist, return false
-  if (!json.hasKey(path[0])) {
+  return !firstJson.isNull && path.length > 1 && json[path[0]].getPath(path[1 .. $]);
+}
+
+Json getKey(Json json, string key) {
+  if (!json.isObject || key.length == 0) {
     return Json(null);
   }
 
-  return path.length > 1 && json[path[0]].getPath(path[1 .. $]);
+  return (key in json) ? json[key] : Json(null);
 }
+
+
+
+
 
 
 
