@@ -13,9 +13,6 @@ mixin(Version!("test_uim_root"));
 
 // #region is
 bool isIntegral(Json value) {
-  if (!strict) {
-    // Future: Add support for BigInt and other integral types.
-  }
-  return value.isLong(strict);
+  return value.isLong;
 }
 // #endregion is

@@ -16,16 +16,16 @@ mixin(Version!("test_uim_root"));
 // #region Json[string]
 /// Check if all values in the map are long integers.
 bool isAllLong(Json[string] map) {
-  return map.byValue.all!(value => value.isLong(strict));
+  return map.byValue.all!(value => value.isLong);
 }
 
 /// Check if all values associated with the specified keys in the map are long integers.
 bool isAllLong(Json[string] map, string[] keys) {
-  return keys.all!(key => map.isLong(key, strict));
+  return keys.all!(key => map.isLong(key));
 }
 
 bool isAnyLong(Json[string] map) {
-  return map.byValue.any!(value => value.isLong(strict));
+  return map.byValue.any!(value => value.isLong);
 }
 
 /// Check if any value associated with the specified keys in the map is a long integer.
@@ -35,59 +35,59 @@ bool isAnyLong(Json[string] map, string[] keys) {
 
 /// Check if the value associated with the specified key in the map is a long integer.
 bool isLong(Json[string] map, string key) {
-  return key in map && map[key].isLong(strict);
+  return key in map && map[key].isLong;
 }
 // #endregion Json[string]
 
 // #region Json[]
 bool isAllLong(Json[] values) {
-  return values.all!(value => value.isLong(strict));
+  return values.all!(value => value.isLong);
 }
 
 bool isAllLong(Json[] values, size_t[] indices) {
-  return indices.all!(index => values.isLong(index, strict));
+  return indices.all!(index => values.isLong(index));
 }
 
 bool isAnyLong(Json[] values) {
-  return values.any!(value => value.isLong(strict));
+  return values.any!(value => value.isLong);
 }
 
 bool isAnyLong(Json[] values, size_t[] indices) {
-  return indices.any!(index => values.isLong(index, strict));
+  return indices.any!(index => values.isLong(index));
 }
 
 bool isLong(Json[] values, size_t index) {
-  return values.length > index && values[index].isLong(strict);
+  return values.length > index && values[index].isLong;
 }
 // #endregion Json[]
 
 // #region Json
 bool isAllLong(Json json) {
   if (json.isObject) {
-    return isAllLong(json.to!(Json[string]), strict);
+    return isAllLong(json.to!(Json[string]));
   }
   if (json.isArray) {
-    return isAllLong(json.to!(Json[]), strict);
+    return isAllLong(json.to!(Json[]));
   }
-  return json.isLong(strict);
+  return json.isLong;
 }
 
 bool isAllLong(Json json, string[] keys) {
-  return keys.all!(key => json.isLong(key, strict));
+  return keys.all!(key => json.isLong(key));
 }
 
 bool isAnyLong(Json json) {
   if (json.isObject) {
-    return isAnyLong(json.to!(Json[string]), strict);
+    return isAnyLong(json.to!(Json[string]));
   }
   if (json.isArray) {
-    return isAnyLong(json.to!(Json[]), strict);
+    return isAnyLong(json.to!(Json[]));
   }
-  return json.isLong(strict);
+  return json.isLong;
 }
 
 bool isAnyLong(Json json, string[] keys) {
-  return keys.any!(key => json.isLong(key, strict));
+  return keys.any!(key => json.isLong(key));
 }
 
 bool isLong(Json json, string[] path) {
@@ -105,22 +105,17 @@ bool isLong(Json json, string[] path) {
 
   auto key = path[0];
   return path.length == 1
-    ? json.isLong(key, strict) : json.hasKey(key) && json[key].isLong(path[1 .. $], strict);
+    ? json.isLong(key) : json.hasKey(key) && json[key].isLong(path[1 .. $]);
 }
 
 bool isLong(Json json, string key) {
-  return key in json && json[key].isLong(strict);
+  return key in json && json[key].isLong;
 }
 
 bool isLong(Json value) {
-  if (!strict) {
-    // TODO: Future: Implement a more generic check for long integers.
-  }
-
   return (value.type == Json.Type.int_);
 }
-// #endregion Json
-
+///
 unittest { // Json
   assert(!Json(true).isLong);
   assert(Json(10).isLong);

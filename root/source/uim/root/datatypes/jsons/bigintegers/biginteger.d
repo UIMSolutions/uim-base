@@ -11,9 +11,6 @@ mixin(Version!("test_uim_root"));
 
 // #region is
 bool isBigInteger(Json json) {
-  if (!strict) {
-    // TODO: Future: Implement a more generic check for big integers.
-  }
   return (json.type == Json.Type.bigInt);
 }
 

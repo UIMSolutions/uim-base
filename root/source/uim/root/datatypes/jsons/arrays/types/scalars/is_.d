@@ -36,10 +36,6 @@ bool isAnyScalar(Json[] values, size_t[] indices) {
 
 // #region is
 bool isScalar(Json[] values, size_t index) {
-  if (index >= values.length) {
-    return false;
-  } 
-
-  return uim.root.datatypes.jsons.typecheck.isScalar(values[index]);
+  return values.length > index ? values[index].isScalar : false;
 }
 // #endregion is

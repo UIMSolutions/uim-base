@@ -66,5 +66,12 @@ bool isObject(Json[string] map, string key) {
 bool isAllObject(Json[string] map) {
   return map.byValue.all!(v => v.isObject);
 }
+///
+unittest {
+  auto json = parseJsonString(`{"a": {"b": 1}, "c": {"d": 2}, "e": 3}`);
+  assert(json.to!(Json[string]).isAllObject(["a", "c"]));
+  assert(!json.to!(Json[string]).isAllObject(["a", "e"]));
+  assert(json.to!(Json[string]).isAllObject);
+}
 // #endregion all
 

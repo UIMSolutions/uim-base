@@ -21,7 +21,7 @@ mixin(Version!("test_uim_root"));
   Returns:
     A new Json array with the specified objects removed.
   */
-Json[] removeObjects(Json[] jsons, bool delegate(Json json) removeFunc) {
+Json[] removeObjects(Json[] jsons, bool delegate(Json json) @safe removeFunc) {
   return jsons.filter!(json => !foundObject(json, removeFunc)).array;
 }
 
@@ -50,8 +50,6 @@ Json[] removeObjectsWithKeyValue(Json[] jsons, string key, Json value) {
     .filter!(json => !json.hasKeyValue(key, value)).array;
 }
 
-protected bool foundObject(Json json, bool delegate(Json value) removeFunc) {
-  bool found = false;
-  () @trusted { found = json.isObject && json.removeFunc; }();
-  return found;
+protected bool foundObject(Json json, bool delegate(Json value) @safe removeFunc) {
+  return json.isObject && removeFunc(json);
 }
