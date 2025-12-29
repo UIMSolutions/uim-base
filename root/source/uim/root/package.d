@@ -43,21 +43,9 @@ public {
 
 public {
   import uim.root.containers;
+  import uim.root.mixins;
   import uim.root.datatypes;
-  import uim.root.testing;
+  import uim.root.tests;
 }
 
-template Version(string name) {
-  const char[] Version = `
-version (`
-    ~ name ~ `) {
-  import std.stdio;
-  import std.string;
 
-  unittest {
-    string mod = leftJustify(__MODULE__, 50, ' ');
-    writeln("-----  ", mod, " -----");
-  }
-}  
-`;
-}
