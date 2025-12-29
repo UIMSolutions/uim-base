@@ -9,7 +9,7 @@ public {
   import uim.root.datatypes.jsons.json.types.integers.filter;
   import uim.root.datatypes.jsons.json.types.integers.first;
   import uim.root.datatypes.jsons.json.types.integers.get;
-  import uim.root.datatypes.jsons.json.types.integers.is_;
+  import uim.root.datatypes.jsons.json.types.integers.typecheck;
   import uim.root.datatypes.jsons.json.types.integers.has;
   import uim.root.datatypes.jsons.json.types.integers.last;
   import uim.root.datatypes.jsons.json.types.integers.remove;

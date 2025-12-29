@@ -25,13 +25,12 @@ Json getPath(Json json, string[] path) {
 }
 
 Json getKey(Json json, string key) {
-  if (!json.isObject || key.length == 0) {
-    return Json(null);
-  }
-
-  return (key in json) ? json[key] : Json(null);
+  return json.isObject && (key in json) ? json[key] : Json(null);
 }
 
+Json getValue(Json json, size_t index) {
+  return json.isArray && json.length > index ? json[index] : Json(null); 
+}
 
 
 

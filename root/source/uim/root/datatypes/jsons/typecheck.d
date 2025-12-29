@@ -39,42 +39,6 @@ bool isObject(Json json) {
 }
 // #endregion isObject
 
-bool isBoolean(Json json, size_t index) {
-  return json.isArray && index < json.length && json[index].isBoolean;
-}
-
-bool isBoolean(Json json, string key) {
-  return json.isObject && json.hasKey(key) && json[key].isBoolean;
-}
-
-bool isBoolean(Json json) {
-  return (json.type == Json.Type.bool_);
-}
-
-bool isInteger(Json json, size_t index) {
-  return json.isArray && index < json.length && json[index].isInteger;
-}
-
-bool isInteger(Json json, string key) {
-  return json.isObject && json.hasKey(key) && json[key].isInteger;
-}
-
-bool isInteger(Json json) {
-  return (json.type == Json.Type.int_);
-}
-
-bool isDouble(Json json, size_t index) {
-  return json.isArray && index < json.length && json[index].isDouble;
-}
-
-bool isDouble(Json json, string key) {
-  return json.isObject && json.hasKey(key) && json[key].isDouble;
-}
-
-bool isDouble(Json json) {
-  return (json.type == Json.Type.float_);
-}
-
 bool isString(Json json, size_t index) {
   return json.isArray && index < json.length && json[index].isString;
 }

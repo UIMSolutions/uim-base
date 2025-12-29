@@ -9,7 +9,7 @@ public {
   import uim.root.datatypes.jsons.json.types.doubles.filter;
   import uim.root.datatypes.jsons.json.types.doubles.first;
   import uim.root.datatypes.jsons.json.types.doubles.get;
-  import uim.root.datatypes.jsons.json.types.doubles.is_;
+  import uim.root.datatypes.jsons.json.types.doubles.typecheck;
   import uim.root.datatypes.jsons.json.types.doubles.has;
   import uim.root.datatypes.jsons.json.types.doubles.last;
   import uim.root.datatypes.jsons.json.types.doubles.remove;

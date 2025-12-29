@@ -17,38 +17,57 @@ Json last(Json json) {
 }
 
 Json lastObject(Json json) {
+  import uim.root.datatypes.jsons.arrays.types.objects.filter;
+
   return json.isArray
-    ? uim.root.containers.sequential.arrays.last.last(json.filterObjects) : Json(null);
+    ? uim.root.containers.sequential.arrays.last.last(
+      json.toArray.filterObjects) : Json(null);
 }
 
 Json lastArray(Json json) {
+  import uim.root.datatypes.jsons.arrays.filter;
+
   return json.isArray
-    ? uim.root.containers.sequential.arrays.last.last(json.filterArrays) : Json(null);
+    ? uim.root.containers.sequential.arrays.last.last(
+      json.toArray.filterArrays) : Json(null);
 }
 
 Json lastScalar(Json json) {
+  import uim.root.datatypes.jsons.arrays.types.scalars.filter;
+
   return json.isArray
-    ? uim.root.containers.sequential.arrays.last.last(json.filterScalars) : Json(null);
+    ? uim.root.containers.sequential.arrays.last.last(
+      json.toArray.filterScalars) : Json(null);
 }
 
 Json lastBoolean(Json json) {
+  import uim.root.datatypes.jsons.arrays.types.booleans.filter;
+
   return json.isArray
-    ? uim.root.containers.sequential.arrays.last.last(json.filterBooleans) : Json(null);
+    ? uim.root.containers.sequential.arrays.last.last(
+      json.toArray.filterBooleans) : Json(null);
 }
 
 Json lastInteger(Json json) {
+  import uim.root.datatypes.jsons.arrays.types.integers.filter;
+
   return json.isArray
-    ? uim.root.containers.sequential.arrays.last.last(json.filterIntegers) : Json(null);
+    ? uim.root.containers.sequential.arrays.last.last(
+      json.toArray.filterIntegers) : Json(null);
 }
 
 Json lastDouble(Json json) {
+  import uim.root.datatypes.jsons.arrays.types.doubles.filter;
+
   return json.isArray
     ? uim.root.containers.sequential.arrays.last.last(json.filterDoubles) : Json(null);
 }
 
 Json lastString(Json json) {
+  import uim.root.datatypes.jsons.arrays.types.strings.filter;
   return json.isArray
-    ? uim.root.containers.sequential.arrays.last.last(json.filterStrings) : Json(null);
+    ? uim.root.containers.sequential.arrays.last.last(
+      json.toArray.filterStrings) : Json(null);
 }
 
 /* 
@@ -66,4 +85,4 @@ Json lastHasKey(Json json, string key) {
   return json.isArray
     ? uim.root.containers.sequential.arrays.last.last(json.toArray.filterHasKey(key)) : Json(null);
 }
-*/ 
+*/

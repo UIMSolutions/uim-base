@@ -9,7 +9,7 @@ public {
   import uim.root.datatypes.jsons.json.types.booleans.filter;
   import uim.root.datatypes.jsons.json.types.booleans.first;
   import uim.root.datatypes.jsons.json.types.booleans.get;
-  import uim.root.datatypes.jsons.json.types.booleans.is_;
+  import uim.root.datatypes.jsons.json.types.booleans.typecheck;
   import uim.root.datatypes.jsons.json.types.booleans.has;
   import uim.root.datatypes.jsons.json.types.booleans.last;
   import uim.root.datatypes.jsons.json.types.booleans.remove;

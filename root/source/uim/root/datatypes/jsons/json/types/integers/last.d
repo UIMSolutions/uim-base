@@ -11,7 +11,8 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
-Json lastBoolean(Json[] jsons) {
-  return jsons.filterBooleans.last;
+Json lastInteger(Json[] jsons) {
+  import uim.root.datatypes.jsons.arrays.types.integers.filter;
+  return jsons.filterIntegers.last;
 }
 
