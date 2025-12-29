@@ -98,36 +98,13 @@ unittest {
 }
 // #endregion noValue
 
-// #region value
-/** 
-  * Checks if the given JSON value at the specified path is of integer type and matches the given value.
-  *
-  * Params:
-  *   json = The JSON value to check.
-  *   paths = The paths within the JSON object to check.
-  *   value = The integer value to match.
-  *
-  * Returns:
-  *   `true` if the JSON value at the specified path is an integer and matches the given value, `false` otherwise.
-  */
-bool isAllInteger(Json json, string[][] paths, int value) {
-  return paths.all!(path => json.isInteger(path, value));
-}
-// #endregion value
 // #endregion all
 
 // #region any
-// #region noValue
 bool isAnyInteger(Json json, string[][] paths) {
   return paths.any!(path => json.isInteger(path));
 }
-// #endregion noValue
 
-// #region value
-bool isAnyInteger(Json json, string[][] paths, int value) {
-  return paths.any!(path => json.isInteger(path, value));
-}
-// #endregion value
 // #endregion any
 
 // #region is
@@ -145,11 +122,6 @@ bool isInteger(Json json, string[] path) {
 }
 // #endregion noValue
 
-// #region value
-bool isInteger(Json json, string[] path, int value) {
-  return json.isInteger(path) && json.getInteger(path) == value;
-}
-// #endregion value
 // #endregion is
 // #endregion path
 
@@ -159,18 +131,6 @@ bool isAllInteger(Json json, string[] keys) {
   return keys.any!(key => json.isInteger(key));
 }
 
-bool isAllInteger(Json json, string[] keys, int value) {
-  return keys.any!(key => json.isInteger(key) && json.getInteger(key) == value);
-}
-// #endregion all
-
-// #region any
-// #region value
-bool isAnyInteger(Json json, string[] keys, int value) {
-  return keys.any!(key => json.isInteger(key, value));
-}
-// #endregion value
-
 // #region noValue
 bool isAnyInteger(Json json, string[] keys) {
   return keys.any!(key => json.isInteger(key));
@@ -178,31 +138,3 @@ bool isAnyInteger(Json json, string[] keys) {
 // #endregion noValue
 // #endregion any
 
-// #region is
-// #region value
-bool isInteger(Json json, string key, int value) {
-  return json.hasKey(key) && json[key].isInteger(value);
-}
-// #endregion value
-
-// #region noValue
-bool isInteger(Json json, string key) {
-  return json.hasKey(key) && json[key].isInteger;
-}
-// #endregion noValue
-// #endregion is
-// #endregion key
-
-// #region scalar
-// #region value
-bool isInteger(Json json, int value) {
-  return (json.isInteger) && (json.getInteger == value);
-}
-// #endregion value
-
-// #region noValue
-
-// #endregion noValue
-
-
-// #endregion scalar

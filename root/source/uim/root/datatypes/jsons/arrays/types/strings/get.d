@@ -12,17 +12,20 @@ mixin(Version!("test_uim_root"));
 @safe:
 
 string[] getStringArray(Json[] jsons, size_t[] indices, string defaultValue = null) {
+  import uim.root.datatypes.jsons.arrays.types.strings.filter;
   return jsons.filterValues(indices).filterStrings
     .getStringArray(defaultValue);
 }
 
 string[] getStringArray(Json[] jsons, string defaultValue = null) {
+  import uim.root.datatypes.jsons.arrays.types.strings.filter;
   return jsons.filterStrings
     .map!(value => value.get!string)
     .array;
 }
 
 string getStringByIndex(Json[] jsons, size_t index, string defaultValue = null) {
+  import uim.root.datatypes.jsons.arrays.types.strings.filter;
   import uim.root.datatypes.jsons.typecheck;
   return jsons.length > index && jsons[index].isString ? jsons[index].getString(defaultValue) : defaultValue;
 }

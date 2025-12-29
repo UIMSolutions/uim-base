@@ -149,9 +149,9 @@ unittest {
 
 T[] filterValues(T)(T[] values, size_t[] indices) {
   T[] results;
-  foreach(index; values) {
-    if (indices.hasValue(index)) {
-      results ~= values[index];
+  foreach(index, value; values) {
+    if (hasValue(indices, index)) {
+      results ~= value;
     }
   }
   return results;

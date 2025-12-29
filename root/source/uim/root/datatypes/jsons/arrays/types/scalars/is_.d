@@ -8,28 +8,28 @@ mixin(Version!("test_uim_root"));
 
 // #region all
 // #region noIndex
-bool isAllScalar(Json[] values) {
-  return values.all!(value => isScalar(value));
+bool isAllScalar(Json[] jsons) {
+  return jsons.all!(json => isScalar(json));
 }
 // #endregion noIndex
 
 // #region index  
-bool isAllScalar(Json[] values, size_t[] indices) {
-  return indices.all!(index => values.isScalar(index));
+bool isAllScalar(Json[] jsons, size_t[] indices) {
+  return indices.all!(index => jsons.isScalar(index));
 }
 // #endregion index
 // #endregion all
 
 // #region any
 // #region noIndex
-bool isAnyScalar(Json[] values) {
-  return values.any!(value => isScalar(value));
+bool isAnyScalar(Json[] jsons) {
+  return jsons.any!(json => isScalar(json));
 }
 // #endregion noIndex
 
 // #region index
-bool isAnyScalar(Json[] values, size_t[] indices) {
-  return indices.any!(index => values.isScalar(index));
+bool isAnyScalar(Json[] jsons, size_t[] indices) {
+  return indices.any!(index => jsons.isScalar(index));
 }
 // #endregion index
 // #endregion any

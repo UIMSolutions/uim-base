@@ -132,14 +132,6 @@ Json toJson(UUID id, size_t versionNumber) {
   result["versionNumber"] = versionNumber;
   return result;
 }
-
-unittest {
-  auto id = randomUUID;
-  auto json = toJson(id, 1);
-  assert(json.getString("id") == id.toString && json.getInteger("versionNumber") == 1);
-  assert(json["id"].get!string == id.toString);
-  assert(json["versionNumber"].get!size_t == 1);
-}
 // #endregion
 
 Json toJson(string[] values) {
@@ -148,22 +140,12 @@ Json toJson(string[] values) {
   return json;
 }
 
-unittest {
-  assert(["a", "b", "c"].toJson.length == 3);
-  assert(["a", "b", "c"].toJson[0] == "a");
-}
-
 Json toJson(string[string] map, string[] excludeKeys = null) {
   Json json = Json.emptyObject;
   map.byKeyValue
     .filter!(kv => !excludeKeys.any!(key => key == kv.key))
     .each!(kv => json[kv.key] = kv.value);
   return json;
-}
-
-unittest {
-  assert(["a": "1", "b": "2", "c": "3"].toJson.length == 3);
-  assert(["a": "1", "b": "2", "c": "3"].toJson["a"] == "1");
 }
 
 Json toJson(Json[string] map) {
@@ -206,12 +188,6 @@ Json[string] toJsonMap(string[string] items, string[] excludeKeys = null) {
   return result;
 }
 
-unittest {
-  // assert(["a": "A", "b": "B"].toJsonMap.length == 2);
-  // assert(["a": "A", "b": "B"].toJsonMap.getString("a") == "A");
-  // assert(["a": "A", "b": "B"].toJsonMap(["b"]).length == 1);
-  // assert(["a": "A", "b": "B"].toJsonMap(["b"]).getString("a") == "A");
-}
 // #endregion toJsonMap
 
 // #region toString

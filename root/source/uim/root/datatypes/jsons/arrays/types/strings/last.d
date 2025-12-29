@@ -12,6 +12,7 @@ mixin(Version!("test_uim_root"));
 @safe:
 
 Json lastString(Json[] jsons) {
+  import uim.root.datatypes.jsons.arrays.types.strings.filter;
   return jsons.filterStrings.last;
 }
 
