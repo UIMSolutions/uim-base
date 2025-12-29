@@ -1,2 +1,2 @@
-module uim.vibe.datatypes.jsons.collections;
+module uim.root.datatypes.jsons.collections;
 

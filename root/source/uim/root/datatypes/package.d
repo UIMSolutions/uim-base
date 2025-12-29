@@ -6,17 +6,10 @@
 module uim.root.datatypes;
 
 public {
-  // import uim.root.datatypes.bigint;
-  import uim.root.datatypes.strings;
-
-  /*     import uim.root.datatypes.integer;
-    import uim.root.datatypes.float;
-    import uim.root.datatypes.boolean;
-    import uim.root.datatypes.date;
-    import uim.root.datatypes.time;
-    import uim.root.datatypes.datetime;
- */
+  import uim.root.datatypes.bsons;
+  import uim.root.datatypes.jsons;
   import uim.root.datatypes.mixins;
   import uim.root.datatypes.nulls;
+  import uim.root.datatypes.strings;
   import uim.root.datatypes.uuids;
 }

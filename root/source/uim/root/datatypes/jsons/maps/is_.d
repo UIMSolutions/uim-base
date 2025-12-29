@@ -1,8 +1,8 @@
-module uim.vibe.datatypes.jsons.maps.is_;
+module uim.root.datatypes.jsons.maps.is_;
 
-import uim.vibe;
+import uim.root;
 
-mixin(Version!("test_uim_vibe"));
+mixin(Version!("test_uim_root"));
 @safe:
 
 // #region path

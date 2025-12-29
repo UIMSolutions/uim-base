@@ -1,2 +1,2 @@
-module uim.vibe.datatypes.jsons.functions;
+module uim.root.datatypes.jsons.functions;
 

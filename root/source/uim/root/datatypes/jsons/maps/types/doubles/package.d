@@ -3,11 +3,11 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.jsons.maps.types.doubles;
+module uim.root.datatypes.jsons.maps.types.doubles;
 
 public {
-  import uim.vibe.datatypes.jsons.maps.types.doubles.filter;
-  import uim.vibe.datatypes.jsons.maps.types.doubles.is_;
-  import uim.vibe.datatypes.jsons.maps.types.doubles.has;
-  import uim.vibe.datatypes.jsons.maps.types.doubles.remove;
+  import uim.root.datatypes.jsons.maps.types.doubles.filter;
+  import uim.root.datatypes.jsons.maps.types.doubles.is_;
+  import uim.root.datatypes.jsons.maps.types.doubles.has;
+  import uim.root.datatypes.jsons.maps.types.doubles.remove;
 }

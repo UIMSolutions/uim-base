@@ -1,2 +1,2 @@
-module uim.vibe.datatypes.jsons.arrays.types.nulls.remove;
+module uim.root.datatypes.jsons.arrays.types.nulls.remove;
 

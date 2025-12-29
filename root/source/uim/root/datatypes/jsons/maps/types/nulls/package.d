@@ -3,10 +3,10 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.jsons.maps.types.nulls;
+module uim.root.datatypes.jsons.maps.types.nulls;
 
 public {
-  import uim.vibe.datatypes.jsons.maps.types.nulls.is_;
-  import uim.vibe.datatypes.jsons.maps.types.nulls.has;
-  import uim.vibe.datatypes.jsons.maps.types.nulls.remove;
+  import uim.root.datatypes.jsons.maps.types.nulls.is_;
+  import uim.root.datatypes.jsons.maps.types.nulls.has;
+  import uim.root.datatypes.jsons.maps.types.nulls.remove;
 }

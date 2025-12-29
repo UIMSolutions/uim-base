@@ -3,16 +3,16 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.jsons.arrays.types.booleans.last;
+module uim.root.datatypes.jsons.arrays.types.booleans.last;
 
-import uim.vibe;
+import uim.root;
 
-mixin(Version!("test_uim_vibe"));
+mixin(Version!("test_uim_root"));
 
 @safe:
 
 Json lastBoolean(Json[] jsons) {
-  import uim.vibe.datatypes.jsons.arrays.types.booleans.filter;
+  import uim.root.datatypes.jsons.arrays.types.booleans.filter;
   return filterBooleans(jsons).last;
 }
 

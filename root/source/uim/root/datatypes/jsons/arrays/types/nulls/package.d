@@ -1,7 +1,7 @@
-module uim.vibe.datatypes.jsons.arrays.types.nulls;
+module uim.root.datatypes.jsons.arrays.types.nulls;
 
 public {
-  import uim.vibe.datatypes.jsons.arrays.types.nulls.is_;
-  import uim.vibe.datatypes.jsons.arrays.types.nulls.has;
-  import uim.vibe.datatypes.jsons.arrays.types.nulls.remove;
+  import uim.root.datatypes.jsons.arrays.types.nulls.is_;
+  import uim.root.datatypes.jsons.arrays.types.nulls.has;
+  import uim.root.datatypes.jsons.arrays.types.nulls.remove;
 }

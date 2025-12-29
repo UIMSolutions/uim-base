@@ -3,20 +3,20 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.jsons.json;
+module uim.root.datatypes.jsons.json;
 
 public {
-  import uim.vibe.datatypes.jsons.json.change;
-  import uim.vibe.datatypes.jsons.json.convert;
-  import uim.vibe.datatypes.jsons.json.create;
-  import uim.vibe.datatypes.jsons.json.has;
-  import uim.vibe.datatypes.jsons.json.get;
-  import uim.vibe.datatypes.jsons.json.is_;
-  import uim.vibe.datatypes.jsons.json.last;
-  import uim.vibe.datatypes.jsons.json.read;
-  import uim.vibe.datatypes.jsons.json.remove;
+  import uim.root.datatypes.jsons.json.change;
+  import uim.root.datatypes.jsons.json.convert;
+  import uim.root.datatypes.jsons.json.create;
+  import uim.root.datatypes.jsons.json.has;
+  import uim.root.datatypes.jsons.json.get;
+  import uim.root.datatypes.jsons.json.is_;
+  import uim.root.datatypes.jsons.json.last;
+  import uim.root.datatypes.jsons.json.read;
+  import uim.root.datatypes.jsons.json.remove;
 }
 
 public {
-  import uim.vibe.datatypes.jsons.json.types;
+  import uim.root.datatypes.jsons.json.types;
 }

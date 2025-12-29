@@ -3,18 +3,18 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.jsons.maps;
+module uim.root.datatypes.jsons.maps;
 
-import uim.vibe;
+import uim.root;
 
-mixin(Version!("test_uim_vibe"));
+mixin(Version!("test_uim_root"));
 @safe:
 
 public {
-    import uim.vibe.datatypes.jsons.maps.types;
+    import uim.root.datatypes.jsons.maps.types;
     
-    import uim.vibe.datatypes.jsons.maps.filter;
-    import uim.vibe.datatypes.jsons.maps.has;
-    import uim.vibe.datatypes.jsons.maps.keys;
-    import uim.vibe.datatypes.jsons.maps.is_;
+    import uim.root.datatypes.jsons.maps.filter;
+    import uim.root.datatypes.jsons.maps.has;
+    import uim.root.datatypes.jsons.maps.keys;
+    import uim.root.datatypes.jsons.maps.is_;
 }

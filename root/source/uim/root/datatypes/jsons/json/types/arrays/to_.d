@@ -3,10 +3,10 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.jsons.json.types.arrays.to_;
+module uim.root.datatypes.jsons.json.types.arrays.to_;
 
-import uim.vibe;
+import uim.root;
 
-mixin(Version!("test_uim_vibe"));
+mixin(Version!("test_uim_root"));
 
 @safe:

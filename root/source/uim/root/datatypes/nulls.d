@@ -98,27 +98,33 @@ T Null(T : real)() {
 T Null(T : string)() {
   return null;
 }
-
-unittest {
-  assert(Null!string == null);
-  assert(Null!string != "xxx");
-}
 // #endregion string
 
 T Null(T : UUID)() {
   return UUID();
 }
 
-T Null(T : UUID[])() {
-  return UUID();
-}
 
 // #region Object
+/**
+  * Returns null for Object types.
+  *
+  * Params:
+  *   T = The Object type to get null for.
+  *
+  * Returns:
+  *   null
+  */
 T Null(T : Object)() {
   return null;
 }
 
-T Null(T : Object[])() {
+// #endregion Object
+
+T Null(T)() if (isArray!T) {
   return null;
 }
-// #endregion Object
+unittest {
+  int[] arr = Null!(int[]);
+  assert(arr is null);
+}

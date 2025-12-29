@@ -3,16 +3,16 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.jsons.json.types;
+module uim.root.datatypes.jsons.json.types;
 
 public {
-  import uim.vibe.datatypes.jsons.json.types.arrays;
-  import uim.vibe.datatypes.jsons.json.types.booleans;
-  import uim.vibe.datatypes.jsons.json.types.doubles;
-  import uim.vibe.datatypes.jsons.json.types.integers;
-  import uim.vibe.datatypes.jsons.json.types.nulls;
-  import uim.vibe.datatypes.jsons.json.types.objects;
-  import uim.vibe.datatypes.jsons.json.types.scalars;
-  import uim.vibe.datatypes.jsons.json.types.strings;
-  import uim.vibe.datatypes.jsons.json.types.undefineds;
+  import uim.root.datatypes.jsons.json.types.arrays;
+  import uim.root.datatypes.jsons.json.types.booleans;
+  import uim.root.datatypes.jsons.json.types.doubles;
+  import uim.root.datatypes.jsons.json.types.integers;
+  import uim.root.datatypes.jsons.json.types.nulls;
+  import uim.root.datatypes.jsons.json.types.objects;
+  import uim.root.datatypes.jsons.json.types.scalars;
+  import uim.root.datatypes.jsons.json.types.strings;
+  import uim.root.datatypes.jsons.json.types.undefineds;
 }

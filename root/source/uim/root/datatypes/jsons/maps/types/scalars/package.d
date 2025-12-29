@@ -1,2 +1,2 @@
-module uim.vibe.datatypes.jsons.maps.types.scalars;
+module uim.root.datatypes.jsons.maps.types.scalars;
 

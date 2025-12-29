@@ -3,30 +3,30 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.jsons;
+module uim.root.datatypes.jsons;
 
 public { // Packages
-  import uim.vibe.datatypes.jsons.bigintegers;
-  import uim.vibe.datatypes.jsons.collections;
-  import uim.vibe.datatypes.jsons.functions;
-  import uim.vibe.datatypes.jsons.json;
+  import uim.root.datatypes.jsons.bigintegers;
+  import uim.root.datatypes.jsons.collections;
+  import uim.root.datatypes.jsons.functions;
+  import uim.root.datatypes.jsons.json;
 }
 
 public { // Modules
-  import uim.vibe.datatypes.jsons.convert;
-  import uim.vibe.datatypes.jsons.empty;
-  import uim.vibe.datatypes.jsons.get;
-  import uim.vibe.datatypes.jsons.integral;
-  import uim.vibe.datatypes.jsons.json;
-  import uim.vibe.datatypes.jsons.long_;
-  import uim.vibe.datatypes.jsons.merge;
-  import uim.vibe.datatypes.jsons.helper;
-  import uim.vibe.datatypes.jsons.null_;
-  import uim.vibe.datatypes.jsons.set;
-  import uim.vibe.datatypes.jsons.string_;
-  import uim.vibe.datatypes.jsons.typecheck;
-  import uim.vibe.datatypes.jsons.update;
-  import uim.vibe.datatypes.jsons.utils;
-  import uim.vibe.datatypes.jsons.values;
+  import uim.root.datatypes.jsons.convert;
+  import uim.root.datatypes.jsons.empty;
+  import uim.root.datatypes.jsons.get;
+  import uim.root.datatypes.jsons.integral;
+  import uim.root.datatypes.jsons.json;
+  import uim.root.datatypes.jsons.long_;
+  import uim.root.datatypes.jsons.merge;
+  import uim.root.datatypes.jsons.helper;
+  import uim.root.datatypes.jsons.null_;
+  import uim.root.datatypes.jsons.set;
+  import uim.root.datatypes.jsons.string_;
+  import uim.root.datatypes.jsons.typecheck;
+  import uim.root.datatypes.jsons.update;
+  import uim.root.datatypes.jsons.utils;
+  import uim.root.datatypes.jsons.values;
 }
 

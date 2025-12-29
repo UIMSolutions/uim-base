@@ -3,11 +3,11 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.jsons.arrays.types.strings.convert;
+module uim.root.datatypes.jsons.arrays.types.strings.convert;
 
-import uim.vibe;
+import uim.root;
 
-mixin(Version!("test_uim_vibe"));
+mixin(Version!("test_uim_root"));
 
 @safe:
 
@@ -20,6 +20,6 @@ string[] toStrings(Json[] jsons, size_t[] indices) {
 }
 
 string[] toStrings(Json[] jsons) {
-  import uim.vibe.datatypes.jsons.arrays.types.strings.filter : filterStrings;
+  import uim.root.datatypes.jsons.arrays.types.strings.filter : filterStrings;
   return jsons.filterStrings.map!(json => json.toString).array;
 }

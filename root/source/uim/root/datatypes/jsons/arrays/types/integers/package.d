@@ -3,15 +3,15 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.jsons.arrays.types.integers;
+module uim.root.datatypes.jsons.arrays.types.integers;
 
 public {
-  import uim.vibe.datatypes.jsons.arrays.types.integers.convert;
-  import uim.vibe.datatypes.jsons.arrays.types.integers.filter;
-  import uim.vibe.datatypes.jsons.arrays.types.integers.first;
-  import uim.vibe.datatypes.jsons.arrays.types.integers.get;
-  import uim.vibe.datatypes.jsons.arrays.types.integers.has;
-  import uim.vibe.datatypes.jsons.arrays.types.integers.is_;
-  import uim.vibe.datatypes.jsons.arrays.types.integers.last;
-  import uim.vibe.datatypes.jsons.arrays.types.integers.remove;
+  import uim.root.datatypes.jsons.arrays.types.integers.convert;
+  import uim.root.datatypes.jsons.arrays.types.integers.filter;
+  import uim.root.datatypes.jsons.arrays.types.integers.first;
+  import uim.root.datatypes.jsons.arrays.types.integers.get;
+  import uim.root.datatypes.jsons.arrays.types.integers.has;
+  import uim.root.datatypes.jsons.arrays.types.integers.is_;
+  import uim.root.datatypes.jsons.arrays.types.integers.last;
+  import uim.root.datatypes.jsons.arrays.types.integers.remove;
 }

@@ -1,8 +1,8 @@
-module uim.vibe.datatypes.jsons.arrays.types.scalars.is_;
+module uim.root.datatypes.jsons.arrays.types.scalars.is_;
 
-import uim.vibe;
+import uim.root;
 
-mixin(Version!("test_uim_vibe"));
+mixin(Version!("test_uim_root"));
 
 @safe:
 
@@ -40,6 +40,6 @@ bool isScalar(Json[] values, size_t index) {
     return false;
   } 
 
-  return uim.vibe.datatypes.jsons.typecheck.isScalar(values[index]);
+  return uim.root.datatypes.jsons.typecheck.isScalar(values[index]);
 }
 // #endregion is

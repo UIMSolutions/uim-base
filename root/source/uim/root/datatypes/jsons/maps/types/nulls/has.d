@@ -1,8 +1,8 @@
-module uim.vibe.datatypes.jsons.maps.types.nulls.has;
+module uim.root.datatypes.jsons.maps.types.nulls.has;
 
-import uim.vibe;
+import uim.root;
 
-mixin(Version!("test_uim_vibe"));
+mixin(Version!("test_uim_root"));
 
 @safe:
 

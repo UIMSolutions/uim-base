@@ -1,8 +1,8 @@
-module uim.vibe.convert.tomap;
+module uim.root.convert.tomap;
 
-import uim.vibe;
+import uim.root;
 
-mixin(Version!("test_uim_vibe"));
+mixin(Version!("test_uim_root"));
 @safe:
 
 /**

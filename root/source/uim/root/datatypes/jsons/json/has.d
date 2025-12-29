@@ -1,8 +1,8 @@
-module uim.vibe.datatypes.jsons.json.has;
+module uim.root.datatypes.jsons.json.has;
 
-import uim.vibe;
+import uim.root;
 
-mixin(Version!("test_uim_vibe"));
+mixin(Version!("test_uim_root"));
 
 @safe:
 

@@ -3,18 +3,18 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.jsons.arrays.types.integers.is_;
+module uim.root.datatypes.jsons.arrays.types.integers.is_;
 
-import uim.vibe;
+import uim.root;
 
-mixin(Version!("test_uim_vibe"));
+mixin(Version!("test_uim_root"));
 
 @safe:
 
 // #region all
 // #region noIndex
 bool isAllInteger(Json[] values) {
-  return values.all!(value => uim.vibe.datatypes.jsons.typecheck.isInteger(value));
+  return values.all!(value => uim.root.datatypes.jsons.typecheck.isInteger(value));
 }
 // #endregion noIndex
 
@@ -28,7 +28,7 @@ bool isAllInteger(Json[] values, size_t[] indices) {
 // #region any
 // #region noIndex
 bool isAnyInteger(Json[] values) {
-  return values.any!(value => uim.vibe.datatypes.jsons.typecheck.isInteger(value));
+  return values.any!(value => uim.root.datatypes.jsons.typecheck.isInteger(value));
 }
 // #endregion noIndex
 
@@ -45,6 +45,6 @@ bool isInteger(Json[] values, size_t index) {
     return false;
   } 
 
-  return uim.vibe.datatypes.jsons.typecheck.isInteger(values[index]);
+  return uim.root.datatypes.jsons.typecheck.isInteger(values[index]);
 }
 // #endregion is

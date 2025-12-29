@@ -1,6 +1,6 @@
-module uim.vibe.datatypes.jsons.arrays.types.undefineds;
+module uim.root.datatypes.jsons.arrays.types.undefineds;
 
 public {
-  import uim.vibe.datatypes.jsons.arrays.types.undefineds.is_;
-  import uim.vibe.datatypes.jsons.arrays.types.undefineds.has;
+  import uim.root.datatypes.jsons.arrays.types.undefineds.is_;
+  import uim.root.datatypes.jsons.arrays.types.undefineds.has;
 }

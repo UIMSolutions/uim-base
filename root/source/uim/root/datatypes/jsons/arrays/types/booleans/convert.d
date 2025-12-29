@@ -3,11 +3,11 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.vibe.datatypes.jsons.arrays.types.booleans.convert;
+module uim.root.datatypes.jsons.arrays.types.booleans.convert;
 
-import uim.vibe;
+import uim.root;
 
-mixin(Version!("test_uim_vibe"));
+mixin(Version!("test_uim_root"));
 
 @safe:
 
@@ -16,25 +16,25 @@ bool[] toBooleans(Json[] jsons, bool delegate(Json json) @safe convertFunc) {
 }
 
 bool[] toBooleans(Json[] jsons, size_t[] indices) {
-  import uim.vibe.datatypes.jsons.arrays.types.booleans.filter;
+  import uim.root.datatypes.jsons.arrays.types.booleans.filter;
   return jsons.filterBooleans(indices).toBooleans;
 }
 
 bool[] toBooleans(Json[] jsons) {
-  import uim.vibe.datatypes.jsons.arrays.types.booleans.filter;
+  import uim.root.datatypes.jsons.arrays.types.booleans.filter;
   return jsons.filterBooleans.map!(json => json.toBoolean).array;
 }
 ///
 unittest {
-  import uim.vibe.datatypes.jsons.json;
-  import uim.vibe.datatypes.jsons.arrays.types.booleans.convert : toBooleans;
+  import uim.root.datatypes.jsons.json;
+  import uim.root.datatypes.jsons.arrays.types.booleans.convert : toBooleans;
   
   Json[] jsons = [ Json(true), Json(1), Json(false), Json("true"), Json(null) ];
   
   auto bools1 = toBooleans(jsons, json => json.toBoolean);
   assert(bools1 == [ true, true, false, true, false ]);
   
-  import uim.vibe.datatypes.jsons.arrays.types.booleans.filter : filterBooleans;
+  import uim.root.datatypes.jsons.arrays.types.booleans.filter : filterBooleans;
   auto bools2 = toBooleans(jsons.filterBooleans);
   assert(bools2 == [ true, false ]);
 }
