@@ -21,15 +21,6 @@ bool isMap(Json json) {
 
 // #endregion is
 
-/// Check if jsonPath exists
-bool hasPath(Json json, string path, string separator = "/") {
-  if (!json.isObject) {
-    return false;
-  }
-
-  auto pathItems = path.split(separator);
-  return hasPath(json, pathItems);
-}
 
 
 /// Reduce Json Object to keys (remove others)
@@ -473,7 +464,7 @@ Json removeItem(Json json, string[] path) {
   if (!json.isObject || path.length == 0) {
     return json;
   }
-  
+
   if (path.length == 1) {
     return removeItem(json, path[0]);
   }

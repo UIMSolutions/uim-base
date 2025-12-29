@@ -11,6 +11,21 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
+// #region Json[string]
+Json[string] filterIntegers(Json[string] items, bool delegate(Json json) @safe filterFunc) {
+  return items.filterIntegers.filter!(json => filterFunc(json)).array;
+}
+
+Json[string] filterIntegers(Json[string] items, string[] keys) {
+  return items.filterKeys(keys).filter!(json => json.isInteger).array;
+}
+
+Json[string] filterIntegers(Json[string] items) {
+  return items.byValue.array.filter!(json => json.isInteger).array;
+}
+// #endregion Json[string]
+
+// #region Json
 Json[] filterIntegers(Json json, bool delegate(Json json) @safe filterFunc) {
   return json.filterIntegers.filter!(j => filterFunc(j)).array;
 }
@@ -21,12 +36,17 @@ Json[] filterIntegers(Json jsons, size_t[] indices) {
 }
 */
 
-Json[] filterIntegers(Json json) {
+Json filterIntegers(Json json) {
   if (json.isArray) {
-    return json.toArray.filter!(item => item.isArray).array;
+    return json.toArray.filterIntegers.toJson;
   }
+
+  /* 
   if (json.isObject) {
-    return json.byValue.filter!(item => item.isArray).array;
+    return json.byValue.filterIntegers!(item => item.isArray).array;
   }
-  return json.isArray ? [json] : null;
+  */ 
+
+  return null;
 }
+// #endregion Json

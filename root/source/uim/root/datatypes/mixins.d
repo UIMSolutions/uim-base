@@ -6,6 +6,9 @@
 module uim.root.datatypes.mixins;
 
 import uim.root;
+
+mixin(Version!("test_uim_root"));
+
 @safe:
 
 // #region hasFunctions

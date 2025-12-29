@@ -49,11 +49,11 @@ bool hasPath(Json json, string[] path) {
   }
 
   auto first = json.getKey(path[0]);
-  if (first.isNull) {
-    return false;
+  if (path.length == 1) {
+    return first;
   }
 
-  return path.length > 1 ? first.hasPath(path[1 .. $]) : true;
+  return !first.isNull && path.length > 1 ? first.hasPath(path[1 .. $]) : true;
 }
 ///
 unittest {
