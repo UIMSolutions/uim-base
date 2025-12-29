@@ -17,16 +17,15 @@ bool hasAnyValue(T)(Json json, T[] values) {
 }
 
 bool hasValue(T)(Json json, T value) {
-  if (json = Json(null)) {
+  if (json == Json(null)) {
     return false;
   }
 
   if (json.isArray) {
-    return json.get!(Json[])
+    return json.byValue
       .any!(v => hasValue(v, value));
   } else if (json.isObject) {
-    return json.get!(Json[string])
-      .any!(v => hasValue(v, value));
+    return json.byValue.any!(v => hasValue(v, value));
   }
 
   return json == value.toJson;

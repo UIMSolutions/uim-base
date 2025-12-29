@@ -32,10 +32,6 @@ Json getValue(Json json, size_t index) {
   return json.isArray && json.length > index ? json[index] : Json(null); 
 }
 
-Json getValue(Json[] jsons, size_t index) {
-  return jsons.length > index ? jsons[index] : Json(null); 
-}
-
 
 
 

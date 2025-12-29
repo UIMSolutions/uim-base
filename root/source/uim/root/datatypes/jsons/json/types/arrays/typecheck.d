@@ -11,6 +11,21 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
+// #region Json[string]
+bool isAllArray(Json[string] jsons, string[] keys = null) {
+  return keys.length > 0 
+    ? keys.all!(key => jsons.getValue(key).isArray) 
+    : jsons.byValue.all!(value => value.isArray);
+}
+
+bool isAnyArray(Json[string] jsons, string[] keys = null) {
+  return keys.length > 0 
+    ? keys.any!(key => jsons.getValue(key).isArray) 
+    : jsons.byValue.any!(value => value.isArray);
+}
+// #endregion Json[string]
+
+// #region Json[]
 bool isAllArray(Json[] jsons, size_t[] indices = null) {
   return indices.all!(index => isArray(jsons, index)); 
 }
@@ -22,7 +37,9 @@ bool isAnyArray(Json[] jsons, size_t[] indices = null) {
 bool isArray(Json[] jsons, size_t index) {
   return jsons.getValue(index).isArray;
 }
+// #endregion Json[]
 
+// #region Json
 bool isAllArray(Json json, string[][] paths) {
   return paths.any!(path => json.isArray(path));
 }
@@ -62,3 +79,4 @@ bool isArray(Json json, size_t index) {
 bool isArray(Json json) {
   return (json.type == Json.Type.array);
 }
+// #endregion Json

@@ -6,7 +6,6 @@
 module uim.root.datatypes.jsons.json.types.objects;
 
 public {
-  import uim.root.datatypes.jsons.json.types.objects.convert;
   import uim.root.datatypes.jsons.json.types.objects.filter;
   import uim.root.datatypes.jsons.json.types.objects.first;
   import uim.root.datatypes.jsons.json.types.objects.get;

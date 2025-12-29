@@ -18,3 +18,7 @@ T[] getValues(T)(T[] arrays, size_t[] indices) {
     .map!(index => arrays[index])
     .array;
 }
+
+T getValue(T)(T[] arrays, size_t index, T defaultValue = Null!T) {
+  return arrays.length > index ? arrays[index] : defaultValue;
+}

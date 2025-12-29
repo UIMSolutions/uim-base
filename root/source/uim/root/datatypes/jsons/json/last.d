@@ -44,7 +44,7 @@ Json lastBoolean(Json json) {
   import uim.root.datatypes.jsons.arrays.types.booleans.filter;
 
   return json.isArray
-    ? last(
+    ? uim.root.containers.sequential.arrays.last.last(
       json.toArray.filterBooleans) : Json(null);
 }
 

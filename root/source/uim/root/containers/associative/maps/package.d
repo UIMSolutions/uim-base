@@ -9,6 +9,7 @@ public {
   import uim.root.containers.associative.maps.convert;
   import uim.root.containers.associative.maps.every;
   import uim.root.containers.associative.maps.has;
+  import uim.root.containers.associative.maps.get;
   import uim.root.containers.associative.maps.filter;
   import uim.root.containers.associative.maps.pairs;
   import uim.root.containers.associative.maps.remove;

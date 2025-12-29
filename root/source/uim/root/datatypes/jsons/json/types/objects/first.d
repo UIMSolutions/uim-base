@@ -6,6 +6,7 @@
 module uim.root.datatypes.jsons.json.types.objects.first;
 
 import uim.root;
+  import uim.root.datatypes.jsons.arrays.types.booleans.filter;
 
 mixin(Version!("test_uim_root"));
 
