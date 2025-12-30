@@ -11,13 +11,6 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
-// #region Json[]
-Json getValue(Json[] jsons, size_t index) {
-  return jsons.length > index
-    ? jsons[index] : Json(null);
-}
-// #endregion Json[]
-
 // #region Json[string]
 Json getValue(Json[string] map, string[] path) {
   if (map is null || path.length == 0) {
@@ -32,12 +25,6 @@ Json getValue(Json[string] map, string[] path) {
   return !firstJson == Json(null) && path.length > 1 ? map[path[0]].getValue(
     path[1 .. $]) : Json(null);
 }
-
-Json getValue(Json[string] map, string key) {
-  return key in map
-    ? map[key] : Json(null);
-}
-// #endregion Json[string]
 
 // #region Json
 Json getValue(Json json, size_t index) {

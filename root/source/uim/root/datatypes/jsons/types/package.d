@@ -7,6 +7,10 @@ module uim.root.datatypes.jsons.types;
 
 public {
   import uim.root.datatypes.jsons.types.arrays;
+  import uim.root.datatypes.jsons.types.booleans;
+  import uim.root.datatypes.jsons.types.doubles;
+  import uim.root.datatypes.jsons.types.integers;
+  import uim.root.datatypes.jsons.types.nulls;
   import uim.root.datatypes.jsons.types.objects;
   import uim.root.datatypes.jsons.types.scalars;
   import uim.root.datatypes.jsons.types.strings;
