@@ -60,7 +60,7 @@ bool isAnyString(Json json, string[][] paths) {
 }
 
 bool isString(Json json, string[] path) {
-  return json.getPath(path).isString;
+  return json.getValue(path).isString;
 }
 // #endregion path
 

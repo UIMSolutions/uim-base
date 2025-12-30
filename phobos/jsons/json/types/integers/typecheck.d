@@ -21,7 +21,7 @@ bool isAnyInteger(Json[string] map, string[][] paths) {
 }
 
 bool isInteger(Json[string] map, string[] path) {
-  return map.getPath(path).isInteger;
+  return map.getValue(path).isInteger;
 }
 
 bool isAllInteger(Json[string] map, string[] keys = null) {
@@ -74,7 +74,7 @@ bool isAnyInteger(Json json, string[][] paths) {
 }
 
 bool isInteger(Json json, string[] path) {
-  return json.getPath(path).isInteger;
+  return json.getValue(path).isInteger;
 }
 
 bool isAllInteger(Json json, string[] keys) {

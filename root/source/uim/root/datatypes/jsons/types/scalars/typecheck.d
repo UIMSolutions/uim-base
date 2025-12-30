@@ -60,7 +60,7 @@ bool isAnyScalar(Json json, string[][] paths) {
 }
 
 bool isScalar(Json json, string[] path) {
-  return json.getPath(path).isScalar;
+  return json.getValue(path).isScalar;
 }
 // #endregion path
 

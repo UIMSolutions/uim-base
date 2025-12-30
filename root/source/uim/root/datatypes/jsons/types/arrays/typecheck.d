@@ -60,7 +60,7 @@ bool isAnyArray(Json json, string[][] paths) {
 }
 
 bool isArray(Json json, string[] path) {
-  return json.getPath(path).isArray;
+  return json.getValue(path).isArray;
 }
 // #endregion path
 

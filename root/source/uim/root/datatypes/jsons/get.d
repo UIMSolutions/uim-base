@@ -11,7 +11,15 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
-Json getPath(Json[string] map, string[] path) {
+// #region Json[]
+Json getValue(Json[] jsons, size_t index) {
+  return jsons.length > index
+    ? jsons[index] : Json(null);
+}
+// #endregion Json[]
+
+// #region Json[string]
+Json getValue(Json[string] map, string[] path) {
   if (map is null || path.length == 0) {
     return Json(null);
   }
@@ -21,11 +29,26 @@ Json getPath(Json[string] map, string[] path) {
     return firstJson;
   }
 
-  return !firstJson == Json(null) && path.length > 1 ? map[path[0]].getPath(path[1 .. $]) : Json(null);
+  return !firstJson == Json(null) && path.length > 1 ? map[path[0]].getValue(
+    path[1 .. $]) : Json(null);
 }
 
-Json getPath(Json json, string[] path) {
-  if (!json.isObject || path.length == 0) {
+Json getValue(Json[string] map, string key) {
+  return key in map
+    ? map[key] : Json(null);
+}
+// #endregion Json[string]
+
+// #region Json
+Json getValue(Json json, size_t index) {
+  if (!json.isArray) {
+    return Json(null);
+  }
+  return json.length > index ? json[index] : Json(null);
+}
+
+Json getValue(Json json, string[] path) {
+  if (json == Json(null) || path.length == 0) {
     return Json(null);
   }
 
@@ -34,7 +57,8 @@ Json getPath(Json json, string[] path) {
     return firstJson;
   }
 
-  return !firstJson == Json(null) && path.length > 1 ? json[path[0]].getPath(path[1 .. $]) : Json(null);
+  return !firstJson == Json(null) && path.length > 1 ? json.getValue(
+    path[1 .. $]) : Json(null);
 }
 
 Json getValue(Json json, string key) {
@@ -44,22 +68,4 @@ Json getValue(Json json, string key) {
 
   return key in json ? json[key] : Json(null);
 }
-
-Json getValue(Json json, size_t index) {
-  if (!json.isArray) {
-    return Json(null);
-  }
-  return json.length > index ? json[index] : Json(null);
-}
-
-
-
-
-
-
-
-
-
-
-
-
+// #endregion Json

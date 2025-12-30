@@ -40,7 +40,7 @@ bool isAnyDouble(Json json, string[][] paths) {
 }
 
 bool isDouble(Json json, string[] path) {
-  return json.getPath(path).isDouble;
+  return json.getValue(path).isDouble;
 }
 
 bool isAllDouble(Json json, string[] keys) {

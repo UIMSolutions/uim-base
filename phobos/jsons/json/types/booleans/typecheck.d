@@ -40,7 +40,7 @@ bool isAnyBoolean(Json json, string[][] paths) {
 }
 
 bool isBoolean(Json json, string[] path) {
-  return json.getPath(path).isBoolean;
+  return json.getValue(path).isBoolean;
 }
 
 bool isAllBoolean(Json json, string[] keys) {

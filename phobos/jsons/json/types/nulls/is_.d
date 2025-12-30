@@ -28,7 +28,7 @@ bool isAnyNull(Json json, string[][] paths) {
 // #region is
 bool isNull(Json json, string[] path) {
 
-  return json.hasPath(path) ? json.getPath(path).isNull : false;
+  return json.hasPath(path) ? json.getValue(path).isNull : false;
 }
 // #endregion is
 // #endregion path

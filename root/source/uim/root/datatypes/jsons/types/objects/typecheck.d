@@ -154,7 +154,7 @@ bool isAnyObject(Json json, string[][] paths) {
 }
 
 bool isObject(Json json, string[] path) {
-  return json.getPath(path).isObject;
+  return json.getValue(path).isObject;
 }
 // #endregion path
 

@@ -26,7 +26,7 @@ bool isAnyUndefined(Json json, string[][] paths) {
 
 // #region is
 bool isUndefined(Json json, string[] path) {
-  return json.getPath(path).isUndefined;
+  return json.getValue(path).isUndefined;
 }
 // #endregion is
 // #endregion path
