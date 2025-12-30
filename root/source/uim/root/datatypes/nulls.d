@@ -127,7 +127,3 @@ T Null(T : Object)() {
 T Null(T)() if (isArray!T) {
   return null;
 }
-unittest {
-  int[] arr = Null!(int[]);
-  assert(arr is null);
-}

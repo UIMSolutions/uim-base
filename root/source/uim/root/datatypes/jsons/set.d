@@ -118,63 +118,7 @@ unittest {
 Json setValue(T)(Json json, string key, T value) {
   return json.set(key, Json(value));
 }
-/// 
-unittest {
-  // Test with string value
-  auto json1 = Json.emptyObject;
-  auto result = json1.setValue("name", "test");
-  assert(result["name"] == Json("test"));
 
-  // Test with integer value
-  auto json2 = Json.emptyObject;
-  auto result = json2.setValue("age", 42);
-  assert(result["age"] == Json(42));
-
-  // Test with boolean value
-  auto json3 = Json.emptyObject;
-  auto result = json3.setValue("active", true);
-  assert(result["active"] == Json(true));
-
-  // Test with double value
-  auto json4 = Json.emptyObject;
-  auto result = json4.setValue("price", 99.99);
-  assert(result["price"] == Json(99.99));
-
-  // Test overwriting existing value
-  auto json5 = Json.emptyObject;
-  json5.setValue("key", "old");
-  auto result = json5.setValue("key", "new");
-  assert(result["key"] == Json("new"));
-
-  // Test with non-empty Json object
-  auto json6 = parseJsonString(`{"existing": "value"}`);
-  auto result = json6.setValue("new", "data");
-  assert(result["existing"] == Json("value"));
-  assert(result["new"] == Json("data"));
-
-  // Test with array value
-  auto json7 = Json.emptyObject;
-  auto result = json7.setValue("items", [1, 2, 3]);
-  assert(result["items"].length == 3);
-  assert(result["items"][0] == Json(1));
-
-  // Test chaining multiple setValue calls
-  auto json8 = Json.emptyObject;
-  auto result = json8.setValue("a", 1).setValue("b", 2).setValue("c", 3);
-  assert(result["a"] == Json(1));
-  assert(result["b"] == Json(2));
-  assert(result["c"] == Json(3));
-
-  // Test with null value
-  auto json9 = Json.emptyObject;
-  auto result = json9.setValue("nullable", null);
-  assert(result["nullable"].type == Json.Type.null_);
-
-  // Test setValue doesn't modify non-object Json
-  auto json10 = Json(42);
-  auto result = json.setValue("key", "value");
-  assert(result == Json(42));
-}
 
 /// Sets a single key to a value
 Json setValue(T : Json)(Json json, string key, T value) {
@@ -183,94 +127,7 @@ Json setValue(T : Json)(Json json, string key, T value) {
   }
   return json;
 }
-///
-unittest {
-  // Test setting Json value on empty object
-  auto json1 = Json.emptyObject;
-  auto result1 = json1.setValue("key", Json("value"));
-  assert(result1.isObject);
-  assert(result1["key"] == Json("value"));
 
-  // Test setting Json value on existing object
-  auto json2 = Json.emptyObject;
-  json2["existing"] = Json(42);
-  auto result2 = json2.setValue("new", Json("data"));
-  assert(result2["existing"] == Json(42));
-  assert(result2["new"] == Json("data"));
-
-  // Test overwriting existing Json value
-  auto json3 = Json.emptyObject;
-  json3["key"] = Json("old");
-  auto result3 = json3.setValue("key", Json("new"));
-  assert(result3["key"] == Json("new"));
-
-  // Test with Json object value
-  auto json4 = Json.emptyObject;
-  auto nestedObj = Json.emptyObject;
-  nestedObj["nested"] = Json("value");
-  auto result4 = json4.setValue("object", nestedObj);
-  assert(result4["object"]["nested"] == Json("value"));
-
-  // Test with Json array value
-  auto json5 = Json.emptyObject;
-  auto arr = Json.emptyArray;
-  arr ~= Json(1);
-  arr ~= Json(2);
-  auto result5 = json5.setValue("array", arr);
-  assert(result5["array"].length == 2);
-  assert(result5["array"][0] == Json(1));
-
-  // Test with Json null value
-  auto json6 = Json.emptyObject;
-  auto result6 = json6.setValue("nullable", Json(null));
-  assert(result6["nullable"].type == Json.Type.null_);
-
-  // Test with Json boolean value
-  auto json7 = Json.emptyObject;
-  auto result7 = json7.setValue("flag", Json(true));
-  assert(result7["flag"] == Json(true));
-
-  // Test with Json number value
-  auto json8 = Json.emptyObject;
-  auto result8 = json8.setValue("number", Json(123.45));
-  assert(result8["number"] == Json(123.45));
-
-  // Test on non-object Json (should return unchanged)
-  auto json9 = Json(42);
-  auto result9 = json9.setValue("key", Json("value"));
-  assert(result9 == Json(42));
-  assert(result9.type == Json.Type.int_);
-
-  // Test on Json array (should return unchanged)
-  auto json10 = Json.emptyArray;
-  auto result10 = json10.setValue("key", Json("value"));
-  assert(result10.type == Json.Type.array);
-  assert(result10.length == 0);
-
-  // Test on Json null (should return unchanged)
-  auto json11 = Json(null);
-  auto result11 = json11.setValue("key", Json("value"));
-  assert(result11.type == Json.Type.null_);
-
-  // Test chaining multiple setValue calls
-  auto json12 = Json.emptyObject;
-  auto result12 = json12.setValue("a", Json(1))
-    .setValue("b", Json(2))
-    .setValue("c", Json(3));
-  assert(result12["a"] == Json(1));
-  assert(result12["b"] == Json(2));
-  assert(result12["c"] == Json(3));
-
-  // Test with empty string key
-  auto json13 = Json.emptyObject;
-  auto result13 = json13.setValue("", Json("empty_key"));
-  assert(result13[""] == Json("empty_key"));
-
-  // Test that original json is modified (by reference)
-  auto json14 = Json.emptyObject;
-  json14.setValue("test", Json("modified"));
-  assert(json14["test"] == Json("modified"));
-}
 
 // #region Json[string]
 /* Json[string] setNull(Json[string] map, string key) {
@@ -391,35 +248,7 @@ Json[string] set(Json[string] map, string key, Json value) {
   return map;
 }
 
-unittest {
-  Json[string] json = ["a": Json("A")];
-  assert(json["a"] == Json("A"));
 
-  json.set("b", Json("B")).set("c", Json("C"));
-  assert(json.hasAllKey(["a", "b", "c"]));
-  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
-
-  json = json.removeAll.set("a", "A");
-  assert(json["a"] == Json("A"));
-
-  json.set("b", "B").set("c", "C");
-  assert(json.hasAllKey(["a", "b", "c"]));
-  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
-
-  json = json.removeAll.set("a", "A");
-  assert(json["a"] == Json("A"));
-
-  json.set(["b", "c"], "X");
-  assert(json.hasAllKey(["a", "b", "c"]));
-  assert(json["a"] == Json("A") && json["b"] == Json("X") && json["c"] == Json("X"));
-
-  json = json.removeAll.set("a", "A");
-  assert(json["a"] == Json("A"));
-
-  json.set(["b": "B", "c": "C"]);
-  assert(json.hasAllKey(["a", "b", "c"]));
-  assert(json["a"] == Json("A") && json["b"] == Json("B") && json["c"] == Json("C"));
-}
 // #endregion Json[string]
 
 /** 

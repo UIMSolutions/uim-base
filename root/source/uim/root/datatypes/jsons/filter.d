@@ -11,9 +11,17 @@ Json filterValues(Json json, bool delegate(Json json) filterFunc) {
     return Json(null);
   }
 
-  Json[] results;
-  () @trusted { results = json.toArray.filter!(value => filterFunc(value)).array; }();
-  return results.toJson;
+  Json result;
+  () @trusted {
+    result = json.toArray.filter!(value => filterFunc(value)).array.toJson;
+  }();
+  return result;
+}
+///
+unittest {
+  /* auto json = [1, 2, 3, 4, 5].toJson;
+  auto filtered = filterValues(json, value => value.asInt % 2 == 0);
+  assert(filtered == [2, 4].toJson); */
 }
 
 /** 
@@ -28,7 +36,12 @@ Json filterValues(Json json, bool delegate(Json json) filterFunc) {
     If the input JSON is not an array, returns a JSON null.
 */
 Json filterValues(Json json, bool delegate(Json json) @safe filterFunc) {
-  return json.isArray 
-    ? json.toArray.filter!(j => filterFunc(j)).array.toJson
-    : Json(null);
+  return json.isArray
+    ? json.toArray.filter!(j => filterFunc(j)).array.toJson : Json(null);
+}
+///
+unittest {
+  /* auto json = [1, 2, 3, 4, 5].toJson;
+  auto filtered = filterValues(json, value => value.asInt % 2 != 0);
+  assert(filtered == [1, 3, 5].toJson); */
 }

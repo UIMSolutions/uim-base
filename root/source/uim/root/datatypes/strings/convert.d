@@ -6,38 +6,23 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
-string toString(short value) {
+string[] toString(T)(T values) if (isArray!T) {
+  return values.map!(v => to!string(v)).array;
+}
+/// 
+unittest {
+  auto result = [1, 2, 3].toString;
+  assert(result.length == 3);
+  assert(result[0] == "1");
+  assert(result[1] == "2");
+  assert(result[2] == "3");
+}
+
+string toString(T)(T value) if (!isArray!T) {
   return to!string(value);
-}
-
-string toString(int value) {
-  return to!string(value);
-}
-
-string toString(long value) {
-  return to!string(value);
-}
-
-string toString(double value) {
-  return to!string(value);
-}
-
-string toString(string value) {
-  return value;
-}
-
-string toString(T)(T[] values) {
-  return "[" ~ values.map!(value => value.toString).join(",") ~ "]";
 }
 ///
 unittest {
-    assert(toString(123) == "123");
-    assert(toString(123.45) == "123.45");
-    assert(toString(["foo", "bar"]) == `["foo","bar"]`);
-    assert(toString([1, 2, 3]) == "[1,2,3]");
-}
-///
-unittest {
-  assert(toString(["foo", "bar"]) == `["foo","bar"]`);
-  assert(toString([1, 2, 3]) == "[1,2,3]");
+  auto result = 42.toString;
+  assert(result == "42");
 }

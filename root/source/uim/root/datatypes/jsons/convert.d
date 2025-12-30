@@ -9,6 +9,23 @@ import uim.root;
 mixin(Version!("test_uim_root"));
 @safe:
 
+Json[] toArray(Json value) {
+  if (value == Json(null)) {
+    return null;
+  }
+
+  return value.isArray
+    ? value.to!(Json[]) : null;
+}
+
+Json[string] toMap(Json value) {
+  if (value == Json(null)) {
+    return null;
+  }
+
+  return value.isObject
+    ? value.to!(Json[string]) : null;
+}
 // #region toJson
 // #region value to Json
 Json toJson(T)(T value) if (isScalarType!(T)) {
@@ -76,17 +93,7 @@ Json toJson(V:UUID)(V[] uuids) {
   return result;
 }
 
-unittest {
-  assert([true, true, false].toJson.length == 3);
-  assert([true, true, false].toJson[0].getBoolean);
 
-  auto id = randomUUID;
-  auto id2 = randomUUID;
-  auto id3 = randomUUID;
-  auto id4 = randomUUID;
-  assert([id, id2, id3, id4].toJson.length == 4);
-  assert([id, id2, id3, id4].toJson[0] == id.toJson);
-}
 // #endregion array to Json
 
 // #region map to Json

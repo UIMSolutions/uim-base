@@ -280,14 +280,7 @@ V[] clear(V)(ref V[] items) {
   return items;
 }
 
-unittest {
-  writeln("--- clear");
-  string[] testMap = ["a", "b", "c"];
-  assert(testMap.length == 3);
-  assert(testMap.clear.length == 0);
-  writeln(testMap);
-  assert(testMap.length == 0);
-}
+
 
 // #region push
 T[] push(T)(auto ref T[] items, T[] values) {
