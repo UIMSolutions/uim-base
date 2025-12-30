@@ -21,6 +21,7 @@ public {
   import uim.root.containers.sequential.arrays.filtermap;
   import uim.root.containers.sequential.arrays.find;
   import uim.root.containers.sequential.arrays.first;
+  import uim.root.containers.sequential.arrays.filter;
   import uim.root.containers.sequential.arrays.flattenmap;
   import uim.root.containers.sequential.arrays.fold;
   import uim.root.containers.sequential.arrays.has;

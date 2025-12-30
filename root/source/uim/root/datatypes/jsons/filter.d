@@ -6,42 +6,62 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
-Json filterValues(Json json, bool delegate(Json json) filterFunc) {
-  if (!json.isArray) {
-    return Json(null);
-  }
+// #region filterKeys
+Json filterKeys(Json json, string[] keys, bool delegate(string) @safe filterFunc) {
+  return json.isObject
+    ? json.filterKeys(keys).filterKeys(filterFunc) : Json(null);
+}
 
-  Json result;
-  () @trusted {
-    result = json.toArray.filter!(value => filterFunc(value)).array.toJson;
-  }();
+Json filterKeys(Json json, string[] keys) {
+  return json.isObject
+    ? json.filterKeys((string key) => json.hasKey(key)) : Json(null);
+}
+
+Json filterKeys(Json json, bool delegate(string) @safe filterFunc) {
+  if (json.isObject) {
+    Json(null);
+  }
+  Json result = Json.emptyObject;
+  json.byKeyValue
+    .filter!(kv => filterFunc(kv.key))
+    .each!(kv => result[kv.key] = kv.value);
   return result;
 }
-///
-unittest {
-  /* auto json = [1, 2, 3, 4, 5].toJson;
-  auto filtered = filterValues(json, value => value.asInt % 2 == 0);
-  assert(filtered == [2, 4].toJson); */
+// #endregion filterKeys
+
+// #region filterValues
+Json filterValues(Json json, size_t[] indices, bool delegate(Json) @safe filterFunc) {
+  return json.filterValues(indices).filterValues(filterFunc);
 }
 
-/** 
-  Filters the values of a JSON array based on a provided filter function.
-
-  Params:
-    json = The input JSON which is expected to be an array.
-    filterFunc = A delegate function that takes a JSON value and returns a boolean indicating whether to include it.
-
-  Returns:
-    A new JSON array containing only the values for which the filter function returned true.
-    If the input JSON is not an array, returns a JSON null.
-*/
-Json filterValues(Json json, bool delegate(Json json) @safe filterFunc) {
-  return json.isArray
-    ? json.toArray.filter!(j => filterFunc(j)).array.toJson : Json(null);
+Json filterValues(Json json, size_t[] indices) {
+  Json result = Json.emptyArray;
+  foreach(index, value; json.toArray) {
+    if (hasValue(indices, index)) {
+      result ~= value;
+    }
+  }
+  return result;
 }
-///
-unittest {
-  /* auto json = [1, 2, 3, 4, 5].toJson;
-  auto filtered = filterValues(json, value => value.asInt % 2 != 0);
-  assert(filtered == [1, 3, 5].toJson); */
+
+Json filterValues(Json json, Json[] values, bool delegate(Json) @safe filterFunc) {
+  return json.filterValues(values).filterValues(filterFunc);
 }
+
+Json filterValues(Json json, Json[] values) {
+  return json.filterValues((Json value) => values.hasValue(value));
+}
+
+Json filterValues(Json json, bool delegate(Json) @safe filterFunc) {
+  if (json.isArray) {
+    return json.byValue.filter!(json => filterFunc(json)).array.toJson;
+  } else if (json.isObject) {
+    Json result = Json.emptyObject;
+    json.byKeyValue
+      .filter!(kv => filterFunc(kv.value))
+      .each!(kv => result[kv.key] = kv.value);
+    return result;
+  }
+  return Json(null);
+}
+// #endregion filterValues
