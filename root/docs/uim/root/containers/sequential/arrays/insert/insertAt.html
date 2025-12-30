@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function assertNotNull</title>
+		<title>Function insertAt</title>
 		<link rel="stylesheet" type="text/css" href="../../../../../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../../../../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../../../../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../../../../../scripts/ddox.js">/**/</script>
@@ -32,12 +32,12 @@ $('#symbolSearchPane').show();</script>
 					<div class="package ">containers
 					</div>
 			<ul class="tree-view">
-				<li class="tree-view ">
+				<li class="tree-view collapsed">
 					<div class="package ">
 						<a href="../../../../../../uim/root/containers/associative.html">associative</a>
 					</div>
 			<ul class="tree-view">
-				<li class="tree-view ">
+				<li class="tree-view collapsed">
 					<div class="package ">
 						<a href="../../../../../../uim/root/containers/associative/maps.html">maps</a>
 					</div>
@@ -77,21 +77,16 @@ $('#symbolSearchPane').show();</script>
 						<a href="../../../../../../uim/root/containers/associative/maps/remove.html">remove</a>
 					</div>
 				</li>
-				<li>
-					<div class="module selected">
-						<a href="../../../../../../uim/root/containers/associative/maps/testing.html">testing</a>
-					</div>
-				</li>
 			</ul>
 				</li>
 			</ul>
 				</li>
-				<li class="tree-view collapsed">
+				<li class="tree-view ">
 					<div class="package ">
 						<a href="../../../../../../uim/root/containers/sequential.html">sequential</a>
 					</div>
 			<ul class="tree-view">
-				<li class="tree-view collapsed">
+				<li class="tree-view ">
 					<div class="package ">
 						<a href="../../../../../../uim/root/containers/sequential/arrays.html">arrays</a>
 					</div>
@@ -99,6 +94,11 @@ $('#symbolSearchPane').show();</script>
 				<li>
 					<div class="module ">
 						<a href="../../../../../../uim/root/containers/sequential/arrays/array_.html">array_</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/containers/sequential/arrays/chunks.html">chunks</a>
 					</div>
 				</li>
 				<li>
@@ -173,11 +173,6 @@ $('#symbolSearchPane').show();</script>
 				</li>
 				<li>
 					<div class="module ">
-						<a href="../../../../../../uim/root/containers/sequential/arrays/foldright.html">foldright</a>
-					</div>
-				</li>
-				<li>
-					<div class="module ">
 						<a href="../../../../../../uim/root/containers/sequential/arrays/group.html">group</a>
 					</div>
 				</li>
@@ -192,7 +187,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../../../../../uim/root/containers/sequential/arrays/insert.html">insert</a>
 					</div>
 				</li>
@@ -339,6 +334,74 @@ $('#symbolSearchPane').show();</script>
 			<ul class="tree-view">
 				<li class="tree-view collapsed">
 					<div class="package ">
+						<a href="../../../../../../uim/root/datatypes/jsons.html">jsons</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types.html">types</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/arrays.html">arrays</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/arrays/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/objects.html">objects</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/objects/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/scalars.html">scalars</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/jsons/convert.html">convert</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/jsons/create.html">create</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/jsons/get.html">get</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/jsons/last.html">last</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/jsons/set.html">set</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
 						<a href="../../../../../../uim/root/datatypes/strings.html">strings</a>
 					</div>
 			<ul class="tree-view">
@@ -350,6 +413,11 @@ $('#symbolSearchPane').show();</script>
 				<li>
 					<div class="module ">
 						<a href="../../../../../../uim/root/datatypes/strings/capitalize.html">capitalize</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/strings/classify.html">classify</a>
 					</div>
 				</li>
 				<li>
@@ -379,11 +447,6 @@ $('#symbolSearchPane').show();</script>
 				</li>
 				<li>
 					<div class="module ">
-						<a href="../../../../../../uim/root/datatypes/strings/mutation.html">mutation</a>
-					</div>
-				</li>
-				<li>
-					<div class="module ">
 						<a href="../../../../../../uim/root/datatypes/strings/pascalize.html">pascalize</a>
 					</div>
 				</li>
@@ -394,12 +457,12 @@ $('#symbolSearchPane').show();</script>
 				</li>
 				<li>
 					<div class="module ">
-						<a href="../../../../../../uim/root/datatypes/strings/startswith.html">startswith</a>
+						<a href="../../../../../../uim/root/datatypes/strings/singularize.html">singularize</a>
 					</div>
 				</li>
 				<li>
 					<div class="module ">
-						<a href="../../../../../../uim/root/datatypes/strings/strings.html">strings</a>
+						<a href="../../../../../../uim/root/datatypes/strings/startswith.html">startswith</a>
 					</div>
 				</li>
 				<li>
@@ -448,6 +511,16 @@ $('#symbolSearchPane').show();</script>
 				</li>
 				<li>
 					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/bsons.html">bsons</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/helpers.html">helpers</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
 						<a href="../../../../../../uim/root/datatypes/mixins.html">mixins</a>
 					</div>
 				</li>
@@ -458,6 +531,11 @@ $('#symbolSearchPane').show();</script>
 				</li>
 			</ul>
 				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/testing.html">testing</a>
+					</div>
+				</li>
 			</ul>
 				</li>
 			</ul>
@@ -465,15 +543,19 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function assertNotNull</h1><p>Asserts that the provided associative array (map) is not null.
+			<h1>Function insertAt</h1><p>Inserts a value at a specified index in the array.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">void</span> <span class="pln">assertNotNull</span>(K, V)
+			<span class="kwd">auto</span> <span class="pln">insertAt</span>(T)
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="pln">V</span><span class="pun">[</span><span class="pln">K</span><span class="pun">]</span> <span class="pln">map</span>
+			&nbsp;&nbsp;<span class="pln">T</span><span class="pun">[]</span> <span class="pln">arr</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="pln">size_t</span> <span class="pln">index</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="kwd">in </span><span class="pln">T</span> <span class="pln">value</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
@@ -483,12 +565,30 @@ $('#symbolSearchPane').show();</script>
 
 			<section><h2>Parameters</h2>
 <table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
-<tr><td id="map">map</td><td> The associative array to check.</td></tr>
+<tr><td id="arr">arr</td><td> The input array where the value will be inserted.</td></tr>
+<tr><td id="index">index</td><td> The index at which to insert the value.</td></tr>
+<tr><td id="value">value</td><td> The value to insert.</td></tr>
 </table>
 </section>
-<section><h2>Throws</h2>
-<p>An assertion error if the map is null.
+<section><h2>Returns</h2>
+<p>A new array with the value inserted at the specified index.
+ <code class="lang-d"></code>`
 </p>
+</section>
+<section><h2>Example</h2>
+
+<pre class="code"><code class="lang-d"><span class="kwd">auto </span><span class="pln">result1 </span><span class="pun">= </span><span class="pln">insertAt</span><span class="pun">([</span><span class="lit">1</span><span class="pun">, </span><span class="lit">2</span><span class="pun">, </span><span class="lit">3</span><span class="pun">, </span><span class="lit">4</span><span class="pun">], </span><span class="lit">2</span><span class="pun">, </span><span class="lit">99</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">result1 </span><span class="pun">== [</span><span class="lit">1</span><span class="pun">, </span><span class="lit">2</span><span class="pun">, </span><span class="lit">99</span><span class="pun">, </span><span class="lit">3</span><span class="pun">, </span><span class="lit">4</span><span class="pun">]);
+
+</span><span class="kwd">auto </span><span class="pln">result2 </span><span class="pun">= </span><span class="pln">insertAt</span><span class="pun">([</span><span class="str">"a"</span><span class="pun">, </span><span class="str">"b"</span><span class="pun">, </span><span class="str">"c"</span><span class="pun">], </span><span class="lit">1</span><span class="pun">, </span><span class="str">"x"</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">result2 </span><span class="pun">== [</span><span class="str">"a"</span><span class="pun">, </span><span class="str">"x"</span><span class="pun">, </span><span class="str">"b"</span><span class="pun">, </span><span class="str">"c"</span><span class="pun">]);
+
+</span><span class="kwd">auto </span><span class="pln">result3 </span><span class="pun">= </span><span class="pln">insertAt</span><span class="pun">([</span><span class="lit">1.1</span><span class="pun">, </span><span class="lit">2.2</span><span class="pun">, </span><span class="lit">3.3</span><span class="pun">], </span><span class="lit">0</span><span class="pun">, </span><span class="lit">0.0</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">result3 </span><span class="pun">== [</span><span class="lit">0.0</span><span class="pun">, </span><span class="lit">1.1</span><span class="pun">, </span><span class="lit">2.2</span><span class="pun">, </span><span class="lit">3.3</span><span class="pun">]);
+
+</span><span class="kwd">auto </span><span class="pln">result4 </span><span class="pun">= </span><span class="pln">insertAt</span><span class="pun">([</span><span class="kwd">true</span><span class="pun">, </span><span class="kwd">false</span><span class="pun">], </span><span class="lit">5</span><span class="pun">, </span><span class="kwd">true</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">result4 </span><span class="pun">== [</span><span class="kwd">true</span><span class="pun">, </span><span class="kwd">false</span><span class="pun">, </span><span class="kwd">true</span><span class="pun">]);
+</span></code></pre>
 </section>
 
 			<footer>
