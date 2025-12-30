@@ -8,5 +8,7 @@ module uim.root.datatypes.jsons.types;
 public {
   import uim.root.datatypes.jsons.types.arrays;
   import uim.root.datatypes.jsons.types.objects;
-    import uim.root.datatypes.jsons.types.scalars;
+  import uim.root.datatypes.jsons.types.scalars;
+  import uim.root.datatypes.jsons.types.strings;
+  import uim.root.datatypes.jsons.types.undefineds;
 }

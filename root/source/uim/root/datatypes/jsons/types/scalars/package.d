@@ -5,3 +5,6 @@
 *****************************************************************************************************************/
 module uim.root.datatypes.jsons.types.scalars;
 
+public {
+  import uim.root.datatypes.jsons.types.scalars.typecheck;
+}

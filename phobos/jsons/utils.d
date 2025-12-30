@@ -11,9 +11,6 @@ mixin(Version!("test_uim_root"));
 @safe:
 
 // #region is
-bool isMap(Json json) {
-  return json.type == Json.Type.object;
-}
 
 // #region isArray
 

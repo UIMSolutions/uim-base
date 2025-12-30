@@ -193,3 +193,4 @@ unittest {
   assert(!hasValue(points, Point(5, 6)));
 }
 // #endregion Values
+
