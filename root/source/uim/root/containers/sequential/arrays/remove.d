@@ -21,6 +21,16 @@ T[] removeValues(T)(T[] items, size_t[] indices) {
   return results;
 }
 
+T[] removeValues(T)(T[] items, size_t[] indices, bool delegate(T t) @safe removeFunc) {
+  T[] results;
+  foreach(index, item; items) {
+    if (!indices.hasValue(index) && !removeFunc(items[index])) {
+      results ~= items[index];
+    }
+  }
+  return results;
+}
+
 T[] removeValues(T)(T[] items, bool delegate(T t) @safe removeFunc) {
   return items.removeValues(removeFunc);
 }

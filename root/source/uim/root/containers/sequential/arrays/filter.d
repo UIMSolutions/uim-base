@@ -147,6 +147,10 @@ unittest {
     assert(strResult.length == 0);
 }
 
+T[] filterValues(T)(T[] values, size_t[] indices, bool delegate(T) @safe filterFunc) {
+  return values.filterValues(indices).filterValues(filterFunc);
+}
+
 T[] filterValues(T)(T[] values, size_t[] indices) {
   T[] results;
   foreach(index, value; values) {
