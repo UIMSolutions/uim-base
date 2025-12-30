@@ -10,6 +10,70 @@ import uim.root;
 mixin(Version!("test_uim_phobos"));
 @safe:
 
+// #region firstPosition
+/**
+  * Returns the index of the first occurrence of `matchValue` in the array.
+  * If `matchValue` is not found, returns -1.
+  * 
+  * Params:
+  *   values = The array to search through.
+  *   matchValue = The value to search for.
+  * 
+  * Returns:
+  *   The index of the first occurrence of `matchValue`, or -1 if not found.
+*/
+size_t firstPosition(T)(T[] values, T matchValue) {
+  return values.firstPosition((T item) => item == matchValue);
+}
+///
+unittest {
+  // Test: firstPosition with existing value
+  int[] array1 = [10, 20, 30, 40, 50];
+  assert(array1.firstPosition(30) == 2);
+
+  // Test: firstPosition with non-existing value
+  int[] array2 = [1, 2, 3, 4, 5];
+  assert(array2.firstPosition(10) == -1);
+
+  // Test: firstPosition with strings
+  string[] array3 = ["apple", "banana", "cherry"];
+  assert(array3.firstPosition("banana") == 1);
+}
+
+/** 
+  * Returns the index of the first element in the array that satisfies the provided delegate function.
+  * If no element satisfies the function, returns -1.
+  * 
+  * Params:
+  *   values = The array to search through.
+  *   matchFunc = A delegate function that takes an element and returns a boolean indicating if it matches the condition.
+  * 
+  * Returns:
+  *   The index of the first element that satisfies the condition, or -1 if none do.
+  */
+size_t firstPosition(T)(T[] values, bool delegate(T) @safe matchFunc) {
+  foreach (index, item; values)
+    if (matchFunc(item))
+      return index;
+  return -1;
+}
+///
+unittest {
+  // Test: firstPosition with a condition that matches an element
+  int[] array1 = [10, 20, 30, 40, 50];
+  assert(array1.firstPosition((int value) => value == 30) == 2);
+
+  // Test: firstPosition with no matching elements
+  int[] array2 = [1, 2, 3, 4, 5];
+  assert(array2.firstPosition((int value) => value == 10) == -1);
+
+  // Test: firstPosition with strings
+  string[] array3 = ["apple", "banana", "cherry"];
+  assert(array3.firstPosition((string value) => value == "banana") == 1);
+}
+// #endregion firstPosition
+
+// #region first(Value)
 /** 
   * Returns the first element of the array or a Null!T if the array is empty.
   * 
@@ -49,7 +113,9 @@ unittest {
   double[] array6 = [];
   assert(first(array6) == Null!double);
 }
+// #endregion first(Value)
 
+// #region firstMany
 /** 
   * Returns an array containing the first 'size' elements of the input array.
   * If the input array has fewer than 'size' elements, returns a duplicate of the entire array.
@@ -68,43 +134,43 @@ T[] firstMany(T)(T[] values, size_t numberOfValues) {
   }
 
   return values.length > numberOfValues
-    ? values[0 .. numberOfValues].dup
-    : values.dup;
+    ? values[0 .. numberOfValues].dup : values.dup;
 }
 ///
 unittest {
   // Test: firstMany with size less than array length
   int[] array1 = [10, 20, 30, 40, 50];
-  auto res1 = array1.firstMany(3);
-  assert(res1.equal([10, 20, 30]));
+  auto result1 = array1.firstMany(3);
+  assert(result1.equal([10, 20, 30]));
 
   // Test: firstMany with size equal to array length
   int[] array2 = [1, 2, 3];
-  auto res2 = array2.firstMany(3);
-  assert(res2.equal([1, 2, 3]));
+  auto result2 = array2.firstMany(3);
+  assert(result2.equal([1, 2, 3]));
 
   // Test: firstMany with size greater than array length
-  int[] arr3 = [7, 8];
-  auto res3 = arr3.firstMany(5);
-  assert(res3.equal([7, 8]));
+  int[] array3 = [7, 8];
+  auto result3 = array3.firstMany(5);
+  assert(result3.equal([7, 8]));
 
   // Test: firstMany with empty array
-  int[] arr4 = [];
-  auto res4 = arr4.firstMany(2);
-  assert(res4.isEmpty);
+  int[] array4 = [];
+  auto result4 = array4.firstMany(2);
+  assert(result4.isEmpty);
 
   // Test: firstMany with size zero
-  int[] arr5 = [1, 2, 3];
-  auto res5 = arr5.firstMany(0);
-  writeln("res5: ", res5);
-  assert(res5.isEmpty);
+  int[] array5 = [1, 2, 3];
+  auto result5 = array5.firstMany(0);
+  assert(result5.isEmpty);
 
   // Test: firstMany with strings
-  string[] arr6 = ["a", "b", "c", "d"];
-  auto res6 = arr6.firstMany(2);
-  assert(res6.equal(["a", "b"]));
+  string[] array6 = ["a", "b", "c", "d"];
+  auto result6 = array6.firstMany(2);
+  assert(result6.equal(["a", "b"]));
 }
+// #endregion firstMany
 
+// #region firstAny
 /**
   * Returns an array of elements from the input array that are present in the anyValues array.
   * 
@@ -116,7 +182,7 @@ unittest {
   *   An array of elements from values that are also in anyValues.
   */
 T[] firstAny(T)(T[] values, T[] anyValues) {
-  return values.filter!(value => anyValues.hasValue(value)).array;
+  return values.firstAny((T value) => anyValues.hasValue(value));
 }
 ///
 unittest {
@@ -156,3 +222,55 @@ unittest {
   auto result6 = firstAny(values6, anyValues6);
   assert(result6.equal(["banana"]));
 }
+
+/** 
+  * Returns an array of elements from the input array that satisfy the provided delegate function.
+  * 
+  * Params:
+  *   values = The array to filter.
+  *   firstFunc = A delegate function that takes an element and returns a boolean indicating if it satisfies the condition.
+  * 
+  * Returns:
+  *   An array of elements that satisfy the condition defined by firstFunc.
+  */
+T[] firstAny(T)(T[] values, bool delegate(T) @safe firstFunc) {
+  return values.filter!(value => firstFunc(value)).array;
+}
+// #endregion firstAny
+
+// #region first(Func)
+/**
+  * Returns the first element in the array that satisfies the provided delegate function.
+  * If no element satisfies the function, returns the specified default value or T.init if not provided.
+  * 
+  * Params:
+  *   values = The array to search through.
+  *   firstFunc = A delegate function that takes an element and returns a boolean indicating if it satisfies the condition.
+  *   defaultValue = The value to return if no element satisfies the condition (default is T.init).
+  * 
+  * Returns:
+  *   The first element that satisfies the condition or the default value if none do.
+  */
+T first(T)(T[] values, bool delegate(T) @safe firstFunc, T defaultValue = T.init) {
+  foreach (item; values) {
+    if (firstFunc(item)) {
+      return item;
+    }
+  }
+  return defaultValue;
+}
+///
+unittest {
+  // Test: first with a condition that matches an element
+  int[] array1 = [1, 2, 3, 4, 5];
+  assert(array1.first((int value) => value % 2 == 0) == 2);
+
+  // Test: first with strings
+  string[] array3 = ["apple", "banana", "cherry"];
+  assert(array3.first((string value) => value.startsWith("b")) == "banana");
+
+  // Test: first with no matching elements and default value
+  string[] array4 = ["apple", "cherry"];
+  assert(array4.first((string value) => value.startsWith("b"), "none") == "none");
+}
+// #endregion first(Func)

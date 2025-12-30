@@ -23,7 +23,6 @@ public {
   import uim.root.containers.sequential.arrays.first;
   import uim.root.containers.sequential.arrays.flattenmap;
   import uim.root.containers.sequential.arrays.fold;
-  import uim.root.containers.sequential.arrays.foldright;
   import uim.root.containers.sequential.arrays.has;
   import uim.root.containers.sequential.arrays.get;
   import uim.root.containers.sequential.arrays.group;
@@ -46,6 +45,7 @@ public {
   import uim.root.containers.sequential.arrays.shuffle;
   import uim.root.containers.sequential.arrays.sorting;
   import uim.root.containers.sequential.arrays.split;
+  import uim.root.containers.sequential.arrays.sub;
   /* import uim.root.containers.sequential.arrays.splice;
   import uim.root.containers.sequential.arrays.sum;
   import uim.root.containers.sequential.arrays.swap;

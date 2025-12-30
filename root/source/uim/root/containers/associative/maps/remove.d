@@ -32,11 +32,6 @@ unittest {
   int[string] result1 = removeKey(testMap, ["b", "d"]);
   int[string] expected1 = [ "a": 1, "c": 3 ];
   assertEquals(expected1, result1);
-
-  // Test removeValue
-  int[string] result2 = removeValue(testMap, [1, 3]);
-  int[string] expected2 = [ "b": 2, "d": 4 ];
-  assertEquals(expected2, result2);
 }
 // #endregion Keys
 
@@ -57,12 +52,6 @@ V[K] removeValue(K, V)(V[K] map, V[] values) {
 unittest {
   int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];
 
-  // Test removeKeys
-  int[string] result1 = removeKey(testMap, ["b", "d"]);
-  int[string] expected1 = [ "a": 1, "c": 3 ];
-  assertEquals(expected1, result1);
-
-  // Test removeValue
   int[string] result2 = removeValue(testMap, [1, 3]);
   int[string] expected2 = [ "b": 2, "d": 4 ];
   assertEquals(expected2, result2);
@@ -109,3 +98,40 @@ unittest {
   assertEquals(expected3, result3);
 }
 // #endregion Map
+
+
+V[K] removeMap(K, V)(V[K] map, bool delegate(K) @safe removeFunc) {
+  V[K] results;
+  foreach (key, value; map) {
+    if (!removeFunc(key)) {
+      results[key] = value;
+    }
+  }
+  return results;
+}
+///
+unittest {
+  int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];
+
+  int[string] result = removeMap(testMap, (string key) @safe => key == "a" || key == "c");
+  int[string] expected = [ "b": 2, "d": 4 ];
+  assertEquals(expected, result);
+}
+
+V[K] removeMap(K, V)(V[K] map, bool delegate(V) @safe removeFunc) {
+  V[K] results;
+  foreach (key, value; map) {
+    if (!removeFunc(value)) {
+      results[key] = value;
+    }
+  }
+  return results;
+}
+///
+unittest {
+  int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];
+
+  int[string] result = removeMap(testMap, (int value) @safe => value == 1 || value == 3);
+  int[string] expected = [ "b": 2, "d": 4 ];
+  assertEquals(expected, result);
+}
