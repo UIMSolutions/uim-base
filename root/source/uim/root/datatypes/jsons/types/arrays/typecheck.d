@@ -42,6 +42,10 @@ bool isAnyArray(Json[string] jsons, string[] keys = null) {
     : jsons.byValue.any!(value => value.isArray);
 }
 
+bool isArray(Json[string] jsons, string[] path) {
+  return jsons.getValue(path).isArray;
+}
+
 bool isArray(Json[string] jsons, string key) {
   return jsons.getValue(key).isArray;
 }
