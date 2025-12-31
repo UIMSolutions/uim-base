@@ -14,14 +14,14 @@ mixin(Version!("test_uim_root"));
 // #region Json[]
 bool isAllBoolean(Json[] jsons, size_t[] indices = null) {
   return indices.length == 0
-    ? jsons.length > 0 && jsons.all!(value => value.isBoolean)
-    : indices.all!(index => jsons.isBoolean(index));
+    ? jsons.length > 0 && jsons.all!(value => value.isBoolean) : indices.all!(
+      index => jsons.isBoolean(index));
 }
 
 bool isAnyBoolean(Json[] jsons, size_t[] indices = null) {
   return indices.length == 0
-    ? jsons.length > 0 && jsons.any!(value => value.isBoolean)
-    : indices.any!(index => jsons.isBoolean(index));
+    ? jsons.length > 0 && jsons.any!(value => value.isBoolean) : indices.any!(
+      index => jsons.isBoolean(index));
 }
 
 bool isBoolean(Json[] jsons, size_t index) {
@@ -31,15 +31,19 @@ bool isBoolean(Json[] jsons, size_t index) {
 
 // #region Json[string]
 bool isAllBoolean(Json[string] jsons, string[] keys = null) {
-  return keys.length > 0 
-    ? keys.all!(key => jsons.getValue(key).isBoolean) 
-    : jsons.byValue.all!(value => value.isBoolean);
+  return keys.length > 0
+    ? keys.all!(key => jsons.getValue(key)
+        .isBoolean) : jsons.byValue.all!(value => value.isBoolean);
 }
 
 bool isAnyBoolean(Json[string] jsons, string[] keys = null) {
-  return keys.length > 0 
-    ? keys.any!(key => jsons.getValue(key).isBoolean) 
-    : jsons.byValue.any!(value => value.isBoolean);
+  return keys.length > 0
+    ? keys.any!(key => jsons.getValue(key)
+        .isBoolean) : jsons.byValue.any!(value => value.isBoolean);
+}
+
+bool isBoolean(Json[string] jsons, string[] path) {
+  return jsons.getValue(path).isBoolean;
 }
 
 bool isBoolean(Json[string] jsons, string key) {

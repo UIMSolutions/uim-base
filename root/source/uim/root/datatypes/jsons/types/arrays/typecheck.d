@@ -30,24 +30,24 @@ bool isArray(Json[] jsons, size_t index) {
 // #endregion Json[]
 
 // #region Json[string]
-bool isAllArray(Json[string] jsons, string[] keys = null) {
+bool isAllArray(Json[string] map, string[] keys = null) {
   return keys.length > 0 
-    ? keys.all!(key => jsons.getValue(key).isArray) 
-    : jsons.byValue.all!(value => value.isArray);
+    ? keys.all!(key => map.getValue(key).isArray) 
+    : map.byValue.all!(value => value.isArray);
 }
 
-bool isAnyArray(Json[string] jsons, string[] keys = null) {
+bool isAnyArray(Json[string] map, string[] keys = null) {
   return keys.length > 0 
-    ? keys.any!(key => jsons.getValue(key).isArray) 
-    : jsons.byValue.any!(value => value.isArray);
+    ? keys.any!(key => map.getValue(key).isArray) 
+    : map.byValue.any!(value => value.isArray);
 }
 
-bool isArray(Json[string] jsons, string[] path) {
-  return jsons.getValue(path).isArray;
+bool isArray(Json[string] map, string[] path) {
+  return map.getValue(path).isArray;
 }
 
-bool isArray(Json[string] jsons, string key) {
-  return jsons.getValue(key).isArray;
+bool isArray(Json[string] map, string key) {
+  return map.getValue(key).isArray;
 }
 // #endregion Json[string]
 
@@ -102,5 +102,14 @@ bool isArray(Json json, size_t index) {
 
 bool isArray(Json json) {
   return (json.type == Json.Type.array);
+}
+///
+unittest {
+  Json arr = [1, 2, 3].toJson;
+  Json obj = ["key": "value"].toJson;
+  assert(isArray(arr));
+  assert(!isArray(obj));
+  assert(isObject(obj));
+  assert(!isObject(arr));
 }
 // #endregion Json

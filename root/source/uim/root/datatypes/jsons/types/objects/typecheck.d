@@ -195,5 +195,12 @@ bool isObject(Json json) {
 }
 ///
 unittest {
+  Json obj = ["key": "value"].toJson;
+  Json arr = [1, 2, 3].toJson;
+  assert(isObject(obj));
+  assert(!isObject(arr));
+
+  assert(isArray(obj));
+  assert(!isArray(arr));
 }
 // #endregion Json

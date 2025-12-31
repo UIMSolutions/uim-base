@@ -17,6 +17,18 @@ Json[] toArray(Json value) {
   return value.isArray
     ? value.to!(Json[]) : null;
 }
+/// 
+unittest {
+  auto jsonArray = [1, 2, 3].toJson;
+  auto array = toArray(jsonArray);
+  assert(array.length == 3);
+  assert(array[0] == Json(1));
+  assert(array[1] == Json(2));
+  assert(array[2] == Json(3));
+
+  assert(toArray(Json(null)) == null);
+  assert(toArray("string".toJson) == null);
+}
 
 Json[string] toMap(Json value) {
   if (value == Json(null)) {
@@ -26,74 +38,128 @@ Json[string] toMap(Json value) {
   return value.isObject
     ? value.to!(Json[string]) : null;
 }
+/// 
+unittest {
+  auto jsonMap = ["A": 1, "B": 2].toJson;
+  auto map = toMap(jsonMap);
+  assert(map.length == 2);
+  assert(map["A"] == Json(1));
+  assert(map["B"] == Json(2));
+
+  assert(toMap(Json(null)) == null);
+  assert(toMap([1, 2, 3].toJson) == null);
+}
 // #region toJson
+
 // #region value to Json
 Json toJson(T)(T value) if (isScalarType!(T)) {
   return Json(value);
+}
+/// 
+unittest {
+  assert(toJson(true) == Json(true));
+  assert(toJson(42L) == Json(42));
+  assert(toJson(3.14) == Json(3.14));
+  assert(toJson("example") == Json("example"));
+  auto id = randomUUID;
+  assert(toJson(id) == Json(id.toString));
+  assert(toJson(Json("example")) == Json("example"));
 }
 
 /// Convert boolean to Json
 Json toJson(T:bool)(T value) {
   return Json(value);
 }
-
+/// 
+unittest {
+  assert(toJson(true) == Json(true));
+  assert(toJson(false) == Json(false));
+}
 /// Convert integer to Json
 Json toJson(T:long)(T value) {
   return Json(value);
 }
+/// 
+unittest {
+  assert(toJson(42L) == Json(42));  
 
+
+  }
 /// Convert double to Json
 Json toJson(T:double)(T value) {
   return Json(value);   
+}
+/// 
+unittest {
+  assert(toJson(3.14) == Json(3.14));  
 }
 
 /// Convert string to Json
 Json toJson(T:string)(T value) {
   return Json(value);
 }
+/// 
+unittest {
+  assert(toJson("example") == Json("example"));  
+}
 
 Json toJson(T:UUID)(T value) {
   return Json(value.toString);
+}
+/// 
+unittest {
+  auto id = randomUUID;
+  assert(toJson(id) == Json(id.toString));
 }
 
 Json toJson(T:Json)(T value) {
   return value;
 }
+/// 
 unittest {
-  assert(true.toJson == Json(true));
-  assert(true.toJson.toJson == Json(true));
-
-  assert(false.toJson != Json(true));
-  assert(false.toJson.toJson != Json(true));
-
-  assert(1.toJson == Json(1));
-  assert(1.toJson.toJson == Json(1));
-
-  assert((1.1).toJson == Json(1.1));
-  assert((1.1).toJson.toJson == Json(1.1));
-
-  assert("a".toJson == Json("a"));
-  assert("a".toJson.toJson == Json("a"));
-
+  assert(toJson(true) == Json(true));
+  assert(toJson(42L) == Json(42));
+  assert(toJson(3.14) == Json(3.14));
+  assert(toJson("example") == Json("example"));
   auto id = randomUUID;
-  assert(id.toJson == Json(id.toString));
+  assert(toJson(id) == Json(id.toString));
+  assert(toJson(Json("example")) == Json("example"));
 }
 // #endregion value to Json
 
 // #region array to Json
 Json toJson(V)(V[] values) {
-  Json json = Json.emptyArray;
-  values.each!(value => json ~= value.toJson);
+  Json json = values.map!(value => value.toJson).array;
   return json;
 }
+/// 
+unittest {
+  auto json1 = [1, 2, 3].toJson;
+  assert(json1.isArray);
+  assert(json1.length == 3);
+  assert(json1[0] == Json(1));
+  assert(json1[1] == Json(2));
+  assert(json1[2] == Json(3));
 
-Json toJson(V:UUID)(V[] uuids) {
-  Json result = Json.emptyArray;
-  uuids.each!(uuid => result ~= uuid.toJson);
-  return result;
+  auto json2 = [Json("a"), Json("b"), Json("c")].toJson;
+  assert(json2.isArray);
+  assert(json2.length == 3);
+  assert(json2[0] == Json("a"));
+  assert(json2[1] == Json("b"));
+  assert(json2[2] == Json("c"));
+
+  auto id1 = randomUUID;
+  auto id2 = randomUUID;
+  auto id3 = randomUUID;
+
+  auto uuids = [id1, id2, id3];
+  auto json3 = uuids.toJson;
+  assert(json3.isArray);
+  assert(json3.length == 3);
+  assert(json3[0] == id1.toJson);
+  assert(json3[1] == id2.toJson);
+  assert(json3[2] == id3.toJson);
 }
-
-
 // #endregion array to Json
 
 // #region map to Json

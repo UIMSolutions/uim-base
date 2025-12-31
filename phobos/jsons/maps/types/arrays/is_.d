@@ -25,18 +25,7 @@ bool isAnyArray(Json[string] map, string[][] paths) {
 // #endregion any
 
 // #region is
-bool isArray(Json[string] map, string[] path) {
-  if (map.length == 0 || path.length == 0) {
-    return false;
-  }
 
-  auto root = path[0];
-  if (!(root in map)) {
-    return false;
-  }
-
-  return path.length == 1 ? map.isArray(root) : map[root].isArray(path[1 .. $]);
-}
 // #endregion is
 // #endregion path
 
@@ -54,13 +43,7 @@ bool isAnyArray(Json[string] map, string[] keys) {
 // #endregion any
 
 // #region is
-bool isArray(Json[string] map, string key) {
-  if (map.length == 0 || key.length == 0) {
-    return false;
-  }
 
-  return key in map && map[key].isArray;
-}
 // #endregion is
 // #endregion key
 

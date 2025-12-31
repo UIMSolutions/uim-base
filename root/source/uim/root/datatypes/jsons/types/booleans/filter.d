@@ -7,72 +7,72 @@ mixin(Version!("test_uim_root"));
 @safe:
 
 // #region Json[]
-Json[] filterArrays(Json[] jsons, size_t[] indices, bool delegate(Json json) @safe filterFunc) {
-  return jsons.filterValues(indices).filterArrays;
+Json[] filterBooleans(Json[] jsons, size_t[] indices, bool delegate(Json json) @safe filterFunc) {
+  return jsons.filterValues(indices).filterBooleans;
 }
 
-Json[] filterArrays(Json[] jsons, size_t[] indices) {
-  return jsons.filterValues(indices).filterArrays;
+Json[] filterBooleans(Json[] jsons, size_t[] indices) {
+  return jsons.filterValues(indices).filterBooleans;
 }
 
-Json[] filterArrays(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
-  return jsons.filterValues((Json json) => filterFunc(json)).filterArrays;
+Json[] filterBooleans(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
+  return jsons.filterValues((Json json) => filterFunc(json)).filterBooleans;
 }
 
-Json[] filterArrays(Json[] jsons) {
-  return jsons.filterValues((Json json) => json.isArray);
+Json[] filterBooleans(Json[] jsons) {
+  return jsons.filterValues((Json json) => json.isBoolean);
 }
 // #region Json[]
 
 // #region Json[string]
-Json[string] filterArrays(Json[string] map, string[] keys, bool delegate(string) @safe filterFunc) {
-  return map.filterKeys(keys, filterFunc).filterArrays;
+Json[string] filterBooleans(Json[string] map, string[] keys, bool delegate(string) @safe filterFunc) {
+  return map.filterKeys(keys, filterFunc).filterBooleans;
 }
 
-Json[string] filterArrays(Json[string] map, string[] keys, bool delegate(Json) @safe filterFunc) {
-  return map.filterKeys(keys).filterMap((Json json) => filterFunc(json)).filterArrays;
+Json[string] filterBooleans(Json[string] map, string[] keys, bool delegate(Json) @safe filterFunc) {
+  return map.filterKeys(keys).filterMap((Json json) => filterFunc(json)).filterBooleans;
 }
 
-Json[string] filterArrays(Json[string] map, bool delegate(string, Json) @safe filterFunc) {
-  return map.filterMap((string key, Json json) => filterFunc(key, json)).filterArrays;
+Json[string] filterBooleans(Json[string] map, bool delegate(string, Json) @safe filterFunc) {
+  return map.filterMap((string key, Json json) => filterFunc(key, json)).filterBooleans;
 }
 
-Json[string] filterArrays(Json[string] map) {
-  return map.filterMap((Json json) => json.isArray);
+Json[string] filterBooleans(Json[string] map) {
+  return map.filterMap((Json json) => json.isBoolean);
 }
 // #region Json[string]
 
 // #region Json
-Json filterArrays(Json json, size_t[] indices, bool delegate(Json json) @safe filterFunc) {
-  return json.isArray ? json.filterArrays(indices).filterArrays(filterFunc) : Json(null);
+Json filterBooleans(Json json, size_t[] indices, bool delegate(Json json) @safe filterFunc) {
+  return json.isBoolean ? json.filterBooleans(indices).filterBooleans(filterFunc) : Json(null);
 }
 
-Json filterArrays(Json json, size_t[] indices) {
-  return json.isArray ? json.toArray.filterValues(indices).filterArrays.toJson : Json(null);
+Json filterBooleans(Json json, size_t[] indices) {
+  return json.isBoolean ? json.toArray.filterValues(indices).filterBooleans.toJson : Json(null);
 }
 
-Json filterArrays(Json json, bool delegate(Json json) @safe filterFunc) {
-  return json.isArray ? json.filterValues((Json json) => filterFunc(json)).filterArrays : Json(null);
+Json filterBooleans(Json json, bool delegate(Json json) @safe filterFunc) {
+  return json.isBoolean ? json.filterValues((Json json) => filterFunc(json)).filterBooleans : Json(null);
 }
 
 /* 
-Json filterArrays(Json json, string[] keys, bool delegate(string) @safe filterFunc) {
+Json filterBooleans(Json json, string[] keys, bool delegate(string) @safe filterFunc) {
   return json.isObject ? json.filterKeys(keys)
-    .filterValues((string key) => filterFunc(key)).filterArrays : Json(null);
+    .filterValues((string key) => filterFunc(key)).filterBooleans : Json(null);
 }
 
-Json filterArrays(Json json, string[] keys, bool delegate(Json) @safe filterFunc) {
+Json filterBooleans(Json json, string[] keys, bool delegate(Json) @safe filterFunc) {
   return json.isObject ? json.filterKeys(keys)
-    .filterValues((Json json) => filterFunc(json)).filterArrays : Json(null);
+    .filterValues((Json json) => filterFunc(json)).filterBooleans : Json(null);
 }
 * / 
 
-Json filterArrays(Json json, bool delegate(string, Json) @safe filterFunc) {
-  return json.isObject ? json.filterValues((string key, Json json) => filterFunc(key, json)).filterArrays
+Json filterBooleans(Json json, bool delegate(string, Json) @safe filterFunc) {
+  return json.isObject ? json.filterValues((string key, Json json) => filterFunc(key, json)).filterBooleans
     : Json(null);
 } */
 
-Json filterArrays(Json json) {
-  return json.isObject || json.isArray ? json.filterValues((Json json) => json.isArray) : Json(null);
+Json filterBooleans(Json json) {
+  return json.isObject || json.isBoolean ? json.filterValues((Json json) => json.isBoolean) : Json(null);
 }
 // #region Json

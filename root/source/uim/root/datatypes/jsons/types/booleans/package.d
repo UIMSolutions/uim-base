@@ -6,6 +6,9 @@
 module uim.root.datatypes.jsons.types.booleans;
 
 public {
+  import uim.root.datatypes.jsons.types.booleans.count;
+  import uim.root.datatypes.jsons.types.booleans.filter;
   import uim.root.datatypes.jsons.types.booleans.get;
+  import uim.root.datatypes.jsons.types.booleans.has;
   import uim.root.datatypes.jsons.types.booleans.typecheck;
 }
