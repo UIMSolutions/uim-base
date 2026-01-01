@@ -10,6 +10,15 @@ import uim.root;
 mixin(Version!("test_uim_phobos"));
 
 @safe:
+
+T[] filterAllValue(T)(T[] values, T[] checkValues) {
+  return values.filter!(value => checkValues.hasValue(value)).array;
+}
+
+T[] filterValue(T)(T[] values, T checkValue) {
+  return values.filter!(value => value == checkValue).array;
+}
+
 /**
  * Filters the elements of the input array `values` using the provided `check` delegate.
  *

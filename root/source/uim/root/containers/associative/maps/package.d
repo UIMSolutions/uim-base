@@ -6,6 +6,7 @@
 module uim.root.containers.associative.maps;
 
 public {
+  import uim.root.containers.associative.maps.check;
   import uim.root.containers.associative.maps.convert;
   import uim.root.containers.associative.maps.every;
   import uim.root.containers.associative.maps.has;

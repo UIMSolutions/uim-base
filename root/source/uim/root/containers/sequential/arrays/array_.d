@@ -286,58 +286,5 @@ unittest {
 // #endregion isIn
 
 // #region remove
-auto ref removeAllValue(T)(auto ref T[] items, T[] values) {
-  T[] items = values.filter!(v => !items.hasValue(v)).array;
-  return results;
-}
 
-auto ref removeValue(T)(auto ref T[] items, T value) {
-  items = items.filter!(v => v != value).array;
-  return items;
-}
 
-auto ref removeFirst(T)(auto ref T[] values) {
-  if (values.isEmpty) {
-    return values;
-  }
-  if (values.length == 1) {
-    values = null;
-  } else {
-    values = values[1 .. $];
-  }
-
-  return values;
-}
-
-unittest {
-  assert(["a", "b", "c"].removeFirst.length == 2);
-  assert(["a", "b", "c"].removeFirst == ["b", "c"]);
-
-  string[] testArray = ["a", "b", "c"];
-  testArray.removeFirst;
-  assert(testArray == ["b", "c"]);
-}
-
-T[] removeLast(T)(auto ref T[] values) {
-  if (values.isEmpty) {
-    return values;
-  }
-  if (values.length == 1) {
-    values = null;
-  } else {
-    values = values[0 .. $ - 1];
-  }
-
-  return values;
-}
-
-unittest {
-  assert(["a", "b", "c"].removeLast == ["a", "b"]);
-  assert(["a", "b", "c"].removeLast.length == 2);
-
-  string[] testArray = ["a", "b", "c"];
-  testArray.removeLast;
-  assert(testArray == ["a", "b"]);
-}
-
-// #endregion remove

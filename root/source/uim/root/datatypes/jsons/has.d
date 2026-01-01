@@ -6,6 +6,10 @@ mixin(Version!("show_uim_root"));
 
 @safe:
 
+bool hasValue(Json[string] map, string[] path, Json value) {
+  return map.getValue(path) == value;
+}
+
 // #region has
 // #region value
 bool hasAllValue(T)(Json json, T[] values) {

@@ -13,12 +13,18 @@ mixin(Version!("show_uim_root"));
 
 // #region Json[string]
 Json getValue(Json[string] map, string[] path) {
-  if (!map.isNull || path.length == 0) {
+  if (map.isNull || path.length == 0) {
     return Json(null);
   }
 
+  writeln("Checking if path[0] is null: ", path[0]);
+  if (map.isNull(path[0])) {
+    return Json(null);
+  }
+
+  writeln("Getting value for path: ", path);
   auto json = map.getValue(path[0]);
-  if (path.length == 1 || json == Json(null)) {
+  if (path.length == 1) {
     return json;
   }
 
@@ -29,8 +35,22 @@ unittest {
   version (test_uim_root) writeln("Testing getValue with path");
 
   Json[string] map = ["data": ["test": [1, 2].toJson].toJson];
+  writeln(map.getValue(["data"]));
+  writeln(map.getValue(["data", "test"]));
   assert(map.getValue(["data", "test"]) == [1, 2].toJson);
 }
+
+Json getValue(Json[string] map, string key) {
+  return key in map ? map[key] : Json(null);
+}
+/// 
+unittest {
+  version (test_uim_root) writeln("Testing getValue with key");
+
+  Json[string] map = ["key1": "value1".toJson, "key2": "value2".toJson];
+  assert(map.getValue("key2") == "value2".toJson);
+}
+// #endregion Json[string]
 
 // #region Json
 Json getValue(Json json, size_t index) {

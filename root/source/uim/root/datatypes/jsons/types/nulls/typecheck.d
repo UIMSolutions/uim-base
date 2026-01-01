@@ -43,7 +43,7 @@ bool isAnyNull(Json[string] jsons, string[] keys = null) {
 }
 
 bool isNull(Json[string] jsons, string key) {
-  return jsons.getValue(key).isNull;
+  return key in jsons ? jsons[key].isNull : false;
 }
 // #endregion Json[string]
 

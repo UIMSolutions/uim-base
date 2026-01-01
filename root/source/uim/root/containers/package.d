@@ -1,4 +1,4 @@
-module uim.root.containers.maps;
+module uim.root.containers;
 
 public {
   import uim.root.containers.associative;

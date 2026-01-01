@@ -6,6 +6,7 @@ mixin(Version!("test_uim_phobos"));
 
 @safe:
 
+/*
 auto aggregate(T, OUT)(T[] items, OUT delegate(ref OUT aggregate, in T item) aggregator, OUT initialValue) {
   OUT result = initialValue;
   foreach (item; items) {
@@ -21,3 +22,4 @@ unittest {
     }, 0);
     assert(sum == 15);
 }
+*/

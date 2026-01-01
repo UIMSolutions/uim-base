@@ -7,6 +7,7 @@ module uim.root.containers.sequential.arrays;
 
 public {
   import uim.root.containers.sequential.arrays.array_;
+  import uim.root.containers.sequential.arrays.aggregate;
   import uim.root.containers.sequential.arrays.check;
   import uim.root.containers.sequential.arrays.chunks;
   import uim.root.containers.sequential.arrays.compact;
@@ -62,7 +63,6 @@ public {
   import uim.root.containers.sequential.arrays.zipwithindexes;
   import uim.root.containers.sequential.arrays.zipwithmap; */ 
 
-  import uim.root.containers.sequential.arrays.isempty;
   import uim.root.containers.sequential.arrays.filter;
   import uim.root.containers.sequential.arrays.flatten;
   import uim.root.containers.sequential.arrays.pairs;

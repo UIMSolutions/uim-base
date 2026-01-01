@@ -8,4 +8,33 @@ module uim.root.containers.sequential.arrays.sorting;
 import uim.root;
 
 mixin(Version!("test_uim_phobos"));
+
 @safe:
+
+T[] sortAsc(T)(T[] items) {
+  auto results = items.dup;
+  results.sort!((a, b) => a < b);
+  return results;
+}
+///
+unittest {
+  auto test1 = [5, 3, 1, 4, 2];
+  assert(test1.sortAsc() == [1, 2, 3, 4, 5]);
+
+  auto test2 = ["e", "c", "a", "d", "b"];
+  assert(test2.sortAsc() == ["a", "b", "c", "d", "e"]);
+}
+
+T[] sortDesc(T)(T[] items) {
+  auto results = items.dup;
+  results.sort!((a, b) => a > b);
+  return results;
+}
+///
+unittest {
+  auto test1 = [5, 3, 1, 4, 2];
+  assert(test1.sortDesc() == [5, 4, 3, 2, 1]);
+
+  auto test2 = ["e", "c", "a", "d", "b"];
+  assert(test2.sortDesc() == ["e", "d", "c", "b", "a"]);
+}

@@ -11,6 +11,14 @@ mixin(Version!("test_uim_phobos"));
 
 @safe:
 
+T[] removeAllValue(T)(T[] items, T[] values) {
+  return items.filter!(v => !values.hasValue(v)).array;
+}
+
+T[] removeValue(T)(T[] items, T value) {
+  return items.filter!(v => v != value).array;
+}
+
 T[] removeValues(T)(T[] items, size_t[] indices) {
   T[] results;
   foreach(index, item; items) {
@@ -114,3 +122,59 @@ unittest {
   assert(result3 == [1, 3, 5]);
 }
 */
+
+T[] removeFirst(T)(T[] values) {
+  if (values.isEmpty) {
+    return values;
+  }
+
+  if (values.length == 1) {
+    return null;
+  } 
+  
+  return values[1 .. $];
+}
+///
+unittest {
+  version(test_uim_root) writeln("Testing removeFirst");
+  
+  auto arr = [1, 2, 3, 4, 5];
+  auto result = removeFirst(arr);
+  assert(result == [2, 3, 4, 5]);
+
+  arr = [42];
+  result = removeFirst(arr);
+  assert(result is null);
+
+  arr = [];
+  result = removeFirst(arr);
+  assert(result.length == 0);
+}
+
+T[] removeLast(T)(T[] values) {
+  if (values.isEmpty) {
+    return values;
+  }
+
+  if (values.length == 1) {
+    return null;
+  } 
+  
+  return values[0 .. $ - 1];
+}
+///
+unittest {
+  version(test_uim_root) writeln("Testing removeLast");
+
+  auto arr = [1, 2, 3, 4, 5];
+  auto result = removeLast(arr);
+  assert(result == [1, 2, 3, 4]);
+
+  arr = [42];
+  result = removeLast(arr);
+  assert(result is null);
+
+  arr = [];
+  result = removeLast(arr);
+  assert(result.length == 0);
+}

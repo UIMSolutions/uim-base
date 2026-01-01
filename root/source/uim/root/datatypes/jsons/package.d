@@ -9,6 +9,7 @@ public {
   import uim.root.datatypes.jsons.types;
 
   import uim.root.datatypes.jsons.change;
+  import uim.root.datatypes.jsons.check;
   import uim.root.datatypes.jsons.convert;
   import uim.root.datatypes.jsons.create;
   import uim.root.datatypes.jsons.filter;
