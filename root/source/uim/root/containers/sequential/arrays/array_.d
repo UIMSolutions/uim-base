@@ -205,22 +205,9 @@ unittest {
 
 // #region unique
 /// Unique - Reduce duplicates in array
-T[] unique(T)(T[] values) {
-  T[] results;
-  values.each!((value) {
-    if (!results.hasValue(value)) {
-      results ~= value;
-    }
-  });
-  return results;
-}
 
-unittest {
-  assert(["a", "b", "c"].unique.length == 3);
-  assert(["a", "b", "c"].unique == ["a", "b", "c"]);
-  assert(["a", "b", "c", "c"].unique.length == 3);
-  assert(["a", "b", "c", "c"].unique == ["a", "b", "c"]);
-}
+
+
 // #endregion unique
 
 pure V[] createArray(V)() {
@@ -285,6 +272,5 @@ unittest {
 }
 // #endregion isIn
 
-// #region remove
 
 

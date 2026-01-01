@@ -26,11 +26,27 @@ Json[] filterBooleans(Json[] jsons) {
 
 // #region Json[string]
 Json[string] filterBooleans(Json[string] map, string[] keys, bool delegate(string) @safe filterFunc) {
-  return map.filterKeys(keys, filterFunc).filterBooleans;
+  return map.filterBooleans(keys).filterBooleans(filterFunc);
 }
 
-Json[string] filterBooleans(Json[string] map, string[] keys, bool delegate(Json) @safe filterFunc) {
-  return map.filterKeys(keys).filterMap((Json json) => filterFunc(json)).filterBooleans;
+Json[string] filterBooleans(Json[string] map, Json[] values, bool delegate(Json) @safe filterFunc) {
+  return map.filterBooleans(values).filterBooleans(filterFunc);
+}
+
+Json[string] filterBooleans(Json[string] map, string[] keys) {
+  return map.filterKeys(keys).filterBooleans;
+}
+
+Json[string] filterBooleans(Json[string] map, Json[] values) {
+  return map.filterValues(values).filterBooleans;
+}
+
+Json[string] filterBooleans(Json[string] map, bool delegate(string) @safe filterFunc) {
+  return map.filterMap((string key, Json json) => filterFunc(key)).filterBooleans;
+}
+
+Json[string] filterBooleans(Json[string] map, bool delegate(Json) @safe filterFunc) {
+  return map.filterMap((string key, Json json) => filterFunc(json)).filterBooleans;
 }
 
 Json[string] filterBooleans(Json[string] map, bool delegate(string, Json) @safe filterFunc) {
@@ -38,7 +54,7 @@ Json[string] filterBooleans(Json[string] map, bool delegate(string, Json) @safe 
 }
 
 Json[string] filterBooleans(Json[string] map) {
-  return map.filterMap((Json json) => json.isBoolean);
+  return map.filterMap((string key, Json json) => json.isBoolean);
 }
 // #region Json[string]
 

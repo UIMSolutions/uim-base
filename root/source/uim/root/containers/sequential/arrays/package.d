@@ -68,8 +68,8 @@ public {
   import uim.root.containers.sequential.arrays.pairs;
   import uim.root.containers.sequential.arrays.rest;
   import uim.root.containers.sequential.arrays.shift;
-  import uim.root.containers.sequential.arrays.string_;
   import uim.root.containers.sequential.arrays.without;
   import uim.root.containers.sequential.arrays.unzip;
+  import uim.root.containers.sequential.arrays.unique;
   import uim.root.containers.sequential.arrays.zip;
 }

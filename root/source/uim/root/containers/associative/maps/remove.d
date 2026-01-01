@@ -26,12 +26,13 @@ V[K] removeKey(K, V)(V[K] map, K[] keys) {
 }
 /// 
 unittest {
-  int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];
+  version (test_uim_root)
+    writeln("Testing removeKey with keys");
 
-  // Test removeKeys
-  int[string] result1 = removeKey(testMap, ["b", "d"]);
-  int[string] expected1 = [ "a": 1, "c": 3 ];
-  assertEquals(expected1, result1);
+  int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];
+  int[string] result = removeKey(testMap, ["b", "d"]);
+  int[string] expected = [ "a": 1, "c": 3 ];
+  assertEquals(expected, result);
 }
 // #endregion Keys
 
@@ -50,11 +51,13 @@ V[K] removeValue(K, V)(V[K] map, V[] values) {
 }
 ///
 unittest {
-  int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];
+  version (test_uim_root)
+    writeln("Testing removeValue with values");
 
-  int[string] result2 = removeValue(testMap, [1, 3]);
-  int[string] expected2 = [ "b": 2, "d": 4 ];
-  assertEquals(expected2, result2);
+  int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];
+  int[string] result = removeValue(testMap, [1, 3]);
+  int[string] expected = [ "b": 2, "d": 4 ];
+  assertEquals(expected, result);
 }
 // #endregion Values
 
@@ -82,20 +85,9 @@ V[K] removeMap(K, V)(V[K] map, bool delegate(K key, V value) @safe removeFunc) {
 unittest {
   int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];
 
-  // Test removeKeys
-  int[string] result1 = removeKey(testMap, ["b", "d"]);
-  int[string] expected1 = [ "a": 1, "c": 3 ];
-  assertEquals(expected1, result1);
-
-  // Test removeValue
-  int[string] result2 = removeValue(testMap, [1, 3]);
-  int[string] expected2 = [ "b": 2, "d": 4 ];
-  assertEquals(expected2, result2);
-
-  // Test removeMap
-  int[string] result3 = removeMap(testMap, (string key, int value) @safe => value % 2 == 0);
-  int[string] expected3 = [ "a": 1, "c": 3 ];
-  assertEquals(expected3, result3);
+  int[string] result = removeMap(testMap, (string key, int value) @safe => key == "a" || value == 3);
+  int[string] expected = [ "b": 2, "d": 4 ];
+  assertEquals(expected, result);
 }
 // #endregion Map
 
@@ -111,10 +103,13 @@ V[K] removeMap(K, V)(V[K] map, bool delegate(K) @safe removeFunc) {
 }
 ///
 unittest {
+  version (test_uim_root)
+    writeln("Testing removeMap with key delegate");
+    
   int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];
 
-  int[string] result = removeMap(testMap, (string key) @safe => key == "a" || key == "c");
-  int[string] expected = [ "b": 2, "d": 4 ];
+  int[string] result = removeMap(testMap, (string key) @safe => key == "b" || key == "d");
+  int[string] expected = [ "a": 1, "c": 3 ];
   assertEquals(expected, result);
 }
 

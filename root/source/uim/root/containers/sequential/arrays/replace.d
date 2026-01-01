@@ -123,3 +123,54 @@ unittest {
   auto result6 = sArr.replaceIf((S x) => x.a == 2, S(99));
   assert(result6[0].a == 1 && result6[1].a == 99 && result6[2].a == 3);
 }
+
+T[] replaceFirst(T)(T[] values, T searchValue, T newValue) {
+  T[] result;
+  bool replaced = false;
+  foreach (value; values) {
+    if (!replaced && value == searchValue) {
+      result ~= newValue;
+      replaced = true;
+    } else {
+      result ~= value;
+    }
+  }
+  return result;
+}
+/// 
+unittest {
+  version (test_uim_phobos) writeln("Testing replaceFirst function");
+
+  auto arr = [1, 2, 3, 2, 4];
+  auto result = replaceFirst(arr, 2, 99);
+  assert(result == [1, 99, 3, 2, 4]);
+
+  auto result2 = replaceFirst(arr, 5, 77); // value not found
+  assert(result2 == arr);
+
+  auto arr2 = ["a", "b", "c", "b"];
+  auto result3 = replaceFirst(arr2, "b", "z");
+  assert(result3 == ["a", "z", "c", "b"]);
+}
+
+T[] replaceLast(T)(T[] values, T searchValue, T newValue) {
+  T[] result;
+  bool replaced = false;
+  foreach_reverse (value; values) {
+    if (!replaced && value == searchValue) {
+      result ~= newValue;
+      replaced = true;
+    } else {
+      result ~= value;
+    }
+  }
+  return result;
+}
+/// 
+unittest {
+  version (test_uim_phobos) writeln("Testing replaceLast function");
+
+  auto arr = [1, 2, 3, 2, 4];
+  auto result = replaceLast(arr, 2, 99);
+  assert(result == [1, 2, 3, 99, 4]);
+}
