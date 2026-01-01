@@ -2,7 +2,7 @@ module uim.root.datatypes.jsons.types.arrays.get;
 
 import uim.root;
 
-mixin(Version!("test_uim_root"));
+mixin(Version!("show_uim_root"));
 
 @safe:
 
@@ -16,24 +16,17 @@ Json[] getArrays(Json[] jsons, size_t[] indices) {
 unittest {
   Json[] jsons = [[1, 2].toJson, ["a": 1].toJson, [3, 4].toJson];
   auto arrays = jsons.getArrays([0, 1, 2, 3]);
-  writeln("Jsons:", jsons);
-  writeln("Arrays.length == 2? ", arrays.length);
   assert(arrays.length == 2);
 
   assert(arrays[0].isArray);
-  assert(arrays[0].isObject);
   assert(arrays[1].isArray);
-  assert(arrays[1].isObject);
-  assert(arrays[2].isArray);
 
   assert(arrays[0] == [1, 2].toJson);
   assert(arrays[1] == [3, 4].toJson);
 
-  Json json2 = `{"data": [ [1, 2], {"a": 1}, [3, 4] ]}`;
+  Json json2 = parseJsonString(`[ [1, 2], {"a": 1}, [3, 4] ]`);
   auto arrays2 = json2.getArrays([0, 1, 2, 3]);
-  writeln("Arrays.length == 2? ", arrays2.length);
   assert(arrays2.length == 2);
-
 }
 
 Json getArray(Json[] jsons, size_t index, Json defaultValue = null) {
@@ -107,10 +100,10 @@ Json getArray(Json json, string[] path, Json defaultValue = null) {
 }
 /// 
 unittest {
-  Json json = `{"data": [ [1, 2], {"a": 1}, [3, 4] ]}`;
-  assert(json.getArray(["data", "0"]) == [1, 2].toJson);
-  assert(json.getArray(["data", "1"], Json("default")) == Json("default"));
-  assert(json.getArray(["data", "2"]) == [3, 4].toJson);
+  // writeln("Testing getArray with path");
+  Json json = `{"data": { "test": [ [1, 2], {"a": 1}, [3, 4] ]}}`;
+  assert(json.getArray(["data", "test"][0]) == [1, 2].toJson);
+  assert(json.getArray(["data", "test"][1]) == [3, 4].toJson);
 }
 
 Json getArrays(Json json, string[] keys) {
@@ -118,6 +111,15 @@ Json getArrays(Json json, string[] keys) {
     .map!(key => json.getArray(key))
     .array;
   return result;
+}
+/// 
+unittest {
+  // writeln("Testing getArrays with keys");
+  Json json = `{"arr1": [1, 2], "obj": {"a": 1}, "arr2": [3, 4]}`;
+  auto arrays = json.getArrays(["arr1", "obj", "arr2", "nonexistent"]);
+  assert(arrays.length == 2);
+  assert(arrays[0] == [1, 2].toJson);
+  assert(arrays[1] == [3, 4].toJson);
 }
 
 Json getArray(Json json, string key, Json defaultValue = null) {

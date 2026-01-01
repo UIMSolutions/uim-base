@@ -7,7 +7,7 @@ module uim.root.datatypes.jsons.types.objects.typecheck;
 
 import uim.root;
 
-mixin(Version!("test_uim_root"));
+mixin(Version!("show_uim_root"));
 
 @safe:
 
@@ -199,8 +199,5 @@ unittest {
   Json arr = [1, 2, 3].toJson;
   assert(isObject(obj));
   assert(!isObject(arr));
-
-  assert(isArray(obj));
-  assert(!isArray(arr));
 }
 // #endregion Json

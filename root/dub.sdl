@@ -13,8 +13,16 @@ targetType "library"
 dependency "vibe-d" version="~>0.10.2"
 dependency "colored" version="~>0.0.31"
 
-configuration "test_library" {
-	versions "test_uim_root"
+configuration "default" {
+	versions "uim_root"
+}
+
+configuration "show_modules" {
+	versions "show_uim_root"
+}
+
+configuration "show_tests" {
+	versions "show_uim_root" "test_uim_root"
 }
 
 buildRequirements "allowWarnings" "silenceDeprecations"
