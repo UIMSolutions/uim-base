@@ -7,7 +7,7 @@ module uim.oops.datatypes.uuids.to_;
 
 import uim.oops;
 
-mixin(Version!("test_uim_root"));
+mixin(Version!("show_uim_root"));
 
 @safe:
 

@@ -7,6 +7,6 @@ module uim.root.datatypes.jsons.create;
 
 import uim.root;
 
-mixin(Version!("test_uim_root"));
+mixin(Version!("show_uim_root"));
 
 @safe:

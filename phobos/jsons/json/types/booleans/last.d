@@ -7,7 +7,7 @@ module uim.root.datatypes.jsons.json.types.booleans.last;
 
 import uim.root;
 
-mixin(Version!("test_uim_root"));
+mixin(Version!("show_uim_root"));
 
 @safe:
 

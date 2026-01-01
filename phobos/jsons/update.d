@@ -6,7 +6,7 @@
 module uim.root.datatypes.jsons.update;
 
 import uim.root;
-mixin(Version!("test_uim_root"));
+mixin(Version!("show_uim_root"));
 @safe:
 
 // #region Json[string]

@@ -7,7 +7,7 @@ module uim.root.datatypes.jsons.arrays.types.objects.has;
 
 import uim.root;
 
-mixin(Version!("test_uim_root"));
+mixin(Version!("show_uim_root"));
 
 @safe:
 
