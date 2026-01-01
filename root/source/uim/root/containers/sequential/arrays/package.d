@@ -7,6 +7,7 @@ module uim.root.containers.sequential.arrays;
 
 public {
   import uim.root.containers.sequential.arrays.array_;
+  import uim.root.containers.sequential.arrays.check;
   import uim.root.containers.sequential.arrays.chunks;
   import uim.root.containers.sequential.arrays.compact;
   import uim.root.containers.sequential.arrays.concat;

@@ -17,11 +17,11 @@ configuration "default" {
 	versions "uim_root"
 }
 
-configuration "show_modules" {
+configuration "show-modules" {
 	versions "show_uim_root"
 }
 
-configuration "show_tests" {
+configuration "show-tests" {
 	versions "show_uim_root" "test_uim_root"
 }
 

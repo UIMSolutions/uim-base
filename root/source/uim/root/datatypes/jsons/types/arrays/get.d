@@ -82,6 +82,8 @@ Json getArray(Json json, size_t index, Json defaultValue = null) {
 }
 /// 
 unittest {
+  version (test_uim_root) writeln("Testing getArrays with indices");
+
   Json json = [[1, 2].toJson, ["a": 1].toJson, [3, 4].toJson].toJson;
   assert(json.getArray(0) == [1, 2].toJson);
   assert(json.getArray(1, Json("default")) == Json("default"));
@@ -94,14 +96,33 @@ Json getArrays(Json json, string[][] paths) {
     .array;
   return result;
 }
+/// 
+unittest {
+  version (test_uim_root) writeln("Testing getArrays with paths");
+
+  Json json = parseJsonString(`{"data": { "test1": [1, 2], "test2": {"a": 1}, "test3": [3, 4]}}`);
+  writeln("Json: ", json); 
+  writeln(json.getValue("data"));
+  writeln(json.getValue(["data", "test1"]));
+  writeln(json.getValue(["data", "test2"]));
+  writeln(json.getValue(["data", "test3"]));
+
+  auto arrays = json.getArrays([["data", "test1"], ["data", "test2"], ["data", "test3"]]);
+  assert(arrays.length == 2);
+  assert(arrays[0] == [1, 2].toJson);
+  assert(arrays[1] == [3, 4].toJson);
+}
 
 Json getArray(Json json, string[] path, Json defaultValue = null) {
   return json.isArray(path) ? json.getValue(path) : defaultValue;
 }
 /// 
 unittest {
-  // writeln("Testing getArray with path");
-  Json json = `{"data": { "test": [ [1, 2], {"a": 1}, [3, 4] ]}}`;
+  version (test_uim_root) writeln("Testing getArray with path");
+
+  Json json = parseJsonString(`{"data": { "test": [ [1, 2], {"a": 1}, [3, 4] ]}}`);
+  writeln(json.getArray("data"))  ;
+
   assert(json.getArray(["data", "test"][0]) == [1, 2].toJson);
   assert(json.getArray(["data", "test"][1]) == [3, 4].toJson);
 }
@@ -114,7 +135,8 @@ Json getArrays(Json json, string[] keys) {
 }
 /// 
 unittest {
-  // writeln("Testing getArrays with keys");
+  version (test_uim_root) writeln("Testing getArrays with keys");
+
   Json json = `{"arr1": [1, 2], "obj": {"a": 1}, "arr2": [3, 4]}`;
   auto arrays = json.getArrays(["arr1", "obj", "arr2", "nonexistent"]);
   assert(arrays.length == 2);

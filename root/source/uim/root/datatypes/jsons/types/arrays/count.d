@@ -105,6 +105,8 @@ size_t countArrays(Json json, size_t[] indices) {
 }
 /// 
 unittest {
+  version (test_uim_root) writeln("Testing countArrays with indices");
+
   auto j1 = [1, 2].toJson;
   auto j2 = ["a": 1].toJson;
   auto j3 = [3, 4].toJson;
@@ -115,8 +117,6 @@ unittest {
     j1, j2, j3, j4, j5  
   ];
   size_t count = countArrays(json, [0, 1, 2, 3, 4]);
-  writeln("Json: ", json);
-  writeln("Counted arrays: ", count);
   assert(count == 2);
 }
 
@@ -125,6 +125,8 @@ size_t countArrays(Json json, string[][] paths) {
 }
 /// 
 unittest {
+  version (test_uim_root) writeln("Testing countArrays with paths");
+  
   Json json = [
     "first": [1, 2].toJson,
     "second": ["a": 1].toJson,
