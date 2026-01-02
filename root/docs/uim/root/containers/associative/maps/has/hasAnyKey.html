@@ -198,11 +198,6 @@ $('#symbolSearchPane').show();</script>
 				</li>
 				<li>
 					<div class="module ">
-						<a href="../../../../../../uim/root/containers/sequential/arrays/isempty.html">isempty</a>
-					</div>
-				</li>
-				<li>
-					<div class="module ">
 						<a href="../../../../../../uim/root/containers/sequential/arrays/last.html">last</a>
 					</div>
 				</li>
@@ -303,11 +298,6 @@ $('#symbolSearchPane').show();</script>
 				</li>
 				<li>
 					<div class="module ">
-						<a href="../../../../../../uim/root/containers/sequential/arrays/string_.html">string_</a>
-					</div>
-				</li>
-				<li>
-					<div class="module ">
 						<a href="../../../../../../uim/root/containers/sequential/arrays/unzip.html">unzip</a>
 					</div>
 				</li>
@@ -356,6 +346,54 @@ $('#symbolSearchPane').show();</script>
 				</li>
 				<li class="tree-view collapsed">
 					<div class="package ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/booleans.html">booleans</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/booleans/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/doubles.html">doubles</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/doubles/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/integers.html">integers</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/integers/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/nulls.html">nulls</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/nulls/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
 						<a href="../../../../../../uim/root/datatypes/jsons/types/objects.html">objects</a>
 					</div>
 			<ul class="tree-view">
@@ -366,10 +404,41 @@ $('#symbolSearchPane').show();</script>
 				</li>
 			</ul>
 				</li>
-				<li>
-					<div class="module ">
+				<li class="tree-view collapsed">
+					<div class="package ">
 						<a href="../../../../../../uim/root/datatypes/jsons/types/scalars.html">scalars</a>
 					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/scalars/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/strings.html">strings</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/strings/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/undefineds.html">undefineds</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/undefineds/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
 				</li>
 			</ul>
 				</li>
@@ -573,7 +642,10 @@ $('#symbolSearchPane').show();</script>
 </section>
 <section><h2>Example</h2>
 
-<pre class="code"><code class="lang-d"><span class="kwd">auto </span><span class="pln">map </span><span class="pun">= [</span><span class="str">"a"</span><span class="pun">: </span><span class="lit">1</span><span class="pun">, </span><span class="str">"b"</span><span class="pun">: </span><span class="lit">2</span><span class="pun">, </span><span class="str">"c"</span><span class="pun">: </span><span class="lit">3</span><span class="pun">];
+<pre class="code"><code class="lang-d"><span class="kwd">version </span><span class="pun">(</span><span class="pln">test_uim_root</span><span class="pun">)
+  </span><span class="pln">writeln</span><span class="pun">(</span><span class="str">"Testing hasAnyKey function"</span><span class="pun">);
+  
+</span><span class="kwd">auto </span><span class="pln">map </span><span class="pun">= [</span><span class="str">"a"</span><span class="pun">: </span><span class="lit">1</span><span class="pun">, </span><span class="str">"b"</span><span class="pun">: </span><span class="lit">2</span><span class="pun">, </span><span class="str">"c"</span><span class="pun">: </span><span class="lit">3</span><span class="pun">];
 
 </span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">hasAnyKey</span><span class="pun">([</span><span class="str">"a"</span><span class="pun">, </span><span class="str">"d"</span><span class="pun">]));
 </span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">hasAnyKey</span><span class="pun">([</span><span class="str">"x"</span><span class="pun">, </span><span class="str">"b"</span><span class="pun">]));

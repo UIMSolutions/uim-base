@@ -27,6 +27,9 @@ bool hasAllKey(K, V)(V[K] items, K[] keys) {
 }
 ///
 unittest {
+  version (test_uim_root)
+    writeln("Testing hasAllKey function");
+
   auto map = ["a": 1, "b": 2, "c": 3];
 
   assert(map.hasAllKey(["a", "b"]));
@@ -54,6 +57,9 @@ bool hasAnyKey(K, V)(V[K] items, K[] keys) {
 }
 ///
 unittest {
+  version (test_uim_root)
+    writeln("Testing hasAnyKey function");
+    
   auto map = ["a": 1, "b": 2, "c": 3];
 
   assert(map.hasAnyKey(["a", "d"]));
@@ -79,6 +85,9 @@ bool hasKey(K, V)(V[K] items, K key) {
 }
 ///
 unittest {
+  version (test_uim_root)
+    writeln("Testing hasKey function");
+
   auto map = ["a": 1, "b": 2, "c": 3];
 
   assert(map.hasKey("a"));
@@ -108,6 +117,9 @@ bool hasAllValue(K, V)(V[K] items, V[] values) {
 }
 ///
 unittest {
+  version (test_uim_root)
+    writeln("Testing hasAllValue function");
+
   auto map = ["a": 1, "b": 2, "c": 3];
 
   assert(map.hasAllValue([1, 2]));
@@ -136,6 +148,9 @@ bool hasAnyValue(K, V)(V[K] items, V[] values) {
 }
 ///
 unittest {
+  version (test_uim_root)
+    writeln("Testing hasAnyValue function");
+
   auto map = ["a": 1, "b": 2, "c": 3];
 
   assert(map.hasAnyValue([1, 4]));
@@ -162,6 +177,9 @@ bool hasValue(K, V)(V[K] map, V value) {
 }
 ///
 unittest {
+  version (test_uim_root)
+    writeln("Testing hasValue function");
+
   auto map = ["a": 1, "b": 2, "c": 3];
 
   assert(map.hasValue(1));
@@ -196,6 +214,9 @@ bool hasItem(K, V)(V[K] map, bool delegate(K key, V value) @safe hasFunc) {
 }
 ///
 unittest {
+  version (test_uim_root)
+    writeln("Testing hasItem function");
+
   // Test hasItem - basic functionality
   auto map = ["a": 1, "b": 2, "c": 3];
 
@@ -228,4 +249,19 @@ unittest {
 
 bool hasKeyValue(K, V)(V[K] map, K key, V value) {
   return map.hasKey(key) ? map[key] == value : false;
+}
+///
+unittest {
+  version (test_uim_root)
+    writeln("Testing hasKeyValue function");
+
+  auto map = ["a": 1, "b": 2, "c": 3];
+
+  assert(map.hasKeyValue("a", 1));
+  assert(map.hasKeyValue("b", 2));
+  assert(!map.hasKeyValue("c", 2));
+  assert(!map.hasKeyValue("d", 4));
+
+  int[string] emptyMap;
+  assert(!emptyMap.hasKeyValue("a", 1));
 }

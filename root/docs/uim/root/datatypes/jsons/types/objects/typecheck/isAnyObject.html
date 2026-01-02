@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>isAnyObject - multiple declarations</title>
+		<title>Function isAnyObject</title>
 		<link rel="stylesheet" type="text/css" href="../../../../../../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../../../../../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../../../../../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../../../../../../scripts/ddox.js">/**/</script>
@@ -198,11 +198,6 @@ $('#symbolSearchPane').show();</script>
 				</li>
 				<li>
 					<div class="module ">
-						<a href="../../../../../../../uim/root/containers/sequential/arrays/isempty.html">isempty</a>
-					</div>
-				</li>
-				<li>
-					<div class="module ">
 						<a href="../../../../../../../uim/root/containers/sequential/arrays/last.html">last</a>
 					</div>
 				</li>
@@ -303,11 +298,6 @@ $('#symbolSearchPane').show();</script>
 				</li>
 				<li>
 					<div class="module ">
-						<a href="../../../../../../../uim/root/containers/sequential/arrays/string_.html">string_</a>
-					</div>
-				</li>
-				<li>
-					<div class="module ">
 						<a href="../../../../../../../uim/root/containers/sequential/arrays/unzip.html">unzip</a>
 					</div>
 				</li>
@@ -354,6 +344,54 @@ $('#symbolSearchPane').show();</script>
 				</li>
 			</ul>
 				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../../uim/root/datatypes/jsons/types/booleans.html">booleans</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../../uim/root/datatypes/jsons/types/booleans/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../../uim/root/datatypes/jsons/types/doubles.html">doubles</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../../uim/root/datatypes/jsons/types/doubles/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../../uim/root/datatypes/jsons/types/integers.html">integers</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../../uim/root/datatypes/jsons/types/integers/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../../uim/root/datatypes/jsons/types/nulls.html">nulls</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../../uim/root/datatypes/jsons/types/nulls/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
 				<li class="tree-view ">
 					<div class="package ">
 						<a href="../../../../../../../uim/root/datatypes/jsons/types/objects.html">objects</a>
@@ -366,10 +404,41 @@ $('#symbolSearchPane').show();</script>
 				</li>
 			</ul>
 				</li>
-				<li>
-					<div class="module ">
+				<li class="tree-view collapsed">
+					<div class="package ">
 						<a href="../../../../../../../uim/root/datatypes/jsons/types/scalars.html">scalars</a>
 					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../../uim/root/datatypes/jsons/types/scalars/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../../uim/root/datatypes/jsons/types/strings.html">strings</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../../uim/root/datatypes/jsons/types/strings/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../../uim/root/datatypes/jsons/types/undefineds.html">undefineds</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../../uim/root/datatypes/jsons/types/undefineds/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
 				</li>
 			</ul>
 				</li>
@@ -543,52 +612,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>isAnyObject - multiple declarations</h1>
-			<nav class="page-nav">
-				<ul>
-					<li>
-						<a href="#0">
-							Function <code>isAnyObject</code>
-						</a>
-					</li>
-					<li>
-						<a href="#1">
-							Function <code>isAnyObject</code>
-						</a>
-					</li>
-				</ul>
-			</nav><h2 id="0">Function isAnyObject</h2><p>Checks whether any Json value in the array is an object.
-</p>
-			<div class="prototype">
-				<code class="lang-d">
-					<div class="single-prototype">
-			<span class="typ">bool</span> <span class="pln">isAnyObject</span>
-			<span class="pun">(</span>
-			<br/>
-			&nbsp;&nbsp;<span class="pln">vibe<wbr/></span><span class="pun">.</span><span class="pln">data<wbr/></span><span class="pun">.</span><span class="pln">json<wbr/></span><span class="pun">.</span><span class="typ">Json</span><span class="pun">[]</span> <span class="pln">jsons</span>
-			<br/>
-			<span class="pun">)</span><span class="pln"> </span><span class="kwd">@safe</span><span class="pun">;</span>
-					</div>
-				</code>
-			</div>
-			<section></section>
-
-			<section><h3>Parameters</h3>
-<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
-<tr><td id="values">values</td><td> The array of Json values to check.</td></tr>
-</table>
-</section>
-<section><h3>Returns</h3>
-<p>true if any Json value is an object, false otherwise.
-</p>
-</section>
-<section><h3>Example</h3>
-
-<pre class="code"><code class="lang-d"><span class="kwd">assert</span><span class="pun">(</span><span class="pln">isAnyObject</span><span class="pun">([[</span><span class="str">"key"</span><span class="pun">: </span><span class="str">"value"</span><span class="pun">]<wbr/>.</span><span class="pln">toJson</span><span class="pun">, [</span><span class="lit">1</span><span class="pun">, </span><span class="lit">2</span><span class="pun">, </span><span class="lit">3</span><span class="pun">]<wbr/>.</span><span class="pln">toJson</span><span class="pun">]));
-</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">isAnyObject</span><span class="pun">([[</span><span class="lit">1</span><span class="pun">, </span><span class="lit">2</span><span class="pun">, </span><span class="lit">3</span><span class="pun">]<wbr/>.</span><span class="pln">toJson</span><span class="pun">, [</span><span class="kwd">true</span><span class="pun">, </span><span class="kwd">false</span><span class="pun">]<wbr/>.</span><span class="pln">toJson</span><span class="pun">]));
-</span></code></pre>
-</section>
-<h2 id="1">Function isAnyObject</h2><p>Checks whether any Json value at the specified indices in the array is an object.
+			<h1>Function isAnyObject</h1><p>Checks whether any Json value at the specified indices in the array is an object.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -598,7 +622,7 @@ $('#symbolSearchPane').show();</script>
 			<br/>
 			&nbsp;&nbsp;<span class="pln">vibe<wbr/></span><span class="pun">.</span><span class="pln">data<wbr/></span><span class="pun">.</span><span class="pln">json<wbr/></span><span class="pun">.</span><span class="typ">Json</span><span class="pun">[]</span> <span class="pln">jsons</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ulong</span><span class="pun">[]</span> <span class="pln">indices</span>
+			&nbsp;&nbsp;<span class="typ">ulong</span><span class="pun">[]</span> <span class="pln">indices</span> <span class="pun">=</span> <span class="kwd">null</span>
 			<br/>
 			<span class="pun">)</span><span class="pln"> </span><span class="kwd">@safe</span><span class="pun">;</span>
 					</div>
@@ -606,23 +630,23 @@ $('#symbolSearchPane').show();</script>
 			</div>
 			<section></section>
 
-			<section><h3>Parameters</h3>
+			<section><h2>Parameters</h2>
 <table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
 <tr><td id="values">values</td><td> The array of Json values to check.</td></tr>
 <tr><td id="indices">indices</td><td> The indices of the Json values to check.</td></tr>
 </table>
 </section>
-<section><h3>Returns</h3>
+<section><h2>Returns</h2>
 <p>true if any specified Json value is an object, false otherwise.
 </p>
 </section>
-<section><h3>Example</h3>
+<section><h2>Example</h2>
 
 <pre class="code"><code class="lang-d"><span class="kwd">auto </span><span class="pln">arr </span><span class="pun">= [
   [</span><span class="str">"key"</span><span class="pun">: </span><span class="str">"value"</span><span class="pun">]<wbr/>.</span><span class="pln">toJson</span><span class="pun">, [</span><span class="lit">1</span><span class="pun">, </span><span class="lit">2</span><span class="pun">, </span><span class="lit">3</span><span class="pun">]<wbr/>.</span><span class="pln">toJson</span><span class="pun">, [</span><span class="kwd">true</span><span class="pun">, </span><span class="kwd">false</span><span class="pun">]<wbr/>.</span><span class="pln">toJson
 </span><span class="pun">];
-</span><span class="kwd">assert</span><span class="pun">(<a href="../../../../../../../uim/root/datatypes/jsons/types/objects/typecheck/isAnyObject.html"></span><span class="pln">isAnyObject</span></a><span class="pun">(</span><span class="pln">arr</span><span class="pun">, [</span><span class="lit">0</span><span class="pun">, </span><span class="lit">2</span><span class="pun">]));
-</span><span class="kwd">assert</span><span class="pun">(!<a href="../../../../../../../uim/root/datatypes/jsons/types/objects/typecheck/isAnyObject.html"></span><span class="pln">isAnyObject</span></a><span class="pun">(</span><span class="pln">arr</span><span class="pun">, [</span><span class="lit">1</span><span class="pun">, </span><span class="lit">2</span><span class="pun">]));
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">isAnyObject</span><span class="pun">(</span><span class="pln">arr</span><span class="pun">, [</span><span class="lit">0</span><span class="pun">, </span><span class="lit">2</span><span class="pun">]));
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">isAnyObject</span><span class="pun">(</span><span class="pln">arr</span><span class="pun">, [</span><span class="lit">1</span><span class="pun">, </span><span class="lit">2</span><span class="pun">]));
 </span></code></pre>
 </section>
 

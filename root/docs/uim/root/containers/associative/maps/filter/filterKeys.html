@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function filterKeys</title>
+		<title>filterKeys - multiple declarations</title>
 		<link rel="stylesheet" type="text/css" href="../../../../../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../../../../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../../../../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../../../../../scripts/ddox.js">/**/</script>
@@ -198,11 +198,6 @@ $('#symbolSearchPane').show();</script>
 				</li>
 				<li>
 					<div class="module ">
-						<a href="../../../../../../uim/root/containers/sequential/arrays/isempty.html">isempty</a>
-					</div>
-				</li>
-				<li>
-					<div class="module ">
 						<a href="../../../../../../uim/root/containers/sequential/arrays/last.html">last</a>
 					</div>
 				</li>
@@ -303,11 +298,6 @@ $('#symbolSearchPane').show();</script>
 				</li>
 				<li>
 					<div class="module ">
-						<a href="../../../../../../uim/root/containers/sequential/arrays/string_.html">string_</a>
-					</div>
-				</li>
-				<li>
-					<div class="module ">
 						<a href="../../../../../../uim/root/containers/sequential/arrays/unzip.html">unzip</a>
 					</div>
 				</li>
@@ -356,6 +346,54 @@ $('#symbolSearchPane').show();</script>
 				</li>
 				<li class="tree-view collapsed">
 					<div class="package ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/booleans.html">booleans</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/booleans/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/doubles.html">doubles</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/doubles/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/integers.html">integers</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/integers/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/nulls.html">nulls</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/nulls/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
 						<a href="../../../../../../uim/root/datatypes/jsons/types/objects.html">objects</a>
 					</div>
 			<ul class="tree-view">
@@ -366,10 +404,41 @@ $('#symbolSearchPane').show();</script>
 				</li>
 			</ul>
 				</li>
-				<li>
-					<div class="module ">
+				<li class="tree-view collapsed">
+					<div class="package ">
 						<a href="../../../../../../uim/root/datatypes/jsons/types/scalars.html">scalars</a>
 					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/scalars/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/strings.html">strings</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/strings/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/undefineds.html">undefineds</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../../../uim/root/datatypes/jsons/types/undefineds/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
 				</li>
 			</ul>
 				</li>
@@ -543,7 +612,69 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function filterKeys</h1><p>Filters the map to include only the specified keys.
+			<h1>filterKeys - multiple declarations</h1>
+			<nav class="page-nav">
+				<ul>
+					<li>
+						<a href="#0">
+							Function <code>filterKeys</code>
+						</a>
+					</li>
+					<li>
+						<a href="#1">
+							Function <code>filterKeys</code>
+						</a>
+					</li>
+					<li>
+						<a href="#2">
+							Function <code>filterKeys</code>
+						</a>
+					</li>
+				</ul>
+			</nav><h2 id="0">Function filterKeys</h2><p>Filters the map by the specified keys and an optional filter function.
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="pln">V</span><span class="pun">[</span><span class="pln">K</span><span class="pun">]</span> <span class="pln">filterKeys</span>(K, V)
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="pln">V</span><span class="pun">[</span><span class="pln">K</span><span class="pun">]</span> <span class="pln">map</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="pln">K</span><span class="pun">[]</span> <span class="pln">keys</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="kwd">@safe</span> <span class="typ">bool</span> <span class="kwd">delegate</span><span class="pun">(</span><span class="pln">K</span><span class="pun">)</span> <span class="pln">filterFunc</span>
+			<br/>
+			<span class="pun">)</span><span class="pun">;</span>
+					</div>
+				</code>
+			</div>
+			<section></section>
+
+			<section><h3>Parameters</h3>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="items">items</td><td> The map to filter.</td></tr>
+<tr><td id="keys">keys</td><td> The keys to consider for filtering.</td></tr>
+<tr><td id="filterFunc">filterFunc</td><td> An optional delegate that takes a key and returns true if the key should be included.</td></tr>
+</table>
+</section>
+<section><h3>Returns</h3>
+<p>A new map containing only the entries with the specified keys that pass the filter function.
+</p>
+</section>
+<section><h3>Example</h3>
+
+<pre class="code"><code class="lang-d"><span class="kwd">version </span><span class="pun">(</span><span class="pln">test_uim_root</span><span class="pun">)
+  </span><span class="pln">writeln</span><span class="pun">(</span><span class="str">"Testing filterKeys with keys and filterFunc"</span><span class="pun">);
+
+</span><span class="typ">int</span><span class="pun">[</span><span class="typ">string</span><span class="pun">] <a href="../../../../../../uim/root/containers/associative/maps/filter/filterKeys.html#map"></span><span class="pln">map</span></a><span class="pln"> </span><span class="pun">= [</span><span class="str">"one"</span><span class="pun">: </span><span class="lit">1</span><span class="pun">, </span><span class="str">"two"</span><span class="pun">: </span><span class="lit">2</span><span class="pun">, </span><span class="str">"three"</span><span class="pun">: </span><span class="lit">3</span><span class="pun">, </span><span class="str">"four"</span><span class="pun">: </span><span class="lit">4</span><span class="pun">];
+</span><span class="kwd">auto </span><span class="pln">filtered </span><span class="pun">= </span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">filterKeys</span><span class="pun">([</span><span class="str">"two"</span><span class="pun">, </span><span class="str">"three"</span><span class="pun">, </span><span class="str">"five"</span><span class="pun">],
+  (</span><span class="typ">string </span><span class="pln">key</span><span class="pun">) </span><span class="kwd">@safe </span><span class="pun">=&gt; </span><span class="pln">key<wbr/></span><span class="pun">.</span><span class="pln">length </span><span class="pun">== </span><span class="lit">3</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">filtered<wbr/></span><span class="pun">.</span><span class="pln">length </span><span class="pun">== </span><span class="lit">1 </span><span class="pun">&amp;&amp; </span><span class="pln">filtered<wbr/></span><span class="pun">.</span><span class="pln">hasKey</span><span class="pun">(</span><span class="str">"two"</span><span class="pun">) &amp;&amp; </span><span class="pln">filtered</span><span class="pun">[</span><span class="str">"two"</span><span class="pun">] == </span><span class="lit">2</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">filtered<wbr/></span><span class="pun">.</span><span class="pln">hasAnyKey</span><span class="pun">([</span><span class="str">"one"</span><span class="pun">, </span><span class="str">"three"</span><span class="pun">, </span><span class="str">"four"</span><span class="pun">]));
+</span></code></pre>
+</section>
+<h2 id="1">Function filterKeys</h2><p>Filters the map by the specified keys.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -561,15 +692,66 @@ $('#symbolSearchPane').show();</script>
 			</div>
 			<section></section>
 
-			<section><h2>Parameters</h2>
+			<section><h3>Parameters</h3>
 <table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
-<tr><td id="map">map</td><td> The map to filter.</td></tr>
-<tr><td id="keys">keys</td><td> The keys to include in the filtered map.</td></tr>
+<tr><td id="items">items</td><td> The map to filter.</td></tr>
+<tr><td id="keys">keys</td><td> The keys to consider for filtering.</td></tr>
 </table>
 </section>
-<section><h2>Returns</h2>
-<p>A new map containing only the specified keys and their associated values.
+<section><h3>Returns</h3>
+<p>A new map containing only the entries with the specified keys.
 </p>
+</section>
+<section><h3>Example</h3>
+
+<pre class="code"><code class="lang-d"><span class="kwd">version </span><span class="pun">(</span><span class="pln">test_uim_root</span><span class="pun">)
+  </span><span class="pln">writeln</span><span class="pun">(</span><span class="str">"Testing filterKeys with keys"</span><span class="pun">);
+
+</span><span class="typ">int</span><span class="pun">[</span><span class="typ">string</span><span class="pun">] <a href="../../../../../../uim/root/containers/associative/maps/filter/filterKeys.html#map"></span><span class="pln">map</span></a><span class="pln"> </span><span class="pun">= [</span><span class="str">"one"</span><span class="pun">: </span><span class="lit">1</span><span class="pun">, </span><span class="str">"two"</span><span class="pun">: </span><span class="lit">2</span><span class="pun">, </span><span class="str">"three"</span><span class="pun">: </span><span class="lit">3</span><span class="pun">, </span><span class="str">"four"</span><span class="pun">: </span><span class="lit">4</span><span class="pun">];
+</span><span class="kwd">auto </span><span class="pln">filtered </span><span class="pun">= </span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">filterKeys</span><span class="pun">([</span><span class="str">"two"</span><span class="pun">, </span><span class="str">"three"</span><span class="pun">, </span><span class="str">"five"</span><span class="pun">]);
+</span><span class="pln">writeln</span><span class="pun">(</span><span class="pln">filtered</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">filtered<wbr/></span><span class="pun">.</span><span class="pln">length </span><span class="pun">== </span><span class="lit">2 </span><span class="pun">&amp;&amp; </span><span class="pln">filtered<wbr/></span><span class="pun">.</span><span class="pln">hasAllKey</span><span class="pun">([</span><span class="str">"two"</span><span class="pun">, </span><span class="str">"three"</span><span class="pun">]) &amp;&amp; !</span><span class="pln">filtered<wbr/></span><span class="pun">.</span><span class="pln">hasKey</span><span class="pun">(</span><span class="str">"five"</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">filtered</span><span class="pun">[</span><span class="str">"two"</span><span class="pun">] == </span><span class="lit">2 </span><span class="pun">&amp;&amp; </span><span class="pln">filtered</span><span class="pun">[</span><span class="str">"three"</span><span class="pun">] == </span><span class="lit">3</span><span class="pun">);
+</span></code></pre>
+</section>
+<h2 id="2">Function filterKeys</h2><p>Filters the map by an optional filter function applied to keys.
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="pln">V</span><span class="pun">[</span><span class="pln">K</span><span class="pun">]</span> <span class="pln">filterKeys</span>(K, V)
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="pln">V</span><span class="pun">[</span><span class="pln">K</span><span class="pun">]</span> <span class="pln">map</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="kwd">@safe</span> <span class="typ">bool</span> <span class="kwd">delegate</span><span class="pun">(</span><span class="pln">K</span><span class="pun">)</span> <span class="pln">filterFunc</span>
+			<br/>
+			<span class="pun">)</span><span class="pun">;</span>
+					</div>
+				</code>
+			</div>
+			<section></section>
+
+			<section><h3>Parameters</h3>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="items">items</td><td> The map to filter.</td></tr>
+<tr><td id="filterFunc">filterFunc</td><td> A delegate that takes a key and returns true if the key should be included.</td></tr>
+</table>
+</section>
+<section><h3>Returns</h3>
+<p>A new map containing only the entries whose keys pass the filter function.
+</p>
+</section>
+<section><h3>Example</h3>
+
+<pre class="code"><code class="lang-d"><span class="kwd">version </span><span class="pun">(</span><span class="pln">test_uim_root</span><span class="pun">)
+  </span><span class="pln">writeln</span><span class="pun">(</span><span class="str">"Testing filterKeys with filterFunc"</span><span class="pun">);
+
+</span><span class="typ">int</span><span class="pun">[</span><span class="typ">string</span><span class="pun">] <a href="../../../../../../uim/root/containers/associative/maps/filter/filterKeys.html#map"></span><span class="pln">map</span></a><span class="pln"> </span><span class="pun">= [</span><span class="str">"one"</span><span class="pun">: </span><span class="lit">1</span><span class="pun">, </span><span class="str">"two"</span><span class="pun">: </span><span class="lit">2</span><span class="pun">, </span><span class="str">"three"</span><span class="pun">: </span><span class="lit">3</span><span class="pun">, </span><span class="str">"four"</span><span class="pun">: </span><span class="lit">4</span><span class="pun">];
+</span><span class="kwd">auto </span><span class="pln">filtered </span><span class="pun">= </span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">filterKeys</span><span class="pun">((</span><span class="typ">string </span><span class="pln">key</span><span class="pun">) </span><span class="kwd">@safe </span><span class="pun">=&gt; </span><span class="pln">key<wbr/></span><span class="pun">.</span><span class="pln">length </span><span class="pun">== </span><span class="lit">3</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">filtered<wbr/></span><span class="pun">.</span><span class="pln">length </span><span class="pun">== </span><span class="lit">2 </span><span class="pun">&amp;&amp; </span><span class="pln">filtered<wbr/></span><span class="pun">.</span><span class="pln">hasAllKey</span><span class="pun">([</span><span class="str">"one"</span><span class="pun">, </span><span class="str">"two"</span><span class="pun">]) &amp;&amp; !</span><span class="pln">filtered<wbr/></span><span class="pun">.</span><span class="pln">hasAnyKey</span><span class="pun">([</span><span class="str">"three"</span><span class="pun">, </span><span class="str">"four"</span><span class="pun">]));
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">filtered</span><span class="pun">[</span><span class="str">"one"</span><span class="pun">] == </span><span class="lit">1 </span><span class="pun">&amp;&amp; </span><span class="pln">filtered</span><span class="pun">[</span><span class="str">"two"</span><span class="pun">] == </span><span class="lit">2</span><span class="pun">);
+</span></code></pre>
 </section>
 
 			<footer>

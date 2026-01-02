@@ -198,11 +198,6 @@ $('#symbolSearchPane').show();</script>
 				</li>
 				<li>
 					<div class="module ">
-						<a href="../../../../uim/root/containers/sequential/arrays/isempty.html">isempty</a>
-					</div>
-				</li>
-				<li>
-					<div class="module ">
 						<a href="../../../../uim/root/containers/sequential/arrays/last.html">last</a>
 					</div>
 				</li>
@@ -303,11 +298,6 @@ $('#symbolSearchPane').show();</script>
 				</li>
 				<li>
 					<div class="module ">
-						<a href="../../../../uim/root/containers/sequential/arrays/string_.html">string_</a>
-					</div>
-				</li>
-				<li>
-					<div class="module ">
 						<a href="../../../../uim/root/containers/sequential/arrays/unzip.html">unzip</a>
 					</div>
 				</li>
@@ -356,6 +346,54 @@ $('#symbolSearchPane').show();</script>
 				</li>
 				<li class="tree-view collapsed">
 					<div class="package ">
+						<a href="../../../../uim/root/datatypes/jsons/types/booleans.html">booleans</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/root/datatypes/jsons/types/booleans/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../uim/root/datatypes/jsons/types/doubles.html">doubles</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/root/datatypes/jsons/types/doubles/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../uim/root/datatypes/jsons/types/integers.html">integers</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/root/datatypes/jsons/types/integers/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../uim/root/datatypes/jsons/types/nulls.html">nulls</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/root/datatypes/jsons/types/nulls/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
 						<a href="../../../../uim/root/datatypes/jsons/types/objects.html">objects</a>
 					</div>
 			<ul class="tree-view">
@@ -366,10 +404,41 @@ $('#symbolSearchPane').show();</script>
 				</li>
 			</ul>
 				</li>
-				<li>
-					<div class="module ">
+				<li class="tree-view collapsed">
+					<div class="package ">
 						<a href="../../../../uim/root/datatypes/jsons/types/scalars.html">scalars</a>
 					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/root/datatypes/jsons/types/scalars/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../uim/root/datatypes/jsons/types/strings.html">strings</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/root/datatypes/jsons/types/strings/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../uim/root/datatypes/jsons/types/undefineds.html">undefineds</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/root/datatypes/jsons/types/undefineds/typecheck.html">typecheck</a>
+					</div>
+				</li>
+			</ul>
 				</li>
 			</ul>
 				</li>
@@ -544,7 +613,43 @@ $('#symbolSearchPane').show();</script>
 		</nav>
 		<div id="main-contents">
 			<h1>Module uim.root.datatypes.jsons.convert</h1><p></p>
-			<section></section>
+			<section><section><h2>Example</h2>
+
+<pre class="code"><code class="lang-d"><span class="kwd">auto </span><span class="pln">jsonArray </span><span class="pun">= [</span><span class="lit">1</span><span class="pun">, </span><span class="lit">2</span><span class="pun">, </span><span class="lit">3</span><span class="pun">]<a href="../../../../uim/root/datatypes/jsons/convert/toJson.html"></span><wbr/><span class="pun">.</span><span class="pln">toJson</span></a><span class="pun">;
+</span><span class="kwd">auto </span><span class="pln">array </span><span class="pun">= </span><span class="pln">toArray</span><span class="pun">(</span><span class="pln">jsonArray</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">array<wbr/></span><span class="pun">.</span><span class="pln">length </span><span class="pun">== </span><span class="lit">3</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">array</span><span class="pun">[</span><span class="lit">0</span><span class="pun">] == </span><span class="typ">Json</span><span class="pun">(</span><span class="lit">1</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">array</span><span class="pun">[</span><span class="lit">1</span><span class="pun">] == </span><span class="typ">Json</span><span class="pun">(</span><span class="lit">2</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">array</span><span class="pun">[</span><span class="lit">2</span><span class="pun">] == </span><span class="typ">Json</span><span class="pun">(</span><span class="lit">3</span><span class="pun">));
+
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">toArray</span><span class="pun">(</span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">)) == </span><span class="kwd">null</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">toArray</span><span class="pun">(</span><span class="str">"string"<a href="../../../../uim/root/datatypes/jsons/convert/toJson.html"></span><wbr/><span class="pun">.</span><span class="pln">toJson</span></a><span class="pun">) == </span><span class="kwd">null</span><span class="pun">);
+</span></code></pre>
+</section>
+<section><h2>Example</h2>
+
+<pre class="code"><code class="lang-d"><span class="kwd">auto </span><span class="pln">jsonMap </span><span class="pun">= [</span><span class="str">"A"</span><span class="pun">: </span><span class="lit">1</span><span class="pun">, </span><span class="str">"B"</span><span class="pun">: </span><span class="lit">2</span><span class="pun">]<a href="../../../../uim/root/datatypes/jsons/convert/toJson.html"></span><wbr/><span class="pun">.</span><span class="pln">toJson</span></a><span class="pun">;
+</span><span class="kwd">auto </span><span class="pln">map </span><span class="pun">= </span><span class="pln">toMap</span><span class="pun">(</span><span class="pln">jsonMap</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map<wbr/></span><span class="pun">.</span><span class="pln">length </span><span class="pun">== </span><span class="lit">2</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map</span><span class="pun">[</span><span class="str">"A"</span><span class="pun">] == </span><span class="typ">Json</span><span class="pun">(</span><span class="lit">1</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">map</span><span class="pun">[</span><span class="str">"B"</span><span class="pun">] == </span><span class="typ">Json</span><span class="pun">(</span><span class="lit">2</span><span class="pun">));
+
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">toMap</span><span class="pun">(</span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">)) == </span><span class="kwd">null</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">toMap</span><span class="pun">([</span><span class="lit">1</span><span class="pun">, </span><span class="lit">2</span><span class="pun">, </span><span class="lit">3</span><span class="pun">]<a href="../../../../uim/root/datatypes/jsons/convert/toJson.html"></span><wbr/><span class="pun">.</span><span class="pln">toJson</span></a><span class="pun">) == </span><span class="kwd">null</span><span class="pun">);
+</span></code></pre>
+</section>
+<section><h2>Example</h2>
+
+<pre class="code"><code class="lang-d"><span class="kwd">assert</span><span class="pun">(<a href="../../../../uim/root/datatypes/jsons/convert/toJson.html"></span><span class="pln">toJson</span></a><span class="pun">(</span><span class="kwd">true</span><span class="pun">) == </span><span class="typ">Json</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(<a href="../../../../uim/root/datatypes/jsons/convert/toJson.html"></span><span class="pln">toJson</span></a><span class="pun">(</span><span class="lit">42L</span><span class="pun">) == </span><span class="typ">Json</span><span class="pun">(</span><span class="lit">42</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(<a href="../../../../uim/root/datatypes/jsons/convert/toJson.html"></span><span class="pln">toJson</span></a><span class="pun">(</span><span class="lit">3.14</span><span class="pun">) == </span><span class="typ">Json</span><span class="pun">(</span><span class="lit">3.14</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(<a href="../../../../uim/root/datatypes/jsons/convert/toJson.html"></span><span class="pln">toJson</span></a><span class="pun">(</span><span class="str">"example"</span><span class="pun">) == </span><span class="typ">Json</span><span class="pun">(</span><span class="str">"example"</span><span class="pun">));
+</span><span class="kwd">auto </span><span class="pln">id </span><span class="pun">= </span><span class="pln">randomUUID</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(<a href="../../../../uim/root/datatypes/jsons/convert/toJson.html"></span><span class="pln">toJson</span></a><span class="pun">(</span><span class="pln">id</span><span class="pun">) == </span><span class="typ">Json</span><span class="pun">(</span><span class="pln">id<wbr/></span><span class="pun">.</span><span class="pln">toString</span><span class="pun">));
+</span><span class="kwd">assert</span><span class="pun">(<a href="../../../../uim/root/datatypes/jsons/convert/toJson.html"></span><span class="pln">toJson</span></a><span class="pun">(</span><span class="typ">Json</span><span class="pun">(</span><span class="str">"example"</span><span class="pun">)) == </span><span class="typ">Json</span><span class="pun">(</span><span class="str">"example"</span><span class="pun">));
+</span></code></pre>
+</section>
+</section>
 			<section>
 				<h2>Functions</h2>
 				<table>
