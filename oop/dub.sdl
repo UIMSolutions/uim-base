@@ -2,7 +2,7 @@ name "oop"
 description "D-Library for core OOP functionalities"
 homepage "https://www.sueel.de/uim"
 license "Apache-2.0"
-copyright "Copyright © 2018-2025, Ozan Nurettin Süel"
+copyright "Copyright © 2018-2026, Ozan Nurettin Süel"
 authors "Ozan Nurettin Süel"
 
 // target
