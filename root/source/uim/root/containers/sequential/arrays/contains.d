@@ -7,7 +7,8 @@ module uim.root.containers.sequential.arrays.contains;
 
 import uim.root;
 
-mixin(Version!("test_uim_phobos"));
+mixin(Version!("test_uim_root"));
+
 @safe:
 // #region contains
 // #region containsAll
@@ -16,7 +17,7 @@ bool containsAll(string[] bases, string[] values) {
 }
 ///
 unittest {
-  version (test_uim_phobos)
+  version (test_uim_root)
     writeln("Testing containsAll with array of bases");
 
   assert(containsAll(["hello world", "world peace"], ["world"]));
@@ -30,7 +31,7 @@ bool containsAll(string base, string[] values) {
 }
 ///
 unittest {
-  version (test_uim_phobos)
+  version (test_uim_root)
     writeln("Testing containsAll with single base string");
 
   assert(containsAll("hello world", ["hello", "world"]));
@@ -44,7 +45,7 @@ bool containsAny(string[] bases, string[] values) {
 }
 ///
 unittest {
-  version (test_uim_phobos)
+  version (test_uim_root)
     writeln("Testing containsAny with array of bases");
 
   assert(containsAny(["hello world", "example"], ["world", "planet"]));
@@ -64,7 +65,7 @@ bool containsAny(string base = null, string[] values = null) {
 }
 ///
 unittest {
-  version (test_uim_phobos)
+  version (test_uim_root)
     writeln("Testing containsAny with single base string");
 
   assert(containsAny("hello world", ["world", "planet"]));

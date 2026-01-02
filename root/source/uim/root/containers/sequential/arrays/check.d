@@ -2,7 +2,7 @@ module uim.root.containers.sequential.arrays.check;
 
 import uim.root;
 
-mixin(Version!("test_uim_phobos"));
+mixin(Version!("test_uim_root"));
 
 @safe:
 
@@ -11,13 +11,13 @@ bool isNull(V)(V[] array) {
 }
 ///
 unittest {
-  version (test_uim_phobos)
+  version (test_uim_root)
     writeln("Testing isNull function");
 
   int[] array = null;
   assert(array.isNull());
 
-  array = [];
+  array = [1];
   assert(!array.isNull());
 }
 
@@ -26,7 +26,7 @@ bool isEmpty(V)(V[] array) {
 }
 ///
 unittest {
-  version (test_uim_phobos)
+  version (test_uim_root)
     writeln("Testing isEmpty function");
 
   int[] array = null;
@@ -41,7 +41,7 @@ bool isSingle(V)(V[] array) {
 }
 ///
 unittest {
-  version (test_uim_phobos)
+  version (test_uim_root)
     writeln("Testing isSingle function");
 
   int[] array = [1];
@@ -56,7 +56,7 @@ bool isMulti(V)(V[] array) {
 }
 ///
 unittest {
-  version (test_uim_phobos)
+  version (test_uim_root)
     writeln("Testing isMulti function");
 
   int[] array = [1, 2];

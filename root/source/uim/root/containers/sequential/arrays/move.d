@@ -7,7 +7,7 @@ module uim.root.containers.sequential.arrays.move;
 
 import uim.root;
 
-mixin(Version!("test_uim_phobos"));
+mixin(Version!("test_uim_root"));
 
 @safe:
 
@@ -28,7 +28,7 @@ T[] moveForward(T)(T[] values, size_t fromIndex, size_t toIndex) {
 }
 ///
 unittest {
-  version (test_uim_phobos)
+  version (test_uim_root)
     writeln("Testing moveForward"); 
 
   auto arr = [1, 2, 3, 4, 5];

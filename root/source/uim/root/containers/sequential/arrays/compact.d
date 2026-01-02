@@ -2,7 +2,7 @@ module uim.root.containers.sequential.arrays.compact;
 
 import uim.root;
 
-mixin(Version!("test_uim_phobos"));
+mixin(Version!("test_uim_root"));
 @safe:
 
 /** 
@@ -30,7 +30,7 @@ auto compact(T)(T[] arr) {
 }
 ///
 unittest {
-  version (test_uim_phobos) writeln("Testing compact function");
+  version (test_uim_root) writeln("Testing compact function");
 
   /* 
   auto arr = [1, null, 2, null, 3];

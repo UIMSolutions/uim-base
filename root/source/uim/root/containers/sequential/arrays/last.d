@@ -7,7 +7,7 @@ module uim.root.containers.sequential.arrays.last;
 
 import uim.root;
 
-mixin(Version!("test_uim_phobos"));
+mixin(Version!("test_uim_root"));
 @safe:
 
 /**
@@ -26,9 +26,9 @@ T last(T)(T[] values) {
 }
 ///
 unittest {
-  version (test_uim_phobos)
+  version (test_uim_root)
     writeln("Testing last");
-    
+
   // Test last with non-empty array
   int[] arr = [1, 2, 3, 4, 5];
   auto lastElem = last(arr);

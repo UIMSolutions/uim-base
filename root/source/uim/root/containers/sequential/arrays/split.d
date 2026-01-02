@@ -7,6 +7,6 @@ module uim.root.containers.sequential.arrays.split;
 
 import uim.root;
 
-mixin(Version!"test_uim_phobos");
+mixin(Version!"test_uim_root");
 
 @safe:

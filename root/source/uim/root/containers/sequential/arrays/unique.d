@@ -2,7 +2,7 @@ module uim.root.containers.sequential.arrays.unique;
 
 import uim.root;
 
-mixin(Version!("test_uim_phobos"));
+mixin(Version!("test_uim_root"));
 
 @safe:
 
@@ -17,7 +17,7 @@ T[] unique(T)(T[] values) {
 }
 /// 
 unittest {
-  version (test_uim_phobos)
+  version (test_uim_root)
     writeln("Testing unique function");
   auto arr = [1, 2, 2, 3, 4, 4, 5];
 

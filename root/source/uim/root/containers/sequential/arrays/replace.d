@@ -7,7 +7,7 @@ module uim.root.containers.sequential.arrays.replace;
 
 import uim.root;
 
-mixin(Version!("test_uim_phobos"));
+mixin(Version!("test_uim_root"));
 @safe:
 
 /* 
@@ -139,7 +139,7 @@ T[] replaceFirst(T)(T[] values, T searchValue, T newValue) {
 }
 /// 
 unittest {
-  version (test_uim_phobos) writeln("Testing replaceFirst function");
+  version (test_uim_root) writeln("Testing replaceFirst function");
 
   auto arr = [1, 2, 3, 2, 4];
   auto result = replaceFirst(arr, 2, 99);
@@ -168,7 +168,7 @@ T[] replaceLast(T)(T[] values, T searchValue, T newValue) {
 }
 /// 
 unittest {
-  version (test_uim_phobos) writeln("Testing replaceLast function");
+  version (test_uim_root) writeln("Testing replaceLast function");
 
   auto arr = [1, 2, 3, 2, 4];
   auto result = replaceLast(arr, 2, 99);
