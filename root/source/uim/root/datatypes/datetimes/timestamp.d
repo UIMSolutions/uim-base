@@ -3,11 +3,11 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.phobos.datetime.timestamp;
+module uim.root.datetimes.timestamp;
 
-import uim.phobos;
+import uim.root;
 
-mixin(Version!("test_uim_phobos"));
+mixin(Version!("test_uim_root"));
 
 @safe:
 
@@ -25,31 +25,98 @@ enum startUNIX = DateTime(1970, 1, 1, 0, 0, 0);
 long toTimestamp(SysTime untilTime) {
   return (untilTime - cast(SysTime) startUNIX).total!"hnsecs"();
 }
+///
+unittest {
+  version (test_uim_root)
+    writeln("Testing toTimestamp");
+
+  auto sysTime = SysTime(2024, 6, 15, 12, 0, 0);
+  auto timestamp = toTimestamp(sysTime);
+  assert(timestamp == 1718472000000000);
+}
 
 // Convert a timestamp in string format (long value) to SysTime
 SysTime fromTimestamp(string aTimestamp) {
   return fromTimestamp(to!long(aTimestamp));
+}
+///
+unittest {
+  version (test_uim_root)
+    writeln("Testing fromTimestamp");
+
+  auto timestampStr = "1718472000000000";
+  auto sysTime = fromTimestamp(timestampStr);
+  assert(sysTime.year == 2024);
+  assert(sysTime.month == Month.June);
+  assert(sysTime.day == 15);
+  assert(sysTime.hour == 12);
+  assert(sysTime.minute == 0);
+  assert(sysTime.second == 0);
 }
 
 // Convert a timestamp (long value) to SysTime
 SysTime fromTimestamp(long aTimestamp) {
   return (cast(SysTime) startUNIX + aTimestamp.hnsecs);
 }
+///
+unittest {
+  version (test_uim_root)
+    writeln("Testing fromTimestamp with long");
 
+  auto timestamp = 1718472000000000;
+  auto sysTime = fromTimestamp(timestamp);
+  assert(sysTime.year == 2024);
+  assert(sysTime.month == Month.June);
+  assert(sysTime.day == 15);
+  assert(sysTime.hour == 12);
+  assert(sysTime.minute == 0);
+  assert(sysTime.second == 0);
+}
 
 long toJSTimestamp(long jsTimestamp) {
   return (fromJSTimestamp(jsTimestamp) - cast(SysTime) startUNIX).total!"msecs"();
 }
+///
+unittest {
+  version (test_uim_root)
+    writeln("Testing toJSTimestamp");
+
+  auto jsTimestamp = 1718472000000;
+  auto timestamp = toJSTimestamp(jsTimestamp);
+  assert(timestamp == 1718472000000);
+}
 
 SysTime fromJSTimestamp(long jsTimestamp) {
   return (cast(SysTime) startUNIX + jsTimestamp.msecs);
+}
+///
+unittest {
+  version (test_uim_root)
+    writeln("Testing fromJSTimestamp");
+
+  auto jsTimestamp = 1718472000000;
+  auto sysTime = fromJSTimestamp(jsTimestamp);
+  assert(sysTime.year == 2024);
+  assert(sysTime.month == Month.June);
+  assert(sysTime.day == 15);
+  assert(sysTime.hour == 12);
+  assert(sysTime.minute == 0);
+  assert(sysTime.second == 0);
 }
 
 // Current SysTime based on System Clock
 auto now() {
   return Clock.currTime();
 }
+///
+unittest {
+  version (test_uim_root)
+    writeln("Testing now function");
 
+  auto time1 = now;
+  auto time2 = now;
+  assert(time2 >= time1);
+}
 unittest {
   auto now1 = now;
   auto now2 = now;
@@ -60,10 +127,13 @@ unittest {
 DateTime nowDateTime() {
   return cast(DateTime) now;
 }
-
+///
 unittest {
-  auto dt1 = nowDateTime;
-  auto dt2 = nowDateTime;
+  version (test_uim_root)
+    writeln("Testing nowDateTime function");
+
+  auto dt1 = nowDateTime();
+  auto dt2 = nowDateTime();
   assert(dt2 >= dt1);
 }
 
@@ -86,10 +156,17 @@ string timeToDateString(size_t time, string regionFormat = "DE") {
     return "%s. %s. %s - %s:%s:%s".format(day, mon, year, hour, min, sec);
   }
 }
-
+///
 unittest {
+  version (test_uim_root)
+    writeln("Testing timeToDateString function");
 
+  auto timestamp = toTimestamp(SysTime(2024, 6, 15, 12, 30, 45));
+  assert(timeToDateString(timestamp, "DE") == "15. 6. 2024 - 12:30:45");
+  assert(timeToDateString(timestamp, "UK") == "15/6/2024 - 12:30:45");
+  assert(timeToDateString(timestamp, "US") == "6/15/2024 - 12:30:45");
 }
+
 
 /// Convert timestamp to DateTime 
 string timestampToDateTimeDE(string timeStamp) {

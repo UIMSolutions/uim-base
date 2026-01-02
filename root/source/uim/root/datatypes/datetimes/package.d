@@ -3,8 +3,8 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.phobos.datetime;
+module uim.phobos.datetimes;
 
 public {
-    import uim.phobos.datetime.timestamp;
+    import uim.phobos.datetimes.timestamp;
 }
