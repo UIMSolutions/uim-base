@@ -72,7 +72,6 @@ unittest {
 }
 
 Json getArray(Json json, string[] path, Json defaultValue = Json(null)) {
-  writeln("Checking getArray with path: ", path, " in json: ", json, " of type ", json.type, " is array: ", json.isArray(path));
   return json.isArray(path) ? json.getValue(path) : defaultValue;
 }
 /// 
@@ -90,8 +89,7 @@ Json getArray(Json json, string key, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  Json json = `{"data": [ [1, 2], {"a": 1}, [3, 4] ]}`;
-  writeln("json.getArray(\"data\") -> ", json.getArray("data"));
+  Json json = parseJsonString(`{"data": [ [1, 2], {"a": 1}, [3, 4] ]}`);
   assert(json.getArray("data") == [
       [1, 2].toJson, ["a": 1].toJson, [3, 4].toJson
     ].toJson);

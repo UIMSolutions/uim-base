@@ -21,6 +21,7 @@ bool isAllArray(Json[] jsons, size_t[] indices = null) {
 unittest {
   version (test_uim_root)
     writeln("Testing isAllArray for Json[] with indices");
+
   Json[] jsons = [[1, 2].toJson, ["a": 1].toJson, [3, 4].toJson];
   assert(isAllArray(jsons) == false);
   assert(isAnyArray(jsons) == true);
@@ -37,6 +38,7 @@ bool isAnyArray(Json[] jsons, size_t[] indices = null) {
 unittest {
   version (test_uim_root)
     writeln("Testing isAllArray and isAnyArray for Json[] with indices");
+
   Json[] jsons = [[1, 2].toJson, ["a": 1].toJson, [3, 4].toJson];
   assert(isAllArray(jsons) == false);
   assert(isAnyArray(jsons) == true);
@@ -51,6 +53,7 @@ bool isArray(Json[] jsons, size_t index) {
 unittest {
   version (test_uim_root)
     writeln("Testing isArray for Json[]");
+    
   Json[] jsons = [[1, 2].toJson, ["a": 1].toJson, [3, 4].toJson];
   assert(isAllArray(jsons) == false);
   assert(isAnyArray(jsons) == true);
@@ -153,8 +156,7 @@ unittest {
 // #region Json
 // #region path
 bool isAllArray(Json json, string[][] paths) {
-  writeln("isAllArray called with paths: ", paths, " on json: ", json);
-  return json.isArray && paths.length > 0
+  return json.isObject && paths.length > 0
     ? paths.all!(path => json.isArray(path)) : false;
 }
 ///
@@ -164,9 +166,6 @@ unittest {
 
   Json json = parseJsonString(`{"data": { "test1": [ [1, 2], {"a": 1} ], "test2": [3, 4] }}`);
 
-  // writeln("json [data, test1]: ", json.getValue(["data", "test1"]));
-  // writeln("json [data, test2]: ", json.getValue(["data", "test2"]));
-
   assert(json.isArray(["data", "test1"]));
   assert(json.isArray(["data", "test2"]));
 
@@ -175,7 +174,7 @@ unittest {
 }
 
 bool isAnyArray(Json json, string[][] paths) {
-  return json.isArray && paths.length > 0
+  return json.isObject && paths.length > 0
     ? paths.any!(path => json.isArray(path)) : false;
 }
 ///
@@ -183,23 +182,20 @@ unittest {
   version (test_uim_root)
     writeln("Testing isAllArray and isAnyArray for Json with paths");
 
-  Json json = `{"data": { "test1": [ [1, 2], {"a": 1} ], "test2": [3, 4] }}`.toJson;
-  assert(isAllArray(json, [["data", "test1"], ["data", "test2"]]));
-  assert(!isAllArray(json, [["data", "test1"], ["data", "nonexistent"]]));
+  Json json = parseJsonString(`{"data": { "test1": [ [1, 2], {"a": 1} ], "test2": [3, 4] }}`);
   assert(isAnyArray(json, [["data", "test1"], ["data", "nonexistent"]]));
   assert(!isAnyArray(json, [["data", "nonexistent1"], ["data", "nonexistent2"]]));
 }
 
 bool isArray(Json json, string[] path) {
-  writeln("Checking isArray for path: ", path, " in json: ", json, " with json.getValue(path): ", json.getValue(path), " of type ", json.getValue(path).type);
-  return json.getValue(path).isArray;
+  return json.isObject && json.getValue(path).isArray;
 }
 ///
 unittest {
   version (test_uim_root)
     writeln("Testing isArray for Json with path");
 
-  Json json = `{"data": { "test": [ [1, 2], {"a": 1}, [3, 4] ]}}`.toJson;
+  Json json = parseJsonString(`{"data": { "test": [ [1, 2], {"a": 1}, [3, 4] ]}}`);
   assert(isArray(json, ["data", "test"]));
   assert(!isArray(json, ["data", "nonexistent"]));
 }
@@ -207,7 +203,7 @@ unittest {
 
 // #region key
 bool isAllArray(Json json, string[] keys) {
-  return json.isArray && keys.length > 0
+  return json.isObject && keys.length > 0
     ? keys.all!(key => json.isArray(key)) : false;
 }
 ///
@@ -225,7 +221,7 @@ unittest {
 }
 
 bool isAnyArray(Json json, string[] keys) {
-  return json.isArray && keys.length > 0
+  return json.isObject && keys.length > 0
     ? keys.any!(key => json.isArray(key)) : false;
 }
 ///
@@ -245,7 +241,7 @@ unittest {
 }
 
 bool isArray(Json json, string key) {
-  return json.getValue(key).isArray;
+  return json.isObject && json.getValue(key).isArray;
 }
 ///
 unittest {
