@@ -17,6 +17,9 @@ bool isNullUUID(UUID uuid) {
 }
 ///
 unittest {
+  version (test_uim_root)
+    writeln("Testing isNullUUID for UUID");
+    
   assert(isNullUUID(UUID()));
   assert(!isNullUUID(randomUUID));
 }

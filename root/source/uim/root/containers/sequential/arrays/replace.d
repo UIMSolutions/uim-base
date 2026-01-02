@@ -156,7 +156,7 @@ unittest {
 T[] replaceLast(T)(T[] values, T searchValue, T newValue) {
   T[] result;
   bool replaced = false;
-  foreach_reverse (value; values) {
+  foreach (value; values.reverse) {
     if (!replaced && value == searchValue) {
       result ~= newValue;
       replaced = true;
@@ -164,7 +164,7 @@ T[] replaceLast(T)(T[] values, T searchValue, T newValue) {
       result ~= value;
     }
   }
-  return result;
+  return result.reverse;
 }
 /// 
 unittest {

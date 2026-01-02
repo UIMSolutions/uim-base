@@ -22,7 +22,7 @@ unittest {
 
   assert(containsAll(["hello world", "world peace"], ["world"]));
   assert(!containsAll(["hello world", "peace"], ["world"]));
-  assert(containsAll(["hello world", "world peace"], ["hello", "world"]));
+  assert(!containsAll(["hello world", "world peace"], ["hello", "world"]));
   assert(!containsAll(["hello world", "world peace"], ["hello", "planet"]));
 }
 

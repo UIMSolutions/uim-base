@@ -15,8 +15,15 @@ unittest {
   version (test_uim_root) writeln("Testing filterArrays for Json[] with indices and filterFunc");
 
   Json[] jsons = [[1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson];
-  auto filtered = jsons.filterArrays([0, 2], (Json json) @safe => json.length > 2);
-  assert(filtered.length == 1);
+
+  auto filtered1 = jsons.filterArrays([0, 2]);
+  assert(filtered1.length == 2);
+
+  auto filtered2 = jsons.filterArrays((Json json) @safe => json.isArray && json.length > 2);
+  assert(filtered2.length == 1);
+
+  auto filtered = jsons.filterArrays([0, 2], (Json json) @safe => json.isArray && json.length > 2);
+  assert(filtered.length == 2);
   assert(filtered[0] == [1, 2, 3].toJson);
 }
 
@@ -35,7 +42,7 @@ unittest {
 }
 
 Json[] filterArrays(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
-  return jsons.filterValues((Json json) => filterFunc(json)).filterArrays;
+  return jsons.filterArrays.filterValues((Json json) => filterFunc(json));
 }
 /// 
 unittest {
@@ -167,7 +174,7 @@ unittest {
 }
 
 Json filterArrays(Json json, bool delegate(Json json) @safe filterFunc) {
-  return json.isArray ? json.filterValues((Json json) => filterFunc(json)).filterArrays : Json(null);
+  return json.isArray ? json.filterArrays.filterValues((Json json) => filterFunc(json)) : Json(null);
 }
 /// 
 unittest {

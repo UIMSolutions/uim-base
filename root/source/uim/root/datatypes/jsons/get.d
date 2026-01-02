@@ -72,12 +72,14 @@ Json getValue(Json json, string[] path) {
     return Json(null);
   }
 
+  // writeln("Checking isArray for path: ", path, " in json: ", json, " of type ", json.type);
   auto firstJson = json.getValue(path[0]);
-  if (path.length == 1) {
+  if (path.length == 1 || firstJson == Json(null)) {
     return firstJson;
   }
 
-  return !firstJson == Json(null) && path.length > 1 ? json.getValue(
+  // writeln("Checking isArray for path[0]: ", path[0], " in firstJson: ", firstJson, " of type ", firstJson.type);
+  return path.length > 1 ? firstJson.getValue(
     path[1 .. $]) : Json(null);
 }
 /// 
@@ -85,6 +87,14 @@ unittest {
   version (test_uim_root) writeln("Testing getValue with path");
 
   Json json = parseJsonString(`{"data": { "test": [1, 2, 3]}}`);
+  writeln(`json.getValue("data") -> `, json.getValue("data"));
+  writeln(`json.getValue(["data"]) -> `, json.getValue(["data"]));
+
+  writeln(`json.getValue("data").getValue("test") -> `, json.getValue("data").getValue("test"));
+  writeln(`json.getValue(["data", "test"]) -> `, json.getValue(["data", "test"]));
+
+  assert(json.getValue(["data"]).getValue(["test"]) != Json(null));
+  assert(json.getValue(["data", "test"]) != Json(null));
   assert(json.getValue(["data", "test"]) == [1, 2, 3].toJson);
 }
 
