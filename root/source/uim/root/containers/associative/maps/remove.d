@@ -1,5 +1,5 @@
 /****************************************************************************************************************
-* Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur) 
+* Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
@@ -12,6 +12,10 @@ mixin(Version!"test_uim_root");
 @safe:
 
 // #region Keys
+V[K] removeKeys(K, V)(V[K] map, K[] keys, bool delegate(K) @safe removeFunc) {
+  return map.removeKeys(keys).removeMap(removeFunc);
+}
+
 /** Removes entries from the map based on specified keys.
 
   * Params:
@@ -21,7 +25,7 @@ mixin(Version!"test_uim_root");
   * Returns:
   *   A new map with the specified keys removed.
   */
-V[K] removeKey(K, V)(V[K] map, K[] keys) {
+V[K] removeKeys(K, V)(V[K] map, K[] keys) {
   return removeMap(map, (K key, V value) @safe => keys.hasValue(key));
 }
 /// 
@@ -30,9 +34,19 @@ unittest {
     writeln("Testing removeKey with keys");
 
   int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];
-  int[string] result = removeKey(testMap, ["b", "d"]);
+  int[string] result = removeKeys(testMap, ["b", "d"]);
   int[string] expected = [ "a": 1, "c": 3 ];
   assertEquals(expected, result);
+}
+
+V[K] removeKeys(K, V)(V[K] map, bool delegate(K) @safe removeFunc) {
+  V[K] results;
+  foreach (key, value; map) {
+    if (!removeFunc(key)) {
+      results[key] = value; 
+    }
+  }
+  return results;
 }
 // #endregion Keys
 
@@ -83,6 +97,9 @@ V[K] removeMap(K, V)(V[K] map, bool delegate(K key, V value) @safe removeFunc) {
 }
 ///
 unittest {
+  version (test_uim_root)
+    writeln("Testing removeMap with key-value delegate");
+
   int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];
 
   int[string] result = removeMap(testMap, (string key, int value) @safe => key == "a" || value == 3);
@@ -124,6 +141,9 @@ V[K] removeMap(K, V)(V[K] map, bool delegate(V) @safe removeFunc) {
 }
 ///
 unittest {
+  version (test_uim_root)
+    writeln("Testing removeMap with value delegate");
+
   int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];
 
   int[string] result = removeMap(testMap, (int value) @safe => value == 1 || value == 3);
