@@ -6,18 +6,41 @@ mixin(Version!("show_uim_root"));
 
 @safe:
 
-bool hasValue(Json[string] map, string[] path, Json value) {
-  return map.getValue(path) == value;
-}
-
-// #region has
 // #region value
 bool hasAllValue(T)(Json json, T[] values) {
   return values.all!(value => json.hasValue(value));
 }
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing hasAllValue for Json with values");
+
+  Json json = [
+    "a": Json(1),
+    "b": Json(2),
+    "c": Json(3)
+  ].toJson;
+
+  assert(hasAllValue(json, [1, 2]));
+  assert(!hasAllValue(json, [1, 4]));
+}
 
 bool hasAnyValue(T)(Json json, T[] values) {
   return values.any!(value => json.hasValue(value));
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing hasAnyValue for Json with values");
+
+  Json json = [
+    "a": Json(1),
+    "b": Json(2),
+    "c": Json(3)
+  ].toJson;
+
+  assert(hasAnyValue(json, [2, 4]));
+  assert(!hasAnyValue(json, [4, 5]));
 }
 
 bool hasValue(T)(Json json, T value) {
@@ -34,9 +57,89 @@ bool hasValue(T)(Json json, T value) {
 
   return json == value.toJson;
 }
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing hasValue for Json with value");
+
+  Json json = [
+    "a": Json(1),
+    "b": [
+      Json(2), Json(3), [
+        "c": Json(4)
+      ].toJson
+    ].toJson,
+    "d": Json(5)
+  ].toJson;
+
+  assert(hasValue(json, 4));
+  assert(!hasValue(json, 6));
+}
 // #endregion value
 
 // #region path
+bool hasAllPath(Json json, string[][] paths) {
+  if (!json.isObject || paths.length == 0) {
+    return false;
+  }
+
+  return paths.all!(path => json.hasPath(path));
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing hasAllPath for Json with paths");
+
+  Json json = [
+    "a": [
+      "b": [
+        "c": 123.toJson
+      ].toJson
+    ].toJson,
+    "x": 456.toJson
+  ].toJson;
+
+  assert(json.hasAllPath([["a", "b", "c"], ["x"]]));
+  assert(!json.hasAllPath([["a", "b", "d"], ["x"]]));
+
+  Json json2 = [
+    "a": [
+      "b": [
+        "c": Json(null)
+      ].toJson
+    ].toJson,
+    "x": Json(null)
+  ].toJson;
+
+  assert(json2.hasAllPath([["a", "b", "c"], ["x"]]));
+  assert(!json2.hasAllPath([["a", "b", "d"], ["x"]]));
+}
+
+bool hasAnyPath(Json json, string[][] paths) {
+  if (!json.isObject || paths.length == 0) {
+    return false;
+  }
+
+  return paths.any!(path => hasPath(json, path));
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing hasAnyPath for Json with paths");
+
+  Json json = [
+    "a": [
+      "b": [
+        "c": 123.toJson
+      ].toJson
+    ].toJson,
+    "x": 456.toJson
+  ].toJson;
+
+  assert(json.hasAnyPath([["a", "b", "c"], ["y"]]));
+  assert(!json.hasAnyPath([["a", "b", "d"], ["y"]]));
+}
+
 /** 
   * Checks if the given JSON value has the specified path.
   *
@@ -52,14 +155,32 @@ bool hasPath(Json json, string[] path) {
     return false;
   }
 
-  auto first = json.getValue(path[0]);
+  auto first = json.hasKey(path[0]);
   if (path.length == 1) {
-    return first != Json(null);
+    return first;
   }
 
-  return !first == Json(null) && path.length > 1 ? first.hasPath(path[1 .. $]) : true;
+  return json.isObject(path[0]) ? json[path[0]].hasPath(path[1 .. $]) : false;
 }
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing hasPath for Json with path");
 
+  Json json = [
+    "a": [
+      "b": [
+        "c": 123.toJson
+      ].toJson
+    ].toJson,
+    "x": 456.toJson
+  ].toJson;
+
+  assert(json.hasPath(["a", "b", "c"]));
+  assert(!json.hasPath(["a", "b", "d"]));
+  assert(json.hasPath(["x"]));
+  assert(!json.hasPath(["y"]));
+}
 // #endregion path
 
 // #region key
@@ -71,10 +192,38 @@ bool hasAllKey(Json json, string[] keys) {
 
   return keys.all!(key => hasKey(json, key));
 }
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing hasAllKey for Json with keys");
+
+  Json json = [
+    "a": Json(1),
+    "b": Json(2),
+    "c": Json(3)
+  ].toJson;
+
+  assert(hasAllKey(json, ["a", "b"]));
+  assert(!hasAllKey(json, ["a", "d"]));
+}
 
 /// Check if Json has key
 bool hasAnyKey(Json json, string[] keys) {
   return keys.any!(key => hasKey(json, key));
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing hasAnyKey for Json with keys");
+
+  Json json = [
+    "a": Json(1),
+    "b": Json(2),
+    "c": Json(3)
+  ].toJson;
+
+  assert(hasAnyKey(json, ["b", "d"]));
+  assert(!hasAnyKey(json, ["d", "e"]));
 }
 
 // #region hasKey
@@ -93,6 +242,9 @@ bool hasKey(Json json, string key) {
 }
 ///
 unittest {
+  version (test_uim_root)
+    writeln("Testing hasKey for Json with key");
+
   // Non-object JSON -> always false
   auto json1 = Json(1);
   assert(!hasKey(json1, "foo"));
@@ -123,3 +275,19 @@ bool hasKeyValue(Json json, string key, Json value) {
 
   return json[key] == value;
 }
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing hasKeyValue for Json with key and value");
+
+  Json json = [
+    "a": Json(1),
+    "b": Json(2),
+    "c": Json(3)
+  ].toJson;
+
+  assert(hasKeyValue(json, "a", Json(1)));
+  assert(!hasKeyValue(json, "b", Json(3)));
+  assert(!hasKeyValue(json, "d", Json(4)));
+}
+// #endregion has
