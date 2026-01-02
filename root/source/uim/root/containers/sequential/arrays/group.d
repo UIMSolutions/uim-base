@@ -37,11 +37,16 @@ V[][K] groupBy(T, K, V)(T[] values, K delegate(T) @safe keyFunc, V delegate(T) @
 }
 ///
 unittest {
+  version (test_uim_phobos)
+    writeln("Testing groupBy");
+
+  // Define a struct for testing
   struct Person {
     string name;
     int age;
   }
 
+  // Sample data
   Person[] people = [
     Person("Alice", 30),
     Person("Bob", 25),
@@ -50,12 +55,14 @@ unittest {
     Person("Eve", 35)
   ];
 
+  // Group people by age, collecting their names
   auto grouped = groupBy!(Person, int, string)(
     people,
     (Person p) => p.age,
     (Person p) => p.name
   );
 
+  // Verify the grouping
   assert(grouped.length == 3);
   assert(grouped[25].equal(["Bob", "David"]));
   assert(grouped[30].equal(["Alice", "Charlie"]));

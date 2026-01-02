@@ -34,9 +34,27 @@ auto chunks(T)(T[] arr, size_t chunkSize) {
 }
 ///
 unittest {
-  auto result = chunks([1, 2, 3, 4, 5], 2);
-  assert(result.length == 3);
-  assert(result[0] == [1, 2]);
-  assert(result[1] == [3, 4]);
-  assert(result[2] == [5]);
+  version (test_uim_phobos)
+    writeln("Testing chunks function");
+
+  auto testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  auto result1 = chunks(testArray, 3);
+  assert(result1.length == 3);
+  assert(result1[0] == [1, 2, 3]);
+  assert(result1[1] == [4, 5, 6]);
+  assert(result1[2] == [7, 8, 9]);
+
+  auto result2 = chunks(testArray, 4);
+  assert(result2.length == 3);
+  assert(result2[0] == [1, 2, 3, 4]);
+  assert(result2[1] == [5, 6, 7, 8]);
+  assert(result2[2] == [9]);
+
+  auto result3 = chunks(testArray, 0);
+  assert(result3.length == 0);
+
+  auto result4 = chunks(testArray, 15);
+  assert(result4.length == 1);
+  assert(result4[0] == testArray);
 }

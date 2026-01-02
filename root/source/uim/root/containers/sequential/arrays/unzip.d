@@ -33,6 +33,9 @@ Tuple!(T1[], T2[]) unzip(T1, T2)(Tuple!(T1, T2)[] zipped) {
 }
 ///
 unittest {
+  version (test_uim_phobos)
+    writeln("Testing unzip");
+
   auto zipped = [tuple(1, "a"), tuple(2, "b"), tuple(3, "c")];
   auto result = unzip(zipped);
   assert(result[0] == [1, 2, 3]);

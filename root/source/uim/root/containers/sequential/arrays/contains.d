@@ -14,15 +14,43 @@ mixin(Version!("test_uim_phobos"));
 bool containsAll(string[] bases, string[] values) {
   return bases.all!(base => base.containsAll(values));
 }
+///
+unittest {
+  version (test_uim_phobos)
+    writeln("Testing containsAll with array of bases");
+
+  assert(containsAll(["hello world", "world peace"], ["world"]));
+  assert(!containsAll(["hello world", "peace"], ["world"]));
+  assert(containsAll(["hello world", "world peace"], ["hello", "world"]));
+  assert(!containsAll(["hello world", "world peace"], ["hello", "planet"]));
+}
 
 bool containsAll(string base, string[] values) {
   return values.all!(value => base.indexOf(value) != -1);
+}
+///
+unittest {
+  version (test_uim_phobos)
+    writeln("Testing containsAll with single base string");
+
+  assert(containsAll("hello world", ["hello", "world"]));
+  assert(!containsAll("hello world", ["hello", "planet"]));
 }
 // #endregion containsAll
 
 // #region containsAny
 bool containsAny(string[] bases, string[] values) {
   return bases.any!(base => base.containsAny(values));
+}
+///
+unittest {
+  version (test_uim_phobos)
+    writeln("Testing containsAny with array of bases");
+
+  assert(containsAny(["hello world", "example"], ["world", "planet"]));
+  assert(!containsAny(["hello world", "example"], ["planet", "galaxy"]));
+  assert(containsAny(["hello world", "example"], ["hello", "example"]));
+  assert(!containsAny(["hello world", "example"], ["HELLO", "EXAMPLE"]));
 }
 
 bool containsAny(string base = null, string[] values = null) {
@@ -33,6 +61,16 @@ bool containsAny(string base = null, string[] values = null) {
     return false;
   }
   return values.any!(value => base.indexOf(value) != -1);
+}
+///
+unittest {
+  version (test_uim_phobos)
+    writeln("Testing containsAny with single base string");
+
+  assert(containsAny("hello world", ["world", "planet"]));
+  assert(!containsAny("hello world", ["planet", "galaxy"]));
+  assert(containsAny("hello world", ["hello", "example"]));
+  assert(!containsAny("hello world", ["HELLO", "EXAMPLE"]));
 }
 // #endregion containsAny
 

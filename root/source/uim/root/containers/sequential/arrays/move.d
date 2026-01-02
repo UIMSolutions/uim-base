@@ -12,27 +12,37 @@ mixin(Version!("test_uim_phobos"));
 @safe:
 
 // #region forward
-void moveForward(T)(T[] values, size_t fromIndex, size_t toIndex) {
+T[] moveForward(T)(T[] values, size_t fromIndex, size_t toIndex) {
   auto result = values.dup;
 
   if (fromIndex >= result.length || toIndex >= result.length || fromIndex >= toIndex) {
-    return;
+    return result;
   }
   auto temp = result[fromIndex];
   for (size_t i = fromIndex; i < toIndex; i++) {
     result[i] = result[i + 1];
   }
+
   result[toIndex] = temp;
   return result;
 }
-// #endregion forward
+///
+unittest {
+  version (test_uim_phobos)
+    writeln("Testing moveForward"); 
+
+  auto arr = [1, 2, 3, 4, 5];
+  auto movedArr = moveForward(arr, 1, 3); // Move element at index 1 to index 3
+  assert(movedArr == [1, 3, 4, 2, 5]);
+}
+  // #endregion forward
 
 // #region backward
-void moveBackward(T)(ref T[] values, size_t fromIndex, size_t toIndex) {
+T[] moveBackward(T)(ref T[] values, size_t fromIndex, size_t toIndex) {
   auto result = values.dup;
 
   if (fromIndex >= result.length || toIndex >= result.length || fromIndex <= toIndex) {
-    return;
+    return result;
   }
   auto temp = result[fromIndex];
   for (size_t i = fromIndex; i > toIndex; i--) {

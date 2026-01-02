@@ -26,6 +26,9 @@ T last(T)(T[] values) {
 }
 ///
 unittest {
+  version (test_uim_phobos)
+    writeln("Testing last");
+    
   // Test last with non-empty array
   int[] arr = [1, 2, 3, 4, 5];
   auto lastElem = last(arr);

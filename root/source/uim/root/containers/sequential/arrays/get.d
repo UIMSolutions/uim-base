@@ -6,10 +6,12 @@ mixin(Version!("test_uim_phobos"));
 
 @safe:
 
-T[] getValues(T)(T[] values, bool delegate(T value) selectFunc) {
-  T[] results;
-  () @trusted { results = values.filter!(value => selectFunc(value)).array; }();
-  return results;
+T[] getValues(T)(T[] values, size_t[] indices, bool delegate(T) @safe selectFunc) {
+  return values.getValues(indices).getValues(selectFunc);
+}
+
+T[] getValues(T)(T[] values, bool delegate(T) @safe selectFunc) {
+  return values.filter!(value => selectFunc(value)).array;
 }
 
 T[] getValues(T)(T[] arrays, size_t[] indices) {

@@ -6,59 +6,55 @@ mixin(Version!("show_uim_root"));
 
 @safe:
 
-/** 
-  * Asserts that two associative arrays (maps) are equal in terms of keys and corresponding values.
-  *
-  * Params:
-  *   expected = The expected associative array.
-  *   actual   = The actual associative array to compare against the expected.
-  *
-  * Throws:
-  *   An assertion error if the maps differ in length, keys, or values.
-  */
-void assertEquals(K, V)(V[K] expected, V[K] actual) {
-  assert(expected.length == actual.length, "Maps have different lengths.");
-  foreach (key; expected.keys) {
-    assert(actual.hasKey(key), "Actual map is missing key: " ~ to!string(key));
-    assert(expected[key] == actual[key], "Values for key " ~ to!string(key) ~ " do not match.");
+// assertTrue / assertFalse
+void assertTrue(bool condition, string msg = "Expected true") {
+  assert(condition, msg);
+}
+
+void assertFalse(bool condition, string msg = "Expected false") {
+  assert(!condition, msg);
+}
+
+// assertNull / assertNotNull (Uses 'is' for reference identity)
+void assertNull(T)(T obj, string msg = "Expected null") {
+  assert(obj is null, msg);
+}
+
+void assertNotNull(T)(T obj, string msg = "Expected not null") {
+  assert(obj !is null, msg);
+}
+
+// assertEquals / assertNotEquals (Uses '==' for value equality)
+void assertEquals(T, U)(T expected, U actual, string msg = "") {
+  assert(expected == actual,
+    text(msg, " -> Expected: ", expected, ", but was: ", actual));
+}
+
+void assertNotEquals(T, U)(T expected, U actual, string msg = "") {
+  assert(expected != actual,
+    text(msg, " -> Values should not be equal: ", actual));
+}
+
+// assertArrayEquals
+void assertArrayEquals(T)(T[] expected, T[] actual, string msg = "") {
+  assert(expected == actual,
+    text(msg, " -> Arrays differ. Expected: ", expected, ", Actual: ", actual));
+}
+
+// assertSame / assertNotSame (Memory address identity)
+void assertSame(T)(T expected, T actual, string msg = "Objects are not same instance") {
+  assert(expected is actual, msg);
+}
+
+void assertNotSame(T)(T expected, T actual, string msg = "Objects should be different instances") {
+  assert(expected !is actual, msg);
+}
+
+// assertThrows (Mimics JUnit 5's executable lambda)
+T assertThrows(T : Throwable = Exception, E)(lazy E expression, string msg = "") {
+  try {
+    return assertThrown!T(expression, msg);
+  } catch (AssertError e) {
+    throw new AssertError(text("assertThrows failed: ", msg), e.file, e.line);
   }
-}
-
-/** 
-  * Asserts that the provided associative array (map) is not null.
-  *
-  * Params:
-  *   map = The associative array to check.
-  *
-  * Throws:
-  *   An assertion error if the map is null.
-  */
-void assertNotNull(V)(V[] array) {
-  assert(array !is null, "Array is null.");
-}
-
-/** 
-  * Asserts that the provided associative array (map) is not null.
-  *
-  * Params:
-  *   map = The associative array to check.
-  *
-  * Throws:
-  *   An assertion error if the map is null.
-  */
-void assertNotNull(K, V)(V[K] map) {
-  assert(map !is null, "Map is null.");
-}
-
-/** 
-  * Asserts that the provided associative array (map) is null.
-  *
-  * Params:
-  *   map = The associative array to check.
-  *
-  * Throws:
-  *   An assertion error if the map is not null.
-  */
-void assertNull(K, V)(V[K] map) {
-  assert(map is null, "Map is not null.");
 }
