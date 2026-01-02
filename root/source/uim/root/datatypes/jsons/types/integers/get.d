@@ -7,7 +7,7 @@ mixin(Version!("show_uim_root"));
 @safe:
 
 // #region Json[]
-Json getInteger(Json[] jsons, size_t index, Json defaultValue = null) {
+Json getInteger(Json[] jsons, size_t index, Json defaultValue = Json(null)) {
   return jsons.getValue(index).isInteger() ? jsons[index] : defaultValue;
 }
 /// 
@@ -23,7 +23,7 @@ unittest {
 // #endregion Json[]
 
 // #region Json[string]
-Json getInteger(Json[string] map, string[] path, Json defaultValue = null) {
+Json getInteger(Json[string] map, string[] path, Json defaultValue = Json(null)) {
   return map.getValue(path).isInteger ? map.getValue(path) : defaultValue;
 }
 /// 
@@ -39,7 +39,7 @@ unittest {
   assert(map.getInteger("third") == 456.toJson);
 }
 
-Json getInteger(Json[string] map, string key, Json defaultValue = null) {
+Json getInteger(Json[string] map, string key, Json defaultValue = Json(null)) {
   return map.getValue(key).isInteger ? map.getValue(key) : defaultValue;
 }
 /// 
@@ -57,7 +57,7 @@ unittest {
 // #endregion Json[string]
 
 // #region Json
-Json getInteger(Json json, size_t index, Json defaultValue = null) {
+Json getInteger(Json json, size_t index, Json defaultValue = Json(null)) {
   return json.isInteger(index) ? json.getValue(index) : defaultValue;
 }
 /// 
@@ -71,7 +71,7 @@ unittest {
   assert(json.getInteger(2) == 456.toJson);
 }
 
-Json getInteger(Json json, string[] path, Json defaultValue = null) {
+Json getInteger(Json json, string[] path, Json defaultValue = Json(null)) {
   return json.isInteger(path) ? json.getValue(path) : defaultValue;
 }
 /// 
@@ -85,7 +85,7 @@ unittest {
   assert(json.getInteger("third") == 456.toJson);
 }
 
-Json getInteger(Json json, string key, Json defaultValue = null) {
+Json getInteger(Json json, string key, Json defaultValue = Json(null)) {
   return json.isInteger(key) ? json.getValue(key) : defaultValue;
 }
 /// 

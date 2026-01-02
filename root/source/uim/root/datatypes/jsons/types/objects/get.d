@@ -7,7 +7,7 @@ mixin(Version!("show_uim_root"));
 @safe:
 
 // #region Json[]
-Json getObject(Json[] jsons, size_t index, Json defaultValue = null) {
+Json getObject(Json[] jsons, size_t index, Json defaultValue = Json(null)) {
   return jsons.getValue(index).isObject() ? jsons[index] : defaultValue;
 }
 /// 
@@ -23,7 +23,7 @@ unittest {
 // #endregion Json[]
 
 // #region Json[string]
-Json getObject(Json[string] map, string[] path, Json defaultValue = null) {
+Json getObject(Json[string] map, string[] path, Json defaultValue = Json(null)) {
   return map.getValue(path).isObject ? map.getValue(path) : defaultValue;
 }
 /// 
@@ -39,7 +39,7 @@ unittest {
   assert(map.getObject("third") == ["b":2].toJson);
 }
 
-Json getObject(Json[string] map, string key, Json defaultValue = null) {
+Json getObject(Json[string] map, string key, Json defaultValue = Json(null)) {
   return map.getValue(key).isObject ? map.getValue(key) : defaultValue;
 }
 /// 
@@ -57,7 +57,7 @@ unittest {
 // #endregion Json[string]
 
 // #region Json
-Json getObject(Json json, size_t index, Json defaultValue = null) {
+Json getObject(Json json, size_t index, Json defaultValue = Json(null)) {
   return json.isObject(index) ? json.getValue(index) : defaultValue;
 }
 /// 
@@ -71,7 +71,7 @@ unittest {
   assert(json.getObject(2) == ["b":2].toJson);
 }
 
-Json getObject(Json json, string[] path, Json defaultValue = null) {
+Json getObject(Json json, string[] path, Json defaultValue = Json(null)) {
   return json.isObject(path) ? json.getValue(path) : defaultValue;
 }
 /// 
@@ -85,7 +85,7 @@ unittest {
   assert(json.getObject("third") == ["b":2].toJson);
 }
 
-Json getObject(Json json, string key, Json defaultValue = null) {
+Json getObject(Json json, string key, Json defaultValue = Json(null)) {
   return json.isObject(key) ? json.getValue(key) : defaultValue;
 }
 /// 

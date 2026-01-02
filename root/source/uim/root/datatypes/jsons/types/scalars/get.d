@@ -7,7 +7,7 @@ mixin(Version!("show_uim_root"));
 @safe:
 
 // #region Json[]
-Json getScalar(Json[] jsons, size_t index, Json defaultValue = null) {
+Json getScalar(Json[] jsons, size_t index, Json defaultValue = Json(null)) {
   return jsons.getValue(index).isScalar() ? jsons[index] : defaultValue;
 }
 /// 
@@ -23,7 +23,7 @@ unittest {
 // #endregion Json[]
 
 // #region Json[string]
-Json getScalar(Json[string] map, string[] path, Json defaultValue = null) {
+Json getScalar(Json[string] map, string[] path, Json defaultValue = Json(null)) {
   return map.getValue(path).isScalar ? map.getValue(path) : defaultValue;
 }
 /// 
@@ -39,7 +39,7 @@ unittest {
   assert(map.getScalar("third") == Json(null));
 }
 
-Json getScalar(Json[string] map, string key, Json defaultValue = null) {
+Json getScalar(Json[string] map, string key, Json defaultValue = Json(null)) {
   return map.getValue(key).isScalar ? map.getValue(key) : defaultValue;
 }
 /// 
@@ -57,7 +57,7 @@ unittest {
 // #endregion Json[string]
 
 // #region Json
-Json getScalar(Json json, size_t index, Json defaultValue = null) {
+Json getScalar(Json json, size_t index, Json defaultValue = Json(null)) {
   return json.isScalar(index) ? json.getValue(index) : defaultValue;
 }
 /// 
@@ -71,7 +71,7 @@ unittest {
   assert(json.getScalar(2) == Json(null));
 }
 
-Json getScalar(Json json, string[] path, Json defaultValue = null) {
+Json getScalar(Json json, string[] path, Json defaultValue = Json(null)) {
   return json.isScalar(path) ? json.getValue(path) : defaultValue;
 }
 /// 
@@ -85,7 +85,7 @@ unittest {
   assert(json.getScalar("third") == Json(null));
 }
 
-Json getScalar(Json json, string key, Json defaultValue = null) {
+Json getScalar(Json json, string key, Json defaultValue = Json(null)) {
   return json.isScalar(key) ? json.getValue(key) : defaultValue;
 }
 /// 

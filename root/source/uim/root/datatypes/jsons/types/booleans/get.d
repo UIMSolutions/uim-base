@@ -7,7 +7,7 @@ mixin(Version!("show_uim_root"));
 @safe:
 
 // #region Json[]
-Json getBoolean(Json[] jsons, size_t index, Json defaultValue = null) {
+Json getBoolean(Json[] jsons, size_t index, Json defaultValue = Json(null)) {
   return jsons.getValue(index).isBoolean() ? jsons[index] : defaultValue;
 }
 /// 
@@ -23,7 +23,7 @@ unittest {
 // #endregion Json[]
 
 // #region Json[string]
-Json getBoolean(Json[string] map, string[] path, Json defaultValue = null) {
+Json getBoolean(Json[string] map, string[] path, Json defaultValue = Json(null)) {
   return map.getValue(path).isBoolean ? map.getValue(path) : defaultValue;
 }
 /// 
@@ -39,7 +39,7 @@ unittest {
   assert(map.getBoolean("third") == false.toJson);
 }
 
-Json getBoolean(Json[string] map, string key, Json defaultValue = null) {
+Json getBoolean(Json[string] map, string key, Json defaultValue = Json(null)) {
   return map.getValue(key).isBoolean ? map.getValue(key) : defaultValue;
 }
 /// 
@@ -57,7 +57,7 @@ unittest {
 // #endregion Json[string]
 
 // #region Json
-Json getBoolean(Json json, size_t index, Json defaultValue = null) {
+Json getBoolean(Json json, size_t index, Json defaultValue = Json(null)) {
   return json.isBoolean(index) ? json.getValue(index) : defaultValue;
 }
 /// 
@@ -71,7 +71,7 @@ unittest {
   assert(json.getBoolean(2) == false.toJson);
 }
 
-Json getBoolean(Json json, string[] path, Json defaultValue = null) {
+Json getBoolean(Json json, string[] path, Json defaultValue = Json(null)) {
   return json.isBoolean(path) ? json.getValue(path) : defaultValue;
 }
 /// 
@@ -85,7 +85,7 @@ unittest {
   assert(json.getBoolean("third") == false.toJson);
 }
 
-Json getBoolean(Json json, string key, Json defaultValue = null) {
+Json getBoolean(Json json, string key, Json defaultValue = Json(null)) {
   return json.isBoolean(key) ? json.getValue(key) : defaultValue;
 }
 /// 

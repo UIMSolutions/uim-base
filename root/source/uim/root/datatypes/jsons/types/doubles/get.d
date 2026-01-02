@@ -7,7 +7,7 @@ mixin(Version!("show_uim_root"));
 @safe:
 
 // #region Json[]
-Json getDouble(Json[] jsons, size_t index, Json defaultValue = null) {
+Json getDouble(Json[] jsons, size_t index, Json defaultValue = Json(null)) {
   return jsons.getValue(index).isDouble() ? jsons[index] : defaultValue;
 }
 /// 
@@ -23,7 +23,7 @@ unittest {
 // #endregion Json[]
 
 // #region Json[string]
-Json getDouble(Json[string] map, string[] path, Json defaultValue = null) {
+Json getDouble(Json[string] map, string[] path, Json defaultValue = Json(null)) {
   return map.getValue(path).isDouble ? map.getValue(path) : defaultValue;
 }
 /// 
@@ -38,7 +38,7 @@ unittest {
   assert(map.getDouble("second", Json("default")) == Json("default"));
   assert(map.getDouble("third") == 4.56.toJson);
 }
-Json getDouble(Json[string] map, string key, Json defaultValue = null) {
+Json getDouble(Json[string] map, string key, Json defaultValue = Json(null)) {
   return map.getValue(key).isDouble ? map.getValue(key) : defaultValue;
 }
 /// 
@@ -56,7 +56,7 @@ unittest {
 // #endregion Json[string]
 
 // #region Json
-Json getDouble(Json json, size_t index, Json defaultValue = null) {
+Json getDouble(Json json, size_t index, Json defaultValue = Json(null)) {
   return json.isDouble(index) ? json.getValue(index) : defaultValue;
 }
 /// 
@@ -70,7 +70,7 @@ unittest {
   assert(json.getDouble(2) == 4.56.toJson);
 }
 
-Json getDouble(Json json, string[] path, Json defaultValue = null) {
+Json getDouble(Json json, string[] path, Json defaultValue = Json(null)) {
   return json.isDouble(path) ? json.getValue(path) : defaultValue;
 }
 /// 
@@ -84,7 +84,7 @@ unittest {
   assert(json.getDouble("third") == 4.56.toJson);
 }
 
-Json getDouble(Json json, string key, Json defaultValue = null) {
+Json getDouble(Json json, string key, Json defaultValue = Json(null)) {
   return json.isDouble(key) ? json.getValue(key) : defaultValue;
 }
 /// 
