@@ -7,7 +7,7 @@ mixin(Version!("show_uim_root"));
 @safe:
 
 // #region Json[]
-Json[] filterBooleans(Json[] jsons, size_t[] indices, bool delegate(Json json) @safe filterFunc) {
+Json[] filterBooleans(Json[] jsons, size_t[] indices, bool delegate(Json) @safe filterFunc) {
   return jsons.filterValues(indices).filterBooleans;
 }
 
@@ -15,7 +15,7 @@ Json[] filterBooleans(Json[] jsons, size_t[] indices) {
   return jsons.filterValues(indices).filterBooleans;
 }
 
-Json[] filterBooleans(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
+Json[] filterBooleans(Json[] jsons, bool delegate(Json) @safe filterFunc) {
   return jsons.filterValues((Json json) => filterFunc(json)).filterBooleans;
 }
 
@@ -59,7 +59,7 @@ Json[string] filterBooleans(Json[string] map) {
 // #region Json[string]
 
 // #region Json
-Json filterBooleans(Json json, size_t[] indices, bool delegate(Json json) @safe filterFunc) {
+Json filterBooleans(Json json, size_t[] indices, bool delegate(Json) @safe filterFunc) {
   return json.isBoolean ? json.filterBooleans(indices).filterBooleans(filterFunc) : Json(null);
 }
 
@@ -67,7 +67,7 @@ Json filterBooleans(Json json, size_t[] indices) {
   return json.isBoolean ? json.toArray.filterValues(indices).filterBooleans.toJson : Json(null);
 }
 
-Json filterBooleans(Json json, bool delegate(Json json) @safe filterFunc) {
+Json filterBooleans(Json json, bool delegate(Json) @safe filterFunc) {
   return json.isBoolean ? json.filterValues((Json json) => filterFunc(json)).filterBooleans : Json(null);
 }
 

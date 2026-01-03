@@ -7,7 +7,7 @@ mixin(Version!("show_uim_root"));
 @safe:
 
 // #region Json[]
-Json[] filterArrays(Json[] jsons, size_t[] indices, bool delegate(Json json) @safe filterFunc) {
+Json[] filterArrays(Json[] jsons, size_t[] indices, bool delegate(Json) @safe filterFunc) {
   return jsons.filterValues(indices).filterArrays;
 }
 /// 
@@ -41,7 +41,7 @@ unittest {
   assert(filtered[1] == [4, 5].toJson);
 }
 
-Json[] filterArrays(Json[] jsons, bool delegate(Json json) @safe filterFunc) {
+Json[] filterArrays(Json[] jsons, bool delegate(Json) @safe filterFunc) {
   return jsons.filterArrays.filterValues((Json json) => filterFunc(json));
 }
 /// 
@@ -144,7 +144,7 @@ unittest {
 // #endregion Json[string]
 
 // #region Json
-Json filterArrays(Json json, size_t[] indices, bool delegate(Json json) @safe filterFunc) {
+Json filterArrays(Json json, size_t[] indices, bool delegate(Json) @safe filterFunc) {
   return json.isArray ? json.filterArrays(indices).filterArrays(filterFunc) : Json(null);
 }
 /// 
@@ -173,7 +173,7 @@ unittest {
   assert(filtered[1] == [4, 5].toJson);
 }
 
-Json filterArrays(Json json, bool delegate(Json json) @safe filterFunc) {
+Json filterArrays(Json json, bool delegate(Json) @safe filterFunc) {
   return json.isArray ? json.filterArrays.filterValues((Json json) => filterFunc(json)) : Json(null);
 }
 /// 

@@ -27,43 +27,46 @@ auto Null(T)() {
 auto Null(T : bool)() {
   return false;
 }
-
+/// 
 unittest {
+  version (test_uim_root)
+    writeln("Testing Null for bool");
+
   assert(Null!bool == false);
   assert(Null!bool != true);
 }
 // #endregion bool
 
 // #region integers
-auto Null(T: ubyte)() {
+auto Null(T : ubyte)() {
   return 0;
 }
 
-auto Null(T: ushort)() {
+auto Null(T : ushort)() {
   return 0;
 }
 
-auto Null(T: uint)() {
+auto Null(T : uint)() {
   return 0;
 }
 
-auto Null(T: ulong)() {
+auto Null(T : ulong)() {
   return 0;
 }
 
-auto Null(T: byte)() {
+auto Null(T : byte)() {
   return 0;
 }
 
-auto Null(T: short)() {
+auto Null(T : short)() {
   return 0;
 }
 
-auto Null(T: int)() {
+auto Null(T : int)() {
   return 0;
 }
 
-auto Null(T: long)() {
+auto Null(T : long)() {
   return 0;
 }
 
@@ -76,7 +79,7 @@ unittest {
 }
 // #region integers
 
-auto Null(T:Object)() {
+auto Null(T : Object)() {
   return null;
 }
 

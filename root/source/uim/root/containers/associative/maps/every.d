@@ -112,7 +112,7 @@ unittest {
   *   items = The associative array to iterate over.
   *   func = A delegate function that takes a single key as its parameter.
   */
-void everyKey(K, V)(V[K] items, void delegate(K key) @safe func) {
+void everyKey(K, V)(V[K] items, void delegate(K) @safe func) {
   items.byKey.each!(k => func(k));
 }
 ///

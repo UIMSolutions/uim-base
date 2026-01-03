@@ -16,12 +16,12 @@ mixin(Version!("show_uim_root"));
   * Returns:
   *   The updated JSON object.
   */
-Json update(Json json, Json map) {
-  if (!json.isObject || !map.isObject) {
+Json update(Json json, Json updateMap) {
+  if (!json.isObject || !updateMap.isObject) {
     return json;
   }
 
-  foreach (key, value; map.byKeyValue) {
+  foreach (key, value; updateMap.byKeyValue) {
     json = json.update(key, value);
   }
   return json;

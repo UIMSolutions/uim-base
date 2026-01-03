@@ -81,10 +81,9 @@ Json toJson(T:long)(T value) {
 }
 /// 
 unittest {
+
   assert(toJson(42L) == Json(42));  
-
-
-  }
+}
 /// Convert double to Json
 Json toJson(T:double)(T value) {
   return Json(value);   
