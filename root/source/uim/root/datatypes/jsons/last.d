@@ -11,10 +11,6 @@ mixin(Version!("show_uim_root"));
 
 @safe:
 
-Json lastArray(Json[] jsons) {
-  return jsons.filterArrays.last;
-}
-
 /*
 Json last(Json json) {
   return json.isArray

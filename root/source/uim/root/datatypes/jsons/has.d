@@ -156,11 +156,11 @@ bool hasPath(Json json, string[] path) {
   }
 
   auto first = json.hasKey(path[0]);
-  if (path.length == 1) {
+  if (path.length == 1 || !first) {
     return first;
   }
 
-  return json.isObject(path[0]) ? json[path[0]].hasPath(path[1 .. $]) : false;
+  return json[path[0]].isObject ? json[path[0]].hasPath(path[1 .. $]) : false;
 }
 /// 
 unittest {
