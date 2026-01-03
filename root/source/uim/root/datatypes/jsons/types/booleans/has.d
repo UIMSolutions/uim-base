@@ -7,16 +7,21 @@ mixin(Version!("show_uim_root"));
 @safe:
 
 // #region Json[]
+// #region has all indices
 bool hasAllBooleans(Json[] jsons, size_t[] indices) {
   return indices.all!(index => jsons.isBoolean(index));
 }
+// #endregion has all indices
 
+// #region has any indices
 bool hasAnyBooleans(Json[] jsons, size_t[] indices) {
   return indices.any!(index => jsons.isBoolean(index));
 }
+// #endregion has any indices
 // #endregion Json[]
 
 // #region Json[string]
+// #region paths
 bool hasAllBooleans(Json[string] map, string[][] paths) {
   return paths.all!(path => map.isBoolean(path));
 }
@@ -24,7 +29,9 @@ bool hasAllBooleans(Json[string] map, string[][] paths) {
 bool hasAnyBooleans(Json[string] map, string[][] paths) {
   return paths.any!(path => map.isBoolean(path));
 }
+// #endregion paths
 
+// #region keys
 bool hasAllBooleans(Json[string] map, string[] keys) {
   return keys.all!(key => map.isBoolean(key));
 }
@@ -32,6 +39,7 @@ bool hasAllBooleans(Json[string] map, string[] keys) {
 bool hasAnyBooleans(Json[string] map, string[] keys) {
   return keys.any!(key => map.isBoolean(key));
 }
+// #endregion keys
 // #endregion Json[string]
 
 // #region Json

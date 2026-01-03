@@ -5,8 +5,10 @@
 *****************************************************************************************************************/
 module uim.root.constants.constants;
 
+/* 
 const SORTORDERS NOSORT = SORTORDERS.NONE;
 const SORTORDERS ASCENDING = SORTORDERS.ASCENDING;
 const SORTORDERS ASC = SORTORDERS.ASCENDING;
 const SORTORDERS DESCENDING = SORTORDERS.DESCENDING;
 const SORTORDERS DESC = SORTORDERS.DESCENDING;
+*/

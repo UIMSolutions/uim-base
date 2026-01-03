@@ -12,7 +12,6 @@ mixin(Version!("show_uim_root"));
 @safe:
 
 Json lastArray(Json[] jsons) {
-  import uim.root.datatypes.jsons.arrays.filter;
   return jsons.filterArrays.last;
 }
 
