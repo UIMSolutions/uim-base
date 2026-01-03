@@ -18,5 +18,6 @@ public {
   import uim.root.datatypes.jsons.remove;
   import uim.root.datatypes.jsons.set;
   import uim.root.datatypes.jsons.values;
+  import uim.root.datatypes.jsons.types;
 }
 
