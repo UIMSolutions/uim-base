@@ -3,10 +3,10 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.root.datatypes.jsons.arrays.read;
+module uim.phobos.enumerations.enumerations;
 
-import uim.root;
-
-mixin(Version!("show_uim_root"));
-
-@safe:
+enum SORTORDERS : int {
+    NONE = 0,
+    ASCENDING = 1,
+    DESCENDING = 2
+}

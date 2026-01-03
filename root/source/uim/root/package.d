@@ -44,6 +44,7 @@ public {
 }
 
 public {
+  import uim.root.constants;
   import uim.root.containers;
   import uim.root.mixins;
   import uim.root.datatypes;

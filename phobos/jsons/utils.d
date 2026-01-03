@@ -10,16 +10,6 @@ mixin(Version!("show_uim_root"));
 
 @safe:
 
-// #region is
-
-// #region isArray
-
-// #endregion isArray
-
-// #endregion is
-
-
-
 /// Reduce Json Object to keys (remove others)
 Json reduceKeys(Json json, string[] keys) {
   if (json.isObject) {
