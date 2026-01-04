@@ -12,6 +12,7 @@ mixin(Version!("show_uim_root"));
 @safe:
 
 // #region Json[]
+// #region Json[] all with indices
 bool isAllArray(Json[] jsons, size_t[] indices = null) {
   return indices.length == 0
     ? jsons.length > 0 && jsons.all!(value => value.isArray) : indices.all!(
@@ -28,7 +29,9 @@ unittest {
   assert(isAllArray(jsons, [0, 2]) == true);
   assert(isAnyArray(jsons, [1, 2]) == true);
 }
+// #endregion Json[] all with indices
 
+// #region Json[] any with indices
 bool isAnyArray(Json[] jsons, size_t[] indices = null) {
   return indices.length == 0
     ? jsons.length > 0 && jsons.any!(value => value.isArray) : indices.any!(
@@ -45,6 +48,7 @@ unittest {
   assert(isAllArray(jsons, [0, 2]) == true);
   assert(isAnyArray(jsons, [1, 2]) == true);
 }
+// #end6region Json[] any with indices
 
 bool isArray(Json[] jsons, size_t index) {
   return jsons.length > index && jsons.getValue(index).isArray;

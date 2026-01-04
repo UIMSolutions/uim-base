@@ -7,120 +7,372 @@ mixin(Version!("show_uim_root"));
 @safe:
 
 // #region Json
-size_t countArrays(Json json, size_t[] indices, bool delegate(Json) @safe countFunc) {
+// #region indices
+// #region Json with indices and delegate
+/**
+  * Counts the number of array elements in a Json array at the specified indices
+  * that satisfy the provided delegate function.
+  *
+  * Params:
+  *   json = The Json array to count from.
+  *   indices = The indices to check within the Json array.
+  *   countFunc = A delegate function that takes an index and returns true if the element at that index should be counted.
+  *
+  * Returns:
+  *   The count of array elements at the specified indices that satisfy the delegate.
+  */
+size_t countArrays(Json json, size_t[] indices, bool delegate(size_t) @safe countFunc) {
   return json.isArray ? json.toArray.countArrays(indices, countFunc) : 0;
-}
-
-size_t countArrays(Json json, size_t[] indices) {
-  return json.isArray ? indices.filter!(index => json.isArray(index)).array.length : 0;
 }
 /// 
 unittest {
-  version (test_uim_root) writeln("Testing countArrays with indices");
+  version (test_uim_root)
+    writeln("Testing countArrays with indices and delegate");
+
+  auto j1 = [1, 2].toJson;
+  auto j2 = ["a": 1].toJson;
+  auto j3 = [3, 4, 5].toJson;
+  auto j4 = "string".toJson;
+  auto j5 = 42.toJson;
+
+  Json json = [
+    j1, j2, j3, j4, j5
+  ];
+  size_t count = json.countArrays([0, 1, 2, 3, 4], (size_t index) => json[index].length == 2);
+  assert(count == 1, "Expected 1 array in the provided indices matching the delegate");
+}
+// #endregion Json with indices and delegate
+
+// #region Json with indices
+/**
+  * Counts the number of array elements in a Json array at the specified indices.
+  *
+  * Params:
+  *   json = The Json array to count from.
+  *   indices = The indices to check within the Json array.
+  *
+  * Returns:
+  *   The count of array elements at the specified indices.
+  */
+size_t countArrays(Json json, size_t[] indices) {
+  return json.isArray ? json.toArray.countArrays(indices) : 0;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing countArrays with indices");
 
   auto j1 = [1, 2].toJson;
   auto j2 = ["a": 1].toJson;
   auto j3 = [3, 4].toJson;
   auto j4 = "string".toJson;
   auto j5 = 42.toJson;
-  
-  Json json = [
-    j1, j2, j3, j4, j5  
-  ];
-  size_t count = countArrays(json, [0, 1, 2, 3, 4]);
-  assert(count == 2);
-}
 
-size_t countArrays(Json json, string[][] paths) {
-  return json.isObject ? paths.filter!(path => json.isArray(path)).array.length : 0;
+  Json json = [
+    j1, j2, j3, j4, j5
+  ];
+  size_t count = json.countArrays([0, 1, 2, 3, 4]);
+  assert(count == 2, "Expected 2 arrays in the provided indices");
+}
+// #endregion Json with indices
+
+// #region Json with delegate
+/**
+  * Counts the number of array elements in a Json array that satisfy the provided delegate function.
+  *
+  * Params:
+  *   json = The Json array to count from.
+  *   countFunc = A delegate function that takes an index and returns true if the element at that index should be counted.
+  *
+  * Returns:
+  *   The count of array elements that satisfy the delegate.
+  */
+size_t countArrays(Json json, bool delegate(size_t) @safe countFunc) {
+  return json.isArray ? json.toArray.countArrays(countFunc) : 0;
 }
 /// 
 unittest {
-  version (test_uim_root) writeln("Testing countArrays with paths");
-  
+  version (test_uim_root)
+    writeln("Testing countArrays with indices and delegate");
+
+  auto j1 = [1, 2].toJson;
+  auto j2 = ["a": 1].toJson;
+  auto j3 = [3, 4, 5].toJson;
+  auto j4 = "string".toJson;
+  auto j5 = 42.toJson;
+
+  Json json = [
+    j1, j2, j3, j4, j5
+  ];
+  size_t count = json.countArrays((size_t index) => json[index].length == 2);
+  assert(count == 1, "Expected 1 array matching the delegate");
+}
+// #endregion Json with delegate
+// #endregion indices
+
+// #region paths
+// #region Json with paths and delegate
+/**
+  * Counts the number of array elements in a Json object at the specified paths
+  * that satisfy the provided delegate function.
+  *
+  * Params:
+  *   json = The Json object to count from.
+  *   paths = The paths to check within the Json object.
+  *   countFunc = A delegate function that takes a path and returns true if the element at that path should be counted.
+  *
+  * Returns:
+  *   The count of array elements at the specified paths that satisfy the delegate.
+  */
+size_t countArrays(Json json, string[][] paths, bool delegate(string[]) @safe countFunc) {
+  return json.isObject ? json.toMap.countArrays(paths, countFunc) : 0;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing countArrays with paths and delegate");
+
   Json json = [
     "first": [1, 2].toJson,
     "second": ["a": 1].toJson,
     "third": [3, 4].toJson,
     "fourth": "string".toJson
   ].toJson;
-  size_t count = countArrays(json, [
+  size_t count = json.countArrays([
+      ["first"], ["second"], ["third"], ["fourth"]
+    ], (string[] path) => path.length == 1 && path[0] == "first");
+  assert(count == 1, "Expected 1 array in the provided paths matching the delegate");
+
+  assert(json.countArrays([
+        ["first"], ["second"], ["third"], ["fourth"]
+      ], (string[] path) => path.length == 1) == 2, "Expected 2 arrays in the provided paths matching the delegate");
+  assert(json.countArrays([
+        ["first"], ["second"], ["third"], ["fourth"]
+      ], (string[] path) => path.length >= 1) == 2, "Expected 2 arrays in the provided paths matching the delegate");
+}
+// #endregion Json with paths and delegate
+
+// #region Json with paths
+/**
+  * Counts the number of array elements in a Json object at the specified paths.
+  *
+  * Params:
+  *   json = The Json object to count from.
+  *   paths = The paths to check within the Json object.
+  *
+  * Returns:
+  *   The count of array elements at the specified paths.
+  */
+size_t countArrays(Json json, string[][] paths) {
+  return json.isObject ? json.toMap.countArrays(paths) : 0;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing countArrays with paths");
+
+  Json json = [
+    "first": [1, 2].toJson,
+    "second": ["a": 1].toJson,
+    "third": [3, 4].toJson,
+    "fourth": "string".toJson
+  ].toJson;
+  size_t count = json.countArrays([
       ["first"], ["second"], ["third"], ["fourth"]
     ]);
-  assert(count == 2);
+  assert(count == 2, "Expected 2 arrays in the provided paths");
 }
+// #endregion Json with paths
+// #endregion paths
 
-size_t countArrays(Json json, string[] keys) {
-  return json.isObject ? keys.filter!(key => json.isArray(key)).array.length : 0;
+// #region keys
+// #region Json with keys and delegate
+/**
+  * Counts the number of array elements in a Json object at the specified keys
+  * that satisfy the provided delegate function.
+  *
+  * Params:
+  *   json = The Json object to count from.
+  *   keys = The keys to check within the Json object.
+  *   countFunc = A delegate function that takes a key and returns true if the element at that key should be counted.
+  *
+  * Returns:
+  *   The count of array elements at the specified keys that satisfy the delegate.
+  */
+size_t countArrays(Json json, string[] keys, bool delegate(string) @safe countFunc) {
+  return json.isObject ? json.toMap.countArrays(keys, countFunc) : 0;
 }
 /// 
 unittest {
+  version (test_uim_root)
+    writeln("Testing countArrays with keys and delegate");
+
   Json json = [
     "first": [1, 2].toJson,
     "second": ["a": 1].toJson,
     "third": [3, 4].toJson,
     "fourth": "string".toJson
   ].toJson;
-  size_t count = countArrays(json, ["first", "second", "third", "fourth"]);
-  assert(count == 2);
-}
-
-size_t countArrays(Json json, bool delegate(string) @safe countFunc) {
-  return json.isObject ? json.byKeyValue.filter!(kv => countFunc(kv.key)).array.length : 0;
-}
-/// 
-unittest {
-  Json json = [
-    "first": [1, 2].toJson,
-    "second": ["a": 1].toJson,
-    "third": [3, 4].toJson,
-    "fourth": "string".toJson
-  ].toJson;
-  size_t count = countArrays(json, (string key) => key.startsWith("t"));
+  size_t count = json.countArrays(["first", "second", "third", "fourth"],
+    (string key) => key.startsWith("t"));
   assert(count == 1);
 }
+// #endregion Json with keys and delegate
 
-size_t countArrays(Json json, bool delegate(Json) @safe countFunc) {
+// #region Json with keys
+/**
+  * Counts the number of array elements in a Json object at the specified keys.
+  *
+  * Params:
+  *   json = The Json object to count from.
+  *   keys = The keys to check within the Json object.
+  *
+  * Returns:
+  *   The count of array elements at the specified keys.
+  */
+size_t countArrays(Json json, string[] keys) {
+  return json.isObject ? json.toMap.countArrays(keys) : 0;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing countArrays with keys");
+
+  Json json = [
+    "first": [1, 2].toJson,
+    "second": ["a": 1].toJson,
+    "third": [3, 4].toJson,
+    "fourth": "string".toJson
+  ].toJson;
+  size_t count = json.countArrays(["first", "second", "third", "fourth"]);
+  assert(count == 2, "Expected 2 arrays in the provided keys");
+}
+// #endregion Json with keys
+
+// #region Json with delegate(keys)
+/**
+  * Counts the number of array elements in a Json object that satisfy the provided delegate function.
+  *
+  * Params:
+  *   json = The Json object to count from.
+  *   countFunc = A delegate function that takes a key and returns true if the element at that key should be counted.
+  *
+  * Returns:
+  *   The count of array elements that satisfy the delegate.
+  */
+size_t countArrays(Json json, bool delegate(string) @safe countFunc) {
+  return json.isObject ? json.toMap.countArrays(countFunc) : 0;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing countArrays with keys and delegate");
+
+  Json json = [
+    "first": [1, 2].toJson,
+    "second": ["a": 1].toJson,
+    "third": [3, 4].toJson,
+    "fourth": "string".toJson
+  ].toJson;
+  size_t count = json.countArrays((string key) => key.startsWith("t"));
+  assert(count == 1, "Expected 1 array matching the delegate");
+}
+// #endregion Json with delegate(keys)
+// #endregion keys
+
+// #region values
+/**
+  * Counts the number of array elements in a Json structure (array or object)
+  * at the specified values that satisfy the provided delegate function.
+  *
+  * Params:
+  *   json = The Json structure to count from.
+  *   values = The values to check within the Json structure.
+  *   countFunc = A delegate function that takes a Json value and returns true if it should be counted.
+  *
+  * Returns:
+  *   The count of array elements at the specified values that satisfy the delegate.
+  */
+size_t countArrays(Json json, Json[] values, bool delegate(Json) @safe countFunc) {
   if (json.isArray) {
-    return json.byValue.filter!(value => countFunc(value)).array.length;
+    return json.toArray.countArrays(values, countFunc);
   }
   if (json.isObject) {
-    return json.byKeyValue.filter!(kv => countFunc(kv.value)).array.length;
+    return json.toMap.countArrays(values, countFunc);
   }
   return 0;
 }
 /// 
 unittest {
+  version (test_uim_root)
+    writeln("Testing countArrays with values and delegate");
+
   Json json = [
     "first": [1, 2].toJson,
     "second": ["a": 1].toJson,
     "third": [3, 4].toJson,
     "fourth": "string".toJson
   ].toJson;
-  size_t count = countArrays(json, (Json value) => value.isArray);
-  assert(count == 2);
+
+  size_t count = json.countArrays(
+    [[1, 2].toJson, [3, 4].toJson, "string".toJson],
+    (Json value) => value.isArray);
+  assert(count == 2, "Expected 2 arrays in the provided values matching the delegate");
 }
 
-size_t countArrays(Json json, bool delegate(string, Json) @safe countFunc) {
-  return json.isObject ? json.byKeyValue.filter!(kv => countFunc(kv.key, kv.value)).array.length : 0;
+// #region Json with delegate(value)
+size_t countArrays(Json json, bool delegate(Json) @safe countFunc) {
+  if (json.isArray) {
+    return json.toArray.countArrays(countFunc);
+  }
+  if (json.isObject) {
+    return json.toMap.countArrays(countFunc);
+  }
+  return 0;
 }
 /// 
 unittest {
+  version (test_uim_root)
+    writeln("Testing countArrays with values and delegate");
+
   Json json = [
     "first": [1, 2].toJson,
     "second": ["a": 1].toJson,
     "third": [3, 4].toJson,
     "fourth": "string".toJson
   ].toJson;
-  size_t count = countArrays(json, (string key, Json value) => key.startsWith("t") && value.isArray);
-  assert(count == 1);
+  size_t count = json.countArrays((Json value) => value.isArray);
+  assert(count == 2, "");
 }
-// #endregion Json[string]
+// #endregion Json with delegate(value)
+// #endregion values
+
+// #region map
+size_t countArrays(Json json, bool delegate(string, Json) @safe countFunc) {
+  return json.isObject ? json.toMap.countArrays(countFunc) : 0;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing countArrays for Json with delegate");
+
+  Json json = [
+    "first": [1, 2].toJson,
+    "second": ["a": 1].toJson,
+    "third": [3, 4].toJson,
+    "fourth": "string".toJson
+  ].toJson;
+  size_t count = json.countArrays((string key, Json value) => key.startsWith("t"));
+  assert(count == 1, "Expected 1 array in the Json map matching the delegate");
+}
+// #endregion map
+// #endregion Json
 
 // #region Json[]
+// #region indices
 // #region Json[] with indices and delegate
-size_t countArrays(Json[] jsons, size_t[] indices, bool delegate(Json) @safe countFunc) {
-  return indices.filter!(index => jsons.isArray(index) && countFunc(jsons[index])).array.length;
+size_t countArrays(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe countFunc) {
+  return indices.filter!(index => jsons.isArray(index) && countFunc(index)).array.length;
 }
 /// 
 unittest {
@@ -131,14 +383,13 @@ unittest {
     [1, 2].toJson, ["a": 1].toJson, [3, 4, 5].toJson, "string".toJson, 42.toJson
   ];
 
-  assert(countArrays(jsons, [0, 1, 2, 3, 4], (Json json) => json.isArray) == 2,
-    "Expected 2 arrays in the provided indices");
-  assert(countArrays(jsons, [0, 1, 2, 3, 4], (Json json) => json.isArray && json.length == 2) == 1,
-    "Expected 1 array of length 2 in the provided indices");
-  assert(countArrays(jsons, [0, 1, 2, 3, 4], (Json json) => json.isArray && json.length > 2) == 1,
-    "Expected 1 array of length greater than 2 in the provided indices");
-  assert(countArrays(jsons, [0, 1, 2, 3, 4], (Json json) => json.isArray && json.length > 5) == 0,
-    "Expected 0 arrays of length greater than 5 in the provided indices");
+  size_t count = countArrays(jsons, [0, 1, 2, 3, 4],
+    (size_t index) => index == 2);
+  assert(count == 1, "Expected 1 array in the provided indices matching the delegate");
+  assert(countArrays(jsons, [0, 1, 2, 3, 4],
+      (size_t index) => index < 3) == 2, "Expected 2 arrays in the provided indices matching the delegate");
+  assert(countArrays(jsons, [0, 1, 2, 3, 4],
+      (size_t index) => index >= 0) == 2, "Expected 2 arrays in the provided indices matching the delegate");
 }
 // #endregion Json[] with indices and delegate
 
@@ -162,6 +413,74 @@ unittest {
 // #endregion Json[] with indices
 
 // #region Json[] with delegate
+size_t countArrays(Json[] jsons, bool delegate(size_t) @safe countFunc) {
+  auto count = 0;
+  foreach (index, value; jsons) {
+    if (value.isArray && countFunc(index)) {
+      count++;
+    }
+  }
+  return count;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing countArrays for Json[] with delegate");
+
+  Json[] jsons = [
+    [1, 2].toJson, ["a": 1].toJson, [3, 4].toJson, "string".toJson, 42.toJson
+  ];
+
+  size_t count = jsons.countArrays((size_t index) => index == 2);
+  assert(count == 1, "Expected 1 array matching the delegate");
+  assert(jsons.countArrays((size_t index) => index < 3) == 2, "Expected 2 arrays matching the delegate");
+  assert(jsons.countArrays((size_t index) => index >= 0) == 2, "Expected 2 arrays matching the delegate");
+}
+// #endregion Json[] with delegate
+// #endregion indices
+
+// #region values
+// #region Json[] with values and delegate
+size_t countArrays(Json[] jsons, Json[] values, bool delegate(Json) @safe countFunc) {
+  return jsons.filter!(json => json.isArray && values.hasValue(json) && countFunc(json))
+    .array.length;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing countArrays for Json[] with values and delegate");
+
+  Json[] jsons = [
+    [1, 2].toJson, ["a": 1].toJson, [3, 4].toJson, "string".toJson, 42.toJson
+  ];
+
+  size_t count = jsons.countArrays(
+    [[1, 2].toJson, [3, 4].toJson, "string".toJson],
+    (Json value) => value.isArray);
+  assert(count == 2, "Expected 2 arrays in the Json[] with the provided values matching the delegate");
+}
+// #endregion Json[] with values and delegate
+
+// #region Json[] with values
+size_t countArrays(Json[] jsons, Json[] values) {
+  return jsons.filter!(json => json.isArray && values.hasValue(json)).array.length;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing countArrays for Json[] with values");
+
+  Json[] jsons = [
+    [1, 2].toJson, ["a": 1].toJson, [3, 4].toJson, "string".toJson, 42.toJson
+  ];
+
+  size_t count = jsons.countArrays(
+    [[1, 2].toJson, [3, 4].toJson, "string".toJson]);
+  assert(count == 2, "Expected 2 arrays in the Json[] with the provided values");
+}
+// #endregion Json[] with values
+
+// #region Json[] with delegate
 size_t countArrays(Json[] jsons, bool delegate(Json) @safe countFunc) {
   return jsons.filter!(json => json.isArray && countFunc(json)).array.length;
 }
@@ -171,14 +490,32 @@ unittest {
     writeln("Testing countArrays for Json[] with delegate");
 
   Json[] jsons = [
-    [1, 2].toJson, ["a": 1].toJson, [3, 4, 5].toJson, "string".toJson, 42.toJson
+    [1, 2].toJson, ["a": 1].toJson, [3, 4].toJson, "string".toJson, 42.toJson
   ];
-  assert(countArrays(jsons, (Json json) => json.isArray) == 2, "Expected 2 arrays in the Json[]");
-  assert(countArrays(jsons, (Json json) => json.isArray && json.length == 2) == 1, "Expected 1 array of length 2 in the Json[]");
-  assert(countArrays(jsons, (Json json) => json.isArray && json.length > 2) == 1, "Expected 1 array in the Json[]");
-  assert(countArrays(jsons, (Json json) => json.isArray && json.length > 5) == 0, "Expected 0 arrays in the Json[]");
+
+  size_t count = jsons.countArrays((Json value) => value.isArray);
+  assert(count == 2, "Expected 2 arrays in the Json[] matching the delegate");
 }
 // #endregion Json[] with delegate
+// #endregion values
+
+// #region Json[] without delegate
+size_t countArrays(Json[] jsons) {
+  return jsons.filter!(json => json.isArray).array.length;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing countArrays for Json[] without delegate");
+
+  Json[] jsons = [
+    [1, 2].toJson, ["a": 1].toJson, [3, 4].toJson, "string".toJson, 42.toJson
+  ];
+
+  size_t count = jsons.countArrays();
+  assert(count == 2, "Expected 2 arrays in the Json[]");
+}
+// #endregion Json[] without delegate
 // #endregion Json[]
 
 // #region Json[string]
@@ -199,10 +536,10 @@ unittest {
   size_t count = map.countArrays([["first"], ["second"], ["third"], ["fourth"]],
     (string[] path) => path.length == 1 && path[0] == "first");
   assert(count == 1, "Expected 1 array in the provided paths matching the delegate");
-  assert(map.countArrays( [["first"], ["second"], ["third"], ["fourth"]],
-    (string[] path) => path.length == 1 ) == 2, "Expected 2 arrays in the provided paths matching the delegate");
-  assert(map.countArrays( [["first"], ["second"], ["third"], ["sixth", "a", "b"]],
-    (string[] path) => path.length >= 1 ) == 3, "Expected 3 arrays in the provided paths matching the delegate");
+  assert(map.countArrays([["first"], ["second"], ["third"], ["fourth"]],
+      (string[] path) => path.length == 1) == 2, "Expected 2 arrays in the provided paths matching the delegate");
+  assert(map.countArrays([["first"], ["second"], ["third"], ["sixth", "a", "b"]],
+      (string[] path) => path.length >= 1) == 3, "Expected 3 arrays in the provided paths matching the delegate");
 }
 // #endregion Json[string] with paths and delegate
 
@@ -232,7 +569,8 @@ size_t countArrays(Json[string] map, string[] keys, bool delegate(string) @safe 
 }
 /// 
 unittest {
-  version (test_uim_root) writeln("Testing countArrays with keys and delegate");
+  version (test_uim_root)
+    writeln("Testing countArrays with keys and delegate");
 
   Json[string] map = [
     "first": [1, 2].toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson,
@@ -240,7 +578,7 @@ unittest {
   ];
   size_t count = map.countArrays(["first", "second", "third", "fourth"],
     (string key) => key.startsWith("t"));
-  assert(count == 1);
+  assert(count == 1, "Expected 1 array in the provided keys matching the delegate");
 }
 // #endregion Json[string] with keys and delegate
 
@@ -250,27 +588,33 @@ size_t countArrays(Json[string] map, string[] keys) {
 }
 /// 
 unittest {
+  version (test_uim_root)
+    writeln("Testing countArrays with keys");
+
   Json[string] map = [
     "first": [1, 2].toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson,
     "fourth": "string".toJson
   ];
   size_t count = map.countArrays(["first", "second", "third", "fourth"]);
-  assert(count == 2);
+  assert(count == 2, "Expected 2 arrays in the provided keys");
 }
 // #endregion Json[string] with keys
 
-// #endregion Json[string] with delegate keys
+// #region Json[string] with delegate (keys)
 size_t countArrays(Json[string] map, bool delegate(string) @safe countFunc) {
-  return map.byKeyValue.filter!(kv => countFunc(kv.key)).array.length;
+  return map.byKeyValue.filter!(kv => kv.value.isArray && countFunc(kv.key)).array.length;
 }
 /// 
 unittest {
+  version (test_uim_root)
+    writeln("Testing countArrays with keys and delegate");
+
   Json[string] map = [
     "first": [1, 2].toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson,
     "fourth": "string".toJson
   ];
   size_t count = map.countArrays((string key) => key.startsWith("t"));
-  assert(count == 1);
+  assert(count == 1, "Expected 1 array matching the delegate");
 }
 // #endregion Json[string] with delegate keys
 // #endregion keys
@@ -278,11 +622,13 @@ unittest {
 // #region values
 // #region Json[string] with values and delegate
 size_t countArrays(Json[string] map, Json[] values, bool delegate(Json) @safe countFunc) {
-  return map.byKeyValue.filter!(kv => values.hasValue(kv.value) && countFunc(kv.value)).array.length;
+  return map.byKeyValue.filter!(kv => kv.value.isArray && values.hasValue(kv.value) && countFunc(kv.value))
+    .array.length;
 }
 /// 
 unittest {
-  version (test_uim_root) writeln("Testing countArrays with values and delegate");
+  version (test_uim_root)
+    writeln("Testing countArrays with values and delegate");
 
   Json[string] map = [
     "first": [1, 2].toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson,
@@ -291,17 +637,18 @@ unittest {
   size_t count = map.countArrays(
     [[1, 2].toJson, [3, 4].toJson, "string".toJson],
     (Json value) => value.isArray);
-  assert(count == 2);
+  assert(count == 2, "Expected 2 arrays in the provided values matching the delegate");
 }
 // #endregion Json[string] with values and delegate
 
 // #region Json[string] with values
 size_t countArrays(Json[string] map, Json[] values) {
-  return map.byKeyValue.filter!(kv => values.hasValue(kv.value)).array.length;
+  return map.byKeyValue.filter!(kv => kv.value.isArray && values.hasValue(kv.value)).array.length;
 }
 /// 
 unittest {
-  version (test_uim_root) writeln("Testing countArrays with values");
+  version (test_uim_root)
+    writeln("Testing countArrays with values");
 
   Json[string] map = [
     "first": [1, 2].toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson,
@@ -309,41 +656,46 @@ unittest {
   ];
   size_t count = map.countArrays(
     [[1, 2].toJson, [3, 4].toJson, "string".toJson]);
-  assert(count == 3);
+  assert(count == 2, "Expected 2 arrays in the provided values");
 }
 // #endregion Json[string] with values
 
-// #region Json[string] with delegate 
+// #region Json[string] with delegate (value)
 size_t countArrays(Json[string] map, bool delegate(Json) @safe countFunc) {
-  return map.byKeyValue.filter!(kv => countFunc(kv.value)).array.length;
+  return map.byKeyValue.filter!(kv => kv.value.isArray && countFunc(kv.value)).array.length;
 }
 /// 
 unittest {
+  version (test_uim_root)
+    writeln("Testing countArrays with values and delegate");
+
   Json[string] map = [
     "first": [1, 2].toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson,
     "fourth": "string".toJson
   ];
   size_t count = map.countArrays((Json value) => value.isArray);
-  assert(count == 2);
+  assert(count == 2, "Expected 2 arrays in the provided values matching the delegate");
 }
-// #endregion Json[string] with delegate 
+// #endregion Json[string] with delegate (value)
 // #endregion values
 
 // #region map
 // #region key-value delegate
 size_t countArrays(Json[string] map, bool delegate(string, Json) @safe countFunc) {
-  return map.byKeyValue.filter!(kv => countFunc(kv.key, kv.value)).array.length;
+  return map.byKeyValue.filter!(kv => kv.value.isArray && countFunc(kv.key, kv.value)).array.length;
 }
 /// 
 unittest {
+  version (test_uim_root)
+    writeln("Testing countArrays for Json[string] with key-value delegate");
+
   Json[string] map = [
     "first": [1, 2].toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson,
     "fourth": "string".toJson
   ];
   size_t count = map.countArrays((string key, Json value) => key.startsWith("t") && value.isArray);
-  assert(count == 1);
+  assert(count == 1, "Expected 1 array in the provided paths matching the delegate");
 }
 // #endregion map
 // #endregion key-value delegate
 // #endregion Json[string]
-

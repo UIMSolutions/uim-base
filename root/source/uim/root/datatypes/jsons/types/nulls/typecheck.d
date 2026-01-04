@@ -135,16 +135,12 @@ unittest {
 // #region Json
 // #region path
 bool isAllNull(Json json, string[][] paths) {
-  writeln("Check 1st -> ", json.isNull);
   if (json.isNull) return false; 
   
-  writeln("Check 2st -> ", !json.hasAllPath(paths), " for json:", json, " and paths:", paths);
   if (!json.hasAllPath(paths)) return false;
   
-  writeln("Check 3st -> ", paths.length == 0);
   if (paths.length == 0) return false;
 
-  writeln("Checking all paths for isAllNull:", paths, " for json:", json);
   return paths.all!(path => json.isNull(path));
 }
 /// 
