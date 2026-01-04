@@ -11,306 +11,317 @@ mixin(Version!("show_uim_root"));
 
 @safe:
 
-// #region Json[]
-bool isAllString(Json[] jsons, size_t[] indices = null) {
-  return indices.length == 0
-    ? jsons.length > 0 && jsons.all!(value => value.isString)
-    : indices.all!(index => jsons.isString(index));
-}
-/// 
-unittest {
-  version (test_uim_root)
-    writeln("Testing isAllString for Json[] with indices");
-
-  Json[] jsons = [Json("hello"), 123.toJson, Json("world")];
-  assert(isAllString(jsons) == false);
-  assert(isAnyString(jsons) == true);
-  assert(isAllString(jsons, [0, 2]) == true);
-  assert(isAnyString(jsons, [1, 2]) == true);
-}
-
-bool isAnyString(Json[] jsons, size_t[] indices = null) {
-  return indices.length == 0
-    ? jsons.length > 0 && jsons.any!(value => value.isString)
-    : indices.any!(index => jsons.isString(index));
-}
-/// 
-unittest {
-  version (test_uim_root)
-    writeln("Testing isAllString and isAnyString for Json[] with indices");
-
-  Json[] jsons = [Json("hello"), 123.toJson, Json("world")];
-  assert(isAllString(jsons) == false);
-  assert(isAnyString(jsons) == true);
-  assert(isAllString(jsons, [0, 2]) == true);
-  assert(isAnyString(jsons, [1, 2]) == true);
-}
-
-bool isString(Json[] jsons, size_t index) {
-  return jsons.length > index && jsons.getValue(index).isString;
-}
-/// 
-unittest {
-  version (test_uim_root)
-    writeln("Testing isString for Json[]");
-    
-  Json[] jsons = [Json("hello"), 123.toJson, Json("world")];
-  assert(isAllString(jsons) == false);
-  assert(isAnyString(jsons) == true);
-  assert(isAllString(jsons, [0, 2]) == true);
-  assert(isString(jsons, 0) == true);
-  assert(isString(jsons, 1) == false);
-  assert(isString(jsons, 2) == true);
-}
-// #endregion Json[]
-
-// #region Json[string]
-bool isAllString(Json[string] map, string[] keys = null) {
-  return keys.length > 0 
-    ? keys.all!(key => map.getValue(key).isString) 
-    : map.byValue.all!(value => value.isString);
-}
-/// 
-unittest {
-  version (test_uim_root)
-    writeln("Testing isAllString for Json[string] with keys");
-
-  Json[string] map = [
-    "first": Json("hello"), "second": 123.toJson, "third": Json("world")
-  ];
-  assert(isAllString(map) == false);
-  assert(isAnyString(map) == true);
-  assert(isAllString(map, ["first", "third"]) == true);
-  assert(isAnyString(map, ["second", "third"]) == true);
-}
-
-bool isAnyString(Json[string] map, string[] keys = null) {
-  return keys.length > 0 
-    ? keys.any!(key => map.getValue(key).isString) 
-    : map.byValue.any!(value => value.isString);
-}
-/// 
-unittest {
-  version (test_uim_root)
-    writeln("Testing isAllString and isAnyString for Json[string] with keys");
-
-  Json[string] map = [
-    "first": Json("hello"), "second": 123.toJson, "third": Json("world")
-  ];
-  assert(isAllString(map) == false);
-  assert(isAnyString(map) == true);
-  assert(isAllString(map, ["first", "third"]) == true);
-  assert(isAnyString(map, ["second", "third"]) == true);
-}
-
-bool isString(Json[string] map, string key) {
-  return key in map ? map[key].isString : false;
-}
-/// 
-unittest {
-  version (test_uim_root)
-    writeln("Testing isString for Json[string]");
-    
-  Json[string] map = [
-    "first": Json("hello"), "second": 123.toJson, "third": Json("world")
-  ];
-  assert(isAllString(map) == false);
-  assert(isAnyString(map) == true);
-  assert(isAllString(map, ["first", "third"]) == true);
-  assert(isString(map, "first") == true);
-  assert(isString(map, "second") == false);
-  assert(isString(map, "third") == true);
-}
-    // #endregion Json[string]
-
 // #region Json
 // #region path
 bool isAllString(Json json, string[][] paths) {
-  return json.isObject && paths.length > 0
-    ? paths.all!(path => json.isString(path)) : false;
+  return json.isObject ? json.toMap.isAllString(paths) : false;
 }
-/// 
+///
 unittest {
   version (test_uim_root)
     writeln("Testing isAllString for Json with paths");
 
-  Json json = parseJsonString(`{
-    "first": "hello",
-    "second": 123,
-    "third": "world",
-    "nested": {
-      "a": "foo",
-      "b": 456
-    }
-  }`);
-
-  assert(isAllString(json, [["first"], ["third"]]) == true);
-  assert(isAllString(json, [["first"], ["second"]]) == false);
-  assert(isAllString(json, [["nested", "a"], ["third"]]) == true);
-  assert(isAllString(json, [["nested", "b"], ["third"]]) == false);
+  Json json = parseJsonString(`{"a": "ABC", "b": "XYZ", "c": 1}`);
+  assert(json.isAllString([["a"], ["b"]]) == true);
+  assert(json.isAnyString([["b"], ["c"]]) == true);
 }
 
 bool isAnyString(Json json, string[][] paths) {
-  return json.isObject && paths.length > 0
-    ? paths.any!(path => json.isString(path)) : false;
+  return json.isObject ? json.toMap.isAnyString(paths) : false;
 }
-/// 
+///
 unittest {
   version (test_uim_root)
     writeln("Testing isAnyString for Json with paths");
 
-  Json json = parseJsonString(`{
-    "first": "hello",
-    "second": 123,
-    "third": "world",
-    "nested": {
-      "a": "foo",
-      "b": 456
-    }
-  }`);
-
-  assert(isAnyString(json, [["first"], ["second"]]) == true);
-  assert(isAnyString(json, [["second"], ["b"]]) == false);
-  assert(isAnyString(json, [["nested", "a"], ["second"]]) == true);
-  assert(isAnyString(json, [["nested", "b"], ["second"]]) == false);
+  Json json = parseJsonString(`{"a": "ABC", "b": "XYZ", "c": 1}`);
+  assert(json.isAllString([["a"], ["b"]]) == true);
+  assert(json.isAnyString([["b"], ["c"]]) == true);
 }
 
 bool isString(Json json, string[] path) {
-  return json.isObject && path.length > 0 ? json.getValue(path).isString : false;
+  return json.isObject ? json.toMap.isString(path) : false;
 }
-/// 
+///
 unittest {
   version (test_uim_root)
     writeln("Testing isString for Json with path");
 
-  Json json = parseJsonString(`{
-    "first": "hello",
-    "second": 123,
-    "third": "world",
-    "nested": {
-      "a": "foo",
-      "b": 456
-    }
-  }`);
-
-  assert(isString(json, ["first"]) == true);
-  assert(isString(json, ["second"]) == false);
-  assert(isString(json, ["third"]) == true);
-  assert(isString(json, ["nested", "a"]) == true);
-  assert(isString(json, ["nested", "b"]) == false);
+  Json json = parseJsonString(`{"a": "ABC", "b": "XYZ", "c": 1}`);
+  assert(json.isString(["a"]) == true);
+  assert(json.isString(["c"]) == false);
 }
-  // #endregion path
+
+// #endregion path
 
 // #region key
 bool isAllString(Json json, string[] keys) {
-  return json.isObject && keys.length > 0
-    ? keys.all!(key => json.isString(key)) : false;
+  return json.isObject ? json.toMap.isAllString(keys) : false;
 }
-/// 
+///
 unittest {
   version (test_uim_root)
     writeln("Testing isAllString for Json with keys");
 
-  Json json = parseJsonString(`{
-    "first": "hello",
-    "second": 123,
-    "third": "world"
-  }`);
-
-  assert(isAllString(json, ["first", "third"]) == true);
-  assert(isAllString(json, ["first", "second"]) == false);
+  Json json = parseJsonString(`{"a": "ABC", "b": "XYZ", "c": 1}`);
+  assert(json.isAllString(["a", "b"]) == true);
+  assert(json.isAnyString(["b", "c"]) == true);
 }
 
 bool isAnyString(Json json, string[] keys) {
-  return json.isObject && keys.length > 0
-    ? keys.any!(key => json.isString(key)) : false;
+  return json.isObject ? json.toMap.isAnyString(keys) : false;
 }
-/// 
+///
 unittest {
   version (test_uim_root)
     writeln("Testing isAnyString for Json with keys");
 
-  Json json = parseJsonString(`{
-    "first": "hello",
-    "second": 123,
-    "third": "world"
-  }`);
-
-  assert(isAnyString(json, ["second", "third"]) == true);
-  assert(isAnyString(json, ["second", "fourth"]) == false);
+  Json json = parseJsonString(`{"a": "ABC", "b": "XYZ", "c": 1}`);
+  assert(json.isAllString(["a", "b"]) == true);
+  assert(json.isAnyString(["b", "c"]) == true);
 }
 
 bool isString(Json json, string key) {
-  return json.isObject ? json.getValue(key).isString : false;
+  return json.isObject ? json.toMap.isString(key) : false;
 }
-/// 
+///
 unittest {
   version (test_uim_root)
     writeln("Testing isString for Json with key");
 
-  Json json = parseJsonString(`{
-    "first": "hello",
-    "second": 123,
-    "third": "world"
-  }`);
-
-  assert(isString(json, "first") == true);
-  assert(isString(json, "second") == false);
-  assert(isString(json, "third") == true);
+  Json json = parseJsonString(`{"a": "ABC", "b": "XYZ", "c": 1}`);
+  assert(json.isString("a") == true);
+  assert(json.isString("c") == false);
 }
 // #region key
 
 // #region index
 bool isAllString(Json json, size_t[] indices) {
-  return json.isArray && indices.length > 0
-    ? indices.all!(index => json.isString(index)) : false;
+  return json.isArray ? json.toArray.isAllString(indices) : false;
+}
+///
+unittest {
+  version (test_uim_root)
+    writeln("Testing isAllString for Json with indices");
+
+  Json json = ["ABC".toJson, "XYZ".toJson, 1.toJson].toJson;
+  assert(json.isAllString([0, 1]) == true);
+  assert(json.isAnyString([1, 2]) == true);
 }
 
 bool isAnyString(Json json, size_t[] indices) {
-  return json.isArray && indices.length > 0
-    ? indices.any!(index => json.isString(index)) : false;
+  return json.isArray ? json.toArray.isAnyString(indices) : false;
 }
-/// 
+///
 unittest {
   version (test_uim_root)
-    writeln("Testing isAllString and isAnyString for Json with indices");
+    writeln("Testing isAnyString for Json with indices");
 
-  Json json = [Json("hello"), 123.toJson, Json("world")].toJson;
-
-  assert(isAllString(json, [0, 2]) == true);
-  assert(isAllString(json, [0, 1]) == false);
-  assert(isAnyString(json, [1, 2]) == true);
-  assert(isAnyString(json, [1, 3]) == false);
+  Json json = ["ABC".toJson, "XYZ".toJson, 1.toJson].toJson;
+  assert(json.isAllString([0, 1]) == true);
+  assert(json.isAnyString([1, 2]) == true);
 }
 
 bool isString(Json json, size_t index) {
-  return json.isArray && index < json.length ? json.getValue(index).isString : false;
+  return json.isArray ? json.toArray.isString(index) : false;
 }
-/// 
+///
 unittest {
   version (test_uim_root)
-    writeln("Testing isString for Json with index");  
+    writeln("Testing isString for Json with index");
 
-
-  Json json = [Json("hello"), 123.toJson, Json("world")].toJson;  
-  assert(isString(json, 0) == true);
-  assert(isString(json, 1) == false);
-  assert(isString(json, 2) == true);
+  Json json = ["ABC".toJson, "XYZ".toJson, 1.toJson].toJson;
+  assert(json.isString(0) == true);
+  assert(json.isString(1) == true);
+  assert(json.isString(2) == false);
 }
-  // #endregion index
+// #endregion index
 
 bool isString(Json json) {
-  return (json.type == Json.Type.string);
+  return (json.type == Json.Type.float_);
 }
-/// 
+///
 unittest {
   version (test_uim_root)
     writeln("Testing isString for Json");
 
-  Json strJson = Json("hello");
-  Json intJson = 123.toJson;
-
-  assert(isString(strJson) == true);
-  assert(isString(intJson) == false);
+  Json obj = parseJsonString(`{"a": "ABC", "b": 1, "c": 3.3}`);
+  assert(isString("ABC".toJson) == true);
+  assert(isString(1.toJson) == false);
+  assert(isString(3.3.toJson) == true);
 }
 // #endregion Json
+
+// #region Json[]
+// #region indices
+// #region is all string
+bool isAllString(Json[] jsons, size_t[] indices = null) {
+  return indices.length == 0
+    ? jsons.length > 0 && jsons.all!(value => value.isString)
+    : indices.all!(index => jsons.isString(index));
+}
+///
+unittest {
+  version (test_uim_root)
+    writeln("Testing isAllString for Json[] with indices");
+
+  Json[] jsons = ["ABC".toJson, "XYZ".toJson, 3.3.toJson];
+  assert(isAllString(jsons) == true);
+  assert(isAnyString(jsons) == true);
+  assert(isAllString(jsons, [0, 2]) == true);
+  assert(isAnyString(jsons, [1, 2]) == true);
+}
+// #endregion is all string
+
+// #region is any string
+bool isAnyString(Json[] jsons, size_t[] indices = null) {
+  return indices.length == 0
+    ? jsons.length > 0 && jsons.any!(value => value.isString)
+    : indices.any!(index => jsons.isString(index));
+}
+///
+unittest {
+  version (test_uim_root)
+    writeln("Testing isAnyString for Json[] with indices");
+
+  Json[] jsons = ["ABC".toJson, 1.toJson, 3.3.toJson];
+  assert(isAllString(jsons) == false);
+  assert(isAnyString(jsons) == true);
+  assert(isAllString(jsons, [0, 2]) == true);
+  assert(isAnyString(jsons, [1, 2]) == true);
+}
+// #endregion is any string
+
+// #region is string
+bool isString(Json[] jsons, size_t index) {
+  return jsons.length > index && jsons.getValue(index).isString;
+}
+///
+unittest {
+  version (test_uim_root)
+    writeln("Testing isString for Json[] with index");
+
+  Json[] jsons = ["ABC".toJson, 1.toJson, 3.3.toJson];
+  assert(isString(jsons, 0) == true);
+  assert(isString(jsons, 1) == false);
+  assert(isString(jsons, 2) == true);
+}
+// #endregion is string
+// #endregion indices
+// #endregion Json[]
+
+// #region Json[string]
+// #region paths
+// #region all string
+bool isAllString(Json[string] jsons, string[][] paths = null) {
+  return paths.length > 0 
+    ? paths.all!(path => jsons.getValue(path).isString) 
+    : jsons.byValue.all!(value => value.isString);
+}
+///
+unittest {
+  version (test_uim_root)
+    writeln("Testing isAllString for Json[string] with paths");
+
+  Json[string] map = [
+    "first": "ABC".toJson, "second": "XYZ".toJson, "third": 1.toJson
+  ];
+  assert(isAllString(map, [["first"], ["second"]]) == true);
+  assert(isAnyString(map, [["second"], ["third"]]) == true);
+}
+// #endregion all string
+
+// #region any string
+bool isAnyString(Json[string] jsons, string[][] paths = null) {
+  return paths.length > 0 
+    ? paths.any!(path => jsons.getValue(path).isString) 
+    : jsons.byValue.any!(value => value.isString);
+}
+///
+unittest {
+  version (test_uim_root)
+    writeln("Testing isAnyString for Json[string] with paths");
+
+  Json[string] map = [
+    "first": "ABC".toJson, "second": "XYZ".toJson, "third": 1.toJson
+  ];
+  assert(isAllString(map, [["first"], ["second"]]) == true);
+  assert(isAnyString(map, [["second"], ["third"]]) == true);
+}
+// #endregion any string
+
+// #region is string
+bool isString(Json[string] jsons, string[] path) {
+  return jsons.getValue(path).isString;
+}
+///
+unittest {
+  version (test_uim_root)
+    writeln("Testing isString for Json[string] with path");
+
+  Json[string] map = [
+    "first": "ABC".toJson, "second": "XYZ".toJson, "third": 1.toJson
+  ];
+  assert(isString(map, ["first"]) == true);
+  assert(isString(map, ["third"]) == false);
+}
+// #endregion is string
+// #endregion paths
+
+// #region keys
+// #region is all string
+bool isAllString(Json[string] jsons, string[] keys = null) {
+  return keys.length > 0 
+    ? keys.all!(key => jsons.getValue(key).isString) 
+    : jsons.byValue.all!(value => value.isString);
+}
+///
+unittest {
+  version (test_uim_root)
+    writeln("Testing isAllString for Json[string] with keys");
+
+  Json[string] map = [
+    "first": "ABC".toJson, "second": "XYZ".toJson, "third": 1.toJson
+  ];
+  assert(isAllString(map, ["first", "second"]) == true);
+  assert(isAnyString(map, ["second", "third"]) == true);
+}
+// #endregion is all string
+
+// #region is any string
+bool isAnyString(Json[string] jsons, string[] keys = null) {
+  return keys.length > 0 
+    ? keys.any!(key => jsons.getValue(key).isString) 
+    : jsons.byValue.any!(value => value.isString);
+}
+///
+unittest {
+  version (test_uim_root)
+    writeln("Testing isAnyString for Json[string] with keys");
+
+  Json[string] map = [
+    "first": "ABC".toJson, "second": "XYZ".toJson, "third": 1.toJson
+  ];
+  assert(isAllString(map, ["first", "second"]) == true);
+  assert(isAnyString(map, ["second", "third"]) == true);
+}
+// #endregion is any string
+
+// #region is string
+bool isString(Json[string] jsons, string key) {
+  return jsons.getValue(key).isString;
+}
+///
+unittest {
+  version (test_uim_root)
+    writeln("Testing isString for Json[string] with key");
+
+  Json[string] map = [
+    "first": "ABC".toJson, "second": "XYZ".toJson, "third": 1.toJson
+  ];
+  assert(isString(map, "first") == true);
+  assert(isString(map, "third") == false);
+}
+// #endregion is string
+// #endregion keys
+// #endregion Json[string]

@@ -11,23 +11,7 @@ mixin(Version!("show_uim_root"));
 
 @safe:
 
-// #region Json[]
-bool isAllDouble(Json[] jsons, size_t[] indices = null) {
-  return indices.length == 0
-    ? jsons.length > 0 && jsons.all!(value => value.isDouble)
-    : indices.all!(index => jsons.isDouble(index));
-}
 
-bool isAnyDouble(Json[] jsons, size_t[] indices = null) {
-  return indices.length == 0
-    ? jsons.length > 0 && jsons.any!(value => value.isDouble)
-    : indices.any!(index => jsons.isDouble(index));
-}
-
-bool isDouble(Json[] jsons, size_t index) {
-  return jsons.length > index && jsons.getValue(index).isDouble;
-}
-// #endregion Json[]
 
 // #region Json[string]
 bool isAllDouble(Json[string] jsons, string[] keys = null) {
