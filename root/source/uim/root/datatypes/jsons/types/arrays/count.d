@@ -1,3 +1,8 @@
+/****************************************************************************************************************
+* Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
+* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
+* Authors: Ozan Nurettin Süel (aka UIManufaktur)
+*****************************************************************************************************************/
 module uim.root.datatypes.jsons.types.arrays.count;
 
 import uim.root;
@@ -321,6 +326,17 @@ unittest {
 }
 
 // #region Json with delegate(value)
+/** 
+  * Counts the number of array elements in a Json structure (array or object)
+  * at the specified values.
+  *
+  * Params:
+  *   json = The Json structure to count from.
+  *   values = The values to check within the Json structure.
+  *
+  * Returns:
+  *   The count of array elements at the specified values.
+  */
 size_t countArrays(Json json, bool delegate(Json) @safe countFunc) {
   if (json.isArray) {
     return json.toArray.countArrays(countFunc);
@@ -348,6 +364,17 @@ unittest {
 // #endregion values
 
 // #region map
+/** 
+  * Counts the number of array elements in a Json object at the specified key-value pairs
+  * that satisfy the provided delegate function.
+  *
+  * Params:
+  *   json = The Json object to count from.
+  *   countFunc = A delegate function that takes a key and value and returns true if the element should be counted.
+  *
+  * Returns:
+  *   The count of array elements that satisfy the delegate.
+  */
 size_t countArrays(Json json, bool delegate(string, Json) @safe countFunc) {
   return json.isObject ? json.toMap.countArrays(countFunc) : 0;
 }
@@ -371,6 +398,18 @@ unittest {
 // #region Json[]
 // #region indices
 // #region Json[] with indices and delegate
+/** 
+  * Counts the number of array elements in a Json array at the specified indices
+  * that satisfy the provided delegate function.
+  *
+  * Params:
+  *   jsons = The Json array to count from.
+  *   indices = The indices to check within the Json array.
+  *   countFunc = A delegate function that takes an index and returns true if the element at that index should be counted.
+  *
+  * Returns:
+  *   The count of array elements at the specified indices that satisfy the delegate.
+  */
 size_t countArrays(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe countFunc) {
   return indices.filter!(index => jsons.isArray(index) && countFunc(index)).array.length;
 }
@@ -394,6 +433,16 @@ unittest {
 // #endregion Json[] with indices and delegate
 
 // #region Json[] with indices
+/** 
+  * Counts the number of array elements in a Json array at the specified indices.
+  *
+  * Params:
+  *   jsons = The Json array to count from.
+  *   indices = The indices to check within the Json array.
+  *
+  * Returns:
+  *   The count of array elements at the specified indices.
+  */
 size_t countArrays(Json[] jsons, size_t[] indices) {
   return indices.filter!(index => jsons.isArray(index)).array.length;
 }
@@ -413,6 +462,16 @@ unittest {
 // #endregion Json[] with indices
 
 // #region Json[] with delegate
+/** 
+  * Counts the number of array elements in a Json array that satisfy the provided delegate function.
+  *
+  * Params:
+  *   jsons = The Json array to count from.
+  *   countFunc = A delegate function that takes an index and returns true if the element at that index should be counted.
+  *
+  * Returns:
+  *   The count of array elements that satisfy the delegate.
+  */
 size_t countArrays(Json[] jsons, bool delegate(size_t) @safe countFunc) {
   auto count = 0;
   foreach (index, value; jsons) {
@@ -441,6 +500,18 @@ unittest {
 
 // #region values
 // #region Json[] with values and delegate
+/** 
+  * Counts the number of array elements in a Json array at the specified values
+  * that satisfy the provided delegate function.
+  *
+  * Params:
+  *   jsons = The Json array to count from.
+  *   values = The values to check within the Json array.
+  *   countFunc = A delegate function that takes a Json value and returns true if it should be counted.
+  *
+  * Returns:
+  *   The count of array elements at the specified values that satisfy the delegate.
+  */
 size_t countArrays(Json[] jsons, Json[] values, bool delegate(Json) @safe countFunc) {
   return jsons.filter!(json => json.isArray && values.hasValue(json) && countFunc(json))
     .array.length;
@@ -462,6 +533,16 @@ unittest {
 // #endregion Json[] with values and delegate
 
 // #region Json[] with values
+/** 
+  * Counts the number of array elements in a Json array at the specified values.
+  *
+  * Params:
+  *   jsons = The Json array to count from.
+  *   values = The values to check within the Json array.
+  *
+  * Returns:
+  *   The count of array elements at the specified values.
+  */
 size_t countArrays(Json[] jsons, Json[] values) {
   return jsons.filter!(json => json.isArray && values.hasValue(json)).array.length;
 }
@@ -481,6 +562,16 @@ unittest {
 // #endregion Json[] with values
 
 // #region Json[] with delegate
+/** 
+  * Counts the number of array elements in a Json array that satisfy the provided delegate function.
+  *
+  * Params:
+  *   jsons = The Json array to count from.
+  *   countFunc = A delegate function that takes a Json value and returns true if it should be counted.
+  *
+  * Returns:
+  *   The count of array elements that satisfy the delegate.
+  */
 size_t countArrays(Json[] jsons, bool delegate(Json) @safe countFunc) {
   return jsons.filter!(json => json.isArray && countFunc(json)).array.length;
 }
@@ -500,6 +591,15 @@ unittest {
 // #endregion values
 
 // #region Json[] without delegate
+/** 
+  * Counts the number of array elements in a Json array.
+  *
+  * Params:
+  *   jsons = The Json array to count from.
+  *
+  * Returns:
+  *   The count of array elements.
+  */
 size_t countArrays(Json[] jsons) {
   return jsons.filter!(json => json.isArray).array.length;
 }
@@ -521,6 +621,18 @@ unittest {
 // #region Json[string]
 // #region paths
 // #region Json[string] with paths and delegate
+/** 
+  * Counts the number of array elements in a Json object at the specified paths
+  * that satisfy the provided delegate function.
+  *
+  * Params:
+  *   map = The Json object to count from.
+  *   paths = The paths to check within the Json object.
+  *   countFunc = A delegate function that takes a path and returns true if the element at that path should be counted.
+  *
+  * Returns:
+  *   The count of array elements at the specified paths that satisfy the delegate.
+  */
 size_t countArrays(Json[string] map, string[][] paths, bool delegate(string[]) @safe countFunc) {
   return paths.filter!(path => map.isArray(path) && countFunc(path)).array.length;
 }
@@ -544,6 +656,16 @@ unittest {
 // #endregion Json[string] with paths and delegate
 
 // #region Json[string] with paths
+/** 
+  * Counts the number of array elements in a Json object at the specified paths.
+  *
+  * Params:
+  *   map = The Json object to count from.
+  *   paths = The paths to check within the Json object.
+  *
+  * Returns:
+  *   The count of array elements at the specified paths.
+  */
 size_t countArrays(Json[string] map, string[][] paths) {
   return paths.filter!(path => map.isArray(path)).array.length;
 }
@@ -564,6 +686,18 @@ unittest {
 
 // #region keys
 // #region Json[string] with keys and delegate
+/** 
+  * Counts the number of array elements in a Json object at the specified keys
+  * that satisfy the provided delegate function.
+  *
+  * Params:
+  *   map = The Json object to count from.
+  *   keys = The keys to check within the Json object.
+  *   countFunc = A delegate function that takes a key and returns true if the element at that key should be counted.
+  *
+  * Returns:
+  *   The count of array elements at the specified keys that satisfy the delegate.
+  */
 size_t countArrays(Json[string] map, string[] keys, bool delegate(string) @safe countFunc) {
   return keys.filter!(key => map.isArray(key) && countFunc(key)).array.length;
 }
@@ -583,6 +717,16 @@ unittest {
 // #endregion Json[string] with keys and delegate
 
 // #region Json[string] with keys
+/** 
+  * Counts the number of array elements in a Json object at the specified keys.
+  *
+  * Params:
+  *   map = The Json object to count from.
+  *   keys = The keys to check within the Json object.
+  *
+  * Returns:
+  *   The count of array elements at the specified keys.
+  */
 size_t countArrays(Json[string] map, string[] keys) {
   return keys.filter!(key => map.isArray(key)).array.length;
 }
@@ -601,6 +745,16 @@ unittest {
 // #endregion Json[string] with keys
 
 // #region Json[string] with delegate (keys)
+/** 
+  * Counts the number of array elements in a Json object that satisfy the provided delegate function.
+  *
+  * Params:
+  *   map = The Json object to count from.
+  *   countFunc = A delegate function that takes a key and returns true if the element at that key should be counted.
+  *
+  * Returns:
+  *   The count of array elements that satisfy the delegate.
+  */
 size_t countArrays(Json[string] map, bool delegate(string) @safe countFunc) {
   return map.byKeyValue.filter!(kv => kv.value.isArray && countFunc(kv.key)).array.length;
 }
@@ -621,6 +775,18 @@ unittest {
 
 // #region values
 // #region Json[string] with values and delegate
+/** 
+  * Counts the number of array elements in a Json object at the specified values
+  * that satisfy the provided delegate function.
+  *
+  * Params:
+  *   map = The Json object to count from.
+  *   values = The values to check within the Json object.
+  *   countFunc = A delegate function that takes a Json value and returns true if it should be counted.
+  *
+  * Returns:
+  *   The count of array elements at the specified values that satisfy the delegate.
+  */
 size_t countArrays(Json[string] map, Json[] values, bool delegate(Json) @safe countFunc) {
   return map.byKeyValue.filter!(kv => kv.value.isArray && values.hasValue(kv.value) && countFunc(kv.value))
     .array.length;
@@ -642,6 +808,16 @@ unittest {
 // #endregion Json[string] with values and delegate
 
 // #region Json[string] with values
+/** 
+  * Counts the number of array elements in a Json object at the specified values.
+  *
+  * Params:
+  *   map = The Json object to count from.
+  *   values = The values to check within the Json object.
+  *
+  * Returns:
+  *   The count of array elements at the specified values.
+  */
 size_t countArrays(Json[string] map, Json[] values) {
   return map.byKeyValue.filter!(kv => kv.value.isArray && values.hasValue(kv.value)).array.length;
 }
@@ -661,6 +837,16 @@ unittest {
 // #endregion Json[string] with values
 
 // #region Json[string] with delegate (value)
+/** 
+  * Counts the number of array elements in a Json object that satisfy the provided delegate function.
+  *
+  * Params:
+  *   map = The Json object to count from.
+  *   countFunc = A delegate function that takes a Json value and returns true if it should be counted.
+  *
+  * Returns:
+  *   The count of array elements that satisfy the delegate.
+  */
 size_t countArrays(Json[string] map, bool delegate(Json) @safe countFunc) {
   return map.byKeyValue.filter!(kv => kv.value.isArray && countFunc(kv.value)).array.length;
 }
@@ -681,6 +867,16 @@ unittest {
 
 // #region map
 // #region key-value delegate
+/** 
+  * Counts the number of array elements in a Json object that satisfy the provided key-value delegate function.
+  *
+  * Params:
+  *   map = The Json object to count from.
+  *   countFunc = A delegate function that takes a key and value and returns true if the element should be counted.
+  *
+  * Returns:
+  *   The count of array elements that satisfy the delegate.
+  */
 size_t countArrays(Json[string] map, bool delegate(string, Json) @safe countFunc) {
   return map.byKeyValue.filter!(kv => kv.value.isArray && countFunc(kv.key, kv.value)).array.length;
 }

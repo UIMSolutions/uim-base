@@ -6,6 +6,8 @@
 module uim.root.datatypes.jsons.types.doubles;
 
 public {
+  import uim.root.datatypes.jsons.types.doubles.count;
+  import uim.root.datatypes.jsons.types.doubles.filter;
   import uim.root.datatypes.jsons.types.doubles.get;
   import uim.root.datatypes.jsons.types.doubles.typecheck;
 }
