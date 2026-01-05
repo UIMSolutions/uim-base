@@ -178,8 +178,6 @@ unittest {
     writeln("Testing isAllUndefined for Json with paths");
     
   Json json = parseJsonString(`{"a": "undefined", "b": {"c": "undefined"}}`);
-  writeln("Json -> ", json);
-
   json["a"] = Json.undefined;
   json["b"]["c"] = Json.undefined;
 

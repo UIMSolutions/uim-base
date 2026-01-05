@@ -8,7 +8,7 @@ mixin(Version!("show_uim_root"));
 
 // #region Json[]
 Json getInteger(Json[] jsons, size_t index, Json defaultValue = Json(null)) {
-  return jsons.getValue(index).isInteger() ? jsons[index] : defaultValue;
+  return jsons.getValue(index).isInteger ? jsons[index] : defaultValue;
 }
 /// 
 unittest {

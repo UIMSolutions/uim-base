@@ -70,7 +70,6 @@ unittest {
 
   int[string] map = ["one": 1, "two": 2, "three": 3, "four": 4];
   auto filtered = map.filterKeys(["two", "three", "five"]);
-  writeln(filtered);
   assert(filtered.length == 2 && filtered.hasAllKey(["two", "three"]) && !filtered.hasKey("five"));
   assert(filtered["two"] == 2 && filtered["three"] == 3);
 }

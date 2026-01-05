@@ -156,15 +156,8 @@ unittest {
     ].toJson
   ].toJson;
   
-  assert(!isAllNull(json, [["a"], ["b", "c"], ["b", "d"]]));
-
-  writeln("Check paths:", json.hasAllPath([["a"], ["b", "c"]]));
-  writeln(json.getValue(["a"]).isNull);
-  writeln(json.getValue(["b", "c"]).isNull);
-  writeln(json.isNull(["a"]));
-  writeln(json.isNull(["b", "c"]));
-  writeln(json.isAllNull([["a"], ["b", "c"]]));
-  assert(json.isAllNull([["a"], ["b", "c"]]));
+  assert(!isAllNull(json, [["a"], ["b", "c"], ["b", "d"]]), "Expected false");
+  assert(json.isAllNull([["a"], ["b", "c"]]), "Expected true");
 }
 
 bool isAnyNull(Json json, string[][] paths) {
@@ -229,8 +222,8 @@ unittest {
     "c": Json(null)
   ].toJson;
   
-  assert(!isAllNull(json, ["a", "b", "c"]));
-  assert(isAllNull(json, ["a", "c"]));
+  assert(!isAllNull(json, ["a", "b", "c"]), "Expected false");
+  assert(isAllNull(json, ["a", "c"]), "Expected true");
 }
 
 bool isAnyNull(Json json, string[] keys) {

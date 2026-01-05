@@ -17,12 +17,10 @@ Json getValue(Json[string] map, string[] path) {
     return Json(null);
   }
 
-  writeln("Checking if path[0] is null: ", path[0]);
   if (map[path[0]] == Json(null)) {
     return Json(null);
   }
 
-  writeln("Getting value for path: ", path);
   auto json = map.getValue(path[0]);
   if (path.length == 1) {
     return json;
@@ -35,8 +33,6 @@ unittest {
   version (test_uim_root) writeln("Testing getValue with path");
 
   Json[string] map = ["data": ["test": [1, 2].toJson].toJson];
-  writeln(map.getValue(["data"]));
-  writeln(map.getValue(["data", "test"]));
   assert(map.getValue(["data", "test"]) == [1, 2].toJson);
 }
 
@@ -87,12 +83,6 @@ unittest {
   version (test_uim_root) writeln("Testing getValue with path");
 
   Json json = parseJsonString(`{"data": { "test": [1, 2, 3]}}`);
-  writeln(`json.getValue("data") -> `, json.getValue("data"));
-  writeln(`json.getValue(["data"]) -> `, json.getValue(["data"]));
-
-  writeln(`json.getValue("data").getValue("test") -> `, json.getValue("data").getValue("test"));
-  writeln(`json.getValue(["data", "test"]) -> `, json.getValue(["data", "test"]));
-
   assert(json.getValue(["data"]).getValue(["test"]) != Json(null));
   assert(json.getValue(["data", "test"]) != Json(null));
   assert(json.getValue(["data", "test"]) == [1, 2, 3].toJson);

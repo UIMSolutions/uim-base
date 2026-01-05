@@ -97,6 +97,5 @@ bool isInteger(Json json, size_t index) {
 // #endregion index
 
 bool isInteger(Json json) {
-  return (json.type == Json.Type.int_);
 }
 // #endregion Json

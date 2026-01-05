@@ -138,7 +138,7 @@ unittest {
 // #endregion index
 
 bool isInteger(Json json) {
-  return (json.type == Json.Type.float_);
+  return (json.type == Json.Type.int_);
 }
 ///
 unittest {

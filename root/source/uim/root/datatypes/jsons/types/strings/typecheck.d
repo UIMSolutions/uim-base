@@ -96,6 +96,7 @@ unittest {
 // #region key
 
 // #region index
+// #region is all
 bool isAllString(Json json, size_t[] indices) {
   return json.isArray ? json.toArray.isAllString(indices) : false;
 }
@@ -108,7 +109,9 @@ unittest {
   assert(json.isAllString([0, 1]) == true);
   assert(json.isAnyString([1, 2]) == true);
 }
+// #endregion is all
 
+// #region is any
 bool isAnyString(Json json, size_t[] indices) {
   return json.isArray ? json.toArray.isAnyString(indices) : false;
 }
@@ -121,7 +124,9 @@ unittest {
   assert(json.isAllString([0, 1]) == true);
   assert(json.isAnyString([1, 2]) == true);
 }
+// #endregion is any
 
+// #region 
 bool isString(Json json, size_t index) {
   return json.isArray ? json.toArray.isString(index) : false;
 }
@@ -138,7 +143,7 @@ unittest {
 // #endregion index
 
 bool isString(Json json) {
-  return (json.type == Json.Type.float_);
+  return (json.type == Json.Type.string);
 }
 ///
 unittest {
@@ -148,7 +153,7 @@ unittest {
   Json obj = parseJsonString(`{"a": "ABC", "b": 1, "c": 3.3}`);
   assert(isString("ABC".toJson) == true);
   assert(isString(1.toJson) == false);
-  assert(isString(3.3.toJson) == true);
+  assert(isString(3.3.toJson) == false);
 }
 // #endregion Json
 
@@ -165,7 +170,7 @@ unittest {
   version (test_uim_root)
     writeln("Testing isAllString for Json[] with indices");
 
-  Json[] jsons = ["ABC".toJson, "XYZ".toJson, 3.3.toJson];
+  Json[] jsons = ["ABC".toJson, "XYZ".toJson, "123".toJson];
   assert(isAllString(jsons) == true);
   assert(isAnyString(jsons) == true);
   assert(isAllString(jsons, [0, 2]) == true);
@@ -184,7 +189,7 @@ unittest {
   version (test_uim_root)
     writeln("Testing isAnyString for Json[] with indices");
 
-  Json[] jsons = ["ABC".toJson, 1.toJson, 3.3.toJson];
+  Json[] jsons = ["ABC".toJson, 1.toJson, "XXX".toJson];
   assert(isAllString(jsons) == false);
   assert(isAnyString(jsons) == true);
   assert(isAllString(jsons, [0, 2]) == true);
@@ -201,7 +206,7 @@ unittest {
   version (test_uim_root)
     writeln("Testing isString for Json[] with index");
 
-  Json[] jsons = ["ABC".toJson, 1.toJson, 3.3.toJson];
+  Json[] jsons = ["ABC".toJson, 1.toJson, "XXX".toJson];
   assert(isString(jsons, 0) == true);
   assert(isString(jsons, 1) == false);
   assert(isString(jsons, 2) == true);
@@ -224,7 +229,7 @@ unittest {
     writeln("Testing isAllString for Json[string] with paths");
 
   Json[string] map = [
-    "first": "ABC".toJson, "second": "XYZ".toJson, "third": 1.toJson
+    "first": "ABC".toJson, "second": "XYZ".toJson, "third": "123".toJson
   ];
   assert(isAllString(map, [["first"], ["second"]]) == true);
   assert(isAnyString(map, [["second"], ["third"]]) == true);
