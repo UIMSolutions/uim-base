@@ -12,86 +12,88 @@ mixin(Version!("show_uim_root"));
 @safe:
 
 // #region Json[]
+// #region indices
+// #region all
 bool isAllBoolean(Json[] jsons, size_t[] indices = null) {
   return indices.length == 0
     ? jsons.length > 0 && jsons.all!(value => value.isBoolean) : indices.all!(
       index => jsons.isBoolean(index));
 }
+// #endregion all
 
+// #region any
 bool isAnyBoolean(Json[] jsons, size_t[] indices = null) {
   return indices.length == 0
     ? jsons.length > 0 && jsons.any!(value => value.isBoolean) : indices.any!(
       index => jsons.isBoolean(index));
 }
+// #endregion any
 
+// #region is
 bool isBoolean(Json[] jsons, size_t index) {
   return jsons.length > index && jsons.getValue(index).isBoolean;
 }
+// #endregion is
+// #endregion indices
 // #endregion Json[]
 
 // #region Json[string]
-bool isAllBoolean(Json[string] jsons, string[] keys = null) {
+// #region paths
+// #region all
+bool isAllBoolean(Json[string] map, string[][] paths) {
+  return paths.length > 0
+    ? paths.all!(path => map.isBoolean(path)) : false;
+}
+// #endregion all
+
+// #region any
+bool isAnyBoolean(Json[string] map, string[][] paths) {
+  return paths.length > 0
+    ? paths.any!(path => map.isBoolean(path)) : false;
+}
+// #endregion any
+
+// #region is
+bool isBoolean(Json[string] map, string[] path) {
+  return map.getValue(path).isBoolean;
+}
+// #endregion is
+// #endregion paths
+
+// #region keys
+// #region all
+bool isAllBoolean(Json[string] map, string[] keys = null) {
   return keys.length > 0
-    ? keys.all!(key => jsons.getValue(key)
-        .isBoolean) : jsons.byValue.all!(value => value.isBoolean);
+    ? keys.all!(key => map.getValue(key)
+        .isBoolean) : map.byValue.all!(value => value.isBoolean);
 }
+// #endregion all
 
-bool isAnyBoolean(Json[string] jsons, string[] keys = null) {
+// #region any
+bool isAnyBoolean(Json[string] map, string[] keys = null) {
   return keys.length > 0
-    ? keys.any!(key => jsons.getValue(key)
-        .isBoolean) : jsons.byValue.any!(value => value.isBoolean);
+    ? keys.any!(key => map.getValue(key)
+        .isBoolean) : map.byValue.any!(value => value.isBoolean);
 }
+// #endregion any
 
-bool isBoolean(Json[string] jsons, string[] path) {
-  return jsons.getValue(path).isBoolean;
+// #region is
+bool isBoolean(Json[string] map, string key) {
+  return map.getValue(key).isBoolean;
 }
-
-bool isBoolean(Json[string] jsons, string key) {
-  return jsons.getValue(key).isBoolean;
-}
+// #endregion is
+// #endregion keys
 // #endregion Json[string]
 
 // #region Json
-// #region path
-bool isAllBoolean(Json json, string[][] paths) {
-  return json.isBoolean && paths.length > 0
-    ? paths.all!(path => json.isBoolean(path)) : false;
-}
-
-bool isAnyBoolean(Json json, string[][] paths) {
-  return json.isBoolean && paths.length > 0
-    ? paths.any!(path => json.isBoolean(path)) : false;
-}
-
-bool isBoolean(Json json, string[] path) {
-  return json.getValue(path).isBoolean;
-}
-// #endregion path
-
-// #region key
-bool isAllBoolean(Json json, string[] keys) {
-  return json.isBoolean && keys.length > 0
-    ? keys.all!(key => json.isBoolean(key)) : false;
-}
-
-bool isAnyBoolean(Json json, string[] keys) {
-  return json.isBoolean && keys.length > 0
-    ? keys.any!(key => json.isBoolean(key)) : false;
-}
-
-bool isBoolean(Json json, string key) {
-  return json.getValue(key).isBoolean;
-}
-// #region key
-
 // #region index
 bool isAllBoolean(Json json, size_t[] indices) {
-  return json.isBoolean && indices.length > 0
+  return json.isArray && indices.length > 0
     ? indices.all!(index => json.isBoolean(index)) : false;
 }
 
 bool isAnyBoolean(Json json, size_t[] indices) {
-  return json.isBoolean && indices.length > 0
+  return json.isArray && indices.length > 0
     ? indices.any!(index => json.isBoolean(index)) : false;
 }
 
@@ -100,7 +102,61 @@ bool isBoolean(Json json, size_t index) {
 }
 // #endregion index
 
+// #region paths
+// #region all
+bool isAllBoolean(Json json, string[][] paths) {
+  return json.isObject && paths.length > 0
+    ? paths.all!(path => json.isBoolean(path)) : false;
+}
+// #endregion all
+
+// #region any
+bool isAnyBoolean(Json json, string[][] paths) {
+  return json.isObject && paths.length > 0
+    ? paths.any!(path => json.isBoolean(path)) : false;
+}
+// #endregion any
+
+// #region is
+bool isBoolean(Json json, string[] path) {
+  return json.getValue(path).isBoolean;
+}
+// #endregion is
+// #endregion paths
+
+// #region key
+bool isAllBoolean(Json json, string[] keys = null) {
+  if (json.isArray) {
+    return keys.length == 0
+      ? json.toArray().isAllBoolean : false;
+  }
+  if (json.isObject) {
+    return keys.length == 0
+      ? json.toMap.isAllBoolean : json.toMap.isAllBoolean(keys);
+  }
+  return false;
+}
+
+bool isAnyBoolean(Json json, string[] keys = null) {
+  if (json.isArray) {
+    return keys.length == 0
+      ? json.toArray().isAnyBoolean : false;
+  }
+  if (json.isObject) {
+    return keys.length == 0
+      ? json.toMap.isAnyBoolean : json.toMap.isAnyBoolean(keys);
+  }
+  return false;
+}
+
+bool isBoolean(Json json, string key) {
+  return json.getValue(key).isBoolean;
+}
+// #region key
+
+// #region base
 bool isBoolean(Json json) {
   return (json.type == Json.Type.bool_);
 }
+// #endregion base
 // #endregion Json

@@ -17,16 +17,12 @@ Json getValue(Json[string] map, string[] path) {
     return Json(null);
   }
 
-  if (map[path[0]] == Json(null)) {
-    return Json(null);
-  }
-
   auto json = map.getValue(path[0]);
-  if (path.length == 1) {
+  if (json == Json(null) || path.length == 1) {
     return json;
   }
 
-  return json.isObject ? json.getValue(path[1 .. $]) : Json(null);
+  return  json.isObject && path.length > 1 ? json.getValue(path[1 .. $]) : Json(null);
 }
 /// 
 unittest {
