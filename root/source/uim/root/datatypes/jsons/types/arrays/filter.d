@@ -110,12 +110,74 @@ unittest {
 // #endregion Json[]
 
 // #region Json[string]
+// #region paths
+// #region with paths and filterFunc
+Json[string] filterArrays(Json[string] map, string[][] paths, bool delegate(string[]) @safe filterFunc) {
+  return map.filterPaths(paths, filterFunc).filterArrays;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterArrays for Json[string] with paths and filterFunc");
+
+  Json[string] map = [
+    "a": [1, 2, 3].toJson,
+    "b": ["x", "y"].toJson,
+    "c": "not an array".toJson,
+    "d": 42.toJson
+  ];
+  auto filtered = map.filterArrays([["a"], ["c"]], (string[] path) @safe => path[0] == "a");
+  assert(filtered.length == 1);
+  assert(filtered["a"] == [1, 2, 3].toJson);
+}
+// #endregion with paths and filterFunc
+
+// #region with paths
+Json[string] filterArrays(Json[string] map, string[][] paths) {
+  return map.filterPaths(paths).filterArrays;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterArrays for Json[string] with paths");
+
+  Json[string] map = [
+    "a": [1, 2, 3].toJson,
+    "b": ["x", "y"].toJson,
+    "c": "not an array".toJson,
+    "d": 42.toJson
+  ];
+  auto filtered = map.filterArrays([["a"], ["c"]]);
+  assert(filtered.length == 1);
+  assert(filtered["a"] == [1, 2, 3].toJson);
+}
+// #endregion with paths
+
+// #region with filterFunc
+Json[string] filterArrays(Json[string] map, bool delegate(string[]) @safe filterFunc) {
+  return map.filterPaths(filterFunc).filterArrays;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterArrays for Json[string] with filterFunc");
+
+  Json[string] map = [
+    "a": [1, 2, 3].toJson,
+    "b": ["x", "y"].toJson,
+    "c": "not an array".toJson,
+    "d": 42.toJson
+  ];
+  auto filtered = map.filterArrays((string[] path) @safe => path[0] == "b");
+  assert(filtered.length == 1);
+  assert(filtered["b"] == ["x", "y"].toJson);
+}
+// #endregion with filterFunc
+// #endregion paths
+
+// #region keys
 // #region filter with keys and filterFunc
 Json[string] filterArrays(Json[string] map, string[] keys, bool delegate(string) @safe filterFunc) {
-  if (map.length == 0) {
-    return map;
-  }
-
   return map.filterKeys(keys, filterFunc).filterArrays;
 }
 /// 
@@ -137,10 +199,6 @@ unittest {
 
 // #region filter with keys
 Json[string] filterArrays(Json[string] map, string[] keys) {
-  if (map.length == 0) {
-    return map;
-  }
-
   return map.filterKeys(keys).filterArrays;
 }
 /// 
@@ -160,48 +218,9 @@ unittest {
 }
 // #endregion filter with keys
 
-// #region filter with values and filterFunc
-Json[string] filterArrays(Json[string] map, Json[] values, bool delegate(Json) @safe filterFunc) {
-  if (map.length == 0) {
-    return null;
-  }
-
-  Json[string] result;
-  map.byKeyValue
-    .filter!((kv) => values.hasValue(kv.value) && filterFunc(kv.value) && kv.value.isArray)
-    .each!((kv) => result[kv.key] = kv.value);
-  return result;
-}
-/// 
-unittest {
-}
-
-// #endregion filter with values and filterFunc
-
-// #region filter with values
-Json[string] filterArrays(Json[string] map, Json[] values) {
-  if (map.length == 0) {
-    return null;
-  }
-
-  Json[string] result;
-  map.byKeyValue
-    .filter!((kv) => values.hasValue(kv.value) & kv.value.isArray)
-    .each!((kv) => result[kv.key] = kv.value);
-  return result;
-}
-/// 
-unittest {
-
-}
-// #endregion filter with keys
-
-// #region filter with filterFunc
-Json[string] filterArrays(Json[string] map, bool delegate(string, Json) @safe filterFunc) {
-  if (map.length == 0) {
-    return map;
-  }
-  return map.filterMap((string key, Json json) => filterFunc(key, json)).filterArrays;
+// #region with filterFunc
+Json[string] filterArrays(Json[string] map, bool delegate(string) @safe filterFunc) {
+  return map.filterKeys(filterFunc).filterArrays;
 }
 /// 
 unittest {
@@ -214,7 +233,76 @@ unittest {
     "c": "not an array".toJson,
     "d": 42.toJson
   ];
-  auto filtered = map.filterArrays((string key, Json json) @safe => key == "b" && json.isArray);
+  auto filtered = map.filterArrays((string key) @safe => key == "b");
+  assert(filtered.length == 1);
+  assert(filtered["b"] == ["x", "y"].toJson);
+}
+// #endregion with filterFunc
+// #endregion keys
+
+// #region values
+// #region filter with values and filterFunc
+Json[string] filterArrays(Json[string] map, Json[] values, bool delegate(Json) @safe filterFunc) {
+  return map.filterValues(values, filterFunc).filterArrays;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterArrays for Json[string] with values and filterFunc");
+
+  Json[string] map = [
+    "a": [1, 2, 3].toJson,
+    "b": ["x", "y"].toJson,
+    "c": "not an array".toJson,
+    "d": 42.toJson
+  ];
+  auto filtered = map.filterArrays(
+    [[1, 2, 3].toJson, ["x", "y"].toJson],
+    (Json json) @safe => json.length > 2);
+  assert(filtered.length == 1);
+  assert(filtered["a"] == [1, 2, 3].toJson);
+}
+// #endregion filter with values and filterFunc
+
+// #region filter with values
+Json[string] filterArrays(Json[string] map, Json[] values) {
+  return map.filterValues(values).filterArrays  ;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterArrays for Json[string] with values");
+
+  Json[string] map = [
+    "a": [1, 2, 3].toJson,
+    "b": ["x", "y"].toJson,
+    "c": "not an array".toJson,
+    "d": 42.toJson
+  ];
+  auto filtered = map.filterArrays(
+    [[1, 2, 3].toJson, ["x", "y"].toJson]);
+  assert(filtered.length == 2);
+  assert(filtered["a"] == [1, 2, 3].toJson);
+  assert(filtered["b"] == ["x", "y"].toJson);
+}
+// #endregion filter with values
+  
+// #region filter with filterFunc
+Json[string] filterArrays(Json[string] map, bool delegate(Json) @safe filterFunc) {
+  return map.filterValues(filterFunc).filterArrays;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterArrays for Json[string] with filterFunc");
+
+  Json[string] map = [
+    "a": [1, 2, 3].toJson,
+    "b": ["x", "y"].toJson,
+    "c": "not an array".toJson,
+    "d": 42.toJson
+  ];
+  auto filtered = map.filterArrays((Json json) @safe => json.length == 2);
   assert(filtered.length == 1);
   assert(filtered["b"] == ["x", "y"].toJson);
 }
@@ -244,8 +332,10 @@ unittest {
 // #endregion Json[string]
 
 // #region Json
-Json filterArrays(Json json, size_t[] indices, bool delegate(Json) @safe filterFunc) {
-  return json.isArray ? json.filterArrays(indices).filterArrays(filterFunc) : Json(null);
+// #region indices
+// #region with indices and filterFunc
+Json filterArrays(Json json, size_t[] indices, bool delegate(size_t) @safe filterFunc) {
+  return json.isArray ? json.toArray.filterArrays(indices, filterFunc).toJson : Json(null);
 }
 /// 
 unittest {
@@ -260,9 +350,11 @@ unittest {
   assert(filtered.length == 1);
   assert(filtered[0] == [1, 2, 3].toJson);
 }
+// #endregion with indices and filterFunc
 
+// #region with indices
 Json filterArrays(Json json, size_t[] indices) {
-  return json.isArray ? json.toArray.filterValues(indices).filterArrays.toJson : Json(null);
+  return json.isArray ? json.toArray.filterArrays(indices).toJson : Json(null);
 }
 /// 
 unittest {
@@ -278,6 +370,27 @@ unittest {
   assert(filtered[0] == [1, 2, 3].toJson);
   assert(filtered[1] == [4, 5].toJson);
 }
+// #endregion with indices
+
+// #region with filterFunc
+Json filterArrays(Json json, bool delegate(size_t) @safe filterFunc) {
+  return json.isArray ? json.toArray.filterArrays(filterFunc).toJson : Json(null);
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterArrays with filterFunc");
+
+  Json json = [
+    [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
+  ].toJson;
+  auto filtered = json.filterArrays((size_t index) @safe => json.isArray(index) && json[index].length == 2);
+  assert(filtered.isArray);
+  assert(filtered.length == 1);
+  assert(filtered[0] == [4, 5].toJson);
+}
+// #endregion with filterFunc
+// #endregion indices
 
 Json filterArrays(Json json, bool delegate(Json) @safe filterFunc) {
   return json.isArray ? json.filterArrays.filterValues((Json json) => filterFunc(json)) : Json(null);
