@@ -411,7 +411,7 @@ unittest {
 
 // #region with filterFunc
 Json filterBooleans(Json json, bool delegate(size_t) @safe filterFunc) {
-  return json.isBoolean ? json.filterIndices(filterFunc) : Json(null);
+  return json.filterIndices(filterFunc);
 }
 /// 
 unittest {
@@ -422,7 +422,7 @@ unittest {
 
   auto filtered = json.filterBooleans(
     (size_t index) @safe => json.isBoolean(index));
-  assert(filtered == Json(null) || filtered.length == 0);
+  assert(filtered.length == 0);
 }
 // #endregion with filterFunc
 // #endregion indices

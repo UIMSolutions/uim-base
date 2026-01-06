@@ -6,6 +6,7 @@
 module uim.root.datatypes.jsons.types.integers;
 
 public {
+  import uim.root.datatypes.jsons.types.integers.filter;
   import uim.root.datatypes.jsons.types.integers.get;
   import uim.root.datatypes.jsons.types.integers.typecheck;
 }

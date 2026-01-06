@@ -12,9 +12,11 @@ mixin(Version!("show_uim_root"));
 @safe:
 
 // #region Json[]
+// #region values
 Json[] removeArrays(Json[] jsons, size_t[] indices, bool delegate(Json) @safe removeFunc) {
   return jsons.removeArrays(indices).removeArrays(removeFunc);
 }
+// #endregion values
 
 Json[] removeArrays(Json[] jsons, bool delegate(Json) @safe removeFunc) {
   return jsons.removeValues(removeFunc);
