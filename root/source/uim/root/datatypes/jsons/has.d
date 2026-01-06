@@ -78,6 +78,7 @@ unittest {
 // #endregion value
 
 // #region path
+// #region hasAll
 bool hasAllPath(Json json, string[][] paths) {
   if (!json.isObject || paths.length == 0) {
     return false;
@@ -114,7 +115,9 @@ unittest {
   assert(json2.hasAllPath([["a", "b", "c"], ["x"]]));
   assert(!json2.hasAllPath([["a", "b", "d"], ["x"]]));
 }
+// #endregion hasAll
 
+// #region hasAny
 bool hasAnyPath(Json json, string[][] paths) {
   if (!json.isObject || paths.length == 0) {
     return false;
@@ -139,7 +142,9 @@ unittest {
   assert(json.hasAnyPath([["a", "b", "c"], ["y"]]));
   assert(!json.hasAnyPath([["a", "b", "d"], ["y"]]));
 }
+// #endregion hasAny
 
+// #region has
 /** 
   * Checks if the given JSON value has the specified path.
   *
@@ -151,7 +156,20 @@ unittest {
   *   `true` if the JSON value has the specified path, `false` otherwise.
   */
 bool hasPath(Json json, string[] path) {
-  return json.isObject ? json.toMap.hasPath(path) : false; 
+  if (!json.isObject || path.length == 0) {
+    return false;
+  } 
+  
+  auto first = hasKey(json, path[0]);
+  if (!first) {
+    return false;
+  }
+
+  if (path.length == 1) {
+    return first;
+  }
+
+  return json[path[0]].isObject ? hasPath(json[path[0]], path[1 .. $]) : false;
 }
 /// 
 unittest {
@@ -170,7 +188,9 @@ unittest {
   assert(hasPath(json, ["a", "b", "c"]));
   assert(!hasPath(json, ["a", "b", "d"]));
 }
+// #endregion has
 
+// #region Json[string]
 bool hasPath(Json[string] map, string[] path) {
   import uim.root.containers.associative.maps.has;;
 
@@ -198,7 +218,7 @@ unittest {
   assert(hasPath(json, ["a", "b", "c"]));
   assert(!hasPath(json, ["a", "b", "d"]));
 }
-// #endregion path
+// #endregion Json[string]
 
 // #region key
 // Check if json has key

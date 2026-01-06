@@ -135,8 +135,9 @@ unittest {
 // #region Json
 // #region path
 bool isAllNull(Json json, string[][] paths) {
-  if (json.isNull || paths.length == 0 || !json.hasAllPath(paths)) return false;
+  if (json.isNull || paths.length == 0) return false;
 
+  writeln("json.hasAllPath(paths) -> ", json.hasAllPath(paths), " | paths: ", paths);
   return paths.all!(path => json.isNull(path));
 }
 /// 
@@ -151,7 +152,7 @@ unittest {
       "d": Json(5)
     ].toJson
   ].toJson;
-  
+
   assert(!json.isAllNull([["a"], ["b", "c"], ["b", "d"]]), "Expected false");
   assert(json.isAllNull([["a"], ["b", "c"]]), "Expected true");
 }
