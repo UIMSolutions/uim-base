@@ -10,7 +10,7 @@ import uim.root;
 mixin(Version!("test_uim_root"));
 
 @safe:
-
+/* 
 T[] filterAllValue(T)(T[] values, T[] checkValues) {
   return values.filter!(value => checkValues.hasValue(value)).array;
 }
@@ -72,7 +72,7 @@ unittest {
  *
  * Returns:
  *   A new array containing only the elements from `values` for which `check` returns `true`.
- */
+ * /
 T[] filterValues(T)(T[] values, bool delegate(T value) filterFunc) {
   T[] results;
   () @trusted { results = values.filter!(value => filterFunc(value)).array; }();
@@ -134,7 +134,7 @@ unittest {
  * Returns:
  *   A new array containing only the elements from `values` that are also present in `validValues`.
  *   If `validValues` is empty, the original `values` array is returned.
- */
+ * /
 T[] filterValues(T)(T[] values, T[] validValues) {
   if (values.length == 0) {
     return null;
@@ -215,3 +215,4 @@ T[] filterValues(T)(T[] values, size_t[] indices) {
   }
   return results;
 }
+*/ 

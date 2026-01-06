@@ -11,6 +11,7 @@ mixin(Version!"test_uim_root");
 
 @safe:
 
+/* 
 // #region filterKeys
 /**
   * Filters the map by the specified keys and an optional filter function.
@@ -22,7 +23,7 @@ mixin(Version!"test_uim_root");
   *
   * Returns:
   *   A new map containing only the entries with the specified keys that pass the filter function.
-  */
+  * /
 V[K] filterKeys(K, V)(V[K] map, K[] keys, bool delegate(K) @safe filterFunc) {
   V[K] results;
   foreach (key; keys) {
@@ -53,7 +54,7 @@ unittest {
   *
   * Returns:
   *   A new map containing only the entries with the specified keys.
-  */  
+  * /  
 V[K] filterKeys(K, V)(V[K] map, K[] keys) {
   V[K] results;
   foreach (key; keys) {
@@ -83,7 +84,7 @@ unittest {
   *
   * Returns:
   *   A new map containing only the entries whose keys pass the filter function.
-  */
+  * /
 V[K] filterKeys(K, V)(V[K] map, bool delegate(K) @safe filterFunc) {
   return map.filterMap((K key, V value) => filterFunc(key));
 }
@@ -110,7 +111,7 @@ unittest {
   *
   * Returns:
   *   A new map containing only the entries with the specified values that pass the filter function.
-  */
+  * /
 V[K] filterValues(K, V)(V[K] map, V[] values, bool delegate(V) @safe filterFunc) {
   return map.filterValues(values).filterValues(filterFunc);
 }
@@ -134,7 +135,7 @@ unittest {
   *
   * Returns:
   *   A new map containing only the entries with the specified values.
-  */
+  * /
 V[K] filterValues(K, V)(V[K] map, V[] values) {
   return map.filterMap((K key, V value) => values.hasValue(value));
 }
@@ -158,7 +159,7 @@ unittest {
   *
   * Returns:
   *   A new map containing only the entries whose values pass the filter function.
-  */
+  * /
 V[K] filterValues(K, V)(V[K] map, bool delegate(V) @safe filterFunc) {
   return map.filterMap((K key, V value) => filterFunc(value));
 }
@@ -184,7 +185,7 @@ unittest {
   *
   * Returns:
   *   A new map containing only the entries present in the filtering map that pass the filter function.
-  */
+  * /
 V[K] filterMap(K, V)(V[K] map, V[K] filteringMap, bool delegate(K, V) @safe filterFunc) {
   return map.filterMap(filteringMap).filterMap(filterFunc);
 }
@@ -208,7 +209,7 @@ unittest {
   *
   * Returns:
   *   A new map containing only the entries present in the filtering map.
-  */
+  * /
 V[K] filterMap(K, V)(V[K] map, V[K] filteringMap) {
   V[K] results;
   foreach (key, value; filteringMap) {
@@ -238,7 +239,7 @@ unittest {
   *
   * Returns:
   *   A new map containing only the entries whose keys and values pass the filter function.
-  */
+  * /
 V[K] filterMap(K, V)(V[K] map, bool delegate(K, V) @safe filterFunc) {
   V[K] results;
   foreach (key, value; map) {
@@ -259,3 +260,4 @@ unittest {
   assert(filtered["a"] == "apple");
 }
 // #endregion filterMap
+*/

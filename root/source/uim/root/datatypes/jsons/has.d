@@ -192,14 +192,23 @@ unittest {
 
 // #region Json[string]
 bool hasPath(Json[string] map, string[] path) {
-  import uim.root.containers.associative.maps.has;;
+  import uim.root.containers.associative.maps.has;
 
-  if (path.length == 0) {
+  if (map.length == 0 || path.length == 0) {
+    return false;
+  }
+
+  auto keyFound = (path[0] in map) ? true : false;
+  if (path.length == 1) {
+    return keyFound;
+  }
+
+  if (!keyFound) {
     return false;
   }
   
-  auto first = uim.root.containers.associative.maps.has.hasKey(map, path[0]);
-  return first && path.length > 1 && map[path[0]].isObject ? map[path[0]].hasPath(path[1 .. $]) : false;
+  auto value = map[path[0]];
+  return path.length > 1 && value.isObject ? value.hasPath(path[1 .. $]) : false;
 }
 /// 
 unittest {

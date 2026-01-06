@@ -11,11 +11,20 @@ mixin(Version!("show_uim_root"));
 
 @safe:
 
+// #region Json
 /// Sets multiple keys to values from a map
+Json setValues(Json json, Json newJson) {
+  auto result = json;
+  foreach (kv; newJson.byKeyValue) {
+    result[kv.key] = kv.value;
+  }
+  return result;
+}
+
 Json setValues(Json json, Json[string] map) {
   auto result = json;
-  foreach (kv; map.byKeyValue) {
-    result.setValue(kv.key, kv.value);
+  foreach (key, value; map) {
+    result[key] = value;
   }
   return result;
 }
@@ -24,11 +33,18 @@ unittest {
   version (show_uim_root)
     writeln("Testing setValues with map");
 
+  auto json = Json.emptyObject;
+  Json[string] map;
+  map["one"] = Json(1);
+  map["two"] = Json(2);
+  json = json.setValues(map);
+  assert(json["one"] == Json(1));
+  assert(json["two"] == Json(2));
 }
 
 /// Sets multiple keys to the same value
 Json setValues(Json json, string[] keys, Json value) {
-  keys.each!(key => json.setValue(key, value));
+  keys.each!(key => json = json.setValue(key, value));
   return json;
 }
 /// 
@@ -36,27 +52,32 @@ unittest {
   version (show_uim_root)
     writeln("Testing setValues with keys and value");
 
+  auto json = Json.emptyObject;
+  json = json.setValues(["a", "b", "c"], Json(42));
+  assert(json["a"] == Json(42));
+  assert(json["b"] == Json(42));
+  assert(json["c"] == Json(42));
 }
 
-/// Set path with value
 Json setValue(Json json, string[] path, Json value) {
-  if (!json.isObject || path.length == 0) {
-    return json;
+  auto result = json;
+  if (!result.isObject || path.length == 0) {
+    return result;
   }
 
   if (path.length == 1) {
-    return json.setValue(path[0], value);
+    return result.setValue(path[0], value);
   }
 
-  if (json.hasKey(path[0])) {
-    json[path[0]] = json[path[0]].setValue(path[1 .. $], value);
+  if (result.hasKey(path[0])) {
+    result[path[0]] = result[path[0]].setValue(path[1 .. $], value);
   } else {
     Json child = Json.emptyObject;
     child = child.setValue(path[1 .. $], value);
-    json[path[0]] = child;
+    result[path[0]] = child;
   }
   
-  return json;
+  return result;
 }
 /// 
 unittest {
@@ -67,33 +88,54 @@ unittest {
   json = json.setValue(["a", "b", "c"], Json(123));
   assert(json["a"]["b"]["c"] == Json(123));
 }
+// #endregion Json
 
+// #region Json[]
+// #endregion Json[]
+
+// #region Json[string]
 Json[string] setValue(Json[string] map, string[] path, Json value) {
+  Json[string] result = map.dup;
+
   if (path.length == 0) {
-    return map;
+    return result;
   }
 
   if (path.length == 1) {
-    return uim.root.containers.associative.maps.set.setValue(map, path[0], value);
+    result[path[0]] = value;
   }
 
-  if (map.hasKey(path[0])) {
-    map[path[0]] = map[path[0]].setValue(path[1 .. $], value);
-  } else {
-    Json child = Json.emptyObject;
-    child = child.setValue(path[1 .. $], value);
-    map[path[0]] = child;
+  if (path.length > 1) {
+    result[path[0]] = Json.emptyObject.setValue(path[1 .. $], value);
   }
-  
-  return map;
+
+  return result;
 }
+/// 
+unittest {
+  version (show_uim_root)
+    writeln("Testing setValue with path and value for map");
+
+  Json[string] map;
+  writeln("map before setValue: ", map);
+  map = setValue(map, ["a", "b", "c"], Json(456));
+  writeln("map after setValue: ", map);
+  assert(map["a"]["b"]["c"] == Json(456));
+}
+// #endregion Json[string]
+
+
+/// Set path with value
+
+
 
 /// Sets a single key to a value
 Json setValue(Json json, string key, Json value) {
-  if (json.isObject) {
-    json[key] = value;
+  auto result = json;
+  if (result.isObject) {
+    result[key] = value;
   }
-  return json;
+  return result;
 }
 /// 
 unittest {

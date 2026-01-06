@@ -10,8 +10,18 @@ mixin(Version!("show_uim_root"));
 // #region paths
 // #region with paths and filterFunc
 Json filterPaths(Json json, string[][] paths, bool delegate(string[]) @safe filterFunc) {
+  writeln("filterPaths called with json: ", json, ", paths: ", paths);
   if (json.isObject) {
-    return json.toMap.filterPaths(paths, filterFunc).toJson;
+    Json result = Json.emptyObject;
+    auto filteredPaths = paths.filter!(path => json.toMap.hasPath(path) && filterFunc(path)).array;
+    writeln("Filtered paths: ", filteredPaths);
+    foreach (path; filteredPaths) {
+      writeln("Processing path: ", path, " with value: ", json.getValue(path));
+      result = result.setValue(path, json.getValue(path));
+      writeln("Intermediate result: ", result);
+    }
+    writeln("Final result: ", result);
+    return result;
   }
   return Json(null);
 }
@@ -36,9 +46,6 @@ unittest {
   writeln("Paths to filter: ", [["a", "b", "c"], ["x"]]);
   writeln("json.toMap: ", json.toMap);
   auto filtered = filterPaths(json, [["a", "b", "c"], ["x"]], (string[] path) => path[0] == "a");
-  writeln("Filtered Json: ", filtered);
-  writeln("json -> ", filterPaths(json, [["a"], ["x"]], (string[] path) => path[0] == "a"));
-  writeln("map  -> ", filterPaths(json.toMap, [["a"], ["x"]], (string[] path) => path[0] == "a"));
   assert(filtered.isObject);
   assert(filtered.length == 1);
   assert(filtered.hasKey("a"));
@@ -52,8 +59,18 @@ unittest {
 
 // #region with paths
 Json filterPaths(Json json, string[][] paths) {
+  writeln("filterPaths called with json: ", json, ", paths: ", paths);
   if (json.isObject) {
-    return json.toMap.filterPaths(paths).toJson;
+    Json result = Json.emptyObject;
+    auto filteredPaths = paths.filter!(path => json.toMap.hasPath(path)).array;
+    writeln("Filtered paths: ", filteredPaths);
+    foreach (path; filteredPaths) {
+      writeln("Processing path: ", path, " with value: ", json.getValue(path));
+      result = result.setValue(path, json.getValue(path));
+      writeln("Intermediate result: ", result);
+    }
+    writeln("Final result: ", result);
+    return result;
   }
   return Json(null);
 }
@@ -257,7 +274,7 @@ unittest {
 
 // #region indices
 // #region with indices and filterFunc
-Json filterValues(Json json, size_t[] indices, bool delegate(size_t) @safe filterFunc) {
+Json filterIndices(Json json, size_t[] indices, bool delegate(size_t) @safe filterFunc) {
   if (json.isArray) {
     return json.toArray.filterIndices(indices, filterFunc).toJson;
   }
@@ -270,7 +287,7 @@ unittest {
 
   Json json = [Json(1), Json(2), Json(3), Json(4), Json(5)].toJson;
 
-  auto filtered = filterValues(json, [0, 1, 2, 3, 4], (index) => index % 2 == 0);
+  auto filtered = filterIndices(json, [0, 1, 2, 3, 4], (index) => index % 2 == 0);
   assert(filtered.isArray);
   assert(filtered.length == 3);
   assert(filtered[0] == Json(1));
@@ -280,7 +297,7 @@ unittest {
 // #endregion with indices and filterFunc
 
 // #region with indices
-Json filterValues(Json json, size_t[] indices) {
+Json filterIndices(Json json, size_t[] indices) {
   if (json.isArray) {
     return json.toArray.filterIndices(indices).toJson;
   }
@@ -293,7 +310,7 @@ unittest {
 
   Json json = [Json(1), Json(2), Json(3), Json(4), Json(5)].toJson;
 
-  auto filtered = filterValues(json, [1, 3, 5]);
+  auto filtered = filterIndices(json, [1, 3, 5]);
   assert(filtered.isArray);
   assert(filtered.length == 2);
   assert(filtered[0] == Json(2));
@@ -302,7 +319,7 @@ unittest {
 // #endregion with indices
 
 // #region with filterFunc
-Json filterValues(Json json, bool delegate(size_t) @safe filterFunc) {
+Json filterIndices(Json json, bool delegate(size_t) @safe filterFunc) {
   if (json.isArray) {
     return json.toArray.filterIndices(filterFunc).toJson;
   }
@@ -315,11 +332,13 @@ unittest {
 
   Json json = [Json(1), Json(2), Json(3), Json(4), Json(5)].toJson;
 
-  auto filtered = filterValues(json, (index) => index % 2 != 0);
+  auto filtered = filterIndices(json, (index) => index % 2 == 0);
+  writeln("Filtered result: ", filtered);
   assert(filtered.isArray);
-  assert(filtered.length == 2);
-  assert(filtered[0] == Json(2));
-  assert(filtered[1] == Json(4));
+  assert(filtered.length == 3);
+  assert(filtered[0] == Json(1));
+  assert(filtered[1] == Json(3));
+  assert(filtered[2] == Json(5));
 }
 // #endregion with filterFunc
 // #endregion indices
@@ -329,12 +348,15 @@ unittest {
 // #region paths
 // #region with paths and filterFunc
 Json[string] filterPaths(Json[string] map, string[][] paths, bool delegate(string[]) @safe filterFunc) {
-  Json[string] result;
-  foreach (path; paths) {
-    if (map.hasPath(path) && filterFunc(path)) {
-      result.setValue(path, map.getValue(path));
-    }
+  if (map.length == 0 || paths.length == 0) {
+    return null;
   }
+
+  Json[string] result;
+  foreach (path; paths.filter!(p => map.hasPath(p) && filterFunc(p)).array) {
+    result = result.setValue(path, map.getValue(path));
+  }
+  writeln("Final result: ", result);
   return result;
 }
 ///
@@ -355,6 +377,7 @@ unittest {
   ];
 
   auto filtered = filterPaths(map, [["a", "b", "c"], ["x"]], (path) => path[0] == "a");
+  writeln("Filtered result: ", filtered);
   assert(filtered.length == 1);
   assert(filtered.hasPath(["a"]));
   assert(filtered.getValue(["a"]).isObject);
@@ -367,12 +390,17 @@ unittest {
 
 // #region with paths
 Json[string] filterPaths(Json[string] map, string[][] paths) {
+  if (map.length == 0 || paths.length == 0) {
+    return null;
+  }
+
   Json[string] result;
   foreach (path; paths) {
     if (map.hasPath(path)) {
-      result.setValue(path, map.getValue(path));
+      result = result.setValue(path, map.getValue(path));
     }
   }
+
   return result;
 }
 ///
@@ -409,6 +437,10 @@ unittest {
 // #region keys
 // #region with keys and filterFunc
 Json[string] filterKeys(Json[string] map, string[] keys, bool delegate(string) @safe filterFunc) {
+  if (map.length == 0 || keys.length == 0) {
+    return null;
+  }
+
   Json[string] result;
   foreach (key; keys) {
     if (map.hasKey(key) && filterFunc(key)) {
@@ -438,6 +470,10 @@ unittest {
 
 // #region with keys
 Json[string] filterKeys(Json[string] map, string[] keys) {
+  if (map.length == 0 || keys.length == 0) {
+    return null;
+  }
+
   Json[string] result;
   foreach (key; keys) {
     if (map.hasKey(key)) {
@@ -467,6 +503,10 @@ unittest {
 
 // #region with filterFunc
 Json[string] filterKeys(Json[string] map, bool delegate(string) @safe filterFunc) {
+  if (map.length == 0) {
+    return null;
+  }
+
   Json[string] result;
   foreach (key; map.keys) {
     if (filterFunc(key)) {
@@ -497,6 +537,7 @@ unittest {
 
 // #region values
 // #region with values and filterFunc
+
 Json[string] filterValues(Json[string] map, Json[] values, bool delegate(Json) @safe filterFunc) {
   if (map.length == 0 || values.length == 0) {
     return null;
@@ -593,6 +634,10 @@ unittest {
 // #region indices
 // #region with indices and filterFunc
 Json[] filterIndices(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe filterFunc) {
+  if (jsons.length == 0 || indices.length == 0) {
+    return null;
+  }
+
   Json[] result;
   foreach (index, value; jsons) {
     if (indices.hasValue(index) && filterFunc(index)) {
@@ -618,6 +663,10 @@ unittest {
 
 // #region with indices
 Json[] filterIndices(Json[] jsons, size_t[] indices) {
+  if (jsons.length == 0 || indices.length == 0) {
+    return jsons;
+  }
+
   Json[] result;
   foreach (index, value; jsons) {
     if (indices.hasValue(index)) {
@@ -642,6 +691,10 @@ unittest {
 
 // #region with filterFunc
 Json[] filterIndices(Json[] jsons, bool delegate(size_t) @safe filterFunc) {
+  if (jsons.length == 0) {
+    return jsons;
+  }
+
   Json[] result;
   foreach (index, value; jsons) {
     if (filterFunc(index)) {
@@ -668,12 +721,17 @@ unittest {
 // #region values
 // #region with values and filterFunc
 Json[] filterValues(Json[] jsons, Json[] values, bool delegate(Json) @safe filterFunc) {
+  if (jsons.length == 0 || values.length == 0) {
+    return null;
+  }
+
   Json[] result;
   foreach (value; jsons) {
     if (values.hasValue(value) && filterFunc(value)) {
       result ~= value;
     }
   }
+
   return result;
 }
 ///
@@ -692,12 +750,17 @@ unittest {
 
 // #region with values
 Json[] filterValues(Json[] jsons, Json[] values) {
+  if (jsons.length == 0 || values.length == 0) {
+    return null;
+  }
+
   Json[] result;
   foreach (value; jsons) {
     if (values.hasValue(value)) {
       result ~= value;
     }
   }
+
   return result;
 }
 ///
@@ -716,6 +779,10 @@ unittest {
 
 // #region with filterFunc
 Json[] filterValues(Json[] jsons, bool delegate(Json) @safe filterFunc) {
+  if (jsons.length == 0) {
+    return null;
+  }
+
   Json[] result;
   foreach (value; jsons) {
     if (filterFunc(value)) {
