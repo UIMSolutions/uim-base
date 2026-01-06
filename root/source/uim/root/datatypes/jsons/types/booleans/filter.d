@@ -11,132 +11,480 @@ mixin(Version!("show_uim_root"));
 
 @safe:
 
-/* 
 // #region Json[]
+// #region indices
 // #region filter with indices and filterFunc
-Json[] filterBooleans(Json[] jsons, size_t[] indices, bool delegate(Json) @safe filterFunc) {
-  if (indices.length == 0) {
-    return null;
-  }
+Json[] filterBooleans(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe filterFunc) {
+  return jsons.filterIndices(indices, filterFunc).filterBooleans;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterBooleans for Json[] with indices and filterFunc");
 
-  return jsons.filterValues(indices);
+  Json[] jsons = [
+    true.toJson, "not an array".toJson, false.toJson, 42.toJson
+  ];
+
+  auto filtered = jsons.filterBooleans([0, 2, 3],
+    (size_t index) @safe => jsons.isBoolean(index));
+  assert(filtered.length == 2);
+  assert(filtered[0] == true.toJson);
+  assert(filtered[1] == false.toJson);
 }
 // #endregion filter with indices and filterFunc
 
 // #region filter with indices
 Json[] filterBooleans(Json[] jsons, size_t[] indices) {
-  return jsons.filterValues(indices).filterBooleans;
+  return jsons.filterIndices(indices).filterBooleans;
 }
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterBooleans for Json[] with indices");
 
+  Json[] jsons = [
+    true.toJson, "not an array".toJson, false.toJson, 42.toJson
+  ];
+
+  auto filtered = jsons.filterBooleans([0, 1, 2]);
+  assert(filtered.length == 2);
+  assert(filtered[0] == true.toJson);
+  assert(filtered[1] == false.toJson);
+}
 // #endregion filter with indices
 
-// #region filter with filterFunc
+// #region with filterFunc
+Json[] filterBooleans(Json[] jsons, bool delegate(size_t) @safe filterFunc) {
+  return jsons.filterIndices(filterFunc).filterBooleans;
+}
+///
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterBooleans for Json[] with filterFunc");
+
+  Json[] jsons = [
+    true.toJson, "not an array".toJson, false.toJson, 42.toJson
+  ];
+
+  auto filtered = jsons.filterBooleans(
+    (size_t index) @safe => jsons.isBoolean(index));
+  assert(filtered.length == 2);
+  assert(filtered[0] == true.toJson);
+  assert(filtered[1] == false.toJson);
+}
+// #endregion with filterFunc
+// #endregion indices
+
+// #region values
+// #region filter with values and filterFunc
+Json[] filterBooleans(Json[] jsons, Json[] values, bool delegate(Json) @safe filterFunc) {
+  return jsons.filterValues(values, filterFunc).filterBooleans;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterBooleans for Json[] with values and filterFunc");
+
+  Json[] jsons = [
+    true.toJson, "not an array".toJson, false.toJson, 42.toJson
+  ];
+  auto filtered = jsons.filterBooleans(
+    [true.toJson, ["x", "y"].toJson],
+    (Json json) @safe => json == Json(true));
+  assert(filtered.length == 1);
+  assert(filtered[0] == true.toJson);
+}
+// #endregion filter with values and filterFunc
+
+// #region with filterFunc
 Json[] filterBooleans(Json[] jsons, bool delegate(Json) @safe filterFunc) {
-  return jsons.filterValues((Json json) => filterFunc(json)).filterBooleans;
+  return filterValues(jsons, filterFunc).filterBooleans;
 }
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterBooleans for Json[] with filterFunc");
 
-// #endregion filter with filterFunc
+  Json[] jsons = [
+    true.toJson, "not an array".toJson, false.toJson, 42.toJson
+  ];
+  auto filtered = jsons.filterBooleans((Json j) @safe => j.isBoolean);
+  assert(filtered.length == 2);
+  assert(filtered[0] == true.toJson);
+  assert(filtered[1] == false.toJson);
+}
+// #endregion with filterFunc
 
-// #region filter all booleans
+// #region by values
+Json[] filterBooleans(Json[] jsons, Json[] values) {
+  return jsons.filterValues(values).filterBooleans;
+} /// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterBooleans for Json[] by values");
+
+  Json[] jsons = [
+    true.toJson, "not an array".toJson, false.toJson, 42.toJson
+  ];
+  auto filtered = jsons.filterBooleans(
+    [true.toJson, ["x", "y"].toJson]);
+  assert(filtered.length == 1);
+  assert(filtered[0] == true.toJson);
+}
+// #endregion by values
+
+// #region by datatype
 Json[] filterBooleans(Json[] jsons) {
-  return jsons.filterValues((Json json) => json.isBoolean);
-}
+  if (jsons.length == 0) {
+    return null;
+  }
 
-// #endregion filter all booleans
+  return jsons.filter!(json => json.isBoolean).array;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterBooleans for Json[] by datatype");
+
+  Json[] jsons = [
+    true.toJson, "not an array".toJson, false.toJson, 42.toJson
+  ];
+  auto filtered = jsons.filterBooleans();
+  assert(filtered.length == 2);
+  assert(filtered[0] == true.toJson);
+  assert(filtered[1] == false.toJson);
+}
+// #endregion by datatype
+// #endregion values
 // #endregion Json[]
 
 // #region Json[string]
-Json[string] filterBooleans(Json[string] map, string[] keys, bool delegate(string) @safe filterFunc) {
-  return map.toJson.filterKeys(keys, (string key) => filterFunc(key)).toMap;
+// #region paths
+// #region with paths and filterFunc
+Json[string] filterBooleans(Json[string] map, string[][] paths, bool delegate(string[]) @safe filterFunc) {
+  return map.filterPaths(paths, filterFunc).filterBooleans;
 }
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterBooleans for Json[string] with paths and filterFunc");
+
+  Json[string] map = [
+    "a": true.toJson,
+    "b": ["x", "y"].toJson,
+    "c": "not an array".toJson,
+    "d": 42.toJson
+  ];
+  auto filtered = map.filterBooleans([["a"], ["c"]],
+    (string[] path) @safe => path.length == 1 && path[0] == "a");
+  assert(filtered.length == 1);
+  assert(filtered["a"] == true.toJson);
+}
+// #endregion with paths and filterFunc
+
+// #region with paths
+Json[string] filterBooleans(Json[string] map, string[][] paths) {
+  return map.filterPaths(paths).filterBooleans;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterBooleans for Json[string] with paths");
+
+  Json[string] map = [
+    "a": true.toJson,
+    "b": ["x", "y"].toJson,
+    "c": "not an array".toJson,
+    "d": 42.toJson
+  ];
+  auto filtered = map.filterBooleans([["a"], ["c"]]);
+  assert(filtered.length == 1);
+  assert(filtered["a"] == true.toJson);
+}
+// #endregion with paths
+// #endregion paths
+
+// #region keys
+// #region filter with keys and filterFunc
+Json[string] filterBooleans(Json[string] map, string[] keys, bool delegate(string) @safe filterFunc) {
+  return map.filterKeys(keys, filterFunc).filterBooleans;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterBooleans for Json[string] with keys and filterFunc");
+
+  Json[string] map = [
+    "a": true.toJson,
+    "b": ["x", "y"].toJson,
+    "c": "not an array".toJson,
+    "d": 42.toJson
+  ];
+  auto filtered = map.filterBooleans(
+    ["a", "c"],
+    (string key) @safe => key == "a");
+  assert(filtered.length == 1);
+  assert(filtered["a"] == true.toJson);
+}
+// #endregion filter with keys and filterFunc
+
+// #region filter with keys
 Json[string] filterBooleans(Json[string] map, string[] keys) {
   return map.filterKeys(keys).filterBooleans;
 }
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterBooleans for Json[string] with keys");
 
+  Json[string] map = [
+    "a": true.toJson,
+    "b": ["x", "y"].toJson,
+    "c": "not an array".toJson,
+    "d": 42.toJson
+  ];
+  auto filtered = map.filterBooleans(
+    ["a", "c"]);
+  assert(filtered.length == 1);
+  assert(filtered["a"] == true.toJson);
+}
+// #endregion filter with keys
+
+// #region with filterFunc
+Json[string] filterBooleans(Json[string] map, bool delegate(string) @safe filterFunc) {
+  if (map.length == 0) {
+    return null;
+  }
+
+  Json[string] result;
+  foreach (key; map.keys) {
+    if (filterFunc(key)) {
+      result[key] = map[key];
+    }
+  }
+
+  return result;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterBooleans for Json[string] with filterFunc");
+
+  Json[string] map = [
+    "a": true.toJson,
+    "b": ["x", "y"].toJson,
+    "c": "not an array".toJson,
+    "d": 42.toJson
+  ];
+  auto filtered = map.filterBooleans((string key) @safe => key == "b");
+  assert(filtered.length == 1);
+  assert(filtered["b"] == ["x", "y"].toJson);
+}
+// #endregion with filterFunc
+// #endregion keys
+
+// #region values
+// #region filter with values and filterFunc
+Json[string] filterBooleans(Json[string] map, Json[] values, bool delegate(Json) @safe filterFunc) {
+  return map.filterValues(values, filterFunc).filterBooleans;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterBooleans for Json[string] with values and filterFunc");
+
+  Json[string] map = [
+    "a": true.toJson,
+    "b": ["x", "y"].toJson,
+    "c": "not an array".toJson,
+    "d": 42.toJson
+  ];
+  auto filtered = map.filterBooleans(
+    [true.toJson, ["x", "y"].toJson],
+    (Json json) @safe => json.isBoolean);
+  assert(filtered.length == 1);
+  assert(filtered["a"] == true.toJson);
+}
+// #endregion filter with values and filterFunc
+
+// #region filter with values
 Json[string] filterBooleans(Json[string] map, Json[] values) {
   return map.filterValues(values).filterBooleans;
 }
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterBooleans for Json[string] with values");
 
-Json[string] filterBooleans(Json[string] map, Json[] values, bool delegate(Json) @safe filterFunc) {
-  return map.filterValues(values).filterBooleans(filterFunc);
+  Json[string] map = [
+    "a": true.toJson,
+    "b": ["x", "y"].toJson,
+    "c": "not an array".toJson,
+    "d": 42.toJson
+  ];
+  auto filtered = map.filterBooleans(
+    [true.toJson, ["x", "y"].toJson]);
+  assert(filtered.length == 1);
+  assert(filtered["a"] == true.toJson);
 }
+// #endregion filter with values
 
-Json[string] filterBooleans(Json[string] map, bool delegate(string) @safe filterFunc) {
-  return map.filterKeys((string key, Json json) => filterFunc(key)).filterBooleans;
-}
-
+// #region filter with filterFunc
 Json[string] filterBooleans(Json[string] map, bool delegate(Json) @safe filterFunc) {
-  return map.filterValues((Json json) => filterFunc(json)).filterBooleans;
+  return map.filterValues(filterFunc).filterBooleans;
 }
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterBooleans for Json[string] with filterFunc");
 
-Json[string] filterBooleans(Json[string] map, bool delegate(string, Json) @safe filterFunc) {
-  return map.filterMap((string key, Json json) => filterFunc(key, json)).filterBooleans;
+  Json[string] map = [
+    "a": true.toJson,
+    "b": ["x", "y"].toJson,
+    "c": "not an array".toJson,
+    "d": 42.toJson
+  ];
+  auto filtered = map.filterBooleans((Json j) @safe => j.isBoolean);
+  assert(filtered.length == 1);
+  assert(filtered["a"] == true.toJson);
 }
+// #endregion filter with filterFunc
 
+// #region filter all arrays
 Json[string] filterBooleans(Json[string] map) {
-  return map.filterKeys((string key, Json json) => json.isBoolean);
+  return map.filterValues((Json json) => json.isBoolean);
 }
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterBooleans for Json[string] all arrays");
 
-// #region Json[string]
+  Json[string] map = [
+    "a": true.toJson,
+    "b": ["x", "y"].toJson,
+    "c": "not an array".toJson,
+    "d": 42.toJson
+  ];
+  auto filtered = map.filterBooleans();
+  assert(filtered.length == 1);
+  assert(filtered["a"] == true.toJson);
+}
+// #endregion filter all arrays
+// #endregion values
+// #endregion Json[string]
 
 // #region Json
-Json filterBooleans(Json json, size_t[] indices, bool delegate(Json) @safe filterFunc) {
-  return json.filterValues(indices, (Json json) => json.isBoolean && filterFunc(json));
+// #region indices
+// #region with indices and filterFunc
+Json filterBooleans(Json json, size_t[] indices, bool delegate(size_t) @safe filterFunc) {
+  return json.filterIndices(indices, filterFunc).filterBooleans;
 }
 /// 
 unittest {
   version (test_uim_root)
-    writeln("Testing filterBooleans for Json with indices and filterFunc");
+    writeln("Testing filterBooleans with indices and filterFunc");
 
-  Json json = [true.toJson, "not a boolean".toJson, false.toJson, 42.toJson].toJson;
+  Json json = [Json(1), Json(2), Json(3), Json(4), Json(5)].toJson;
 
-  auto filtered1 = json.filterBooleans([0, 2]);
-  assert(filtered1.isArray);
-  assert(filtered1.toArray.length == 2);
-
-  auto filtered2 = json.filterBooleans((Json j) @safe => j.isBoolean && j.toBoolean);
-  assert(filtered2.isArray);
-  assert(filtered2.toArray.length == 1);
-
-  auto filtered = json.filterBooleans([0, 2], (Json j) @safe => j.isBoolean && j.toBoolean);
-  assert(filtered.isArray);
-  assert(filtered.toArray.length == 1);
-  assert(filtered.toArray[0] == true.toJson);
+  auto filtered = json.filterBooleans([0, 2, 4],
+    (size_t index) @safe => json.isBoolean(index));
+  assert(filtered.length == 0);
 }
+// #endregion with indices and filterFunc
 
+// #region with indices
 Json filterBooleans(Json json, size_t[] indices) {
-  return json.filterValues(indices, (Json json) => json.isBoolean);
+  return json.filterIndices(indices).filterBooleans;
 }
 /// 
 unittest {
   version (test_uim_root)
-    writeln("Testing filterBooleans for Json with indices");
+    writeln("Testing filterBooleans with indices");
 
-  Json json = [true.toJson, "not a boolean".toJson, false.toJson, 42.toJson].toJson;
-  auto filtered = json.filterBooleans([0, 1, 2]);
-  assert(filtered.isArray);
-  assert(filtered.toArray.length == 2);
-  assert(filtered.toArray[0] == true.toJson);
-  assert(filtered.toArray[1] == false.toJson);
+  Json json = [Json(1), Json(2), Json(3), Json(4), Json(5)].toJson;
+
+  auto filtered = json.filterBooleans([0, 2, 4]);
+  assert(filtered.length == 0);
 }
+// #endregion with indices
 
+// #region with filterFunc
+Json filterBooleans(Json json, bool delegate(size_t) @safe filterFunc) {
+  return json.isBoolean ? json.filterIndices(filterFunc) : Json(null);
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterBooleans with filterFunc");
+
+  Json json = [Json(1), Json(2), Json(3), Json(4), Json(5)].toJson;
+
+  auto filtered = json.filterBooleans(
+    (size_t index) @safe => json.isBoolean(index));
+  assert(filtered == Json(null) || filtered.length == 0);
+}
+// #endregion with filterFunc
+// #endregion indices
+
+// #region values
+// #region with values and filterFunc
+Json filterBooleans(Json json, Json[] values, bool delegate(Json) @safe filterFunc) {
+  return json.filterValues(values, filterFunc).filterBooleans;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterBooleans with values and filterFunc");
+
+  Json json = [
+    true.toJson, "not an array".toJson, false.toJson, 42.toJson
+  ].toJson;
+  auto filtered = json.filterBooleans(
+    [true.toJson, ["x", "y"].toJson],
+    (Json json) @safe => json.isBoolean);
+  assert(filtered.length == 1);
+  assert(filtered[0] == true.toJson);
+}
+// #endregion with values and filterFunc
+
+// #region with filterFunc
 Json filterBooleans(Json json, bool delegate(Json) @safe filterFunc) {
-  return json.filterValues((Json json) => json.isBoolean && filterFunc(json));
+  return json.filterValues(filterFunc).filterBooleans;
 }
 /// 
 unittest {
   version (test_uim_root)
-    writeln("Testing filterBooleans for Json with filterFunc");
+    writeln("Testing filterBooleans with filterFunc");
 
-  Json json = [true.toJson, "not a boolean".toJson, false.toJson, 42.toJson].toJson;
-  auto filtered = json.filterBooleans((Json j) @safe => !j.toBoolean);
-  assert(filtered.isArray);
-  assert(filtered.toArray.length == 1);
-  assert(filtered.toArray[0] == false.toJson);
+  Json json = [
+    true.toJson, "not an array".toJson, false.toJson, 42.toJson
+  ].toJson;
+  auto filtered = json.filterBooleans((Json j) @safe => j.isBoolean);
+  assert(filtered.length == 2);
+  assert(filtered[0] == true.toJson);
+  assert(filtered[1] == false.toJson);
 }
+// #endregion with filterFunc
 
+// #region simple values
 Json filterBooleans(Json json) {
   return json.filterValues((Json json) => json.isBoolean);
 }
-// #region Json
-*/
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterBooleans for Json by datatype");
+
+  Json json = [
+    true.toJson, "not an array".toJson, false.toJson, 42.toJson
+  ].toJson;
+  auto filtered = json.filterBooleans();
+  assert(filtered.length == 2);
+  assert(filtered[0] == true.toJson);
+  assert(filtered[1] == false.toJson);
+}
+// #endregion simple values
+// #endregion values
+// #endregion Json
+

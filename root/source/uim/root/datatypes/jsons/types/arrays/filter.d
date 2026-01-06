@@ -440,6 +440,21 @@ unittest {
 Json filterArrays(Json json, Json[] values, bool delegate(Json) @safe filterFunc) {
   return json.filterValues(values, filterFunc).filterArrays;
 }
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterArrays with values and filterFunc");
+
+  Json json = [
+    [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
+  ].toJson;
+  auto filtered = json.filterArrays(
+    [[1, 2, 3].toJson, ["x", "y"].toJson],
+    (Json j) @safe => j.length > 2);
+  assert(filtered.isArray);
+  assert(filtered.length == 1);
+  assert(filtered[0] == [1, 2, 3].toJson);
+}
 // #endregion with values and filterFunc
 
 // #region with filterFunc
@@ -464,6 +479,20 @@ unittest {
 // #region simple values
 Json filterArrays(Json json) {
   return json.filterValues((Json json) => json.isArray);
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing filterArrays for Json by datatype");
+
+  Json json = [
+    [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
+  ].toJson;
+  auto filtered = json.filterArrays;
+  assert(filtered.isArray);
+  assert(filtered.length == 2);
+  assert(filtered[0] == [1, 2, 3].toJson);
+  assert(filtered[1] == [4, 5].toJson);
 }
 // #endregion simple values
 // #endregion values
