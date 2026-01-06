@@ -40,7 +40,7 @@ unittest {
   int[string] map = ["one": 1, "two": 2, "three": 3, "four": 4];
   auto filtered = map.filterKeys(["two", "three", "five"],
     (string key) @safe => key.length == 3);
-  assert(filtered.length == 1 && filtered.hasKey("two") && filtered["two"] == 2);
+  assert(filtered.length == 1 && hasKey(filtered, "two") && filtered["two"] == 2);
   assert(!filtered.hasAnyKey(["one", "three", "four"]));
 }
 

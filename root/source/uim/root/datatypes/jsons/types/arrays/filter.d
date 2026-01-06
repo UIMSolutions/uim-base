@@ -11,6 +11,7 @@ mixin(Version!("show_uim_root"));
 
 @safe:
 
+/* 
 // #region Json[]
 // #region filter with indices and filterFunc
 Json[] filterArrays(Json[] jsons, size_t[] indices, bool delegate(Json) @safe filterFunc) {
@@ -413,3 +414,4 @@ Json filterArrays(Json json) {
   return json.isObject || json.isArray ? json.filterValues((Json json) => json.isArray) : Json(null);
 }
 // #endregion Json
+*/

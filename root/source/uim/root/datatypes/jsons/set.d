@@ -60,6 +60,32 @@ Json setValue(Json json, string[] path, Json value) {
 }
 /// 
 unittest {
+  version (show_uim_root)
+    writeln("Testing setValue with path and value");
+
+  auto json = Json.emptyObject;
+  json = json.setValue(["a", "b", "c"], Json(123));
+  assert(json["a"]["b"]["c"] == Json(123));
+}
+
+Json[string] setValue(Json[string] map, string[] path, Json value) {
+  if (path.length == 0) {
+    return map;
+  }
+
+  if (path.length == 1) {
+    return uim.root.containers.associative.maps.set.setValue(map, path[0], value);
+  }
+
+  if (map.hasKey(path[0])) {
+    map[path[0]] = map[path[0]].setValue(path[1 .. $], value);
+  } else {
+    Json child = Json.emptyObject;
+    child = child.setValue(path[1 .. $], value);
+    map[path[0]] = child;
+  }
+  
+  return map;
 }
 
 /// Sets a single key to a value

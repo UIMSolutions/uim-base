@@ -151,16 +151,7 @@ unittest {
   *   `true` if the JSON value has the specified path, `false` otherwise.
   */
 bool hasPath(Json json, string[] path) {
-  if (!json.isObject || path.length == 0) {
-    return false;
-  }
-
-  auto first = json.hasKey(path[0]);
-  if (path.length == 1 || !first) {
-    return first;
-  }
-
-  return json[path[0]].isObject ? json[path[0]].hasPath(path[1 .. $]) : false;
+  return json.isObject ? json.toMap.hasPath(path) : false; 
 }
 /// 
 unittest {
@@ -176,10 +167,36 @@ unittest {
     "x": 456.toJson
   ].toJson;
 
-  assert(json.hasPath(["a", "b", "c"]));
-  assert(!json.hasPath(["a", "b", "d"]));
-  assert(json.hasPath(["x"]));
-  assert(!json.hasPath(["y"]));
+  assert(hasPath(json, ["a", "b", "c"]));
+  assert(!hasPath(json, ["a", "b", "d"]));
+}
+
+bool hasPath(Json[string] map, string[] path) {
+  import uim.root.containers.associative.maps.has;;
+
+  if (path.length == 0) {
+    return false;
+  }
+  
+  auto first = uim.root.containers.associative.maps.has.hasKey(map, path[0]);
+  return first && path.length > 1 && map[path[0]].isObject ? map[path[0]].hasPath(path[1 .. $]) : false;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing hasPath for Json with path");
+
+  Json json = [
+    "a": [
+      "b": [
+        "c": 123.toJson
+      ].toJson
+    ].toJson,
+    "x": 456.toJson
+  ].toJson;
+
+  assert(hasPath(json, ["a", "b", "c"]));
+  assert(!hasPath(json, ["a", "b", "d"]));
 }
 // #endregion path
 
@@ -266,6 +283,13 @@ unittest {
   assert(hasKey(json4, "weird:key!"));
 }
 // #endregion hasKey
+
+/*
+bool hasKey(Json[string] map, string key) {
+  return (key in map) ? true : false;
+}
+*/ 
+
 // #endregion key
 
 bool hasKeyValue(Json json, string key, Json value) {

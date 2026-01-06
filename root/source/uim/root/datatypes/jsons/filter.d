@@ -6,6 +6,7 @@ mixin(Version!("show_uim_root"));
 
 @safe:
 
+/*
 // #region Json
 // #region paths
 // #region with paths and filterFunc
@@ -170,7 +171,7 @@ Json[string] filterKeys(Json[string] map, string[] keys) {
 // #region with filterFunc
 Json[string] filterKeys(Json[string] map, bool delegate(string) @safe filterFunc) {
   Json[string] result;
-  foreach (key; keys) {
+  foreach (key; map.keys) {
     if (filterFunc(key)) {
       result[key] = map[key];
     }
@@ -296,3 +297,4 @@ Json[] filterValues(Json[] jsons, bool delegate(Json) @safe filterFunc) {
 // #endregion with filterFunc
 // #endregion values
 // #endregion Json[]
+*/
