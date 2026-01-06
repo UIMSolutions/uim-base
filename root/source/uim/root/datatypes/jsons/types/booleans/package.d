@@ -11,5 +11,6 @@ public {
   import uim.root.datatypes.jsons.types.booleans.filter;
   import uim.root.datatypes.jsons.types.booleans.get;
   import uim.root.datatypes.jsons.types.booleans.has;
+  import uim.root.datatypes.jsons.types.booleans.remove;
   import uim.root.datatypes.jsons.types.booleans.typecheck;
 }

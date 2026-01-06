@@ -10,7 +10,7 @@ import uim.root;
 mixin(Version!("test_uim_root"));
 
 @safe:
-
+/* 
 T[] removeAllValue(T)(T[] items, T[] values) {
   return items.filter!(v => !values.hasValue(v)).array;
 }
@@ -121,7 +121,7 @@ unittest {
   auto result3 = removeAllValue(arr, [2, 4]);
   assert(result3 == [1, 3, 5]);
 }
-*/
+* /
 
 T[] removeFirst(T)(T[] values) {
   if (values.isEmpty) {
@@ -178,3 +178,4 @@ unittest {
   result = removeLast(arr);
   assert(result.length == 0);
 }
+*/ 

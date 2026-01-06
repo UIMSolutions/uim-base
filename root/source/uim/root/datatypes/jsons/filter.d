@@ -10,17 +10,12 @@ mixin(Version!("show_uim_root"));
 // #region paths
 // #region with paths and filterFunc
 Json filterPaths(Json json, string[][] paths, bool delegate(string[]) @safe filterFunc) {
-  writeln("filterPaths called with json: ", json, ", paths: ", paths);
   if (json.isObject) {
     Json result = Json.emptyObject;
     auto filteredPaths = paths.filter!(path => json.toMap.hasPath(path) && filterFunc(path)).array;
-    writeln("Filtered paths: ", filteredPaths);
     foreach (path; filteredPaths) {
-      writeln("Processing path: ", path, " with value: ", json.getValue(path));
       result = result.setValue(path, json.getValue(path));
-      writeln("Intermediate result: ", result);
     }
-    writeln("Final result: ", result);
     return result;
   }
   return Json(null);
@@ -42,9 +37,6 @@ unittest {
     "y": Json(5)
   ].toJson;
 
-  writeln("Original Json: ", json);
-  writeln("Paths to filter: ", [["a", "b", "c"], ["x"]]);
-  writeln("json.toMap: ", json.toMap);
   auto filtered = filterPaths(json, [["a", "b", "c"], ["x"]], (string[] path) => path[0] == "a");
   assert(filtered.isObject);
   assert(filtered.length == 1);
@@ -59,17 +51,12 @@ unittest {
 
 // #region with paths
 Json filterPaths(Json json, string[][] paths) {
-  writeln("filterPaths called with json: ", json, ", paths: ", paths);
   if (json.isObject) {
     Json result = Json.emptyObject;
     auto filteredPaths = paths.filter!(path => json.toMap.hasPath(path)).array;
-    writeln("Filtered paths: ", filteredPaths);
     foreach (path; filteredPaths) {
-      writeln("Processing path: ", path, " with value: ", json.getValue(path));
       result = result.setValue(path, json.getValue(path));
-      writeln("Intermediate result: ", result);
     }
-    writeln("Final result: ", result);
     return result;
   }
   return Json(null);
@@ -333,7 +320,6 @@ unittest {
   Json json = [Json(1), Json(2), Json(3), Json(4), Json(5)].toJson;
 
   auto filtered = filterIndices(json, (index) => index % 2 == 0);
-  writeln("Filtered result: ", filtered);
   assert(filtered.isArray);
   assert(filtered.length == 3);
   assert(filtered[0] == Json(1));
@@ -356,7 +342,6 @@ Json[string] filterPaths(Json[string] map, string[][] paths, bool delegate(strin
   foreach (path; paths.filter!(p => map.hasPath(p) && filterFunc(p)).array) {
     result = result.setValue(path, map.getValue(path));
   }
-  writeln("Final result: ", result);
   return result;
 }
 ///
@@ -377,7 +362,6 @@ unittest {
   ];
 
   auto filtered = filterPaths(map, [["a", "b", "c"], ["x"]], (path) => path[0] == "a");
-  writeln("Filtered result: ", filtered);
   assert(filtered.length == 1);
   assert(filtered.hasPath(["a"]));
   assert(filtered.getValue(["a"]).isObject);

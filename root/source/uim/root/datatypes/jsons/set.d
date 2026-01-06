@@ -117,9 +117,7 @@ unittest {
     writeln("Testing setValue with path and value for map");
 
   Json[string] map;
-  writeln("map before setValue: ", map);
   map = setValue(map, ["a", "b", "c"], Json(456));
-  writeln("map after setValue: ", map);
   assert(map["a"]["b"]["c"] == Json(456));
 }
 // #endregion Json[string]

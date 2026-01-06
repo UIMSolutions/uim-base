@@ -137,7 +137,6 @@ unittest {
 bool isAllNull(Json json, string[][] paths) {
   if (json.isNull || paths.length == 0) return false;
 
-  writeln("json.hasAllPath(paths) -> ", json.hasAllPath(paths), " | paths: ", paths);
   return paths.all!(path => json.isNull(path));
 }
 /// 

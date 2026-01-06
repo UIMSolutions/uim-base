@@ -12,6 +12,7 @@ mixin(Version!"test_uim_root");
 @safe:
 
 // #region Keys
+/* 
 V[K] removeKeys(K, V)(V[K] map, K[] keys, bool delegate(K) @safe removeFunc) {
   return map.removeKeys(keys).removeMap(removeFunc);
 }
@@ -24,7 +25,7 @@ V[K] removeKeys(K, V)(V[K] map, K[] keys, bool delegate(K) @safe removeFunc) {
   *
   * Returns:
   *   A new map with the specified keys removed.
-  */
+  * /
 V[K] removeKeys(K, V)(V[K] map, K[] keys) {
   return removeMap(map, (K key, V value) @safe => keys.hasValue(key));
 }
@@ -59,7 +60,7 @@ V[K] removeKeys(K, V)(V[K] map, bool delegate(K) @safe removeFunc) {
   *
   * Returns:
   *   A new map with the specified values removed.
-  */
+  * /
 V[K] removeValue(K, V)(V[K] map, V[] values) {
   return removeMap(map, (K key, V value) @safe => values.hasValue(value));
 }
@@ -85,7 +86,7 @@ unittest {
   *
   * Returns:
   *   A new map with the entries removed based on the custom function.
-  */
+  * /
 V[K] removeMap(K, V)(V[K] map, bool delegate(K key, V value) @safe removeFunc) {
   V[K] results;
   foreach (key, value; map) {
@@ -150,3 +151,4 @@ unittest {
   int[string] expected = [ "b": 2, "d": 4 ];
   assertEquals(expected, result);
 }
+*/

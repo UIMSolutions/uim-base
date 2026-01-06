@@ -407,7 +407,6 @@ unittest {
   ].toJson;
   auto filtered = json.filterArrays([0, 1, 2]);
   assert(filtered.isArray);
-  writeln("Filtered result: ", filtered);
   assert(filtered.length == 2);
   assert(filtered[0] == [1, 2, 3].toJson);
   assert(filtered[1] == [4, 5].toJson);
