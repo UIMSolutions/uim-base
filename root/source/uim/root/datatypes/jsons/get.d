@@ -11,7 +11,64 @@ mixin(Version!("show_uim_root"));
 
 @safe:
 
+// #region Json[]
+// #region indices
+Json[] getValues(Json[] jsons, size_t[] indices) {
+  return indices.filter!(index => index < jsons.length)
+    .map!(index => jsons[index])
+    .array;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing getValue for Json[] with indices");
+
+  Json[] jsons = [1.toJson, 2.toJson, 3.toJson];
+  auto values = jsons.getValues([0, 2, 5]);
+  assert(values.length == 2);
+  assert(values[0] == 1.toJson);
+  assert(values[1] == 3.toJson);
+}
+
+Json getValue(Json[] jsons, size_t index) {
+  return index < jsons.length ? jsons[index] : Json(null);
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing getValue for Json[] with index");
+
+  Json[] jsons = [1.toJson, 2.toJson, 3.toJson];
+  assert(jsons.getValue(1) == 2.toJson);
+}
+// #endregion indices
+// #endregion Json[]
+
 // #region Json[string]
+// #region paths
+Json[] getValues(Json[string] map, string[][] paths) {
+  return paths.filter!(path => map.getValue(path) != Json(null))
+    .map!(path => map.getValue(path))
+    .array;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing getValues with paths");
+
+  Json[string] map = [
+    "data": ["test": [1, 2, 3].toJson].toJson,
+    "info": ["details": "sample".toJson].toJson
+  ];
+
+  auto values = map.getValues([
+    ["data", "test"], ["info", "details"], ["nonexistent"]
+  ]);
+  assert(values.length == 2);
+  assert(values[0] == [1, 2, 3].toJson);
+  assert(values[1] == "sample".toJson);
+}
+
 Json getValue(Json[string] map, string[] path) {
   if (map.isNull || path.length == 0) {
     return Json(null);
@@ -27,7 +84,7 @@ Json getValue(Json[string] map, string[] path) {
     return value;
   }
 
-  return  value.isObject && path.length > 1 ? value.getValue(path[1 .. $]) : Json(null);
+  return value.isObject && path.length > 1 ? value.getValue(path[1 .. $]) : Json(null);
 }
 /// 
 unittest {
@@ -78,32 +135,105 @@ unittest {
     return key in map ? map[key] : Json(null);
   }
 }
+// #endregion paths
+
+// #region keys
+Json[string] getValueMap(Json[string] map, string[] keys) {
+  Json[string] result;
+  foreach (key; keys) {
+    if (key in map) {
+      result[key] = map[key];
+    }
+  }
+  return result;
+}
+
+Json[] getValues(Json[string] map, string[] keys) {
+  return keys.filter!(key => map.getValue(key) != Json(null))
+    .map!(key => map.getValue(key))
+    .array;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing getValues with keys");
+
+  Json[string] map = [
+    "key1": "value1".toJson,
+    "key2": "value2".toJson,
+    "key3": "value3".toJson
+  ];
+
+  auto values = map.getValues(["key1", "key3", "nonexistent"]);
+  assert(values.length == 2);
+  assert(values[0] == "value1".toJson);
+  assert(values[1] == "value3".toJson);
+}
 
 Json getValue(Json[string] map, string key) {
   return key in map ? map[key] : Json(null);
 }
 /// 
 unittest {
-  version (test_uim_root) writeln("Testing getValue with key");
+  version (test_uim_root)
+    writeln("Testing getValue with key");
 
   Json[string] map = ["key1": "value1".toJson, "key2": "value2".toJson];
   assert(map.getValue("key2") == "value2".toJson);
 }
+// #endregion keys
 // #endregion Json[string]
 
 // #region Json
-Json getValue(Json json, size_t index) {
-  if (!json.isArray) {
-    return Json(null);
-  }
-  return json.length > index ? json[index] : Json(null);
+// #region indices
+Json[] getValues(Json json, size_t[] indices) {
+  return indices.filter!(index => json.getValue(index) != Json(null))
+    .map!(index => json.getValue(index))
+    .array;
 }
 /// 
 unittest {
-  version (test_uim_root) writeln("Testing getValue with index");
+  version (test_uim_root)
+    writeln("Testing getValues with indices");
+
+  Json json = [1.toJson, 2.toJson, 3.toJson].toJson;
+  auto values = json.getValues([0, 2, 5]);
+  assert(values.length == 2);
+  assert(values[0] == 1.toJson);
+  assert(values[1] == 3.toJson);
+}
+
+Json getValue(Json json, size_t index) {
+  return json.isArray && json.length > index ? json[index] : Json(null);
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing getValue with index");
 
   Json json = [1, 2, 3].toJson;
   assert(json.getValue(1) == 2.toJson);
+}
+// #endregion indices
+
+// #region paths
+Json[] getValues(Json json, string[][] paths) {
+  return paths.filter!(path => json.getValue(path) != Json(null))
+    .map!(path => json.getValue(path))
+    .array;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing getValues with paths");
+
+  Json json = parseJsonString(`{"data": { "test": [1, 2, 3]}, "info": { "details": "sample"}}`);
+  auto values = json.getValues([
+    ["data", "test"], ["info", "details"], ["nonexistent"]
+  ]);
+  assert(values.length == 2);
+  assert(values[0] == [1, 2, 3].toJson);
+  assert(values[1] == "sample".toJson);
 }
 
 Json getValue(Json json, string[] path) {
@@ -123,12 +253,42 @@ Json getValue(Json json, string[] path) {
 }
 /// 
 unittest {
-  version (test_uim_root) writeln("Testing getValue with path");
+  version (test_uim_root)
+    writeln("Testing getValue with path");
 
   Json json = parseJsonString(`{"data": { "test": [1, 2, 3]}}`);
   assert(json.getValue(["data"]).getValue(["test"]) != Json(null));
   assert(json.getValue(["data", "test"]) != Json(null));
   assert(json.getValue(["data", "test"]) == [1, 2, 3].toJson);
+}
+// #endregion paths
+
+// #region keys
+Json[string] getValueMap(Json json, string[] keys) {
+  Json[string] result;
+  foreach (key; keys) {
+    if (key in json) {
+      result[key] = json[key];
+    }
+  }
+  return result;
+}
+
+Json[] getValues(Json json, string[] keys) {
+  return keys.filter!(key => json.getValue(key) != Json(null))
+    .map!(key => json.getValue(key))
+    .array;
+}
+/// 
+unittest {
+  version (test_uim_root)
+    writeln("Testing getValues with keys");
+
+  Json json = parseJsonString(`{"key1": "value1", "key2": "value2", "key3": "value3"}`);
+  auto values = json.getValues(["key1", "key3", "nonexistent"]);
+  assert(values.length == 2);
+  assert(values[0] == "value1".toJson);
+  assert(values[1] == "value3".toJson);
 }
 
 Json getValue(Json json, string key) {
@@ -140,9 +300,11 @@ Json getValue(Json json, string key) {
 }
 /// 
 unittest {
-  version (test_uim_root) writeln("Testing getValue with key");
+  version (test_uim_root)
+    writeln("Testing getValue with key");
 
   Json json = ["key1": "value1".toJson, "key2": "value2".toJson].toJson;
   assert(json.getValue("key2") == "value2".toJson);
 }
+// #endregion keys
 // #endregion Json

@@ -102,4 +102,18 @@ unittest {
   assert(json.getDouble("second", Json("default")) == Json("default"));
   assert(json.getDouble("third") == 4.56.toJson);
 }
+
+Json getDoubles(Json json) {
+  if (json.isArray) {
+    Json result = Json.emptyArray;
+    json.byValue.filter!(value => value.isDouble).each!(value => result ~= value);
+    return result;     
+  }
+  if (json.isObject) {
+    Json result = Json.emptyObject;
+    json.byKeyValue.filter!(kv => kv.value.isDouble).each!(kv => result[kv.key] = kv.value);
+    return result;     
+  }
+  return Json(null);
+}
 // #endregion Json

@@ -11,6 +11,7 @@ mixin(Version!("test_uim_root"));
 
 @safe:
 
+/*
 T[] getValues(T)(T[] values, size_t[] indices, bool delegate(T) @safe selectFunc) {
   return values.getValues(indices).getValues(selectFunc);
 }
@@ -28,4 +29,4 @@ T[] getValues(T)(T[] arrays, size_t[] indices) {
 
 T getValue(T)(T[] arrays, size_t index, T defaultValue = Null!T) {
   return arrays.length > index ? arrays[index] : defaultValue;
-}
+} */

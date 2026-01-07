@@ -265,7 +265,6 @@ unittest {
 
   auto result = removeValues(json, [Json(30), Json("New York")],
     (Json value) @safe => value == Json("New York"));
-  writeln("Result: ", result); // --- IGNORE ---
   assert(result.length == 3);
   assert(result["name"] == "John");
   assert(result["age"] == 30);
@@ -352,7 +351,7 @@ Json removeValues(Json json, bool delegate(Json) @safe removeFunc) {
 // #region indices
 // #region indices with func
 Json[] removeIndices(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe removeFunc) {
-  if (jsons.length == 0 || indices.length == 0) {
+  if (jsons.length == 0 || indices.length == 0) { // Nothing to remove
     return jsons;
   }
 
@@ -490,7 +489,6 @@ unittest {
 
   auto result = removeValues(json, [Json(30), Json("New York")],
     (Json value) @safe => value == Json("New York"));
-  writeln("Result: ", result); // --- IGNORE ---
   assert(result.length == 3);
   assert(result[0] == Json("John"));
   assert(result[1] == Json(30));
@@ -699,7 +697,6 @@ unittest {
 
   auto result = removeValues(json, [Json(30), Json("New York")],
     (Json value) @safe => value == Json("New York"));
-  writeln("Result: ", result); // --- IGNORE ---
   assert(result.length == 3);
   assert(result["name"] == Json("John"));
   assert(result["age"] == Json(30));

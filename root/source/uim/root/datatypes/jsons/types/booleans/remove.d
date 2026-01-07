@@ -13,122 +13,122 @@ mixin(Version!("show_uim_root"));
  
 // #region Json[]
 // #region indices
-Json[] removeArrays(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe removeFunc) {
-  return jsons.removeIndices(indices, removeFunc).removeArrays;
+Json[] removeBooleans(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe removeFunc) {
+  return jsons.removeIndices(indices, removeFunc).removeBooleans;
 }
 
-Json[] removeArrays(Json[] jsons, bool delegate(size_t) @safe removeFunc) {
-  return jsons.removeIndices(removeFunc).removeArrays;
+Json[] removeBooleans(Json[] jsons, bool delegate(size_t) @safe removeFunc) {
+  return jsons.removeIndices(removeFunc).removeBooleans;
 }
 
-Json[] removeArrays(Json[] jsons, size_t[] indices) {
-  return jsons.removeIndices(indices).removeArrays;
+Json[] removeBooleans(Json[] jsons, size_t[] indices) {
+  return jsons.removeIndices(indices).removeBooleans;
 }
 // #endregion indices
 
 // #region values
-Json[] removeArrays(Json[] jsons, Json[] values, bool delegate(Json) @safe removeFunc) {
-  return jsons.removeValues(values, removeFunc).removeArrays;
+Json[] removeBooleans(Json[] jsons, Json[] values, bool delegate(Json) @safe removeFunc) {
+  return jsons.removeValues(values, removeFunc).removeBooleans;
 }
 
-Json[] removeArrays(Json[] jsons, bool delegate(Json) @safe removeFunc) {
-  return jsons.removeValues(removeFunc).removeArrays;
+Json[] removeBooleans(Json[] jsons, bool delegate(Json) @safe removeFunc) {
+  return jsons.removeValues(removeFunc).removeBooleans;
 }
 
-Json[] removeArrays(Json[] jsons, Json[] values) {
-  return jsons.removeValues(values).removeArrays;
+Json[] removeBooleans(Json[] jsons, Json[] values) {
+  return jsons.removeValues(values).removeBooleans;
 }
 // #endregion values
 
 // #region base
-Json[] removeArrays(Json[] jsons) {
-  return jsons.removeValues((Json json) => json.isArray).removeArrays;
+Json[] removeBooleans(Json[] jsons) {
+  return jsons.removeValues((Json json) => json.isBoolean).removeBooleans;
 }
 // #endregion base
 // #endregion Json[]
 
 // #region Json[string]
 // #region keys
-Json[string] removeArrays(Json[string] map, string[] keys, bool delegate(string) @safe removeFunc) {
-  return map.removeKeys(keys, removeFunc).removeArrays;
+Json[string] removeBooleans(Json[string] map, string[] keys, bool delegate(string) @safe removeFunc) {
+  return map.removeKeys(keys, removeFunc).removeBooleans;
 }
 
-Json[string] removeArrays(Json[string] map, string[] keys) {
-  return map.removeKeys(keys).removeArrays;
+Json[string] removeBooleans(Json[string] map, string[] keys) {
+  return map.removeKeys(keys).removeBooleans;
 }
 
-Json[string] removeArrays(Json[string] map, bool delegate(string) @safe removeFunc) {
-  return map.removeKeys(removeFunc).removeArrays;
+Json[string] removeBooleans(Json[string] map, bool delegate(string) @safe removeFunc) {
+  return map.removeKeys(removeFunc).removeBooleans;
 }
 // #endregion keys
 
 // #region values
-Json[string] removeArrays(Json[string] map, Json[] values, bool delegate(Json) @safe removeFunc) {
-  return map.removeValues(values, removeFunc).removeArrays;
+Json[string] removeBooleans(Json[string] map, Json[] values, bool delegate(Json) @safe removeFunc) {
+  return map.removeValues(values, removeFunc).removeBooleans;
 }
 
-Json[string] removeArrays(Json[string] map, Json[] values) {
-  return map.removeValues(values).removeArrays;
+Json[string] removeBooleans(Json[string] map, Json[] values) {
+  return map.removeValues(values).removeBooleans;
 }
 
-Json[string]   removeArrays(Json[string] map, bool delegate(Json) @safe removeFunc) {
-  return map.removeValues(removeFunc).removeArrays;
+Json[string]   removeBooleans(Json[string] map, bool delegate(Json) @safe removeFunc) {
+  return map.removeValues(removeFunc).removeBooleans;
 }
 // #endregion values
 
 // #region base
-Json[string] removeArrays(Json[string] map) {
-  return map.removeValues((Json json) => json.isArray);
+Json[string] removeBooleans(Json[string] map) {
+  return map.removeValues((Json json) => json.isBoolean);
 }
 // #endregion base
 // #endregion Json[string]
 
 // #region Json
 // #region indices
-Json removeArrays(Json json, size_t[] indices, bool delegate(size_t) @safe removeFunc) {
-  return json.removeIndices(indices, removeFunc).removeArrays;
+Json removeBooleans(Json json, size_t[] indices, bool delegate(size_t) @safe removeFunc) {
+  return json.removeIndices(indices, removeFunc).removeBooleans;
 }
 
-Json removeArrays(Json json, bool delegate(size_t) @safe removeFunc) {
-  return json.removeIndices(removeFunc).removeArrays;
+Json removeBooleans(Json json, bool delegate(size_t) @safe removeFunc) {
+  return json.removeIndices(removeFunc).removeBooleans;
 }
 
-Json removeArrays(Json json, size_t[] indices) {
-  return json.removeIndices(indices).removeArrays;
+Json removeBooleans(Json json, size_t[] indices) {
+  return json.removeIndices(indices).removeBooleans;
 }
 // #endregion indices
 
 // #region keys
-Json removeArrays(Json json, string[] keys, bool delegate(string) @safe removeFunc) {
-  return json.removeKeys(keys, removeFunc).removeArrays;
+Json removeBooleans(Json json, string[] keys, bool delegate(string) @safe removeFunc) {
+  return json.removeKeys(keys, removeFunc).removeBooleans;
 }
 
-Json removeArrays(Json json, string[] keys) {
-  return json.removeKeys(keys).removeArrays;
+Json removeBooleans(Json json, string[] keys) {
+  return json.removeKeys(keys).removeBooleans;
 }
 
-Json removeArrays(Json json, bool delegate(string) @safe removeFunc) {
-  return json.removeKeys(removeFunc).removeArrays;
+Json removeBooleans(Json json, bool delegate(string) @safe removeFunc) {
+  return json.removeKeys(removeFunc).removeBooleans;
 }
 // #endregion keys
 
 // #region values
-Json removeArrays(Json json, Json[] values, bool delegate(Json) @safe removeFunc) {
-  return json.removeValues(values, removeFunc).removeArrays;
+Json removeBooleans(Json json, Json[] values, bool delegate(Json) @safe removeFunc) {
+  return json.removeValues(values, removeFunc).removeBooleans;
 }
 
-Json removeArrays(Json json, Json[] values) {
-  return json.removeValues(values).removeArrays;
+Json removeBooleans(Json json, Json[] values) {
+  return json.removeValues(values).removeBooleans;
 }
 
-Json removeArrays(Json json, bool delegate(Json) @safe removeFunc) {
-  return json.removeValues(removeFunc).removeArrays;
+Json removeBooleans(Json json, bool delegate(Json) @safe removeFunc) {
+  return json.removeValues(removeFunc).removeBooleans;
 }
 // #endregion values
 
 // #region base
-Json removeArrays(Json json) {
-  return json.removeValues((Json j) => j.isArray);
+Json removeBooleans(Json json) {
+  return json.removeValues((Json j) => j.isBoolean);
 }
 // #endregion base
 // #endregion Json

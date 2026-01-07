@@ -38,6 +38,12 @@ unittest {
   assert(jsons.getArray(2) == [3, 4].toJson, "Expected array at index 2");
 }
 // #endregion index
+
+// #region base
+Json[] getArrays(Json[] jsons) {
+  return jsons.filter!(json => json.isArray).array;
+}
+// #endregion base
 // #endregion Json[]
 
 // #region Json[string]
@@ -98,6 +104,13 @@ unittest {
   assert(map.getArray("third") == [3, 4].toJson, "Expected array at key 'third'");
 }
 // #endregion key
+
+// #region base
+Json[string] getArrays(Json[string] jsons) {
+  Json[string] result;
+  jsons.byKeyValue.filter!(kv => kv.value.isArray).each!(kv => result[kv.key] = kv.value);
+  return result;
+}
 // #endregion Json[string]
 
 // #region Json
@@ -178,4 +191,18 @@ unittest {
   assert(json.getArray("nonexistent", Json("default")) == Json("default"), "Expected default value for non-array at key 'nonexistent'");
 }
 // #endregion key
+
+Json getArrays(Json json) {
+  if (json.isArray) {
+    Json result = Json.emptyArray;
+    json.byValue.filter!(value => value.isArray).each!(value => result ~= value);
+    return result;     
+  }
+  if (json.isArray) {
+    Json result = Json.emptyObject;
+    json.byKeyValue.filter!(kv => kv.value.isArray).each!(kv => result[kv.key] = kv.value);
+    return result;     
+  }
+  return Json(null);
+}
 // #endregion Json
