@@ -7,7 +7,7 @@ module uim.root.datatypes.datetimes.timestamp;
 
 import uim.root;
 
-mixin(Version!("test_uim_root"));
+mixin(ShowModule!());
 
 @safe:
 

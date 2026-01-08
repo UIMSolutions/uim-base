@@ -7,7 +7,7 @@ module uim.root.containers.sequential.arrays.differences;
 
 import uim.root;
 
-mixin(Version!("test_uim_root"));
+mixin(ShowModule!());
 @safe:
 
 auto differences(T)(T[] array1, T[] array2) {

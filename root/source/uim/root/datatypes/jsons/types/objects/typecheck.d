@@ -7,7 +7,7 @@ module uim.root.datatypes.jsons.types.objects.typecheck;
 
 import uim.root;
 
-mixin(Version!("show_module"));
+mixin(ShowModule!());
 
 @safe:
 

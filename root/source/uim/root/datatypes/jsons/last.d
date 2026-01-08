@@ -7,7 +7,7 @@ module uim.root.datatypes.jsons.last;
 
 import uim.root;
 
-mixin(Version!("show_module"));
+mixin(ShowModule!());
 
 @safe:
 

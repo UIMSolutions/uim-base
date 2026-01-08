@@ -7,7 +7,7 @@ module uim.root.containers.sequential.arrays.flatten;
 
 import uim.root;
 
-mixin(Version!("test_uim_root"));
+mixin(ShowModule!());
 @safe:
 
 /** Flattens a two-dimensional array into a one-dimensional array by concatenating all inner arrays.

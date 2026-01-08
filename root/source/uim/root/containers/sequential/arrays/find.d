@@ -7,5 +7,5 @@ module uim.root.containers.sequential.arrays.find;
 
 import uim.root;
 
-mixin(Version!("test_uim_root"));
+mixin(ShowModule!());
 @safe:

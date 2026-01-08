@@ -7,7 +7,7 @@ module uim.root.containers.sequential.arrays.intersect;
 
 import uim.root;
 
-mixin(Version!("test_uim_root"));
+mixin(ShowModule!());
 @safe:
 
 /** Returns the intersection of two arrays as a new array.

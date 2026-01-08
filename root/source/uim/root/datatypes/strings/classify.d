@@ -7,7 +7,7 @@ module uim.root.datatypes.strings.classify;
 
 import uim.root;
 
-mixin(Version!("show_module"));
+mixin(ShowModule!());
 
 @safe:
 

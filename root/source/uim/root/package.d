@@ -46,6 +46,7 @@ public {
   import std.zip;
 
   import vibe.d;
+  import consolecolors;
 }
 
 public {

@@ -2,7 +2,7 @@ module uim.root.datatypes.jsons.filter;
 
 import uim.root;
 
-mixin(Version!("show_module"));
+mixin(ShowModule!());
 
 @safe:
 

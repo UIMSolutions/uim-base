@@ -7,7 +7,7 @@ module uim.root.datatypes.strings.tableize;
 
 import uim.root;
 
-mixin(Version!("show_module"));
+mixin(ShowModule!());
 
 @safe:
 

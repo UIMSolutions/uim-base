@@ -7,7 +7,7 @@ module uim.root.datatypes.strings.md5;
 
 import uim.root;
 
-mixin(Version!("show_module"));
+mixin(ShowModule!());
 
 @safe:
 

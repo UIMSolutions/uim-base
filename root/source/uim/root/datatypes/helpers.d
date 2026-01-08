@@ -7,6 +7,6 @@ module uim.root.datatypes.helpers;
 
 import uim.root;
 
-mixin(Version!("show_module"));
+mixin(ShowModule!());
 
 @safe:

@@ -7,7 +7,7 @@ module uim.root.tests.asserts;
 
 import uim.root;
 
-mixin(Version!("show_module"));
+mixin(ShowModule!());
 
 @safe:
 

@@ -1,8 +1,13 @@
+/****************************************************************************************************************
+* Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
+* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
+* Authors: Ozan Nurettin Süel (aka UIManufaktur)
+*****************************************************************************************************************/
 module uim.root.datatypes.jsons.remove;
 
 import uim.root;
 
-mixin(Version!("show_module"));
+mixin(ShowModule!());
 
 @safe:
 
@@ -10,8 +15,9 @@ mixin(Version!("show_module"));
 // #region indices
 // #region indices with func
 Json removeIndices(Json json, size_t[] indices, bool delegate(size_t) @safe removeFunc) {
-  version(show_function) writeln("Called ", __PRETTY_FUNCTION__);
-      
+  version (show_function)
+    writeln("Called ", __PRETTY_FUNCTION__);
+
   if (!json.isArray || indices.length == 0) {
     return json;
   }
@@ -49,9 +55,8 @@ unittest {
 
 // #region indices
 Json removeIndices(Json json, size_t[] indices) {
-  version(show_function) 
-    writeln(
-      "Called removeIndices(Json json, size_t[] indices)");
+  version (show_function)
+    writeln("Called ", __PRETTY_FUNCTION__);
 
   if (!json.isArray || indices.length == 0) {
     return json;
@@ -89,9 +94,8 @@ unittest {
 
 // #region func
 Json removeIndices(Json json, bool delegate(size_t) @safe removeFunc) {
-  version(show_function) 
-    writeln(
-      "Called removeIndices(Json json, bool delegate(size_t) @safe removeFunc)");
+  version (show_function)
+    writeln("Called ", __PRETTY_FUNCTION__);
 
   if (!json.isArray) {
     return json;
@@ -131,8 +135,8 @@ unittest {
 // #region keys
 // #region keys with func
 Json removeKeys(Json json, string[] keys, bool delegate(string) @safe removeFunc) {
-  version(show_function) writeln("Called ", __PRETTY_FUNCTION__);
-
+  version (show_function)
+    writeln("Called ", __PRETTY_FUNCTION__);
 
   if (!json.isObject || keys.length == 0) {
     return json;
@@ -169,9 +173,8 @@ unittest {
 
 // #region keys
 Json removeKeys(Json json, string[] keys) {
-  version(show_function) 
-    writeln(
-      "Called removeKeys(Json json, string[] keys)");
+  version (show_function)
+    writeln("Called ", __PRETTY_FUNCTION__);
 
   if (!json.isObject || keys.length == 0) {
     return json;
@@ -207,7 +210,8 @@ unittest {
 
 // #region func(key)
 Json removeKeys(Json json, bool delegate(string) @safe removeFunc) {
-  version(show_function) writeln("Called ", __PRETTY_FUNCTION__);
+  version (show_function)
+    writeln("Called ", __PRETTY_FUNCTION__);
 
   if (!json.isObject) {
     return json;
@@ -245,6 +249,9 @@ unittest {
 // #region values
 // #region values with func
 Json removeValues(Json json, Json[] values, bool delegate(Json) @safe removeFunc) {
+  version (show_function)
+    writeln("Called ", __PRETTY_FUNCTION__);
+
   if (values.length == 0) {
     return json;
   }
@@ -293,6 +300,9 @@ unittest {
 
 // #region values
 Json removeValues(Json json, Json[] values) {
+    version (show_function)
+    writeln("Called ", __PRETTY_FUNCTION__);
+
   if (values.length == 0) {
     return json;
   }
@@ -340,6 +350,9 @@ unittest {
 
 // #region func(value)
 Json removeValues(Json json, bool delegate(Json) @safe removeFunc) {
+  version (show_function)
+    writeln("Called ", __PRETTY_FUNCTION__);
+
   if (json.isArray) {
     Json result = Json.emptyArray;
     foreach (value; json.byValue) {
@@ -369,7 +382,10 @@ Json removeValues(Json json, bool delegate(Json) @safe removeFunc) {
 // #region Json[]
 // #region indices
 // #region indices with func
-Json[] removeIndices(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe removeFunc) {
+Json[] removeIndices(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe removeFunc) {  
+  version (show_function)
+    writeln("Called ", __PRETTY_FUNCTION__);
+
   if (jsons.length == 0 || indices.length == 0) { // Nothing to remove
     return jsons;
   }
@@ -407,6 +423,9 @@ unittest {
 
 // #region indices
 Json[] removeIndices(Json[] jsons, size_t[] indices) {
+  version (show_function)
+    writeln("Called ", __PRETTY_FUNCTION__);
+
   if (jsons.length == 0 || indices.length == 0) {
     return jsons;
   }
@@ -443,6 +462,9 @@ unittest {
 
 // #region func
 Json[] removeIndices(Json[] jsons, bool delegate(size_t) @safe removeFunc) {
+  version (show_function)
+    writeln("Called ", __PRETTY_FUNCTION__);
+
   if (jsons.length == 0) {
     return jsons;
   }
@@ -481,6 +503,9 @@ unittest {
 // #region values
 // #region values with func
 Json[] removeValues(Json[] jsons, Json[] values, bool delegate(Json) @safe removeFunc) {
+  version (show_function)
+    writeln("Called ", __PRETTY_FUNCTION__);
+
   if (jsons.length == 0 || values.length == 0) {
     return jsons;
   }
@@ -517,6 +542,9 @@ unittest {
 
 // #region values
 Json[] removeValues(Json[] jsons, Json[] values) {
+  version (show_function)
+    writeln("Called ", __PRETTY_FUNCTION__);
+
   if (jsons.length == 0 || values.length == 0) {
     return jsons;
   }
@@ -551,6 +579,9 @@ unittest {
 
 // #region func(value)
 Json[] removeValues(Json[] jsons, bool delegate(Json) @safe removeFunc) {
+  version (show_function)
+    writeln("Called ", __PRETTY_FUNCTION__);
+
   if (jsons.length == 0) {
     return jsons;
   }
@@ -576,7 +607,8 @@ unittest {
     Json("USA")
   ];
 
-  auto result = removeValues(json, (Json value) @safe => value == Json(30) || value == Json("New York"));
+  auto result = removeValues(json, (Json value) @safe => value == Json(30) || value == Json(
+      "New York"));
   assert(result.length == 2);
   assert(result[0] == Json("John"));
   assert(result[1] == Json("USA"));
@@ -589,6 +621,9 @@ unittest {
 // #region keys
 // #region keys with func
 Json[string] removeKeys(Json[string] map, string[] keys, bool delegate(string) @safe removeFunc) {
+  version (show_function)
+    writeln("Called ", __PRETTY_FUNCTION__);
+
   if (keys.length == 0) {
     return map;
   }
@@ -624,6 +659,9 @@ unittest {
 
 // #region keys
 Json[string] removeKeys(Json[string] map, string[] keys) {
+  version (show_function)
+    writeln("Called ", __PRETTY_FUNCTION__);
+
   if (keys.length == 0) {
     return map;
   }
@@ -658,6 +696,9 @@ unittest {
 
 // #region func(key)
 Json[string] removeKeys(Json[string] map, bool delegate(string) @safe removeFunc) {
+  version (show_function)
+    writeln("Called ", __PRETTY_FUNCTION__);
+
   Json[string] result;
 
   foreach (key, value; map) {
@@ -690,6 +731,9 @@ unittest {
 // #region values
 // #region values with func
 Json[string] removeValues(Json[string] map, Json[] values, bool delegate(Json) @safe removeFunc) {
+  version (show_function)
+    writeln("Called ", __PRETTY_FUNCTION__);
+
   if (values.length == 0) {
     return map;
   }
@@ -725,6 +769,9 @@ unittest {
 
 // #region values
 Json[string] removeValues(Json[string] map, Json[] values) {
+  version (show_function)
+    writeln("Called ", __PRETTY_FUNCTION__);
+
   if (values.length == 0) {
     return map;
   }
@@ -758,6 +805,9 @@ unittest {
 
 // #region func(value)
 Json[string] removeValues(Json[string] map, bool delegate(Json) @safe removeFunc) {
+  version (show_function)
+    writeln("Called ", __PRETTY_FUNCTION__);
+
   Json[string] result;
   foreach (key, value; map) {
     if (!removeFunc(value)) {
@@ -778,7 +828,8 @@ unittest {
     "country": Json("USA")
   ];
 
-  auto result = removeValues(json, (Json value) @safe => value == Json(30) || value == Json("New York"));
+  auto result = removeValues(json, (Json value) @safe => value == Json(30) || value == Json(
+      "New York"));
   assert(result.length == 2);
   assert(result["name"] == "John");
   assert(result["country"] == "USA");
