@@ -21,7 +21,7 @@ bool isAllUndefined(Json[] jsons, size_t[] indices = null) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isAllUndefined for Json[]");
     
   Json[] jsons = [Json.undefined, Json.undefined, Json.undefined];
@@ -36,7 +36,7 @@ unittest {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isAnyUndefined for Json[]");
     
   Json[] jsons = [Json(1), Json(2), Json(3)];
@@ -58,7 +58,7 @@ bool isAnyUndefined(Json[] jsons, size_t[] indices = null) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isUndefined for Json[]");
     
   Json[] jsons = [Json(1), Json.undefined, Json(3)];
@@ -74,7 +74,7 @@ bool isUndefined(Json[] jsons, size_t index) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isUndefined for Json[]");
 
   Json[] jsons = [Json(1), Json.undefined, Json(3)];
@@ -94,7 +94,7 @@ bool isAllUndefined(Json[string] map, string[] keys = null) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isAllUndefined for Json[string]");
     
   Json[string] jsons = [
@@ -125,7 +125,7 @@ bool isAnyUndefined(Json[string] map, string[] keys = null) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isAnyUndefined for Json[string]");
     
   Json[string] jsons = [
@@ -151,7 +151,7 @@ bool isUndefined(Json[string] jsons, string key) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isUndefined for Json[string]");
     
   Json[string] jsons = [
@@ -174,7 +174,7 @@ bool isAllUndefined(Json json, string[][] paths) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isAllUndefined for Json with paths");
     
   Json json = parseJsonString(`{"a": "undefined", "b": {"c": "undefined"}}`);
@@ -190,7 +190,7 @@ bool isAnyUndefined(Json json, string[][] paths) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isAnyUndefined for Json with paths");
     
   Json json = [
@@ -208,7 +208,7 @@ bool isUndefined(Json json, string[] path) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isUndefined for Json with path");
     
   Json json = [
@@ -233,7 +233,7 @@ bool isAllUndefined(Json json, string[] keys) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isAllUndefined for Json with keys");
 
   Json json = [
@@ -255,7 +255,7 @@ bool isAnyUndefined(Json json, string[] keys) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isAnyUndefined for Json with keys");
 
   Json json = [
@@ -276,7 +276,7 @@ bool isUndefined(Json json, string key) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isUndefined for Json with key");
 
   Json json = [
@@ -299,7 +299,7 @@ bool isAllUndefined(Json json, size_t[] indices) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isAllUndefined for Json with indices");
     
   Json json = [Json.undefined, Json.undefined, Json(3)].toJson;
@@ -316,7 +316,7 @@ bool isAnyUndefined(Json json, size_t[] indices) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isAnyUndefined for Json with indices");
     
   /* No longer valid since Json(undefined) is not possible */
@@ -331,7 +331,7 @@ bool isUndefined(Json json, size_t index) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isUndefined for Json with index");
     
   /* No longer valid since Json(undefined) is not possible */
@@ -344,7 +344,7 @@ bool isUndefined(Json json) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isUndefined for Json");
 
   /* No longer valid since Json(undefined) is not possible */

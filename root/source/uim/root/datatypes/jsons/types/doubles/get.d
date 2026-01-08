@@ -17,7 +17,7 @@ Json getDouble(Json[] jsons, size_t index, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing getDouble for Json[] with index");
 
   Json[] jsons = [1.23.toJson, 123.toJson, 4.56.toJson];
@@ -33,7 +33,7 @@ Json getDouble(Json[string] map, string[] path, Json defaultValue = Json(null)) 
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing getDouble for Json[string] with path");
 
   Json[string] map = [
@@ -48,7 +48,7 @@ Json getDouble(Json[string] map, string key, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing getDouble for Json[string] with key");
 
   Json[string] map = [
@@ -66,7 +66,7 @@ Json getDouble(Json json, size_t index, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing getDouble for Json with index");
 
   Json json = [1.23.toJson, 123.toJson, 4.56.toJson].toJson;
@@ -80,7 +80,7 @@ Json getDouble(Json json, string[] path, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing getDouble for Json with path");
 
   Json json = parseJsonString(`{"first": 1.23, "second": 123, "third": 4.56}`);
@@ -94,7 +94,7 @@ Json getDouble(Json json, string key, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing getDouble for Json with key");
 
   Json json = parseJsonString(`{"first": 1.23, "second": 123, "third": 4.56}`);

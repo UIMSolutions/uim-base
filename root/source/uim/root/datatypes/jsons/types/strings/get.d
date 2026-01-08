@@ -11,7 +11,7 @@ Json getString(Json[] jsons, size_t index, Json defaultValue = Json(null)) {
   return jsons.getValue(index).isString() ? jsons[index] : defaultValue;
 }/// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing getString for Json[] with index");
 
   Json[] jsons = [Json("hello"), 123.toJson, Json("world")];
@@ -27,7 +27,7 @@ Json getString(Json[string] map, string[] path, Json defaultValue = Json(null)) 
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing getString for Json[string] with path");
 
   Json[string] map = [
@@ -43,7 +43,7 @@ Json getString(Json[string] map, string key, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing getString for Json[string] with key");
 
   Json[string] map = [
@@ -61,7 +61,7 @@ Json getString(Json json, size_t index, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing getString for Json with index");
 
   Json json = [Json("hello"), 123.toJson, Json("world")].toJson;
@@ -75,7 +75,7 @@ Json getString(Json json, string[] path, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing getString for Json with path");
 
   Json json = parseJsonString(`{"first": "hello", "second": 123, "third": "world"}`);
@@ -89,7 +89,7 @@ Json getString(Json json, string key, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing getString for Json with key");
 
   Json json = parseJsonString(`{"first": "hello", "second": 123, "third": "world"}`);

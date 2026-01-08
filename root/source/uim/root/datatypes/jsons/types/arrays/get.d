@@ -29,7 +29,7 @@ Json getArray(Json[] jsons, size_t index, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing getArray for Json[] with index");
 
   Json[] jsons = [[1, 2].toJson, ["a": 1].toJson, [3, 4].toJson];
@@ -64,7 +64,7 @@ Json getArray(Json[string] map, string[] path, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing getArray for Json[string] with path");
 
   Json[string] map = [
@@ -93,7 +93,7 @@ Json getArray(Json[string] map, string key, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing getArray for Json[string] with key");
 
   Json[string] map = [
@@ -131,7 +131,7 @@ Json getArray(Json json, size_t index, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing getArray with index");
 
   Json json = [[1, 2].toJson, ["a": 1].toJson, [3, 4].toJson].toJson;
@@ -158,7 +158,7 @@ Json getArray(Json json, string[] path, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing getArray with path");
 
   Json json = parseJsonString(`{"data": { "test": [ [1, 2], {"a": 1}, [3, 4] ]}}`);

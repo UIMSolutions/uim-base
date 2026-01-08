@@ -37,7 +37,7 @@ V[][K] groupBy(T, K, V)(T[] values, K delegate(T) @safe keyFunc, V delegate(T) @
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing groupBy");
 
   // Define a struct for testing

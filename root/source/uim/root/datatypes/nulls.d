@@ -29,7 +29,7 @@ auto Null(T : bool)() {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing Null for bool");
 
   assert(Null!bool == false);

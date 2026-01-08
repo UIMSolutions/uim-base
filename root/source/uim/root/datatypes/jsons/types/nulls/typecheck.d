@@ -19,7 +19,7 @@ bool isAllNull(Json[] jsons, size_t[] indices = null) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isAllNull for Json[]");
     
   Json[] jsons = [Json(null), Json(null), Json(null)];
@@ -40,7 +40,7 @@ bool isAnyNull(Json[] jsons, size_t[] indices = null) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isAnyNull for Json[]");
     
   Json[] jsons = [Json(1), Json(2), Json(3)];
@@ -58,7 +58,7 @@ bool isNull(Json[] jsons, size_t index) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isNull for Json[]");
     
   Json[] jsons = [Json(1), Json(2), Json(3)];
@@ -81,7 +81,7 @@ bool isAllNull(Json[string] jsons, string[] keys = null) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isAllNull for Json[string]");
     
   Json[string] jsons = [ "a": Json(null), "b": Json(null) ];
@@ -102,7 +102,7 @@ bool isAnyNull(Json[string] jsons, string[] keys = null) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isAnyNull for Json[string]");
     
   Json[string] jsons = [ "a": Json(1), "b": Json(2) ];
@@ -120,7 +120,7 @@ bool isNull(Json[string] jsons, string key) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isNull for Json[string]"); 
   Json[string] jsons = [ "a": Json(1), "b": Json(2) ];
   assert(!isNull(jsons, "a"));
@@ -141,7 +141,7 @@ bool isAllNull(Json json, string[][] paths) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isAllNull for Json with paths");
     
   Json json = [
@@ -164,7 +164,7 @@ bool isAnyNull(Json json, string[][] paths) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isAnyNull for Json with paths");
     
   Json json = [
@@ -183,7 +183,7 @@ bool isNull(Json json, string[] path) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isNull for Json with path");
     
   Json json = [
@@ -209,7 +209,7 @@ bool isAllNull(Json json, string[] keys) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isAllNull for Json with keys");
     
   Json json = [
@@ -230,7 +230,7 @@ bool isAnyNull(Json json, string[] keys) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isAnyNull for Json with keys");
     
   Json json = [
@@ -251,7 +251,7 @@ bool isNull(Json json, string key) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isNull for Json with key");
     
   Json json = [
@@ -274,7 +274,7 @@ bool isAllNull(Json json, size_t[] indices) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isAllNull for Json with indices");
     
   Json json = [ Json(null), Json(5), Json(null) ].toJson;
@@ -291,7 +291,7 @@ bool isAnyNull(Json json, size_t[] indices) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isAnyNull for Json with indices");
     
   Json json = [ Json(1), Json(null), Json(3) ].toJson;
@@ -308,7 +308,7 @@ bool isNull(Json json, size_t index) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isNull for Json with index");
     
   Json json = [ Json(1), Json(null), Json(3) ].toJson;
@@ -323,7 +323,7 @@ bool isNull(Json json) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isNull for Json");
     
   assert(isNull(Json(null)));

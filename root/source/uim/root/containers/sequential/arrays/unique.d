@@ -22,7 +22,7 @@ T[] unique(T)(T[] values) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing unique function");
   auto arr = [1, 2, 2, 3, 4, 4, 5];
 

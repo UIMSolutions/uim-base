@@ -27,7 +27,7 @@ long toTimestamp(SysTime untilTime) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing toTimestamp");
 
 /*   auto sysTime = SysTime(2024, 6, 15, 12, 0, 0);
@@ -41,7 +41,7 @@ SysTime fromTimestamp(string aTimestamp) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing fromTimestamp");
 
   /* auto timestampStr = "1718472000000000";
@@ -60,7 +60,7 @@ SysTime fromTimestamp(long aTimestamp) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing fromTimestamp with long");
 
   /*
@@ -79,7 +79,7 @@ long toJSTimestamp(long jsTimestamp) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing toJSTimestamp");
 
   auto jsTimestamp = 1718472000000;
@@ -92,7 +92,7 @@ SysTime fromJSTimestamp(long jsTimestamp) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing fromJSTimestamp");
 
   /* auto jsTimestamp = 1718472000000;
@@ -111,7 +111,7 @@ auto now() {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing now function");
 
   auto time1 = now;
@@ -130,7 +130,7 @@ DateTime nowDateTime() {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing nowDateTime function");
 
   auto dt1 = nowDateTime();
@@ -159,7 +159,7 @@ string timeToDateString(size_t time, string regionFormat = "DE") {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing timeToDateString function");
 
   /* 

@@ -31,7 +31,7 @@ V[K] removeKeys(K, V)(V[K] map, K[] keys) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeKey with keys");
 
   int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];
@@ -66,7 +66,7 @@ V[K] removeValue(K, V)(V[K] map, V[] values) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeValue with values");
 
   int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];
@@ -98,7 +98,7 @@ V[K] removeMap(K, V)(V[K] map, bool delegate(K key, V value) @safe removeFunc) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeMap with key-value delegate");
 
   int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];
@@ -121,7 +121,7 @@ V[K] removeMap(K, V)(V[K] map, bool delegate(K) @safe removeFunc) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeMap with key delegate");
     
   int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];
@@ -142,7 +142,7 @@ V[K] removeMap(K, V)(V[K] map, bool delegate(V) @safe removeFunc) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeMap with value delegate");
 
   int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];

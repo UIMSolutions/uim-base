@@ -19,7 +19,7 @@ size_t countBooleans(Json json, size_t[] indices, bool delegate(size_t) @safe co
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans with indices and delegate");
 
   auto j1 = true.toJson;
@@ -47,7 +47,7 @@ size_t countBooleans(Json json, size_t[] indices) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans with indices");
 
   auto j1 = true.toJson;
@@ -72,7 +72,7 @@ size_t countBooleans(Json json, bool delegate(size_t) @safe countFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans with delegate");
 
   auto j1 = true.toJson;
@@ -100,7 +100,7 @@ size_t countBooleans(Json json, string[][] paths, bool delegate(string[]) @safe 
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans with paths and delegate");
 
   Json json = [
@@ -127,7 +127,7 @@ size_t countBooleans(Json json, string[][] paths) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans with paths");
 
   Json json = [
@@ -151,7 +151,7 @@ size_t countBooleans(Json json, string[] keys, bool delegate(string) @safe count
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans with keys and delegate");
 
   Json json = [
@@ -172,7 +172,7 @@ size_t countBooleans(Json json, string[] keys) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans with keys");
 
   Json json = [
@@ -192,7 +192,7 @@ size_t countBooleans(Json json, bool delegate(string) @safe countFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans for Json with delegate");
 
   Json json = [
@@ -219,7 +219,7 @@ size_t countBooleans(Json json, Json[] values, bool delegate(Json) @safe countFu
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans with values and delegate");
 
   Json json = [
@@ -245,7 +245,7 @@ size_t countBooleans(Json json, bool delegate(Json) @safe countFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans with delegate");
 
   Json json = [
@@ -265,7 +265,7 @@ size_t countBooleans(Json json, bool delegate(string, Json) @safe countFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans for Json map with delegate");
 
   Json json = [
@@ -289,7 +289,7 @@ size_t countBooleans(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans for Json[] with indices and delegate");
 
   Json[] jsons = [
@@ -312,7 +312,7 @@ size_t countBooleans(Json[] jsons, size_t[] indices) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans for Json[] with indices");
 
   Json[] jsons = [
@@ -337,7 +337,7 @@ size_t countBooleans(Json[] jsons, bool delegate(size_t) @safe countFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans for Json[] with delegate");
 
   Json[] jsons = [
@@ -360,7 +360,7 @@ size_t countBooleans(Json[] jsons, Json[] values, bool delegate(Json) @safe coun
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans for Json[] with values and delegate");
 
   Json[] jsons = [
@@ -380,7 +380,7 @@ size_t countBooleans(Json[] jsons, Json[] values) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans for Json[] with values");
 
   Json[] jsons = [
@@ -399,7 +399,7 @@ size_t countBooleans(Json[] jsons, bool delegate(Json) @safe countFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans for Json[] with delegate");
 
   Json[] jsons = [
@@ -418,7 +418,7 @@ size_t countBooleans(Json[] jsons) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans for Json[] without delegate");
 
   Json[] jsons = [
@@ -439,7 +439,7 @@ size_t countBooleans(Json[string] map, string[][] paths, bool delegate(string[])
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans for Json[string] with paths and delegate");
 
   Json[string] map = [
@@ -462,7 +462,7 @@ size_t countBooleans(Json[string] map, string[][] paths) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans for Json[string] with paths");
 
   Json[string] map = [
@@ -482,7 +482,7 @@ size_t countBooleans(Json[string] map, string[] keys, bool delegate(string) @saf
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans with keys and delegate");
 
   Json[string] map = [
@@ -501,7 +501,7 @@ size_t countBooleans(Json[string] map, string[] keys) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans with keys");
 
   Json[string] map = [
@@ -519,7 +519,7 @@ size_t countBooleans(Json[string] map, bool delegate(string) @safe countFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans with keys and delegate");
 
   Json[string] map = [
@@ -540,7 +540,7 @@ size_t countBooleans(Json[string] map, Json[] values, bool delegate(Json) @safe 
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans with values and delegate");
 
   Json[string] map = [
@@ -560,7 +560,7 @@ size_t countBooleans(Json[string] map, Json[] values) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans with values");
 
   Json[string] map = [
@@ -579,7 +579,7 @@ size_t countBooleans(Json[string] map, bool delegate(Json) @safe countFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans with values and delegate");
 
   Json[string] map = [
@@ -599,7 +599,7 @@ size_t countBooleans(Json[string] map, bool delegate(string, Json) @safe countFu
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countBooleans for Json[string] with key-value delegate");
 
   Json[string] map = [

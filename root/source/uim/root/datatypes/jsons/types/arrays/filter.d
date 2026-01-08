@@ -19,7 +19,7 @@ Json[] filterArrays(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe 
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterArrays for Json[] with indices and filterFunc");
 
   Json[] jsons = [
@@ -40,7 +40,7 @@ Json[] filterArrays(Json[] jsons, size_t[] indices) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterArrays for Json[] with indices");
 
   Json[] jsons = [
@@ -60,7 +60,7 @@ Json[] filterArrays(Json[] jsons, bool delegate(size_t) @safe filterFunc) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterArrays for Json[] with filterFunc");
 
   Json[] jsons = [
@@ -82,7 +82,7 @@ Json[] filterArrays(Json[] jsons, Json[] values, bool delegate(Json) @safe filte
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterIndices for Json[] with values and filterFunc");
 
   Json[] jsons = [
@@ -102,7 +102,7 @@ Json[] filterArrays(Json[] jsons, bool delegate(Json) @safe filterFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterArrays for Json[] with filterFunc");
 
   Json[] jsons = [
@@ -120,7 +120,7 @@ Json[] filterArrays(Json[] jsons, Json[] values) {
   return jsons.filterValues(values).filterArrays;
 } /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterArrays for Json[] with values");
 
   Json[] jsons = [
@@ -143,7 +143,7 @@ Json[] filterArrays(Json[] jsons) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterArrays for Json[] by datatype");
 
   Json[] jsons = [
@@ -166,7 +166,7 @@ Json[string] filterArrays(Json[string] map, string[][] paths, bool delegate(stri
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterArrays for Json[string] with paths and filterFunc");
 
   Json[string] map = [
@@ -187,7 +187,7 @@ Json[string] filterArrays(Json[string] map, string[][] paths) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterArrays for Json[string] with paths");
 
   Json[string] map = [
@@ -210,7 +210,7 @@ Json[string] filterArrays(Json[string] map, string[] keys, bool delegate(string)
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterArrays for Json[string] with keys and filterFunc");
 
   Json[string] map = [
@@ -231,7 +231,7 @@ Json[string] filterArrays(Json[string] map, string[] keys) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterArrays for Json[string] with keys");
 
   Json[string] map = [
@@ -263,7 +263,7 @@ Json[string] filterArrays(Json[string] map, bool delegate(string) @safe filterFu
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterArrays for Json[string] with filterFunc");
 
   Json[string] map = [
@@ -286,7 +286,7 @@ Json[string] filterArrays(Json[string] map, Json[] values, bool delegate(Json) @
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterArrays for Json[string] with values and filterFunc");
 
   Json[string] map = [
@@ -309,7 +309,7 @@ Json[string] filterArrays(Json[string] map, Json[] values) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterArrays for Json[string] with values");
 
   Json[string] map = [
@@ -332,7 +332,7 @@ Json[string] filterArrays(Json[string] map, bool delegate(Json) @safe filterFunc
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterArrays for Json[string] with filterFunc");
 
   Json[string] map = [
@@ -353,7 +353,7 @@ Json[string] filterArrays(Json[string] map) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterArrays for Json[string]");
 
   Json[string] map = [
@@ -379,7 +379,7 @@ Json filterArrays(Json json, size_t[] indices, bool delegate(size_t) @safe filte
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterArrays with indices and filterFunc");
 
   Json json = [
@@ -399,7 +399,7 @@ Json filterArrays(Json json, size_t[] indices) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterArrays with indices");
 
   Json json = [
@@ -419,7 +419,7 @@ Json filterArrays(Json json, bool delegate(size_t) @safe filterFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterArrays with filterFunc");
 
   Json json = [
@@ -441,7 +441,7 @@ Json filterArrays(Json json, Json[] values, bool delegate(Json) @safe filterFunc
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterArrays with values and filterFunc");
 
   Json json = [
@@ -462,7 +462,7 @@ Json filterArrays(Json json, bool delegate(Json) @safe filterFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterArrays with filterFunc");
 
   Json json = [
@@ -481,7 +481,7 @@ Json filterArrays(Json json) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterArrays for Json by datatype");
 
   Json json = [

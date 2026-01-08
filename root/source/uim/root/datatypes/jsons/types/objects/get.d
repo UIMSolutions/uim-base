@@ -12,7 +12,7 @@ Json getObject(Json[] jsons, size_t index, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing getObject for Json[] with index");
 
   Json[] jsons = [ ["a":1].toJson, [1,2].toJson, ["b":2].toJson ];
@@ -28,7 +28,7 @@ Json getObject(Json[string] map, string[] path, Json defaultValue = Json(null)) 
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing getObject for Json[string] with path");
 
   Json[string] map = [
@@ -44,7 +44,7 @@ Json getObject(Json[string] map, string key, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing getObject for Json[string] with key");
 
   Json[string] map = [
@@ -62,7 +62,7 @@ Json getObject(Json json, size_t index, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing getObject for Json with index");
 
   Json json = [ ["a":1].toJson, [1,2].toJson, ["b":2].toJson ].toJson;
@@ -76,7 +76,7 @@ Json getObject(Json json, string[] path, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing getObject for Json with path");
 
   Json json = parseJsonString(`{"first": {"a":1}, "second": [1,2], "third": {"b":2}}`);
@@ -90,7 +90,7 @@ Json getObject(Json json, string key, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing getObject for Json with key");
 
   Json json = parseJsonString(`{"first": {"a":1}, "second": [1,2], "third": {"b":2}}`);

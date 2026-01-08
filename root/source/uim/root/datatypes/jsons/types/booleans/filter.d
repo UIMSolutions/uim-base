@@ -19,7 +19,7 @@ Json[] filterBooleans(Json[] jsons, size_t[] indices, bool delegate(size_t) @saf
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterBooleans for Json[] with indices and filterFunc");
 
   Json[] jsons = [
@@ -40,7 +40,7 @@ Json[] filterBooleans(Json[] jsons, size_t[] indices) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterBooleans for Json[] with indices");
 
   Json[] jsons = [
@@ -60,7 +60,7 @@ Json[] filterBooleans(Json[] jsons, bool delegate(size_t) @safe filterFunc) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterBooleans for Json[] with filterFunc");
 
   Json[] jsons = [
@@ -83,7 +83,7 @@ Json[] filterBooleans(Json[] jsons, Json[] values, bool delegate(Json) @safe fil
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterBooleans for Json[] with values and filterFunc");
 
   Json[] jsons = [
@@ -103,7 +103,7 @@ Json[] filterBooleans(Json[] jsons, bool delegate(Json) @safe filterFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterBooleans for Json[] with filterFunc");
 
   Json[] jsons = [
@@ -121,7 +121,7 @@ Json[] filterBooleans(Json[] jsons, Json[] values) {
   return jsons.filterValues(values).filterBooleans;
 } /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterBooleans for Json[] by values");
 
   Json[] jsons = [
@@ -144,7 +144,7 @@ Json[] filterBooleans(Json[] jsons) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterBooleans for Json[] by datatype");
 
   Json[] jsons = [
@@ -167,7 +167,7 @@ Json[string] filterBooleans(Json[string] map, string[][] paths, bool delegate(st
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterBooleans for Json[string] with paths and filterFunc");
 
   Json[string] map = [
@@ -189,7 +189,7 @@ Json[string] filterBooleans(Json[string] map, string[][] paths) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterBooleans for Json[string] with paths");
 
   Json[string] map = [
@@ -212,7 +212,7 @@ Json[string] filterBooleans(Json[string] map, string[] keys, bool delegate(strin
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterBooleans for Json[string] with keys and filterFunc");
 
   Json[string] map = [
@@ -235,7 +235,7 @@ Json[string] filterBooleans(Json[string] map, string[] keys) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterBooleans for Json[string] with keys");
 
   Json[string] map = [
@@ -268,7 +268,7 @@ Json[string] filterBooleans(Json[string] map, bool delegate(string) @safe filter
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterBooleans for Json[string] with filterFunc");
 
   Json[string] map = [
@@ -291,7 +291,7 @@ Json[string] filterBooleans(Json[string] map, Json[] values, bool delegate(Json)
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterBooleans for Json[string] with values and filterFunc");
 
   Json[string] map = [
@@ -314,7 +314,7 @@ Json[string] filterBooleans(Json[string] map, Json[] values) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterBooleans for Json[string] with values");
 
   Json[string] map = [
@@ -336,7 +336,7 @@ Json[string] filterBooleans(Json[string] map, bool delegate(Json) @safe filterFu
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterBooleans for Json[string] with filterFunc");
 
   Json[string] map = [
@@ -357,7 +357,7 @@ Json[string] filterBooleans(Json[string] map) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterBooleans for Json[string] all arrays");
 
   Json[string] map = [
@@ -382,7 +382,7 @@ Json filterBooleans(Json json, size_t[] indices, bool delegate(size_t) @safe fil
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterBooleans with indices and filterFunc");
 
   Json json = [Json(1), Json(2), Json(3), Json(4), Json(5)].toJson;
@@ -399,7 +399,7 @@ Json filterBooleans(Json json, size_t[] indices) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterBooleans with indices");
 
   Json json = [Json(1), Json(2), Json(3), Json(4), Json(5)].toJson;
@@ -415,7 +415,7 @@ Json filterBooleans(Json json, bool delegate(size_t) @safe filterFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterBooleans with filterFunc");
 
   Json json = [Json(1), Json(2), Json(3), Json(4), Json(5)].toJson;
@@ -434,7 +434,7 @@ Json filterBooleans(Json json, Json[] values, bool delegate(Json) @safe filterFu
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterBooleans with values and filterFunc");
 
   Json json = [
@@ -454,7 +454,7 @@ Json filterBooleans(Json json, bool delegate(Json) @safe filterFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterBooleans with filterFunc");
 
   Json json = [
@@ -473,7 +473,7 @@ Json filterBooleans(Json json) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterBooleans for Json by datatype");
 
   Json json = [

@@ -28,7 +28,7 @@ T[] moveForward(T)(T[] values, size_t fromIndex, size_t toIndex) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing moveForward"); 
 
   auto arr = [1, 2, 3, 4, 5];

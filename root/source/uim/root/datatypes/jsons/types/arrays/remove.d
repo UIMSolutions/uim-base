@@ -14,7 +14,7 @@ mixin(Version!("show_module"));
 // #region Json[]
 // #region indices
 Json[] removeArrays(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe removeFunc) {
-  version (show_call) writeln(
+  version (show_function) writeln(
     "Called removeArrays(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe removeFunc)");
 
   return jsons.removeIndices(indices, (size_t index) => jsons[index].isArray && removeFunc(index));
@@ -46,7 +46,7 @@ unittest {
 }
 
 Json[] removeArrays(Json[] jsons, size_t[] indices) {
-  version (show_call) writeln(
+  version (show_function) writeln(
     "Called removeArrays(Json[] jsons, size_t[] indices)");
 
   return jsons.removeIndices(indices, (index) => jsons[index].isArray);
@@ -67,7 +67,7 @@ unittest {
 }
 
 Json[] removeArrays(Json[] jsons, bool delegate(size_t) @safe removeFunc) {
-  version (show_call) writeln(
+  version (show_function) writeln(
     "Called removeArrays(Json[] jsons, bool delegate(size_t) @safe removeFunc)");
 
   return jsons.removeIndices((size_t index) => jsons[index].isArray && removeFunc(index));
@@ -374,10 +374,10 @@ unittest {
 }
 
 Json removeArrays(Json json, size_t[] indices) {
-  version(show_call) 
+  version(show_function) 
     writeln(
       "Called removeArrays(Json json, size_t[] indices)");
-      
+
   return json.removeIndices(indices, (size_t index) => json[index].isArray);
 }
 ///

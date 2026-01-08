@@ -139,7 +139,7 @@ T[] replaceFirst(T)(T[] values, T searchValue, T newValue) {
 }
 /// 
 unittest {
-  version (test_uim_root) writeln("Testing replaceFirst function");
+  version (show_test) writeln("Testing replaceFirst function");
 
   auto arr = [1, 2, 3, 2, 4];
   auto result = replaceFirst(arr, 2, 99);
@@ -168,7 +168,7 @@ T[] replaceLast(T)(T[] values, T searchValue, T newValue) {
 }
 /// 
 unittest {
-  version (test_uim_root) writeln("Testing replaceLast function");
+  version (show_test) writeln("Testing replaceLast function");
 
   auto arr = [1, 2, 3, 2, 4];
   auto result = replaceLast(arr, 2, 99);

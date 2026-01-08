@@ -26,7 +26,7 @@ T last(T)(T[] values) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing last");
 
   // Test last with non-empty array

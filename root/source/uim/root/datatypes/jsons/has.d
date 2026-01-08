@@ -12,7 +12,7 @@ bool hasAllValue(T)(Json json, T[] values) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing hasAllValue for Json with values");
 
   Json json = [
@@ -30,7 +30,7 @@ bool hasAnyValue(T)(Json json, T[] values) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing hasAnyValue for Json with values");
 
   Json json = [
@@ -59,7 +59,7 @@ bool hasValue(T)(Json json, T value) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing hasValue for Json with value");
 
   Json json = [
@@ -88,7 +88,7 @@ bool hasAllPath(Json json, string[][] paths) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing hasAllPath for Json with paths");
 
   Json json = [
@@ -127,7 +127,7 @@ bool hasAnyPath(Json json, string[][] paths) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing hasAnyPath for Json with paths");
 
   Json json = [
@@ -173,7 +173,7 @@ bool hasPath(Json json, string[] path) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing hasPath for Json with path");
 
   Json json = [
@@ -212,7 +212,7 @@ bool hasPath(Json[string] map, string[] path) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing hasPath for Json with path");
 
   Json json = [
@@ -240,7 +240,7 @@ bool hasAllKey(Json json, string[] keys) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing hasAllKey for Json with keys");
 
   Json json = [
@@ -259,7 +259,7 @@ bool hasAnyKey(Json json, string[] keys) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing hasAnyKey for Json with keys");
 
   Json json = [
@@ -288,7 +288,7 @@ bool hasKey(Json json, string key) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing hasKey for Json with key");
 
   // Non-object JSON -> always false
@@ -330,7 +330,7 @@ bool hasKeyValue(Json json, string key, Json value) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing hasKeyValue for Json with key and value");
 
   Json json = [

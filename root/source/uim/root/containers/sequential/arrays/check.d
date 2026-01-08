@@ -16,7 +16,7 @@ bool isNull(V)(V[] array) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isNull function");
 
   int[] array = null;
@@ -31,7 +31,7 @@ bool isEmpty(V)(V[] array) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isEmpty function");
 
   int[] array = null;
@@ -46,7 +46,7 @@ bool isSingle(V)(V[] array) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isSingle function");
 
   int[] array = [1];
@@ -61,7 +61,7 @@ bool isMulti(V)(V[] array) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing isMulti function");
 
   int[] array = [1, 2];

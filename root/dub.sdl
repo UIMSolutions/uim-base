@@ -22,7 +22,7 @@ configuration "modules" {
 }
 
 configuration "calls" {
-	versions "show_call"
+	versions "show_function"
 }
 
 configuration "tests" {
@@ -30,7 +30,7 @@ configuration "tests" {
 }
 
 configuration "verbose" {
-	versions "show_test" "show_call" "show_module"
+	versions "show_test" "show_function" "show_module"
 }
 
 buildRequirements "allowWarnings" "silenceDeprecations"

@@ -19,7 +19,7 @@ Json[] filterStrings(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterStrings for Json[] with indices and filterFunc");
 
   Json[] jsons = [
@@ -40,7 +40,7 @@ Json[] filterStrings(Json[] jsons, size_t[] indices) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterStrings for Json[] with indices");
 
   Json[] jsons = [
@@ -60,7 +60,7 @@ Json[] filterStrings(Json[] jsons, bool delegate(size_t) @safe filterFunc) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterStrings for Json[] with filterFunc");
 
   Json[] jsons = [
@@ -83,7 +83,7 @@ Json[] filterStrings(Json[] jsons, Json[] values, bool delegate(Json) @safe filt
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterStrings for Json[] with values and filterFunc");
 
   Json[] jsons = [
@@ -103,7 +103,7 @@ Json[] filterStrings(Json[] jsons, bool delegate(Json) @safe filterFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterStrings for Json[] with filterFunc");
 
   Json[] jsons = [
@@ -121,7 +121,7 @@ Json[] filterStrings(Json[] jsons, Json[] values) {
   return jsons.filterValues(values).filterStrings;
 } /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterStrings for Json[] by values");
 
   Json[] jsons = [
@@ -144,7 +144,7 @@ Json[] filterStrings(Json[] jsons) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterStrings for Json[] by datatype");
 
   Json[] jsons = [
@@ -167,7 +167,7 @@ Json[string] filterStrings(Json[string] map, string[][] paths, bool delegate(str
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterStrings for Json[string] with paths and filterFunc");
 
   Json[string] map = [
@@ -189,7 +189,7 @@ Json[string] filterStrings(Json[string] map, string[][] paths) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterStrings for Json[string] with paths");
 
   Json[string] map = [
@@ -212,7 +212,7 @@ Json[string] filterStrings(Json[string] map, string[] keys, bool delegate(string
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterStrings for Json[string] with keys and filterFunc");
 
   Json[string] map = [
@@ -235,7 +235,7 @@ Json[string] filterStrings(Json[string] map, string[] keys) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterStrings for Json[string] with keys");
 
   Json[string] map = [
@@ -268,7 +268,7 @@ Json[string] filterStrings(Json[string] map, bool delegate(string) @safe filterF
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterStrings for Json[string] with filterFunc");
 
   Json[string] map = [
@@ -291,7 +291,7 @@ Json[string] filterStrings(Json[string] map, Json[] values, bool delegate(Json) 
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterStrings for Json[string] with values and filterFunc");
 
   Json[string] map = [
@@ -314,7 +314,7 @@ Json[string] filterStrings(Json[string] map, Json[] values) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterStrings for Json[string] with values");
 
   Json[string] map = [
@@ -336,7 +336,7 @@ Json[string] filterStrings(Json[string] map, bool delegate(Json) @safe filterFun
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterStrings for Json[string] with filterFunc");
 
   Json[string] map = [
@@ -357,7 +357,7 @@ Json[string] filterStrings(Json[string] map) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterStrings for Json[string] all arrays");
 
   Json[string] map = [
@@ -382,7 +382,7 @@ Json filterStrings(Json json, size_t[] indices, bool delegate(size_t) @safe filt
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterStrings with indices and filterFunc");
 
   Json json = [Json(1.1), Json(2.1), Json("abc"), Json("def"), Json("xyz")].toJson;
@@ -398,7 +398,7 @@ Json filterStrings(Json json, size_t[] indices) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterStrings with indices");
 
   Json json = [Json(1.1), Json(2.1), Json("abc"), Json("def"), Json("xyz")].toJson;
@@ -413,7 +413,7 @@ Json filterStrings(Json json, bool delegate(size_t) @safe filterFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterStrings with filterFunc");
 
   Json json1 = [Json(1), Json(2), Json(3), Json(4), Json(5)].toJson;
@@ -436,7 +436,7 @@ Json filterStrings(Json json, Json[] values, bool delegate(Json) @safe filterFun
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterStrings with values and filterFunc");
 
   Json json = [
@@ -456,7 +456,7 @@ Json filterStrings(Json json, bool delegate(Json) @safe filterFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterStrings with filterFunc");
 
   Json json = [
@@ -475,7 +475,7 @@ Json filterStrings(Json json) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing filterStrings for Json by datatype");
 
   Json json = [

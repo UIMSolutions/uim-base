@@ -34,7 +34,7 @@ auto chunks(T)(T[] arr, size_t chunkSize) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing chunks function");
 
   auto testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];

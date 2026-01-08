@@ -10,9 +10,7 @@ mixin(Version!("show_module"));
 // #region indices
 // #region indices with func
 Json removeIndices(Json json, size_t[] indices, bool delegate(size_t) @safe removeFunc) {
-  version(show_call) 
-    writeln(
-      "Called removeIndices(Json json, size_t[] indices, bool delegate(size_t) @safe removeFunc)");
+  version(show_function) writeln("Called ", __PRETTY_FUNCTION__);
       
   if (!json.isArray || indices.length == 0) {
     return json;
@@ -51,10 +49,10 @@ unittest {
 
 // #region indices
 Json removeIndices(Json json, size_t[] indices) {
-  version(show_call) 
+  version(show_function) 
     writeln(
       "Called removeIndices(Json json, size_t[] indices)");
-      
+
   if (!json.isArray || indices.length == 0) {
     return json;
   }
@@ -91,6 +89,10 @@ unittest {
 
 // #region func
 Json removeIndices(Json json, bool delegate(size_t) @safe removeFunc) {
+  version(show_function) 
+    writeln(
+      "Called removeIndices(Json json, bool delegate(size_t) @safe removeFunc)");
+
   if (!json.isArray) {
     return json;
   }
@@ -129,6 +131,9 @@ unittest {
 // #region keys
 // #region keys with func
 Json removeKeys(Json json, string[] keys, bool delegate(string) @safe removeFunc) {
+  version(show_function) writeln("Called ", __PRETTY_FUNCTION__);
+
+
   if (!json.isObject || keys.length == 0) {
     return json;
   }
@@ -164,6 +169,10 @@ unittest {
 
 // #region keys
 Json removeKeys(Json json, string[] keys) {
+  version(show_function) 
+    writeln(
+      "Called removeKeys(Json json, string[] keys)");
+
   if (!json.isObject || keys.length == 0) {
     return json;
   }
@@ -198,6 +207,8 @@ unittest {
 
 // #region func(key)
 Json removeKeys(Json json, bool delegate(string) @safe removeFunc) {
+  version(show_function) writeln("Called ", __PRETTY_FUNCTION__);
+
   if (!json.isObject) {
     return json;
   }

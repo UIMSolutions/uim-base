@@ -31,7 +31,7 @@ size_t countIndices(Json json, size_t[] indices, bool delegate(size_t) @safe cou
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countIndices with indices and delegate");
 
   auto j1 = 42.toJson;
@@ -65,7 +65,7 @@ size_t countIndices(Json json, size_t[] indices) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countIndices with indices");
 
   auto j1 = 42.toJson;
@@ -97,7 +97,7 @@ size_t countIndices(Json json, bool delegate(size_t) @safe countFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countIndices with delegate");
 
   auto j1 = 42.toJson;
@@ -133,7 +133,7 @@ size_t countPaths(Json json, string[][] paths, bool delegate(string[]) @safe cou
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countPaths with paths and delegate");
 
   Json json = [
@@ -166,7 +166,7 @@ size_t countPaths(Json json, string[][] paths) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countPaths with paths");
 
   Json json = [
@@ -202,7 +202,7 @@ size_t countKeys(Json json, string[] keys, bool delegate(string) @safe countFunc
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countKeys with keys and delegate");
 
   Json json = [
@@ -233,7 +233,7 @@ size_t countKeys(Json json, string[] keys) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countKeys with keys");
 
   Json json = [
@@ -263,7 +263,7 @@ size_t countKeys(Json json, bool delegate(string) @safe countFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countKeys with delegate");
 
   Json json = [
@@ -304,7 +304,7 @@ size_t countValues(Json json, Json[] values, bool delegate(Json) @safe countFunc
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countValues with values and delegate");
 
   Json json = [
@@ -343,7 +343,7 @@ size_t countValues(Json json, Json[] values) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countValues with values");
 
   Json json = [
@@ -381,7 +381,7 @@ size_t countValues(Json json, bool delegate(Json) @safe countFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countValues with delegate");
 
   Json json = [
@@ -412,7 +412,7 @@ size_t countMap(Json json, bool delegate(string, Json) @safe countFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countMap with delegate");
 
   Json json = [
@@ -447,7 +447,7 @@ size_t countIndices(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe 
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countIndices for Json[] with indices and delegate");
 
   Json[] jsons = [
@@ -478,7 +478,7 @@ size_t countIndices(Json[] jsons, size_t[] indices) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countIndices for Json[] with indices");
 
   Json[] jsons = [
@@ -512,7 +512,7 @@ size_t countIndices(Json[] jsons, bool delegate(size_t) @safe countFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countIndices for Json[] with delegate");
 
   Json[] jsons = [
@@ -546,7 +546,7 @@ size_t countValues(Json[] jsons, Json[] values, bool delegate(Json) @safe countF
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countArrays for Json[] with values and delegate");
 
   Json[] jsons = [
@@ -576,7 +576,7 @@ size_t countValues(Json[] jsons, Json[] values) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countArrays for Json[] with values");
 
   Json[] jsons = [
@@ -605,7 +605,7 @@ size_t countValues(Json[] jsons, bool delegate(Json) @safe countFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countArrays for Json[] with delegate");
 
   Json[] jsons = [
@@ -639,7 +639,7 @@ size_t countPaths(Json[string] map, string[][] paths, bool delegate(string[]) @s
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countArrays for Json[string] with paths and delegate");
 
   Json[string] map = [
@@ -668,7 +668,7 @@ size_t countPaths(Json[string] map, string[][] paths) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countArrays for Json[string] with paths");
 
   Json[string] map = [
@@ -700,7 +700,7 @@ size_t countKeys(Json[string] map, string[] keys, bool delegate(string) @safe co
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countArrays for Json[string] with keys and delegate");
 
   Json[string] map = [
@@ -730,7 +730,7 @@ size_t countKeys(Json[string] map, string[] keys) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countArrays for Json[string] with keys");
 
   Json[string] map = [
@@ -759,7 +759,7 @@ size_t countKeys(Json[string] map, bool delegate(string) @safe countFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countKeys with keys and delegate");
 
   Json[string] map = [
@@ -793,7 +793,7 @@ size_t countValues(Json[string] map, Json[] values, bool delegate(Json) @safe co
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countArrays for Json[string] with values and delegate");
 
   Json[string] map = [
@@ -823,7 +823,7 @@ size_t countValues(Json[string] map, Json[] values) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countValues for Json[string] with values");
 
   Json[string] map = [
@@ -852,7 +852,7 @@ size_t countValues(Json[string] map, bool delegate(Json) @safe countFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countArrays for Json[string] with delegate (value)");
 
   Json[string] map = [
@@ -882,7 +882,7 @@ size_t countMap(Json[string] map, bool delegate(string, Json) @safe countFunc) {
 }
 /// 
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing countMap for Json[string] with key-value delegate");
 
   Json[string] map = [

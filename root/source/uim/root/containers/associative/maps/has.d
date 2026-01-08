@@ -27,7 +27,7 @@ bool hasAllKey(K, V)(V[K] items, K[] keys) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing hasAllKey function");
 
   auto map = ["a": 1, "b": 2, "c": 3];
@@ -57,7 +57,7 @@ bool hasAnyKey(K, V)(V[K] items, K[] keys) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing hasAnyKey function");
     
   auto map = ["a": 1, "b": 2, "c": 3];
@@ -85,7 +85,7 @@ bool hasKey(K, V)(V[K] items, K key) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing hasKey function");
 
   auto map = ["a": 1, "b": 2, "c": 3];
@@ -117,7 +117,7 @@ bool hasAllValue(K, V)(V[K] items, V[] values) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing hasAllValue function");
 
   auto map = ["a": 1, "b": 2, "c": 3];
@@ -148,7 +148,7 @@ bool hasAnyValue(K, V)(V[K] items, V[] values) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing hasAnyValue function");
 
   auto map = ["a": 1, "b": 2, "c": 3];
@@ -177,7 +177,7 @@ bool hasValue(K, V)(V[K] map, V value) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing hasValue function");
 
   auto map = ["a": 1, "b": 2, "c": 3];
@@ -214,7 +214,7 @@ bool hasItem(K, V)(V[K] map, bool delegate(K key, V value) @safe hasFunc) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing hasItem function");
 
   // Test hasItem - basic functionality
@@ -252,7 +252,7 @@ bool hasKeyValue(K, V)(V[K] map, K key, V value) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing hasKeyValue function");
 
   auto map = ["a": 1, "b": 2, "c": 3];
