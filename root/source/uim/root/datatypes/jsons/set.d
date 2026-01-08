@@ -7,7 +7,7 @@ module uim.root.datatypes.jsons.set;
 
 import uim.root;
 
-mixin(Version!("show_uim_root"));
+mixin(Version!("show_module"));
 
 @safe:
 
@@ -30,7 +30,7 @@ Json setValues(Json json, Json[string] map) {
 }
 /// 
 unittest {
-  version (show_uim_root)
+  version (show_module)
     writeln("Testing setValues with map");
 
   auto json = Json.emptyObject;
@@ -49,7 +49,7 @@ Json setValues(Json json, string[] keys, Json value) {
 }
 /// 
 unittest {
-  version (show_uim_root)
+  version (show_module)
     writeln("Testing setValues with keys and value");
 
   auto json = Json.emptyObject;
@@ -81,7 +81,7 @@ Json setValue(Json json, string[] path, Json value) {
 }
 /// 
 unittest {
-  version (show_uim_root)
+  version (show_module)
     writeln("Testing setValue with path and value");
 
   auto json = Json.emptyObject;
@@ -113,7 +113,7 @@ Json[string] setValue(Json[string] map, string[] path, Json value) {
 }
 /// 
 unittest {
-  version (show_uim_root)
+  version (show_module)
     writeln("Testing setValue with path and value for map");
 
   Json[string] map;
@@ -137,7 +137,7 @@ Json setValue(Json json, string key, Json value) {
 }
 /// 
 unittest {
-  version (show_uim_root)
+  version (show_module)
     writeln("Testing setValue with key and value");
 
   auto json = Json.emptyObject;

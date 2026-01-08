@@ -7,7 +7,7 @@ module uim.root.datatypes.jsons.values;
 
 import uim.root;
 
-mixin(Version!("show_uim_root"));
+mixin(Version!("show_module"));
 
 @safe:
 
@@ -17,7 +17,7 @@ Json[] values(Json json, Json delegate(Json json) @safe valueFunc) {
 }
 /// 
 unittest {
-  version (show_uim_root) writeln("Testing values with delegate");
+  version (show_module) writeln("Testing values with delegate");
 
   auto jsonArray = [1, 2, 3].toJson;
   auto array = values(jsonArray, j => j);
@@ -43,7 +43,7 @@ Json[] values(Json json) {
 }
 /// 
 unittest {
-  version (show_uim_root) writeln("Testing values");
+  version (show_module) writeln("Testing values");
 
   auto jsonArray = [1, 2, 3].toJson;
   auto array = values(jsonArray);

@@ -7,7 +7,7 @@ module uim.root.datatypes.uuids.null_;
 
 import uim.root;
 
-mixin(Version!("show_uim_root"));
+mixin(Version!("show_module"));
 
 @safe:
 

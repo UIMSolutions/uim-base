@@ -17,12 +17,20 @@ configuration "default" {
 	versions "uim_root"
 }
 
-configuration "show-modules" {
-	versions "show_uim_root"
+configuration "modules" {
+	versions "show_module"
 }
 
-configuration "show-tests" {
-	versions "show_uim_root" "test_uim_root"
+configuration "calls" {
+	versions "show_call"
+}
+
+configuration "tests" {
+	versions "show_test"
+}
+
+configuration "verbose" {
+	versions "show_test" "show_call" "show_module"
 }
 
 buildRequirements "allowWarnings" "silenceDeprecations"

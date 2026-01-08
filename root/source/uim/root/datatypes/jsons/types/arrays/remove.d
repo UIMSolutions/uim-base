@@ -7,34 +7,38 @@ module uim.root.datatypes.jsons.types.arrays.remove;
 
 import uim.root;
 
-mixin(Version!("show_uim_root"));
+mixin(Version!("show_module"));
 
 @safe:
 
 // #region Json[]
 // #region indices
 Json[] removeArrays(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe removeFunc) {
+  version (show_call) writeln(
+    "Called removeArrays(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe removeFunc)");
+
   return jsons.removeIndices(indices, (size_t index) => jsons[index].isArray && removeFunc(index));
 }
 ///
 unittest {
-  version (test_uim_root)
-    writeln("Testing removeArrays(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe removeFunc)");
+  version (show_test)
+    writeln(
+      "Testing removeArrays(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe removeFunc)");
 
   Json[] jsons = [
-    [1, 2].toJson, Json("string"), [3, 4].toJson, Json(true), [5, 6].toJson
+    [1, 2].toJson, "string".toJson, [3, 4].toJson, true.toJson, [5, 6].toJson
   ];
 
   Json[] result;
   foreach (index, value; jsons) {
-    writeln("index: ", index, ", value: ", value, ", condition: ", !([0, 2].hasValue(index)) || !(index % 2 == 0), " part1: ", [0, 2].hasValue(index), ", part2: ", index % 2 == 0, " mod _= ", index % 2);
+    writeln("index: ", index, ", value: ", value, ", condition: ", !([0, 2].hasValue(index)) || !(
+        index % 2 == 0), " part1: ", [0, 2].hasValue(index), ", part2: ", index % 2 == 0, " mod _= ", index % 2);
     if (!([0, 2].hasValue(index)) || !(index % 2 == 0)) {
       result ~= value;
     }
   }
 
-  // Json[] result = removeArrays(jsons, [0, 2], (size_t index) => index % 2 == 0);
-  writeln("result: ", result);
+  // Json[] result = jsons.removeArrays([0, 2], (size_t index) => index % 2 == 0);
   assert(result.length == 3);
   assert(result.filterArrays.length == 1);
   assert(result.filterStrings.length == 1);
@@ -42,18 +46,20 @@ unittest {
 }
 
 Json[] removeArrays(Json[] jsons, size_t[] indices) {
+  version (show_call) writeln(
+    "Called removeArrays(Json[] jsons, size_t[] indices)");
+
   return jsons.removeIndices(indices, (index) => jsons[index].isArray);
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeArrays(Json[] jsons, size_t[] indices)");
 
   Json[] jsons = [
-    [1, 2].toJson, Json("string"), [3, 4].toJson, Json(true), [5, 6].toJson
+    [1, 2].toJson, "string".toJson, [3, 4].toJson, true.toJson, [5, 6].toJson
   ];
-  Json[] result = removeArrays(jsons, [0, 2]);
-  writeln("result: ", result);
+  Json[] result = jsons.removeArrays([0, 2]);
   assert(result.length == 3);
   assert(result.filterArrays.length == 1);
   assert(result.filterStrings.length == 1);
@@ -61,17 +67,20 @@ unittest {
 }
 
 Json[] removeArrays(Json[] jsons, bool delegate(size_t) @safe removeFunc) {
+  version (show_call) writeln(
+    "Called removeArrays(Json[] jsons, bool delegate(size_t) @safe removeFunc)");
+
   return jsons.removeIndices((size_t index) => jsons[index].isArray && removeFunc(index));
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeArrays(Json[] jsons, bool delegate(size_t) @safe removeFunc)");
 
   Json[] jsons = [
-    [1, 2].toJson, Json("string"), [3, 4].toJson, Json(true), [5, 6].toJson
+    [1, 2].toJson, "string".toJson, [3, 4].toJson, true.toJson, [5, 6].toJson
   ];
-  Json[] result = removeArrays(jsons, (size_t index) => index % 2 == 0);
+  Json[] result = jsons.removeArrays((size_t index) => index % 2 == 0);
   assert(result.length == 2);
   assert(result.filterArrays.length == 0);
   assert(result.filterStrings.length == 1);
@@ -85,14 +94,15 @@ Json[] removeArrays(Json[] jsons, Json[] values, bool delegate(Json) @safe remov
 }
 ///
 unittest {
-  version (test_uim_root)
-    writeln("Testing removeArrays(Json[] jsons, Json[] values, bool delegate(Json) @safe removeFunc)");
+  version (show_test)
+    writeln(
+      "Testing removeArrays(Json[] jsons, Json[] values, bool delegate(Json) @safe removeFunc)");
 
   Json[] jsons = [
-    [1, 2].toJson, Json("string"), [3, 4].toJson, Json(true), [5, 6].toJson
+    [1, 2].toJson, "string".toJson, [3, 4].toJson, true.toJson, [5, 6].toJson
   ];
-  Json[] toRemove = [Json("string"), [3, 4].toJson];
-  Json[] result = removeArrays(jsons, toRemove, (Json json) => json.isString);
+  Json[] toRemove = ["string".toJson, [3, 4].toJson];
+  Json[] result = jsons.removeArrays(toRemove, (Json json) => json.isString);
   writeln("result: ", result);
   assert(result.length == 5);
   assert(result.filterArrays.length == 3);
@@ -104,14 +114,14 @@ Json[] removeArrays(Json[] jsons, bool delegate(Json) @safe removeFunc) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeArrays(Json[] jsons, bool delegate(Json) @safe removeFunc)");
 
   Json[] jsons = [
-    [1, 2].toJson, Json("string"), [3, 4].toJson, Json(true), [5, 6].toJson
+    [1, 2].toJson, "string".toJson, [3, 4].toJson, true.toJson, [5, 6].toJson
   ];
-  Json[] result = removeArrays(jsons, (Json json) => json.isString);
-  assert(result.length == 4);
+  Json[] result = jsons.removeArrays((Json json) => json.isString);
+  assert(result.length == 5);
   assert(result.filterArrays.length == 3);
   assert(result.filterBooleans.length == 1);
 }
@@ -121,14 +131,14 @@ Json[] removeArrays(Json[] jsons, Json[] values) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeArrays(Json[] jsons, Json[] values)");
 
   Json[] jsons = [
-    [1, 2].toJson, Json("string"), [3, 4].toJson, Json(true), [5, 6].toJson
+    [1, 2].toJson, "string".toJson, [3, 4].toJson, true.toJson, [5, 6].toJson
   ];
   Json[] toRemove = [[1, 2].toJson, [5, 6].toJson];
-  Json[] result = removeArrays(jsons, toRemove);
+  Json[] result = jsons.removeArrays(toRemove);
   assert(result.length == 3);
   assert(result.filterArrays.length == 1);
   assert(result.filterStrings.length == 1);
@@ -142,11 +152,11 @@ Json[] removeArrays(Json[] jsons) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeArrays(Json[] jsons)");
 
   Json[] jsons = [
-    [1, 2].toJson, Json("string"), [3, 4].toJson, Json(true), [5, 6].toJson
+    [1, 2].toJson, "string".toJson, [3, 4].toJson, true.toJson, [5, 6].toJson
   ];
   Json[] result = removeArrays(jsons);
   assert(result.length == 2);
@@ -164,14 +174,15 @@ Json[string] removeArrays(Json[string] map, string[] keys, bool delegate(string)
 }
 ///
 unittest {
-  version (test_uim_root)
-    writeln("Testing removeArrays(Json[string] map, string[] keys, bool delegate(string) @safe removeFunc)");
+  version (show_test)
+    writeln(
+      "Testing removeArrays(Json[string] map, string[] keys, bool delegate(string) @safe removeFunc)");
 
   Json[string] map = [
     "a": [1, 2].toJson,
-    "b": Json("string"),
+    "b": "string".toJson,
     "c": [3, 4].toJson,
-    "d": Json(true),
+    "d": true.toJson,
     "e": [5, 6].toJson
   ];
   Json[string] result = removeArrays(map);
@@ -183,20 +194,20 @@ unittest {
 
 Json[string] removeArrays(Json[string] map, string[] keys) {
   return map.removeKeys(keys, (string key) => map.getValue(key).isArray);
-} 
+}
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeArrays(Json[string] map, string[] keys)");
 
   Json[string] map = [
     "a": [1, 2].toJson,
-    "b": Json("string"),
+    "b": "string".toJson,
     "c": [3, 4].toJson,
-    "d": Json(true),
+    "d": true.toJson,
     "e": [5, 6].toJson
   ];
-  Json[string] result = removeArrays(map, ["a", "c"]);
+  Json[string] result = map.removeArrays(["a", "c"]);
   assert(result.length == 3);
   assert(result.filterArrays.length == 1);
   assert(result.filterStrings.length == 1);
@@ -208,19 +219,20 @@ Json[string] removeArrays(Json[string] map, bool delegate(string) @safe removeFu
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeArrays(Json[string] map, bool delegate(string) @safe removeFunc)");
 
   Json[string] map = [
     "a": [1, 2].toJson,
-    "b": Json("string"),
+    "b": "string".toJson,
     "c": [3, 4].toJson,
-    "d": Json(true),
+    "d": true.toJson,
     "e": [5, 6].toJson
   ];
-  Json[string] result = removeArrays(map, (string key) => key == "a" || key == "c");
-  assert(result.length == 2);
-  assert(result.filterArrays.length == 0);
+  Json[string] result = map.removeArrays((string key) => key == "a" || key == "c");
+  writeln("result: ", result);
+  assert(result.length == 3);
+  assert(result.filterArrays.length == 1);
   assert(result.filterStrings.length == 1);
   assert(result.filterBooleans.length == 1);
 }
@@ -232,19 +244,20 @@ Json[string] removeArrays(Json[string] map, Json[] values, bool delegate(Json) @
 }
 ///
 unittest {
-  version (test_uim_root)
-    writeln("Testing removeArrays(Json[string] map, Json[] values, bool delegate(Json) @safe removeFunc)");
+  version (show_test)
+    writeln(
+      "Testing removeArrays(Json[string] map, Json[] values, bool delegate(Json) @safe removeFunc)");
 
   Json[string] map = [
     "a": [1, 2].toJson,
-    "b": Json("string"),
+    "b": "string".toJson,
     "c": [3, 4].toJson,
-    "d": Json(true),
+    "d": true.toJson,
     "e": [5, 6].toJson
   ];
-  Json[] toRemove = [Json("string"), [3, 4].toJson];
-  Json[string] result = removeArrays(map, toRemove);
-  assert(result.length == 3);
+  Json[] toRemove = ["string".toJson, [3, 4].toJson];
+  Json[string] result = map.removeArrays(toRemove);
+  assert(result.length == 4);
   assert(result.filterArrays.length == 2);
   assert(result.filterBooleans.length == 1);
 }
@@ -254,18 +267,18 @@ Json[string] removeArrays(Json[string] map, Json[] values) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeArrays(Json[string] map, Json[] values)");
 
   Json[string] map = [
     "a": [1, 2].toJson,
-    "b": Json("string"),
+    "b": "string".toJson,
     "c": [3, 4].toJson,
-    "d": Json(true),
+    "d": true.toJson,
     "e": [5, 6].toJson
   ];
   Json[] toRemove = [[1, 2].toJson, [5, 6].toJson];
-  Json[string] result = removeArrays(map, toRemove);
+  Json[string] result = map.removeArrays(toRemove);
   assert(result.length == 3);
   assert(result.filterArrays.length == 1);
   assert(result.filterStrings.length == 1);
@@ -277,18 +290,18 @@ Json[string] removeArrays(Json[string] map, bool delegate(Json) @safe removeFunc
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeArrays(Json[string] map, bool delegate(Json) @safe removeFunc)");
 
   Json[string] map = [
     "a": [1, 2].toJson,
-    "b": Json("string"),
+    "b": "string".toJson,
     "c": [3, 4].toJson,
-    "d": Json(true),
+    "d": true.toJson,
     "e": [5, 6].toJson
   ];
-  Json[string] result = removeArrays(map, (Json json) => json.isString);
-  assert(result.length == 4);
+  Json[string] result = map.removeArrays((Json json) => json.isString);
+  assert(result.length == 5);
   assert(result.filterArrays.length == 3);
   assert(result.filterBooleans.length == 1);
 }
@@ -300,14 +313,14 @@ Json[string] removeArrays(Json[string] map) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeArrays(Json[string] map)");
 
   Json[string] map = [
     "a": [1, 2].toJson,
-    "b": Json("string"),
+    "b": "string".toJson,
     "c": [3, 4].toJson,
-    "d": Json(true),
+    "d": true.toJson,
     "e": [5, 6].toJson
   ];
   Json[string] result = removeArrays(map);
@@ -322,21 +335,24 @@ unittest {
 // #region Json
 // #region indices
 Json removeArrays(Json json, size_t[] indices, bool delegate(size_t) @safe removeFunc) {
-  return json.removeIndices(indices, (size_t index) => json.getValue(index).isArray && removeFunc(index));
+  return json.removeIndices(indices, (size_t index) => json.getValue(index)
+      .isArray && removeFunc(index));
 }
 ///
 unittest {
-  version (test_uim_root)
-    writeln("Testing removeArrays(Json json, size_t[] indices, bool delegate(size_t) @safe removeFunc)");
+  version (show_test)
+    writeln(
+      "Testing removeArrays(Json json, size_t[] indices, bool delegate(size_t) @safe removeFunc)");
 
   Json json = Json([
-    [1, 2].toJson, Json("string"), [3, 4].toJson, Json(true), [5, 6].toJson
+    [1, 2].toJson, "string".toJson, [3, 4].toJson, true.toJson, [5, 6].toJson
   ]);
-  Json result = removeArrays(json);
+  Json result = json.removeArrays;
+  writeln("result: ", result);
   assert(result.length == 2);
-  assert(result.getArrays.filterArrays.length == 0);
-  assert(result.getArrays.filterStrings.length == 1);
-  assert(result.getArrays.filterBooleans.length == 1);
+  assert(result.filterArrays.length == 0);
+  assert(result.filterStrings.length == 1);
+  assert(result.filterBooleans.length == 1);
 }
 
 Json removeArrays(Json json, bool delegate(size_t) @safe removeFunc) {
@@ -344,55 +360,61 @@ Json removeArrays(Json json, bool delegate(size_t) @safe removeFunc) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeArrays(Json json, bool delegate(size_t) @safe removeFunc)");
 
   Json json = Json([
-    [1, 2].toJson, Json("string"), [3, 4].toJson, Json(true), [5, 6].toJson
+    [1, 2].toJson, "string".toJson, [3, 4].toJson, true.toJson, [5, 6].toJson
   ]);
-  Json result = removeArrays(json, (size_t index) => index % 2 == 0);
-  assert(result.getArrays.length == 2);
-  assert(result.getArrays.filterArrays.length == 0);
-  assert(result.getArrays.filterStrings.length == 1);
-  assert(result.getArrays.filterBooleans.length == 1);
+  Json result = json.removeArrays((size_t index) => index % 2 == 0);
+  assert(result.length == 2);
+  assert(result.filterArrays.length == 0);
+  assert(result.filterStrings.length == 1);
+  assert(result.filterBooleans.length == 1);
 }
 
 Json removeArrays(Json json, size_t[] indices) {
-  return json.removeIndices(indices, (size_t index) => json.getValue(index).isArray);
+  version(show_call) 
+    writeln(
+      "Called removeArrays(Json json, size_t[] indices)");
+      
+  return json.removeIndices(indices, (size_t index) => json[index].isArray);
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeArrays(Json json, size_t[] indices)");
 
-  Json json = Json([
-    [1, 2].toJson, Json("string"), [3, 4].toJson, Json(true), [5, 6].toJson
-  ]);
-  Json result = removeArrays(json, [0, 2]);
-  assert(result.getArrays.length == 3);
-  assert(result.getArrays.filterArrays.length == 1);
-  assert(result.getArrays.filterStrings.length == 1);
-  assert(result.getArrays.filterBooleans.length == 1);
+  Json json = [
+    [1, 2].toJson, "string".toJson, [3, 4].toJson, true.toJson, [5, 6].toJson
+  ].toJson;
+  Json result = json.removeArrays([0, 2]);
+  writeln("result: ", result);
+  assert(result.length == 3);
+  assert(result.filterArrays.length == 1);
+  assert(result.filterStrings.length == 1);
+  assert(result.filterBooleans.length == 1);
 }
 // #endregion indices
 
 // #region keys
 Json removeArrays(Json json, string[] keys, bool delegate(string) @safe removeFunc) {
-    return json.removeKeys(keys, (string key) => json.getValue(key).isArray && removeFunc(key));
+  return json.removeKeys(keys, (string key) => json[key].isArray && removeFunc(key));
 }
 ///
 unittest {
-  version (test_uim_root)
-    writeln("Testing removeArrays(Json json, string[] keys, bool delegate(string) @safe removeFunc)");
+  version (show_test)
+    writeln(
+      "Testing removeArrays(Json json, string[] keys, bool delegate(string) @safe removeFunc)");
 
   Json json = Json([
     "a": [1, 2].toJson,
-    "b": Json("string"),
+    "b": "string".toJson,
     "c": [3, 4].toJson,
-    "d": Json(true),
+    "d": true.toJson,
     "e": [5, 6].toJson
   ]);
-  Json result = removeArrays(json);
+  Json result = json.removeArrays;
   assert(result.length == 2);
   assert(result.filterArrays.length == 0);
   assert(result.filterStrings.length == 1);
@@ -404,17 +426,17 @@ Json removeArrays(Json json, string[] keys) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeArrays(Json json, string[] keys)");
 
   Json json = Json([
     "a": [1, 2].toJson,
-    "b": Json("string"),
+    "b": "string".toJson,
     "c": [3, 4].toJson,
-    "d": Json(true),
+    "d": true.toJson,
     "e": [5, 6].toJson
   ]);
-  Json result = removeArrays(json, ["a", "c"]);
+  Json result = json.removeArrays(["a", "c"]);
   assert(result.length == 3);
   assert(result.filterArrays.length == 1);
   assert(result.filterStrings.length == 1);
@@ -422,21 +444,21 @@ unittest {
 }
 
 Json removeArrays(Json json, bool delegate(string) @safe removeFunc) {
-  return json.removeKeys((string key) => json.getValue(key).isArray && removeFunc(key)) ;
+  return json.removeKeys((string key) => json.getValue(key).isArray && removeFunc(key));
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeArrays(Json json, bool delegate(string) @safe removeFunc)");
 
   Json json = Json([
     "a": [1, 2].toJson,
-    "b": Json("string"),
+    "b": "string".toJson,
     "c": [3, 4].toJson,
-    "d": Json(true),
+    "d": true.toJson,
     "e": [5, 6].toJson
   ]);
-  Json result = removeArrays(json, (string key) => key == "a" || key == "c");
+  Json result = json.removeArrays((string key) => key == "a" || key == "c");
   assert(result.length == 2);
   assert(result.filterArrays.length == 0);
   assert(result.filterStrings.length == 1);
@@ -450,18 +472,18 @@ Json removeArrays(Json json, Json[] values, bool delegate(Json) @safe removeFunc
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeArrays(Json json, Json[] values, bool delegate(Json) @safe removeFunc)");
 
   Json json = Json([
     "a": [1, 2].toJson,
-    "b": Json("string"),
+    "b": "string".toJson,
     "c": [3, 4].toJson,
-    "d": Json(true),
+    "d": true.toJson,
     "e": [5, 6].toJson
   ]);
-  Json[] toRemove = [Json("string"), [3, 4].toJson];
-  Json result = removeArrays(json, toRemove);
+  Json[] toRemove = ["string".toJson, [3, 4].toJson];
+  Json result = json.removeArrays(toRemove);
   assert(result.length == 3);
   assert(result.getArrays.length == 2);
   assert(result.getBooleans.length == 1);
@@ -472,18 +494,18 @@ Json removeArrays(Json json, Json[] values) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeArrays(Json json, Json[] values)");
 
   Json json = Json([
     "a": [1, 2].toJson,
-    "b": Json("string"),
+    "b": "string".toJson,
     "c": [3, 4].toJson,
-    "d": Json(true),
+    "d": true.toJson,
     "e": [5, 6].toJson
   ]);
   Json[] toRemove = [[1, 2].toJson, [5, 6].toJson];
-  Json result = removeArrays(json, toRemove);
+  Json result = json.removeArrays(toRemove);
   assert(result.length == 3);
   assert(result.filterArrays.length == 1);
   assert(result.filterStrings.length == 1);
@@ -495,17 +517,17 @@ Json removeArrays(Json json, bool delegate(Json) @safe removeFunc) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeArrays(Json json, bool delegate(Json) @safe removeFunc)");
 
   Json json = Json([
     "a": [1, 2].toJson,
-    "b": Json("string"),
+    "b": "string".toJson,
     "c": [3, 4].toJson,
-    "d": Json(true),
+    "d": true.toJson,
     "e": [5, 6].toJson
   ]);
-  Json result = removeArrays(json, (Json json) => json.isString);
+  Json result = json.removeArrays((Json json) => json.isString);
   assert(result.length == 4);
   assert(result.filterArrays.length == 3);
   assert(result.filterBooleans.length == 1);
@@ -518,17 +540,17 @@ Json removeArrays(Json json) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeArrays(Json json)");
 
   Json json = Json([
     "a": [1, 2].toJson,
-    "b": Json("string"),
+    "b": "string".toJson,
     "c": [3, 4].toJson,
-    "d": Json(true),
+    "d": true.toJson,
     "e": [5, 6].toJson
   ]);
-  Json result = removeArrays(json);
+  Json result = json.removeArrays;
   assert(result.length == 2);
   assert(result.filterArrays.length == 0);
   assert(result.filterStrings.length == 1);

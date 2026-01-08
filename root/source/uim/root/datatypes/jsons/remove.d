@@ -2,7 +2,7 @@ module uim.root.datatypes.jsons.remove;
 
 import uim.root;
 
-mixin(Version!("show_uim_root"));
+mixin(Version!("show_module"));
 
 @safe:
 
@@ -10,6 +10,10 @@ mixin(Version!("show_uim_root"));
 // #region indices
 // #region indices with func
 Json removeIndices(Json json, size_t[] indices, bool delegate(size_t) @safe removeFunc) {
+  version(show_call) 
+    writeln(
+      "Called removeIndices(Json json, size_t[] indices, bool delegate(size_t) @safe removeFunc)");
+      
   if (!json.isArray || indices.length == 0) {
     return json;
   }
@@ -25,7 +29,7 @@ Json removeIndices(Json json, size_t[] indices, bool delegate(size_t) @safe remo
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeIndices with indices and func");
 
   Json json = parseJsonString(`[
@@ -47,6 +51,10 @@ unittest {
 
 // #region indices
 Json removeIndices(Json json, size_t[] indices) {
+  version(show_call) 
+    writeln(
+      "Called removeIndices(Json json, size_t[] indices)");
+      
   if (!json.isArray || indices.length == 0) {
     return json;
   }
@@ -62,7 +70,7 @@ Json removeIndices(Json json, size_t[] indices) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeIndices with indices");
 
   Json json = parseJsonString(`[
@@ -98,7 +106,7 @@ Json removeIndices(Json json, bool delegate(size_t) @safe removeFunc) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeIndices with func");
 
   Json json = parseJsonString(`[
@@ -136,7 +144,7 @@ Json removeKeys(Json json, string[] keys, bool delegate(string) @safe removeFunc
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeKeys with keys and func");
 
   Json json = parseJsonString(`{
@@ -171,7 +179,7 @@ Json removeKeys(Json json, string[] keys) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeKeys with keys");
 
   Json json = parseJsonString(`{
@@ -205,7 +213,7 @@ Json removeKeys(Json json, bool delegate(string) @safe removeFunc) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeKeys with func");
 
   Json json = parseJsonString(`{
@@ -253,7 +261,7 @@ Json removeValues(Json json, Json[] values, bool delegate(Json) @safe removeFunc
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeValues with values and func");
 
   Json json = parseJsonString(`{
@@ -302,7 +310,7 @@ Json removeValues(Json json, Json[] values) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeValues with values");
 
   Json json = parseJsonString(`{
@@ -366,7 +374,7 @@ Json[] removeIndices(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeIndices with indices and func");
 
   Json[] jsons = [
@@ -403,7 +411,7 @@ Json[] removeIndices(Json[] jsons, size_t[] indices) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeIndices with indices");
 
   Json[] jsons = [
@@ -439,7 +447,7 @@ Json[] removeIndices(Json[] jsons, bool delegate(size_t) @safe removeFunc) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeIndices with func");
 
   Json[] jsons = [
@@ -477,7 +485,7 @@ Json[] removeValues(Json[] jsons, Json[] values, bool delegate(Json) @safe remov
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeValues with values and func");
 
   Json[] json = [
@@ -513,7 +521,7 @@ Json[] removeValues(Json[] jsons, Json[] values) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeValues with values");
 
   Json[] json = [
@@ -547,7 +555,7 @@ Json[] removeValues(Json[] jsons, bool delegate(Json) @safe removeFunc) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeValues with func");
 
   Json[] json = [
@@ -586,7 +594,7 @@ Json[string] removeKeys(Json[string] map, string[] keys, bool delegate(string) @
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeKeys with keys and func");
 
   Json[string] json = [
@@ -621,7 +629,7 @@ Json[string] removeKeys(Json[string] map, string[] keys) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeKeys with keys");
 
   Json[string] json = [
@@ -651,7 +659,7 @@ Json[string] removeKeys(Json[string] map, bool delegate(string) @safe removeFunc
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeKeys with func");
 
   Json[string] json = [
@@ -685,7 +693,7 @@ Json[string] removeValues(Json[string] map, Json[] values, bool delegate(Json) @
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeValues with values and func");
 
   Json[string] json = [
@@ -720,7 +728,7 @@ Json[string] removeValues(Json[string] map, Json[] values) {
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeValues with values");
 
   Json[string] json = [
@@ -749,7 +757,7 @@ Json[string] removeValues(Json[string] map, bool delegate(Json) @safe removeFunc
 }
 ///
 unittest {
-  version (test_uim_root)
+  version (show_test)
     writeln("Testing removeValues with func");
 
   Json[string] json = [
