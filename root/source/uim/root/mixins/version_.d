@@ -8,7 +8,7 @@ version (show_module) {
   import consolecolors;
 
   unittest {
-    string inner = leftJustify(__MODULE__, 106, ' ');
+    string inner = leftJustify(__MODULE__, 156, ' ');
     string outer = "| Loading " ~ inner;
     cwritefln(outer.black.on_white);  
   }
@@ -23,7 +23,7 @@ version (show_test) {
   import std.string;
   import consolecolors;
 
-  string inner = leftJustify("`~msg~`", 104, ' ');
+  string inner = leftJustify("`~msg~`", 154, ' ');
   string outer = "  | Testing " ~ inner;
   cwritefln(outer.black.on_grey);  
 }  
@@ -37,8 +37,9 @@ version (show_test) {
   import std.string;
   import consolecolors;
 
-  string inner = leftJustify(__PRETTY_FUNCTION__, 100, ' ');
-  string outer = "     | Calling  " ~ inner;
+  string text = __PRETTY_FUNCTION__.replace("@safe", "").replace("@trusted", "").replace("@system", "");
+  string inner = leftJustify(text, 151, ' ');
+  string outer = "    | Calling  " ~ inner;
   cwritefln(outer.white.on_blue);  
 }  
 `;

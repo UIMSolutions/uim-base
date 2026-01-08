@@ -29,8 +29,6 @@ unittest {
 
   Json[] result;
   foreach (index, value; jsons) {
-    writeln("index: ", index, ", value: ", value, ", condition: ", !([0, 2].hasValue(index)) || !(
-        index % 2 == 0), " part1: ", [0, 2].hasValue(index), ", part2: ", index % 2 == 0, " mod _= ", index % 2);
     if (!([0, 2].hasValue(index)) || !(index % 2 == 0)) {
       result ~= value;
     }
@@ -98,7 +96,6 @@ unittest {
   ];
   Json[] toRemove = ["string".toJson, [3, 4].toJson];
   Json[] result = jsons.removeArrays(toRemove, (Json json) => json.isString);
-  writeln("result: ", result);
   assert(result.length == 5);
   assert(result.filterArrays.length == 3);
   assert(result.filterBooleans.length == 1);
@@ -231,7 +228,6 @@ unittest {
     "e": [5, 6].toJson
   ];
   Json[string] result = map.removeArrays((string key) => key == "a" || key == "c");
-  writeln("result: ", result);
   assert(result.length == 3);
   assert(result.filterArrays.length == 1);
   assert(result.filterStrings.length == 1);
@@ -354,7 +350,6 @@ unittest {
     [1, 2].toJson, "string".toJson, [3, 4].toJson, true.toJson, [5, 6].toJson
   ]);
   Json result = json.removeArrays;
-  writeln("result: ", result);
   assert(result.length == 2);
   assert(result.filterArrays.length == 0);
   assert(result.filterStrings.length == 1);
@@ -374,7 +369,6 @@ unittest {
     [1, 2].toJson, "string".toJson, [3, 4].toJson, true.toJson
   ].toJson;
   Json result = json.removeArrays([0, 2]);
-  writeln("result: ", result);
   assert(result.length == 2);
   assert(result.filterStrings.length == 1);
   assert(result.filterBooleans.length == 1);
@@ -465,7 +459,6 @@ unittest {
     "e": [5, 6].toJson
   ]);
   Json result = json.removeArrays((string key) => key == "a" || key == "c");
-  writeln("result: ", result);
   assert(result.length == 3);
   assert(result.filterArrays.length == 1);
   assert(result.filterStrings.length == 1);

@@ -155,7 +155,7 @@ unittest {
     "country": "USA"
   }`);
 
-  auto result = removeKeys(json, ["age", "city"], (string key) @safe => key == "city");
+  auto result = json.removeKeys(["age", "city"], (string key) @safe => key == "city");
   assert(result.length == 3);
   assert(result["name"] == "John");
   assert(result["age"] == 30);
@@ -191,7 +191,7 @@ unittest {
     "country": "USA"
   }`);
 
-  auto result = removeKeys(json, ["age", "city"]);
+  auto result = json.removeKeys(["age", "city"]);
   assert(result.length == 2);
   assert(result["name"] == "John");
   assert(result["country"] == "USA");
@@ -226,7 +226,7 @@ unittest {
     "country": "USA"
   }`);
 
-  auto result = removeKeys(json, (string key) @safe => key == "age" || key == "city");
+  auto result = json.removeKeys((string key) @safe => key == "age" || key == "city");
   assert(result.length == 2);
   assert(result["name"] == "John");
   assert(result["country"] == "USA");
@@ -482,18 +482,7 @@ unittest {
 Json[] removeValues(Json[] jsons, Json[] values, bool delegate(Json) @safe removeFunc) {
   mixin(ShowFunction!());
 
-  if (jsons.length == 0 || values.length == 0) {
-    return jsons;
-  }
-
-  Json[] results;
-  foreach (value; jsons) {
-    if (!values.hasValue(value) || !removeFunc(value)) {
-      results ~= value;
-    }
-  }
-
-  return results;
+  return jsons.removeValues((Json value) => values.hasValue(value) && removeFunc(value));
 }
 ///
 unittest {
@@ -507,7 +496,8 @@ unittest {
   ];
 
   auto result = removeValues(json, [Json(30), Json("New York")],
-    (Json value) @safe => value == Json("New York"));
+    (Json value) => value == Json("New York"));
+
   assert(result.length == 3);
   assert(result[0] == Json("John"));
   assert(result[1] == Json(30));
@@ -519,18 +509,7 @@ unittest {
 Json[] removeValues(Json[] jsons, Json[] values) {
   mixin(ShowFunction!());
 
-  if (jsons.length == 0 || values.length == 0) {
-    return jsons;
-  }
-
-  Json[] results;
-  foreach (value; jsons) {
-    if (!values.hasValue(value)) {
-      results ~= value;
-    }
-  }
-
-  return results;
+  return jsons.removeValues((Json value) => values.hasValue(value));
 }
 ///
 unittest {
@@ -618,7 +597,7 @@ unittest {
     "city": Json("New York"),
     "country": Json("USA")
   ];
-  auto result = removeKeys(json, ["age", "city"], (string key) @safe => key == "city");
+  auto result = json.removeKeys(["age", "city"], (string key) @safe => key == "city");
   assert(result.length == 3);
   assert(result["name"] == Json("John"));
   assert(result["age"] == Json(30));
@@ -634,15 +613,7 @@ Json[string] removeKeys(Json[string] map, string[] keys) {
     return map;
   }
 
-  Json[string] result;
-
-  foreach (key, value; map) {
-    if (!keys.hasValue(key)) {
-      result[key] = value;
-    }
-  }
-
-  return result;
+  return map.removeKeys((string key) => keys.hasValue(key));
 }
 ///
 unittest {
@@ -654,7 +625,7 @@ unittest {
     "city": Json("New York"),
     "country": Json("USA")
   ];
-  auto result = removeKeys(json, ["age", "city"]);
+  auto result = json.removeKeys(["age", "city"]);
   assert(result.length == 2);
   assert(result["name"] == Json("John"));
   assert(result["country"] == Json("USA"));
@@ -685,7 +656,7 @@ unittest {
     "city": Json("New York"),
     "country": Json("USA")
   ];
-  auto result = removeKeys(json, (string key) @safe => key == "age" || key == "city");
+  auto result = json.removeKeys((string key) @safe => key == "age" || key == "city");
   assert(result.length == 2);
   assert(result["name"] == Json("John"));
   assert(result["country"] == Json("USA"));
@@ -698,17 +669,7 @@ unittest {
 Json[string] removeValues(Json[string] map, Json[] values, bool delegate(Json) @safe removeFunc) {
   mixin(ShowFunction!());
 
-  if (values.length == 0) {
-    return map;
-  }
-
-  Json[string] result;
-  foreach (key, value; map) {
-    if (!values.hasValue(value) || !removeFunc(value)) {
-      result[key] = value;
-    }
-  }
-  return result;
+  return map.removeValues((Json value) => values.hasValue(value) && removeFunc(value));
 }
 ///
 unittest {
