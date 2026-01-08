@@ -19,10 +19,10 @@ unittest {
   mixin(ShowTest!"Testing isNull function");
 
   int[string] map = null;
-  assert(map.isNull());
+  assert(map is null);
 
   map = ["a": 1];
-  assert(!map.isNull());
+  assert(!map.isNull);
 }
 
 bool isEmpty(K, V)(V[K] map) {

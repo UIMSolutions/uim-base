@@ -15,6 +15,8 @@ mixin(ShowModule!());
 // #region indices
 // #region all
 bool isAllArray(Json[] jsons, size_t[] indices = null) {
+  mixin(ShowFunction!());
+
   return indices.length == 0
     ? jsons.length > 0 && jsons.all!(value => value.isArray) : indices.all!(
       index => jsons.isArray(index));
@@ -33,6 +35,8 @@ unittest {
 
 // #region any
 bool isAnyArray(Json[] jsons, size_t[] indices = null) {
+    mixin(ShowFunction!());
+
   return indices.length == 0
     ? jsons.length > 0 && jsons.any!(value => value.isArray) : indices.any!(
       index => jsons.isArray(index));
@@ -51,6 +55,8 @@ unittest {
 
 // #region is
 bool isArray(Json[] jsons, size_t index) {
+  mixin(ShowFunction!());
+
   return jsons.length > index && jsons.getValue(index).isArray;
 }
 ///
@@ -73,6 +79,8 @@ unittest {
 // #region paths
 // #region all
 bool isAllArray(Json[string] map, string[][] paths) {
+  mixin(ShowFunction!());
+
   return map.length > 0 && paths.length > 0
     ? paths.all!(path => map.isArray(path)) : false;
 }
@@ -93,6 +101,8 @@ unittest {
 
 // #region any
 bool isAnyArray(Json[string] map, string[][] paths) {
+  mixin(ShowFunction!());
+
   return map.length > 0 && paths.length > 0
     ? paths.any!(path => map.isArray(path)) : false;
 }
@@ -113,6 +123,8 @@ unittest {
 
 // #region is
 bool isArray(Json[string] map, string[] path) {
+  mixin(ShowFunction!());
+
   return map.length > 0 && path.length > 0 ? map.getValue(path).isArray : false;
 }
 ///
@@ -138,6 +150,8 @@ unittest {
 // #region keys
 // #region all
 bool isAllArray(Json[string] map, string[] keys = null) {
+  mixin(ShowFunction!());
+
   return keys.length > 0
     ? keys.all!(key => map.getValue(key)
         .isArray) : map.byValue.all!(value => value.isArray);
@@ -159,6 +173,8 @@ unittest {
 
 // #region any
 bool isAnyArray(Json[string] map, string[] keys = null) {
+  mixin(ShowFunction!());
+
   return keys.length > 0
     ? keys.any!(key => map.getValue(key)
         .isArray) : map.byValue.any!(value => value.isArray);
@@ -182,6 +198,8 @@ unittest {
 
 // #region is
 bool isArray(Json[string] map, string key) {
+  mixin(ShowFunction!());
+
   return map.getValue(key).isArray;
 }
 ///
@@ -209,6 +227,8 @@ unittest {
 // #region indices
 // #region all
 bool isAllArray(Json json, size_t[] indices) {
+  mixin(ShowFunction!());
+
   return json.isArray && indices.length > 0
     ? indices.all!(index => json.isArray(index)) : false;
 }
@@ -224,6 +244,8 @@ unittest {
 
 // #region any
 bool isAnyArray(Json json, size_t[] indices) {
+  mixin(ShowFunction!());
+
   return json.isArray && indices.length > 0
     ? indices.any!(index => json.isArray(index)) : false;
 }
@@ -241,6 +263,8 @@ unittest {
 
 // #region is
 bool isArray(Json json, size_t index) {
+  mixin(ShowFunction!());
+
   return json.getValue(index).isArray;
 }
 ///
@@ -262,6 +286,8 @@ unittest {
 // #region path
 // #region all
 bool isAllArray(Json json, string[][] paths) {
+  mixin(ShowFunction!());
+
   return json.isObject && paths.length > 0
     ? paths.all!(path => json.isArray(path)) : false;
 }
@@ -281,6 +307,8 @@ unittest {
 
 // #region any
 bool isAnyArray(Json json, string[][] paths) {
+  mixin(ShowFunction!());
+
   return json.isObject && paths.length > 0
     ? paths.any!(path => json.isArray(path)) : false;
 }
@@ -296,6 +324,8 @@ unittest {
 
 // #region is
 bool isArray(Json json, string[] path) {
+  mixin(ShowFunction!());
+
   return json.isObject && json.getValue(path).isArray;
 }
 ///
@@ -312,6 +342,8 @@ unittest {
 // #region key
 // #region all
 bool isAllArray(Json json, string[] keys) {
+  mixin(ShowFunction!());
+
   return json.isObject && keys.length > 0
     ? keys.all!(key => json.isArray(key)) : false;
 }
@@ -331,6 +363,8 @@ unittest {
 
 // #region any
 bool isAnyArray(Json json, string[] keys) {
+  mixin(ShowFunction!());
+
   return json.isObject && keys.length > 0
     ? keys.any!(key => json.isArray(key)) : false;
 }
@@ -352,6 +386,8 @@ unittest {
 
 // #region is
 bool isArray(Json json, string key) {
+  mixin(ShowFunction!());
+
   return json.isObject && json.getValue(key).isArray;
 }
 ///
@@ -372,5 +408,7 @@ unittest {
 // #endregion Json
 
 bool isArray(Json json) {
+  mixin(ShowFunction!());
+
   return (json.type == Json.Type.array);
 }

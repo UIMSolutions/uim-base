@@ -20,11 +20,15 @@ mixin(ShowModule!());
   *   The null value for the given type T.
   */
 auto Null(T)() {
+  mixin(ShowFunction!());
+
   return T.init;
 }
 
 // #region bool
 auto Null(T : bool)() {
+  mixin(ShowFunction!());
+
   return false;
 }
 /// 
@@ -38,34 +42,50 @@ unittest {
 
 // #region integers
 auto Null(T : ubyte)() {
+  mixin(ShowFunction!());
+
   return 0;
 }
 
 auto Null(T : ushort)() {
+  mixin(ShowFunction!());
+  
   return 0;
 }
 
 auto Null(T : uint)() {
+  mixin(ShowFunction!());
+
   return 0;
 }
 
 auto Null(T : ulong)() {
+  mixin(ShowFunction!());
+  
   return 0;
 }
 
 auto Null(T : byte)() {
+  mixin(ShowFunction!());
+
   return 0;
 }
 
 auto Null(T : short)() {
+  mixin(ShowFunction!());
+
   return 0;
 }
 
 auto Null(T : int)() {
+  mixin(ShowFunction!());
+
   return 0;
 }
 
 auto Null(T : long)() {
+  mixin(ShowFunction!());
+
   return 0;
 }
 
@@ -79,19 +99,27 @@ unittest {
 // #region integers
 
 auto Null(T : Object)() {
+  mixin(ShowFunction!());
+  
   return null;
 }
 
 // #region floating
 T Null(T : float)() {
+  mixin(ShowFunction!());
+
   return 0.0;
 }
 
 T Null(T : double)() {
+  mixin(ShowFunction!());
+
   return 0.0;
 }
 
 T Null(T : real)() {
+  mixin(ShowFunction!());
+
   return 0.0;
 }
 // #endregion floating

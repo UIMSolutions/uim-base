@@ -19,14 +19,17 @@ configuration "modules" {
 	targetType "library"
 	versions "show_module"
 }
-configuration "calls" {
-	targetType "library"
-	versions "show_function"
-}
+
 configuration "tests" {
 	targetType "library"
-	versions "show_test"
+	versions "show_module" "show_test"
 }
+
+configuration "calls" {
+	targetType "library"
+	versions "show_module" "show_test" "show_function"
+}
+
 configuration "verbose" {
 	targetType "library"
 	versions "show_test" "show_function" "show_module"
