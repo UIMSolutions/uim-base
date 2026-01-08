@@ -7,7 +7,7 @@ module uim.root.containers.sequential.arrays.positions;
 
 import uim.root;
 
-mixin(Version!"test_uim_root");
+mixin(ShowModule!());
 
 @safe:
 // #region positions

@@ -9,7 +9,7 @@ version (show_module) {
 
   unittest {
     string mod = leftJustify(__MODULE__, 100, ' ');
-    cwritefln(("--  Loading " ~ mod).black.on_white);
+    cwritefln(("Loading " ~ mod).black.on_white);
   }
 }  
 `;
@@ -22,10 +22,19 @@ version (show_test) {
   import std.string;
   import consolecolors;
 
-  unittest {
-    string mod = leftJustify(`~msg~`, 100, ' ');
-    cwritefln(("----  Testing " ~ mod).black.on_grey);
-  }
+  cwritefln(("  | Testing " ~ leftJustify(`~msg~`, 100, ' ')).black.on_grey);
+}  
+`;
+}
+
+template ShowFunction() {
+  const char[] ShowTest = `
+version (show_test) {
+  import std.stdio;
+  import std.string;
+  import consolecolors;
+
+  cwritefln(("    | Calling  " ~ leftJustify(__PRETTY_FUNCTION__, 100, ' ')).white);
 }  
 `;
 }

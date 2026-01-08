@@ -22,8 +22,7 @@ Json filterPaths(Json json, string[][] paths, bool delegate(string[]) @safe filt
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterPaths for Json with paths and filterFunc");
+  mixin(ShowTest!"Testing filterPaths for Json with paths and filterFunc");
 
   Json json = [
     "a": [
@@ -63,8 +62,7 @@ Json filterPaths(Json json, string[][] paths) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterPaths for Json with paths");
+  mixin(ShowTest!"Testing filterPaths for Json with paths");
 
   Json json = [
     "a": [
@@ -100,8 +98,7 @@ Json filterKeys(Json json, string[] keys, bool delegate(string) @safe filterFunc
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterKeys for Json with keys and filterFunc");
+  mixin(ShowTest!"Testing filterKeys for Json with keys and filterFunc");
 
   Json json = [
     "a": Json(1),
@@ -124,8 +121,7 @@ Json filterKeys(Json json, string[] keys) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterKeys for Json with keys");
+  mixin(ShowTest!"Testing filterKeys for Json with keys");
 
   Json json = [
     "a": Json(1),
@@ -148,8 +144,7 @@ Json filterKeys(Json json, bool delegate(string) @safe filterFunc) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterKeys for Json with filterFunc");
+  mixin(ShowTest!"Testing filterKeys for Json with filterFunc");
 
   Json json = [
     "a": Json(1),
@@ -180,8 +175,7 @@ Json filterValues(Json json, Json[] values, bool delegate(Json) @safe filterFunc
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterValues for Json with values and filterFunc");
+  mixin(ShowTest!"Testing filterValues for Json with values and filterFunc");
 
   Json json = [
     "a": Json(1),
@@ -210,8 +204,7 @@ Json filterValues(Json json, Json[] values) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterValues for Json with values");
+  mixin(ShowTest!"Testing filterValues for Json with values");
 
   Json json = [
     "a": Json(1),
@@ -240,8 +233,7 @@ Json filterValues(Json json, bool delegate(Json) @safe filterFunc) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterValues for Json with filterFunc");
+  mixin(ShowTest!"Testing filterValues for Json with filterFunc");
 
   Json json = [
     "a": Json(1),
@@ -269,8 +261,7 @@ Json filterIndices(Json json, size_t[] indices, bool delegate(size_t) @safe filt
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterValues for Json with indices and filterFunc");
+  mixin(ShowTest!"Testing filterValues for Json with indices and filterFunc");
 
   Json json = [Json(1), Json(2), Json(3), Json(4), Json(5)].toJson;
 
@@ -292,8 +283,7 @@ Json filterIndices(Json json, size_t[] indices) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterValues for Json with indices");
+  mixin(ShowTest!"Testing filterValues for Json with indices");
 
   Json json = [Json(1), Json(2), Json(3), Json(4), Json(5)].toJson;
 
@@ -314,8 +304,7 @@ Json filterIndices(Json json, bool delegate(size_t) @safe filterFunc) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterValues for Json with filterFunc");
+  mixin(ShowTest!"Testing filterValues for Json with filterFunc");
 
   Json json = [Json(1), Json(2), Json(3), Json(4), Json(5)].toJson;
 
@@ -346,8 +335,7 @@ Json[string] filterPaths(Json[string] map, string[][] paths, bool delegate(strin
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterPaths for Json with paths and filterFunc");
+  mixin(ShowTest!"Testing filterPaths for Json with paths and filterFunc");
 
   Json[string] map = [
     "a": [
@@ -389,8 +377,7 @@ Json[string] filterPaths(Json[string] map, string[][] paths) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterPaths for Json with paths");
+  mixin(ShowTest!"Testing filterPaths for Json with paths");
 
   Json[string] map = [
     "a": [
@@ -435,8 +422,7 @@ Json[string] filterKeys(Json[string] map, string[] keys, bool delegate(string) @
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterKeys for Json with keys and filterFunc");
+  mixin(ShowTest!"Testing filterKeys for Json with keys and filterFunc");
 
   Json[string] map = [
     "a": Json(1),
@@ -468,8 +454,7 @@ Json[string] filterKeys(Json[string] map, string[] keys) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterKeys for Json with keys");
+  mixin(ShowTest!"Testing filterKeys for Json with keys");
 
   Json[string] map = [
     "a": Json(1),
@@ -501,8 +486,7 @@ Json[string] filterKeys(Json[string] map, bool delegate(string) @safe filterFunc
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterKeys for Json with filterFunc");
+  mixin(ShowTest!"Testing filterKeys for Json with filterFunc");
 
   Json[string] map = [
     "a": Json(1),
@@ -537,8 +521,7 @@ Json[string] filterValues(Json[string] map, Json[] values, bool delegate(Json) @
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterValues for Json[string] with values and filterFunc");
+  mixin(ShowTest!"Testing filterValues for Json[string] with values and filterFunc");
 
   Json[string] map = [
     "a": Json(1),
@@ -566,8 +549,7 @@ Json[string] filterValues(Json[string] map, Json[] values) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterValues for Json[string] with values");
+  mixin(ShowTest!"Testing filterValues for Json[string] with values");
 
   Json[string] map = [
     "a": Json(1),
@@ -595,8 +577,7 @@ Json[string] filterValues(Json[string] map, bool delegate(Json) @safe filterFunc
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterValues for Json[string] with filterFunc");
+  mixin(ShowTest!"Testing filterValues for Json[string] with filterFunc");
 
   Json[string] map = [
     "a": Json(1),
@@ -632,8 +613,7 @@ Json[] filterIndices(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterIndices for Json[] with indices and filterFunc");
+  mixin(ShowTest!"Testing filterIndices for Json[] with indices and filterFunc");
 
   Json[] jsons = [Json(1), Json(2), Json(3), Json(4), Json(5)];
 
@@ -661,8 +641,7 @@ Json[] filterIndices(Json[] jsons, size_t[] indices) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterIndices for Json[] with indices");
+  mixin(ShowTest!"Testing filterIndices for Json[] with indices");
 
   Json[] jsons = [Json(1), Json(2), Json(3), Json(4), Json(5)];
 
@@ -689,8 +668,7 @@ Json[] filterIndices(Json[] jsons, bool delegate(size_t) @safe filterFunc) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterIndices for Json[] with filterFunc");
+  mixin(ShowTest!"Testing filterIndices for Json[] with filterFunc");
 
   Json[] jsons = [Json(1), Json(2), Json(3), Json(4), Json(5)];
 
@@ -720,8 +698,7 @@ Json[] filterValues(Json[] jsons, Json[] values, bool delegate(Json) @safe filte
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterValues for Json[] with values and filterFunc");
+  mixin(ShowTest!"Testing filterValues for Json[] with values and filterFunc");
 
   Json[] jsons = [Json(1), Json(2), Json(3), Json(4), Json(5)];
 
@@ -749,8 +726,7 @@ Json[] filterValues(Json[] jsons, Json[] values) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterValues for Json[] with values");
+  mixin(ShowTest!"Testing filterValues for Json[] with values");
 
   Json[] jsons = [Json(1), Json(2), Json(3), Json(4), Json(5)];
 
@@ -777,8 +753,7 @@ Json[] filterValues(Json[] jsons, bool delegate(Json) @safe filterFunc) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterValues for Json[] with filterFunc");
+  mixin(ShowTest!"Testing filterValues for Json[] with filterFunc");
 
   Json[] jsons = [Json(1), Json(2), Json(3), Json(4), Json(5)];
 

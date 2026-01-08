@@ -20,8 +20,7 @@ Json[] getValues(Json[] jsons, size_t[] indices) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getValue for Json[] with indices");
+  mixin(ShowTest!"Testing getValue for Json[] with indices");
 
   Json[] jsons = [1.toJson, 2.toJson, 3.toJson];
   auto values = jsons.getValues([0, 2, 5]);
@@ -35,8 +34,7 @@ Json getValue(Json[] jsons, size_t index) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getValue for Json[] with index");
+  mixin(ShowTest!"Testing getValue for Json[] with index");
 
   Json[] jsons = [1.toJson, 2.toJson, 3.toJson];
   assert(jsons.getValue(1) == 2.toJson);
@@ -53,8 +51,7 @@ Json[] getValues(Json[string] map, string[][] paths) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getValues with paths");
+  mixin(ShowTest!"Testing getValues with paths");
 
   Json[string] map = [
     "data": ["test": [1, 2, 3].toJson].toJson,
@@ -88,8 +85,7 @@ Json getValue(Json[string] map, string[] path) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getValue with path");
+  mixin(ShowTest!"Testing getValue with path");
 
   // Test with null map
   Json[string] nullMap;
@@ -155,8 +151,7 @@ Json[] getValues(Json[string] map, string[] keys) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getValues with keys");
+  mixin(ShowTest!"Testing getValues with keys");
 
   Json[string] map = [
     "key1": "value1".toJson,
@@ -175,8 +170,7 @@ Json getValue(Json[string] map, string key) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getValue with key");
+  mixin(ShowTest!"Testing getValue with key");
 
   Json[string] map = ["key1": "value1".toJson, "key2": "value2".toJson];
   assert(map.getValue("key2") == "value2".toJson);
@@ -193,8 +187,7 @@ Json[] getValues(Json json, size_t[] indices) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getValues with indices");
+  mixin(ShowTest!"Testing getValues with indices");
 
   Json json = [1.toJson, 2.toJson, 3.toJson].toJson;
   auto values = json.getValues([0, 2, 5]);
@@ -208,8 +201,7 @@ Json getValue(Json json, size_t index) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getValue with index");
+  mixin(ShowTest!"Testing getValue with index");
 
   Json json = [1, 2, 3].toJson;
   assert(json.getValue(1) == 2.toJson);
@@ -224,8 +216,7 @@ Json[] getValues(Json json, string[][] paths) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getValues with paths");
+  mixin(ShowTest!"Testing getValues with paths");
 
   Json json = parseJsonString(`{"data": { "test": [1, 2, 3]}, "info": { "details": "sample"}}`);
   auto values = json.getValues([
@@ -253,8 +244,7 @@ Json getValue(Json json, string[] path) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getValue with path");
+  mixin(ShowTest!"Testing getValue with path");
 
   Json json = parseJsonString(`{"data": { "test": [1, 2, 3]}}`);
   assert(json.getValue(["data"]).getValue(["test"]) != Json(null));
@@ -281,8 +271,7 @@ Json[] getValues(Json json, string[] keys) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getValues with keys");
+  mixin(ShowTest!"Testing getValues with keys");
 
   Json json = parseJsonString(`{"key1": "value1", "key2": "value2", "key3": "value3"}`);
   auto values = json.getValues(["key1", "key3", "nonexistent"]);
@@ -300,8 +289,7 @@ Json getValue(Json json, string key) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getValue with key");
+  mixin(ShowTest!"Testing getValue with key");
 
   Json json = ["key1": "value1".toJson, "key2": "value2".toJson].toJson;
   assert(json.getValue("key2") == "value2".toJson);

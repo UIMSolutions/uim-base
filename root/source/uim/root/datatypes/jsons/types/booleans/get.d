@@ -17,8 +17,7 @@ Json getBoolean(Json[] jsons, size_t index, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getBoolean for Json[] with index");
+  mixin(ShowTest!"Testing getBoolean for Json[] with index");
 
   Json[] jsons = [true.toJson, 123.toJson, false.toJson];
   assert(jsons.getBoolean(0) == true.toJson);
@@ -33,8 +32,7 @@ Json getBoolean(Json[string] map, string[] path, Json defaultValue = Json(null))
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getBoolean for Json[string] with path");
+  mixin(ShowTest!"Testing getBoolean for Json[string] with path");
 
   Json[string] map = [
     "first": true.toJson, "second": 123.toJson, "third": false.toJson
@@ -49,8 +47,7 @@ Json getBoolean(Json[string] map, string key, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getBoolean for Json[string] with key");
+  mixin(ShowTest!"Testing getBoolean for Json[string] with key");
 
   Json[string] map = [
     "first": true.toJson, "second": 123.toJson, "third": false.toJson
@@ -67,8 +64,7 @@ Json getBoolean(Json json, size_t index, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getBoolean for Json with index");
+  mixin(ShowTest!"Testing getBoolean for Json with index");
 
   Json json = [true.toJson, 123.toJson, false.toJson].toJson;
   assert(json.getBoolean(0) == true.toJson);
@@ -81,8 +77,7 @@ Json getBoolean(Json json, string[] path, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getBoolean for Json with path");
+  mixin(ShowTest!"Testing getBoolean for Json with path");
 
   Json json = parseJsonString(`{"first": true, "second": 123, "third": false}`);
   assert(json.getBoolean("first") == true.toJson);
@@ -95,8 +90,7 @@ Json getBoolean(Json json, string key, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getBoolean for Json with key");
+  mixin(ShowTest!"Testing getBoolean for Json with key");
 
   Json json = parseJsonString(`{"first": true, "second": 123, "third": false}`);
   assert(json.getBoolean("first") == true.toJson);

@@ -19,8 +19,7 @@ bool isAllNull(Json[] jsons, size_t[] indices = null) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isAllNull for Json[]");
+  mixin(ShowTest!"Testing isAllNull for Json[]");
     
   Json[] jsons = [Json(null), Json(null), Json(null)];
   assert(isAllNull(jsons));
@@ -40,8 +39,7 @@ bool isAnyNull(Json[] jsons, size_t[] indices = null) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isAnyNull for Json[]");
+  mixin(ShowTest!"Testing isAnyNull for Json[]");
     
   Json[] jsons = [Json(1), Json(2), Json(3)];
   assert(!isAnyNull(jsons));
@@ -58,8 +56,7 @@ bool isNull(Json[] jsons, size_t index) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isNull for Json[]");
+  mixin(ShowTest!"Testing isNull for Json[]");
     
   Json[] jsons = [Json(1), Json(2), Json(3)];
   assert(!isNull(jsons, 0));
@@ -81,8 +78,7 @@ bool isAllNull(Json[string] jsons, string[] keys = null) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isAllNull for Json[string]");
+  mixin(ShowTest!"Testing isAllNull for Json[string]");
     
   Json[string] jsons = [ "a": Json(null), "b": Json(null) ];
   assert(isAllNull(jsons));
@@ -102,8 +98,7 @@ bool isAnyNull(Json[string] jsons, string[] keys = null) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isAnyNull for Json[string]");
+  mixin(ShowTest!"Testing isAnyNull for Json[string]");
     
   Json[string] jsons = [ "a": Json(1), "b": Json(2) ];
   assert(!isAnyNull(jsons));
@@ -120,8 +115,7 @@ bool isNull(Json[string] jsons, string key) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isNull for Json[string]"); 
+  mixin(ShowTest!"Testing isNull for Json[string]"); 
   Json[string] jsons = [ "a": Json(1), "b": Json(2) ];
   assert(!isNull(jsons, "a"));
   assert(!isNull(jsons, "b"));
@@ -141,8 +135,7 @@ bool isAllNull(Json json, string[][] paths) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isAllNull for Json with paths");
+  mixin(ShowTest!"Testing isAllNull for Json with paths");
     
   Json json = [
     "a": Json(null),
@@ -164,8 +157,7 @@ bool isAnyNull(Json json, string[][] paths) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isAnyNull for Json with paths");
+  mixin(ShowTest!"Testing isAnyNull for Json with paths");
     
   Json json = [
     "a": Json(1),
@@ -183,8 +175,7 @@ bool isNull(Json json, string[] path) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isNull for Json with path");
+  mixin(ShowTest!"Testing isNull for Json with path");
     
   Json json = [
     "a": Json(1),
@@ -209,8 +200,7 @@ bool isAllNull(Json json, string[] keys) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isAllNull for Json with keys");
+  mixin(ShowTest!"Testing isAllNull for Json with keys");
     
   Json json = [
     "a": Json(null),
@@ -230,8 +220,7 @@ bool isAnyNull(Json json, string[] keys) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isAnyNull for Json with keys");
+  mixin(ShowTest!"Testing isAnyNull for Json with keys");
     
   Json json = [
     "a": Json(1),
@@ -251,8 +240,7 @@ bool isNull(Json json, string key) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isNull for Json with key");
+  mixin(ShowTest!"Testing isNull for Json with key");
     
   Json json = [
     "a": Json(1),
@@ -274,8 +262,7 @@ bool isAllNull(Json json, size_t[] indices) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isAllNull for Json with indices");
+  mixin(ShowTest!"Testing isAllNull for Json with indices");
     
   Json json = [ Json(null), Json(5), Json(null) ].toJson;
   
@@ -291,8 +278,7 @@ bool isAnyNull(Json json, size_t[] indices) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isAnyNull for Json with indices");
+  mixin(ShowTest!"Testing isAnyNull for Json with indices");
     
   Json json = [ Json(1), Json(null), Json(3) ].toJson;
   
@@ -308,8 +294,7 @@ bool isNull(Json json, size_t index) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isNull for Json with index");
+  mixin(ShowTest!"Testing isNull for Json with index");
     
   Json json = [ Json(1), Json(null), Json(3) ].toJson;
   
@@ -323,8 +308,7 @@ bool isNull(Json json) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isNull for Json");
+  mixin(ShowTest!"Testing isNull for Json");
     
   assert(isNull(Json(null)));
   assert(!isNull(Json(5)));

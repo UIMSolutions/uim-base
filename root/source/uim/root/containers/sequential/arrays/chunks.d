@@ -7,7 +7,7 @@ module uim.root.containers.sequential.arrays.chunks;
 
 import uim.root;
 
-mixin(Version!"test_uim_root");
+mixin(ShowModule!());
 
 @safe:
 /** 
@@ -34,8 +34,7 @@ auto chunks(T)(T[] arr, size_t chunkSize) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing chunks function");
+  mixin(ShowTest!"Testing chunks function");
 
   auto testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 

@@ -33,8 +33,7 @@ Json removeIndices(Json json, size_t[] indices, bool delegate(size_t) @safe remo
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeIndices with indices and func");
+  mixin(ShowTest!"Testing removeIndices with indices and func");
 
   Json json = parseJsonString(`[
     "apple",
@@ -73,8 +72,7 @@ Json removeIndices(Json json, size_t[] indices) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeIndices with indices");
+  mixin(ShowTest!"Testing removeIndices with indices");
 
   Json json = parseJsonString(`[
     "apple",
@@ -112,8 +110,7 @@ Json removeIndices(Json json, bool delegate(size_t) @safe removeFunc) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeIndices with func");
+  mixin(ShowTest!"Testing removeIndices with func");
 
   Json json = parseJsonString(`[
     "apple",
@@ -153,8 +150,7 @@ Json removeKeys(Json json, string[] keys, bool delegate(string) @safe removeFunc
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeKeys with keys and func");
+  mixin(ShowTest!"Testing removeKeys with keys and func");
 
   Json json = parseJsonString(`{
     "name": "John",
@@ -191,8 +187,7 @@ Json removeKeys(Json json, string[] keys) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeKeys with keys");
+  mixin(ShowTest!"Testing removeKeys with keys");
 
   Json json = parseJsonString(`{
     "name": "John",
@@ -228,8 +223,7 @@ Json removeKeys(Json json, bool delegate(string) @safe removeFunc) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeKeys with func");
+  mixin(ShowTest!"Testing removeKeys with func");
 
   Json json = parseJsonString(`{
     "name": "John",
@@ -279,8 +273,7 @@ Json removeValues(Json json, Json[] values, bool delegate(Json) @safe removeFunc
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeValues with values and func");
+  mixin(ShowTest!"Testing removeValues with values and func");
 
   Json json = parseJsonString(`{
     "name": "John",
@@ -300,7 +293,7 @@ unittest {
 
 // #region values
 Json removeValues(Json json, Json[] values) {
-    version (show_function)
+  version (show_function)
     writeln("Called ", __PRETTY_FUNCTION__);
 
   if (values.length == 0) {
@@ -331,8 +324,7 @@ Json removeValues(Json json, Json[] values) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeValues with values");
+  mixin(ShowTest!"Testing removeValues with values");
 
   Json json = parseJsonString(`{
     "name": "John",
@@ -382,7 +374,7 @@ Json removeValues(Json json, bool delegate(Json) @safe removeFunc) {
 // #region Json[]
 // #region indices
 // #region indices with func
-Json[] removeIndices(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe removeFunc) {  
+Json[] removeIndices(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe removeFunc) {
   version (show_function)
     writeln("Called ", __PRETTY_FUNCTION__);
 
@@ -401,8 +393,7 @@ Json[] removeIndices(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeIndices with indices and func");
+  mixin(ShowTest!"Testing removeIndices with indices and func");
 
   Json[] jsons = [
     "apple".toJson,
@@ -441,8 +432,7 @@ Json[] removeIndices(Json[] jsons, size_t[] indices) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeIndices with indices");
+  mixin(ShowTest!"Testing removeIndices with indices");
 
   Json[] jsons = [
     "apple".toJson,
@@ -480,8 +470,7 @@ Json[] removeIndices(Json[] jsons, bool delegate(size_t) @safe removeFunc) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeIndices with func");
+  mixin(ShowTest!"Testing removeIndices with func");
 
   Json[] jsons = [
     "apple".toJson,
@@ -521,8 +510,7 @@ Json[] removeValues(Json[] jsons, Json[] values, bool delegate(Json) @safe remov
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeValues with values and func");
+  mixin(ShowTest!"Testing removeValues with values and func");
 
   Json[] json = [
     Json("John"),
@@ -560,8 +548,7 @@ Json[] removeValues(Json[] jsons, Json[] values) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeValues with values");
+  mixin(ShowTest!"Testing removeValues with values");
 
   Json[] json = [
     Json("John"),
@@ -597,8 +584,7 @@ Json[] removeValues(Json[] jsons, bool delegate(Json) @safe removeFunc) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeValues with func");
+  mixin(ShowTest!"Testing removeValues with func");
 
   Json[] json = [
     Json("John"),
@@ -640,8 +626,7 @@ Json[string] removeKeys(Json[string] map, string[] keys, bool delegate(string) @
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeKeys with keys and func");
+  mixin(ShowTest!"Testing removeKeys with keys and func");
 
   Json[string] json = [
     "name": Json("John"),
@@ -678,8 +663,7 @@ Json[string] removeKeys(Json[string] map, string[] keys) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeKeys with keys");
+  mixin(ShowTest!"Testing removeKeys with keys");
 
   Json[string] json = [
     "name": Json("John"),
@@ -711,8 +695,7 @@ Json[string] removeKeys(Json[string] map, bool delegate(string) @safe removeFunc
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeKeys with func");
+  mixin(ShowTest!"Testing removeKeys with func");
 
   Json[string] json = [
     "name": Json("John"),
@@ -748,8 +731,7 @@ Json[string] removeValues(Json[string] map, Json[] values, bool delegate(Json) @
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeValues with values and func");
+  mixin(ShowTest!"Testing removeValues with values and func");
 
   Json[string] json = [
     "name": Json("John"),
@@ -786,8 +768,7 @@ Json[string] removeValues(Json[string] map, Json[] values) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeValues with values");
+  mixin(ShowTest!"Testing removeValues with values");
 
   Json[string] json = [
     "name": Json("John"),
@@ -818,9 +799,8 @@ Json[string] removeValues(Json[string] map, bool delegate(Json) @safe removeFunc
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeValues with func");
-
+  mixin(ShowTest!"Testing removeValues with func");
+  
   Json[string] json = [
     "name": Json("John"),
     "age": Json(30),

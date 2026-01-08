@@ -7,7 +7,7 @@ module uim.root.containers.associative.maps.has;
 
 import uim.root;
 
-mixin(Version!"test_uim_root");
+mixin(ShowModule!());
 
 @safe:
 
@@ -27,8 +27,7 @@ bool hasAllKey(K, V)(V[K] items, K[] keys) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing hasAllKey function");
+  mixin(ShowTest!"Testing hasAllKey function");
 
   auto map = ["a": 1, "b": 2, "c": 3];
 
@@ -57,8 +56,7 @@ bool hasAnyKey(K, V)(V[K] items, K[] keys) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing hasAnyKey function");
+  mixin(ShowTest!"Testing hasAnyKey function");
     
   auto map = ["a": 1, "b": 2, "c": 3];
 
@@ -85,8 +83,7 @@ bool hasKey(K, V)(V[K] items, K key) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing hasKey function");
+  mixin(ShowTest!"Testing hasKey function");
 
   auto map = ["a": 1, "b": 2, "c": 3];
 
@@ -117,8 +114,7 @@ bool hasAllValue(K, V)(V[K] items, V[] values) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing hasAllValue function");
+  mixin(ShowTest!"Testing hasAllValue function");
 
   auto map = ["a": 1, "b": 2, "c": 3];
 
@@ -148,8 +144,7 @@ bool hasAnyValue(K, V)(V[K] items, V[] values) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing hasAnyValue function");
+  mixin(ShowTest!"Testing hasAnyValue function");
 
   auto map = ["a": 1, "b": 2, "c": 3];
 
@@ -177,8 +172,7 @@ bool hasValue(K, V)(V[K] map, V value) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing hasValue function");
+  mixin(ShowTest!"Testing hasValue function");
 
   auto map = ["a": 1, "b": 2, "c": 3];
 
@@ -214,8 +208,7 @@ bool hasItem(K, V)(V[K] map, bool delegate(K key, V value) @safe hasFunc) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing hasItem function");
+  mixin(ShowTest!"Testing hasItem function");
 
   // Test hasItem - basic functionality
   auto map = ["a": 1, "b": 2, "c": 3];
@@ -252,8 +245,7 @@ bool hasKeyValue(K, V)(V[K] map, K key, V value) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing hasKeyValue function");
+  mixin(ShowTest!"Testing hasKeyValue function");
 
   auto map = ["a": 1, "b": 2, "c": 3];
 

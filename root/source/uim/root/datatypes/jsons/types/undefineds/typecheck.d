@@ -21,8 +21,7 @@ bool isAllUndefined(Json[] jsons, size_t[] indices = null) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isAllUndefined for Json[]");
+  mixin(ShowTest!"Testing isAllUndefined for Json[]");
     
   Json[] jsons = [Json.undefined, Json.undefined, Json.undefined];
   assert(isAllUndefined(jsons));
@@ -36,8 +35,7 @@ unittest {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isAnyUndefined for Json[]");
+  mixin(ShowTest!"Testing isAnyUndefined for Json[]");
     
   Json[] jsons = [Json(1), Json(2), Json(3)];
   assert(!isAnyUndefined(jsons));
@@ -58,8 +56,7 @@ bool isAnyUndefined(Json[] jsons, size_t[] indices = null) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isUndefined for Json[]");
+  mixin(ShowTest!"Testing isUndefined for Json[]");
     
   Json[] jsons = [Json(1), Json.undefined, Json(3)];
   assert(isUndefined(jsons, 1));
@@ -74,8 +71,7 @@ bool isUndefined(Json[] jsons, size_t index) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isUndefined for Json[]");
+  mixin(ShowTest!"Testing isUndefined for Json[]");
 
   Json[] jsons = [Json(1), Json.undefined, Json(3)];
   assert(isUndefined(jsons, 1));
@@ -94,8 +90,7 @@ bool isAllUndefined(Json[string] map, string[] keys = null) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isAllUndefined for Json[string]");
+  mixin(ShowTest!"Testing isAllUndefined for Json[string]");
     
   Json[string] jsons = [
     "a": Json.undefined,
@@ -125,8 +120,7 @@ bool isAnyUndefined(Json[string] map, string[] keys = null) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isAnyUndefined for Json[string]");
+  mixin(ShowTest!"Testing isAnyUndefined for Json[string]");
     
   Json[string] jsons = [
     "a": Json(1),
@@ -151,8 +145,7 @@ bool isUndefined(Json[string] jsons, string key) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isUndefined for Json[string]");
+  mixin(ShowTest!"Testing isUndefined for Json[string]");
     
   Json[string] jsons = [
     "a": Json(1),
@@ -174,8 +167,7 @@ bool isAllUndefined(Json json, string[][] paths) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isAllUndefined for Json with paths");
+  mixin(ShowTest!"Testing isAllUndefined for Json with paths");
     
   Json json = parseJsonString(`{"a": "undefined", "b": {"c": "undefined"}}`);
   json["a"] = Json.undefined;
@@ -190,8 +182,7 @@ bool isAnyUndefined(Json json, string[][] paths) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isAnyUndefined for Json with paths");
+  mixin(ShowTest!"Testing isAnyUndefined for Json with paths");
     
   Json json = [
     "a": Json(1),
@@ -208,8 +199,7 @@ bool isUndefined(Json json, string[] path) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isUndefined for Json with path");
+  mixin(ShowTest!"Testing isUndefined for Json with path");
     
   Json json = [
     "a": Json(1),
@@ -233,8 +223,7 @@ bool isAllUndefined(Json json, string[] keys) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isAllUndefined for Json with keys");
+  mixin(ShowTest!"Testing isAllUndefined for Json with keys");
 
   Json json = [
     "a": Json.undefined,
@@ -255,8 +244,7 @@ bool isAnyUndefined(Json json, string[] keys) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isAnyUndefined for Json with keys");
+  mixin(ShowTest!"Testing isAnyUndefined for Json with keys");
 
   Json json = [
     "a": Json(1),
@@ -276,8 +264,7 @@ bool isUndefined(Json json, string key) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isUndefined for Json with key");
+  mixin(ShowTest!"Testing isUndefined for Json with key");
 
   Json json = [
     "a": Json(1),
@@ -299,8 +286,7 @@ bool isAllUndefined(Json json, size_t[] indices) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isAllUndefined for Json with indices");
+  mixin(ShowTest!"Testing isAllUndefined for Json with indices");
     
   Json json = [Json.undefined, Json.undefined, Json(3)].toJson;
 
@@ -316,8 +302,7 @@ bool isAnyUndefined(Json json, size_t[] indices) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isAnyUndefined for Json with indices");
+  mixin(ShowTest!"Testing isAnyUndefined for Json with indices");
     
   /* No longer valid since Json(undefined) is not possible */
 }
@@ -331,8 +316,7 @@ bool isUndefined(Json json, size_t index) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isUndefined for Json with index");
+  mixin(ShowTest!"Testing isUndefined for Json with index");
     
   /* No longer valid since Json(undefined) is not possible */
 }
@@ -344,8 +328,7 @@ bool isUndefined(Json json) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing isUndefined for Json");
+  mixin(ShowTest!"Testing isUndefined for Json");
 
   /* No longer valid since Json(undefined) is not possible */
 }

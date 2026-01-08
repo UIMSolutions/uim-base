@@ -21,8 +21,7 @@ Json[] removeArrays(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe 
 }
 ///
 unittest {
-  version (show_test)
-    writeln(
+  mixin(ShowTest!
       "Testing removeArrays(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe removeFunc)");
 
   Json[] jsons = [
@@ -53,8 +52,7 @@ Json[] removeArrays(Json[] jsons, size_t[] indices) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeArrays(Json[] jsons, size_t[] indices)");
+  mixin(ShowTest!"Testing removeArrays(Json[] jsons, size_t[] indices)");
 
   Json[] jsons = [
     [1, 2].toJson, "string".toJson, [3, 4].toJson, true.toJson, [5, 6].toJson
@@ -74,8 +72,7 @@ Json[] removeArrays(Json[] jsons, bool delegate(size_t) @safe removeFunc) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeArrays(Json[] jsons, bool delegate(size_t) @safe removeFunc)");
+  mixin(ShowTest!"Testing removeArrays(Json[] jsons, bool delegate(size_t) @safe removeFunc)");
 
   Json[] jsons = [
     [1, 2].toJson, "string".toJson, [3, 4].toJson, true.toJson, [5, 6].toJson
@@ -94,8 +91,7 @@ Json[] removeArrays(Json[] jsons, Json[] values, bool delegate(Json) @safe remov
 }
 ///
 unittest {
-  version (show_test)
-    writeln(
+  mixin(ShowTest!
       "Testing removeArrays(Json[] jsons, Json[] values, bool delegate(Json) @safe removeFunc)");
 
   Json[] jsons = [
@@ -114,8 +110,7 @@ Json[] removeArrays(Json[] jsons, bool delegate(Json) @safe removeFunc) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeArrays(Json[] jsons, bool delegate(Json) @safe removeFunc)");
+  mixin(ShowTest!"Testing removeArrays(Json[] jsons, bool delegate(Json) @safe removeFunc)");
 
   Json[] jsons = [
     [1, 2].toJson, "string".toJson, [3, 4].toJson, true.toJson, [5, 6].toJson
@@ -131,8 +126,7 @@ Json[] removeArrays(Json[] jsons, Json[] values) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeArrays(Json[] jsons, Json[] values)");
+  mixin(ShowTest!"Testing removeArrays(Json[] jsons, Json[] values)");
 
   Json[] jsons = [
     [1, 2].toJson, "string".toJson, [3, 4].toJson, true.toJson, [5, 6].toJson
@@ -152,8 +146,7 @@ Json[] removeArrays(Json[] jsons) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeArrays(Json[] jsons)");
+  mixin(ShowTest!"Testing removeArrays(Json[] jsons)");
 
   Json[] jsons = [
     [1, 2].toJson, "string".toJson, [3, 4].toJson, true.toJson, [5, 6].toJson
@@ -174,8 +167,7 @@ Json[string] removeArrays(Json[string] map, string[] keys, bool delegate(string)
 }
 ///
 unittest {
-  version (show_test)
-    writeln(
+  mixin(ShowTest!
       "Testing removeArrays(Json[string] map, string[] keys, bool delegate(string) @safe removeFunc)");
 
   Json[string] map = [
@@ -197,8 +189,7 @@ Json[string] removeArrays(Json[string] map, string[] keys) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeArrays(Json[string] map, string[] keys)");
+  mixin(ShowTest!"Testing removeArrays(Json[string] map, string[] keys)");
 
   Json[string] map = [
     "a": [1, 2].toJson,
@@ -219,8 +210,7 @@ Json[string] removeArrays(Json[string] map, bool delegate(string) @safe removeFu
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeArrays(Json[string] map, bool delegate(string) @safe removeFunc)");
+  mixin(ShowTest!"Testing removeArrays(Json[string] map, bool delegate(string) @safe removeFunc)");
 
   Json[string] map = [
     "a": [1, 2].toJson,
@@ -244,8 +234,7 @@ Json[string] removeArrays(Json[string] map, Json[] values, bool delegate(Json) @
 }
 ///
 unittest {
-  version (show_test)
-    writeln(
+  mixin(ShowTest!
       "Testing removeArrays(Json[string] map, Json[] values, bool delegate(Json) @safe removeFunc)");
 
   Json[string] map = [
@@ -267,8 +256,7 @@ Json[string] removeArrays(Json[string] map, Json[] values) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeArrays(Json[string] map, Json[] values)");
+  mixin(ShowTest!"Testing removeArrays(Json[string] map, Json[] values)");
 
   Json[string] map = [
     "a": [1, 2].toJson,
@@ -290,8 +278,7 @@ Json[string] removeArrays(Json[string] map, bool delegate(Json) @safe removeFunc
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeArrays(Json[string] map, bool delegate(Json) @safe removeFunc)");
+  mixin(ShowTest!"Testing removeArrays(Json[string] map, bool delegate(Json) @safe removeFunc)");
 
   Json[string] map = [
     "a": [1, 2].toJson,
@@ -313,8 +300,7 @@ Json[string] removeArrays(Json[string] map) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeArrays(Json[string] map)");
+  mixin(ShowTest!"Testing removeArrays(Json[string] map)");
 
   Json[string] map = [
     "a": [1, 2].toJson,
@@ -340,8 +326,7 @@ Json removeArrays(Json json, size_t[] indices, bool delegate(size_t) @safe remov
 }
 ///
 unittest {
-  version (show_test)
-    writeln(
+  mixin(ShowTest!
       "Testing removeArrays(Json json, size_t[] indices, bool delegate(size_t) @safe removeFunc)");
 
   Json json = Json([
@@ -360,8 +345,7 @@ Json removeArrays(Json json, bool delegate(size_t) @safe removeFunc) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeArrays(Json json, bool delegate(size_t) @safe removeFunc)");
+  mixin(ShowTest!"Testing removeArrays(Json json, bool delegate(size_t) @safe removeFunc)");
 
   Json json = Json([
     [1, 2].toJson, "string".toJson, [3, 4].toJson, true.toJson, [5, 6].toJson
@@ -382,8 +366,7 @@ Json removeArrays(Json json, size_t[] indices) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeArrays(Json json, size_t[] indices)");
+  mixin(ShowTest!"Testing removeArrays(Json json, size_t[] indices)");
 
   Json json = [
     [1, 2].toJson, "string".toJson, [3, 4].toJson, true.toJson, [5, 6].toJson
@@ -403,8 +386,7 @@ Json removeArrays(Json json, string[] keys, bool delegate(string) @safe removeFu
 }
 ///
 unittest {
-  version (show_test)
-    writeln(
+  mixin(ShowTest!
       "Testing removeArrays(Json json, string[] keys, bool delegate(string) @safe removeFunc)");
 
   Json json = Json([
@@ -426,8 +408,7 @@ Json removeArrays(Json json, string[] keys) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeArrays(Json json, string[] keys)");
+  mixin(ShowTest!"Testing removeArrays(Json json, string[] keys)");
 
   Json json = Json([
     "a": [1, 2].toJson,
@@ -448,8 +429,7 @@ Json removeArrays(Json json, bool delegate(string) @safe removeFunc) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeArrays(Json json, bool delegate(string) @safe removeFunc)");
+  mixin(ShowTest!"Testing removeArrays(Json json, bool delegate(string) @safe removeFunc)");
 
   Json json = Json([
     "a": [1, 2].toJson,
@@ -472,8 +452,7 @@ Json removeArrays(Json json, Json[] values, bool delegate(Json) @safe removeFunc
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeArrays(Json json, Json[] values, bool delegate(Json) @safe removeFunc)");
+  mixin(ShowTest!"Testing removeArrays(Json json, Json[] values, bool delegate(Json) @safe removeFunc)");
 
   Json json = Json([
     "a": [1, 2].toJson,
@@ -494,8 +473,7 @@ Json removeArrays(Json json, Json[] values) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeArrays(Json json, Json[] values)");
+  mixin(ShowTest!"Testing removeArrays(Json json, Json[] values)");
 
   Json json = Json([
     "a": [1, 2].toJson,
@@ -517,8 +495,7 @@ Json removeArrays(Json json, bool delegate(Json) @safe removeFunc) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeArrays(Json json, bool delegate(Json) @safe removeFunc)");
+  mixin(ShowTest!"Testing removeArrays(Json json, bool delegate(Json) @safe removeFunc)");
 
   Json json = Json([
     "a": [1, 2].toJson,
@@ -540,8 +517,7 @@ Json removeArrays(Json json) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeArrays(Json json)");
+  mixin(ShowTest!"Testing removeArrays(Json json)");
 
   Json json = Json([
     "a": [1, 2].toJson,

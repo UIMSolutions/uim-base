@@ -27,8 +27,7 @@ long toTimestamp(SysTime untilTime) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing toTimestamp");
+  mixin(ShowTest!"Testing toTimestamp");
 
 /*   auto sysTime = SysTime(2024, 6, 15, 12, 0, 0);
   auto timestamp = toTimestamp(sysTime);
@@ -41,8 +40,7 @@ SysTime fromTimestamp(string aTimestamp) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing fromTimestamp");
+  mixin(ShowTest!"Testing fromTimestamp");
 
   /* auto timestampStr = "1718472000000000";
   auto sysTime = fromTimestamp(timestampStr);
@@ -60,8 +58,7 @@ SysTime fromTimestamp(long aTimestamp) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing fromTimestamp with long");
+  mixin(ShowTest!"Testing fromTimestamp with long");
 
   /*
   auto timestamp = 1718472000000000;
@@ -79,8 +76,7 @@ long toJSTimestamp(long jsTimestamp) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing toJSTimestamp");
+  mixin(ShowTest!"Testing toJSTimestamp");
 
   auto jsTimestamp = 1718472000000;
   auto timestamp = toJSTimestamp(jsTimestamp);
@@ -92,8 +88,7 @@ SysTime fromJSTimestamp(long jsTimestamp) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing fromJSTimestamp");
+  mixin(ShowTest!"Testing fromJSTimestamp");
 
   /* auto jsTimestamp = 1718472000000;
   auto sysTime = fromJSTimestamp(jsTimestamp);
@@ -111,8 +106,7 @@ auto now() {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing now function");
+  mixin(ShowTest!"Testing now function");
 
   auto time1 = now;
   auto time2 = now;
@@ -130,8 +124,7 @@ DateTime nowDateTime() {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing nowDateTime function");
+  mixin(ShowTest!"Testing nowDateTime function");
 
   auto dt1 = nowDateTime();
   auto dt2 = nowDateTime();
@@ -159,8 +152,7 @@ string timeToDateString(size_t time, string regionFormat = "DE") {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing timeToDateString function");
+  mixin(ShowTest!"Testing timeToDateString function");
 
   /* 
   auto timestamp = toTimestamp(SysTime(2024, 6, 15, 12, 30, 45));

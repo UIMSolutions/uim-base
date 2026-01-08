@@ -7,7 +7,7 @@ module uim.root.containers.associative.maps.filter;
 
 import uim.root;
 
-mixin(Version!"test_uim_root");
+mixin(ShowModule!());
 
 @safe:
 
@@ -35,8 +35,7 @@ V[K] filterKeys(K, V)(V[K] map, K[] keys, bool delegate(K) @safe filterFunc) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterKeys with keys and filterFunc");
+  mixin(ShowTest!"Testing filterKeys with keys and filterFunc");
 
   int[string] map = ["one": 1, "two": 2, "three": 3, "four": 4];
   auto filtered = map.filterKeys(["two", "three", "five"],
@@ -66,8 +65,7 @@ V[K] filterKeys(K, V)(V[K] map, K[] keys) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterKeys with keys");
+  mixin(ShowTest!"Testing filterKeys with keys");
 
   int[string] map = ["one": 1, "two": 2, "three": 3, "four": 4];
   auto filtered = map.filterKeys(["two", "three", "five"]);
@@ -90,8 +88,7 @@ V[K] filterKeys(K, V)(V[K] map, bool delegate(K) @safe filterFunc) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterKeys with filterFunc");
+  mixin(ShowTest!"Testing filterKeys with filterFunc");
 
   int[string] map = ["one": 1, "two": 2, "three": 3, "four": 4];
   auto filtered = map.filterKeys((string key) @safe => key.length == 3);
@@ -117,8 +114,7 @@ V[K] filterValues(K, V)(V[K] map, V[] values, bool delegate(V) @safe filterFunc)
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterValues with values and filterFunc");
+  mixin(ShowTest!"Testing filterValues with values and filterFunc");
 
   string[string] map = ["a": "apple", "b": "banana", "c": "cherry", "d": "date"];
   auto filtered = map.filterValues(["banana", "cherry", "fig"],
@@ -141,8 +137,7 @@ V[K] filterValues(K, V)(V[K] map, V[] values) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterValues with values");
+  mixin(ShowTest!"Testing filterValues with values");
 
   string[string] map = ["a": "apple", "b": "banana", "c": "cherry", "d": "date"];
   auto filtered = map.filterValues(["banana", "cherry", "fig"]);
@@ -165,8 +160,7 @@ V[K] filterValues(K, V)(V[K] map, bool delegate(V) @safe filterFunc) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterValues with filterFunc");
+  mixin(ShowTest!"Testing filterValues with filterFunc");
 
   string[string] map = ["a": "apple", "b": "banana", "c": "cherry", "d": "date"];
   auto filtered = map.filterValues((string value) @safe => value.length == 5);
@@ -191,8 +185,7 @@ V[K] filterMap(K, V)(V[K] map, V[K] filteringMap, bool delegate(K, V) @safe filt
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterMap with filteringMap and filterFunc");
+  mixin(ShowTest!"Testing filterMap with filteringMap and filterFunc");
 
   string[string] map = ["a": "apple", "b": "banana", "c": "cherry", "d": "date"];
   auto filtered = map.filterMap(["b": "banana", "c": "cherry", "e": "elderberry"],
@@ -221,8 +214,7 @@ V[K] filterMap(K, V)(V[K] map, V[K] filteringMap) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterMap with filterFunc");
+  mixin(ShowTest!"Testing filterMap with filterFunc");
 
   string[string] map = ["a": "apple", "b": "banana", "c": "cherry", "d": "date"];
   auto filtered = map.filterMap((string key, string value) @safe => value.length > 5);
@@ -251,8 +243,7 @@ V[K] filterMap(K, V)(V[K] map, bool delegate(K, V) @safe filterFunc) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterMap with filterFunc");
+  mixin(ShowTest!"Testing filterMap with filterFunc");
 
   string[string] map = ["a": "apple", "b": "banana", "c": "cherry", "d": "date"];
   auto filtered = map.filterMap((string key, string value) @safe => value.length == 5);

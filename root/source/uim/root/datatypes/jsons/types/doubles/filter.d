@@ -19,8 +19,7 @@ Json[] filterDoubles(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterDoubles for Json[] with indices and filterFunc");
+  mixin(ShowTest!"Testing filterDoubles for Json[] with indices and filterFunc");
 
   Json[] jsons = [
     1.1.toJson, "not an array".toJson, 2.2.toJson, 42.toJson
@@ -40,8 +39,7 @@ Json[] filterDoubles(Json[] jsons, size_t[] indices) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterDoubles for Json[] with indices");
+  mixin(ShowTest!"Testing filterDoubles for Json[] with indices");
 
   Json[] jsons = [
     1.1.toJson, "not an array".toJson, 2.2.toJson, 42.toJson
@@ -60,8 +58,7 @@ Json[] filterDoubles(Json[] jsons, bool delegate(size_t) @safe filterFunc) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterDoubles for Json[] with filterFunc");
+  mixin(ShowTest!"Testing filterDoubles for Json[] with filterFunc");
 
   Json[] jsons = [
     1.1.toJson, "not an array".toJson, 2.2.toJson, 42.toJson
@@ -83,8 +80,7 @@ Json[] filterDoubles(Json[] jsons, Json[] values, bool delegate(Json) @safe filt
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterDoubles for Json[] with values and filterFunc");
+  mixin(ShowTest!"Testing filterDoubles for Json[] with values and filterFunc");
 
   Json[] jsons = [
     1.1.toJson, "not an array".toJson, 2.2.toJson, 42.toJson
@@ -103,8 +99,7 @@ Json[] filterDoubles(Json[] jsons, bool delegate(Json) @safe filterFunc) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterDoubles for Json[] with filterFunc");
+  mixin(ShowTest!"Testing filterDoubles for Json[] with filterFunc");
 
   Json[] jsons = [
     1.1.toJson, "not an array".toJson, 2.2.toJson, 42.toJson
@@ -121,8 +116,7 @@ Json[] filterDoubles(Json[] jsons, Json[] values) {
   return jsons.filterValues(values).filterDoubles;
 } /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterDoubles for Json[] by values");
+  mixin(ShowTest!"Testing filterDoubles for Json[] by values");
 
   Json[] jsons = [
     1.1.toJson, "not an array".toJson, 2.2.toJson, 42.toJson
@@ -144,8 +138,7 @@ Json[] filterDoubles(Json[] jsons) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterDoubles for Json[] by datatype");
+  mixin(ShowTest!"Testing filterDoubles for Json[] by datatype");
 
   Json[] jsons = [
     1.1.toJson, "not an array".toJson, 2.2.toJson, 42.toJson
@@ -167,8 +160,7 @@ Json[string] filterDoubles(Json[string] map, string[][] paths, bool delegate(str
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterDoubles for Json[string] with paths and filterFunc");
+  mixin(ShowTest!"Testing filterDoubles for Json[string] with paths and filterFunc");
 
   Json[string] map = [
     "a": 1.1.toJson,
@@ -189,8 +181,7 @@ Json[string] filterDoubles(Json[string] map, string[][] paths) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterDoubles for Json[string] with paths");
+  mixin(ShowTest!"Testing filterDoubles for Json[string] with paths");
 
   Json[string] map = [
     "a": 1.1.toJson,
@@ -212,8 +203,7 @@ Json[string] filterDoubles(Json[string] map, string[] keys, bool delegate(string
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterDoubles for Json[string] with keys and filterFunc");
+  mixin(ShowTest!"Testing filterDoubles for Json[string] with keys and filterFunc");
 
   Json[string] map = [
     "a": 1.1.toJson,
@@ -235,8 +225,7 @@ Json[string] filterDoubles(Json[string] map, string[] keys) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterDoubles for Json[string] with keys");
+  mixin(ShowTest!"Testing filterDoubles for Json[string] with keys");
 
   Json[string] map = [
     "a": 1.1.toJson,
@@ -268,8 +257,7 @@ Json[string] filterDoubles(Json[string] map, bool delegate(string) @safe filterF
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterDoubles for Json[string] with filterFunc");
+  mixin(ShowTest!"Testing filterDoubles for Json[string] with filterFunc");
 
   Json[string] map = [
     "a": 1.1.toJson,
@@ -291,8 +279,7 @@ Json[string] filterDoubles(Json[string] map, Json[] values, bool delegate(Json) 
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterDoubles for Json[string] with values and filterFunc");
+  mixin(ShowTest!"Testing filterDoubles for Json[string] with values and filterFunc");
 
   Json[string] map = [
     "a": 1.1.toJson,
@@ -314,8 +301,7 @@ Json[string] filterDoubles(Json[string] map, Json[] values) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterDoubles for Json[string] with values");
+  mixin(ShowTest!"Testing filterDoubles for Json[string] with values");
 
   Json[string] map = [
     "a": 1.1.toJson,
@@ -336,8 +322,7 @@ Json[string] filterDoubles(Json[string] map, bool delegate(Json) @safe filterFun
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterDoubles for Json[string] with filterFunc");
+  mixin(ShowTest!"Testing filterDoubles for Json[string] with filterFunc");
 
   Json[string] map = [
     "a": 1.1.toJson,
@@ -357,8 +342,7 @@ Json[string] filterDoubles(Json[string] map) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterDoubles for Json[string] all arrays");
+  mixin(ShowTest!"Testing filterDoubles for Json[string] all arrays");
 
   Json[string] map = [
     "a": 1.1.toJson,
@@ -382,8 +366,7 @@ Json filterDoubles(Json json, size_t[] indices, bool delegate(size_t) @safe filt
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterDoubles with indices and filterFunc");
+  mixin(ShowTest!"Testing filterDoubles with indices and filterFunc");
 
   Json json = [Json(1), Json(2), Json(3), Json(4), Json(5)].toJson;
 
@@ -399,8 +382,7 @@ Json filterDoubles(Json json, size_t[] indices) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterDoubles with indices");
+  mixin(ShowTest!"Testing filterDoubles with indices");
 
   Json json = [Json(1), Json(2), Json(3), Json(4), Json(5)].toJson;
 
@@ -415,8 +397,7 @@ Json filterDoubles(Json json, bool delegate(size_t) @safe filterFunc) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterDoubles with filterFunc");
+  mixin(ShowTest!"Testing filterDoubles with filterFunc");
 
   Json json = [Json(1), Json(2), Json(3), Json(4), Json(5)].toJson;
 
@@ -434,8 +415,7 @@ Json filterDoubles(Json json, Json[] values, bool delegate(Json) @safe filterFun
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterDoubles with values and filterFunc");
+  mixin(ShowTest!"Testing filterDoubles with values and filterFunc");
 
   Json json = [
     1.1.toJson, "not an array".toJson, 2.2.toJson, 42.toJson
@@ -454,8 +434,7 @@ Json filterDoubles(Json json, bool delegate(Json) @safe filterFunc) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterDoubles with filterFunc");
+  mixin(ShowTest!"Testing filterDoubles with filterFunc");
 
   Json json = [
     1.1.toJson, "not an array".toJson, 2.2.toJson, 42.toJson
@@ -473,8 +452,7 @@ Json filterDoubles(Json json) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterDoubles for Json by datatype");
+  mixin(ShowTest!"Testing filterDoubles for Json by datatype");
 
   Json json = [
     1.1.toJson, "not an array".toJson, 2.2.toJson, 42.toJson

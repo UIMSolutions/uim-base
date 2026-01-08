@@ -19,8 +19,7 @@ Json[] filterArrays(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe 
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterArrays for Json[] with indices and filterFunc");
+  mixin(ShowTest!"Testing filterArrays for Json[] with indices and filterFunc");
 
   Json[] jsons = [
     [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
@@ -40,8 +39,7 @@ Json[] filterArrays(Json[] jsons, size_t[] indices) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterArrays for Json[] with indices");
+  mixin(ShowTest!"Testing filterArrays for Json[] with indices");
 
   Json[] jsons = [
     [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
@@ -60,8 +58,7 @@ Json[] filterArrays(Json[] jsons, bool delegate(size_t) @safe filterFunc) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterArrays for Json[] with filterFunc");
+  mixin(ShowTest!"Testing filterArrays for Json[] with filterFunc");
 
   Json[] jsons = [
     [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
@@ -82,8 +79,7 @@ Json[] filterArrays(Json[] jsons, Json[] values, bool delegate(Json) @safe filte
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterIndices for Json[] with values and filterFunc");
+  mixin(ShowTest!"Testing filterIndices for Json[] with values and filterFunc");
 
   Json[] jsons = [
     [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
@@ -102,8 +98,7 @@ Json[] filterArrays(Json[] jsons, bool delegate(Json) @safe filterFunc) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterArrays for Json[] with filterFunc");
+  mixin(ShowTest!"Testing filterArrays for Json[] with filterFunc");
 
   Json[] jsons = [
     [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
@@ -120,8 +115,7 @@ Json[] filterArrays(Json[] jsons, Json[] values) {
   return jsons.filterValues(values).filterArrays;
 } /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterArrays for Json[] with values");
+  mixin(ShowTest!"Testing filterArrays for Json[] with values");
 
   Json[] jsons = [
     [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
@@ -143,8 +137,7 @@ Json[] filterArrays(Json[] jsons) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterArrays for Json[] by datatype");
+  mixin(ShowTest!"Testing filterArrays for Json[] by datatype");
 
   Json[] jsons = [
     [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
@@ -166,8 +159,7 @@ Json[string] filterArrays(Json[string] map, string[][] paths, bool delegate(stri
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterArrays for Json[string] with paths and filterFunc");
+  mixin(ShowTest!"Testing filterArrays for Json[string] with paths and filterFunc");
 
   Json[string] map = [
     "a": [1, 2, 3].toJson,
@@ -187,8 +179,7 @@ Json[string] filterArrays(Json[string] map, string[][] paths) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterArrays for Json[string] with paths");
+  mixin(ShowTest!"Testing filterArrays for Json[string] with paths");
 
   Json[string] map = [
     "a": [1, 2, 3].toJson,
@@ -210,8 +201,7 @@ Json[string] filterArrays(Json[string] map, string[] keys, bool delegate(string)
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterArrays for Json[string] with keys and filterFunc");
+  mixin(ShowTest!"Testing filterArrays for Json[string] with keys and filterFunc");
 
   Json[string] map = [
     "a": [1, 2, 3].toJson,
@@ -231,8 +221,7 @@ Json[string] filterArrays(Json[string] map, string[] keys) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterArrays for Json[string] with keys");
+  mixin(ShowTest!"Testing filterArrays for Json[string] with keys");
 
   Json[string] map = [
     "a": [1, 2, 3].toJson,
@@ -263,8 +252,7 @@ Json[string] filterArrays(Json[string] map, bool delegate(string) @safe filterFu
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterArrays for Json[string] with filterFunc");
+  mixin(ShowTest!"Testing filterArrays for Json[string] with filterFunc");
 
   Json[string] map = [
     "a": [1, 2, 3].toJson,
@@ -286,8 +274,7 @@ Json[string] filterArrays(Json[string] map, Json[] values, bool delegate(Json) @
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterArrays for Json[string] with values and filterFunc");
+  mixin(ShowTest!"Testing filterArrays for Json[string] with values and filterFunc");
 
   Json[string] map = [
     "a": [1, 2, 3].toJson,
@@ -309,8 +296,7 @@ Json[string] filterArrays(Json[string] map, Json[] values) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterArrays for Json[string] with values");
+  mixin(ShowTest!"Testing filterArrays for Json[string] with values");
 
   Json[string] map = [
     "a": [1, 2, 3].toJson,
@@ -332,8 +318,7 @@ Json[string] filterArrays(Json[string] map, bool delegate(Json) @safe filterFunc
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterArrays for Json[string] with filterFunc");
+  mixin(ShowTest!"Testing filterArrays for Json[string] with filterFunc");
 
   Json[string] map = [
     "a": [1, 2, 3].toJson,
@@ -353,8 +338,7 @@ Json[string] filterArrays(Json[string] map) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterArrays for Json[string]");
+  mixin(ShowTest!"Testing filterArrays for Json[string]");
 
   Json[string] map = [
     "a": [1, 2, 3].toJson,
@@ -379,8 +363,7 @@ Json filterArrays(Json json, size_t[] indices, bool delegate(size_t) @safe filte
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterArrays with indices and filterFunc");
+  mixin(ShowTest!"Testing filterArrays with indices and filterFunc");
 
   Json json = [
     [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
@@ -399,8 +382,7 @@ Json filterArrays(Json json, size_t[] indices) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterArrays with indices");
+  mixin(ShowTest!"Testing filterArrays with indices");
 
   Json json = [
     [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
@@ -419,8 +401,7 @@ Json filterArrays(Json json, bool delegate(size_t) @safe filterFunc) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterArrays with filterFunc");
+  mixin(ShowTest!"Testing filterArrays with filterFunc");
 
   Json json = [
     [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
@@ -441,8 +422,7 @@ Json filterArrays(Json json, Json[] values, bool delegate(Json) @safe filterFunc
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterArrays with values and filterFunc");
+  mixin(ShowTest!"Testing filterArrays with values and filterFunc");
 
   Json json = [
     [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
@@ -462,8 +442,7 @@ Json filterArrays(Json json, bool delegate(Json) @safe filterFunc) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterArrays with filterFunc");
+  mixin(ShowTest!"Testing filterArrays with filterFunc");
 
   Json json = [
     [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
@@ -481,8 +460,7 @@ Json filterArrays(Json json) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterArrays for Json by datatype");
+  mixin(ShowTest!"Testing filterArrays for Json by datatype");
 
   Json json = [
     [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson

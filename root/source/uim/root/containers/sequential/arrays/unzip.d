@@ -7,7 +7,7 @@ module uim.root.containers.sequential.arrays.unzip;
 
 import uim.root;
 
-mixin(Version!"test_uim_root");
+mixin(ShowModule!());
 
 @safe:
 
@@ -33,8 +33,7 @@ Tuple!(T1[], T2[]) unzip(T1, T2)(Tuple!(T1, T2)[] zipped) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing unzip");
+  mixin(ShowTest!"Testing unzip");
 
   auto zipped = [tuple(1, "a"), tuple(2, "b"), tuple(3, "c")];
   auto result = unzip(zipped);

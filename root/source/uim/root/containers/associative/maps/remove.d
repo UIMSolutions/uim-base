@@ -7,7 +7,7 @@ module uim.root.containers.associative.maps.remove;
 
 import uim.root;
 
-mixin(Version!"test_uim_root");
+mixin(ShowModule!());
 
 @safe:
 
@@ -31,8 +31,7 @@ V[K] removeKeys(K, V)(V[K] map, K[] keys) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing removeKey with keys");
+  mixin(ShowTest!"Testing removeKey with keys");
 
   int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];
   int[string] result = removeKeys(testMap, ["b", "d"]);
@@ -66,8 +65,7 @@ V[K] removeValue(K, V)(V[K] map, V[] values) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeValue with values");
+  mixin(ShowTest!"Testing removeValue with values");
 
   int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];
   int[string] result = removeValue(testMap, [1, 3]);
@@ -98,8 +96,7 @@ V[K] removeMap(K, V)(V[K] map, bool delegate(K key, V value) @safe removeFunc) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeMap with key-value delegate");
+  mixin(ShowTest!"Testing removeMap with key-value delegate");
 
   int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];
 
@@ -121,8 +118,7 @@ V[K] removeMap(K, V)(V[K] map, bool delegate(K) @safe removeFunc) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeMap with key delegate");
+  mixin(ShowTest!"Testing removeMap with key delegate");
     
   int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];
 
@@ -142,8 +138,7 @@ V[K] removeMap(K, V)(V[K] map, bool delegate(V) @safe removeFunc) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing removeMap with value delegate");
+  mixin(ShowTest!"Testing removeMap with value delegate");
 
   int[string] testMap = [ "a": 1, "b": 2, "c": 3, "d": 4 ];
 

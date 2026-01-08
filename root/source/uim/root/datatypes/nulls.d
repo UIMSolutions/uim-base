@@ -29,8 +29,7 @@ auto Null(T : bool)() {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing Null for bool");
+  mixin(ShowTest!"Testing Null for bool");
 
   assert(Null!bool == false);
   assert(Null!bool != true);

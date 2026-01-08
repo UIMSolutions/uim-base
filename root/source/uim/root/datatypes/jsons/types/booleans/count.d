@@ -19,8 +19,7 @@ size_t countBooleans(Json json, size_t[] indices, bool delegate(size_t) @safe co
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans with indices and delegate");
+  mixin(ShowTest!"Testing countBooleans with indices and delegate");
 
   auto j1 = true.toJson;
   auto j2 = ["a": 1].toJson;
@@ -47,8 +46,7 @@ size_t countBooleans(Json json, size_t[] indices) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans with indices");
+  mixin(ShowTest!"Testing countBooleans with indices");
 
   auto j1 = true.toJson;
   auto j2 = ["a": 1].toJson;
@@ -72,8 +70,7 @@ size_t countBooleans(Json json, bool delegate(size_t) @safe countFunc) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans with delegate");
+  mixin(ShowTest!"Testing countBooleans with delegate");
 
   auto j1 = true.toJson;
   auto j2 = ["a": 1].toJson;
@@ -100,8 +97,7 @@ size_t countBooleans(Json json, string[][] paths, bool delegate(string[]) @safe 
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans with paths and delegate");
+  mixin(ShowTest!"Testing countBooleans with paths and delegate");
 
   Json json = [
     "first": true.toJson,
@@ -127,8 +123,7 @@ size_t countBooleans(Json json, string[][] paths) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans with paths");
+  mixin(ShowTest!"Testing countBooleans with paths");
 
   Json json = [
     "first": true.toJson,
@@ -151,8 +146,7 @@ size_t countBooleans(Json json, string[] keys, bool delegate(string) @safe count
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans with keys and delegate");
+  mixin(ShowTest!"Testing countBooleans with keys and delegate");
 
   Json json = [
     "first": true.toJson,
@@ -172,8 +166,7 @@ size_t countBooleans(Json json, string[] keys) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans with keys");
+  mixin(ShowTest!"Testing countBooleans with keys");
 
   Json json = [
     "first": true.toJson,
@@ -192,8 +185,7 @@ size_t countBooleans(Json json, bool delegate(string) @safe countFunc) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans for Json with delegate");
+  mixin(ShowTest!"Testing countBooleans for Json with delegate");
 
   Json json = [
     "first": true.toJson,
@@ -219,8 +211,7 @@ size_t countBooleans(Json json, Json[] values, bool delegate(Json) @safe countFu
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans with values and delegate");
+  mixin(ShowTest!"Testing countBooleans with values and delegate");
 
   Json json = [
     "first": true.toJson,
@@ -245,8 +236,7 @@ size_t countBooleans(Json json, bool delegate(Json) @safe countFunc) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans with delegate");
+  mixin(ShowTest!"Testing countBooleans with delegate");
 
   Json json = [
     "first": true.toJson,
@@ -265,8 +255,7 @@ size_t countBooleans(Json json, bool delegate(string, Json) @safe countFunc) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans for Json map with delegate");
+  mixin(ShowTest!"Testing countBooleans for Json map with delegate");
 
   Json json = [
     "first": true.toJson,
@@ -289,8 +278,7 @@ size_t countBooleans(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans for Json[] with indices and delegate");
+  mixin(ShowTest!"Testing countBooleans for Json[] with indices and delegate");
 
   Json[] jsons = [
     true.toJson, ["a": 1].toJson, false.toJson, "string".toJson, 42.toJson
@@ -312,8 +300,7 @@ size_t countBooleans(Json[] jsons, size_t[] indices) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans for Json[] with indices");
+  mixin(ShowTest!"Testing countBooleans for Json[] with indices");
 
   Json[] jsons = [
     true.toJson, ["a": 1].toJson, false.toJson, "string".toJson, 42.toJson
@@ -337,8 +324,7 @@ size_t countBooleans(Json[] jsons, bool delegate(size_t) @safe countFunc) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans for Json[] with delegate");
+  mixin(ShowTest!"Testing countBooleans for Json[] with delegate");
 
   Json[] jsons = [
     true.toJson, ["a": 1].toJson, false.toJson, "string".toJson, 42.toJson
@@ -360,8 +346,7 @@ size_t countBooleans(Json[] jsons, Json[] values, bool delegate(Json) @safe coun
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans for Json[] with values and delegate");
+  mixin(ShowTest!"Testing countBooleans for Json[] with values and delegate");
 
   Json[] jsons = [
     true.toJson, ["a": 1].toJson, false.toJson, "string".toJson, 42.toJson
@@ -380,8 +365,7 @@ size_t countBooleans(Json[] jsons, Json[] values) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans for Json[] with values");
+  mixin(ShowTest!"Testing countBooleans for Json[] with values");
 
   Json[] jsons = [
     true.toJson, ["a": 1].toJson, false.toJson, "string".toJson, 42.toJson
@@ -399,8 +383,7 @@ size_t countBooleans(Json[] jsons, bool delegate(Json) @safe countFunc) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans for Json[] with delegate");
+  mixin(ShowTest!"Testing countBooleans for Json[] with delegate");
 
   Json[] jsons = [
     true.toJson, ["a": 1].toJson, false.toJson, "string".toJson, 42.toJson
@@ -418,8 +401,7 @@ size_t countBooleans(Json[] jsons) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans for Json[] without delegate");
+  mixin(ShowTest!"Testing countBooleans for Json[] without delegate");
 
   Json[] jsons = [
     true.toJson, ["a": 1].toJson, false.toJson, "string".toJson, 42.toJson
@@ -439,8 +421,7 @@ size_t countBooleans(Json[string] map, string[][] paths, bool delegate(string[])
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans for Json[string] with paths and delegate");
+  mixin(ShowTest!"Testing countBooleans for Json[string] with paths and delegate");
 
   Json[string] map = [
     "first": true.toJson, "second": ["a": 1].toJson, "third": false.toJson,
@@ -462,8 +443,7 @@ size_t countBooleans(Json[string] map, string[][] paths) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans for Json[string] with paths");
+  mixin(ShowTest!"Testing countBooleans for Json[string] with paths");
 
   Json[string] map = [
     "first": true.toJson, "second": ["a": 1].toJson, "third": false.toJson,
@@ -482,8 +462,7 @@ size_t countBooleans(Json[string] map, string[] keys, bool delegate(string) @saf
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans with keys and delegate");
+  mixin(ShowTest!"Testing countBooleans with keys and delegate");
 
   Json[string] map = [
     "first": true.toJson, "second": ["a": 1].toJson, "third": false.toJson,
@@ -501,8 +480,7 @@ size_t countBooleans(Json[string] map, string[] keys) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans with keys");
+  mixin(ShowTest!"Testing countBooleans with keys");
 
   Json[string] map = [
     "first": true.toJson, "second": ["a": 1].toJson, "third": false.toJson,
@@ -519,8 +497,7 @@ size_t countBooleans(Json[string] map, bool delegate(string) @safe countFunc) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans with keys and delegate");
+  mixin(ShowTest!"Testing countBooleans with keys and delegate");
 
   Json[string] map = [
     "first": true.toJson, "second": ["a": 1].toJson, "third": false.toJson,
@@ -540,8 +517,7 @@ size_t countBooleans(Json[string] map, Json[] values, bool delegate(Json) @safe 
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans with values and delegate");
+  mixin(ShowTest!"Testing countBooleans with values and delegate");
 
   Json[string] map = [
     "first": true.toJson, "second": ["a": 1].toJson, "third": false.toJson,
@@ -560,8 +536,7 @@ size_t countBooleans(Json[string] map, Json[] values) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans with values");
+  mixin(ShowTest!"Testing countBooleans with values");
 
   Json[string] map = [
     "first": true.toJson, "second": ["a": 1].toJson, "third": false.toJson,
@@ -579,8 +554,7 @@ size_t countBooleans(Json[string] map, bool delegate(Json) @safe countFunc) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans with values and delegate");
+  mixin(ShowTest!"Testing countBooleans with values and delegate");
 
   Json[string] map = [
     "first": true.toJson, "second": ["a": 1].toJson, "third": false.toJson,
@@ -599,8 +573,7 @@ size_t countBooleans(Json[string] map, bool delegate(string, Json) @safe countFu
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing countBooleans for Json[string] with key-value delegate");
+  mixin(ShowTest!"Testing countBooleans for Json[string] with key-value delegate");
 
   Json[string] map = [
     "first": true.toJson, "second": ["a": 1].toJson, "third": false.toJson,

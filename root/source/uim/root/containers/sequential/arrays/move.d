@@ -28,8 +28,7 @@ T[] moveForward(T)(T[] values, size_t fromIndex, size_t toIndex) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing moveForward"); 
+  mixin(ShowTest!"Testing moveForward"); 
 
   auto arr = [1, 2, 3, 4, 5];
   auto movedArr = moveForward(arr, 1, 3); // Move element at index 1 to index 3

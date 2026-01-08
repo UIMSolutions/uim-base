@@ -22,8 +22,7 @@ T[] unique(T)(T[] values) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing unique function");
+  mixin(ShowTest!"Testing unique function");
   auto arr = [1, 2, 2, 3, 4, 4, 5];
 
   auto uniqueArr = unique(arr);

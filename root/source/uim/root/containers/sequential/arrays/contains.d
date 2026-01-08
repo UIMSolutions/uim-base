@@ -17,8 +17,7 @@ bool containsAll(string[] bases, string[] values) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing containsAll with array of bases");
+  mixin(ShowTest!"Testing containsAll with array of bases");
 
   assert(containsAll(["hello world", "world peace"], ["world"]));
   assert(!containsAll(["hello world", "peace"], ["world"]));
@@ -31,8 +30,7 @@ bool containsAll(string base, string[] values) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing containsAll with single base string");
+  mixin(ShowTest!"Testing containsAll with single base string");
 
   assert(containsAll("hello world", ["hello", "world"]));
   assert(!containsAll("hello world", ["hello", "planet"]));
@@ -45,8 +43,7 @@ bool containsAny(string[] bases, string[] values) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing containsAny with array of bases");
+  mixin(ShowTest!"Testing containsAny with array of bases");
 
   assert(containsAny(["hello world", "example"], ["world", "planet"]));
   assert(!containsAny(["hello world", "example"], ["planet", "galaxy"]));
@@ -65,8 +62,7 @@ bool containsAny(string base = null, string[] values = null) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing containsAny with single base string");
+  mixin(ShowTest!"Testing containsAny with single base string");
 
   assert(containsAny("hello world", ["world", "planet"]));
   assert(!containsAny("hello world", ["planet", "galaxy"]));

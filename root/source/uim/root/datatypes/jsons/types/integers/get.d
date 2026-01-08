@@ -17,8 +17,7 @@ Json getInteger(Json[] jsons, size_t index, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getInteger for Json[] with index");
+  mixin(ShowTest!"Testing getInteger for Json[] with index");
 
   Json[] jsons = [123.toJson, 1.23.toJson, 456.toJson];
   assert(jsons.getInteger(0) == 123.toJson);
@@ -33,8 +32,7 @@ Json getInteger(Json[string] map, string[] path, Json defaultValue = Json(null))
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getInteger for Json[string] with path");
+  mixin(ShowTest!"Testing getInteger for Json[string] with path");
 
   Json[string] map = [
     "first": 123.toJson, "second": 1.23.toJson, "third": 456.toJson
@@ -49,8 +47,7 @@ Json getInteger(Json[string] map, string key, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getInteger for Json[string] with key");
+  mixin(ShowTest!"Testing getInteger for Json[string] with key");
 
   Json[string] map = [
     "first": 123.toJson, "second": 1.23.toJson, "third": 456.toJson
@@ -67,8 +64,7 @@ Json getInteger(Json json, size_t index, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getInteger for Json with index");
+  mixin(ShowTest!"Testing getInteger for Json with index");
 
   Json json = [123.toJson, 1.23.toJson, 456.toJson].toJson;
   assert(json.getInteger(0) == 123.toJson);
@@ -81,8 +77,7 @@ Json getInteger(Json json, string[] path, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getInteger for Json with path");
+  mixin(ShowTest!"Testing getInteger for Json with path");
 
   Json json = parseJsonString(`{"first": 123, "second": 1.23, "third": 456}`);
   assert(json.getInteger("first") == 123.toJson);
@@ -95,8 +90,7 @@ Json getInteger(Json json, string key, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getInteger for Json with key");
+  mixin(ShowTest!"Testing getInteger for Json with key");
 
   Json json = parseJsonString(`{"first": 123, "second": 1.23, "third": 456}`);
   assert(json.getInteger("first") == 123.toJson);

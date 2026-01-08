@@ -19,8 +19,7 @@ Json[] filterStrings(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterStrings for Json[] with indices and filterFunc");
+  mixin(ShowTest!"Testing filterStrings for Json[] with indices and filterFunc");
 
   Json[] jsons = [
     "abc".toJson, 2.toJson, "def".toJson, 4.2.toJson
@@ -40,8 +39,7 @@ Json[] filterStrings(Json[] jsons, size_t[] indices) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterStrings for Json[] with indices");
+  mixin(ShowTest!"Testing filterStrings for Json[] with indices");
 
   Json[] jsons = [
     "abc".toJson, 2.toJson, "def".toJson, 4.2.toJson
@@ -60,8 +58,7 @@ Json[] filterStrings(Json[] jsons, bool delegate(size_t) @safe filterFunc) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing filterStrings for Json[] with filterFunc");
+  mixin(ShowTest!"Testing filterStrings for Json[] with filterFunc");
 
   Json[] jsons = [
     "abc".toJson, 2.toJson, "def".toJson, 4.2.toJson
@@ -83,8 +80,7 @@ Json[] filterStrings(Json[] jsons, Json[] values, bool delegate(Json) @safe filt
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterStrings for Json[] with values and filterFunc");
+  mixin(ShowTest!"Testing filterStrings for Json[] with values and filterFunc");
 
   Json[] jsons = [
     "abc".toJson, 2.toJson, "def".toJson, 4.2.toJson
@@ -103,8 +99,7 @@ Json[] filterStrings(Json[] jsons, bool delegate(Json) @safe filterFunc) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterStrings for Json[] with filterFunc");
+  mixin(ShowTest!"Testing filterStrings for Json[] with filterFunc");
 
   Json[] jsons = [
     "abc".toJson, 2.toJson, "def".toJson, 4.2.toJson
@@ -121,8 +116,7 @@ Json[] filterStrings(Json[] jsons, Json[] values) {
   return jsons.filterValues(values).filterStrings;
 } /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterStrings for Json[] by values");
+  mixin(ShowTest!"Testing filterStrings for Json[] by values");
 
   Json[] jsons = [
     "abc".toJson, 2.toJson, "def".toJson, 4.2.toJson
@@ -144,8 +138,7 @@ Json[] filterStrings(Json[] jsons) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterStrings for Json[] by datatype");
+  mixin(ShowTest!"Testing filterStrings for Json[] by datatype");
 
   Json[] jsons = [
     "abc".toJson, 2.toJson, "def".toJson, 4.2.toJson
@@ -167,8 +160,7 @@ Json[string] filterStrings(Json[string] map, string[][] paths, bool delegate(str
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterStrings for Json[string] with paths and filterFunc");
+  mixin(ShowTest!"Testing filterStrings for Json[string] with paths and filterFunc");
 
   Json[string] map = [
     "a": "abc".toJson,
@@ -189,8 +181,7 @@ Json[string] filterStrings(Json[string] map, string[][] paths) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterStrings for Json[string] with paths");
+  mixin(ShowTest!"Testing filterStrings for Json[string] with paths");
 
   Json[string] map = [
     "a": "abc".toJson,
@@ -212,8 +203,7 @@ Json[string] filterStrings(Json[string] map, string[] keys, bool delegate(string
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterStrings for Json[string] with keys and filterFunc");
+  mixin(ShowTest!"Testing filterStrings for Json[string] with keys and filterFunc");
 
   Json[string] map = [
     "a": "abc".toJson,
@@ -235,8 +225,7 @@ Json[string] filterStrings(Json[string] map, string[] keys) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterStrings for Json[string] with keys");
+  mixin(ShowTest!"Testing filterStrings for Json[string] with keys");
 
   Json[string] map = [
     "a": "abc".toJson,
@@ -268,8 +257,7 @@ Json[string] filterStrings(Json[string] map, bool delegate(string) @safe filterF
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterStrings for Json[string] with filterFunc");
+  mixin(ShowTest!"Testing filterStrings for Json[string] with filterFunc");
 
   Json[string] map = [
     "a": "abc".toJson,
@@ -291,8 +279,7 @@ Json[string] filterStrings(Json[string] map, Json[] values, bool delegate(Json) 
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterStrings for Json[string] with values and filterFunc");
+  mixin(ShowTest!"Testing filterStrings for Json[string] with values and filterFunc");
 
   Json[string] map = [
     "a": "abc".toJson,
@@ -314,8 +301,7 @@ Json[string] filterStrings(Json[string] map, Json[] values) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterStrings for Json[string] with values");
+  mixin(ShowTest!"Testing filterStrings for Json[string] with values");
 
   Json[string] map = [
     "a": "abc".toJson,
@@ -336,8 +322,7 @@ Json[string] filterStrings(Json[string] map, bool delegate(Json) @safe filterFun
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterStrings for Json[string] with filterFunc");
+  mixin(ShowTest!"Testing filterStrings for Json[string] with filterFunc");
 
   Json[string] map = [
     "a": "abc".toJson,
@@ -357,8 +342,7 @@ Json[string] filterStrings(Json[string] map) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterStrings for Json[string] all arrays");
+  mixin(ShowTest!"Testing filterStrings for Json[string] all arrays");
 
   Json[string] map = [
     "a": "abc".toJson,
@@ -382,8 +366,7 @@ Json filterStrings(Json json, size_t[] indices, bool delegate(size_t) @safe filt
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterStrings with indices and filterFunc");
+  mixin(ShowTest!"Testing filterStrings with indices and filterFunc");
 
   Json json = [Json(1.1), Json(2.1), Json("abc"), Json("def"), Json("xyz")].toJson;
   auto filtered = json.filterStrings([0, 2, 4],
@@ -398,8 +381,7 @@ Json filterStrings(Json json, size_t[] indices) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterStrings with indices");
+  mixin(ShowTest!"Testing filterStrings with indices");
 
   Json json = [Json(1.1), Json(2.1), Json("abc"), Json("def"), Json("xyz")].toJson;
   auto filtered = json.filterStrings([0, 2, 4]);
@@ -413,8 +395,7 @@ Json filterStrings(Json json, bool delegate(size_t) @safe filterFunc) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterStrings with filterFunc");
+  mixin(ShowTest!"Testing filterStrings with filterFunc");
 
   Json json1 = [Json(1), Json(2), Json(3), Json(4), Json(5)].toJson;
   auto filtered1 = json1.filterStrings(
@@ -436,8 +417,7 @@ Json filterStrings(Json json, Json[] values, bool delegate(Json) @safe filterFun
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterStrings with values and filterFunc");
+  mixin(ShowTest!"Testing filterStrings with values and filterFunc");
 
   Json json = [
     "abc".toJson, 2.toJson, "def".toJson, 4.2.toJson
@@ -456,8 +436,7 @@ Json filterStrings(Json json, bool delegate(Json) @safe filterFunc) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterStrings with filterFunc");
+  mixin(ShowTest!"Testing filterStrings with filterFunc");
 
   Json json = [
     "abc".toJson, 2.toJson, "def".toJson, 4.2.toJson
@@ -475,8 +454,7 @@ Json filterStrings(Json json) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing filterStrings for Json by datatype");
+  mixin(ShowTest!"Testing filterStrings for Json by datatype");
 
   Json json = [
     "abc".toJson, 2.toJson, "def".toJson, 4.2.toJson

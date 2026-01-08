@@ -12,8 +12,7 @@ bool hasAllValue(T)(Json json, T[] values) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing hasAllValue for Json with values");
+  mixin(ShowTest!"Testing hasAllValue for Json with values");
 
   Json json = [
     "a": Json(1),
@@ -30,8 +29,7 @@ bool hasAnyValue(T)(Json json, T[] values) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing hasAnyValue for Json with values");
+  mixin(ShowTest!"Testing hasAnyValue for Json with values");
 
   Json json = [
     "a": Json(1),
@@ -59,8 +57,7 @@ bool hasValue(T)(Json json, T value) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing hasValue for Json with value");
+  mixin(ShowTest!"Testing hasValue for Json with value");
 
   Json json = [
     "a": Json(1),
@@ -88,8 +85,7 @@ bool hasAllPath(Json json, string[][] paths) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing hasAllPath for Json with paths");
+  mixin(ShowTest!"Testing hasAllPath for Json with paths");
 
   Json json = [
     "a": [
@@ -127,8 +123,7 @@ bool hasAnyPath(Json json, string[][] paths) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing hasAnyPath for Json with paths");
+  mixin(ShowTest!"Testing hasAnyPath for Json with paths");
 
   Json json = [
     "a": [
@@ -173,8 +168,7 @@ bool hasPath(Json json, string[] path) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing hasPath for Json with path");
+  mixin(ShowTest!"Testing hasPath for Json with path");
 
   Json json = [
     "a": [
@@ -212,8 +206,7 @@ bool hasPath(Json[string] map, string[] path) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing hasPath for Json with path");
+  mixin(ShowTest!"Testing hasPath for Json with path");
 
   Json json = [
     "a": [
@@ -240,8 +233,7 @@ bool hasAllKey(Json json, string[] keys) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing hasAllKey for Json with keys");
+  mixin(ShowTest!"Testing hasAllKey for Json with keys");
 
   Json json = [
     "a": Json(1),
@@ -259,8 +251,7 @@ bool hasAnyKey(Json json, string[] keys) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing hasAnyKey for Json with keys");
+  mixin(ShowTest!"Testing hasAnyKey for Json with keys");
 
   Json json = [
     "a": Json(1),
@@ -288,8 +279,7 @@ bool hasKey(Json json, string key) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing hasKey for Json with key");
+  mixin(ShowTest!"Testing hasKey for Json with key");
 
   // Non-object JSON -> always false
   auto json1 = Json(1);
@@ -330,8 +320,7 @@ bool hasKeyValue(Json json, string key, Json value) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing hasKeyValue for Json with key and value");
+  mixin(ShowTest!"Testing hasKeyValue for Json with key and value");
 
   Json json = [
     "a": Json(1),

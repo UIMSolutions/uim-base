@@ -11,8 +11,7 @@ Json getString(Json[] jsons, size_t index, Json defaultValue = Json(null)) {
   return jsons.getValue(index).isString() ? jsons[index] : defaultValue;
 }/// 
 unittest {
-  version (show_test)
-    writeln("Testing getString for Json[] with index");
+  mixin(ShowTest!"Testing getString for Json[] with index");
 
   Json[] jsons = [Json("hello"), 123.toJson, Json("world")];
   assert(jsons.getString(0) == Json("hello"));
@@ -27,8 +26,7 @@ Json getString(Json[string] map, string[] path, Json defaultValue = Json(null)) 
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getString for Json[string] with path");
+  mixin(ShowTest!"Testing getString for Json[string] with path");
 
   Json[string] map = [
     "first": Json("hello"), "second": 123.toJson, "third": Json("world")
@@ -43,8 +41,7 @@ Json getString(Json[string] map, string key, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getString for Json[string] with key");
+  mixin(ShowTest!"Testing getString for Json[string] with key");
 
   Json[string] map = [
     "first": Json("hello"), "second": 123.toJson, "third": Json("world")
@@ -61,8 +58,7 @@ Json getString(Json json, size_t index, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getString for Json with index");
+  mixin(ShowTest!"Testing getString for Json with index");
 
   Json json = [Json("hello"), 123.toJson, Json("world")].toJson;
   assert(json.getString(0) == Json("hello"));
@@ -75,8 +71,7 @@ Json getString(Json json, string[] path, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getString for Json with path");
+  mixin(ShowTest!"Testing getString for Json with path");
 
   Json json = parseJsonString(`{"first": "hello", "second": 123, "third": "world"}`);
   assert(json.getString("first") == Json("hello"));
@@ -89,8 +84,7 @@ Json getString(Json json, string key, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getString for Json with key");
+  mixin(ShowTest!"Testing getString for Json with key");
 
   Json json = parseJsonString(`{"first": "hello", "second": 123, "third": "world"}`);
   assert(json.getString("first") == Json("hello"));

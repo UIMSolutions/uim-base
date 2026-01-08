@@ -7,7 +7,7 @@ module uim.root.containers.associative.maps.set;
 
 import uim.root;
 
-mixin(Version!"test_uim_root");
+mixin(ShowModule!());
 
 @safe:
 

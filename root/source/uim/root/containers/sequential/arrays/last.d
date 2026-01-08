@@ -26,8 +26,7 @@ T last(T)(T[] values) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing last");
+  mixin(ShowTest!"Testing last");
 
   // Test last with non-empty array
   int[] arr = [1, 2, 3, 4, 5];

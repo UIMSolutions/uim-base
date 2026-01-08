@@ -21,8 +21,7 @@ bool isAllArray(Json[] jsons, size_t[] indices = null) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing isAllArray for Json[] with indices");
+  mixin(ShowTest!"Testing isAllArray for Json[] with indices");
 
   Json[] jsons = [[1, 2].toJson, ["a": 1].toJson, [3, 4].toJson];
   assert(isAllArray(jsons) == false);
@@ -40,8 +39,7 @@ bool isAnyArray(Json[] jsons, size_t[] indices = null) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing isAllArray and isAnyArray for Json[] with indices");
+  mixin(ShowTest!"Testing isAllArray and isAnyArray for Json[] with indices");
 
   Json[] jsons = [[1, 2].toJson, ["a": 1].toJson, [3, 4].toJson];
   assert(isAllArray(jsons) == false);
@@ -57,8 +55,7 @@ bool isArray(Json[] jsons, size_t index) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing isArray for Json[]");
+  mixin(ShowTest!"Testing isArray for Json[]");
     
   Json[] jsons = [[1, 2].toJson, ["a": 1].toJson, [3, 4].toJson];
   assert(isAllArray(jsons) == false);
@@ -81,8 +78,7 @@ bool isAllArray(Json[string] map, string[][] paths) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing isAllArray for Json[string] with paths");
+  mixin(ShowTest!"Testing isAllArray for Json[string] with paths");
 
   Json[string] map = [
     "arr1": [1, 2, 3].toJson,
@@ -102,8 +98,7 @@ bool isAnyArray(Json[string] map, string[][] paths) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing isAllArray and isAnyArray for Json[string] with paths");
+  mixin(ShowTest!"Testing isAllArray and isAnyArray for Json[string] with paths");
 
   Json[string] map = [
     "arr1": [1, 2, 3].toJson,
@@ -122,8 +117,7 @@ bool isArray(Json[string] map, string[] path) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing isArray for Json[string] with path");
+  mixin(ShowTest!"Testing isArray for Json[string] with path");
 
   Json[string] map = [
     "arr1": [1, 2, 3].toJson,
@@ -150,8 +144,7 @@ bool isAllArray(Json[string] map, string[] keys = null) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing isAllArray for Json[string] with keys");
+  mixin(ShowTest!"Testing isAllArray for Json[string] with keys");
 
   Json[string] map = [
     "arr1": [1, 2, 3].toJson,
@@ -172,8 +165,7 @@ bool isAnyArray(Json[string] map, string[] keys = null) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing isAllArray and isAnyArray for Json[string] with keys");
+  mixin(ShowTest!"Testing isAllArray and isAnyArray for Json[string] with keys");
 
   Json[string] map = [
     "arr1": [1, 2, 3].toJson,
@@ -194,8 +186,7 @@ bool isArray(Json[string] map, string key) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing isArray for Json[string]");
+  mixin(ShowTest!"Testing isArray for Json[string]");
 
   Json[string] map = [
     "arr1": [1, 2, 3].toJson,
@@ -223,8 +214,7 @@ bool isAllArray(Json json, size_t[] indices) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing isAllArray for Json with indices");
+  mixin(ShowTest!"Testing isAllArray for Json with indices");
 
   Json arr = [[1, 2].toJson, "not an array".toJson, [3, 4].toJson].toJson;
   assert(isAllArray(arr, [0, 2]));
@@ -239,8 +229,7 @@ bool isAnyArray(Json json, size_t[] indices) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing isAllArray and isAnyArray for Json with indices");
+  mixin(ShowTest!"Testing isAllArray and isAnyArray for Json with indices");
 
   Json arr = [[1, 2].toJson, "not an array".toJson, [3, 4].toJson].toJson;
   assert(isAllArray(arr, [0, 2]));
@@ -256,8 +245,7 @@ bool isArray(Json json, size_t index) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing isArray for Json with index");
+  mixin(ShowTest!"Testing isArray for Json with index");
 
   Json arr = [[1, 2].toJson, "not an array".toJson, [3, 4].toJson].toJson;
   assert(isAllArray(arr, [0, 2]));
@@ -279,8 +267,7 @@ bool isAllArray(Json json, string[][] paths) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing isAllArray for Json with paths");
+  mixin(ShowTest!"Testing isAllArray for Json with paths");
 
   Json json = parseJsonString(`{"data": { "test1": [ [1, 2], {"a": 1} ], "test2": [3, 4] }}`);
 
@@ -299,8 +286,7 @@ bool isAnyArray(Json json, string[][] paths) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing isAllArray and isAnyArray for Json with paths");
+  mixin(ShowTest!"Testing isAllArray and isAnyArray for Json with paths");
 
   Json json = parseJsonString(`{"data": { "test1": [ [1, 2], {"a": 1} ], "test2": [3, 4] }}`);
   assert(isAnyArray(json, [["data", "test1"], ["data", "nonexistent"]]));
@@ -314,8 +300,7 @@ bool isArray(Json json, string[] path) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing isArray for Json with path");
+  mixin(ShowTest!"Testing isArray for Json with path");
 
   Json json = parseJsonString(`{"data": { "test": [ [1, 2], {"a": 1}, [3, 4] ]}}`);
   assert(isArray(json, ["data", "test"]));
@@ -332,8 +317,7 @@ bool isAllArray(Json json, string[] keys) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing isAllArray for Json with keys");
+  mixin(ShowTest!"Testing isAllArray for Json with keys");
 
   Json obj = [
     "a": [1, 2].toJson,
@@ -352,8 +336,7 @@ bool isAnyArray(Json json, string[] keys) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing isArray for Json with keys");
+  mixin(ShowTest!"Testing isArray for Json with keys");
 
   Json obj = [
     "a": [1, 2].toJson,
@@ -373,8 +356,7 @@ bool isArray(Json json, string key) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing isArray for Json with key");
+  mixin(ShowTest!"Testing isArray for Json with key");
 
   Json obj = [
     "a": [1, 2].toJson,

@@ -29,8 +29,7 @@ Json getArray(Json[] jsons, size_t index, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getArray for Json[] with index");
+  mixin(ShowTest!"Testing getArray for Json[] with index");
 
   Json[] jsons = [[1, 2].toJson, ["a": 1].toJson, [3, 4].toJson];
   assert(jsons.getArray(0) == [1, 2].toJson, "Expected array at index 0");
@@ -64,8 +63,7 @@ Json getArray(Json[string] map, string[] path, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getArray for Json[string] with path");
+  mixin(ShowTest!"Testing getArray for Json[string] with path");
 
   Json[string] map = [
     "first": [1, 2].toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson
@@ -93,8 +91,7 @@ Json getArray(Json[string] map, string key, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getArray for Json[string] with key");
+  mixin(ShowTest!"Testing getArray for Json[string] with key");
 
   Json[string] map = [
     "first": [1, 2].toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson
@@ -131,8 +128,7 @@ Json getArray(Json json, size_t index, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getArray with index");
+  mixin(ShowTest!"Testing getArray with index");
 
   Json json = [[1, 2].toJson, ["a": 1].toJson, [3, 4].toJson].toJson;
   assert(json.getArray(0) == [1, 2].toJson, "Expected array at index 0");
@@ -158,8 +154,7 @@ Json getArray(Json json, string[] path, Json defaultValue = Json(null)) {
 }
 /// 
 unittest {
-  version (show_test)
-    writeln("Testing getArray with path");
+  mixin(ShowTest!"Testing getArray with path");
 
   Json json = parseJsonString(`{"data": { "test": [ [1, 2], {"a": 1}, [3, 4] ]}}`);
   // assert(json.getArray(["data", "test"])[0] == [1, 2].toJson, "Expected array at path ['data', 'test'][0]");

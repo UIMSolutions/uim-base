@@ -37,8 +37,7 @@ V[][K] groupBy(T, K, V)(T[] values, K delegate(T) @safe keyFunc, V delegate(T) @
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing groupBy");
+  mixin(ShowTest!"Testing groupBy");
 
   // Define a struct for testing
   struct Person {

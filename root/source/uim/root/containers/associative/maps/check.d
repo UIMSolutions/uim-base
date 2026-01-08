@@ -16,8 +16,7 @@ bool isNull(K, V)(V[K] map) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing isNull function");
+  mixin(ShowTest!"Testing isNull function");
 
   int[string] map = null;
   assert(map.isNull());
@@ -31,8 +30,7 @@ bool isEmpty(K, V)(V[K] map) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing isEmpty function");
+  mixin(ShowTest!"Testing isEmpty function");
 
   int[string] map = null;
   assert(map.isEmpty());
@@ -46,8 +44,7 @@ bool isSingle(K, V)(V[K] map) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing isSingle function");
+  mixin(ShowTest!"Testing isSingle function");
 
   int[string] map = ["a": 1];
   assert(map.isSingle());
@@ -61,8 +58,7 @@ bool isMulti(K, V)(V[K] map) {
 }
 ///
 unittest {
-  version (show_test)
-    writeln("Testing isMulti function");
+  mixin(ShowTest!"Testing isMulti function");
 
   int[string] map = ["a": 1, "b": 2];
   assert(map.isMulti());
