@@ -7,30 +7,92 @@ mixin(ShowModule!());
 @safe:
 
 // #region Json[]
+// #region indices
 bool hasAllArrays(Json[] jsons, size_t[] indices) {
   return indices.all!(index => jsons.isArray(index));
+}
+/// 
+unittest {
+  mixin(ShowTest!"Json[] hasAllArrays(Json[], size_t[] indices)");
+  
+  Json[] jsons = [[1, 2, 3].toJson, ["a": 1].toJson, [4, 5].toJson];
+  size_t[] indicesAll = [0, 2];
+  size_t[] indicesAny = [1, 2];
+
+  assert(hasAllArrays(jsons, indicesAll) == true);
 }
 
 bool hasAnyArrays(Json[] jsons, size_t[] indices) {
   return indices.any!(index => jsons.isArray(index));
 }
+/// 
+unittest {
+  mixin(ShowTest!"Json[] hasAnyArrays(Json[], size_t[] indices)");
+  
+  Json[] jsons = [[1, 2, 3].toJson, ["a": 1].toJson, [4, 5].toJson];
+  size_t[] indicesAll = [0, 2];
+  size_t[] indicesAny = [1, 2];
+
+  assert(hasAnyArrays(jsons, indicesAny) == true);
+}
+// #endregion indices
 // #endregion Json[]
 
 // #region Json[string]
 bool hasAllArrays(Json[string] map, string[][] paths) {
   return paths.all!(path => map.isArray(path));
 }
+/// 
+unittest {
+  mixin(ShowTest!"Json[string] hasAllArrays(Json[string], string[][] paths)");
+  
+  Json[string] map = ["first": [1, 2, 3].toJson, "second": ["a": 1].toJson, "third": [4, 5].toJson];
+  string[][] pathsAll = [["first"], ["third"]];
+  string[][] pathsAny = [["second"], ["third"]];
+
+  assert(hasAllArrays(map, pathsAll) == true);
+}
 
 bool hasAnyArrays(Json[string] map, string[][] paths) {
   return paths.any!(path => map.isArray(path));
+}
+/// 
+unittest {
+  mixin(ShowTest!"Json[string] hasAnyArrays(Json[string], string[][] paths)");
+  
+  Json[string] map = ["first": [1, 2, 3].toJson, "second": ["a": 1].toJson, "third": [4, 5].toJson];
+  string[][] pathsAll = [["first"], ["third"]];
+  string[][] pathsAny = [["second"], ["third"]];
+
+  assert(hasAnyArrays(map, pathsAny) == true);
 }
 
 bool hasAllArrays(Json[string] map, string[] keys) {
   return keys.all!(key => map.isArray(key));
 }
+/// 
+unittest {
+  mixin(ShowTest!"Json[string] hasAllArrays(Json[string], string[] keys)");
+  
+  Json[string] map = ["first": [1, 2, 3].toJson, "second": ["a": 1].toJson, "third": [4, 5].toJson];
+  string[] keysAll = ["first", "third"];
+  string[] keysAny = ["second", "third"];
+
+  assert(hasAllArrays(map, keysAll) == true);
+}
 
 bool hasAnyArrays(Json[string] map, string[] keys) {
   return keys.any!(key => map.isArray(key));
+}
+/// 
+unittest {
+  mixin(ShowTest!"Json[string] hasAnyArrays(Json[string], string[] keys)");
+  
+  Json[string] map = ["first": [1, 2, 3].toJson, "second": ["a": 1].toJson, "third": [4, 5].toJson];
+  string[] keysAll = ["first", "third"];
+  string[] keysAny = ["second", "third"];
+
+  assert(hasAnyArrays(map, keysAny) == true);
 }
 // #endregion Json[string]
 
