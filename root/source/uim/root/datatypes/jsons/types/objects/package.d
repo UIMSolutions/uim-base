@@ -8,4 +8,5 @@ module uim.root.datatypes.jsons.types.objects;
 public {
   import uim.root.datatypes.jsons.types.objects.get;
   import uim.root.datatypes.jsons.types.objects.typecheck;
+  import uim.root.datatypes.jsons.types.objects.remove;
 }

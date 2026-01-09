@@ -18,6 +18,20 @@ Json[] removeDoubles(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe
   
   return jsons.removeIndices(indices, (size_t index) => jsons[index].isDouble && removeFunc(index));
 }
+/// 
+unittest {
+  mixin(ShowTest!"Testing removeDoubles with indices and delegate");
+
+  Json[] jsons = [Json(1), Json(2.5), Json("three"), Json(4.0), Json(true), Json(6.7)];
+  size_t[] indicesToRemove = [1, 3, 5];
+  Json[] result = removeDoubles(jsons, indicesToRemove, (size_t index)  => index == 3);
+  assert(result.length == 5);
+  assert(result[0] == Json(1));
+  assert(result[1] == Json(2.5));
+  assert(result[2] == Json("three"));
+  assert(result[3] == Json(true));
+  assert(result[4] == Json(6.7));
+}
 
 Json[] removeDoubles(Json[] jsons, size_t[] indices) {
   mixin(ShowFunction!());

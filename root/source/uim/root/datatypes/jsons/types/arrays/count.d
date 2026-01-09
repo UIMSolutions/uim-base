@@ -27,6 +27,8 @@ mixin(ShowModule!());
   *   The count of array elements at the specified indices that satisfy the delegate.
   */
 size_t countArrays(Json json, size_t[] indices, bool delegate(size_t) @safe countFunc) {
+  mixin(ShowFunction!());
+
   return json.isArray ? json.toArray.countArrays(indices, countFunc) : 0;
 }
 /// 
@@ -59,6 +61,8 @@ unittest {
   *   The count of array elements at the specified indices.
   */
 size_t countArrays(Json json, size_t[] indices) {
+  mixin(ShowFunction!());
+
   return json.isArray ? json.toArray.countArrays(indices) : 0;
 }
 /// 
@@ -91,6 +95,8 @@ unittest {
   *   The count of array elements that satisfy the delegate.
   */
 size_t countArrays(Json json, bool delegate(size_t) @safe countFunc) {
+  mixin(ShowFunction!());
+
   return json.isArray ? json.toArray.countArrays(countFunc) : 0;
 }
 /// 
@@ -127,6 +133,8 @@ unittest {
   *   The count of array elements at the specified paths that satisfy the delegate.
   */
 size_t countArrays(Json json, string[][] paths, bool delegate(string[]) @safe countFunc) {
+  mixin(ShowFunction!());
+
   return json.isObject ? json.toMap.countArrays(paths, countFunc) : 0;
 }
 /// 
@@ -165,6 +173,8 @@ unittest {
   *   The count of array elements at the specified paths.
   */
 size_t countArrays(Json json, string[][] paths) {
+  mixin(ShowFunction!());
+
   return json.isObject ? json.toMap.countArrays(paths) : 0;
 }
 /// 
@@ -200,6 +210,8 @@ unittest {
   *   The count of array elements at the specified keys that satisfy the delegate.
   */
 size_t countArrays(Json json, string[] keys, bool delegate(string) @safe countFunc) {
+  mixin(ShowFunction!());
+
   return json.isObject ? json.toMap.countArrays(keys, countFunc) : 0;
 }
 /// 
@@ -230,6 +242,8 @@ unittest {
   *   The count of array elements at the specified keys.
   */
 size_t countArrays(Json json, string[] keys) {
+  mixin(ShowFunction!());
+
   return json.isObject ? json.toMap.countArrays(keys) : 0;
 }
 /// 
@@ -259,6 +273,8 @@ unittest {
   *   The count of array elements that satisfy the delegate.
   */
 size_t countArrays(Json json, bool delegate(string) @safe countFunc) {
+  mixin(ShowFunction!());
+
   return json.isObject ? json.toMap.countArrays(countFunc) : 0;
 }
 /// 
@@ -291,6 +307,8 @@ unittest {
   *   The count of array elements at the specified values that satisfy the delegate.
   */
 size_t countArrays(Json json, Json[] values, bool delegate(Json) @safe countFunc) {
+  mixin(ShowFunction!());
+
   if (json.isArray) {
     return json.toArray.countArrays(values, countFunc);
   }
@@ -329,6 +347,8 @@ unittest {
   *   The count of array elements at the specified values.
   */
 size_t countArrays(Json json, bool delegate(Json) @safe countFunc) {
+  mixin(ShowFunction!());
+
   if (json.isArray) {
     return json.toArray.countArrays(countFunc);
   }
@@ -366,6 +386,8 @@ unittest {
   *   The count of array elements that satisfy the delegate.
   */
 size_t countArrays(Json json, bool delegate(string, Json) @safe countFunc) {
+  mixin(ShowFunction!());
+
   return json.isObject ? json.toMap.countArrays(countFunc) : 0;
 }
 /// 
@@ -400,6 +422,8 @@ unittest {
   *   The count of array elements at the specified indices that satisfy the delegate.
   */
 size_t countArrays(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe countFunc) {
+  mixin(ShowFunction!());
+
   return indices.filter!(index => jsons.isArray(index) && countFunc(index)).array.length;
 }
 /// 
@@ -432,6 +456,8 @@ unittest {
   *   The count of array elements at the specified indices.
   */
 size_t countArrays(Json[] jsons, size_t[] indices) {
+  mixin(ShowFunction!());
+
   return indices.filter!(index => jsons.isArray(index)).array.length;
 }
 /// 
@@ -460,6 +486,8 @@ unittest {
   *   The count of array elements that satisfy the delegate.
   */
 size_t countArrays(Json[] jsons, bool delegate(size_t) @safe countFunc) {
+  mixin(ShowFunction!());
+
   auto count = 0;
   foreach (index, value; jsons) {
     if (value.isArray && countFunc(index)) {
@@ -499,6 +527,8 @@ unittest {
   *   The count of array elements at the specified values that satisfy the delegate.
   */
 size_t countArrays(Json[] jsons, Json[] values, bool delegate(Json) @safe countFunc) {
+  mixin(ShowFunction!());
+
   return jsons.filter!(json => json.isArray && values.hasValue(json) && countFunc(json))
     .array.length;
 }
@@ -529,6 +559,8 @@ unittest {
   *   The count of array elements at the specified values.
   */
 size_t countArrays(Json[] jsons, Json[] values) {
+  mixin(ShowFunction!());
+
   return jsons.filter!(json => json.isArray && values.hasValue(json)).array.length;
 }
 /// 
@@ -557,6 +589,8 @@ unittest {
   *   The count of array elements that satisfy the delegate.
   */
 size_t countArrays(Json[] jsons, bool delegate(Json) @safe countFunc) {
+  mixin(ShowFunction!());
+
   return jsons.filter!(json => json.isArray && countFunc(json)).array.length;
 }
 /// 
@@ -584,6 +618,8 @@ unittest {
   *   The count of array elements.
   */
 size_t countArrays(Json[] jsons) {
+  mixin(ShowFunction!());
+
   return jsons.filter!(json => json.isArray).array.length;
 }
 /// 
@@ -616,6 +652,8 @@ unittest {
   *   The count of array elements at the specified paths that satisfy the delegate.
   */
 size_t countArrays(Json[string] map, string[][] paths, bool delegate(string[]) @safe countFunc) {
+  mixin(ShowFunction!());
+
   return paths.filter!(path => map.isArray(path) && countFunc(path)).array.length;
 }
 /// 
@@ -648,6 +686,8 @@ unittest {
   *   The count of array elements at the specified paths.
   */
 size_t countArrays(Json[string] map, string[][] paths) {
+  mixin(ShowFunction!());
+
   return paths.filter!(path => map.isArray(path)).array.length;
 }
 /// 
@@ -679,6 +719,8 @@ unittest {
   *   The count of array elements at the specified keys that satisfy the delegate.
   */
 size_t countArrays(Json[string] map, string[] keys, bool delegate(string) @safe countFunc) {
+  mixin(ShowFunction!());
+
   return keys.filter!(key => map.isArray(key) && countFunc(key)).array.length;
 }
 /// 
@@ -707,6 +749,8 @@ unittest {
   *   The count of array elements at the specified keys.
   */
 size_t countArrays(Json[string] map, string[] keys) {
+  mixin(ShowFunction!());
+
   return keys.filter!(key => map.isArray(key)).array.length;
 }
 /// 
@@ -734,6 +778,8 @@ unittest {
   *   The count of array elements that satisfy the delegate.
   */
 size_t countArrays(Json[string] map, bool delegate(string) @safe countFunc) {
+  mixin(ShowFunction!());
+
   return map.byKeyValue.filter!(kv => kv.value.isArray && countFunc(kv.key)).array.length;
 }
 /// 
@@ -765,8 +811,9 @@ unittest {
   *   The count of array elements at the specified values that satisfy the delegate.
   */
 size_t countArrays(Json[string] map, Json[] values, bool delegate(Json) @safe countFunc) {
-  return map.byKeyValue.filter!(kv => kv.value.isArray && values.hasValue(kv.value) && countFunc(kv.value))
-    .array.length;
+  mixin(ShowFunction!());
+
+  return map.countArrays((string key, Json value) => values.hasValue(value) && countFunc(value));
 }
 /// 
 unittest {
@@ -795,7 +842,9 @@ unittest {
   *   The count of array elements at the specified values.
   */
 size_t countArrays(Json[string] map, Json[] values) {
-  return map.byKeyValue.filter!(kv => kv.value.isArray && values.hasValue(kv.value)).array.length;
+  mixin(ShowFunction!());
+
+  return map.countArrays((string key, Json value) => values.hasValue(value));
 }
 /// 
 unittest {
@@ -823,6 +872,8 @@ unittest {
   *   The count of array elements that satisfy the delegate.
   */
 size_t countArrays(Json[string] map, bool delegate(Json) @safe countFunc) {
+  mixin(ShowFunction!());
+
   return map.byKeyValue.filter!(kv => kv.value.isArray && countFunc(kv.value)).array.length;
 }
 /// 
@@ -852,6 +903,8 @@ unittest {
   *   The count of array elements that satisfy the delegate.
   */
 size_t countArrays(Json[string] map, bool delegate(string, Json) @safe countFunc) {
+  mixin(ShowFunction!());
+
   return map.byKeyValue.filter!(kv => kv.value.isArray && countFunc(kv.key, kv.value)).array.length;
 }
 /// 
