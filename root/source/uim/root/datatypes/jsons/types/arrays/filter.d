@@ -13,7 +13,7 @@ mixin(ShowModule!());
 
 // #region Json[]
 // #region indices
-// #region filter with indices and filterFunc
+// #region with indices and filterFunc
 Json[] filterArrays(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe filterFunc) {
   return jsons.filterIndices(indices, filterFunc).filterArrays;
 }
@@ -30,9 +30,9 @@ unittest {
   assert(filtered.length == 1);
   assert(filtered[0] == [1, 2, 3].toJson);
 }
-// #endregion filter with indices and filterFunc
+// #endregion with indices and filterFunc
 
-// #region filter with indices
+// #region with indices
 Json[] filterArrays(Json[] jsons, size_t[] indices) {
   return jsons.filterIndices(indices).filterArrays;
 
@@ -50,7 +50,7 @@ unittest {
   assert(filtered[0] == [1, 2, 3].toJson);
   assert(filtered[1] == [4, 5].toJson);
 }
-// #endregion filter with indices
+// #endregion with indices
 
 // #region with filterFunc
 Json[] filterArrays(Json[] jsons, bool delegate(size_t) @safe filterFunc) {
@@ -73,7 +73,7 @@ unittest {
 // #endregion indices
 
 // #region values
-// #region filter with values and filterFunc
+// #region with values and filterFunc
 Json[] filterArrays(Json[] jsons, Json[] values, bool delegate(Json) @safe filterFunc) {
   return jsons.filterValues(values, filterFunc).filterArrays;
 }
@@ -90,7 +90,7 @@ unittest {
   assert(filtered.length == 1);
   assert(filtered[0] == [1, 2, 3].toJson);
 }
-// #endregion filter with values and filterFunc
+// #endregion with values and filterFunc
 
 // #region with filterFunc
 Json[] filterArrays(Json[] jsons, bool delegate(Json) @safe filterFunc) {
@@ -195,7 +195,7 @@ unittest {
 // #endregion paths
 
 // #region keys
-// #region filter with keys and filterFunc
+// #region with keys and filterFunc
 Json[string] filterArrays(Json[string] map, string[] keys, bool delegate(string) @safe filterFunc) {
   return map.filterKeys(keys, filterFunc).filterArrays;
 }
@@ -213,9 +213,9 @@ unittest {
   assert(filtered.length == 1);
   assert(filtered["a"] == [1, 2, 3].toJson);
 }
-// #endregion filter with keys and filterFunc
+// #endregion with keys and filterFunc
 
-// #region filter with keys
+// #region with keys
 Json[string] filterArrays(Json[string] map, string[] keys) {
   return map.filterKeys(keys).filterArrays;
 }
@@ -233,7 +233,7 @@ unittest {
   assert(filtered.length == 1);
   assert(filtered["a"] == [1, 2, 3].toJson);
 }
-// #endregion filter with keys
+// #endregion with keys
 
 // #region with filterFunc
 Json[string] filterArrays(Json[string] map, bool delegate(string) @safe filterFunc) {
@@ -268,7 +268,7 @@ unittest {
 // #endregion keys
 
 // #region values
-// #region filter with values and filterFunc
+// #region with values and filterFunc
 Json[string] filterArrays(Json[string] map, Json[] values, bool delegate(Json) @safe filterFunc) {
   return map.filterValues(values, filterFunc).filterArrays;
 }
@@ -288,9 +288,9 @@ unittest {
   assert(filtered.length == 1);
   assert(filtered["a"] == [1, 2, 3].toJson);
 }
-// #endregion filter with values and filterFunc
+// #endregion with values and filterFunc
 
-// #region filter with values
+// #region with values
 Json[string] filterArrays(Json[string] map, Json[] values) {
   return map.filterValues(values).filterArrays;
 }
@@ -310,9 +310,9 @@ unittest {
   assert(filtered["a"] == [1, 2, 3].toJson);
   assert(filtered["b"] == ["x", "y"].toJson);
 }
-// #endregion filter with values
+// #endregion with values
 
-// #region filter with filterFunc
+// #region with filterFunc
 Json[string] filterArrays(Json[string] map, bool delegate(Json) @safe filterFunc) {
   return map.filterValues(filterFunc).filterArrays;
 }
@@ -330,7 +330,7 @@ unittest {
   assert(filtered.length == 1);
   assert(filtered["b"] == ["x", "y"].toJson);
 }
-// #endregion filter with filterFunc
+// #endregion with filterFunc
 
 // #region filter all arrays
 Json[string] filterArrays(Json[string] map) {

@@ -13,6 +13,20 @@ mixin(ShowModule!());
 
 // #region Json[]
 // #region indices
+// #region with indices and removeFunc
+/**
+  Removes all Json array values from the given Json[] at the specified indices for which the given removeFunc
+  delegate returns true.
+
+  Params:
+    jsons = The Json[] from which to remove Json array values.
+    indices = The indices at which to check for Json array values to remove.
+    removeFunc = A delegate that is called for each Json array value found at the specified indices. If it returns
+                 true, the Json array value is removed; otherwise, it is kept.
+
+  Returns:
+    A new Json[] with the Json array values removed.
+*/
 Json[] removeArrays(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe removeFunc) {
   mixin(ShowFunction!());
   
@@ -40,7 +54,9 @@ unittest {
   assert(result.filterStrings.length == 1);
   assert(result.filterBooleans.length == 1);
 }
+// #endregion with indices and removeFunc
 
+// #region with indices
 Json[] removeArrays(Json[] jsons, size_t[] indices) {
   mixin(ShowFunction!());
 
@@ -59,6 +75,7 @@ unittest {
   assert(result.filterStrings.length == 1);
   assert(result.filterBooleans.length == 1);
 }
+// #endregion with indices
 
 Json[] removeArrays(Json[] jsons, bool delegate(size_t) @safe removeFunc) {
   mixin(ShowFunction!());
