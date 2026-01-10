@@ -14,6 +14,7 @@ mixin(ShowModule!());
 // #region Json[]
 // #region indices
 // #region all
+
 bool isAllArray(Json[] jsons, size_t[] indices = null) {
   mixin(ShowFunction!());
 

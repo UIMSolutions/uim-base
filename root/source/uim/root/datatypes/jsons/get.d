@@ -13,10 +13,21 @@ mixin(ShowModule!());
 
 // #region Json[]
 // #region indices
+// #region with indices
+/** 
+  * Retrieves values from the Json array based on the specified indices.
+  *
+  * Params:
+  *  jsons = The array of Json objects to retrieve from.
+  *  indices = An array of indices to retrieve.
+  *
+  * Returns:
+  *  An array of Json objects found at the specified indices.
+**/
 Json[] getValues(Json[] jsons, size_t[] indices) {
-  return indices.filter!(index => index < jsons.length)
-    .map!(index => jsons[index])
-    .array;
+  mixin(ShowFunction!());
+
+  return jsons.getValues((size_t index) => indices.hasValue(index));
 }
 /// 
 unittest {
@@ -28,7 +39,50 @@ unittest {
   assert(values[0] == 1.toJson);
   assert(values[1] == 3.toJson);
 }
+// #endregion with indices
 
+// #region with getFunc(index)
+/** 
+  * Retrieves values from the Json array based on a selection function.
+  *
+  * Params:
+  *  jsons = The array of Json objects to retrieve from.
+  *  getFunc = A delegate function that takes an index and returns true if the value at that index should be included.
+  *
+  * Returns:
+  *  An array of Json objects that satisfy the selection function.
+**/
+Json[] getValues(Json[] jsons, bool delegate(size_t index) @safe getFunc) {
+  Json[] result;
+  foreach(index, value; jsons) {
+    if (getFunc(index)) {
+      result ~= value;
+    }
+  }
+  return result;
+}
+/// 
+unittest {
+  mixin(ShowTest!"Testing getValues for Json[] with delegate");
+
+  Json[] jsons = [1.toJson, 2.toJson, 3.toJson, 4.toJson, 5.toJson];
+  auto values = jsons.getValues((size_t index) => index % 2 == 0);
+  assert(values.length == 3);
+  assert(values[0] == 1.toJson);
+  assert(values[1] == 3.toJson);
+  assert(values[2] == 5.toJson);
+}
+
+/** 
+  * Retrieves the value at the specified index from the Json array.
+  *
+  * Params:
+  *  jsons = The array of Json objects to retrieve from.
+  *  index = The index of the value to retrieve.
+  *
+  * Returns:
+  *  The value at the specified index, or Json(null) if the index is out of bounds.
+**/
 Json getValue(Json[] jsons, size_t index) {
   return index < jsons.length ? jsons[index] : Json(null);
 }
@@ -44,6 +98,16 @@ unittest {
 
 // #region Json[string]
 // #region paths
+/** 
+  * Retrieves values from the Json map based on the specified paths.
+  *
+  * Params:
+  *  map = The Json map to retrieve from.
+  *  paths = An array of string arrays, each representing a path to retrieve.
+  *
+  * Returns:
+  *  An array of Json objects found at the specified paths.
+**/
 Json[] getValues(Json[string] map, string[][] paths) {
   return paths.filter!(path => map.getValue(path) != Json(null))
     .map!(path => map.getValue(path))
@@ -66,6 +130,16 @@ unittest {
   assert(values[1] == "sample".toJson);
 }
 
+/** 
+  * Retrieves the value at the specified path from the Json map.
+  *
+  * Params:
+  *  map = The Json map to retrieve from.
+  *  path = The path of the value to retrieve.
+  *
+  * Returns:
+  *  The value at the specified path, or Json(null) if not found.
+**/
 Json getValue(Json[string] map, string[] path) {
   if (map.isNull || path.length == 0) {
     return Json(null);
@@ -134,6 +208,16 @@ unittest {
 // #endregion paths
 
 // #region keys
+/** 
+  * Retrieves values from the Json map based on the specified keys.
+  *
+  * Params:
+  *  map = The Json map to retrieve from.
+  *  keys = An array of keys to retrieve.
+  *
+  * Returns:
+  *  An array of Json objects found at the specified keys.
+**/
 Json[string] getValueMap(Json[string] map, string[] keys) {
   Json[string] result;
   foreach (key; keys) {
@@ -144,6 +228,16 @@ Json[string] getValueMap(Json[string] map, string[] keys) {
   return result;
 }
 
+/** 
+  * Retrieves values from the Json map based on the specified keys.
+  *
+  * Params:
+  *  map = The Json map to retrieve from.
+  *  keys = An array of keys to retrieve.
+  *
+  * Returns:
+  *  An array of Json objects found at the specified keys.
+**/
 Json[] getValues(Json[string] map, string[] keys) {
   return keys.filter!(key => map.getValue(key) != Json(null))
     .map!(key => map.getValue(key))
@@ -165,6 +259,16 @@ unittest {
   assert(values[1] == "value3".toJson);
 }
 
+/** 
+  * Retrieves the value at the specified key from the Json map.
+  *
+  * Params:
+  *  map = The Json map to retrieve from.
+  *  key = The key of the value to retrieve.
+  *
+  * Returns:
+  *  The value at the specified key, or Json(null) if not found.
+**/
 Json getValue(Json[string] map, string key) {
   return key in map ? map[key] : Json(null);
 }
@@ -180,6 +284,16 @@ unittest {
 
 // #region Json
 // #region indices
+/** 
+  * Retrieves values from the Json object based on the specified indices.
+  *
+  * Params:
+  *  json = The Json object to retrieve from.
+  *  indices = An array of indices to retrieve.
+  *
+  * Returns:
+  *  An array of Json objects found at the specified indices.
+**/ 
 Json[] getValues(Json json, size_t[] indices) {
   return indices.filter!(index => json.getValue(index) != Json(null))
     .map!(index => json.getValue(index))
@@ -196,6 +310,16 @@ unittest {
   assert(values[1] == 3.toJson);
 }
 
+/** 
+  * Retrieves the value at the specified index from the Json array.
+  *
+  * Params:
+  *  json = The Json object to retrieve from.
+  *  index = The index of the value to retrieve.
+  *
+  * Returns:
+  *  The value at the specified index, or Json(null) if the index is out of bounds.
+**/
 Json getValue(Json json, size_t index) {
   return json.isArray && json.length > index ? json[index] : Json(null);
 }
@@ -209,6 +333,16 @@ unittest {
 // #endregion indices
 
 // #region paths
+/** 
+  * Retrieves values from the Json object based on the specified paths.
+  *
+  * Params:
+  *  json = The Json object to retrieve from.
+  *  paths = An array of string arrays, each representing a path to retrieve.
+  *
+  * Returns:
+  *  An array of Json objects found at the specified paths.
+**/
 Json[] getValues(Json json, string[][] paths) {
   return paths.filter!(path => json.getValue(path) != Json(null))
     .map!(path => json.getValue(path))
@@ -227,6 +361,16 @@ unittest {
   assert(values[1] == "sample".toJson);
 }
 
+/** 
+  * Retrieves the value at the specified path from the Json map.
+  *
+  * Params:
+  *  json = The Json object to retrieve from.
+  *  path = The path of the value to retrieve.
+  *
+  * Returns:
+  *  The value at the specified path, or Json(null) if not found.
+**/
 Json getValue(Json json, string[] path) {
   if (json == Json(null) || path.length == 0) {
     return Json(null);
@@ -254,6 +398,16 @@ unittest {
 // #endregion paths
 
 // #region keys
+/** 
+  * Retrieves values from the Json object based on the specified keys.
+  *
+  * Params:
+  *  json = The Json object to retrieve from.
+  *  keys = An array of keys to retrieve.
+  *
+  * Returns:
+  *  An array of Json objects found at the specified keys.
+**/
 Json[string] getValueMap(Json json, string[] keys) {
   Json[string] result;
   foreach (key; keys) {
@@ -264,6 +418,16 @@ Json[string] getValueMap(Json json, string[] keys) {
   return result;
 }
 
+/** 
+  * Retrieves values from the Json object based on the specified keys.
+  *
+  * Params:
+  *  json = The Json object to retrieve from.
+  *  keys = An array of keys to retrieve.
+  *
+  * Returns:
+  *  An array of Json objects found at the specified keys.
+**/
 Json[] getValues(Json json, string[] keys) {
   return keys.filter!(key => json.getValue(key) != Json(null))
     .map!(key => json.getValue(key))
@@ -280,6 +444,16 @@ unittest {
   assert(values[1] == "value3".toJson);
 }
 
+/** 
+  * Retrieves the value at the specified key from the Json object.
+  *
+  * Params:
+  *  json = The Json object to retrieve from.
+  *  key = The key of the value to retrieve.
+  *
+  * Returns:
+  *  The value at the specified key, or Json(null) if not found.
+**/
 Json getValue(Json json, string key) {
   if (!json.isObject) {
     return Json(null);

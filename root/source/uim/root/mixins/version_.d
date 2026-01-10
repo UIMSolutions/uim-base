@@ -30,22 +30,6 @@ version (show_test) {
 `;
 }
 
-template ShowTest2(string msg) {
-  const char[] ShowTest2 = `
-version (show_test) {
-  import std.stdio;
-  import std.string;
-  import consolecolors;
-
-  unittest {
-    string inner = leftJustify("`~msg~`", 154, ' ');
-    string outer = "  | Testing " ~ inner;
-    cwritefln(outer.black.on_grey);  
-  }  
-}
-`;
-}
-
 template ShowFunction() {
   const char[] ShowFunction = `
 version (show_test) {

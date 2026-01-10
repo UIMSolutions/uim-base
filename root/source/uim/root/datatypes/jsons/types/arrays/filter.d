@@ -15,6 +15,8 @@ mixin(ShowModule!());
 // #region indices
 // #region with indices and filterFunc
 Json[] filterArrays(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe filterFunc) {
+  mixin(ShowFunction!());
+
   return jsons.filterIndices(indices, filterFunc).filterArrays;
 }
 /// 
@@ -34,8 +36,9 @@ unittest {
 
 // #region with indices
 Json[] filterArrays(Json[] jsons, size_t[] indices) {
-  return jsons.filterIndices(indices).filterArrays;
+  mixin(ShowFunction!());
 
+  return jsons.filterIndices(indices).filterArrays;
 }
 /// 
 unittest {
@@ -54,6 +57,8 @@ unittest {
 
 // #region with filterFunc
 Json[] filterArrays(Json[] jsons, bool delegate(size_t) @safe filterFunc) {
+  mixin(ShowFunction!());
+
   return jsons.filterIndices(filterFunc).filterArrays;
 }
 ///
@@ -75,6 +80,8 @@ unittest {
 // #region values
 // #region with values and filterFunc
 Json[] filterArrays(Json[] jsons, Json[] values, bool delegate(Json) @safe filterFunc) {
+  mixin(ShowFunction!());
+
   return jsons.filterValues(values, filterFunc).filterArrays;
 }
 /// 
@@ -94,6 +101,8 @@ unittest {
 
 // #region with filterFunc
 Json[] filterArrays(Json[] jsons, bool delegate(Json) @safe filterFunc) {
+  mixin(ShowFunction!());
+
   return filterValues(jsons, filterFunc).filterArrays;
 }
 /// 
@@ -112,6 +121,8 @@ unittest {
 
 // #region by values
 Json[] filterArrays(Json[] jsons, Json[] values) {
+  mixin(ShowFunction!());
+
   return jsons.filterValues(values).filterArrays;
 } /// 
 unittest {
@@ -129,9 +140,7 @@ unittest {
 
 // #region by datatype
 Json[] filterArrays(Json[] jsons) {
-  if (jsons.length == 0) {
-    return null;
-  }
+  mixin(ShowFunction!());
 
   return jsons.filter!(json => json.isArray).array;
 }
@@ -155,6 +164,8 @@ unittest {
 // #region paths
 // #region with paths and filterFunc
 Json[string] filterArrays(Json[string] map, string[][] paths, bool delegate(string[]) @safe filterFunc) {
+  mixin(ShowFunction!());
+
   return map.filterPaths(paths, filterFunc).filterArrays;
 }
 /// 
@@ -175,6 +186,8 @@ unittest {
 
 // #region with paths
 Json[string] filterArrays(Json[string] map, string[][] paths) {
+  mixin(ShowFunction!());
+
   return map.filterPaths(paths).filterArrays;
 }
 /// 
@@ -197,6 +210,8 @@ unittest {
 // #region keys
 // #region with keys and filterFunc
 Json[string] filterArrays(Json[string] map, string[] keys, bool delegate(string) @safe filterFunc) {
+  mixin(ShowFunction!());
+
   return map.filterKeys(keys, filterFunc).filterArrays;
 }
 /// 
@@ -217,6 +232,8 @@ unittest {
 
 // #region with keys
 Json[string] filterArrays(Json[string] map, string[] keys) {
+  mixin(ShowFunction!());
+
   return map.filterKeys(keys).filterArrays;
 }
 /// 
@@ -237,9 +254,7 @@ unittest {
 
 // #region with filterFunc
 Json[string] filterArrays(Json[string] map, bool delegate(string) @safe filterFunc) {
-  if (map.length == 0) {
-    return null;
-  }
+  mixin(ShowFunction!());
 
   Json[string] result;
   foreach (key; map.keys) {
@@ -270,6 +285,8 @@ unittest {
 // #region values
 // #region with values and filterFunc
 Json[string] filterArrays(Json[string] map, Json[] values, bool delegate(Json) @safe filterFunc) {
+  mixin(ShowFunction!());
+
   return map.filterValues(values, filterFunc).filterArrays;
 }
 /// 
@@ -292,6 +309,8 @@ unittest {
 
 // #region with values
 Json[string] filterArrays(Json[string] map, Json[] values) {
+  mixin(ShowFunction!());
+
   return map.filterValues(values).filterArrays;
 }
 /// 
@@ -314,6 +333,8 @@ unittest {
 
 // #region with filterFunc
 Json[string] filterArrays(Json[string] map, bool delegate(Json) @safe filterFunc) {
+  mixin(ShowFunction!());
+
   return map.filterValues(filterFunc).filterArrays;
 }
 /// 
@@ -334,6 +355,8 @@ unittest {
 
 // #region filter all arrays
 Json[string] filterArrays(Json[string] map) {
+  mixin(ShowFunction!());
+
   return map.filterValues((Json json) => json.isArray);
 }
 /// 
@@ -359,6 +382,8 @@ unittest {
 // #region indices
 // #region with indices and filterFunc
 Json filterArrays(Json json, size_t[] indices, bool delegate(size_t) @safe filterFunc) {
+  mixin(ShowFunction!());
+
   return json.filterIndices(indices, filterFunc).filterArrays;
 }
 /// 
@@ -378,6 +403,8 @@ unittest {
 
 // #region with indices
 Json filterArrays(Json json, size_t[] indices) {
+  mixin(ShowFunction!());
+
   return json.filterIndices(indices).filterArrays;
 }
 /// 
@@ -397,6 +424,8 @@ unittest {
 
 // #region with filterFunc
 Json filterArrays(Json json, bool delegate(size_t) @safe filterFunc) {
+  mixin(ShowFunction!());
+
   return json.isArray ? json.filterIndices(filterFunc) : Json(null);
 }
 /// 
@@ -418,6 +447,8 @@ unittest {
 // #region values
 // #region with values and filterFunc
 Json filterArrays(Json json, Json[] values, bool delegate(Json) @safe filterFunc) {
+  mixin(ShowFunction!());
+
   return json.filterValues(values, filterFunc).filterArrays;
 }
 /// 
@@ -438,6 +469,8 @@ unittest {
 
 // #region with filterFunc
 Json filterArrays(Json json, bool delegate(Json) @safe filterFunc) {
+  mixin(ShowFunction!());
+
   return json.filterValues(filterFunc).filterArrays;
 }
 /// 
@@ -456,6 +489,8 @@ unittest {
 
 // #region simple values
 Json filterArrays(Json json) {
+  mixin(ShowFunction!());
+
   return json.filterValues((Json json) => json.isArray);
 }
 /// 
@@ -466,12 +501,10 @@ unittest {
     [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
   ].toJson;
   auto filtered = json.filterArrays;
-  assert(filtered.isArray);
-  assert(filtered.length == 2);
+  assert(filtered.isArray && filtered.length == 2);
   assert(filtered[0] == [1, 2, 3].toJson);
   assert(filtered[1] == [4, 5].toJson);
 }
 // #endregion simple values
 // #endregion values
 // #endregion Json
-

@@ -13,171 +13,171 @@ mixin(ShowModule!());
  
 // #region Json[]
 // #region indices
-Json[] removeIntegers(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe removeFunc) {
+Json[] removeUndefineds(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe removeFunc) {
   mixin(ShowFunction!());
   
-  return jsons.removeIndices(indices, (size_t index) => jsons[index].isInteger && removeFunc(index));
+  return jsons.removeIndices(indices, (size_t index) => jsons[index].isUndefined && removeFunc(index));
 }
 
-Json[] removeIntegers(Json[] jsons, size_t[] indices) {
+Json[] removeUndefineds(Json[] jsons, size_t[] indices) {
   mixin(ShowFunction!());
 
-  return jsons.removeIndices(indices, (index) => jsons[index].isInteger);
+  return jsons.removeIndices(indices, (index) => jsons[index].isUndefined);
 }
 
-Json[] removeIntegers(Json[] jsons, bool delegate(size_t) @safe removeFunc) {
+Json[] removeUndefineds(Json[] jsons, bool delegate(size_t) @safe removeFunc) {
   mixin(ShowFunction!());
 
-  return jsons.removeIndices((size_t index) => jsons[index].isInteger && removeFunc(index));
+  return jsons.removeIndices((size_t index) => jsons[index].isUndefined && removeFunc(index));
 }
 // #endregion indices
 
 // #region values
-Json[] removeIntegers(Json[] jsons, Json[] values, bool delegate(Json) @safe removeFunc) {
+Json[] removeUndefineds(Json[] jsons, Json[] values, bool delegate(Json) @safe removeFunc) {
   mixin(ShowFunction!());
 
-  return jsons.removeValues(values, (Json json) => json.isInteger && removeFunc(json));
+  return jsons.removeValues(values, (Json json) => json.isUndefined && removeFunc(json));
 }
 
-Json[] removeIntegers(Json[] jsons, Json[] values) {
+Json[] removeUndefineds(Json[] jsons, Json[] values) {
   mixin(ShowFunction!());
 
-  return jsons.removeValues(values, (Json json) => json.isInteger);
+  return jsons.removeValues(values, (Json json) => json.isUndefined);
 }
 
-Json[] removeIntegers(Json[] jsons, bool delegate(Json) @safe removeFunc) {
+Json[] removeUndefineds(Json[] jsons, bool delegate(Json) @safe removeFunc) {
   mixin(ShowFunction!());
 
-  return jsons.removeValues((Json json) => json.isInteger && removeFunc(json));
+  return jsons.removeValues((Json json) => json.isUndefined && removeFunc(json));
 }
 // #endregion values
 
 // #region base
-Json[] removeIntegers(Json[] jsons) {
+Json[] removeUndefineds(Json[] jsons) {
   mixin(ShowFunction!());
 
-  return jsons.removeValues((Json json) => json.isInteger);
+  return jsons.removeValues((Json json) => json.isUndefined);
 }
 // #endregion base
 // #endregion Json[]
 
 // #region Json[string]
 // #region keys
-Json[string] removeIntegers(Json[string] map, string[] keys, bool delegate(string) @safe removeFunc) {
+Json[string] removeUndefineds(Json[string] map, string[] keys, bool delegate(string) @safe removeFunc) {
   mixin(ShowFunction!());
 
-  return map.removeKeys(keys, (string key) => map[key].isInteger && removeFunc(key));
+  return map.removeKeys(keys, (string key) => map[key].isUndefined && removeFunc(key));
 }
 
-Json[string] removeIntegers(Json[string] map, string[] keys) {
+Json[string] removeUndefineds(Json[string] map, string[] keys) {
   mixin(ShowFunction!());
 
-  return map.removeKeys(keys, (string key) => map.getValue(key).isInteger);
+  return map.removeKeys(keys, (string key) => map.getValue(key).isUndefined);
 }
 
-Json[string] removeIntegers(Json[string] map, bool delegate(string) @safe removeFunc) {
+Json[string] removeUndefineds(Json[string] map, bool delegate(string) @safe removeFunc) {
   mixin(ShowFunction!());
 
-  return map.removeKeys((string key) => map[key].isInteger && removeFunc(key));
+  return map.removeKeys((string key) => map[key].isUndefined && removeFunc(key));
 }
 // #endregion keys
 
 // #region values
-Json[string] removeIntegers(Json[string] map, Json[] values, bool delegate(Json) @safe removeFunc) {
+Json[string] removeUndefineds(Json[string] map, Json[] values, bool delegate(Json) @safe removeFunc) {
   mixin(ShowFunction!());
 
-  return map.removeValues(values, (Json json) => json.isInteger && removeFunc(json));
+  return map.removeValues(values, (Json json) => json.isUndefined && removeFunc(json));
 }
 
-Json[string] removeIntegers(Json[string] map, Json[] values) {
+Json[string] removeUndefineds(Json[string] map, Json[] values) {
   mixin(ShowFunction!());
 
-  return map.removeValues(values, (Json json) => json.isInteger);
+  return map.removeValues(values, (Json json) => json.isUndefined);
 }
 
-Json[string] removeIntegers(Json[string] map, bool delegate(Json) @safe removeFunc) {
+Json[string] removeUndefineds(Json[string] map, bool delegate(Json) @safe removeFunc) {
   mixin(ShowFunction!());
   
-  return map.removeValues((Json json) => json.isInteger && removeFunc(json));
+  return map.removeValues((Json json) => json.isUndefined && removeFunc(json));
 }
 // #endregion values
 
 // #region base
-Json[string] removeIntegers(Json[string] map) {
+Json[string] removeUndefineds(Json[string] map) {
   mixin(ShowFunction!());
   
-  return map.removeValues((Json json) => json.isInteger);
+  return map.removeValues((Json json) => json.isUndefined);
 }
 // #endregion base
 // #endregion Json[string]
 
 // #region Json
 // #region indices
-Json removeIntegers(Json json, size_t[] indices, bool delegate(size_t) @safe removeFunc) {
+Json removeUndefineds(Json json, size_t[] indices, bool delegate(size_t) @safe removeFunc) {
   mixin(ShowFunction!());
   
   return json.removeIndices(indices, (size_t index) => json.getValue(index)
-      .isInteger && removeFunc(index));
+      .isUndefined && removeFunc(index));
 }
 
-Json removeIntegers(Json json, size_t[] indices) {
+Json removeUndefineds(Json json, size_t[] indices) {
   mixin(ShowFunction!());
 
-  return json.removeIndices(indices, (size_t index) => json[index].isInteger);
+  return json.removeIndices(indices, (size_t index) => json[index].isUndefined);
 }
 
-Json removeIntegers(Json json, bool delegate(size_t) @safe removeFunc) {
+Json removeUndefineds(Json json, bool delegate(size_t) @safe removeFunc) {
   mixin(ShowFunction!());
   
-  return json.removeIndices((size_t index) => json.getValue(index).isInteger && removeFunc(index));
+  return json.removeIndices((size_t index) => json.getValue(index).isUndefined && removeFunc(index));
 }
 // #endregion indices
 
 // #region keys
-Json removeIntegers(Json json, string[] keys, bool delegate(string) @safe removeFunc) {
+Json removeUndefineds(Json json, string[] keys, bool delegate(string) @safe removeFunc) {
   mixin(ShowFunction!());
   
-  return json.removeKeys(keys, (string key) => json[key].isInteger && removeFunc(key));
+  return json.removeKeys(keys, (string key) => json[key].isUndefined && removeFunc(key));
 }
 
-Json removeIntegers(Json json, string[] keys) {
+Json removeUndefineds(Json json, string[] keys) {
   mixin(ShowFunction!());
 
-  return json.removeKeys(keys, (string key) => json.getValue(key).isInteger);
+  return json.removeKeys(keys, (string key) => json.getValue(key).isUndefined);
 }
 
-Json removeIntegers(Json json, bool delegate(string) @safe removeFunc) {
+Json removeUndefineds(Json json, bool delegate(string) @safe removeFunc) {
   mixin(ShowFunction!());
   
-  return json.removeKeys((string key) => json.getValue(key).isInteger && removeFunc(key));
+  return json.removeKeys((string key) => json.getValue(key).isUndefined && removeFunc(key));
 }
 // #endregion keys
 
 // #region values
-Json removeIntegers(Json json, Json[] values, bool delegate(Json) @safe removeFunc) {
+Json removeUndefineds(Json json, Json[] values, bool delegate(Json) @safe removeFunc) {
   mixin(ShowFunction!());
 
-  return json.removeValues(values, (Json j) => j.isInteger && removeFunc(j));
+  return json.removeValues(values, (Json j) => j.isUndefined && removeFunc(j));
 }
 
-Json removeIntegers(Json json, Json[] values) {
+Json removeUndefineds(Json json, Json[] values) {
   mixin(ShowFunction!());
 
-  return json.removeValues(values, (Json j) => j.isInteger);
+  return json.removeValues(values, (Json j) => j.isUndefined);
 }
 
-Json removeIntegers(Json json, bool delegate(Json) @safe removeFunc) {
+Json removeUndefineds(Json json, bool delegate(Json) @safe removeFunc) {
   mixin(ShowFunction!());
 
-  return json.removeValues((Json j) => j.isInteger && removeFunc(j));
+  return json.removeValues((Json j) => j.isUndefined && removeFunc(j));
 }
 // #endregion values
 
 // #region base
-Json removeIntegers(Json json) {
+Json removeUndefineds(Json json) {
   mixin(ShowFunction!());
 
-  return json.removeValues((Json j) => j.isInteger);
+  return json.removeValues((Json j) => j.isUndefined);
 }
 // #endregion base
 // #endregion Json

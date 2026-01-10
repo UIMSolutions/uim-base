@@ -35,7 +35,7 @@ Json[] removeArrays(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe 
 ///
 unittest {
   mixin(
-    ShowTest2!"Testing removeArrays(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe removeFunc)");
+    ShowTest!"Testing removeArrays(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe removeFunc)");
 
   Json[] jsons = [
     [1, 2].toJson, "string".toJson, [3, 4].toJson, true.toJson, [5, 6].toJson

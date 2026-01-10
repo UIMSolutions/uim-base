@@ -25,6 +25,8 @@ mixin(ShowModule!());
   *  The array at the specified index, or the default value if not found.
 */
 Json getArray(Json[] jsons, size_t index, Json defaultValue = Json(null)) {
+  mixin(ShowFunction!());
+
   return jsons.getValue(index).isArray() ? jsons[index] : defaultValue;
 }
 /// 
@@ -39,7 +41,18 @@ unittest {
 // #endregion index
 
 // #region base
+/** 
+  * Retrieves all arrays from the Json array.
+  *
+  * Params:
+  *  jsons = The array of Json objects to retrieve from.
+  *
+  * Returns:
+  *  An array of Json arrays found in the input array.
+**/
 Json[] getArrays(Json[] jsons) {
+  mixin(ShowFunction!());
+
   return jsons.filter!(json => json.isArray).array;
 }
 // #endregion base
@@ -57,8 +70,10 @@ Json[] getArrays(Json[] jsons) {
   *
   * Returns:
   *  The array at the specified path, or the default value if not found.
-*/
+**/
 Json getArray(Json[string] map, string[] path, Json defaultValue = Json(null)) {
+  mixin(ShowFunction!());
+
   return map.getValue(path).isArray ? map.getValue(path) : defaultValue;
 }
 /// 
@@ -85,8 +100,10 @@ unittest {
   *
   * Returns:
   *  The array at the specified key, or the default value if not found.
-*/
+**/
 Json getArray(Json[string] map, string key, Json defaultValue = Json(null)) {
+  mixin(ShowFunction!());
+
   return map.getValue(key).isArray ? map.getValue(key) : defaultValue;
 }
 /// 
@@ -103,7 +120,18 @@ unittest {
 // #endregion key
 
 // #region base
+/** 
+  * Retrieves all arrays from the Json map.
+  *
+  * Params:
+  *  jsons = The Json map to retrieve from.
+  *
+  * Returns:
+  *  A Json[string] containing all arrays found in the Json map.
+**/
 Json[string] getArrays(Json[string] jsons) {
+  mixin(ShowFunction!());
+
   Json[string] result;
   jsons.byKeyValue.filter!(kv => kv.value.isArray).each!(kv => result[kv.key] = kv.value);
   return result;
@@ -124,6 +152,8 @@ Json[string] getArrays(Json[string] jsons) {
   *  The array at the specified index, or the default value if not found.
 */
 Json getArray(Json json, size_t index, Json defaultValue = Json(null)) {
+  mixin(ShowFunction!());
+
   return json.isArray(index) ? json.getValue(index) : defaultValue;
 }
 /// 
@@ -148,8 +178,10 @@ unittest {
   *
   * Returns:
   *  The array at the specified path, or the default value if not found.
-*/
+**/
 Json getArray(Json json, string[] path, Json defaultValue = Json(null)) {
+  mixin(ShowFunction!());
+
   return json.isArray(path) ? json.getValue(path) : defaultValue;
 }
 /// 
@@ -173,8 +205,10 @@ unittest {
   *
   * Returns:
   *  The array at the specified key, or the default value if not found.
-*/
+**/
 Json getArray(Json json, string key, Json defaultValue = Json(null)) {
+  mixin(ShowFunction!());
+
   return json.isArray(key) ? json.getValue(key) : defaultValue;
 }
 /// 
@@ -187,17 +221,46 @@ unittest {
 }
 // #endregion key
 
-Json getArrays(Json json) {
-  if (json.isArray) {
-    Json result = Json.emptyArray;
-    json.byValue.filter!(value => value.isArray).each!(value => result ~= value);
-    return result;     
-  }
-  if (json.isArray) {
-    Json result = Json.emptyObject;
-    json.byKeyValue.filter!(kv => kv.value.isArray).each!(kv => result[kv.key] = kv.value);
-    return result;     
-  }
-  return Json(null);
+// #region base
+/** 
+  * Retrieves all arrays from the Json object.
+  *
+  * Params:
+  *  json = The Json object to retrieve from.
+  *
+  * Returns:
+  *  A Json containing all arrays found in the Json object.
+**/
+Json[] getArrays(Json json) {
+  mixin(ShowFunction!());
+
+  return (json.isArray || json.isObject) ? json.getValues((Json value) => value.isArray) : null;
+}
+/// 
+unittest {
+  mixin(ShowTest!"Testing getArrays for Json");
+
+  Json jsonArray = [
+    [1, 2].toJson, ["a": 1].toJson, [3, 4].toJson, 42.toJson
+  ].toJson;
+  auto arraysFromArray = jsonArray.getArrays;
+  assert(arraysFromArray.length == 3, "Expected 3 arrays from Json array");
+  assert(arraysFromArray[0] == [1, 2].toJson, "Expected first array to be [1, 2]");
+  assert(arraysFromArray[1] == ["a": 1].toJson, "Expected second array to be ['a': 1]");
+  assert(arraysFromArray[2] == [3, 4].toJson, "Expected third array to be [3, 4]");
+}
+/// 
+unittest {
+  mixin(ShowTest!"Testing getArrays for Json");
+
+  Json jsonArray = [
+    [1, 2].toJson, ["a": 1].toJson, [3, 4].toJson, 42.toJson
+  ].toJson;
+  auto arraysFromArray = jsonArray.getArrays;
+  assert(arraysFromArray.isArray && arraysFromArray.length == 3, "Expected 3 arrays from Json array");
+
+  Json jsonObject = parseJsonString(`{"first": [1, 2], "second": {"a": 1}, "third": [3, 4], "fourth": 42}`);
+  auto arraysFromObject = jsonObject.getArrays;
+  assert(arraysFromObject.isObject && arraysFromObject.length == 2, "Expected 2 arrays from Json object");
 }
 // #endregion Json

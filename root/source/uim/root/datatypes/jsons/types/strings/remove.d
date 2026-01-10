@@ -18,17 +18,80 @@ Json[] removeStrings(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe
   
   return jsons.removeIndices(indices, (size_t index) => jsons[index].isString && removeFunc(index));
 }
+///
+unittest {
+  mixin(ShowTest!("Json[] removeStrings(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe removeFunc)"));
+
+  Json[] jsons = [Json("string"), Json(123), Json("another string"), Json(true), Json.nullValue];
+  size_t[] indices = [0, 2, 4];
+
+  Json[] result = removeStrings(jsons, indices, (size_t index) => true);
+  assert(result.length == 2);
+  assert(result[0] == Json(123));
+  assert(result[1] == Json(true));
+
+  result = removeStrings(jsons, indices, (size_t index) => false);;
+  assert(result.length == 5);
+
+  result = removeStrings(jsons, indices, (size_t index) => index == 2);
+  assert(result.length == 4);
+  assert(result[0] == Json(123));
+  assert(result[1] == Json(true));  
+}
+///
+unittest {
+  mixin(ShowTest!("Json[] removeStrings(Json[] jsons, size_t[] indices)"));
+
+  Json[] jsons = [Json("string"), Json(123), Json("another string"), Json(true), Json.nullValue];
+  size_t[] indices = [0, 2, 4];
+
+  Json[] result = removeStrings(jsons, indices);
+  assert(result.length == 2);
+  assert(result[0] == Json(123));
+  assert(result[1] == Json(true));  
+}
 
 Json[] removeStrings(Json[] jsons, size_t[] indices) {
   mixin(ShowFunction!());
 
   return jsons.removeIndices(indices, (index) => jsons[index].isString);
 }
+///
+unittest {
+  mixin(ShowTest!("Json[] removeStrings(Json[] jsons, bool delegate(size_t) @safe removeFunc)"));
+
+  Json[] jsons = [Json("string"), Json(123), Json("another string"), Json(true), Json.nullValue];
+
+  Json[] result = removeStrings(jsons, (size_t index) => true);
+  assert(result.length == 2);
+  assert(result[0] == Json(123));
+  assert(result[1] == Json(true));
+
+  result = removeStrings(jsons, (size_t index) => false);;
+  assert(result.length == 5);
+
+  result = removeStrings(jsons, (size_t index) => index == 2);
+  assert(result.length == 4);
+  assert(result[0] == Json("string"));
+  assert(result[1] == Json(123));
+  assert(result[2] == Json(true));  
+}
 
 Json[] removeStrings(Json[] jsons, bool delegate(size_t) @safe removeFunc) {
   mixin(ShowFunction!());
 
   return jsons.removeIndices((size_t index) => jsons[index].isString && removeFunc(index));
+}
+///
+unittest {
+  mixin(ShowTest!("Json[] removeStrings(Json[] jsons)"));
+
+  Json[] jsons = [Json("string"), Json(123), Json("another string"), Json(true), Json.nullValue];
+
+  Json[] result = removeStrings(jsons);
+  assert(result.length == 2);
+  assert(result[0] == Json(123));
+  assert(result[1] == Json(true));  
 }
 // #endregion indices
 
