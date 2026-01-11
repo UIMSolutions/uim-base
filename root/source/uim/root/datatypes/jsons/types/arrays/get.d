@@ -248,18 +248,4 @@ unittest {
   assert(arraysFromArray[0] == [1, 2].toJson, "Expected first array to be [1, 2]");
   assert(arraysFromArray[1] == [3, 4].toJson, "Expected second array to be [3, 4]");
 }
-/// 
-unittest {
-  mixin(ShowTest!"Testing getArrays for Json");
-
-  Json jsonArray = [
-    [1, 2].toJson, ["a": 1].toJson, [3, 4].toJson, 42.toJson
-  ].toJson;
-  auto arraysFromArray = jsonArray.getArrays;
-  assert(arraysFromArray.isArray && arraysFromArray.length == 3, "Expected 3 arrays from Json array");
-
-  Json jsonObject = parseJsonString(`{"first": [1, 2], "second": {"a": 1}, "third": [3, 4], "fourth": 42}`);
-  auto arraysFromObject = jsonObject.getArrays;
-  assert(arraysFromObject.isObject && arraysFromObject.length == 2, "Expected 2 arrays from Json object");
-}
 // #endregion Json

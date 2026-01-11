@@ -22,33 +22,37 @@ Json[] removeStrings(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe
 unittest {
   mixin(ShowTest!("Json[] removeStrings(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe removeFunc)"));
 
-  Json[] jsons = [Json("string"), Json(123), Json("another string"), Json(true), Json(null)];
+  Json[] jsons = ["string".toJson, Json(123), "another string".toJson, Json(true), Json(null)];
   size_t[] indices = [0, 2, 4];
 
   Json[] result = removeStrings(jsons, indices, (size_t index) => true);
-  assert(result.length == 2);
+  assert(result.length == 3);
   assert(result[0] == Json(123));
   assert(result[1] == Json(true));
+  assert(result[2] == Json(null));
 
-  result = removeStrings(jsons, indices, (size_t index) => false);;
+  result = removeStrings(jsons, indices, (size_t index) => false);
   assert(result.length == 5);
 
   result = removeStrings(jsons, indices, (size_t index) => index == 2);
   assert(result.length == 4);
-  assert(result[0] == Json(123));
-  assert(result[1] == Json(true));  
+  assert(result[0] == Json("string"));
+  assert(result[1] == Json(123));
+  assert(result[2] == Json(true));  
+  assert(result[3] == Json(null));
 }
 ///
 unittest {
   mixin(ShowTest!("Json[] removeStrings(Json[] jsons, size_t[] indices)"));
 
-  Json[] jsons = [Json("string"), Json(123), Json("another string"), Json(true), Json(null)];
+  Json[] jsons = ["string".toJson, Json(123), "another string".toJson, Json(true), Json(null)];
   size_t[] indices = [0, 2, 4];
 
   Json[] result = removeStrings(jsons, indices);
-  assert(result.length == 2);
+  assert(result.length == 3);
   assert(result[0] == Json(123));
   assert(result[1] == Json(true));  
+  assert(result[2] == Json(null));
 }
 
 Json[] removeStrings(Json[] jsons, size_t[] indices) {
@@ -60,21 +64,23 @@ Json[] removeStrings(Json[] jsons, size_t[] indices) {
 unittest {
   mixin(ShowTest!("Json[] removeStrings(Json[] jsons, bool delegate(size_t) @safe removeFunc)"));
 
-  Json[] jsons = [Json("string"), Json(123), Json("another string"), Json(true), Json(null)];
+  Json[] jsons = ["string".toJson, Json(123), "another string".toJson, Json(true), Json(null)];
 
   Json[] result = removeStrings(jsons, (size_t index) => true);
-  assert(result.length == 2);
+  assert(result.length == 3);
   assert(result[0] == Json(123));
   assert(result[1] == Json(true));
+  assert(result[2] == Json(null));
 
-  result = removeStrings(jsons, (size_t index) => false);;
+  result = removeStrings(jsons, (size_t index) => false);
   assert(result.length == 5);
 
   result = removeStrings(jsons, (size_t index) => index == 2);
   assert(result.length == 4);
-  assert(result[0] == Json("string"));
+  assert(result[0] == "string".toJson);
   assert(result[1] == Json(123));
   assert(result[2] == Json(true));  
+  assert(result[3] == Json(null));
 }
 
 Json[] removeStrings(Json[] jsons, bool delegate(size_t) @safe removeFunc) {
@@ -86,12 +92,13 @@ Json[] removeStrings(Json[] jsons, bool delegate(size_t) @safe removeFunc) {
 unittest {
   mixin(ShowTest!("Json[] removeStrings(Json[] jsons)"));
 
-  Json[] jsons = [Json("string"), Json(123), Json("another string"), Json(true), Json(null)];
+  Json[] jsons = ["string".toJson, Json(123), "another string".toJson, Json(true), Json(null)];
 
   Json[] result = removeStrings(jsons);
-  assert(result.length == 2);
+  assert(result.length == 3);
   assert(result[0] == Json(123));
   assert(result[1] == Json(true));  
+  assert(result[2] == Json(null));
 }
 // #endregion indices
 
@@ -105,21 +112,22 @@ Json[] removeStrings(Json[] jsons, Json[] values, bool delegate(Json) @safe remo
 unittest {
   mixin(ShowTest!("Json[] removeStrings(Json[] jsons, Json[] values, bool delegate(Json) @safe removeFunc)"));
 
-  Json[] jsons = [Json("string"), Json(123), Json("another string"), Json(true), Json(null)];
-  Json[] values = [Json("string"), Json(null)];
+  Json[] jsons = ["string".toJson, Json(123), "another string".toJson, Json(true), Json(null)];
+  Json[] values = ["string".toJson, Json(null)];
 
   Json[] result = removeStrings(jsons, values, (Json json) => true);
-  assert(result.length == 3);
+  assert(result.length == 4);
   assert(result[0] == Json(123));
-  assert(result[1] == Json(true));
-  assert(result[2] == Json("another string"));
+  assert(result[1] == "another string".toJson);
+  assert(result[2] == Json(true));
+  assert(result[3] == Json(null));
 
-  result = removeStrings(jsons, values, (Json json) => false);;
+  result = removeStrings(jsons, values, (Json json) => false);
   assert(result.length == 5);
 
-  result = removeStrings(jsons, values, (Json json) => json == Json("another string"));
+  result = removeStrings(jsons, values, (Json json) => json == "another string".toJson);
   assert(result.length == 4);
-  assert(result[0] == Json("string"));
+  assert(result[0] == "string".toJson);
   assert(result[1] == Json(123));
   assert(result[2] == Json(true));  
 }
@@ -133,19 +141,20 @@ Json[] removeStrings(Json[] jsons, Json[] values) {
 unittest {
   mixin(ShowTest!("Json[] removeStrings(Json[] jsons, bool delegate(Json) @safe removeFunc)"));
 
-  Json[] jsons = [Json("string"), Json(123), Json("another string"), Json(true), Json(null)];
+  Json[] jsons = ["string".toJson, Json(123), "another string".toJson, Json(true), Json(null)];
 
   Json[] result = removeStrings(jsons, (Json json) => true);
-  assert(result.length == 2);
+  assert(result.length == 3);
   assert(result[0] == Json(123));
   assert(result[1] == Json(true));
+  assert(result[2] == Json(null));
 
-  result = removeStrings(jsons, (Json json) => false);;
+  result = removeStrings(jsons, (Json json) => false);
   assert(result.length == 5);
 
-  result = removeStrings(jsons, (Json json) => json == Json("another string"));
+  result = removeStrings(jsons, (Json json) => json == "another string".toJson);
   assert(result.length == 4);
-  assert(result[0] == Json("string"));
+  assert(result[0] == "string".toJson);
   assert(result[1] == Json(123));
   assert(result[2] == Json(true));  
 }
@@ -159,7 +168,7 @@ Json[] removeStrings(Json[] jsons, bool delegate(Json) @safe removeFunc) {
 unittest {
   mixin(ShowTest!("Json[] removeStrings(Json[] jsons)"));
 
-  Json[] jsons = [Json("string"), Json(123), Json("another string"), Json(true), Json(null)];
+  Json[] jsons = ["string".toJson, Json(123), "another string".toJson, Json(true), Json(null)];
 
   Json[] result = removeStrings(jsons);
   assert(result.length == 2);
@@ -178,7 +187,7 @@ Json[] removeStrings(Json[] jsons) {
 unittest {
   mixin(ShowTest!("Json[] removeStrings(Json[] jsons)"));
 
-  Json[] jsons = [Json("string"), Json(123), Json("another string"), Json(true), Json(null)];
+  Json[] jsons = ["string".toJson, Json(123), "another string".toJson, Json(true), Json(null)];
 
   Json[] result = removeStrings(jsons);
   assert(result.length == 2);
@@ -207,7 +216,7 @@ unittest {
   assert(result["second"] == Json(123));
   assert(result["fourth"] == Json(true));
 
-  result = removeStrings(map, keys, (string key) => false);;
+  result = removeStrings(map, keys, (string key) => false);
   assert(result.length == 4);
 
   result = removeStrings(map, keys, (string key) => key == "third");
@@ -250,7 +259,7 @@ unittest {
   assert(result["second"] == Json(123));
   assert(result["fourth"] == Json(true));
 
-  result = removeStrings(map, (string key) => false);;
+  result = removeStrings(map, (string key) => false);
   assert(result.length == 4);
 
   result = removeStrings(map, (string key) => key == "third");
@@ -279,7 +288,7 @@ unittest {
   assert(result["second"] == Json(123));
   assert(result["fourth"] == Json(true));
 
-  result = removeStrings(map, values, (Json json) => false);;
+  result = removeStrings(map, values, (Json json) => false);
   assert(result.length == 4);
 
   result = removeStrings(map, values, (Json json) => json == Json("string2"));
@@ -322,7 +331,7 @@ unittest {
   assert(result["second"] == Json(123));
   assert(result["fourth"] == Json(true));
 
-  result = removeStrings(map, (Json json) => false);;
+  result = removeStrings(map, (Json json) => false);
   assert(result.length == 4);
 
   result = removeStrings(map, (Json json) => json == Json("string2"));
@@ -373,7 +382,7 @@ unittest {
   assert(result[0] == Json(123));
   assert(result[1] == Json(true));
 
-  result = removeStrings(json, indices, (size_t index) => false);;
+  result = removeStrings(json, indices, (size_t index) => false);
   assert(result.length == 5);
 
   result = removeStrings(json, indices, (size_t index) => index == 2);
@@ -417,7 +426,7 @@ unittest {
   assert(result[0] == Json(123));
   assert(result[1] == Json(true));
 
-  result = removeStrings(json, (size_t index) => false);;
+  result = removeStrings(json, (size_t index) => false);
   assert(result.length == 5);
 
   result = removeStrings(json, (size_t index) => index == 2);
@@ -446,7 +455,7 @@ unittest {
   assert(result["second"] == Json(123));
   assert(result["fourth"] == Json(true));
 
-  result = removeStrings(json, keys, (string key) => false);;
+  result = removeStrings(json, keys, (string key) => false);
   assert(result.length == 4);
 
   result = removeStrings(json, keys, (string key) => key == "third");
@@ -488,7 +497,7 @@ unittest {
   assert(result["second"] == Json(123), "Expected 123");
   assert(result["fourth"] == Json(true), "Expected true");
 
-  result = removeStrings(json, (string key) => false);;
+  result = removeStrings(json, (string key) => false);
   assert(result.length == 4);
 
   result = removeStrings(json, (string key) => key == "third");
@@ -517,7 +526,7 @@ unittest {
   assert(result["second"] == Json(123));
   assert(result["fourth"] == Json(true));
 
-  result = removeStrings(json, values, (Json j) => false);;
+  result = removeStrings(json, values, (Json j) => false);
   assert(result.length == 4);
 
   result = removeStrings(json, values, (Json j) => j == Json("string2"));
@@ -558,7 +567,7 @@ unittest {
   assert(result.length == 2);
   assert(result["second"] == Json(123));
   assert(result["fourth"] == Json(true)); 
-  result = removeStrings(json, (Json j) => false);;
+  result = removeStrings(json, (Json j) => false);
   assert(result.length == 4);
   result = removeStrings(json, (Json j) => j == Json("string2"));
   assert(result.length == 3);

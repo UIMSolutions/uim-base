@@ -109,10 +109,10 @@ bool hasAllArrays(Json json, size_t[] indices) {
 unittest {
   mixin(ShowTest!"Json hasAllArrays(Json, size_t[] indices)");
   
-  Json jsonArray = [1, 2, 3].toJson;
+  Json jsonArray = [[1, 2].toJson, [3, 4].toJson, [4, 5].toJson].toJson;
   size_t[] indicesAll = [0, 1];
 
-  assert(hasAllArrays(jsonArray, indicesAll) == true);
+  assert(hasAllArrays(jsonArray, indicesAll), "Expected all arrays at specified indices");
 }
 
 bool hasAnyArrays(Json json, size_t[] indices) {
@@ -122,10 +122,10 @@ bool hasAnyArrays(Json json, size_t[] indices) {
 unittest {
   mixin(ShowTest!"Json hasAnyArrays(Json, size_t[] indices)");
   
-  Json jsonArray = [1, 2, 3].toJson;
+  Json jsonArray = [[1, 2].toJson, [3, 4].toJson, [4, 5].toJson].toJson;
   size_t[] indicesAny = [1, 3];
 
-  assert(hasAnyArrays(jsonArray, indicesAny) == false);
+  assert(hasAnyArrays(jsonArray, indicesAny), "Expected at least one array at specified indices");
 }
 
 bool hasAllArrays(Json json, string[][] paths) {
