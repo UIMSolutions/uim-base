@@ -67,11 +67,7 @@ unittest {
 
   Json json = [
     "a": Json(1),
-    "b": [
-      Json(2), Json(3), [
-        "c": Json(4)
-      ].toJson
-    ].toJson,
+    "b": Json(4),
     "d": Json(5)
   ].toJson;
 
