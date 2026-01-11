@@ -65,7 +65,7 @@ bool isInteger(Json[string] map, string[] path) {
 bool isAllInteger(Json[string] map, string[] keys = null) {
   return keys.length > 0
     ? keys.all!(key => map.getValue(key)
-        .isInteger) : map.toMap.byKeyValue.all!(value => value.isInteger);
+        .isInteger) : map.getValues.all!(value => value.isInteger);
 }
 // #endregion all
 
@@ -73,7 +73,7 @@ bool isAllInteger(Json[string] map, string[] keys = null) {
 bool isAnyInteger(Json[string] map, string[] keys = null) {
   return keys.length > 0
     ? keys.any!(key => map.getValue(key)
-        .isInteger) : map.toMap.byKeyValue.any!(value => value.isInteger);
+        .isInteger) : map.getValues.any!(value => value.isInteger);
 }
 // #endregion any
 

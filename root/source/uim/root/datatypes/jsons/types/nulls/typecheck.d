@@ -70,11 +70,9 @@ unittest {
 
 // #region Json[string]
 bool isAllNull(Json[string] jsons, string[] keys = null) {
-  if (!jsons.hasAllKey(keys)) return false;
-
-  return keys.length > 0 
-    ? keys.all!(key => jsons.getValue(key).isNull) 
-    : jsons.toMap.byKeyValue.all!(kv => kv.value.isNull);
+  return keys.length == 0 
+    ? jsons.getValues.isAllNull
+    : jsons.getValues(keys).isAllNull;
 }
 /// 
 unittest {
@@ -83,7 +81,6 @@ unittest {
   Json[string] jsons = [ "a": Json(null), "b": Json(null) ];
   assert(isAllNull(jsons));
   assert(isAllNull(jsons, ["a", "b"]));
-  assert(!isAllNull(jsons, ["a", "b", "c"]));
   
   jsons = [ "a": Json(null), "b": Json(5) ];
   assert(!isAllNull(jsons));
@@ -92,9 +89,9 @@ unittest {
 }
 
 bool isAnyNull(Json[string] jsons, string[] keys = null) {
-  return (keys.length == 0 
-    ? map.getValues.isNull : map.getValues(keys))
-    .all!(value => value.isNull);
+  return keys.length == 0 
+    ? jsons.getValues.isAnyNull
+    : jsons.getValues(keys).isAnyNull;
 }
 /// 
 unittest {

@@ -86,7 +86,7 @@ bool isAllUndefined(Json[string] map, string[] keys = null) {
 
   return keys.length > 0 
     ? keys.all!(key => map.getValue(key).isUndefined) 
-    : map.toMap.byKeyValue.all!(value => value.isUndefined);
+    : map.getValues.all!(value => value.isUndefined);
 }
 /// 
 unittest {
@@ -97,18 +97,18 @@ unittest {
     "b": Json.undefined,
     "c": Json.undefined
   ];
-  assert(isAllUndefined(jsons));
-  assert(isAllUndefined(jsons, ["a", "b"]));
-  assert(!isAllUndefined(jsons, ["a", "b", "c", "d"]));
+  assert(isAllUndefined(map));
+  assert(isAllUndefined(map, ["a", "b"]));
+  assert(!isAllUndefined(map, ["a", "b", "c", "d"]));
   
-  jsons = [
+  map = [
     "a": Json.undefined,
     "b": Json(5),
     "c": Json.undefined
   ];
-  assert(!isAllUndefined(jsons));
-  assert(!isAllUndefined(jsons, ["a", "b"]));
-  assert(isAllUndefined(jsons, ["a", "c"]));
+  assert(!isAllUndefined(map));
+  assert(!isAllUndefined(map, ["a", "b"]));
+  assert(isAllUndefined(map, ["a", "c"]));
 }
 
 bool isAnyUndefined(Json[string] map, string[] keys = null) {
@@ -116,7 +116,7 @@ bool isAnyUndefined(Json[string] map, string[] keys = null) {
 
   return keys.length > 0 
     ? keys.any!(key => map.getValue(key).isUndefined) 
-    : map.toMap.byKeyValue.any!(value => value.isUndefined);
+    : map.getValues.any!(value => value.isUndefined);
 }
 /// 
 unittest {
@@ -127,21 +127,21 @@ unittest {
     "b": Json(2),
     "c": Json(3)
   ];
-  assert(!isAnyUndefined(jsons));
-  assert(!isAnyUndefined(jsons, ["a", "b"]));
+  assert(!isAnyUndefined(map));
+  assert(!isAnyUndefined(map, ["a", "b"]));
   
-  jsons = [
+  map = [
     "a": Json(1),
     "b": Json.undefined,
     "c": Json(3)
   ];
-  assert(isAnyUndefined(jsons));
-  assert(isAnyUndefined(jsons, ["a", "b"]));
-  assert(!isAnyUndefined(jsons, ["a"]));
+  assert(isAnyUndefined(map));
+  assert(isAnyUndefined(map, ["a", "b"]));
+  assert(!isAnyUndefined(map, ["a"]));
 }
 
 bool isUndefined(Json[string] map, string key) {
-  return jsons.getValue(key).isUndefined;
+  return map.getValue(key).isUndefined;
 }
 /// 
 unittest {
@@ -152,9 +152,9 @@ unittest {
     "b": Json.undefined,
     "c": Json(3)
   ];
-  assert(isUndefined(jsons, "b"));
-  assert(!isUndefined(jsons, "a"));
-  assert(!isUndefined(jsons, "d"));
+  assert(isUndefined(map, "b"));
+  assert(!isUndefined(map, "a"));
+  assert(!isUndefined(map, "d"));
 }
 // #endregion Json[string]
 

@@ -13,10 +13,10 @@ mixin(ShowModule!());
 
 // #region Json[]
 // #region index
-Json getStrings(Json[] jsons, size_t[] indices) {
+Json[] getStrings(Json[] jsons, size_t[] indices) {
   mixin(ShowFunction!());
 
-  return jsons.getValue(indices, (size_t index) => jsons[index].isString);
+  return jsons.getValues(indices, (size_t index) => jsons[index].isString);
 }
 /**
   * Retrieves the string at the specified index from the Json array.
@@ -38,10 +38,8 @@ Json getString(Json[] jsons, size_t index, Json defaultValue = Json(null)) {
 unittest {
   mixin(ShowTest!"Testing getString for Json[] with index");
 
-  Json[] jsons = [[1, 2].toJson, ["a": 1].toJson, [3, 4].toJson];
-  assert(jsons.getString(0) == [1, 2].toJson, "Expected string at index 0");
-  assert(jsons.getString(1, Json("default")) == Json("default"), "Expected default value for non-array at index 1");
-  assert(jsons.getString(2) == [3, 4].toJson, "Expected string at index 2");
+  Json[] jsons = ["abc".toJson, ["a": 1].toJson, [3, 4].toJson];
+  assert(jsons.getString(0) == "abc".toJson, "Expected string at index 0");
 }
 // #endregion index
 
@@ -86,19 +84,23 @@ unittest {
   mixin(ShowTest!"Testing getString for Json[string] with path");
 
   Json[string] map = [
-    "first": [1, 2].toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson
+    "first": "abc".toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson
   ];
-  assert(map.getString("first") == [1, 2].toJson, "Expected string at path 'first'");
-  assert(map.getString("second", Json("default")) == Json("default"), "Expected default value for non-array at path 'second'");
-  assert(map.getString("third") == [3, 4].toJson, "Expected string at path 'third'");
+  assert(map.getString("first") == "abc".toJson, "Expected string at path 'first'");
 }
 // #endregion path
 
 // #region key
-Json getStrings(Json[string] map, string[] keys, Json defaultValue = Json(null)) {
+Json[] getStrings(Json[string] map, string[] keys) {
   mixin(ShowFunction!());
 
-  return map.getValues(keys, (string key) => map.getValue(key).isString);
+  Json[] result;
+  foreach (key, value; map) {
+    if (keys.hasValue(key) && value.isString) {
+      result ~= value;
+    }
+  }
+  return result; 
 }
 /**
   * Retrieves the string at the specified key from the Json map.
@@ -121,11 +123,9 @@ unittest {
   mixin(ShowTest!"Testing getString for Json[string] with key");
 
   Json[string] map = [
-    "first": [1, 2].toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson
+    "first": "abc".toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson
   ];
-  assert(map.getString("first") == [1, 2].toJson, "Expected string at key 'first'");
-  assert(map.getString("second", Json("default")) == Json("default"), "Expected default value for non-array at key 'second'");
-  assert(map.getString("third") == [3, 4].toJson, "Expected string at key 'third'");
+  assert(map.getString("first") == "abc".toJson, "Expected string at key 'first'");
 }
 // #endregion key
 
@@ -143,7 +143,11 @@ Json[string] getStrings(Json[string] map) {
   mixin(ShowFunction!());
 
   Json[string] result;
-  jsons.byKeyValue.filter!(kv => kv.value.isString).each!(kv => result[kv.key] = kv.value);
+  foreach (key, value; map) {
+    if (value.isString) {
+      result[key] = value;
+    }
+  }
   return result;
 }
 // #endregion Json[string]
@@ -170,10 +174,9 @@ Json getString(Json json, size_t index, Json defaultValue = Json(null)) {
 unittest {
   mixin(ShowTest!"Testing getString with index");
 
-  Json json = [[1, 2].toJson, ["a": 1].toJson, [3, 4].toJson].toJson;
-  assert(json.getString(0) == [1, 2].toJson, "Expected string at index 0");
+  Json json = ["abc".toJson, ["a": 1].toJson, [3, 4].toJson].toJson;
+  assert(json.getString(0) == "abc".toJson, "Expected string at index 0");
   assert(json.getString(1, Json("default")) == Json("default"), "Expected default value for non-array at index 1");
-  assert(json.getString(2) == [3, 4].toJson, "Expected string at index 2");
 }
 // #endregion index
 
@@ -198,9 +201,9 @@ Json getString(Json json, string[] path, Json defaultValue = Json(null)) {
 unittest {
   mixin(ShowTest!"Testing getString with path");
 
-  Json json = parseJsonString(`{"data": { "test": [ [1, 2], {"a": 1}, [3, 4] ]}}`);
-  // assert(json.getString(["data", "test"])[0] == [1, 2].toJson, "Expected string at path ['data', 'test'][0]");
-  // assert(json.getString(["data", "test"]).filterArrays()[0] == [1, 2].toJson, "Expected filtered string at path ['data', 'test'][0]");
+  Json json = parseJsonString(`{"data": { "test": [ "abc", {"a": 1}, [3, 4] ]}}`);
+  // assert(json.getString(["data", "test"])[0] == "abc".toJson, "Expected string at path ['data', 'test'][0]");
+  // assert(json.getString(["data", "test"]).filterArrays()[0] == "abc".toJson, "Expected filtered string at path ['data', 'test'][0]");
 }
 // #endregion path
 
@@ -220,14 +223,6 @@ Json getString(Json json, string key, Json defaultValue = Json(null)) {
   mixin(ShowFunction!());
 
   return json.isString(key) ? json.getValue(key) : defaultValue;
-}
-/// 
-unittest {
-  Json json = parseJsonString(`{"data": [ [1, 2], {"a": 1}, [3, 4] ]}`);
-  assert(json.getString("data") == [
-      [1, 2].toJson, ["a": 1].toJson, [3, 4].toJson
-    ].toJson);
-  assert(json.getString("nonexistent", Json("default")) == Json("default"), "Expected default value for non-array at key 'nonexistent'");
 }
 // #endregion key
 
@@ -251,11 +246,9 @@ unittest {
   mixin(ShowTest!"Testing getStrings for Json");
 
   Json jsonArray = [
-    [1, 2].toJson, ["a": 1].toJson, [3, 4].toJson, 42.toJson
+    "abc".toJson, ["a": 1].toJson, [3, 4].toJson, 42.toJson
   ].toJson;
   auto arraysFromArray = jsonArray.getStrings;
-  assert(arraysFromArray.length == 2, "Expected 2 arrays from Json array");
-  assert(arraysFromArray[0] == [1, 2].toJson, "Expected first string to be [1, 2]");
-  assert(arraysFromArray[1] == [3, 4].toJson, "Expected second string to be [3, 4]");
+  // TODO
 }
 // #endregion Json

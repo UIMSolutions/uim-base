@@ -65,7 +65,7 @@ bool isDouble(Json[string] map, string[] path) {
 bool isAllDouble(Json[string] map, string[] keys = null) {
   return keys.length > 0
     ? keys.all!(key => map.getValue(key)
-        .isDouble) : map.toMap.byKeyValue.all!(value => value.isDouble);
+        .isDouble) : map.getValues.all!(value => value.isDouble);
 }
 // #endregion all
 
@@ -73,7 +73,7 @@ bool isAllDouble(Json[string] map, string[] keys = null) {
 bool isAnyDouble(Json[string] map, string[] keys = null) {
   return keys.length > 0
     ? keys.any!(key => map.getValue(key)
-        .isDouble) : map.toMap.byKeyValue.any!(value => value.isDouble);
+        .isDouble) : map.getValues.any!(value => value.isDouble);
 }
 // #endregion any
 

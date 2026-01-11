@@ -375,7 +375,7 @@ unittest {
   size_t[] indices = [0, 2, 4];
 
   Json result = removeStrings(json, indices, (size_t index) => true);
-  assert(result.length == 2);
+  assert(result.length == 3);
   assert(result[0] == Json(123));
   assert(result[1] == Json(true));
 
@@ -402,7 +402,7 @@ unittest {
   size_t[] indices = [0, 2, 4];
 
   Json result = removeStrings(json, indices);
-  assert(result.length == 2);
+  assert(result.length == 3);
   assert(result[0] == Json(123));
   assert(result[1] == Json(true));  
 }
@@ -419,7 +419,7 @@ unittest {
   Json json = Json([Json("string1"), Json(123), Json("string2"), Json(true), Json(null)]);
 
   Json result = removeStrings(json, (size_t index) => true);
-  assert(result.length == 2);
+  assert(result.length == 3);
   assert(result[0] == Json(123));
   assert(result[1] == Json(true));
 

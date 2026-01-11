@@ -70,6 +70,12 @@ Json[] getValues(Json[] jsons, bool delegate(Json) @safe getFunc) {
   return jsons.filter!(json => getFunc(json)).array;
 }
 // #endregion with values
+
+Json[] getValues(Json[] jsons) {
+  mixin(ShowFunction!());
+
+  return jsons.dup;
+}
 // #endregion values 
 // #endregion Json[]
 
@@ -205,7 +211,8 @@ Json[] getValues(Json[string] map, string[] keys, bool delegate(string) @safe ge
   *  An array of Json objects found at the specified keys.
 **/
 Json[] getValues(Json[string] map, string[] keys) {
-  return map.byKeyValue.filter!(kv => keys.hasValue(kv.key))
+  return map.byKeyValue
+    .filter!(kv => keys.hasValue(kv.key))
     .map!(kv => kv.value)
     .array;
 }
@@ -226,7 +233,10 @@ unittest {
 }
 
 Json[] getValues(Json[string] map, bool delegate(string) @safe getFunc) {
-  return map.byKeyValue.filter!(kv => getFunc(kv.key)).map!(kv => kv.value).array;
+  return map.byKeyValue
+    .filter!(kv => getFunc(kv.key))
+    .map!(kv => kv.value)
+    .array;
 }
 
 /** 
@@ -250,6 +260,46 @@ unittest {
   assert(map.getValue("key2") == "value2".toJson);
 }
 // #endregion keys
+
+// #region values
+// #region with values and getFunc(value)
+Json[] getValues(Json[string] map, Json[] values, bool delegate(Json) @safe getFunc) {
+  mixin(ShowFunction!());
+
+  return map.getValues(values).getValues((Json value) => getFunc(value));
+}
+// #endregion with values and getFunc(value)
+
+// #region with values
+Json[] getValues(Json[string] map, Json[] values) {
+  mixin(ShowFunction!());
+
+  return map.getValues((Json value) => values.hasValue(value));
+}
+
+Json[] getValues(Json[string] map, bool delegate(Json) @safe getFunc) {
+  mixin(ShowFunction!());
+
+  Json[] result;
+  foreach (key, value; map) {
+    if (getFunc(value)) {
+      result ~= value;
+    }
+  }
+  return result;
+}
+// #endregion with values
+
+Json[] getValues(Json[string] map) {
+  mixin(ShowFunction!());
+
+  Json[] result;
+  foreach (key, value; map) {
+    result ~= value;
+  }
+  return result;
+}
+// #endregion values
 // #endregion Json[string]
 
 // #region Json
@@ -465,14 +515,14 @@ Json[] getValues(Json json, bool delegate(Json) @safe getFunc) {
   }
   if (json.isArray) {
     return json.toArray.filter!(value => getFunc(value)).array;
-  } 
+  }
   if (json.isObject) {
     return json.byKeyValue
       .filter!(kv => getFunc(kv.value))
       .map!(kv => kv.value)
       .array;
   }
-  return null; 
+  return null;
 }
 // #endregion Json
 
@@ -493,7 +543,7 @@ Json[string] getValueMap(Json[string] map, bool delegate(string key) @safe getFu
       result[key] = value;
     }
   }
-  
+
   return result;
 }
 // #endregion ValueMap
