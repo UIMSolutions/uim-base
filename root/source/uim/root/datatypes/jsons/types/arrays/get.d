@@ -244,10 +244,9 @@ unittest {
     [1, 2].toJson, ["a": 1].toJson, [3, 4].toJson, 42.toJson
   ].toJson;
   auto arraysFromArray = jsonArray.getArrays;
-  assert(arraysFromArray.length == 3, "Expected 3 arrays from Json array");
+  assert(arraysFromArray.length == 2, "Expected 2 arrays from Json array");
   assert(arraysFromArray[0] == [1, 2].toJson, "Expected first array to be [1, 2]");
-  assert(arraysFromArray[1] == ["a": 1].toJson, "Expected second array to be ['a': 1]");
-  assert(arraysFromArray[2] == [3, 4].toJson, "Expected third array to be [3, 4]");
+  assert(arraysFromArray[1] == [3, 4].toJson, "Expected second array to be [3, 4]");
 }
 /// 
 unittest {

@@ -469,4 +469,24 @@ unittest {
   assert(json.getValue("key2") == "value2".toJson);
 }
 // #endregion keys
+
+Json[] getValues(Json json, bool delegate(size_t) @safe getFunc) {
+  Json[] result;
+  if (json.isArray) {
+    foreach(index, value; json.toArray) {
+      if (getFunc(index)) {
+        result ~= value;
+      }
+    }
+  }
+  return result;
+}
+
+Json[] getValues(Json json, bool delegate(string) @safe getFunc) {
+  return json.isObject ? json.byKeyValue.filter!(kv => getFunc(kv.key)).map!(kv => kv.value).array : null;
+}
+
+Json[] getValues(Json json, bool delegate(Json) @safe getFunc) {
+  return json.isObject || json.isArray ? json.byValue.filter!(value => getFunc(value)).array : null;
+}
 // #endregion Json

@@ -111,7 +111,6 @@ unittest {
   
   Json jsonArray = [1, 2, 3].toJson;
   size_t[] indicesAll = [0, 1];
-  size_t[] indicesAny = [1, 3];
 
   assert(hasAllArrays(jsonArray, indicesAll) == true);
 }
@@ -124,7 +123,6 @@ unittest {
   mixin(ShowTest!"Json hasAnyArrays(Json, size_t[] indices)");
   
   Json jsonArray = [1, 2, 3].toJson;
-  size_t[] indicesAll = [0, 1];
   size_t[] indicesAny = [1, 3];
 
   assert(hasAnyArrays(jsonArray, indicesAny) == false);

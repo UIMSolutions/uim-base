@@ -192,6 +192,24 @@ bool isObject(Json json, size_t index) {
 
 
 // #endregion Json
+
+
+bool isArray(Json[] jsons) {
+  return jsons is null ? false : true;
+}
+
+bool isArray(Json[string] map) {
+  return false;
+}
+
+bool isObject(Json[string] map) {
+  return map is null ? false : true;
+}
+
+bool isObject(Json[] jsons) {
+  return false;
+}
+
 bool isObject(Json json) {
   return (json.type == Json.Type.object);
 }
