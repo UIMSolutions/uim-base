@@ -6,5 +6,21 @@
 module uim.root.datatypes.jsons;
 
 public {
+  import uim.root.datatypes.jsons.change;
+  import uim.root.datatypes.jsons.check;
+  import uim.root.datatypes.jsons.convert;
+  import uim.root.datatypes.jsons.count;
+  import uim.root.datatypes.jsons.create;
+  import uim.root.datatypes.jsons.filter;
+  import uim.root.datatypes.jsons.get;
+  import uim.root.datatypes.jsons.has;
+  import uim.root.datatypes.jsons.last;
+  import uim.root.datatypes.jsons.parse;
+  import uim.root.datatypes.jsons.remove;
+  import uim.root.datatypes.jsons.set;
+  import uim.root.datatypes.jsons.values;
+}
+
+public {
   import uim.root.datatypes.jsons.types;
 }
