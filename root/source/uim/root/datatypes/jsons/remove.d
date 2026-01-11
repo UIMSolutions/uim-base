@@ -126,6 +126,22 @@ unittest {
 // #endregion func
 // #endregion indices
 
+// #region paths
+Json removePaths(Json json, string[][] paths, bool delegate(string[] path) @safe removeFunc) {
+  mixin(ShowFunction!()); 
+
+  // TODO: Implement 
+  return Json(null);
+}
+
+Json removePaths(Json map, string[][] paths) {
+  mixin(ShowFunction!()); 
+
+  // TODO: Implement 
+  return Json(null);
+}
+// #endregion paths
+
 // #region keys
 // #region keys with func
 Json removeKeys(Json json, string[] keys, bool delegate(string) @safe removeFunc) {
@@ -568,6 +584,22 @@ unittest {
 // #endregion Json[]
 
 // #region Json[string]
+// #region paths
+Json[string] removePaths(Json[string] map, string[][] paths, bool delegate(string[] path) @safe removeFunc) {
+  mixin(ShowFunction!()); 
+
+  // TODO: Implement 
+  return null;
+}
+
+Json[string] removePaths(Json[string] map, string[][] paths) {
+  mixin(ShowFunction!()); 
+
+  // TODO: Implement 
+  return null;
+}
+// #endregion paths
+
 // #region keys
 // #region keys with func
 Json[string] removeKeys(Json[string] map, string[] keys, bool delegate(string) @safe removeFunc) {

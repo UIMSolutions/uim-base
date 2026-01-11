@@ -13,6 +13,11 @@ mixin(ShowModule!());
 
 // #region Json[]
 // #region index
+Json getArray(Json[] jsons, size_t[] indices) {
+  mixin(ShowFunction!());
+
+  return jsons.getValue(indices, (size_t index) => jsons[index].isArray);
+}
 /**
   * Retrieves the array at the specified index from the Json array.
   *
@@ -53,13 +58,18 @@ unittest {
 Json[] getArrays(Json[] jsons) {
   mixin(ShowFunction!());
 
-  return jsons.filter!(json => json.isArray).array;
+  return jsons.getValues((json json) => json.isArray);
 }
 // #endregion base
 // #endregion Json[]
 
 // #region Json[string]
 // #region path
+Json getArrays(Json[string] map, string[][] paths, Json defaultValue = Json(null)) {
+  mixin(ShowFunction!());
+
+  return map.getValues(paths, (string[] path) => map.getValue(path).isArray);
+}
 /**
   * Retrieves the array at the specified path from the Json map.
   *
@@ -90,6 +100,11 @@ unittest {
 // #endregion path
 
 // #region key
+Json getArrays(Json[string] map, string[] keys, Json defaultValue = Json(null)) {
+  mixin(ShowFunction!());
+
+  return map.getValues(keys, (string key) => map.getValue(key).isArray);
+}
 /**
   * Retrieves the array at the specified key from the Json map.
   *
@@ -188,9 +203,12 @@ Json getArray(Json json, string[] path, Json defaultValue = Json(null)) {
 unittest {
   mixin(ShowTest!"Testing getArray with path");
 
-  Json json = parseJsonString(`{"data": { "test": [ [1, 2], {"a": 1}, [3, 4] ]}}`);
-  // assert(json.getArray(["data", "test"])[0] == [1, 2].toJson, "Expected array at path ['data', 'test'][0]");
-  // assert(json.getArray(["data", "test"]).filterArrays()[0] == [1, 2].toJson, "Expected filtered array at path ['data', 'test'][0]");
+  Json json = [
+    "first": [1, 2].toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson
+  ].toJson;
+  assert(json.getArray("first") == [1, 2].toJson, "Expected array at path 'first'");
+  assert(json.getArray("second", Json("default")) == Json("default"), "Expected default value for non-array at path 'second'");
+  assert(json.getArray("third") == [3, 4].toJson, "Expected array at path 'third'");
 }
 // #endregion path
 

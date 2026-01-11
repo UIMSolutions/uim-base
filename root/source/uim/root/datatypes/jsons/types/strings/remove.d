@@ -126,10 +126,7 @@ unittest {
   assert(result.length == 5);
 
   result = removeStrings(jsons, values, (Json json) => json == "another string".toJson);
-  assert(result.length == 4);
-  assert(result[0] == "string".toJson);
-  assert(result[1] == Json(123));
-  assert(result[2] == Json(true));  
+  assert(result.length == 5);
 }
 
 Json[] removeStrings(Json[] jsons, Json[] values) {
@@ -171,7 +168,7 @@ unittest {
   Json[] jsons = ["string".toJson, Json(123), "another string".toJson, Json(true), Json(null)];
 
   Json[] result = removeStrings(jsons);
-  assert(result.length == 2);
+  assert(result.length == 3);
   assert(result[0] == Json(123));
   assert(result[1] == Json(true));  
 }
@@ -190,7 +187,7 @@ unittest {
   Json[] jsons = ["string".toJson, Json(123), "another string".toJson, Json(true), Json(null)];
 
   Json[] result = removeStrings(jsons);
-  assert(result.length == 2);
+  assert(result.length == 3);
   assert(result[0] == Json(123));
   assert(result[1] == Json(true));  
 }

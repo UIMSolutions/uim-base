@@ -97,6 +97,11 @@ unittest {
 // #endregion Json[]
 
 // #region Json[string]
+Json[] getValues(Json[string] map, string[][] paths, bool delegate(string[] path) @safe getFunc) {
+  return paths.filter!(path => map.getValue(path) != Json(null) && getFunc(path))
+    .map!(path => map.getValue(path))
+    .array;
+}
 // #region paths
 /** 
   * Retrieves values from the Json map based on the specified paths.
