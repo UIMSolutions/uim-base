@@ -47,10 +47,10 @@ bool hasValue(T)(Json json, T value) {
   }
 
   if (json.isArray) {
-    return json.byValue
+    return json.toArray
       .any!(v => hasValue(v, value));
   } else if (json.isObject) {
-    return json.byValue.any!(v => hasValue(v, value));
+    return json.toArray.any!(v => hasValue(v, value));
   }
 
   return json == value.toJson;

@@ -13,6 +13,36 @@ mixin(ShowModule!());
 
 // #region Json[]
 // #region indices
+// #region with indices and getFunc(index)
+/** 
+  * Retrieves values from the Json array based on the specified indices and a selection function.
+  *
+  * Params:
+  *  jsons = The array of Json objects to retrieve from.
+  *  indices = An array of indices to retrieve.
+  *  getFunc = A delegate function that takes an index and returns true if the value at that index should be included.
+  *
+  * Returns:
+  *  An array of Json objects found at the specified indices that satisfy the selection function.
+**/
+Json[] getValues(Json[] jsons, size_t[] indices, bool delegate(size_t index) @safe getFunc) {
+  mixin(ShowFunction!());
+
+  return jsons.getValues((size_t index) => indices.hasValue(index) && getFunc(index));
+}
+///
+unittest {
+  mixin(ShowTest!"Testing getValues for Json[] with indices and delegate");
+
+  Json[] jsons = [1.toJson, 2.toJson, 3.toJson, 4.toJson, 5.toJson];
+  auto values = jsons.getValues([0, 2, 4], (size_t index) => index % 2 == 0);
+  assert(values.length == 3);
+  assert(values[0] == 1.toJson);
+  assert(values[1] == 3.toJson);
+  assert(values[2] == 5.toJson);
+}
+// #endregion with indices and getFunc(index)
+
 // #region with indices
 /** 
   * Retrieves values from the Json array based on the specified indices.
@@ -52,9 +82,9 @@ unittest {
   * Returns:
   *  An array of Json objects that satisfy the selection function.
 **/
-Json[] getValues(Json[] jsons, bool delegate(size_t index) @safe getFunc) {
+Json[] getValues(Json[] jsons, bool delegate(size_t) @safe getFunc) {
   Json[] result;
-  foreach(index, value; jsons) {
+  foreach (index, value; jsons) {
     if (getFunc(index)) {
       result ~= value;
     }
@@ -72,7 +102,9 @@ unittest {
   assert(values[1] == 3.toJson);
   assert(values[2] == 5.toJson);
 }
+// #endregion with getFunc(index)
 
+// #region index
 /** 
   * Retrieves the value at the specified index from the Json array.
   *
@@ -93,7 +125,32 @@ unittest {
   Json[] jsons = [1.toJson, 2.toJson, 3.toJson];
   assert(jsons.getValue(1) == 2.toJson);
 }
+// #endregion index
 // #endregion indices
+
+// #region values
+// #region with values and getFunc(value)
+Json[] getValues(Json[] jsons, Json[] values, bool delegate(Json) @safe getFunc) {
+  mixin(ShowFunction!());
+
+  return jsons.getValues(values).getValues((Json value) => getFunc(value));
+}
+// #endregion with values and getFunc(value)
+
+// #region with values
+Json[] getValues(Json[] jsons, Json[] values) {
+  mixin(ShowFunction!());
+
+  return jsons.getValues((Json value) => values.hasValue(value));
+}
+
+Json[] getValues(Json[] jsons, bool delegate(Json) @safe getFunc) {
+  mixin(ShowFunction!());
+
+  return jsons.filter!(json => getFunc(json)).array;
+}
+// #endregion with values
+// #endregion values 
 // #endregion Json[]
 
 // #region Json[string]
@@ -213,24 +270,8 @@ unittest {
 // #endregion paths
 
 // #region keys
-/** 
-  * Retrieves values from the Json map based on the specified keys.
-  *
-  * Params:
-  *  map = The Json map to retrieve from.
-  *  keys = An array of keys to retrieve.
-  *
-  * Returns:
-  *  An array of Json objects found at the specified keys.
-**/
-Json[string] getValueMap(Json[string] map, string[] keys) {
-  Json[string] result;
-  foreach (key; keys) {
-    if (key in map) {
-      result[key] = map[key];
-    }
-  }
-  return result;
+Json[] getValues(Json[string] map, string[] keys, bool delegate(string) @safe getFunc) {
+  return map.getValueMap(keys).getValues(getFunc);
 }
 
 /** 
@@ -262,6 +303,10 @@ unittest {
   assert(values.length == 2);
   assert(values[0] == "value1".toJson);
   assert(values[1] == "value3".toJson);
+}
+
+Json[] getValues(Json[string] map, bool delegate(string) @safe getFunc) {
+  return map.byKeyValue.filter!(kv => getFunc(kv.key)).map!(kv => kv.value).array;
 }
 
 /** 
@@ -298,7 +343,7 @@ unittest {
   *
   * Returns:
   *  An array of Json objects found at the specified indices.
-**/ 
+**/
 Json[] getValues(Json json, size_t[] indices) {
   return indices.filter!(index => json.getValue(index) != Json(null))
     .map!(index => json.getValue(index))
@@ -478,7 +523,7 @@ unittest {
 Json[] getValues(Json json, bool delegate(size_t) @safe getFunc) {
   Json[] result;
   if (json.isArray) {
-    foreach(index, value; json.toArray) {
+    foreach (index, value; json.toArray) {
       if (getFunc(index)) {
         result ~= value;
       }
@@ -488,10 +533,46 @@ Json[] getValues(Json json, bool delegate(size_t) @safe getFunc) {
 }
 
 Json[] getValues(Json json, bool delegate(string) @safe getFunc) {
-  return json.isObject ? json.byKeyValue.filter!(kv => getFunc(kv.key)).map!(kv => kv.value).array : null;
+  return json.isObject ? json.byKeyValue
+    .filter!(kv => getFunc(kv.key))
+    .map!(kv => kv.value)
+    .array : null;
 }
 
 Json[] getValues(Json json, bool delegate(Json) @safe getFunc) {
-  return json.isObject || json.isArray ? json.byValue.filter!(value => getFunc(value)).array : null;
+  if (json.isNull) {
+    return null;
+  }
+  if (json.isArray) {
+    return json.toArray.filter!(value => getFunc(value)).array;
+  } 
+  if (json.isObject) {
+    return json.byKeyValue
+      .filter!(kv => getFunc(kv.value))
+      .map!(kv => kv.value)
+      .array;
+  }
+  return null; 
 }
 // #endregion Json
+
+// #region ValueMap
+Json[string] getValueMap(Json[string] map, string[] keys, bool delegate(string key) @safe getFunc) {
+  return map.getValueMap(keys).getValueMap(getFunc);
+}
+
+Json[string] getValueMap(Json[string] map, string[] keys) {
+  return map.getValueMap((string key) => keys.hasValue(key));
+}
+
+Json[string] getValueMap(Json[string] map, bool delegate(string key) @safe getFunc) {
+  Json[string] result;
+  foreach (key, value; map.byKeyValue) {
+    if (getFunc(key)) {
+      result[key] = value;
+    }
+  }
+  return result;
+}
+
+// #endregion ValueMap

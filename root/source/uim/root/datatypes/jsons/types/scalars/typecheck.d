@@ -30,19 +30,19 @@ bool isScalar(Json[] jsons, size_t index) {
 // #endregion Json[]
 
 // #region Json[string]
-bool isAllScalar(Json[string] jsons, string[] keys = null) {
-  return keys.length > 0 
-    ? keys.all!(key => jsons.getValue(key).isScalar) 
-    : jsons.byValue.all!(value => value.isScalar);
+bool isAllScalar(Json[string] map, string[] keys = null) {
+  return (keys.length == 0 
+    ? map.getValues.isScalar : map.getValues(keys))
+    .all!(value => value.isScalar);
 }
 
-bool isAnyScalar(Json[string] jsons, string[] keys = null) {
-  return keys.length > 0 
-    ? keys.any!(key => jsons.getValue(key).isScalar) 
-    : jsons.byValue.any!(value => value.isScalar);
+bool isAnyScalar(Json[string] map, string[] keys = null) {
+  return (keys.length == 0 
+    ? map.getValues.isScalar : map.getValues(keys))
+    .all!(value => value.isScalar);
 }
 
-bool isScalar(Json[string] jsons, string key) {
+bool isScalar(Json[string] map, string key) {
   return jsons.getValue(key).isScalar;
 }
 // #endregion Json[string]

@@ -139,7 +139,7 @@ unittest {
   * Returns:
   *  A Json[string] containing all arrays found in the Json map.
 **/
-Json[string] getStrings(Json[string] jsons) {
+Json[string] getStrings(Json[string] map) {
   mixin(ShowFunction!());
 
   Json[string] result;

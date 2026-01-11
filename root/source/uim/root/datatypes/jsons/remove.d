@@ -261,7 +261,7 @@ Json removeValues(Json json, Json[] values, bool delegate(Json) @safe removeFunc
 
   if (json.isArray) {
     Json result = Json.emptyArray;
-    foreach (value; json.byValue) {
+    foreach (value; json.toArray) {
       if (!values.hasValue(value) || !removeFunc(value)) {
         result ~= value;
       }
@@ -310,7 +310,7 @@ Json removeValues(Json json, Json[] values) {
 
   if (json.isArray) {
     Json result = Json.emptyArray;
-    foreach (value; json.byValue) {
+    foreach (value; json.toArray) {
       if (!values.hasValue(value)) {
         result ~= value;
       }
@@ -354,7 +354,7 @@ Json removeValues(Json json, bool delegate(Json) @safe removeFunc) {
 
   if (json.isArray) {
     Json result = Json.emptyArray;
-    foreach (value; json.byValue) {
+    foreach (value; json.toArray) {
       if (!removeFunc(value)) {
         result ~= value;
       }

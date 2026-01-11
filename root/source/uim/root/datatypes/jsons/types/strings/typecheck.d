@@ -65,7 +65,7 @@ bool isString(Json[string] map, string[] path) {
 bool isAllString(Json[string] map, string[] keys = null) {
   return keys.length > 0
     ? keys.all!(key => map.getValue(key)
-        .isString) : map.byValue.all!(value => value.isString);
+        .isString) : map.toMap.byKeyValue.all!(value => value.isString);
 }
 // #endregion all
 
@@ -73,7 +73,7 @@ bool isAllString(Json[string] map, string[] keys = null) {
 bool isAnyString(Json[string] map, string[] keys = null) {
   return keys.length > 0
     ? keys.any!(key => map.getValue(key)
-        .isString) : map.byValue.any!(value => value.isString);
+        .isString) : map.toMap.byKeyValue.any!(value => value.isString);
 }
 // #endregion any
 

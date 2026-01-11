@@ -228,7 +228,7 @@ unittest {
 
 size_t countDoubles(Json json, bool delegate(Json) @safe countFunc) {
   if (json.isArray) {
-    return json.byValue.filter!(value => countFunc(value)).array.length;
+    return json.toArray.filter!(value => countFunc(value)).array.length;
   }
   if (json.isObject) {
     return json.byKeyValue.filter!(kv => countFunc(kv.value)).array.length;

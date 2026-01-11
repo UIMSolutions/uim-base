@@ -313,7 +313,7 @@ unittest {
 // #region toStrings
 string[] toStrings(Json json) {
   if (!json.isArray) return null; 
-  return json.byValue.array.toStrings;
+  return json.toArray.array.toStrings;
 }
 
 string[] toStrings(Json[] jsons) {

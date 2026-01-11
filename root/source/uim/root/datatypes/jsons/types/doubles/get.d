@@ -100,7 +100,7 @@ unittest {
 Json getDoubles(Json json) {
   if (json.isArray) {
     Json result = Json.emptyArray;
-    json.byValue.filter!(value => value.isDouble).each!(value => result ~= value);
+    json.toArray.filter!(value => value.isDouble).each!(value => result ~= value);
     return result;     
   }
   if (json.isObject) {

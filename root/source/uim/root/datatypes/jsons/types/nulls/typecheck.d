@@ -74,7 +74,7 @@ bool isAllNull(Json[string] jsons, string[] keys = null) {
 
   return keys.length > 0 
     ? keys.all!(key => jsons.getValue(key).isNull) 
-    : jsons.byValue.all!(value => value.isNull);
+    : jsons.toMap.byKeyValue.all!(kv => kv.value.isNull);
 }
 /// 
 unittest {
@@ -92,9 +92,9 @@ unittest {
 }
 
 bool isAnyNull(Json[string] jsons, string[] keys = null) {
-  return keys.length > 0 
-    ? keys.any!(key => jsons.getValue(key).isNull) 
-    : jsons.byValue.any!(value => value.isNull);
+  return (keys.length == 0 
+    ? map.getValues.isNull : map.getValues(keys))
+    .all!(value => value.isNull);
 }
 /// 
 unittest {

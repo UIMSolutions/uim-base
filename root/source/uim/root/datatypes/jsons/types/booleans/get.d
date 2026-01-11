@@ -101,7 +101,7 @@ unittest {
 Json getBooleans(Json json) {
   if (json.isArray) {
     Json result = Json.emptyArray;
-    json.byValue.filter!(value => value.isBoolean).each!(value => result ~= value);
+    json.toArray.filter!(value => value.isBoolean).each!(value => result ~= value);
     return result;     
   }
   if (json.isObject) {

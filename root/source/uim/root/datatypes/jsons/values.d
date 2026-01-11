@@ -13,7 +13,7 @@ mixin(ShowModule!());
 
 // #region values with delegate
 Json[] values(Json json, Json delegate(Json json) @safe valueFunc) {
-  return json.isArray || json.isObject ? json.byValue.array.map!(j => valueFunc(j)).array : null;
+  return json.isArray || json.isObject ? json.toArray.array.map!(j => valueFunc(j)).array : null;
 }
 /// 
 unittest {
@@ -39,7 +39,7 @@ unittest {
 
 // #region values 
 Json[] values(Json json) {
-  return json.isArray || json.isObject ? json.byValue.array : null;
+  return json.isArray || json.isObject ? json.toArray.array : null;
 }
 /// 
 unittest {

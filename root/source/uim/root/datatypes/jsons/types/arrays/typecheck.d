@@ -155,7 +155,7 @@ bool isAllArray(Json[string] map, string[] keys = null) {
 
   return keys.length > 0
     ? keys.all!(key => map.getValue(key)
-        .isArray) : map.byValue.all!(value => value.isArray);
+        .isArray) : map.toMap.byKeyValue.all!(value => value.isArray);
 }
 ///
 unittest {
@@ -178,7 +178,7 @@ bool isAnyArray(Json[string] map, string[] keys = null) {
 
   return keys.length > 0
     ? keys.any!(key => map.getValue(key)
-        .isArray) : map.byValue.any!(value => value.isArray);
+        .isArray) : map.toMap.byKeyValue.any!(value => value.isArray);
 }
 ///
 unittest {

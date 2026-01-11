@@ -13,10 +13,10 @@ mixin(ShowModule!());
 
 // #region Json[]
 // #region index
-Json getArray(Json[] jsons, size_t[] indices) {
+Json getArrays(Json[] jsons, size_t[] indices) {
   mixin(ShowFunction!());
 
-  return jsons.getValue(indices, (size_t index) => jsons[index].isArray);
+  return jsons.getValues(indices, (size_t index) => jsons[index].isArray);
 }
 /**
   * Retrieves the array at the specified index from the Json array.
@@ -58,7 +58,7 @@ unittest {
 Json[] getArrays(Json[] jsons) {
   mixin(ShowFunction!());
 
-  return jsons.getValues((json json) => json.isArray);
+  return jsons.getValues((Json json) => json.isArray);
 }
 // #endregion base
 // #endregion Json[]
@@ -103,7 +103,7 @@ unittest {
 Json getArrays(Json[string] map, string[] keys, Json defaultValue = Json(null)) {
   mixin(ShowFunction!());
 
-  return map.getValues(keys, (string key) => map.getValue(key).isArray);
+  return map.getValues((string key) => keys.hasValue(key) && map.getValue(key).isArray);
 }
 /**
   * Retrieves the array at the specified key from the Json map.
@@ -144,7 +144,7 @@ unittest {
   * Returns:
   *  A Json[string] containing all arrays found in the Json map.
 **/
-Json[string] getArrays(Json[string] jsons) {
+Json[string] getArrays(Json[string] map) {
   mixin(ShowFunction!());
 
   Json[string] result;

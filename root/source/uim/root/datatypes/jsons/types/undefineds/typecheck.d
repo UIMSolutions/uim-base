@@ -86,13 +86,13 @@ bool isAllUndefined(Json[string] map, string[] keys = null) {
 
   return keys.length > 0 
     ? keys.all!(key => map.getValue(key).isUndefined) 
-    : map.byValue.all!(value => value.isUndefined);
+    : map.toMap.byKeyValue.all!(value => value.isUndefined);
 }
 /// 
 unittest {
   mixin(ShowTest!"Testing isAllUndefined for Json[string]");
     
-  Json[string] jsons = [
+  Json[string] map = [
     "a": Json.undefined,
     "b": Json.undefined,
     "c": Json.undefined
@@ -116,13 +116,13 @@ bool isAnyUndefined(Json[string] map, string[] keys = null) {
 
   return keys.length > 0 
     ? keys.any!(key => map.getValue(key).isUndefined) 
-    : map.byValue.any!(value => value.isUndefined);
+    : map.toMap.byKeyValue.any!(value => value.isUndefined);
 }
 /// 
 unittest {
   mixin(ShowTest!"Testing isAnyUndefined for Json[string]");
     
-  Json[string] jsons = [
+  Json[string] map = [
     "a": Json(1),
     "b": Json(2),
     "c": Json(3)
@@ -140,14 +140,14 @@ unittest {
   assert(!isAnyUndefined(jsons, ["a"]));
 }
 
-bool isUndefined(Json[string] jsons, string key) {
+bool isUndefined(Json[string] map, string key) {
   return jsons.getValue(key).isUndefined;
 }
 /// 
 unittest {
   mixin(ShowTest!"Testing isUndefined for Json[string]");
     
-  Json[string] jsons = [
+  Json[string] map = [
     "a": Json(1),
     "b": Json.undefined,
     "c": Json(3)

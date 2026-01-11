@@ -15,17 +15,15 @@ mixin(ShowModule!());
 // #region indices
 // #region all
 bool isAllBoolean(Json[] jsons, size_t[] indices = null) {
-  return indices.length == 0
-    ? jsons.length > 0 && jsons.all!(value => value.isBoolean) : indices.all!(
-      index => jsons.isBoolean(index));
+  return (indices.length == 0 ? jsons.getValues : jsons.getValues(indices))
+    .all!(value => value.isBoolean);
 }
 // #endregion all
 
 // #region any
 bool isAnyBoolean(Json[] jsons, size_t[] indices = null) {
-  return indices.length == 0
-    ? jsons.length > 0 && jsons.any!(value => value.isBoolean) : indices.any!(
-      index => jsons.isBoolean(index));
+  return (indices.length == 0 ? jsons.getValues : jsons.getValues(indices))
+    .any!(value => value.isBoolean);
 }
 // #endregion any
 
@@ -63,17 +61,17 @@ bool isBoolean(Json[string] map, string[] path) {
 // #region keys
 // #region all
 bool isAllBoolean(Json[string] map, string[] keys = null) {
-  return keys.length > 0
-    ? keys.all!(key => map.getValue(key)
-        .isBoolean) : map.byValue.all!(value => value.isBoolean);
+  return keys.length == 0
+    ? map.getValues.all!(value => value.isBoolean)
+    : map.getValues(keys).all!(value => value.isBoolean); 
 }
 // #endregion all
 
 // #region any
 bool isAnyBoolean(Json[string] map, string[] keys = null) {
-  return keys.length > 0
-    ? keys.any!(key => map.getValue(key)
-        .isBoolean) : map.byValue.any!(value => value.isBoolean);
+  return keys.length == 0
+    ? map.getValues.any!(value => value.isBoolean)
+    : map.getValues(keys).any!(value => value.isBoolean); 
 }
 // #endregion any
 

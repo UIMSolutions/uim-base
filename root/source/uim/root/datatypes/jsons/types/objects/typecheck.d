@@ -94,10 +94,10 @@ unittest {
   * Returns:
   *   true if all specified Json values are objects, false otherwise.
   */
-bool isAllObject(Json[string] jsons, string[] keys = null) {
+bool isAllObject(Json[string] map, string[] keys = null) {
   return keys.length == 0
-    ? jsons.length > 0 && jsons.byValue.all!(value => isObject(value))
-    : keys.all!(key => jsons.isObject(key));
+    ? map.getValues.all!(value => isObject(value))
+    : map.getValues(keys).all!(key => map.isObject(key));
 }
 ///
 unittest {
@@ -110,10 +110,10 @@ unittest {
   assert(!map.isAllObject(["first", "third"]));
 }
 
-bool isAnyObject(Json[string] jsons, string[] keys = null) {
+bool isAnyObject(Json[string] map, string[] keys = null) {
   return keys.length == 0
-    ? jsons.length > 0 && jsons.byValue.any!(
-      value => value.isObject) : keys.any!(key => jsons.isObject(key));
+    ? map.getValues.all!(value => isObject(value))
+    : map.getValues(keys).all!(key => map.isObject(key));
 }
 ///
 unittest {
@@ -136,7 +136,7 @@ unittest {
   * Returns:
   *   true if the specified Json value is an object, false otherwise.
   */
-bool isObject(Json[string] jsons, string key) {
+bool isObject(Json[string] map, string key) {
   return jsons.getValue(key).isObject;
 }
 // #endregion Json[string]
