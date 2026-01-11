@@ -1,8 +1,9 @@
-module uim.core.datatypes.strings.bind;
+module uim.root.datatypes.strings.bind;
 
-import uim.core;
+import uim.root;
 
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
+
 @safe:
 
 string bind(string source, string[string] replaceMap, string placeHolder = "{{%s}}") {

@@ -1,9 +1,10 @@
-module uim.core.datatypes.strings.doublemustache;
+module uim.root.datatypes.strings.doublemustache;
 
 
-import uim.core;
+import uim.root;
 
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
+
 @safe:
 
 string doubleMustache(string text, Json[string] items, string[] selectedKeys = null) {

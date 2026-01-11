@@ -1,8 +1,9 @@
-module uim.core.datatypes.strings.mustache;
+module uim.root.datatypes.strings.mustache;
 
-import uim.core;
+import uim.root;
 
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
+
 @safe:
 
 string mustache(string text, Json[string] items) {
@@ -14,10 +15,10 @@ string mustache(string text, Json map, string[] selectedKeys = null) {
   if (!map.isObject) {
     return text; // If items is not an object, return the original text
   }
-  map.keys
-    .filter!(key => map.hasKey(key))
-    .filter!(key => selectedKeys.length == 0 || selectedKeys.has(key))
-    .each!(key => text = text.mustache(key, map[key]));
+  map.byKeyValue
+    .filter!(kv => map.hasKey(kv.key))
+    .filter!(kv => selectedKeys.length == 0 || selectedKeys.hasValue(kv.key))
+    .each!(kv => text = text.mustache(kv.key, map[kv.key]));
   return text;
 }
 
@@ -38,8 +39,8 @@ string mustache(string text, string[] keys, string[] values) {
 
 string mustache(string text, string key, Json value) {
   return value.isString 
-    ? mustache(text, key, value.getString)
-    : mustache(text, key, value.toString);
+    ? mustache(text, key, value.get!string)
+    : mustache(text, key, value.to!string);
 }
 
 string mustache(string text, string key, string value) {

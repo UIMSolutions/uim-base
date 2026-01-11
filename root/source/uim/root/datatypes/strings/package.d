@@ -6,15 +6,18 @@
 module uim.root.datatypes.strings;
 
 public {
+  import uim.root.datatypes.strings.bind;
   import uim.root.datatypes.strings.camelize;
   import uim.root.datatypes.strings.capitalize;
   import uim.root.datatypes.strings.classify;
   import uim.root.datatypes.strings.convert;
   import uim.root.datatypes.strings.delimit;
+  import uim.root.datatypes.strings.doublemustache;
   import uim.root.datatypes.strings.endswith;
   import uim.root.datatypes.strings.humanize;
   import uim.root.datatypes.strings.lower;
   import uim.root.datatypes.strings.md5;
+  import uim.root.datatypes.strings.mustache;
   import uim.root.datatypes.strings.pascalize;
   import uim.root.datatypes.strings.pluralize;
   import uim.root.datatypes.strings.singularize;

@@ -25,7 +25,6 @@ unittest {
   Json[] jsons = [Json(null), Json(2.5), Json("three"), Json(null), Json(true), Json(null)];
   size_t[] indicesToRemove = [0, 3, 5];
   Json[] result = removeNulls(jsons, indicesToRemove, (size_t index) => index == 3);
-  writeln("Result: ", result);
   assert(result.length == 5);
   assert(result[0] == Json(null));
   assert(result[1] == Json(2.5));
