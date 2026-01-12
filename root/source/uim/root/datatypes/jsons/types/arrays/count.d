@@ -424,7 +424,7 @@ unittest {
 size_t countArrays(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe countFunc) {
   mixin(ShowFunction!());
 
-  return indices.filter!(index => jsons.isArray(index) && countFunc(index)).array.length;
+  return jsons.countIndices(indices, (size_t index) => jsons[index].isArray && countFunc(index));
 }
 /// 
 unittest {
@@ -458,7 +458,7 @@ unittest {
 size_t countArrays(Json[] jsons, size_t[] indices) {
   mixin(ShowFunction!());
 
-  return indices.filter!(index => jsons.isArray(index)).array.length;
+  return jsons.countIndices(indices, (size_t index) => jsons[index].isArray);
 }
 /// 
 unittest {
@@ -486,15 +486,7 @@ unittest {
   *   The count of array elements that satisfy the delegate.
   */
 size_t countArrays(Json[] jsons, bool delegate(size_t) @safe countFunc) {
-  mixin(ShowFunction!());
-
-  auto count = 0;
-  foreach (index, value; jsons) {
-    if (value.isArray && countFunc(index)) {
-      count++;
-    }
-  }
-  return count;
+  return jsons.countIndices(index => jsons[index].isArray && countFunc(index));
 }
 /// 
 unittest {
