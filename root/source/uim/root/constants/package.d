@@ -6,6 +6,5 @@
 module uim.root.constants;
 
 public {
-    import uim.root.constants.constants;
+  import uim.root.constants.sort;
 }
-
