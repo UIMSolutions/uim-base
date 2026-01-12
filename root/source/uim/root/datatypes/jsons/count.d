@@ -431,7 +431,13 @@ unittest {
   *   The count of elements at the specified indices that satisfy the delegate.
   */
 size_t countIndices(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe countFunc) {
-  return indices.filter!(index => jsons.length > index && countFunc(index)).array.length;
+  auto count = 0;
+  foreach (index, value; jsons) {
+    if (indices.canFind(index) && countFunc(index)) {
+      count++;
+    }
+  }
+  return count;
 }
 /// 
 unittest {
@@ -461,7 +467,13 @@ unittest {
   *   The count of elements at the specified indices.
   */
 size_t countIndices(Json[] jsons, size_t[] indices) {
-  return indices.filter!(index => indices.canFind(index)).array.length;
+  auto count = 0;
+  foreach (index, value; jsons) {
+    if (indices.canFind(index)) {
+      count++;
+    }
+  }
+  return count;
 }
 /// 
 unittest {

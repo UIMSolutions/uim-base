@@ -29,7 +29,7 @@ mixin(ShowModule!());
 size_t countArrays(Json json, size_t[] indices, bool delegate(size_t) @safe countFunc) {
   mixin(ShowFunction!());
 
-  return json.isArray ? json.toArray.countArrays(indices, countFunc) : 0;
+  return json.countIndices(indices, (size_t index) => json[index].isArray && countFunc(index));
 }
 /// 
 unittest {
@@ -63,7 +63,7 @@ unittest {
 size_t countArrays(Json json, size_t[] indices) {
   mixin(ShowFunction!());
 
-  return json.isArray ? json.toArray.countArrays(indices) : 0;
+  return json.countIndices(indices, (size_t index) => json[index].isArray);
 }
 /// 
 unittest {
@@ -97,7 +97,7 @@ unittest {
 size_t countArrays(Json json, bool delegate(size_t) @safe countFunc) {
   mixin(ShowFunction!());
 
-  return json.isArray ? json.toArray.countArrays(countFunc) : 0;
+  return json.countIndices((size_t index) => json[index].isArray && countFunc(index));
 }
 /// 
 unittest {
@@ -553,7 +553,7 @@ unittest {
 size_t countArrays(Json[] jsons, Json[] values) {
   mixin(ShowFunction!());
 
-  return jsons.filter!(json => json.isArray && values.hasValue(json)).array.length;
+  return jsons.countValues(values, (Json json) => json.isArray);
 }
 /// 
 unittest {

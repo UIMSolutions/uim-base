@@ -45,7 +45,7 @@ unittest {
 
 // #region Json[string]
 bool hasAllArrays(Json[string] map, string[][] paths) {
-  return paths.all!(path => map.isArray(path));
+  return paths.all!(path => map.getValue(path).isArray);
 }
 /// 
 unittest {
@@ -59,7 +59,7 @@ unittest {
 }
 
 bool hasAnyArrays(Json[string] map, string[][] paths) {
-  return paths.any!(path => map.isArray(path));
+  return paths.any!(path => map.getValue(path).isArray);
 }
 /// 
 unittest {
@@ -87,7 +87,7 @@ unittest {
 }
 
 bool hasAnyArrays(Json[string] map, string[] keys) {
-  return keys.any!(key => map.isArray(key));
+  return keys.any!(key => map.getValue(key).isArray);
 }
 /// 
 unittest {
@@ -129,7 +129,7 @@ unittest {
 }
 
 bool hasAllArrays(Json json, string[][] paths) {
-  return json.isObject ? paths.all!(path => json.isArray(path)) : false;
+  return json.isObject ? paths.all!(path => json.getValue(path).isArray) : false;
 }
 /// 
 unittest {
@@ -143,7 +143,7 @@ unittest {
 }
 
 bool hasAnyArrays(Json json, string[][] paths) {
-  return json.isObject ? paths.any!(path => json.isArray(path)) : false;
+  return json.isObject ? paths.any!(path => json.getValue(path).isArray) : false;
 }
 /// 
 unittest {
@@ -157,7 +157,7 @@ unittest {
 }
 
 bool hasAllArrays(Json json, string[] keys) {
-  return json.isObject ? keys.all!(key => json.isArray(key)) : false;
+  return json.isObject ? keys.all!(key => json.getValue(key).isArray) : false;
 }
 /// 
 unittest {
@@ -171,7 +171,7 @@ unittest {
 }
 
 bool hasAnyArrays(Json json, string[] keys) {
-  return json.isObject ? keys.any!(key => json.isArray(key)) : false;
+  return json.isObject ? keys.any!(key => json.getValue(key).isArray) : false;
 }
 /// 
 unittest {
@@ -181,6 +181,6 @@ unittest {
   string[] keysAll = ["first", "third"];
   string[] keysAny = ["second", "third"];
 
-  assert(hasAnyArrays(jsonObject, keysAny) == true);
+  assert(jsonObject.hasAnyArrays(keysAny) == true);
 }
 // #endregion Json
