@@ -11,13 +11,144 @@ mixin(ShowModule!());
 
 @safe:
 
+// #region Json
+// #region indices
+// #region with indices and filterFunc
+Json filterArrays(Json json, size_t[] indices, bool delegate(size_t) @safe filterFunc) {
+  mixin(ShowFunction!());
+
+  return json.filterIndices(indices, (size_t index) @safe => json[index].isArray && filterFunc(index));
+}
+/// 
+unittest {
+  mixin(ShowTest!"Testing filterArrays with indices and filterFunc");
+
+  Json json = [
+    [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
+  ].toJson;
+  auto filtered = json.filterArrays([0, 2, 3],
+    (size_t index) @safe => json[index].isArray && json[index].length > 2);
+  assert(filtered.isArray);
+  assert(filtered.length == 1);
+  assert(filtered[0] == [1, 2, 3].toJson);
+}
+// #endregion with indices and filterFunc
+
+// #region with indices
+Json filterArrays(Json json, size_t[] indices) {
+  mixin(ShowFunction!());
+
+  return json.filterIndices(indices, (size_t index) @safe => json[index].isArray);
+}
+/// 
+unittest {
+  mixin(ShowTest!"Testing filterArrays with indices");
+
+  Json json = [
+    [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
+  ].toJson;
+  auto filtered = json.filterArrays([0, 1, 2]);
+  assert(filtered.isArray);
+  assert(filtered.length == 2);
+  assert(filtered[0] == [1, 2, 3].toJson);
+  assert(filtered[1] == [4, 5].toJson);
+}
+// #endregion with indices
+
+// #region with filterFunc
+Json filterArrays(Json json, bool delegate(size_t) @safe filterFunc) {
+  mixin(ShowFunction!());
+
+  return json.isArray ? json.filterIndices((size_t index) @safe => json[index].isArray && filterFunc(index)) : Json(null);
+}
+/// 
+unittest {
+  mixin(ShowTest!"Testing filterArrays with filterFunc");
+
+  Json json = [
+    [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
+  ].toJson;
+  auto filtered = json.filterArrays(
+    (size_t index) @safe => json[index].isArray && json[index].length == 2);
+  assert(filtered.isArray);
+  assert(filtered.length == 1);
+  assert(filtered[0] == [4, 5].toJson);
+}
+// #endregion with filterFunc
+// #endregion indices
+
+// #region values
+// #region with values and filterFunc
+Json filterArrays(Json json, Json[] values, bool delegate(Json) @safe filterFunc) {
+  mixin(ShowFunction!());
+
+  return json.filterValues(values, (Json value) @safe => value.isArray && filterFunc(value));
+}
+/// 
+unittest {
+  mixin(ShowTest!"Testing filterArrays with values and filterFunc");
+
+  Json json = [
+    [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
+  ].toJson;
+  auto filtered = json.filterArrays(
+    [[1, 2, 3].toJson, ["x", "y"].toJson],
+    (Json j) @safe => j.length > 2);
+  assert(filtered.isArray);
+  assert(filtered.length == 1);
+  assert(filtered[0] == [1, 2, 3].toJson);
+}
+// #endregion with values and filterFunc
+
+// #region with filterFunc
+Json filterArrays(Json json, bool delegate(Json) @safe filterFunc) {
+  mixin(ShowFunction!());
+
+  return json.filterValues((Json value) @safe => value.isArray && filterFunc(value));
+}
+/// 
+unittest {
+  mixin(ShowTest!"Testing filterArrays with filterFunc");
+
+  Json json = [
+    [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
+  ].toJson;
+  auto filtered = json.filterArrays((Json j) @safe => j.isArray && j.length == 2);
+  assert(filtered.isArray);
+  assert(filtered.length == 1);
+  assert(filtered[0] == [4, 5].toJson);
+}
+// #endregion with filterFunc
+
+// #region simple values
+Json filterArrays(Json json) {
+  mixin(ShowFunction!());
+
+  return json.filterValues((Json json) => json.isArray);
+}
+/// 
+unittest {
+  mixin(ShowTest!"Testing filterArrays for Json by datatype");
+
+  Json json = [
+    [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
+  ].toJson;
+  auto filtered = json.filterArrays;
+  assert(filtered.isArray && filtered.length == 2);
+  assert(filtered[0] == [1, 2, 3].toJson);
+  assert(filtered[1] == [4, 5].toJson);
+}
+// #endregion simple values
+// #endregion values
+// #endregion Json
+
 // #region Json[]
 // #region indices
 // #region with indices and filterFunc
 Json[] filterArrays(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe filterFunc) {
   mixin(ShowFunction!());
 
-  return jsons.filterIndices(indices, filterFunc).filterArrays;
+  return jsons.filterIndices(indices, (size_t index) @safe => jsons[index].isArray && filterFunc(index));
 }
 /// 
 unittest {
@@ -28,7 +159,7 @@ unittest {
   ];
 
   auto filtered = jsons.filterArrays([0, 2, 3],
-    (size_t index) @safe => jsons.isArray(index) && jsons[index].length > 2);
+    (size_t index) @safe => jsons[index].isArray && jsons[index].length > 2);
   assert(filtered.length == 1);
   assert(filtered[0] == [1, 2, 3].toJson);
 }
@@ -38,7 +169,7 @@ unittest {
 Json[] filterArrays(Json[] jsons, size_t[] indices) {
   mixin(ShowFunction!());
 
-  return jsons.filterIndices(indices).filterArrays;
+  return jsons.filterIndices(indices, (size_t index) @safe => jsons[index].isArray);
 }
 /// 
 unittest {
@@ -59,7 +190,7 @@ unittest {
 Json[] filterArrays(Json[] jsons, bool delegate(size_t) @safe filterFunc) {
   mixin(ShowFunction!());
 
-  return jsons.filterIndices(filterFunc).filterArrays;
+  return jsons.filterIndices((size_t index) @safe => jsons[index].isArray && filterFunc(index));
 }
 ///
 unittest {
@@ -70,7 +201,7 @@ unittest {
   ];
 
   auto filtered = jsons.filterArrays(
-    (size_t index) @safe => jsons.isArray(index) && jsons[index].length == 2);
+    (size_t index) @safe => jsons[index].isArray && jsons[index].length == 2);
   assert(filtered.length == 1);
   assert(filtered[0] == [4, 5].toJson);
 }
@@ -82,7 +213,7 @@ unittest {
 Json[] filterArrays(Json[] jsons, Json[] values, bool delegate(Json) @safe filterFunc) {
   mixin(ShowFunction!());
 
-  return jsons.filterValues(values, filterFunc).filterArrays;
+  return jsons.filterValues(values, (Json value) @safe => value.isArray && filterFunc(value));
 }
 /// 
 unittest {
@@ -103,7 +234,7 @@ unittest {
 Json[] filterArrays(Json[] jsons, bool delegate(Json) @safe filterFunc) {
   mixin(ShowFunction!());
 
-  return filterValues(jsons, filterFunc).filterArrays;
+  return jsons.filterValues((Json value) @safe => value.isArray && filterFunc(value));
 }
 /// 
 unittest {
@@ -123,7 +254,7 @@ unittest {
 Json[] filterArrays(Json[] jsons, Json[] values) {
   mixin(ShowFunction!());
 
-  return jsons.filterValues(values).filterArrays;
+  return jsons.filterValues(values, (Json value) @safe => value.isArray);
 } /// 
 unittest {
   mixin(ShowTest!"Testing filterArrays for Json[] with values");
@@ -137,8 +268,9 @@ unittest {
   assert(filtered[0] == [1, 2, 3].toJson);
 }
 // #endregion by values
+// #endregion values
 
-// #region by datatype
+// #region base
 Json[] filterArrays(Json[] jsons) {
   mixin(ShowFunction!());
 
@@ -156,8 +288,7 @@ unittest {
   assert(filtered[0] == [1, 2, 3].toJson);
   assert(filtered[1] == [4, 5].toJson);
 }
-// #endregion by datatype
-// #endregion values
+// #endregion base
 // #endregion Json[]
 
 // #region Json[string]
@@ -166,7 +297,7 @@ unittest {
 Json[string] filterArrays(Json[string] map, string[][] paths, bool delegate(string[]) @safe filterFunc) {
   mixin(ShowFunction!());
 
-  return map.filterPaths(paths, filterFunc).filterArrays;
+  return map.filterPaths(paths, (string[] path) @safe => map.getValue(path).isArray && filterFunc(path));
 }
 /// 
 unittest {
@@ -188,7 +319,7 @@ unittest {
 Json[string] filterArrays(Json[string] map, string[][] paths) {
   mixin(ShowFunction!());
 
-  return map.filterPaths(paths).filterArrays;
+  return map.filterPaths(paths, (string[] path) @safe => map.getValue(path).isArray);
 }
 /// 
 unittest {
@@ -212,7 +343,7 @@ unittest {
 Json[string] filterArrays(Json[string] map, string[] keys, bool delegate(string) @safe filterFunc) {
   mixin(ShowFunction!());
 
-  return map.filterKeys(keys, filterFunc).filterArrays;
+  return map.filterKeys(keys, (string key) @safe => map[key].isArray && filterFunc(key));
 }
 /// 
 unittest {
@@ -234,7 +365,7 @@ unittest {
 Json[string] filterArrays(Json[string] map, string[] keys) {
   mixin(ShowFunction!());
 
-  return map.filterKeys(keys).filterArrays;
+  return map.filterKeys(keys, (string key) @safe => map[key].isArray);
 }
 /// 
 unittest {
@@ -256,14 +387,7 @@ unittest {
 Json[string] filterArrays(Json[string] map, bool delegate(string) @safe filterFunc) {
   mixin(ShowFunction!());
 
-  Json[string] result;
-  foreach (key; map.keys) {
-    if (filterFunc(key)) {
-      result[key] = map[key];
-    }
-  }
-
-  return result;
+  return map.filterKeys((string key) @safe => map[key].isArray && filterFunc(key));
 }
 /// 
 unittest {
@@ -287,7 +411,7 @@ unittest {
 Json[string] filterArrays(Json[string] map, Json[] values, bool delegate(Json) @safe filterFunc) {
   mixin(ShowFunction!());
 
-  return map.filterValues(values, filterFunc).filterArrays;
+  return map.filterValues(values, (Json json) @safe => json.isArray && filterFunc(json));
 }
 /// 
 unittest {
@@ -311,7 +435,7 @@ unittest {
 Json[string] filterArrays(Json[string] map, Json[] values) {
   mixin(ShowFunction!());
 
-  return map.filterValues(values).filterArrays;
+  return map.filterValues(values, (Json json) @safe => json.isArray);
 }
 /// 
 unittest {
@@ -335,7 +459,7 @@ unittest {
 Json[string] filterArrays(Json[string] map, bool delegate(Json) @safe filterFunc) {
   mixin(ShowFunction!());
 
-  return map.filterValues(filterFunc).filterArrays;
+  return map.filterValues((Json json) @safe => json.isArray && filterFunc(json));
 }
 /// 
 unittest {
@@ -378,133 +502,3 @@ unittest {
 // #endregion values
 // #endregion Json[string]
 
-// #region Json
-// #region indices
-// #region with indices and filterFunc
-Json filterArrays(Json json, size_t[] indices, bool delegate(size_t) @safe filterFunc) {
-  mixin(ShowFunction!());
-
-  return json.filterIndices(indices, filterFunc).filterArrays;
-}
-/// 
-unittest {
-  mixin(ShowTest!"Testing filterArrays with indices and filterFunc");
-
-  Json json = [
-    [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
-  ].toJson;
-  auto filtered = json.filterArrays([0, 2, 3],
-    (size_t index) @safe => json.isArray(index) && json[index].length > 2);
-  assert(filtered.isArray);
-  assert(filtered.length == 1);
-  assert(filtered[0] == [1, 2, 3].toJson);
-}
-// #endregion with indices and filterFunc
-
-// #region with indices
-Json filterArrays(Json json, size_t[] indices) {
-  mixin(ShowFunction!());
-
-  return json.filterIndices(indices).filterArrays;
-}
-/// 
-unittest {
-  mixin(ShowTest!"Testing filterArrays with indices");
-
-  Json json = [
-    [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
-  ].toJson;
-  auto filtered = json.filterArrays([0, 1, 2]);
-  assert(filtered.isArray);
-  assert(filtered.length == 2);
-  assert(filtered[0] == [1, 2, 3].toJson);
-  assert(filtered[1] == [4, 5].toJson);
-}
-// #endregion with indices
-
-// #region with filterFunc
-Json filterArrays(Json json, bool delegate(size_t) @safe filterFunc) {
-  mixin(ShowFunction!());
-
-  return json.isArray ? json.filterIndices(filterFunc) : Json(null);
-}
-/// 
-unittest {
-  mixin(ShowTest!"Testing filterArrays with filterFunc");
-
-  Json json = [
-    [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
-  ].toJson;
-  auto filtered = json.filterArrays(
-    (size_t index) @safe => json.isArray(index) && json[index].length == 2);
-  assert(filtered.isArray);
-  assert(filtered.length == 1);
-  assert(filtered[0] == [4, 5].toJson);
-}
-// #endregion with filterFunc
-// #endregion indices
-
-// #region values
-// #region with values and filterFunc
-Json filterArrays(Json json, Json[] values, bool delegate(Json) @safe filterFunc) {
-  mixin(ShowFunction!());
-
-  return json.filterValues(values, filterFunc).filterArrays;
-}
-/// 
-unittest {
-  mixin(ShowTest!"Testing filterArrays with values and filterFunc");
-
-  Json json = [
-    [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
-  ].toJson;
-  auto filtered = json.filterArrays(
-    [[1, 2, 3].toJson, ["x", "y"].toJson],
-    (Json j) @safe => j.length > 2);
-  assert(filtered.isArray);
-  assert(filtered.length == 1);
-  assert(filtered[0] == [1, 2, 3].toJson);
-}
-// #endregion with values and filterFunc
-
-// #region with filterFunc
-Json filterArrays(Json json, bool delegate(Json) @safe filterFunc) {
-  mixin(ShowFunction!());
-
-  return json.filterValues(filterFunc).filterArrays;
-}
-/// 
-unittest {
-  mixin(ShowTest!"Testing filterArrays with filterFunc");
-
-  Json json = [
-    [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
-  ].toJson;
-  auto filtered = json.filterArrays((Json j) @safe => j.isArray && j.length == 2);
-  assert(filtered.isArray);
-  assert(filtered.length == 1);
-  assert(filtered[0] == [4, 5].toJson);
-}
-// #endregion with filterFunc
-
-// #region simple values
-Json filterArrays(Json json) {
-  mixin(ShowFunction!());
-
-  return json.filterValues((Json json) => json.isArray);
-}
-/// 
-unittest {
-  mixin(ShowTest!"Testing filterArrays for Json by datatype");
-
-  Json json = [
-    [1, 2, 3].toJson, "not an array".toJson, [4, 5].toJson, 42.toJson
-  ].toJson;
-  auto filtered = json.filterArrays;
-  assert(filtered.isArray && filtered.length == 2);
-  assert(filtered[0] == [1, 2, 3].toJson);
-  assert(filtered[1] == [4, 5].toJson);
-}
-// #endregion simple values
-// #endregion values
-// #endregion Json

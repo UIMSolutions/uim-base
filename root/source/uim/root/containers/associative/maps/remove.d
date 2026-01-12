@@ -27,7 +27,7 @@ V[K] removeKeys(K, V)(V[K] map, K[] keys, bool delegate(K) @safe removeFunc) {
   *   A new map with the specified keys removed.
   * /
 V[K] removeKeys(K, V)(V[K] map, K[] keys) {
-  return removeMap(map, (K key, V value) @safe => keys.hasValue(key));
+  return removeMap(map, (K key, V value) @safe => keys.canFind(key));
 }
 /// 
 unittest {
@@ -61,7 +61,7 @@ V[K] removeKeys(K, V)(V[K] map, bool delegate(K) @safe removeFunc) {
   *   A new map with the specified values removed.
   * /
 V[K] removeValue(K, V)(V[K] map, V[] values) {
-  return removeMap(map, (K key, V value) @safe => values.hasValue(value));
+  return removeMap(map, (K key, V value) @safe => values.canFind(value));
 }
 ///
 unittest {

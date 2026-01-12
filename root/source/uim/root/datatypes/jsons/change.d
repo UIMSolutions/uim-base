@@ -37,12 +37,12 @@ Json update(Json json, Json updateMap) {
   * Returns:
   *   The updated JSON object.
   */
-Json update(V)(Json json, V[string] values) {
+Json update(Json json, Json[string] map) {
   if (!json.isObject) {
     return json;
   }
 
-  foreach (key, value; values.byKeyValue) {
+  foreach (key, value; map) {
     json = json.update(key, value);
   }
 
@@ -60,7 +60,7 @@ Json update(V)(Json json, V[string] values) {
   * Returns:
   *   The updated JSON object.
   */
-Json update(V)(Json json, string[] keys, V value) {
+Json update(Json json, string[] keys, Json value) {
   if (!json.isObject) {
     return json;
   }
@@ -69,7 +69,7 @@ Json update(V)(Json json, string[] keys, V value) {
   return json;
 }
 
-Json update(V)(Json json, string key, V value) {
+Json update(Json json, string key, Json value) {
   Json result  = json;
   if (result.isObject && result.hasKey(key)) {
     result[key] = value;

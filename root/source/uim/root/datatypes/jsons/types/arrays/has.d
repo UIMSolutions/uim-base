@@ -14,7 +14,7 @@ mixin(ShowModule!());
 // #region Json[]
 // #region indices
 bool hasAllArrays(Json[] jsons, size_t[] indices) {
-  return indices.all!(index => jsons.isArray(index));
+  return indices.all!(index => jsons[index].isArray);
 }
 /// 
 unittest {
@@ -28,7 +28,7 @@ unittest {
 }
 
 bool hasAnyArrays(Json[] jsons, size_t[] indices) {
-  return indices.any!(index => jsons.isArray(index));
+  return indices.any!(index => jsons[index].isArray);
 }
 /// 
 unittest {
@@ -73,7 +73,7 @@ unittest {
 }
 
 bool hasAllArrays(Json[string] map, string[] keys) {
-  return keys.all!(key => map.isArray(key));
+  return keys.all!(key => map[key].isArray);
 }
 /// 
 unittest {
@@ -103,7 +103,7 @@ unittest {
 
 // #region Json
 bool hasAllArrays(Json json, size_t[] indices) {
-  return json.isArray ? indices.all!(index => json.isArray(index)) : false;
+  return json.isArray ? indices.all!(index => json[index].isArray) : false;
 }
 /// 
 unittest {
@@ -116,7 +116,7 @@ unittest {
 }
 
 bool hasAnyArrays(Json json, size_t[] indices) {
-  return json.isArray ? indices.any!(index => json.isArray(index)) : false;
+  return json.isArray ? indices.any!(index => json[index].isArray) : false;
 }
 /// 
 unittest {

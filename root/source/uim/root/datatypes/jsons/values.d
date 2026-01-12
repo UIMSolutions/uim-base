@@ -17,7 +17,7 @@ mixin(ShowModule!());
 Json[] getValues(Json[] jsons, size_t[] indices, bool delegate(size_t index) @safe getFunc) {
   mixin(ShowFunction!());
 
-  return jsons.getValues((size_t index) => indices.hasValue(index) && getFunc(index));
+  return jsons.getValues((size_t index) => indices.canFind(index) && getFunc(index));
 }
 // #endregion with indices and getFunc(index)
 
@@ -25,7 +25,7 @@ Json[] getValues(Json[] jsons, size_t[] indices, bool delegate(size_t index) @sa
 Json[] getValues(Json[] jsons, size_t[] indices) {
   mixin(ShowFunction!());
 
-  return jsons.getValues((size_t index) => indices.hasValue(index));
+  return jsons.getValues((size_t index) => indices.canFind(index));
 }
 // #endregion with indices
 
@@ -61,7 +61,7 @@ Json[] getValues(Json[] jsons, Json[] values, bool delegate(Json) @safe getFunc)
 Json[] getValues(Json[] jsons, Json[] values) {
   mixin(ShowFunction!());
 
-  return jsons.getValues((Json value) => values.hasValue(value));
+  return jsons.getValues((Json value) => values.canFind(value));
 }
 
 Json[] getValues(Json[] jsons, bool delegate(Json) @safe getFunc) {
@@ -274,7 +274,7 @@ Json[] getValues(Json[string] map, Json[] values, bool delegate(Json) @safe getF
 Json[] getValues(Json[string] map, Json[] values) {
   mixin(ShowFunction!());
 
-  return map.getValues((Json value) => values.hasValue(value));
+  return map.getValues((Json value) => values.canFind(value));
 }
 
 Json[] getValues(Json[string] map, bool delegate(Json) @safe getFunc) {
@@ -532,7 +532,7 @@ Json[string] getValueMap(Json[string] map, string[] keys, bool delegate(string k
 }
 
 Json[string] getValueMap(Json[string] map, string[] keys) {
-  return map.getValueMap((string key) => keys.hasValue(key));
+  return map.getValueMap((string key) => keys.canFind(key));
 }
 
 Json[string] getValueMap(Json[string] map, bool delegate(string key) @safe getFunc) {

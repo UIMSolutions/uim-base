@@ -23,7 +23,7 @@ Json removeIndices(Json json, size_t[] indices, bool delegate(size_t) @safe remo
 
   Json result = Json.emptyArray;
   foreach (index, value; json.toArray) {
-    if (!indices.hasValue(index) || !removeFunc(index)) {
+    if (!indices.canFind(index) || !removeFunc(index)) {
       result ~= value;
     }
   }
@@ -61,7 +61,7 @@ Json removeIndices(Json json, size_t[] indices) {
 
   Json result = Json.emptyArray;
   foreach (index, value; json.toArray) {
-    if (!indices.hasValue(index)) {
+    if (!indices.canFind(index)) {
       result ~= value;
     }
   }
@@ -152,8 +152,8 @@ Json removeKeys(Json json, string[] keys, bool delegate(string) @safe removeFunc
   }
 
   Json result = Json.emptyObject;
-  foreach (key, value; json.byKeyValue) {
-    if (!keys.hasValue(key) || !removeFunc(key)) {
+  foreach (key, value; json.toMap) {
+    if (!keys.canFind(key) || !removeFunc(key)) {
       result[key] = value;
     }
   }
@@ -188,8 +188,8 @@ Json removeKeys(Json json, string[] keys) {
   }
 
   Json result = Json.emptyObject;
-  foreach (key, value; json.byKeyValue) {
-    if (!keys.hasValue(key)) {
+  foreach (key, value; json.toMap) {
+    if (!keys.canFind(key)) {
       result[key] = value;
     }
   }
@@ -223,7 +223,7 @@ Json removeKeys(Json json, bool delegate(string) @safe removeFunc) {
   }
 
   Json result = Json.emptyObject;
-  foreach (key, value; json.byKeyValue) {
+  foreach (key, value; json.toMap) {
     if (!removeFunc(key)) {
       result[key] = value;
     }
@@ -262,7 +262,7 @@ Json removeValues(Json json, Json[] values, bool delegate(Json) @safe removeFunc
   if (json.isArray) {
     Json result = Json.emptyArray;
     foreach (value; json.toArray) {
-      if (!values.hasValue(value) || !removeFunc(value)) {
+      if (!values.canFind(value) || !removeFunc(value)) {
         result ~= value;
       }
     }
@@ -270,8 +270,8 @@ Json removeValues(Json json, Json[] values, bool delegate(Json) @safe removeFunc
   }
   if (json.isObject) {
     Json result = Json.emptyObject;
-    foreach (key, value; json.byKeyValue) {
-      if (!values.hasValue(value) || !removeFunc(value)) {
+    foreach (key, value; json.toMap) {
+      if (!values.canFind(value) || !removeFunc(value)) {
         result[key] = value;
       }
     }
@@ -311,7 +311,7 @@ Json removeValues(Json json, Json[] values) {
   if (json.isArray) {
     Json result = Json.emptyArray;
     foreach (value; json.toArray) {
-      if (!values.hasValue(value)) {
+      if (!values.canFind(value)) {
         result ~= value;
       }
     }
@@ -320,8 +320,8 @@ Json removeValues(Json json, Json[] values) {
   }
   if (json.isObject) {
     Json result = Json.emptyObject;
-    foreach (key, value; json.byKeyValue) {
-      if (!values.hasValue(value)) {
+    foreach (key, value; json.toMap) {
+      if (!values.canFind(value)) {
         result[key] = value;
       }
     }
@@ -364,7 +364,7 @@ Json removeValues(Json json, bool delegate(Json) @safe removeFunc) {
 
   if (json.isObject) {
     Json result = Json.emptyObject;
-    foreach (key, value; json.byKeyValue) {
+    foreach (key, value; json.toMap) {
       if (!removeFunc(value)) {
         result[key] = value;
       }
@@ -390,7 +390,7 @@ Json[] removeIndices(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe
 
   Json[] result;
   foreach (index, value; jsons) {
-    if (!indices.hasValue(index) || !removeFunc(index)) {
+    if (!indices.canFind(index) || !removeFunc(index)) {
       result ~= value;
     }
   }
@@ -428,7 +428,7 @@ Json[] removeIndices(Json[] jsons, size_t[] indices) {
 
   Json[] result;
   foreach (index, value; jsons) {
-    if (!indices.hasValue(index)) {
+    if (!indices.canFind(index)) {
       result ~= value;
     }
   }
@@ -498,7 +498,7 @@ unittest {
 Json[] removeValues(Json[] jsons, Json[] values, bool delegate(Json) @safe removeFunc) {
   mixin(ShowFunction!());
 
-  return jsons.removeValues((Json value) => values.hasValue(value) && removeFunc(value));
+  return jsons.removeValues((Json value) => values.canFind(value) && removeFunc(value));
 }
 ///
 unittest {
@@ -525,7 +525,7 @@ unittest {
 Json[] removeValues(Json[] jsons, Json[] values) {
   mixin(ShowFunction!());
 
-  return jsons.removeValues((Json value) => values.hasValue(value));
+  return jsons.removeValues((Json value) => values.canFind(value));
 }
 ///
 unittest {
@@ -612,7 +612,7 @@ Json[string] removeKeys(Json[string] map, string[] keys, bool delegate(string) @
   Json[string] result;
 
   foreach (key, value; map) {
-    if (!keys.hasValue(key) || !removeFunc(key)) {
+    if (!keys.canFind(key) || !removeFunc(key)) {
       result[key] = value;
     }
   }
@@ -645,7 +645,7 @@ Json[string] removeKeys(Json[string] map, string[] keys) {
     return map;
   }
 
-  return map.removeKeys((string key) => keys.hasValue(key));
+  return map.removeKeys((string key) => keys.canFind(key));
 }
 ///
 unittest {
@@ -701,7 +701,7 @@ unittest {
 Json[string] removeValues(Json[string] map, Json[] values, bool delegate(Json) @safe removeFunc) {
   mixin(ShowFunction!());
 
-  return map.removeValues((Json value) => values.hasValue(value) && removeFunc(value));
+  return map.removeValues((Json value) => values.canFind(value) && removeFunc(value));
 }
 ///
 unittest {
@@ -733,7 +733,7 @@ Json[string] removeValues(Json[string] map, Json[] values) {
 
   Json[string] result;
   foreach (key, value; map) {
-    if (!values.hasValue(value)) {
+    if (!values.canFind(value)) {
       result[key] = value;
     }
   }

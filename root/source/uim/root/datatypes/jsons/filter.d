@@ -513,7 +513,7 @@ Json[string] filterValues(Json[string] map, Json[] values, bool delegate(Json) @
 
   Json[string] result;
   foreach (key, value; map) {
-    if (values.hasValue(value) && filterFunc(value)) {
+    if (values.canFind(value) && filterFunc(value)) {
       result[key] = value;
     }
   }
@@ -541,7 +541,7 @@ unittest {
 Json[string] filterValues(Json[string] map, Json[] values) {
   Json[string] result;
   foreach (key, value; map) {
-    if (values.hasValue(value)) {
+    if (values.canFind(value)) {
       result[key] = value;
     }
   }
@@ -605,7 +605,7 @@ Json[] filterIndices(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe
 
   Json[] result;
   foreach (index, value; jsons) {
-    if (indices.hasValue(index) && filterFunc(index)) {
+    if (indices.canFind(index) && filterFunc(index)) {
       result ~= value;
     }
   }
@@ -633,7 +633,7 @@ Json[] filterIndices(Json[] jsons, size_t[] indices) {
 
   Json[] result;
   foreach (index, value; jsons) {
-    if (indices.hasValue(index)) {
+    if (indices.canFind(index)) {
       result ~= value;
     }
   }
@@ -689,7 +689,7 @@ Json[] filterValues(Json[] jsons, Json[] values, bool delegate(Json) @safe filte
 
   Json[] result;
   foreach (value; jsons) {
-    if (values.hasValue(value) && filterFunc(value)) {
+    if (values.canFind(value) && filterFunc(value)) {
       result ~= value;
     }
   }
@@ -717,7 +717,7 @@ Json[] filterValues(Json[] jsons, Json[] values) {
 
   Json[] result;
   foreach (value; jsons) {
-    if (values.hasValue(value)) {
+    if (values.canFind(value)) {
       result ~= value;
     }
   }

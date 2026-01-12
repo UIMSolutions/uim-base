@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 /* 
 T[] filterAllValue(T)(T[] values, T[] checkValues) {
-  return values.filter!(value => checkValues.hasValue(value)).array;
+  return values.filter!(value => checkvalues.canFind(value)).array;
 }
 ///
 unittest {
@@ -142,7 +142,7 @@ T[] filterValues(T)(T[] values, T[] validValues) {
 
   return validValues.length == 0
     ? values.dup
-    : values.filter!(value => validValues.hasValue(value)).array;
+    : values.filter!(value => validvalues.canFind(value)).array;
 }
 ///
 unittest {

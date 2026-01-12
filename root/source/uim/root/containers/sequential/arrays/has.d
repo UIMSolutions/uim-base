@@ -38,7 +38,7 @@ unittest {
  *   `true` if all values are found in the array, `false` otherwise.
  */
 bool hasAll(T)(T[] values, in T[] checkValues) {
-  return checkValues.all!(value => values.hasValue(value));
+  return checkValues.all!(value => values.canFind(value));
 }
 ///
 unittest {
@@ -63,7 +63,7 @@ unittest {
  *   `true` if any value is found in the array, `false` otherwise.
  */
 bool hasAny(T)(T[] values, in T[] checkValues) {
-  return checkValues.any!(value => values.hasValue(value));
+  return checkValues.any!(value => values.canFind(value));
 }
 ///
 unittest {
@@ -80,7 +80,7 @@ unittest {
 }
 
 bool hasAny(T)(T[] values, in T[] checkValues...) {
-  return checkValues.any!(value => values.hasValue(value));
+  return checkValues.any!(value => values.canFind(value));
 }
 
 unittest {

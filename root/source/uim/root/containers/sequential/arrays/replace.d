@@ -30,7 +30,7 @@ auto replace(T)(T[] arr, T oldValue, T newValue) {
 auto replaceAll(T)(T[] values, T[] oldValues, T newValue) {
   return (values is null || oldValues is null || oldValues.length == 0)
    ? values
-   : values.map!(value => (oldValues.hasValue(value)) ? newValue : value).array;
+   : values.map!(value => (oldValues.canFind(value)) ? newValue : value).array;
 }
 ///
 unittest {

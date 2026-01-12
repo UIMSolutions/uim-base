@@ -182,7 +182,7 @@ unittest {
   *   An array of elements from values that are also in anyValues.
   */
 T[] firstAny(T)(T[] values, T[] anyValues) {
-  return values.firstAny((T value) => anyValues.hasValue(value));
+  return values.firstAny((T value) => anyValues.canFind(value));
 }
 ///
 unittest {

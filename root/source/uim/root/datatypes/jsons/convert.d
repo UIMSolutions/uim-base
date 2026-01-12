@@ -11,6 +11,7 @@ mixin(ShowModule!());
 
 @safe:
 
+// #region toArray(Json)
 Json[] toArray(Json value) {
   if (value == Json(null)) {
     return null;
@@ -31,6 +32,7 @@ unittest {
   assert(toArray(Json(null)) == null);
   assert(toArray("string".toJson) == null);
 }
+// #endregion toArray(Json)
 
 Json[string] toMap(Json value) {
   if (value == Json(null)) {

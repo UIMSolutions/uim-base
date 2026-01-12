@@ -646,7 +646,7 @@ unittest {
 size_t countArrays(Json[string] map, string[][] paths, bool delegate(string[]) @safe countFunc) {
   mixin(ShowFunction!());
 
-  return paths.filter!(path => map.isArray(path) && countFunc(path)).array.length;
+  return paths.filter!(path => map.getValue(path).isArray && countFunc(path)).array.length;
 }
 /// 
 unittest {
@@ -680,7 +680,7 @@ unittest {
 size_t countArrays(Json[string] map, string[][] paths) {
   mixin(ShowFunction!());
 
-  return paths.filter!(path => map.isArray(path)).array.length;
+  return paths.filter!(path => map.getValue(path).isArray).array.length;
 }
 /// 
 unittest {
@@ -713,7 +713,7 @@ unittest {
 size_t countArrays(Json[string] map, string[] keys, bool delegate(string) @safe countFunc) {
   mixin(ShowFunction!());
 
-  return keys.filter!(key => map.isArray(key) && countFunc(key)).array.length;
+  return keys.filter!(key => map.getValue([key]).isArray && countFunc(key)).array.length;
 }
 /// 
 unittest {
@@ -743,7 +743,7 @@ unittest {
 size_t countArrays(Json[string] map, string[] keys) {
   mixin(ShowFunction!());
 
-  return keys.filter!(key => map.isArray(key)).array.length;
+  return keys.filter!(key => map[key].isArray).array.length;
 }
 /// 
 unittest {
@@ -805,7 +805,7 @@ unittest {
 size_t countArrays(Json[string] map, Json[] values, bool delegate(Json) @safe countFunc) {
   mixin(ShowFunction!());
 
-  return map.countArrays((string key, Json value) => values.hasValue(value) && countFunc(value));
+  return map.countArrays((string key, Json value) => values.canFind(value) && countFunc(value));
 }
 /// 
 unittest {
@@ -836,7 +836,7 @@ unittest {
 size_t countArrays(Json[string] map, Json[] values) {
   mixin(ShowFunction!());
 
-  return map.countArrays((string key, Json value) => values.hasValue(value));
+  return map.countArrays((string key, Json value) => values.canFind(value));
 }
 /// 
 unittest {

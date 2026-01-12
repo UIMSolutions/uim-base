@@ -60,12 +60,12 @@ Json lastString(Json json) {
 /* 
 Json lastWithAllKey(Json json, string[] keys) {
   return json.isArray
-    ? last(json.toArray.filterHasAllKey(keys)) : Json(null);
+    ? last(json.toArray.filterhasAllKey(keys)) : Json(null);
 }
 
 Json lastWithAnyKey(Json json, string[] keys) {
   return json.isArray
-    ? last(json.toArray.filterHasAnyKey(keys)) : Json(null);
+    ? last(json.toArray.filterhasAnyKey(keys)) : Json(null);
 }
 
 Json lastHasKey(Json json, string key) {

@@ -133,7 +133,7 @@ unittest {
   *   A new map containing only the entries with the specified values.
   * /
 V[K] filterValues(K, V)(V[K] map, V[] values) {
-  return map.filterMap((K key, V value) => values.hasValue(value));
+  return map.filterMap((K key, V value) => values.canFind(value));
 }
 /// 
 unittest {

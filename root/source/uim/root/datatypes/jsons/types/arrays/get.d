@@ -16,7 +16,7 @@ mixin(ShowModule!());
 Json getArrays(Json[] jsons, size_t[] indices) {
   mixin(ShowFunction!());
 
-  return jsons.getValues(indices, (size_t index) => jsons[index].isArray);
+  return jsons.getIndices(indices, (size_t index) => jsons[index].isArray);
 }
 /**
   * Retrieves the array at the specified index from the Json array.
@@ -103,7 +103,7 @@ unittest {
 Json getArrays(Json[string] map, string[] keys, Json defaultValue = Json(null)) {
   mixin(ShowFunction!());
 
-  return map.getValues((string key) => keys.hasValue(key) && map.getValue(key).isArray);
+  return map.getValues((string key) => keys.canFind(key) && map.getValue(key).isArray);
 }
 /**
   * Retrieves the array at the specified key from the Json map.
@@ -169,7 +169,7 @@ Json[string] getArrays(Json[string] map) {
 Json getArray(Json json, size_t index, Json defaultValue = Json(null)) {
   mixin(ShowFunction!());
 
-  return json.isArray(index) ? json.getValue(index) : defaultValue;
+  return json[index].isArray ? json.getValue(index) : defaultValue;
 }
 /// 
 unittest {

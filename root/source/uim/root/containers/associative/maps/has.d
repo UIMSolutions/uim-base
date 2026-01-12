@@ -21,7 +21,7 @@ mixin(ShowModule!());
   *
   * Returns:
   *   true if all keys exist in the map, false otherwise.
-  */
+  * /
 bool hasAllKey(K, V)(V[K] items, K[] keys) {
   return keys.all!(key => hasKey(items, key));
 }
@@ -50,7 +50,7 @@ unittest {
   *
   * Returns:
   *   true if any key exists in the map, false otherwise.
-  */
+  * /
 bool hasAnyKey(K, V)(V[K] items, K[] keys) {
   return keys.any!(key => hasKey(items, key));
 }
@@ -77,7 +77,7 @@ unittest {
   *
   * Returns:
   *   true if the key exists in the map, false otherwise.
-  */
+  * /
 bool hasKey(K, V)(V[K] items, K key) {
   return (key in items) ? true : false;
 }
@@ -108,7 +108,7 @@ unittest {
   *
   * Returns:
   *   true if all values exist in the map, false otherwise.
-  */
+  * /
 bool hasAllValue(K, V)(V[K] items, V[] values) {
   return values.all!(value => hasValue(items, value));
 }
@@ -138,7 +138,7 @@ unittest {
   *
   * Returns:
   *   true if any value exists in the map, false otherwise.
-  */
+  * /
 bool hasAnyValue(K, V)(V[K] items, V[] values) {
   return values.any!(value => hasValue(items, value));
 }
@@ -166,7 +166,7 @@ unittest {
   *
   * Returns:
   *   true if the value exists in the map, false otherwise.
-  */
+  * /
 bool hasValue(K, V)(V[K] map, V value) {
   return map.hasItem((K k, V v) => v == value);
 }
@@ -197,7 +197,7 @@ unittest {
   *
   * Returns:
   *   true if any item satisfies the condition, false otherwise.
-  */
+  * /
 bool hasItem(K, V)(V[K] map, bool delegate(K key, V value) @safe hasFunc) {
   foreach (k, v; map) {
     if (hasFunc(k, v)) {
@@ -256,4 +256,12 @@ unittest {
 
   int[string] emptyMap;
   assert(!emptyMap.hasKeyValue("a", 1));
+}
+*/
+/* 
+bool hasValue(V)(V[] values, V value) {
+  return values.any!(v => v == value);
+} */
+bool hasValue(K, V)(V[K] map, V value) {
+  return map.byKeyValue.any!(v => v == value);
 }

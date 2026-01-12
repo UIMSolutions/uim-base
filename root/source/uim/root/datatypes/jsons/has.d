@@ -6,6 +6,448 @@ mixin(ShowModule!());
 
 @safe:
 
+// #region Json
+// #region indices
+// #region hasAll
+bool hasAllIndices(Json json, size_t[] indices, bool delegate(size_t) @safe hasFunc) {
+  return json.isArray ? json.toArray.hasAllIndices(indices, hasFunc) : false;
+}
+
+bool hasAllIndices(Json json, size_t[] indices) {
+  return json.isArray ? json.toArray.hasAllIndices(indices) : false;
+}
+
+bool hasAllIndices(Json json, bool delegate(size_t) @safe hasFunc) {
+  return json.isArray ? json.toArray.hasAllIndices(hasFunc) : false;
+}
+// #endregion hasAll
+
+// #region hasAny
+bool hasAnyIndices(Json json, size_t[] indices, bool delegate(size_t) @safe hasFunc) {
+  return json.isArray ? json.toArray.hasAnyIndices(indices, hasFunc) : false;
+}
+
+bool hasAnyIndices(Json json, size_t[] indices) {
+  return json.isArray ? json.toArray.hasAnyIndices(indices) : false;
+}
+
+bool hasAnyIndices(Json json, bool delegate(size_t) @safe hasFunc) {
+  return json.isArray ? json.toArray.hasAnyIndices(hasFunc) : false;
+}
+// #endregion hasAny
+
+// #region has
+bool hasIndex(Json json, size_t index) {
+  return json.isArray ? json.length > index : false;
+}
+// #endregion has
+// #endregion indices
+
+// #region keys
+// #region hasAll
+bool hasAllKeys(Json json, string[] keys, bool delegate(string) @safe hasFunc) {
+  return json.isObject ? json.toMap.keys.all!(key => keys.canFind(key) && hasFunc(key)) : false;
+}
+
+bool hasAllKeys(Json json, string[] keys) {
+  return json.isObject ? json.toMap.keys.all!(key => keys.canFind(key)) : false;
+}
+
+bool hasAllKeys(Json json, bool delegate(string) @safe hasFunc) {
+  return json.isObject ? json.toMap.keys.all!(key => hasFunc(key)) : false;
+}
+// #endregion hasAll
+
+// #region hasAny
+bool hasAnyKeys(Json json, string[] keys, bool delegate(string) @safe hasFunc) {
+  return json.isObject ? json.toMap.keys.any!(key => keys.canFind(key) && hasFunc(key)) : false;
+}
+
+bool hasAnyKeys(Json json, string[] keys) {
+  return json.isObject ? json.toMap.keys.any!(key => keys.canFind(key)) : false;
+}
+
+bool hasAnyKeys(Json json, bool delegate(string) @safe hasFunc) {
+  return json.isObject ? json.toMap.keys.any!(key => hasFunc(key)) : false;
+}
+// #endregion hasAny
+
+// #region has
+// bool hasValue(Json[string] map, Json value) {
+//   if (json == Json(null)) {
+//     return false;
+//   }
+
+//   return jsons.any!(v => v == value);
+// }
+// #endregion has
+// #endregion keys
+
+// #region values
+// #region hasAll
+bool hasAllValues(Json json, Json[] values, bool delegate(Json) @safe hasFunc) {
+  if (json.isArray) {
+    return json.toArray.hasAllValues(values, hasFunc);
+  }
+  if (json.isObject) {
+    return json.toMap.hasAllValues(values, hasFunc);
+  }
+  return false;
+}
+
+bool hasAllValues(Json json, Json[] values) {
+  if (json.isArray) {
+    return json.toArray.hasAllValues(values);
+  }
+  if (json.isObject) {
+    return json.toMap.hasAllValues(values);
+  }
+  return false;
+}
+
+bool hasAllValues(Json json, bool delegate(Json) @safe hasFunc) {
+  if (json.isArray) {
+    return json.toArray.hasAllValues(hasFunc);
+  }
+  if (json.isObject) {
+    return json.toMap.hasAllValues(hasFunc);
+  }
+  return false;
+}
+// #endregion hasAll
+
+// #region hasAny
+bool hasAnyValues(Json json, Json[] values, bool delegate(Json) @safe hasFunc) {
+  if (json.isArray) {
+    return json.toArray.hasAnyValues(values, hasFunc);
+  }
+  if (json.isObject) {
+    return json.toMap.hasAnyValues(values, hasFunc);
+  }
+  return false;
+}
+
+bool hasAnyValues(Json json, Json[] values) {
+  if (json.isArray) {
+    return json.toArray.hasAnyValues(values);
+  }
+  if (json.isObject) {
+    return json.toMap.hasAnyValues(values);
+  }
+  return false;
+}
+
+bool hasAnyValues(Json json, bool delegate(Json) @safe hasFunc) {
+  if (json.isArray) {
+    return json.toArray.hasAnyValues(hasFunc);
+  }
+  if (json.isObject) {
+    return json.toMap.hasAnyValues(hasFunc);
+  }
+  return false;
+}
+// #endregion hasAny
+
+// #region has
+bool hasValue(Json json, Json value) {
+  if (json == Json(null)) {
+    return false;
+  }
+
+  if (json.isArray) {
+    return json.toArray.any!(v => v == value);
+  } else if (json.isObject) {
+    foreach (k, v; json.toMap) {
+      if (v == value) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+// #endregion has
+// #endregion values
+// #endregion Json
+
+// #region Json[]
+// #region indices
+// #region hasAll
+bool hasAllIndices(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe hasFunc) {
+  if (jsons.length == 0 || indices.length == 0) {
+    return false;
+  }
+
+  foreach (index, value; jsons) {
+    if (!indices.canFind(index) || !hasFunc(index)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+bool hasAllIndices(Json[] jsons, size_t[] indices) {
+  if (jsons.length == 0 || indices.length == 0) {
+    return false;
+  }
+
+  foreach (index, value; jsons) {
+    if (!indices.canFind(index)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+bool hasAllIndices(Json[] jsons, bool delegate(size_t) @safe hasFunc) {
+  if (jsons.length == 0) {
+    return false;
+  }
+
+  foreach (index, value; jsons) {
+    if (!hasFunc(index)) {
+      return false;
+    }
+  }
+  return true;
+}
+// #endregion hasAll
+
+// #region hasAny
+bool hasAnyIndices(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe hasFunc) {
+  if (jsons.length == 0 || indices.length == 0) {
+    return false;
+  }
+
+  foreach (index, value; jsons) {
+    if (indices.canFind(index) && hasFunc(index))
+      return true;
+  }
+  return false;
+}
+
+bool hasAnyIndices(Json[] jsons, size_t[] indices) {
+  if (jsons.length == 0 || indices.length == 0) {
+    return false;
+  }
+
+  foreach (index, value; jsons) {
+    if (indices.canFind(index))
+      return true;
+  }
+  return false;
+}
+
+bool hasAnyIndices(Json[] jsons, bool delegate(size_t) @safe hasFunc) {
+  if (jsons.length == 0) {
+    return false;
+  }
+
+  foreach (index, value; jsons) {
+    if (hasFunc(index))
+      return true;
+  }
+  return false;
+}
+// #endregion hasAny
+
+// #region has
+bool hasIndex(Json[] jsons, size_t index) {
+  return jsons.length > index;
+}
+// #endregion has
+// #endregion indices
+
+// #region values
+// #region hasAll
+bool hasAllValues(Json[] jsons, Json[] values, bool delegate(Json) @safe hasFunc) {
+  if (jsons.length == 0 || values.length == 0) {
+    return false;
+  }
+
+  return jsons.all!(value => values.canFind(value) && hasFunc(value));
+}
+
+bool hasAllValues(Json[] jsons, Json[] values) {
+  if (jsons.length == 0 || values.length == 0) {
+    return false;
+  }
+
+  return jsons.all!(value => values.canFind(value));
+}
+
+bool hasAllValues(Json[] jsons, bool delegate(Json) @safe hasFunc) {
+  if (jsons.length == 0) {
+    return false;
+  }
+
+  return jsons.all!(value => hasFunc(value));
+}
+// #endregion hasAll
+
+// #region hasAny
+bool hasAnyValues(Json[] jsons, Json[] values, bool delegate(Json) @safe hasFunc) {
+  if (jsons.length == 0 || values.length == 0) {
+    return false;
+  }
+
+  return jsons.any!(value => values.canFind(value) && hasFunc(value));
+}
+
+bool hasAnyValues(Json[] jsons, Json[] values) {
+  if (jsons.length == 0 || values.length == 0) {
+    return false;
+  }
+
+  return jsons.any!(value => values.canFind(value));
+}
+
+bool hasAnyValues(Json[] jsons, bool delegate(Json) @safe hasFunc) {
+  if (jsons.length == 0) {
+    return false;
+  }
+
+  return jsons.any!(value => hasFunc(value));
+}
+// #endregion hasAny
+
+// #region has
+// bool hasValue(Json[] jsons, Json value) {
+//   if (json == Json(null)) {
+//     return false;
+//   }
+
+//   return jsons.any!(v => v == value);
+// }
+// #endregion has
+// #endregion values
+// #endregion Json[]
+
+// #region Json[string]
+// #region keys
+// #region hasAll
+bool hasAllKeys(Json[string] map, string[] keys, bool delegate(string) @safe hasFunc) {
+  if (map.length == 0 || keys.length == 0) {
+    return false;
+  }
+
+  return map.keys.all!(key => keys.canFind(key) && hasFunc(key));
+}
+
+bool hasAllKeys(Json[string] map, string[] keys) {
+  if (map.length == 0 || keys.length == 0) {
+    return false;
+  }
+
+  return map.keys.all!(key => keys.canFind(key));
+}
+
+bool hasAllKeys(Json[string] map, bool delegate(string) @safe hasFunc) {
+  if (map.length == 0) {
+    return false;
+  }
+
+  return map.keys.all!(key => hasFunc(key));
+}
+// #endregion hasAll
+
+// #region hasAny
+bool hasAnyKeys(Json[string] map, string[] keys, bool delegate(string) @safe hasFunc) {
+  if (map.length == 0 || keys.length == 0) {
+    return false;
+  }
+
+  return map.keys.any!(key => keys.canFind(key) && hasFunc(key));
+}
+
+bool hasAnyKeys(Json[string] map, string[] keys) {
+  if (map.length == 0 || keys.length == 0) {
+    return false;
+  }
+
+  return map.keys.any!(key => keys.canFind(key));
+}
+
+bool hasAnyKeys(Json[string] map, bool delegate(string) @safe hasFunc) {
+  if (map.length == 0) {
+    return false;
+  }
+
+  return map.keys.any!(key => hasFunc(key));
+}
+// #endregion hasAny
+
+// #region has
+// bool hasValue(Json[string] map, Json value) {
+//   if (json == Json(null)) {
+//     return false;
+//   }
+
+//   return jsons.any!(v => v == value);
+// }
+// #endregion has
+// #endregion keys
+
+// #region values
+// #region hasAll
+bool hasAllValues(Json[string] map, Json[] values, bool delegate(Json) @safe hasFunc) {
+  return map.hasAllValues((Json value) => values.canFind(value) && hasFunc(value));
+}
+
+bool hasAllValues(Json[string] map, Json[] values) {
+  return map.hasAllValues((Json value) => values.canFind(value));
+}
+
+bool hasAllValues(Json[string] map, bool delegate(Json) @safe hasFunc) {
+  if (map.length == 0) {
+    return false;
+  }
+
+  foreach(key, value; map) {
+    if (!hasFunc(value)) {
+      return false;
+    }
+  }
+  return true;
+}
+// #endregion hasAll
+
+// #region hasAny
+bool hasAnyValues(Json[string] map, Json[] values, bool delegate(Json) @safe hasFunc) {
+  return map.hasAnyValues((Json value) => values.canFind(value) && hasFunc(value));
+}
+
+bool hasAnyValues(Json[string] map, Json[] values) {
+  return map.hasAnyValues((Json value) => values.canFind(value));
+}
+
+bool hasAnyValues(Json[string] map, bool delegate(Json) @safe hasFunc) {
+  if (map.length == 0) {
+    return false;
+  }
+
+  foreach(key, value; map) {
+    if (hasFunc(value)) {
+      return true;
+    }
+  }
+  return false;
+}
+// #endregion hasAny
+
+// #region has
+// bool hasValue(Json[string] map, Json value) {
+//   if (json == Json(null)) {
+//     return false;
+//   }
+
+//   return jsons.any!(v => v == value);
+// }
+// #endregion has
+// #endregion values
+// #endregion Json[string]
+
+
+/*
 // #region value
 bool hasAllValue(Json json, Json[] values) {
   return values.all!(value => json.hasValue(value));
@@ -140,7 +582,7 @@ unittest {
   assert(!json.hasAnyPath([["a", "b", "d"], ["y"]]));
 }
 // #endregion hasAny
-
+*/
 // #region has
 /** 
   * Checks if the given JSON value has the specified path.
@@ -305,12 +747,9 @@ unittest {
 }
 // #endregion hasKey
 
-/*
 bool hasKey(Json[string] map, string key) {
   return (key in map) ? true : false;
 }
-*/
-
 // #endregion key
 
 bool hasKeyValue(Json json, string key, Json value) {
@@ -335,3 +774,4 @@ unittest {
   assert(!hasKeyValue(json, "d", Json(4)));
 }
 // #endregion has
+

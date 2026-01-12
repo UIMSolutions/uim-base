@@ -96,7 +96,7 @@ Json[] getStrings(Json[string] map, string[] keys) {
 
   Json[] result;
   foreach (key, value; map) {
-    if (keys.hasValue(key) && value.isString) {
+    if (keys.canFind(key) && value.isString) {
       result ~= value;
     }
   }

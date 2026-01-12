@@ -23,7 +23,7 @@ bool isAllArray(Json[] jsons, size_t[] indices = null) {
 
   bool result = true; 
   foreach(index, value; jsons) {
-    if (indices.length == 0 || indices.hasValue(index)) {
+    if (indices.length == 0 || indices.canFind(index)) {
       result = result && value.isArray; 
     }
   }
@@ -51,7 +51,7 @@ bool isAnyArray(Json[] jsons, size_t[] indices = null) {
 
   bool result = false; 
   foreach(index, value; jsons) {
-    if (indices.length == 0 || indices.hasValue(index)) {
+    if (indices.length == 0 || indices.canFind(index)) {
       result = result || value.isArray; 
     }
   }
@@ -246,7 +246,7 @@ bool isAllArray(Json json, size_t[] indices) {
   mixin(ShowFunction!());
 
   return json.isArray && indices.length > 0
-    ? indices.all!(index => json.isArray(index)) : false;
+    ? indices.all!(index => json[index].isArray) : false;
 }
 ///
 unittest {
@@ -263,7 +263,7 @@ bool isAnyArray(Json json, size_t[] indices) {
   mixin(ShowFunction!());
 
   return json.isArray && indices.length > 0
-    ? indices.any!(index => json.isArray(index)) : false;
+    ? indices.any!(index => json[index].isArray) : false;
 }
 ///
 unittest {

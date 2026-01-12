@@ -31,7 +31,7 @@ bool isAllObject(Json[] jsons, size_t[] indices = null) {
 
   bool result = true; 
   foreach(index, value; jsons) {
-    if (indices.length == 0 || indices.hasValue(index)) {
+    if (indices.length == 0 || indices.canFind(index)) {
       result = result && value.isObject; 
     }
   }
@@ -65,7 +65,7 @@ bool isAnyObject(Json[] jsons, size_t[] indices = null) {
 
   bool result = false; 
   foreach(index, value; jsons) {
-    if (indices.length == 0 || indices.hasValue(index)) {
+    if (indices.length == 0 || indices.canFind(index)) {
       result = result || value.isObject; 
     }
   }

@@ -199,7 +199,7 @@ unittest {
 Json[string] removeStrings(Json[string] map, string[] keys, bool delegate(string) @safe removeFunc) {
   mixin(ShowFunction!());
 
-  return map.removeStrings((string key) => map[key].isString && keys.hasValue(key) && removeFunc(key));
+  return map.removeStrings((string key) => map[key].isString && keys.canFind(key) && removeFunc(key));
 }
 ///
 unittest {

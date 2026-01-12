@@ -461,7 +461,7 @@ unittest {
   *   The count of elements at the specified indices.
   */
 size_t countIndices(Json[] jsons, size_t[] indices) {
-  return indices.filter!(index => indices.hasValue(index)).array.length;
+  return indices.filter!(index => indices.canFind(index)).array.length;
 }
 /// 
 unittest {

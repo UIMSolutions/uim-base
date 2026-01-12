@@ -22,7 +22,7 @@ T[] removeValue(T)(T[] items, T value) {
 T[] removeValues(T)(T[] items, size_t[] indices) {
   T[] results;
   foreach(index, item; items) {
-    if (!indices.hasValue(index)) {
+    if (!indices.canFind(index)) {
       results ~= items[index];
     }
   }
@@ -32,7 +32,7 @@ T[] removeValues(T)(T[] items, size_t[] indices) {
 T[] removeValues(T)(T[] items, size_t[] indices, bool delegate(T t) @safe removeFunc) {
   T[] results;
   foreach(index, item; items) {
-    if (!indices.hasValue(index) && !removeFunc(items[index])) {
+    if (!indices.canFind(index) && !removeFunc(items[index])) {
       results ~= items[index];
     }
   }
