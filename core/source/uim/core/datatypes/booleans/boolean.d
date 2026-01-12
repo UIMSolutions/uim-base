@@ -13,21 +13,7 @@ mixin(ShowModule!());
 // char[] BOOL(bool toogleValue) { return cast(char[])((toogleValue) ? `true`:`false`); }
 
 // #region toogle
-/// Toggle boolean value (from true to false, false to true) -> in this function it's !value
-bool toggle(bool value) {
-  return !value;
-}
 
-unittest {
-  assert(toggle(true) == false, "toggle(true) should return false");
-  assert(toggle(false) == true, "toggle(false) should return true");
-  // Double toggle returns original value
-  assert(toggle(toggle(true)) == true, "toggle(toggle(true)) should return true");
-  assert(toggle(toggle(false)) == false, "toggle(toggle(false)) should return false");
-}
-// #endregion toogle
-
-// #region isBoolean
 
 // #endregion isBoolean
 
