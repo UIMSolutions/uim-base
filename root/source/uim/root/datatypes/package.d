@@ -6,8 +6,11 @@
 module uim.root.datatypes;
 
 public {
+  import uim.root.datatypes.booleans;
   import uim.root.datatypes.datetimes;
   import uim.root.datatypes.jsons;
+  import uim.root.datatypes.bsons;
+  import uim.root.datatypes.longs;
   import uim.root.datatypes.mixins;
   import uim.root.datatypes.nulls;
   import uim.root.datatypes.strings;
