@@ -7,7 +7,7 @@ module uim.core.datatypes.json;
 
 import uim.core;
 
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
 @safe:
 
 // #region shift

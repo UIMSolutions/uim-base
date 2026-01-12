@@ -7,7 +7,7 @@ module uim.core.helpers.map;
 
 import uim.core;
 
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
 @safe:
 
 class MapHelper {

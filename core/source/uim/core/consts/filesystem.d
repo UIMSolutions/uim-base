@@ -6,7 +6,7 @@
 module uim.core.consts.filesystem;
 
 import uim.core;
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
 
 @safe:
 

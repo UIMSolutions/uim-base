@@ -7,7 +7,7 @@ module uim.core.containers.general;
 
 import uim.core;
 
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
 @safe:
 
 // #region isSet

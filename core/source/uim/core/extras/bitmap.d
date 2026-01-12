@@ -7,7 +7,7 @@ module uim.core.extras.bitmap;
 
 import uim.core;
 
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
 @safe:
 
 final class DImage(T) {

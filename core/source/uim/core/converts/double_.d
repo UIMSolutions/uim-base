@@ -7,5 +7,5 @@ module uim.core.converts.double_;
 
 import uim.core;
 
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
 @safe:

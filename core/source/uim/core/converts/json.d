@@ -7,7 +7,7 @@ module uim.core.converts.json;
 
 import uim.core;
 
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
 @safe:
 
 string toJSONString(T)(T[string] values, bool sorted = NOTSORTED) {

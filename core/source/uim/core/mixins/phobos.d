@@ -7,7 +7,7 @@ module uim.core.mixins.phobos;
 
 import uim.core;
 
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
 @safe:
 
 auto importPhobos(string[] libNames = null) {

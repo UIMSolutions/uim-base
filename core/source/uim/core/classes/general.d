@@ -7,7 +7,7 @@ module uim.core.classes.general;
 
 import uim.core;
 
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
 @safe:
 
 T ifNull(T:Object)(T value, T defaultValue = null) {

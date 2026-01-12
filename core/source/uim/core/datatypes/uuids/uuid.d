@@ -7,7 +7,7 @@ module uim.core.datatypes.uuids.uuid;
 
 import uim.core;
 
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
 @safe:
 
 enum NULLID = "00000000-0000-0000-0000-000000000000";

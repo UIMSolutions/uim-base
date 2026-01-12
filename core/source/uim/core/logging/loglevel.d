@@ -7,7 +7,7 @@ module uim.core.logging.loglevel;
 
 import uim.core;
 
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
 @safe:
 
 class DLogLevels {

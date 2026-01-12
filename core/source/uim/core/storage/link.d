@@ -6,7 +6,7 @@
 module uim.core.storage.link;
 
 import uim.core;
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
 
 @safe:
 

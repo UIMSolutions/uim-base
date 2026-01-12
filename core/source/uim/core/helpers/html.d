@@ -7,5 +7,5 @@ module uim.core.helpers.html;
 
 import uim.core;
 
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
 @safe:

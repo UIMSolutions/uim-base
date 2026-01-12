@@ -7,6 +7,6 @@ module uim.core.converts.jsonmap;
 
 import uim.core;
 
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
 @safe:
 

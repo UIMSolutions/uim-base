@@ -6,7 +6,7 @@
 module uim.core.helpers.jsonmap;
 
 import uim.core;
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
 @safe:
 
 class JsonMapHelper {

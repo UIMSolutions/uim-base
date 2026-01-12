@@ -7,7 +7,7 @@ module uim.core.datatypes.strings.string_;
 
 import uim.core;
 
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
 @safe:
 
 string toJSONString(T)(T[string] values, bool sorted = NOTSORTED) {

@@ -7,7 +7,7 @@ module uim.core.helpers.json;
 
 import uim.core;
 
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
 @safe:
 
 string jsonValue(bool value) {

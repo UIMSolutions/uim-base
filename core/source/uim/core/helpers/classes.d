@@ -7,7 +7,7 @@ module uim.core.helpers.classes;
 
 import uim.core;
 
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
 @safe:
 
 string baseName(ClassInfo classinfo) {

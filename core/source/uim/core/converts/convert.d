@@ -2,7 +2,7 @@ module uim.core.converts.convert;
 
 import uim.core;
 
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
 @safe:
 
 T[] convert(T, V)(V[] values, T delegate(V value) @safe converter) {

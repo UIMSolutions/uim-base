@@ -7,7 +7,7 @@ module uim.core.datatypes.floating;
 
 import uim.core;
 
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
 @safe:
 
 // #region fuzzy

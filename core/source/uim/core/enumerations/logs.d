@@ -6,6 +6,6 @@
 module uim.core.enumerations.logs;
 
 import uim.core;
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
 
 @safe:

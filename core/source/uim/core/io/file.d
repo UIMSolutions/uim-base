@@ -7,7 +7,7 @@ module uim.core.io.file;
 
 import uim.core;
 
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
 @safe:
 
 version (linux) {

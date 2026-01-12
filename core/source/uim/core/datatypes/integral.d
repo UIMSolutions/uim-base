@@ -7,7 +7,7 @@ module uim.core.datatypes.integral;
 
 import uim.core;
 
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
 @safe:
 
 /// convert integral values to string with defined length

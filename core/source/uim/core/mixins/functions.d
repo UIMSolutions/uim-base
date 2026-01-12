@@ -7,7 +7,7 @@ module uim.core.mixins.functions;
 
 import uim.core;
 
-mixin(Version!("test_uim_core"));
+mixin(ShowModule!());
 @safe:
 
 template OFunction(string fName, string fParameters, string fBody) {
