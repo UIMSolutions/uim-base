@@ -22,6 +22,7 @@ public {
   import std.datetime;
   import std.demangle;
   import std.digest;
+  import std.digest.sha;
   import std.encoding;
   import std.exception;
   import std.file;

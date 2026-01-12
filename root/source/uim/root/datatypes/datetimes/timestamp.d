@@ -23,38 +23,41 @@ enum startUNIX = DateTime(1970, 1, 1, 0, 0, 0);
   *   The timestamp as long value.
   */
 long toTimestamp(SysTime untilTime) {
-  return (untilTime - cast(SysTime) startUNIX).total!"hnsecs"();
+  return (untilTime - cast(SysTime)startUNIX).total!"nsecs"();
 }
 ///
 unittest {
-  mixin(ShowTest!"Testing toTimestamp");
+  mixin(ShowTest!"Testing toTimestamp with SysTime");
 
-/*   auto sysTime = SysTime(2024, 6, 15, 12, 0, 0);
-  auto timestamp = toTimestamp(sysTime);
-  assert(timestamp == 1718472000000000); */
+  auto n = toTimestamp(now);
+  auto n2 = toTimestamp(now);
+  assert((n2 - n) >= 0);
 }
 
-// Convert a timestamp in string format (long value) to SysTime
+/** 
+  * Convert a timestamp (string value) to SysTime
+  *
+  * Params:
+  *   aTimestamp = The timestamp as string value.
+  *
+  * Returns:
+  *   The SysTime representation of the timestamp.
+  */
 SysTime fromTimestamp(string aTimestamp) {
   return fromTimestamp(to!long(aTimestamp));
-}
-///
-unittest {
-  mixin(ShowTest!"Testing fromTimestamp");
-
-  /* auto timestampStr = "1718472000000000";
-  auto sysTime = fromTimestamp(timestampStr);
-  assert(sysTime.year == 2024);
-  assert(sysTime.month == Month.June);
-  assert(sysTime.day == 15);
-  assert(sysTime.hour == 12);
-  assert(sysTime.minute == 0);
-  assert(sysTime.second == 0); */
 }
 
 // Convert a timestamp (long value) to SysTime
 SysTime fromTimestamp(long aTimestamp) {
-  return (cast(SysTime) startUNIX + aTimestamp.hnsecs);
+  return (cast(SysTime)startUNIX + aTimestamp.nsecs);
+}
+///
+unittest {
+  mixin(ShowTest!"Testing fromTimestamp with string");
+
+  auto time = now;
+  auto timestamp = toTimestamp(time);
+  assert(fromTimestamp(timestamp) == time);
 }
 ///
 unittest {
@@ -72,7 +75,7 @@ unittest {
 }
 
 long toJSTimestamp(long jsTimestamp) {
-  return (fromJSTimestamp(jsTimestamp) - cast(SysTime) startUNIX).total!"msecs"();
+  return (fromJSTimestamp(jsTimestamp) - cast(SysTime)startUNIX).total!"msecs"();
 }
 ///
 unittest {
@@ -84,7 +87,7 @@ unittest {
 }
 
 SysTime fromJSTimestamp(long jsTimestamp) {
-  return (cast(SysTime) startUNIX + jsTimestamp.msecs);
+  return (cast(SysTime)startUNIX + jsTimestamp.msecs);
 }
 ///
 unittest {
@@ -112,15 +115,14 @@ unittest {
   auto time2 = now;
   assert(time2 >= time1);
 }
-unittest {
-  auto now1 = now;
-  auto now2 = now;
-  assert(now2 >= now1);
+
+auto nowTimestamp() {
+  return now.toUnixTime();
 }
 
 // Current DateTime based on System Clock
 DateTime nowDateTime() {
-  return cast(DateTime) now;
+  return cast(DateTime)now;
 }
 ///
 unittest {
@@ -135,7 +137,7 @@ unittest {
 string timeToDateString(size_t time, string regionFormat = "DE") {
   auto sysTime = SysTime(time);
   auto day = to!string(sysTime.day);
-  auto mon = to!string(cast(int) sysTime.month);
+  auto mon = to!string(cast(int)sysTime.month);
   auto year = to!string(sysTime.year);
   auto hour = to!string(sysTime.hour);
   auto min = to!string(sysTime.minute);
@@ -161,7 +163,6 @@ unittest {
   assert(timeToDateString(timestamp, "US") == "6/15/2024 - 12:30:45"); */
 }
 
-
 /// Convert timestamp to DateTime 
 string timestampToDateTimeDE(string timeStamp) {
   return timestampToDateTimeDE(to!size_t(timeStamp));
@@ -178,7 +179,7 @@ unittest {
 /// Convert now to Javascript  
 long nowForJs() {
   auto jsTime = DateTime(1970, 1, 1, 0, 0, 0);
-  auto dTime = cast(DateTime) now();
+  auto dTime = cast(DateTime)now();
   return (dTime - jsTime).total!"msecs";
 }
 
@@ -189,7 +190,7 @@ unittest {
 /// Convert DateTime to Javascript
 long datetimeForJs(string dt) {
   auto jsTime = DateTime(1970, 1, 1, 0, 0, 0);
-  auto dTime = cast(DateTime) SysTime.fromISOExtString(dt);
+  auto dTime = cast(DateTime)SysTime.fromISOExtString(dt);
   return (dTime - jsTime).total!"msecs";
 }
 
@@ -200,7 +201,7 @@ unittest {
 /// Convert Javascript to dateTime
 DateTime jsToDatetime(long jsTime) {
   auto result = DateTime(1970, 1, 1, 0, 0, 0) + msecs(jsTime);
-  return cast(DateTime) result;
+  return cast(DateTime)result;
 }
 
 unittest {
@@ -209,7 +210,7 @@ unittest {
 
 /// Convert dateTime to german Date string 
 string germanDate(long timestamp) {
-  return germanDate(cast(DateTime) fromTimestamp(timestamp));
+  return germanDate(cast(DateTime)fromTimestamp(timestamp));
 }
 
 string germanDate(DateTime dt) {
@@ -217,7 +218,7 @@ string germanDate(DateTime dt) {
   if (strDay.length < 2)
     strDay = "0" ~ strDay;
 
-  auto strMonth = to!string(cast(int) dt.month);
+  auto strMonth = to!string(cast(int)dt.month);
   if (strMonth.length < 2)
     strMonth = "0" ~ strMonth;
 
@@ -231,8 +232,8 @@ unittest {
 
 // Convert dateTime to ISO string
 string isoDate(DateTime dt) {
-  auto m = (cast(int) dt.month < 10 ? "0" ~ to!string(
-      cast(int) dt.month) : to!string(cast(int) dt.month));
+  auto m = (cast(int)dt.month < 10 ? "0" ~ to!string(
+      cast(int)dt.month) : to!string(cast(int)dt.month));
   auto d = (dt.day < 10 ? "0" ~ to!string(dt.day) : to!string(dt.day));
   return "%s-%s-%s".format(dt.year, m, d);
 }
@@ -243,7 +244,7 @@ unittest {
 
 /// Convert dateTiem to german Date string 
 string toYYYYMMDD(SysTime datetime, string separator = "") {
-  return toYYYYMMDD(cast(DateTime) datetime, separator);
+  return toYYYYMMDD(cast(DateTime)datetime, separator);
 }
 
 string toYYYYMMDD(DateTime datetime, string separator = "") {
@@ -263,7 +264,7 @@ string toString(DateTime datetime, string dateFormat = "YYYYMMD") {
   int iDay = sysTime.day;
   string sDay = to!string(iDay);
   auto tMon = sysTime.month;
-  auto iMonth = cast(int) sysTime.month;
+  auto iMonth = cast(int)sysTime.month;
   auto sMonth = to!string(iMonth);
   int iYear = sysTime.year;
   string sYear = (iYear < 10 ? "0" : "") ~ to!string(iYear);
