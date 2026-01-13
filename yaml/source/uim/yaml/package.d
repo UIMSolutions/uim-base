@@ -3,16 +3,12 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.yaml.datatypes;
+module uim.yaml;
 
-import uim.yaml;
-
-import dyaml;
-import std.conv;
-
-mixin(ShowModule!());
-
-@safe:
+public {
+  import uim.core;
+  import dyaml;
+}
 
 public {
   import uim.yaml.datatypes.yamls.check;

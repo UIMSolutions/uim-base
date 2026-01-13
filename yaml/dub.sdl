@@ -17,8 +17,8 @@ dependency "uim-base:core" path=".."
 
 configuration "default" {
 	targetType "library"
-	versions "uim_root"
 }
+
 configuration "modules" {
 	targetType "library"
 	versions "show_module"
