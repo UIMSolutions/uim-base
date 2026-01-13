@@ -18,6 +18,7 @@ dependency "dyaml" version="~>0.10.0"
 // uim dependencies
 dependency ":core" version="*"
 dependency ":yaml" version="*"
+dependency ":jsons" version="*"
 
 sourceFiles "./source/uim/base.d"
 

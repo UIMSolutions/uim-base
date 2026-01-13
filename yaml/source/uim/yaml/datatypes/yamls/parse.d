@@ -28,11 +28,7 @@ Node parseYaml(string yamlString) {
  * Returns: Array of dyaml Nodes
  */
 Node[] parseYamls(string[] yamlStrings) {
-  Node[] results;
-  foreach (yamlStr; yamlStrings) {
-    results ~= parseYaml(yamlStr);
-  }
-  return results;
+  return yamlStrings.map!(str => parseYaml(str)).array;
 }
 
 /**
