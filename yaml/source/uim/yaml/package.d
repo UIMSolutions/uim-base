@@ -8,12 +8,9 @@ module uim.yaml;
 public {
   import uim.core;
   import dyaml;
+
+  import uim.yaml.datatypes;
+  import uim.yaml.helpers;
+  import uim.yaml.nodes;
 }
 
-public {
-  import uim.yaml.datatypes.yamls.check;
-  import uim.yaml.datatypes.yamls.convert;
-  import uim.yaml.datatypes.yamls.create;
-  import uim.yaml.datatypes.yamls.parse;
-  import uim.yaml.datatypes.yamls.values;
-}

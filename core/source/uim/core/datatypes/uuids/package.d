@@ -6,8 +6,7 @@
 module uim.core.datatypes.uuids;
 
 public {
-    import uim.core.datatypes.uuids.to_;
-    import uim.core.datatypes.uuids.null_;
-    import uim.core.datatypes.uuids.uuid;
+    import uim.core.datatypes.uuids.convert;
+    import uim.core.datatypes.uuids.nulls;
 }
 

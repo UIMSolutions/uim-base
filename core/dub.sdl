@@ -16,8 +16,8 @@ buildOptions "ignoreDeprecations"
 
 configuration "default" {
 	targetType "library"
-	versions "uim_core"
 }
+
 configuration "modules" {
 	targetType "library"
 	versions "show_module"
