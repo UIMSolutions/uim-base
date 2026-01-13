@@ -1,6 +1,6 @@
-module uim.root.containers.sequential.arrays.cross;
+module uim.core.containers.sequential.arrays.cross;
 
-import uim.root;
+import uim.core;
 
 mixin(ShowModule!());
 @safe:

@@ -1,6 +1,6 @@
-module uim.root.datatypes.strings.mustache;
+module uim.core.datatypes.strings.mustache;
 
-import uim.root;
+import uim.core;
 
 mixin(ShowModule!());
 

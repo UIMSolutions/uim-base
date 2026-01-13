@@ -3,9 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.root.logging;
+module uim.core.logging;
 
 public {
-    import uim.root.logging.loglevel;
+    import uim.core.logging.loglevel;
 }
 

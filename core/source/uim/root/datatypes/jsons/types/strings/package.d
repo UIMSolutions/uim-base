@@ -3,11 +3,11 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.root.datatypes.jsons.types.strings;
+module uim.core.datatypes.jsons.types.strings;
 
 public {
-  import uim.root.datatypes.jsons.types.strings.filter;
-  import uim.root.datatypes.jsons.types.strings.get;
-  import uim.root.datatypes.jsons.types.strings.remove;
-  import uim.root.datatypes.jsons.types.strings.typecheck;
+  import uim.core.datatypes.jsons.types.strings.filter;
+  import uim.core.datatypes.jsons.types.strings.get;
+  import uim.core.datatypes.jsons.types.strings.remove;
+  import uim.core.datatypes.jsons.types.strings.typecheck;
 }

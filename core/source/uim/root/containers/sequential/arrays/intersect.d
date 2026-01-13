@@ -3,9 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.root.containers.sequential.arrays.intersect;
+module uim.core.containers.sequential.arrays.intersect;
 
-import uim.root;
+import uim.core;
 
 mixin(ShowModule!());
 @safe:

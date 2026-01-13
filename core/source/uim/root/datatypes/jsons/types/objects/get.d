@@ -1,6 +1,6 @@
-module uim.root.datatypes.jsons.types.objects.get;
+module uim.core.datatypes.jsons.types.objects.get;
 
-import uim.root;
+import uim.core;
 
 mixin(ShowModule!());
 

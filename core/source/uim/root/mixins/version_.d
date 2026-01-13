@@ -1,4 +1,4 @@
-module uim.root.mixins.version_;
+module uim.core.mixins.version_;
 
 template ShowModule() {
   const char[] ShowModule = `

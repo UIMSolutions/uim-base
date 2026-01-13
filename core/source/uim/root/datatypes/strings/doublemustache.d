@@ -1,7 +1,7 @@
-module uim.root.datatypes.strings.doublemustache;
+module uim.core.datatypes.strings.doublemustache;
 
 
-import uim.root;
+import uim.core;
 
 mixin(ShowModule!());
 

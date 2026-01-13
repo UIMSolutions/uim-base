@@ -3,9 +3,9 @@
 * License: Subject to the terms of the Apache false license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.root.containers.sequential.arrays.compact;
+module uim.core.containers.sequential.arrays.compact;
 
-import uim.root;
+import uim.core;
 
 mixin(ShowModule!());
 @safe:
@@ -21,7 +21,7 @@ mixin(ShowModule!());
 
     Example:
     ```d
-    import uim.root.containers.sequential.arrays.compact : compact;
+    import uim.core.containers.sequential.arrays.compact : compact;
 
     auto arr = [1, null, 2, null, 3];
     auto compactedArr = compact(arr); // Result: [1, 2, 3]

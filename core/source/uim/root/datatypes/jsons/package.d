@@ -3,23 +3,23 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.root.datatypes.jsons;
+module uim.core.datatypes.jsons;
 
 public {
-  import uim.root.datatypes.jsons.change;
-  import uim.root.datatypes.jsons.check;
-  import uim.root.datatypes.jsons.convert;
-  import uim.root.datatypes.jsons.count;
-  import uim.root.datatypes.jsons.create;
-  import uim.root.datatypes.jsons.filter;
-  import uim.root.datatypes.jsons.has;
-  import uim.root.datatypes.jsons.last;
-  import uim.root.datatypes.jsons.parse;
-  import uim.root.datatypes.jsons.remove;
-  import uim.root.datatypes.jsons.set;
-  import uim.root.datatypes.jsons.values;
+  import uim.core.datatypes.jsons.change;
+  import uim.core.datatypes.jsons.check;
+  import uim.core.datatypes.jsons.convert;
+  import uim.core.datatypes.jsons.count;
+  import uim.core.datatypes.jsons.create;
+  import uim.core.datatypes.jsons.filter;
+  import uim.core.datatypes.jsons.has;
+  import uim.core.datatypes.jsons.last;
+  import uim.core.datatypes.jsons.parse;
+  import uim.core.datatypes.jsons.remove;
+  import uim.core.datatypes.jsons.set;
+  import uim.core.datatypes.jsons.values;
 }
 
 public {
-  import uim.root.datatypes.jsons.types;
+  import uim.core.datatypes.jsons.types;
 }

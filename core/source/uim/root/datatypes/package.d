@@ -3,16 +3,16 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.root.datatypes;
+module uim.core.datatypes;
 
 public {
-  import uim.root.datatypes.booleans;
-  import uim.root.datatypes.datetimes;
-  import uim.root.datatypes.jsons;
-  import uim.root.datatypes.bsons;
-  import uim.root.datatypes.longs;
-  import uim.root.datatypes.mixins;
-  import uim.root.datatypes.nulls;
-  import uim.root.datatypes.strings;
-  import uim.root.datatypes.uuids;
+  import uim.core.datatypes.booleans;
+  import uim.core.datatypes.datetimes;
+  import uim.core.datatypes.jsons;
+  import uim.core.datatypes.bsons;
+  import uim.core.datatypes.longs;
+  import uim.core.datatypes.mixins;
+  import uim.core.datatypes.nulls;
+  import uim.core.datatypes.strings;
+  import uim.core.datatypes.uuids;
 }

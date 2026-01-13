@@ -3,9 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.root.containers.associative.maps.get;
+module uim.core.containers.associative.maps.get;
 
-import uim.root;
+import uim.core;
 
 mixin(ShowModule!());
 

@@ -3,11 +3,11 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.root.datatypes.uuids;
+module uim.core.datatypes.uuids;
 
 public {
-    import uim.root.datatypes.uuids.to_;
-    import uim.root.datatypes.uuids.null_;
-    import uim.root.datatypes.uuids.uuid;
+    import uim.core.datatypes.uuids.to_;
+    import uim.core.datatypes.uuids.null_;
+    import uim.core.datatypes.uuids.uuid;
 }
 

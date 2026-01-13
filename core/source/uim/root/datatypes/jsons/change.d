@@ -1,6 +1,6 @@
-module uim.root.datatypes.jsons.change;
+module uim.core.datatypes.jsons.change;
 
-import uim.root;
+import uim.core;
 
 mixin(ShowModule!());
 

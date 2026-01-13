@@ -1,6 +1,6 @@
-module uim.root.datatypes.strings.convert;
+module uim.core.datatypes.strings.convert;
 
-import uim.root;
+import uim.core;
 
 mixin(ShowModule!());
 

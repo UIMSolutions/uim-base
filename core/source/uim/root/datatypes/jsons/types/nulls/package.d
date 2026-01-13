@@ -3,9 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.root.datatypes.jsons.types.nulls;
+module uim.core.datatypes.jsons.types.nulls;
 
 public {
-  import uim.root.datatypes.jsons.types.nulls.remove;
-  import uim.root.datatypes.jsons.types.nulls.typecheck;
+  import uim.core.datatypes.jsons.types.nulls.remove;
+  import uim.core.datatypes.jsons.types.nulls.typecheck;
 }

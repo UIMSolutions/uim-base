@@ -1,5 +1,5 @@
-module uim.root.mixins;
+module uim.core.mixins;
 
 public {
-  import uim.root.mixins.version_;
+  import uim.core.mixins.version_;
 }

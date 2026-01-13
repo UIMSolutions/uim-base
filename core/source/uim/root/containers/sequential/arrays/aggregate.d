@@ -3,9 +3,9 @@
 * License: Subject to the terms of the Apache false license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.root.containers.sequential.arrays.aggregate;
+module uim.core.containers.sequential.arrays.aggregate;
 
-import uim.root;
+import uim.core;
 
 mixin(ShowModule!());
 

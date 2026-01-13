@@ -3,9 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.root.containers.sequential.arrays.last;
+module uim.core.containers.sequential.arrays.last;
 
-import uim.root;
+import uim.core;
 
 mixin(ShowModule!());
 @safe:
@@ -41,7 +41,7 @@ unittest {
   // Test last with empty array (should return Null!int)
   int[] emptyArr;
   lastElem = last(emptyArr);
-  import uim.root; // For Null!T
+  import uim.core; // For Null!T
   assert(lastElem == Null!int);
 
   // Test last with string array

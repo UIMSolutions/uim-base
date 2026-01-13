@@ -1,5 +1,5 @@
-module uim.root.datatypes.classes;
+module uim.core.datatypes.classes;
 
 public {
-  import uim.root.datatypes.classes.general;
+  import uim.core.datatypes.classes.general;
 }

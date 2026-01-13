@@ -1,6 +1,6 @@
-module uim.root.datatypes.booleans.toggle;
+module uim.core.datatypes.booleans.toggle;
 
-import uim.root;
+import uim.core;
 
 mixin(ShowModule!());
 

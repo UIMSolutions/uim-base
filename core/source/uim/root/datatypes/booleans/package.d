@@ -3,9 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.root.datatypes.booleans;
+module uim.core.datatypes.booleans;
 
 public {
-  import uim.root.datatypes.booleans.toggle;
-  import uim.root.datatypes.booleans.translate;
+  import uim.core.datatypes.booleans.toggle;
+  import uim.core.datatypes.booleans.translate;
 }

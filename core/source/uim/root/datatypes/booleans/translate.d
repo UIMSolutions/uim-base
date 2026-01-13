@@ -1,6 +1,6 @@
-module uim.root.datatypes.booleans.translate;
+module uim.core.datatypes.booleans.translate;
 
-import uim.root;
+import uim.core;
 
 mixin(ShowModule!());
 

@@ -1,6 +1,6 @@
-module uim.root.datatypes.jsons.filter;
+module uim.core.datatypes.jsons.filter;
 
-import uim.root;
+import uim.core;
 
 mixin(ShowModule!());
 

@@ -1,6 +1,6 @@
-module uim.root.containers.sequential.arrays.sub;
+module uim.core.containers.sequential.arrays.sub;
 
-import uim.root;
+import uim.core;
 
 mixin(ShowModule!());
 

@@ -3,9 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.root.constants;
+module uim.core.constants;
 
 public {
-  import uim.root.constants.filesystem;
-  import uim.root.constants.sort;
+  import uim.core.constants.filesystem;
+  import uim.core.constants.sort;
 }

@@ -1,6 +1,6 @@
-module uim.root.datatypes.files.compare;
+module uim.core.datatypes.files.compare;
 
-import uim.root;
+import uim.core;
 
 mixin(ShowModule!());
 

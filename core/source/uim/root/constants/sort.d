@@ -1,6 +1,6 @@
-module uim.root.constants.sort;
+module uim.core.constants.sort;
 
-import uim.root;
+import uim.core;
 
 mixin(ShowModule!());
 

@@ -1,1 +1,1 @@
-# Package uim.root.datatypes.classes
+# Package uim.core.datatypes.classes

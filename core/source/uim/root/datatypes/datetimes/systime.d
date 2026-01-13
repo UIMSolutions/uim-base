@@ -1,6 +1,6 @@
-module uim.root.datatypes.datetimes.systime;
+module uim.core.datatypes.datetimes.systime;
 
-import uim.root;
+import uim.core;
 
 mixin(ShowModule!());
 

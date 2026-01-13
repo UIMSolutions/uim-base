@@ -1,6 +1,6 @@
-module uim.root.datatypes.jsons.has;
+module uim.core.datatypes.jsons.has;
 
-import uim.root;
+import uim.core;
 
 mixin(ShowModule!());
 
@@ -630,7 +630,7 @@ unittest {
 
 // #region Json[string]
 bool hasPath(Json[string] map, string[] path) {
-  import uim.root.containers.associative.maps.has;
+  import uim.core.containers.associative.maps.has;
 
   if (map.length == 0 || path.length == 0) {
     return false;

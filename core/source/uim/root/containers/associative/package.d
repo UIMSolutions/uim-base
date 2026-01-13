@@ -3,9 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.root.containers.associative;
+module uim.core.containers.associative;
 
 public {
-    import uim.root.containers.associative.maps;
-    import uim.root.containers.associative.sets;
+    import uim.core.containers.associative.maps;
+    import uim.core.containers.associative.sets;
 }

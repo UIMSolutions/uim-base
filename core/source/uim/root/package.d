@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.root;
+module uim.core;
 
 public {
   import std.algorithm;
@@ -51,14 +51,14 @@ public {
 }
 
 public {
-  import uim.root.constants;
-  import uim.root.containers;
-  import uim.root.datatypes;
-  import uim.root.enumerations;
-  import uim.root.logging;
-  import uim.root.mixins;
-  import uim.root.paths;
-  import uim.root.tests;
+  import uim.core.constants;
+  import uim.core.containers;
+  import uim.core.datatypes;
+  import uim.core.enumerations;
+  import uim.core.logging;
+  import uim.core.mixins;
+  import uim.core.paths;
+  import uim.core.tests;
 }
 
 

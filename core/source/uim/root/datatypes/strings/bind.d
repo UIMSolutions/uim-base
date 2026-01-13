@@ -1,6 +1,6 @@
-module uim.root.datatypes.strings.bind;
+module uim.core.datatypes.strings.bind;
 
-import uim.root;
+import uim.core;
 
 mixin(ShowModule!());
 

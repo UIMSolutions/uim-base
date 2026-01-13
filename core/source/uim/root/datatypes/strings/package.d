@@ -3,29 +3,29 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.root.datatypes.strings;
+module uim.core.datatypes.strings;
 
 public {
-  import uim.root.datatypes.strings.bind;
-  import uim.root.datatypes.strings.camelize;
-  import uim.root.datatypes.strings.capitalize;
-  import uim.root.datatypes.strings.classify;
-  import uim.root.datatypes.strings.convert;
-  import uim.root.datatypes.strings.delimit;
-  import uim.root.datatypes.strings.doublemustache;
-  import uim.root.datatypes.strings.endswith;
-  import uim.root.datatypes.strings.humanize;
-  import uim.root.datatypes.strings.lower;
-  import uim.root.datatypes.strings.md5;
-  import uim.root.datatypes.strings.mustache;
-  import uim.root.datatypes.strings.pascalize;
-  import uim.root.datatypes.strings.pluralize;
-  import uim.root.datatypes.strings.singularize;
-  import uim.root.datatypes.strings.striptext;
-  import uim.root.datatypes.strings.startswith;
-  import uim.root.datatypes.strings.tableize;
-  import uim.root.datatypes.strings.underscore;
-  import uim.root.datatypes.strings.upper;
+  import uim.core.datatypes.strings.bind;
+  import uim.core.datatypes.strings.camelize;
+  import uim.core.datatypes.strings.capitalize;
+  import uim.core.datatypes.strings.classify;
+  import uim.core.datatypes.strings.convert;
+  import uim.core.datatypes.strings.delimit;
+  import uim.core.datatypes.strings.doublemustache;
+  import uim.core.datatypes.strings.endswith;
+  import uim.core.datatypes.strings.humanize;
+  import uim.core.datatypes.strings.lower;
+  import uim.core.datatypes.strings.md5;
+  import uim.core.datatypes.strings.mustache;
+  import uim.core.datatypes.strings.pascalize;
+  import uim.core.datatypes.strings.pluralize;
+  import uim.core.datatypes.strings.singularize;
+  import uim.core.datatypes.strings.striptext;
+  import uim.core.datatypes.strings.startswith;
+  import uim.core.datatypes.strings.tableize;
+  import uim.core.datatypes.strings.underscore;
+  import uim.core.datatypes.strings.upper;
 }
 
 static immutable string[string] singularIrregulars;
