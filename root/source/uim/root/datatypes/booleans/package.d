@@ -7,4 +7,5 @@ module uim.root.datatypes.booleans;
 
 public {
   import uim.root.datatypes.booleans.toggle;
+  import uim.root.datatypes.booleans.translate;
 }

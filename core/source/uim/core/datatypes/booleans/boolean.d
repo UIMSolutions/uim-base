@@ -18,24 +18,7 @@ mixin(ShowModule!());
 // #endregion isBoolean
 
 // #region translate
-/// Translates boolean to defined values
-pure T translateTo(T)(bool value, T trueValue, T falseValue) {
-  return (value) ? trueValue : falseValue;
-}
 
-unittest {
-  assert(translateTo(true, false, true) == false, "Error in translate(bool, T, T)");
-  assert(translateTo(false, false, true) == true, "Error in translate(bool, T, T)");
-
-  assert(translateTo(true, "YES", "NO") == "YES", "Error in translate(bool, T, T)");
-  assert(translateTo(false, "YES", "NO") == "NO", "Error in translate(bool, T, T)");
-
-  assert(translateTo(true, 1, 2) == 1, "Error in translate(bool, T, T)");
-  assert(translateTo(false, 1, 2) == 2, "Error in translate(bool, T, T)");
-
-  assert(translateTo(true, 1, 2) == 1, "Error in translate(bool, T, T)");
-  assert(translateTo(false, 1, 2) == 2, "Error in translate(bool, T, T)");
-}
 // #endregion translateTo
 
 // #region ifBoolean

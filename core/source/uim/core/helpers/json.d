@@ -14,21 +14,12 @@ string jsonValue(bool value) {
   return value ? "true" : "false";
 }
 
-unittest {
-}
-
 string jsonValue(string value) {
   return "\"%s\"".format(value);
 }
 
-unittest {
-}
-
 string jsonValue(long value) {
   return "%s".format(value);
-}
-
-unittest {
 }
 
 string jsonArray(T)(T[] values) {
@@ -36,12 +27,6 @@ string jsonArray(T)(T[] values) {
   return "[]";
 }
 
-unittest {
-}
-
 string jsonObject() {
   return "{}";
-}
-
-unittest {
 }

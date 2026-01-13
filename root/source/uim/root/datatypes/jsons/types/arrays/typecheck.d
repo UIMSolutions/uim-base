@@ -10,234 +10,6 @@ import uim.root;
 mixin(ShowModule!());
 
 @safe:
-/* 
-// #region Json[]
-// #region indices
-// #region all
-bool isAllArray(Json[] jsons, size_t[] indices = null) {
-  mixin(ShowFunction!());
-
-  if (json.length == 0) {
-    return false;
-  }
-
-  bool result = true; 
-  foreach(index, value; jsons) {
-    if (indices.length == 0 || indices.canFind(index)) {
-      result = result && value.isArray; 
-    }
-  }
-  return result;
-}
-///
-unittest {
-  mixin(ShowTest!"Testing isAllArray for Json[] with indices");
-
-  Json[] jsons = [[1, 2].toJson, ["a": 1].toJson, [3, 4].toJson];
-  assert(isAllArray(jsons) == false);
-  assert(isAnyArray(jsons) == true);
-  assert(isAllArray(jsons, [0, 2]) == true);
-  assert(isAnyArray(jsons, [1, 2]) == true);
-}
-// #endregion all
-
-// #region any
-bool isAnyArray(Json[] jsons, size_t[] indices = null) {
-  mixin(ShowFunction!());
-
-  if (json.length == 0) {
-    return false;
-  }
-
-  bool result = false; 
-  foreach(index, value; jsons) {
-    if (indices.length == 0 || indices.canFind(index)) {
-      result = result || value.isArray; 
-    }
-  }
-  return result;
-}
-///
-unittest {
-  mixin(ShowTest!"Testing isAllArray and isAnyArray for Json[] with indices");
-
-  Json[] jsons = [[1, 2].toJson, ["a": 1].toJson, [3, 4].toJson];
-  assert(isAllArray(jsons) == false);
-  assert(isAnyArray(jsons) == true);
-  assert(isAllArray(jsons, [0, 2]) == true);
-  assert(isAnyArray(jsons, [1, 2]) == true);
-}
-// #endregion any
-
-// #region is
-bool isArray(Json[] jsons, size_t index) {
-  mixin(ShowFunction!());
-
-  return jsons.length > index && jsons[index].isArray;
-}
-///
-unittest {
-  mixin(ShowTest!"Testing isArray for Json[]");
-    
-  Json[] jsons = [[1, 2].toJson, ["a": 1].toJson, [3, 4].toJson];
-  assert(isAllArray(jsons) == false);
-  assert(isAnyArray(jsons) == true);
-  assert(isAllArray(jsons, [0, 2]) == true);
-  assert(isAnyArray(jsons, [1, 2]) == true);
-  assert(isArray(jsons, 0) == true);
-  assert(isArray(jsons, 1) == false);
-}
-// #endregion is
-// #endregion indices
-// #endregion Json[]
-
-// #region Json[string]
-// #region paths
-// #region all
-bool isAllArray(Json[string] map, string[][] paths) {
-  mixin(ShowFunction!());
-
-  return map.length > 0 && paths.length > 0
-    ? paths.all!(path => map.isArray(path)) : false;
-}
-///
-unittest {
-  mixin(ShowTest!"Testing isAllArray for Json[string] with paths");
-
-  Json[string] map = [
-    "arr1": [1, 2, 3].toJson,
-    "obj1": ["key": "value"].toJson,
-    "arr2": [4, 5].toJson
-  ];
-
-  assert(isAllArray(map, [["arr1"], ["arr2"]]));
-  assert(!isAllArray(map, [["arr1"], ["obj1"]]));
-}
-// #endregion all
-
-// #region any
-bool isAnyArray(Json[string] map, string[][] paths) {
-  mixin(ShowFunction!());
-
-  return map.length > 0 && paths.length > 0
-    ? paths.any!(path => map.isArray(path)) : false;
-}
-///
-unittest {
-  mixin(ShowTest!"Testing isAllArray and isAnyArray for Json[string] with paths");
-
-  Json[string] map = [
-    "arr1": [1, 2, 3].toJson,
-    "obj1": ["key": "value"].toJson,
-    "arr2": [4, 5].toJson
-  ];
-
-  assert(isAnyArray(map, [["obj1"], ["arr2"]]));
-  assert(!isAnyArray(map, [["nonexistent1"], ["nonexistent2"]]));
-}
-// #endregion any
-
-// #region is
-bool isArray(Json[string] map, string[] path) {
-  mixin(ShowFunction!());
-
-  return map.length > 0 && path.length > 0 ? map.getValue(path).isArray : false;
-}
-///
-unittest {
-  mixin(ShowTest!"Testing isArray for Json[string] with path");
-
-  Json[string] map = [
-    "arr1": [1, 2, 3].toJson,
-    "obj1": ["key": "value"].toJson,
-    "arr2": [4, 5].toJson
-  ];
-
-  assert(isAllArray(map, ["arr1", "arr2"]));
-  assert(!isAllArray(map, ["arr1", "obj1"]));
-  assert(isAnyArray(map, ["obj1", "arr2"]));
-  assert(!isAnyArray(map, ["nonexistent1", "nonexistent2"]));
-  assert(isArray(map, ["arr1"]));
-  assert(!isArray(map, ["obj1"]));
-}
-// #endregion is
-// #endregion paths
-
-// #region keys
-// #region all
-bool isAllArray(Json[string] map, string[] keys = null) {
-  mixin(ShowFunction!());
-
-  return keys.length > 0
-    ? keys.all!(key => map.getValue(key)
-        .isArray) : map.toMap.byKeyValue.all!(value => value.isArray);
-}
-///
-unittest {
-  mixin(ShowTest!"Testing isAllArray for Json[string] with keys");
-
-  Json[string] map = [
-    "arr1": [1, 2, 3].toJson,
-    "obj1": ["key": "value"].toJson,
-    "arr2": [4, 5].toJson
-  ];
-
-  assert(isAllArray(map, ["arr1", "arr2"]));
-  assert(!isAllArray(map, ["arr1", "obj1"]));
-}
-// #endregion all
-
-// #region any
-bool isAnyArray(Json[string] map, string[] keys = null) {
-  mixin(ShowFunction!());
-
-  return keys.length > 0
-    ? keys.any!(key => map.getValue(key)
-        .isArray) : map.toMap.byKeyValue.any!(value => value.isArray);
-}
-///
-unittest {
-  mixin(ShowTest!"Testing isAllArray and isAnyArray for Json[string] with keys");
-
-  Json[string] map = [
-    "arr1": [1, 2, 3].toJson,
-    "obj1": ["key": "value"].toJson,
-    "arr2": [4, 5].toJson
-  ];
-
-  assert(isAllArray(map, ["arr1", "arr2"]));
-  assert(!isAllArray(map, ["arr1", "obj1"]));
-  assert(isAnyArray(map, ["obj1", "arr2"]));
-  assert(!isAnyArray(map, ["nonexistent1", "nonexistent2"]));
-}
-// #endregion any
-
-// #region is
-bool isArray(Json[string] map, string key) {
-  mixin(ShowFunction!());
-
-  return map.getValue(key).isArray;
-}
-///
-unittest {
-  mixin(ShowTest!"Testing isArray for Json[string]");
-
-  Json[string] map = [
-    "arr1": [1, 2, 3].toJson,
-    "obj1": ["key": "value"].toJson,
-    "arr2": [4, 5].toJson
-  ];
-
-  assert(isAllArray(map, ["arr1", "arr2"]));
-  assert(!isAllArray(map, ["arr1", "obj1"]));
-  assert(isAnyArray(map, ["obj1", "arr2"]));
-  assert(!isAnyArray(map, ["nonexistent1", "nonexistent2"]));
-  assert(isArray(map, "arr1"));
-  assert(!isArray(map, "obj1"));
-}
-// #endregion is
-// #endregion keys
-// #endregion Json[string]
 
 // #region Json
 // #region indices
@@ -245,8 +17,7 @@ unittest {
 bool isAllArray(Json json, size_t[] indices) {
   mixin(ShowFunction!());
 
-  return json.isArray && indices.length > 0
-    ? indices.all!(index => json[index].isArray) : false;
+  return json.isArray ? json.toArray.isAllArray(indices) : false;
 }
 ///
 unittest {
@@ -262,8 +33,7 @@ unittest {
 bool isAnyArray(Json json, size_t[] indices) {
   mixin(ShowFunction!());
 
-  return json.isArray && indices.length > 0
-    ? indices.any!(index => json[index].isArray) : false;
+  return json.isArray ? json.toArray.isAnyArray(indices) : false;
 }
 ///
 unittest {
@@ -281,7 +51,7 @@ unittest {
 bool isArray(Json json, size_t index) {
   mixin(ShowFunction!());
 
-  return json.getValue(index).isArray;
+  return json.length > index ? json[index].isArray : false;
 }
 ///
 unittest {
@@ -304,8 +74,7 @@ unittest {
 bool isAllArray(Json json, string[][] paths) {
   mixin(ShowFunction!());
 
-  return json.isObject && paths.length > 0
-    ? paths.all!(path => json.isArray(path)) : false;
+  return json.isObject ? json.toMap.isAllArray(paths) : false;
 }
 ///
 unittest {
@@ -325,8 +94,7 @@ unittest {
 bool isAnyArray(Json json, string[][] paths) {
   mixin(ShowFunction!());
 
-  return json.isObject && paths.length > 0
-    ? paths.any!(path => json.isArray(path)) : false;
+  return json.isObject ? json.toMap.isAnyArray(paths) : false;
 }
 ///
 unittest {
@@ -360,8 +128,7 @@ unittest {
 bool isAllArray(Json json, string[] keys) {
   mixin(ShowFunction!());
 
-  return json.isObject && keys.length > 0
-    ? keys.all!(key => json.isArray(key)) : false;
+  return json.isObject ? json.toMap.isAllArray(keys) : false;
 }
 ///
 unittest {
@@ -372,8 +139,9 @@ unittest {
     "b": "not an array".toJson,
     "c": [3, 4].toJson
   ].toJson;
-  assert(isAllArray(obj, ["a", "c"]));
-  assert(!isAllArray(obj, ["a", "b"]));
+
+  assert(obj.isAllArray(["a", "c"]));
+  assert(!obj.isAllArray(["a", "b"]));
 }
 // #endregion all
 
@@ -381,8 +149,7 @@ unittest {
 bool isAnyArray(Json json, string[] keys) {
   mixin(ShowFunction!());
 
-  return json.isObject && keys.length > 0
-    ? keys.any!(key => json.isArray(key)) : false;
+  return json.isObject ? json.toMap.isAnyArray(keys) : false;
 }
 ///
 unittest {
@@ -393,8 +160,8 @@ unittest {
     "b": "not an array".toJson,
     "c": [3, 4].toJson
   ].toJson;
-  assert(isAllArray(obj, ["a", "c"]));
-  assert(!isAllArray(obj, ["a", "b"]));
+  assert(obj.isAllArray(["a", "c"]));
+  assert(!obj.isAllArray(["a", "b"]));
   assert(isAnyArray(obj, ["b", "c"]));
   assert(!isAnyArray(obj, ["b", "d"]));
 }
@@ -421,7 +188,436 @@ unittest {
 }
 // #endregion is
 // #endregion key
-// #endregion Json */
+
+// #region values
+// #region all
+bool isAllArray(Json json, Json[] values, bool delegate(Json) @safe isFunc) {
+  mixin(ShowFunction!());
+
+  if (json.isArray) {
+    return json.toArray.isAllArray(values, isFunc);
+  }
+  if (json.isObject) {
+    return json.toMap.isAllArray(values, isFunc);
+  }
+  return false;
+}
+
+bool isAllArray(Json json, Json[] values) {
+  mixin(ShowFunction!());
+
+  if (json.isArray) {
+    return json.toArray.isAllArray(values);
+  }
+  if (json.isObject) {
+    return json.toMap.isAllArray(values);
+  }
+  return false;
+}
+
+bool isAllArray(Json json, bool delegate(Json) @safe isFunc) {
+  mixin(ShowFunction!());
+
+  if (json.isArray) {
+    return json.toArray.isAllArray(isFunc);
+  }
+  if (json.isObject) {
+    return json.toMap.isAllArray(isFunc);
+  }
+  return false;
+}
+// #endregion all
+
+// #region any
+bool isAnyArray(Json json, Json[] values, bool delegate(Json) @safe isFunc) {
+  mixin(ShowFunction!());
+
+  if (json.isArray) {
+    return json.toArray.isAnyArray(values, isFunc);
+  }
+  if (json.isObject) {
+    return json.toMap.isAnyArray(values, isFunc);
+  }
+  return false;
+}
+
+bool isAnyArray(Json json, Json[] values) {
+  mixin(ShowFunction!());
+
+  if (json.isArray) {
+    return json.toArray.isAnyArray(values);
+  }
+  if (json.isObject) {
+    return json.toMap.isAnyArray(values);
+  }
+  return false;
+}
+
+bool isAnyArray(Json json, bool delegate(Json) @safe isFunc) {
+  mixin(ShowFunction!());
+
+  if (json.isArray) {
+    return json.toArray.isAnyArray(isFunc);
+  }
+  if (json.isObject) {
+    return json.toMap.isAnyArray(isFunc);
+  }
+  return false;
+}
+// #endregion any
+
+// #region is
+bool isArray(Json json, Json value) {
+  mixin(ShowFunction!());
+
+  return json.toArray.canFind(value);
+}
+// #endregion is
+// #endregion values
+// #endregion Json 
+
+// #region Json[string]
+// #region paths
+// #region all
+bool isAllArray(Json[string] map, string[][] paths) {
+  mixin(ShowFunction!());
+
+  return map.length > 0 && paths.length > 0
+    ? paths.all!(path => map.isArray(path)) : false;
+}
+///
+unittest {
+  mixin(ShowTest!"Testing isAllArray for Json[string] with paths");
+
+  Json[string] map = [
+    "arr1": [1, 2, 3].toJson,
+    "obj1": ["key": "value"].toJson,
+    "arr2": [4, 5].toJson
+  ];
+
+  assert(map.isAllArray([["arr1"], ["arr2"]]));
+  assert(!map.isAllArray([["arr1"], ["obj1"]]));
+}
+// #endregion all
+
+// #region any
+bool isAnyArray(Json[string] map, string[][] paths) {
+  mixin(ShowFunction!());
+
+  return map.length > 0 && paths.length > 0
+    ? paths.any!(path => map.isArray(path)) : false;
+}
+///
+unittest {
+  mixin(ShowTest!"Testing isAllArray and isAnyArray for Json[string] with paths");
+
+  Json[string] map = [
+    "arr1": [1, 2, 3].toJson,
+    "obj1": ["key": "value"].toJson,
+    "arr2": [4, 5].toJson
+  ];
+
+  assert(map.isAnyArray([["obj1"], ["arr2"]]));
+  assert(!map.isAnyArray([["nonexistent1"], ["nonexistent2"]]));
+}
+// #endregion any
+
+// #region is
+bool isArray(Json[string] map, string[] path) {
+  mixin(ShowFunction!());
+
+  return map.length > 0 && path.length > 0 ? map.getValue(path).isArray : false;
+}
+///
+unittest {
+  mixin(ShowTest!"Testing isArray for Json[string] with path");
+
+  Json[string] map = [
+    "arr1": [1, 2, 3].toJson,
+    "obj1": ["key": "value"].toJson,
+    "arr2": [4, 5].toJson
+  ];
+
+  assert(map.isAllArray(["arr1", "arr2"]));
+  assert(!map.isAllArray(["arr1", "obj1"]));
+  assert(map.isAnyArray(["obj1", "arr2"]));
+  assert(!map.isAnyArray(["nonexistent1", "nonexistent2"]));
+  assert(map.isArray(["arr1"]));
+  assert(!map.isArray(["obj1"]));
+}
+// #endregion is
+// #endregion paths
+
+// #region keys
+// #region all
+bool isAllArray(Json[string] map, string[] keys = null) {
+  mixin(ShowFunction!());
+
+  return keys.length == 0 
+    ? map.getValues.all!(value => value.isArray)
+    : map.getValues(keys).all!(value => value.isArray);
+}
+///
+unittest {
+  mixin(ShowTest!"Testing isAllArray for Json[string] with keys");
+
+  Json[string] map = [
+    "arr1": [1, 2, 3].toJson,
+    "obj1": ["key": "value"].toJson,
+    "arr2": [4, 5].toJson
+  ];
+
+  assert(map.isAllArray(["arr1", "arr2"]));
+  assert(!map.isAllArray(["arr1", "obj1"]));
+}
+// #endregion all
+
+// #region any
+bool isAnyArray(Json[string] map, string[] keys = null) {
+  mixin(ShowFunction!());
+
+  return keys.length == 0 
+    ? map.getValues.any!(value => value.isArray)
+    : map.getValues(keys).any!(value => value.isArray);
+}
+///
+unittest {
+  mixin(ShowTest!"Testing isAllArray and isAnyArray for Json[string] with keys");
+
+  Json[string] map = [
+    "arr1": [1, 2, 3].toJson,
+    "obj1": ["key": "value"].toJson,
+    "arr2": [4, 5].toJson
+  ];
+
+  assert(map.isAnyArray(["obj1", "arr2"]));
+  assert(!map.isAnyArray(["nonexistent1", "nonexistent2"]));
+}
+// #endregion any
+
+// #region is
+bool isArray(Json[string] map, string key) {
+  mixin(ShowFunction!());
+
+  return (key in map) ? map[key].isArray : false;
+}
+///
+unittest {
+  mixin(ShowTest!"Testing isArray for Json[string]");
+
+  Json[string] map = [
+    "arr1": [1, 2, 3].toJson,
+    "obj1": ["key": "value"].toJson,
+    "arr2": [4, 5].toJson
+  ];
+
+  assert(map.isArray("arr1"));
+  assert(!map.isArray("obj1"));
+}
+// #endregion is
+// #endregion keys
+
+// #region values
+// #region all
+bool isAllArray(Json[string] map, Json[] values, bool delegate(Json) @safe isFunc) {
+  mixin(ShowFunction!());
+
+  return map.getValues.isAllArray(values, isFunc);
+}
+
+bool isAllArray(Json[string] map, Json[] values) {
+  mixin(ShowFunction!());
+
+  return map.getValues.isAllArray(values);
+}
+
+bool isAllArray(Json[string] map, bool delegate(Json) @safe isFunc) {
+  mixin(ShowFunction!());
+
+  return map.getValues.isAllArray(isFunc);
+}
+// #endregion all
+
+// #region any
+bool isAnyArray(Json[string] map, Json[] values, bool delegate(Json) @safe isFunc) {
+  mixin(ShowFunction!());
+
+  return map.getValues.isAnyArray(values, isFunc);
+}
+
+bool isAnyArray(Json[string] map, Json[] values) {
+  mixin(ShowFunction!());
+
+  return map.getValues.isAnyArray(values);
+}
+
+bool isAnyArray(Json[string] map, bool delegate(Json) @safe isFunc) {
+  mixin(ShowFunction!());
+
+  return map.getValues.isAnyArray(isFunc);
+}
+// #endregion any
+
+// #region is
+bool isArray(Json[string] map, Json value) {
+  mixin(ShowFunction!());
+
+  return map.getValues.canFind(value);
+}
+// #endregion is
+// #endregion values
+// #endregion Json[string]
+
+// #region Json[]
+// #region indices
+// #region all
+bool isAllArray(Json[] jsons, size_t[] indices) {
+  mixin(ShowFunction!());
+
+  if (jsons.length == 0) {
+    return false;
+  }
+
+  bool result = true;
+  foreach (index, value; jsons) {
+    if (indices.length == 0 || indices.canFind(index)) {
+      result = result && value.isArray;
+    }
+  }
+  return result;
+}
+///
+unittest {
+  mixin(ShowTest!"Testing isAllArray for Json[] with indices");
+
+  Json[] jsons = [[1, 2].toJson, ["a": 1].toJson, [3, 4].toJson];
+  assert(jsons.isAllArray([0, 2]) == true);
+  assert(jsons.isAnyArray([1, 2]) == true);
+}
+// #endregion all
+
+// #region any
+bool isAnyArray(Json[] jsons, size_t[] indices = null) {
+  mixin(ShowFunction!());
+
+  if (jsons.length == 0) {
+    return false;
+  }
+
+  bool result = false;
+  foreach (index, value; jsons) {
+    if (indices.length == 0 || indices.canFind(index)) {
+      result = result || value.isArray;
+    }
+  }
+  return result;
+}
+///
+unittest {
+  mixin(ShowTest!"Testing isAllArray and isAnyArray for Json[] with indices");
+
+  Json[] jsons = [[1, 2].toJson, ["a": 1].toJson, [3, 4].toJson];
+  assert(jsons.isAllArray([0, 2]) == true);
+  assert(jsons.isAnyArray([1, 2]) == true);
+}
+// #endregion any
+
+// #region is
+bool isArray(Json[] jsons, size_t index) {
+  mixin(ShowFunction!());
+
+  return jsons.length > index && jsons[index].isArray;
+}
+///
+unittest {
+  mixin(ShowTest!"Testing isArray for Json[]");
+
+  Json[] jsons = [[1, 2].toJson, ["a": 1].toJson, [3, 4].toJson];
+  assert(jsons.isAllArray == false);
+  assert(jsons.isAnyArray == true);
+  assert(jsons.isAllArray([0, 2]) == true);
+  assert(jsons.isAnyArray([1, 2]) == true);
+  assert(jsons.isArray(0) == true);
+  assert(jsons.isArray(1) == false);
+}
+// #endregion is
+// #endregion indices
+
+// #region values
+// #region all
+bool isAllArray(Json[] jsons, Json[] values, bool delegate(Json) @safe isFunc) {
+  mixin(ShowFunction!());
+
+  return jsons.isAllArray((Json value) => values.canFind(value) && isFunc(value));
+}
+
+bool isAllArray(Json[] jsons, Json[] values) {
+  mixin(ShowFunction!());
+
+  return jsons.isAllArray((Json value) => values.canFind(value));
+}
+
+bool isAllArray(Json[] jsons, bool delegate(Json) @safe isFunc) {
+  mixin(ShowFunction!());
+
+  return jsons.length == 0 ? false : jsons.all!(value => value.isArray && isFunc(value));
+}
+
+bool isAllArray(Json[] jsons) {
+  mixin(ShowFunction!());
+
+  return jsons.length == 0 ? false : jsons.all!(value => value.isArray);
+}
+// #endregion all
+
+// #region any
+bool isAnyArray(Json[] jsons, Json[] values, bool delegate(Json) @safe isFunc) {
+  mixin(ShowFunction!());
+
+  return jsons.length == 0 ? false : jsons.any!(value => value.isArray);
+}
+
+bool isAnyArray(Json[] jsons, Json[] values) {
+  mixin(ShowFunction!());
+
+  if (jsons.length == 0) {
+    return false;
+  }
+
+  return jsons.filter!(value => values.canFind(value))
+    .any!(value => value.isArray);
+}
+
+bool isAnyArray(Json[] jsons, bool delegate(Json) @safe isFunc) {
+  mixin(ShowFunction!());
+
+  if (jsons.length == 0) {
+    return false;
+  }
+
+  return jsons.any!(value => value.isArray && isFunc(value));
+}
+
+bool isAnyArray(Json[] jsons) {
+  mixin(ShowFunction!());
+
+  if (jsons.length == 0) {
+    return false;
+  }
+
+  return jsons.any!(value => value.isArray);
+}
+// #endregion any
+
+// #region is
+bool isArray(Json[] jsons, Json value) {
+  mixin(ShowFunction!());
+
+  return jsons.canFind(value);
+}
+// #endregion is
+// #endregion values
+// #endregion Json[]
 
 // #region base
 bool isArray(Json[] jsons) {

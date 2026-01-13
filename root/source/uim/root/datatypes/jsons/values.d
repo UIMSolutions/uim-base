@@ -290,15 +290,14 @@ Json[] getValues(Json[string] map, bool delegate(Json) @safe getFunc) {
 }
 // #endregion with values
 
+// #region base
 Json[] getValues(Json[string] map) {
   mixin(ShowFunction!());
 
-  Json[] result;
-  foreach (key, value; map) {
-    result ~= value;
-  }
-  return result;
+  return map.byKeyValue
+    .map!(kv => kv.value).array;
 }
+// #endregion base
 // #endregion values
 // #endregion Json[string]
 

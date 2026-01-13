@@ -10,41 +10,80 @@ mixin(ShowModule!());
 // #region paths
 // #region with paths and filterFunc
 Json filterPaths(Json json, string[][] paths, bool delegate(string[]) @safe filterFunc) {
-  if (json.isObject) {
-    Json result = Json.emptyObject;
-    auto filteredPaths = paths.filter!(path => json.toMap.hasPath(path) && filterFunc(path)).array;
-    foreach (path; filteredPaths) {
-      result = result.setValue(path, json.getValue(path));
-    }
-    return result;
-  }
-  return Json(null);
+  return json.isObject ? json.toMap.filterPaths(paths, filterFunc).toJson : Json(null);
 }
 ///
 unittest {
   mixin(ShowTest!"Testing filterPaths for Json with paths and filterFunc");
 
-  Json json = [
-    "a": [
-      "b": [
-        "c": Json(1),
-        "d": Json(2)
-      ].toJson,
-      "e": Json(3)
-    ].toJson,
-    "x": Json(4),
-    "y": Json(5)
+  // Test basic filtering with simple paths
+  Json json1 = [
+    "a": Json(1),
+    "b": Json(2),
+    "c": Json(3)
   ].toJson;
 
-  auto filtered = filterPaths(json, [["a", "b", "c"], ["x"]], (string[] path) => path[0] == "a");
-  assert(filtered.isObject);
-  assert(filtered.length == 1);
-  assert(filtered.hasKey("a"));
-  assert(filtered.getValue("a").isObject);
-  assert(filtered.getValue("a").hasKey("b"));
-  assert(filtered.getValue("a").getValue("b").isObject);
-  assert(filtered.getValue("a").getValue("b").hasKey("c"));
-  assert(filtered.getValue("a").getValue("b").getValue("c") == Json(1));
+  auto filtered1 = filterPaths(json1, [["a"], ["b"], ["c"]], (path) => path[0] == "a" || path[0] == "c");
+  assert(filtered1.isObject);
+  assert(filtered1.toMap.length == 2);
+  assert(filtered1.toMap.hasKey("a"));
+  assert(filtered1.toMap.hasKey("c"));
+  assert(!filtered1.toMap.hasKey("b"));
+
+  // Test nested path filtering
+  Json json2 = [
+    "x": ["y": Json(10)].toJson,
+    "z": Json(20)
+  ].toJson;
+
+  auto filtered2 = filterPaths(json2, [["x", "y"], ["z"]], (path) => path.length > 1);
+  assert(filtered2.isObject);
+  assert(filtered2.toMap.length == 1);
+  assert(filtered2.toMap.hasKey("x"));
+
+  // Test with non-object Json (should return null)
+  Json json3 = Json(42);
+  auto filtered3 = filterPaths(json3, [["a"]], (path) => true);
+  assert(filtered3.type == Json.Type.null_);
+
+  // Test with empty paths array
+  Json json4 = ["a": Json(1)].toJson;
+  auto filtered4 = filterPaths(json4, [], (path) => true);
+  assert(filtered4.isObject);
+  assert(filtered4.toMap.length == 0);
+
+  // Test with filterFunc that rejects all paths
+  Json json5 = [
+    "a": Json(1),
+    "b": Json(2)
+  ].toJson;
+
+  auto filtered5 = filterPaths(json5, [["a"], ["b"]], (path) => false);
+  assert(filtered5.isObject);
+  assert(filtered5.toMap.length == 0);
+
+  // Test with complex nested structure
+  Json json6 = [
+    "level1": [
+      "level2": [
+        "level3": Json(100)
+      ].toJson
+    ].toJson,
+    "other": Json(200)
+  ].toJson;
+
+  auto filtered6 = filterPaths(json6, [["level1", "level2", "level3"], ["other"]],
+    (path) => path[0] == "level1");
+  assert(filtered6.isObject);
+  assert(filtered6.toMap.hasKey("level1"));
+  assert(!filtered6.toMap.hasKey("other"));
+  assert(filtered6.toMap.getValue("level1").isObject);
+  assert(filtered6.toMap.getValue("level1").toMap.hasKey("level2"));
+
+  // Test with Json array (should return null)
+  Json json7 = [Json(1), Json(2), Json(3)].toJson;
+  auto filtered7 = filterPaths(json7, [["0"]], (path) => true);
+  assert(filtered7.type == Json.Type.null_);
 }
 // #endregion with paths and filterFunc
 
