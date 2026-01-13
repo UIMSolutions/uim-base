@@ -9,6 +9,10 @@ license "Apache-2.0"
 targetName "uim-yaml"
 targetType "library"
 
+// external dependencies
+dependency "dyaml" version="~>0.10.0"
+
+// uim dependencies
 dependency "uim-base:core" path=".."
 
 configuration "default" {

@@ -112,3 +112,21 @@ string[] yamlToArray(Node node) {
 T yamlTo(T)(Node node) {
   return node.as!T;
 }
+///
+unittest {
+  import uim.yaml.datatypes.yamls.parse : parseYaml;
+  
+  string yamlStr = `
+name: John Doe
+age: 30
+`;  
+  
+  auto node = parseYaml(yamlStr);
+  assert(node.isMapping);
+  
+  string name = yamlTo!string(node["name"]);
+  int age = yamlTo!int(node["age"]);
+  
+  assert(name == "John Doe");
+  assert(age == 30);
+}

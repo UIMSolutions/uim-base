@@ -6,17 +6,13 @@
 module uim.main;
 
 public {
-    import std.functional;
-    import std.conv;
-    import std.datetime;
-    import std.exception;
+  import std.functional;
+  import std.conv;
+  import std.datetime;
+  import std.exception;
 }
 
 public {
-    import uim.phobos;
-    import uim.vibe;
-    import uim.core;
-    import uim.oop;
-    // import uim.errors;
-    // import uim.yaml;
+  import uim.core;
+  import uim.yaml;
 }
