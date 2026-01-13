@@ -16,27 +16,19 @@ dependency "vibe-d" version="~>0.10.2"
 dependency "dyaml" version="~>0.10.0"
 
 // uim dependencies
-dependency ":vibe" version="*"
-dependency ":phobos" version="*"
 dependency ":core" version="*"
-dependency ":oop" version="*"
-// dependency ":io" version="*"
-// dependency ":errors" version="*"
-// dependency ":yaml" version="*"
+dependency ":yaml" version="*"
 
 sourceFiles "./source/uim/base.d"
+
 configuration "test_all" {
 	targetType "library"
-	versions "test_uim_phobos" "test_uim_vibe" "test_uim_core" "test_uim_oop"  "test_uim_errors" "test_uim_exceptions"
+	versions "test_uim_yaml" "test_uim_core"
 }
 
 // Subpackages
 subPackage "core"
-// subPackage "io"
-// subPackage "errors"
-subPackage "oop"
-subPackage "phobos"
-subPackage "vibe"
+subPackage "yaml"
 // subPackage "yaml"
 
 buildRequirements "allowWarnings" "silenceDeprecations"
