@@ -14,12 +14,12 @@ pure T translateTo(T)(bool value, T trueValue, T falseValue) {
 unittest {
   mixin(ShowTest!"Testing translateTo function");
 
-  assert(translateTo!"string"(true, "Yes", "No") == "Yes");
-  assert(translateTo!"string"(false, "Yes", "No") == "No");
+  assert(translateTo(true, "Yes", "No") == "Yes");
+  assert(translateTo(false, "Yes", "No") == "No");
 
-  assert(translateTo!"int"(true, 1, 0) == 1);
-  assert(translateTo!"int"(false, 1, 0) == 0);
+  assert(translateTo(true, 1, 0) == 1);
+  assert(translateTo(false, 1, 0) == 0);
 
-  assert(translateTo!"double"(true, 3.14, 0.0) == 3.14);
-  assert(translateTo!"double"(false, 3.14, 0.0) == 0.0);
+  assert(translateTo(true, 3.14, 0.0) == 3.14);
+  assert(translateTo(false, 3.14, 0.0) == 0.0);
 }

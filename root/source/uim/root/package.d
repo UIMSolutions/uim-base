@@ -53,8 +53,11 @@ public {
 public {
   import uim.root.constants;
   import uim.root.containers;
-  import uim.root.mixins;
   import uim.root.datatypes;
+  import uim.root.enumerations;
+  import uim.root.logging;
+  import uim.root.mixins;
+  import uim.root.paths;
   import uim.root.tests;
 }
 
