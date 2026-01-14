@@ -3,11 +3,11 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.apps.dms.infrastructure.web.controllers.document_controller;
+module apps.vibe.dms.infrastructure.web.controllers.document_controller;
 
 import vibe.vibe;
-import uim.apps.dms.application.usecases;
-import uim.apps.dms.domain.entities.document;
+import uim.apps.dms_web.application.usecases;
+import uim.apps.dms_web.domain.entities.document;
 import std.uuid;
 import std.conv;
 

@@ -1,0 +1,12 @@
+{
+	"authors": [
+		"Oz"
+	],
+	"copyright": "Copyright © 2026, Oz",
+	"dependencies": {
+		"vibe-d": "~>0.9"
+	},
+	"description": "A simple vibe.d server application.",
+	"license": "proprietary",
+	"name": "dms"
+}

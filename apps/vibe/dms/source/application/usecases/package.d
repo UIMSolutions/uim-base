@@ -3,22 +3,10 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.apps.dms.domain.repositories.folder_repository;
+module uim.apps.dms.application.usecases;
 
-import uim.apps.dms.domain.entities.folder;
-import std.uuid;
-
-@safe:
-
-/**
- * Repository interface for folder persistence
- */
-interface IFolderRepository {
-  void save(Folder folder);
-  Folder findById(UUID id);
-  Folder[] findAll();
-  Folder[] findByOwner(string owner);
-  Folder[] findByParent(UUID parentId);
-  void remove(UUID id);
-  bool exists(UUID id);
+public {
+  import uim.apps.dms.application.usecases.create_folder;
+  import uim.apps.dms.application.usecases.create_document;
+  import uim.apps.dms.application.usecases.list_documents;
 }

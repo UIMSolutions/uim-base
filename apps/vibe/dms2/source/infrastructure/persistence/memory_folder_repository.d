@@ -3,10 +3,10 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.apps.dms.infrastructure.persistence.memory_folder_repository;
+module apps.vibe.dms.infrastructure.persistence.memory_folder_repository;
 
-import uim.apps.dms.domain.entities.folder;
-import uim.apps.dms.domain.repositories.folder_repository;
+import uim.apps.dms_web.domain.entities.folder;
+import uim.apps.dms_web.domain.repositories.folder_repository;
 import std.uuid;
 import std.algorithm;
 import std.array;
