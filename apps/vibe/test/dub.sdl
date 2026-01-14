@@ -1,6 +1,0 @@
-name "test"
-description "A simple vibe.d server application."
-authors "Oz"
-copyright "Copyright © 2026, Oz"
-license "proprietary"
-dependency "vibe-d" version="~>0.9"
