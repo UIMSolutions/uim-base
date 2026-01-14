@@ -41,7 +41,7 @@ unittest {
   }
 
   auto test = new Test;
-  writeln("test.classname", test.classname);
+  // writeln("test.classname", test.classname);
   assert(test.classname == "Test");
   assert(test.stringof == "test");
 
@@ -55,22 +55,23 @@ unittest {
   assert((new Test1).classname == "Test1");
   assert((new Test2).classname == "Test2");
 
+  /* 
   writeln((new Test2).classinfo);
   writeln("Base:", (new Test2).classinfo.base);
   writeln("Name:", (new Test2).classinfo.name);
   writeln("classname:", (new Test2).classname);
   writeln("fullclassname:", (new Test2).classFullname);
-  writeln("Interfaces:", (new Test).classinfo.interfaces);
+  writeln("Interfaces:", (new Test).classinfo.interfaces); */
 
   Object result;
   Test2 function(string) fn;
   string name = "uim.core.helpers.classes.tt";
   () @trusted { result = Object.factory(name); }();
-  debug writeln(result.classname);
+  // debug writeln(result.classname);
   /* debug writeln(x("uim.core.helpers.classes.tt"));*/
-  debug writeln((new Test2).classinfo.create);
+  // debug writeln((new Test2).classinfo.create);
   auto cl = (new Test2).classinfo;
-  debug writeln(cl.create);
+  // debug writeln(cl.create);
 
-  debug writeln((new Test2).create);
+  // debug writeln((new Test2).create);
 }
