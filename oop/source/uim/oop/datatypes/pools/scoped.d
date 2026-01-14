@@ -4,6 +4,8 @@ import uim.oop;
 import core.sync.mutex;
 
 mixin(ShowModule!());
+
+@safe:
 /**
  * Scoped object pool implementation.
  * Provides RAII-style pooled objects that automatically return to the pool.
@@ -12,7 +14,7 @@ mixin(ShowModule!());
  /**
  * Scoped object pool that automatically manages object lifecycle.
  */
-class ScopedObjectPool(T) : IObjectPool!T {
+class ScopedObjectPool(T) : IScopedObjectPool!T {
   private ObjectPool!T _pool;
 
   this(T delegate() @safe factory, size_t initialCapacity = 10, size_t maxCapacity = 100) {

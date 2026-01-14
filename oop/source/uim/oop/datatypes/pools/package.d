@@ -11,4 +11,5 @@ public {
   import uim.oop.datatypes.pools.pooled;
   import uim.oop.datatypes.pools.threadsafe;
   import uim.oop.datatypes.pools.helpers;
+  import uim.oop.datatypes.pools.scoped;
 }

@@ -10,6 +10,7 @@ import core.sync.mutex;
 
 mixin(ShowModule!());
 
+@safe:
 /**
  * Thread-safe object pool implementation.
  * Uses mutex to ensure safe concurrent access.
@@ -139,7 +140,7 @@ ThreadSafeObjectPool!T createThreadSafePool(T)(T delegate() @safe factory,
 /**
  * Thread-safe scoped object pool.
  */
-class ThreadSafeScopedPool(T) : IObjectPool!T {
+class ThreadSafeScopedPool(T) : IScopedObjectPool!T {
   private ThreadSafeObjectPool!T _pool;
 
   this(T delegate() @safe factory, size_t initialCapacity = 10, size_t maxCapacity = 100) {
@@ -214,7 +215,7 @@ unittest {
   assert(pool.releaseCount() == 1);
   
   auto obj2 = pool.acquire();
-  assert(pool.createCount() == 1); // Reused
+  assert(pool.createCount() == 1); // Reused 
 }
 
 unittest {

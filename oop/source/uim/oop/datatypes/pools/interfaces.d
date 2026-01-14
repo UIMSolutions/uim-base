@@ -61,6 +61,14 @@ interface IObjectPool(T) {
   void capacity(size_t newCapacity);
 }
 
+interface IScopedObjectPool(T) : IObjectPool!T {
+  /**
+   * Acquire an object wrapped in a RAII wrapper.
+   * Returns: A PooledObject that automatically returns to the pool
+   */
+  PooledObject!T acquireScoped();
+}
+
 /**
  * Interface for objects that can be reset when returned to a pool.
  */
