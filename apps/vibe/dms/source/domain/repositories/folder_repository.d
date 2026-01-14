@@ -3,25 +3,22 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module apps.dms-web.domain.repositories.document_repository;
+module apps.vibe.dms.domain.repositories.folder_repository;
 
-import uim.apps.dms_web.domain.entities.document;
+import uim.apps.dms_web.domain.entities.folder;
 import std.uuid;
 
 @safe:
 
 /**
- * Repository interface for document persistence
+ * Repository interface for folder persistence
  */
-interface IDocumentRepository {
-  void save(Document document);
-  Document findById(UUID id);
-  Document[] findAll();
-  Document[] findByAuthor(string author);
-  Document[] findByTag(string tag);
-  Document[] findByStatus(DocumentStatus status);
-  Document[] findByFolder(UUID folderId);
+interface IFolderRepository {
+  void save(Folder folder);
+  Folder findById(UUID id);
+  Folder[] findAll();
+  Folder[] findByOwner(string owner);
+  Folder[] findByParent(UUID parentId);
   void remove(UUID id);
   bool exists(UUID id);
-  size_t count();
 }

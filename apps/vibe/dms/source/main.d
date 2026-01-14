@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module apps.dms-web.main;
+module apps.vibe.dms.main;
 
 import vibe.vibe;
 import uim.apps.dms_web.infrastructure.persistence;

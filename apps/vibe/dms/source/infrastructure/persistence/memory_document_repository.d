@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module apps.dms-web.infrastructure.persistence.memory_document_repository;
+module apps.vibe.dms.infrastructure.persistence.memory_document_repository;
 
 import uim.apps.dms_web.domain.entities.document;
 import uim.apps.dms_web.domain.repositories.document_repository;
