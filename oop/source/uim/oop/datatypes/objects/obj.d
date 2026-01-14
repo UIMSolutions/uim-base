@@ -50,7 +50,7 @@ class UIMObject : IObject {
   /// 
   unittest {
     auto obj = new UIMObject;
-    assert(obj.objId != NULL_UUID);
+    assert(obj.objId != NULLUUID);
   }
 
   /// Set the unique object ID.
@@ -197,10 +197,9 @@ class UIMObject : IObject {
 
   Json toJson(string[] showKeys = null, string[] hideKeys = null) {
     Json json = Json.emptyObject;
-    json
-      .set("name", name)
-      .set("classname", this.classname);
-
+    json["name"] = name;
+    json["classname"] = this.classname;
+    
     return json;
   }
 
@@ -209,10 +208,11 @@ class UIMObject : IObject {
   Json[string] debugInfo(string[] showKeys = null, string[] hideKeys = null) {
     Json[string] info;
 
-    return info
-      .set("name", name)
-      .set("classname", this.classname)
-      .set("classFullname", this.classFullname);
+    info["name"] = name;
+    info["classname"] = this.classname;
+    info["classFullname"] = this.classFullname;
+
+    return info;
   }
   // #region debugInfo
 

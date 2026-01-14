@@ -12,5 +12,6 @@ public {
   import uim.yaml.datatypes;
   import uim.yaml.helpers;
   import uim.yaml.nodes;
+  import uim.yaml.tests;
 }
 
