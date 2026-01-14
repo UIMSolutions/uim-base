@@ -344,10 +344,8 @@
 <url><loc>http://127.0.0.1/uim/core/datatypes/strings/upper.html</loc></url>
 <url><loc>http://127.0.0.1/uim/core/datatypes/strings/upper/upper.html</loc></url>
 <url><loc>http://127.0.0.1/uim/core/datatypes/strings/upper/upper.html</loc></url>
-<url><loc>http://127.0.0.1/uim/core/datatypes/uuids/null_.html</loc></url>
-<url><loc>http://127.0.0.1/uim/core/datatypes/uuids/null_/isNullUUID.html</loc></url>
-<url><loc>http://127.0.0.1/uim/core/datatypes/uuids/to_.html</loc></url>
-<url><loc>http://127.0.0.1/uim/core/datatypes/uuids/uuid.html</loc></url>
+<url><loc>http://127.0.0.1/uim/core/datatypes/uuids/nulls.html</loc></url>
+<url><loc>http://127.0.0.1/uim/core/datatypes/uuids/nulls/isNullUUID.html</loc></url>
 <url><loc>http://127.0.0.1/uim/core/datatypes/booleans.html</loc></url>
 <url><loc>http://127.0.0.1/uim/core/datatypes/bsons.html</loc></url>
 <url><loc>http://127.0.0.1/uim/core/datatypes/datetimes.html</loc></url>
