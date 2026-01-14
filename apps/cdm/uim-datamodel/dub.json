@@ -1,0 +1,22 @@
+{
+    "name": "uim-datamodel",
+    "description": "A library for working with common data models in D.",
+    "authors": [
+        "Your Name"
+    ],
+    "license": "MIT",
+    "dependencies": {
+        "vibe-d": "~>0.9.0"
+    },
+    "versions": ["DUB"],
+    "targetPath": "bin/",
+    "sourcePaths": [
+        "source/"
+    ],
+    "subPackages": [
+        {
+            "path": "source/datamodel",
+            "name": "datamodel"
+        }
+    ]
+}
