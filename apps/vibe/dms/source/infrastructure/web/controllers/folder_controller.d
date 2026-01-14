@@ -26,7 +26,7 @@ class FolderController {
     router.post("/api/folders", &createFolder);
     router.get("/api/folders/:id", &getFolder);
     router.put("/api/folders/:id", &updateFolder);
-    router.delete("/api/folders/:id", &deleteFolder);
+    router.delete_("/api/folders/:id", &deleteFolder);
   }
 
   void listFolders(HTTPServerRequest req, HTTPServerResponse res) @trusted {
@@ -40,7 +40,7 @@ class FolderController {
       auto request = CreateFolderRequest(
         json["name"].get!string,
         json["owner"].get!string,
-        json.get("description", "").get!string,
+        "description" in json ? json["description"].get!string : "",
         UUID.init
       );
 
@@ -52,15 +52,15 @@ class FolderController {
       
       res.statusCode = HTTPStatus.created;
       res.writeJsonBody([
-        "success": true,
-        "folderId": response.folderId.toString(),
-        "message": response.message
+        "success": Json(true),
+        "folderId": Json(response.folderId.toString()),
+        "message": Json(response.message)
       ]);
     } catch (Exception e) {
       res.statusCode = HTTPStatus.badRequest;
       res.writeJsonBody([
-        "success": false,
-        "error": e.msg
+        "success": Json(false),
+        "error": Json(e.msg)
       ]);
     }
   }

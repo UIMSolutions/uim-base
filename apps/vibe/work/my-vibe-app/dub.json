@@ -1,0 +1,11 @@
+{
+  "name": "my-vibe-app",
+  "description": "A web application built using the vibe.d framework",
+  "authors": ["Your Name"],
+  "copyright": "Copyright © 2023 Your Name",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "vibe-d": "~>0.9.0"
+  },
+  "versions": ["VibeDefaultMain"]
+}

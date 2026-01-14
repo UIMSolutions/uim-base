@@ -30,7 +30,7 @@ class DocumentController {
     router.post("/api/documents", &createDocument);
     router.get("/api/documents/:id", &getDocument);
     router.put("/api/documents/:id", &updateDocument);
-    router.delete("/api/documents/:id", &deleteDocument);
+    router.delete_("/api/documents/:id", &deleteDocument);
   }
 
   void listDocuments(HTTPServerRequest req, HTTPServerResponse res) @trusted {
@@ -53,15 +53,15 @@ class DocumentController {
       auto response = _listUseCase.execute(request);
       
       res.writeJsonBody([
-        "success": true,
+        "success": Json(true),
         "documents": response.documents.serializeToJson(),
-        "totalCount": response.totalCount
+        "totalCount": Json(response.totalCount)
       ]);
     } catch (Exception e) {
       res.statusCode = HTTPStatus.badRequest;
       res.writeJsonBody([
-        "success": false,
-        "error": e.msg
+        "success": Json(false),
+        "error": Json(e.msg)
       ]);
     }
   }
@@ -74,9 +74,9 @@ class DocumentController {
         json["title"].get!string,
         json["content"].get!string,
         json["author"].get!string,
-        json.get("fileName", "").get!string,
-        json.get("mimeType", "text/plain").get!string,
-        json.get("fileSize", 0).get!size_t,
+        "fileName" in json ? json["fileName"].get!string : "",
+        "mimeType" in json ? json["mimeType"].get!string : "text/plain",
+        "fileSize" in json ? json["fileSize"].get!size_t : 0,
         UUID.init,
         []
       );
@@ -95,15 +95,15 @@ class DocumentController {
       
       res.statusCode = HTTPStatus.created;
       res.writeJsonBody([
-        "success": true,
-        "documentId": response.documentId.toString(),
-        "message": response.message
+        "success": Json(true),
+        "documentId": Json(response.documentId.toString()),
+        "message": Json(response.message)
       ]);
     } catch (Exception e) {
       res.statusCode = HTTPStatus.badRequest;
       res.writeJsonBody([
-        "success": false,
-        "error": e.msg
+        "success": Json(false),
+        "error": Json(e.msg)
       ]);
     }
   }
