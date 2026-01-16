@@ -1,13 +1,16 @@
-name "oop"
-description "uim library to work with OOP"
-homepage "https://www.sueel.de"
+name "service"
+description "uim library to work with SERVICE"
+homepage "https://www.sueel.de/uim/service"
 authors "Ozan Nurettin Süel"
-copyright "Copyright © 2018 - 2025, ONS"
+copyright "Copyright © 2018 - 2026, ONS"
 license "Apache-2.0"
 
 // target
-targetName "uim-oop"
+targetName "uim-service"
 targetType "library"
+
+// external dependencies
+dependency "dservice" version="~>0.10.0"
 
 // uim dependencies
 dependency "uim-base:core" path=".."
@@ -34,11 +37,4 @@ configuration "calls" {
 configuration "verbose" {
 	targetType "library"
 	versions "show_module" "show_test" "show_function"
-}
-
-configuration "runtests" {
-  targetType "executable"
-  sourcePaths "source" "tests"
-  importPaths "source" "tests"
-  mainSourceFile "tests/runner.d"
 }
