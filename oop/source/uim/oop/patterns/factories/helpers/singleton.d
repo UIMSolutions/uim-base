@@ -1,4 +1,4 @@
-module uim.oop.datatypes.factories.helpers.singleton;
+module uim.oop.patterns.factories.helpers.singleton;
 
 import uim.oop;
 

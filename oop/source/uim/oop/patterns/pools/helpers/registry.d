@@ -1,4 +1,4 @@
-module uim.oop.datatypes.pools.helpers.registry;
+module uim.oop.patterns.pools.helpers.registry;
 
 import uim.oop;
 

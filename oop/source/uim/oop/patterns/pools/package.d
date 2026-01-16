@@ -3,13 +3,16 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.datatypes.pools;
+module uim.oop.patterns.pools;
 
 public {
-  import uim.oop.datatypes.pools.interfaces;
-  import uim.oop.datatypes.pools.pool;
-  import uim.oop.datatypes.pools.pooled;
-  import uim.oop.datatypes.pools.threadsafe;
-  import uim.oop.datatypes.pools.helpers;
-  import uim.oop.datatypes.pools.scoped;
+  import uim.oop.patterns.pools.helpers;
+}
+
+public {
+  import uim.oop.patterns.pools.interfaces;
+  import uim.oop.patterns.pools.pool;
+  import uim.oop.patterns.pools.pooled;
+  import uim.oop.patterns.pools.threadsafe;
+  import uim.oop.patterns.pools.scoped;
 }

@@ -1,4 +1,4 @@
-module uim.oop.datatypes.factories.helpers.registry;
+module uim.oop.patterns.factories.helpers.registry;
 
 import uim.oop;
 

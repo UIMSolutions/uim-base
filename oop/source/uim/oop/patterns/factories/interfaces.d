@@ -1,4 +1,4 @@
-module uim.oop.datatypes.factories.interfaces;
+module uim.oop.patterns.factories.interfaces;
 
 import uim.oop;
 

@@ -1,4 +1,4 @@
-module uim.oop.datatypes.pools.scoped;
+module uim.oop.patterns.pools.scoped;
 
 import uim.oop;
 import core.sync.mutex;
