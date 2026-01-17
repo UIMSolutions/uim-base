@@ -2,6 +2,7 @@ module oop.tests.patterns;
 
 public {
     import oop.tests.patterns.bridges;
+    import oop.tests.patterns.chains;
     import oop.tests.patterns.commands;
     import oop.tests.patterns.composites;
     import oop.tests.patterns.decorators;

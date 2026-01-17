@@ -6,6 +6,7 @@
 module uim.oop.patterns;
 
 public import uim.oop.patterns.bridges;
+public import uim.oop.patterns.chains;
 public import uim.oop.patterns.commands;
 public import uim.oop.patterns.composites;
 public import uim.oop.patterns.decorators;
