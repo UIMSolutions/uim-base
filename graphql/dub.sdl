@@ -1,0 +1,12 @@
+name "graphql"
+description "GraphQL query language implementation for UIM"
+authors "Ozan Nurettin Süel (UIManufaktur)"
+homepage "https://github.com/UIMSolutions/uim-base"
+license "Apache-2.0"
+copyright "Copyright © 2018-2026 Ozan Nurettin Süel"
+
+targetType "library"
+targetPath "../lib"
+
+sourcePaths "source"
+importPaths "source"

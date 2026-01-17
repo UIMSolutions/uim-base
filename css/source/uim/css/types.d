@@ -232,12 +232,12 @@ class CSSStyleSheet {
     /**
      * Finds rules by selector
      */
-    CSSRule[] findRules(string selector) const @safe {
-        CSSRule[] found;
+    const(CSSRule)[] findRules(string selector) const @safe {
+        const(CSSRule)[] found;
         foreach (rule; rules) {
             foreach (sel; rule.selectors) {
                 if (sel.selector == selector) {
-                    found ~= cast(CSSRule)rule;
+                    found ~= rule;
                     break;
                 }
             }

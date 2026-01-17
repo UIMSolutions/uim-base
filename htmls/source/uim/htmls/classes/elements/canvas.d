@@ -38,12 +38,13 @@ class DCanvas : DHtmlElement {
 }
 
 auto Canvas() {
-  return new Canvas();
+  return new DCanvas();
 }
 
-auto Canvas(string url, string text = null) {
-  auto element = new Canvas();
-  element.cite(url);
+auto Canvas(string height, string width) {
+  auto element = new DCanvas();
+  element.height(height);
+  element.width(width);
   return element;
 }
 
