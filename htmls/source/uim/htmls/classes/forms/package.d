@@ -9,6 +9,7 @@ module uim.htmls.classes.forms;
 public import uim.htmls.classes.forms.form;
 public import uim.htmls.classes.forms.input;
 public import uim.htmls.classes.forms.button;
+public import uim.htmls.classes.forms.option;
 public import uim.htmls.classes.forms.textarea;
 public import uim.htmls.classes.forms.select;
 public import uim.htmls.classes.forms.label;

@@ -7,7 +7,6 @@ module uim.htmls.classes;
 *****************************************************************************************************************/
 
 public import uim.htmls.classes.attributes;
-public import uim.htmls.classes.element;
 public import uim.htmls.classes.document;
 public import uim.htmls.classes.elements;
 public import uim.htmls.classes.forms;

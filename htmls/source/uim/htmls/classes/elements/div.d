@@ -12,18 +12,25 @@ import uim.htmls;
 
 /// HTML div element
 class DDiv : DHtmlElement {
-    this() {
-        super("div");
-    }
+  this() {
+    super("div");
+  }
 }
 
-auto Div() { return new DDiv(); }
-auto Div(string content) { auto element = new DDiv(); element.text(content); return element; }
+auto Div() {
+  return new DDiv();
+}
+
+auto Div(string content) {
+  auto element = new DDiv();
+  element.text(content);
+  return element;
+}
 
 unittest {
-    auto div = Div();
-    assert(div.toString() == "<div></div>");
-    
-    auto divWithContent = Div("Hello");
-    assert(divWithContent.toString() == "<div>Hello</div>");
+  auto div = Div();
+  assert(div.toString() == "<div></div>");
+
+  auto divWithContent = Div("Hello");
+  assert(divWithContent.toString() == "<div>Hello</div>");
 }

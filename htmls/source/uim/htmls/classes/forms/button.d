@@ -12,33 +12,70 @@ import uim.htmls;
 
 /// HTML button element
 class DButton : DHtmlElement {
-    this() {
-        super("button");
-    }
+  this() {
+    super("button");
+  }
 
-    auto type(string typeValue) {
-        return attribute("type", typeValue);
-    }
+  // #region type
+  IHtmlElement type(string typeValue) {
+    attribute("type", typeValue);
+    return this;
+  }
 
-    auto submit() {
-        return type("submit");
-    }
+  IHtmlAttribute type() {
+    return attribute("type", typeValue);
+  }
+  // #endregion type
 
-    auto reset() {
-        return type("reset");
-    }
+  IHtmlElement submit() {
+    return type("submit");
+  }
 
-    IHtmlAttribute disabled() {
-        return attribute("disabled", "");
-    }
+  IHtmlElement reset() {
+    return type("reset");
+  }
+
+  IHtmlElement disabled() {
+    attribute("disabled", "");
+    return this;
+  }
 }
 
-auto Button() { return new DButton(); }
-auto Button(string text) { auto btn = new DButton(); btn.text(text); return btn; }auto HtmlButton() { return new DButton(); }
-auto HtmlButton(string text) { auto btn = new DButton(); btn.text(text); return btn; }auto ButtonSubmit(string text = "Submit") { auto btn = new DButton(); btn.text(text); btn.submit(); return btn; }
-auto ButtonReset(string text = "Reset") { auto btn = new DButton(); btn.text(text); btn.reset(); return btn; }
+auto Button() {
+  return new DButton();
+}
+
+auto Button(string text) {
+  auto btn = new DButton();
+  btn.text(text);
+  return btn;
+}
+
+auto HtmlButton() {
+  return new DButton();
+}
+
+auto HtmlButton(string text) {
+  auto btn = new DButton();
+  btn.text(text);
+  return btn;
+}
+
+auto ButtonSubmit(string text = "Submit") {
+  auto btn = new DButton();
+  btn.text(text);
+  btn.submit();
+  return btn;
+}
+
+auto ButtonReset(string text = "Reset") {
+  auto btn = new DButton();
+  btn.text(text);
+  btn.reset();
+  return btn;
+}
 
 unittest {
-    auto btn = Button("Click me");
-    assert(btn.toString() == "<button>Click me</button>");
+  auto btn = Button("Click me");
+  assert(btn.toString() == "<button>Click me</button>");
 }

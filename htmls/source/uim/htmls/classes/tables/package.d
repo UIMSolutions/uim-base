@@ -6,6 +6,7 @@ module uim.htmls.classes.tables;
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
 
+public import uim.htmls.classes.tables.interfaces;
 public import uim.htmls.classes.tables.table;
 public import uim.htmls.classes.tables.tr;
 public import uim.htmls.classes.tables.td;

@@ -1,18 +1,20 @@
-module uim.htmls.classes.elements;
-
 /****************************************************************************************************************
 * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
+module uim.htmls.classes.elements;
 
-public import uim.htmls.classes.elements.a;
-public import uim.htmls.classes.elements.div;
-public import uim.htmls.classes.elements.span;
-public import uim.htmls.classes.elements.p;
-public import uim.htmls.classes.elements.h;
-public import uim.htmls.classes.elements.br;
-public import uim.htmls.classes.elements.hr;
-public import uim.htmls.classes.elements.img;
-public import uim.htmls.classes.elements.link;
-public import uim.htmls.classes.elements.interfaces;
+public {
+  import uim.htmls.classes.elements.element;
+  import uim.htmls.classes.elements.a;
+  import uim.htmls.classes.elements.div;
+  import uim.htmls.classes.elements.span;
+  import uim.htmls.classes.elements.p;
+  import uim.htmls.classes.elements.h;
+  import uim.htmls.classes.elements.br;
+  import uim.htmls.classes.elements.hr;
+  import uim.htmls.classes.elements.img;
+  import uim.htmls.classes.elements.link;
+  import uim.htmls.classes.elements.interfaces;
+}

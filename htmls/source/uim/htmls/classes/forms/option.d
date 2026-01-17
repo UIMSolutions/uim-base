@@ -3,23 +3,30 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.htmls.classes.elements.span;
+module uim.htmls.classes.forms.option;
 
 import uim.htmls;
 
 @safe:
 
-/// HTML span element
-class DSpan : DHtmlElement {
+/// HTML option element
+class DOption : DHtmlElement {
     this() {
-        super("span");
+        super("option");
+    }
+
+    auto value(string valueValue) {
+        return attribute("value", valueValue);
+    }
+
+    auto selected() {
+        return attribute("selected", "");
+    }
+
+    auto disabled() {
+        return attribute("disabled", "");
     }
 }
 
-auto Span() { return new DSpan(); }
-auto Span(string content) { auto element = new DSpan(); element.text(content); return element; }
-
-unittest {
-    auto span = Span("Text");
-    assert(span.toString() == "<span>Text</span>");
-}
+auto Option() { return new DOption(); }
+auto Option(string value, string text) { auto opt = new DOption(); opt.value(value).text(text); return opt; }
