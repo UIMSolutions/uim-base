@@ -19,7 +19,8 @@ dependency "dyaml" version="~>0.10.0"
 dependency ":core" version="*"
 dependency ":yaml" version="*"
 // dependency ":json" version="*"
-// dependency ":oop" version="*"
+dependency ":oop" version="*"
+dependency ":service" version="*"
 
 sourceFiles "./source/uim/base.d"
 
@@ -31,7 +32,8 @@ configuration "test_all" {
 // Subpackages
 subPackage "core"
 subPackage "yaml"
-// subPackage "yaml"
+subPackage "oop"
+subPackage "service"
 
 buildRequirements "allowWarnings" "silenceDeprecations"
 buildOptions "ignoreDeprecations" "debugInfo"

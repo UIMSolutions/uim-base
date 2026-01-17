@@ -9,11 +9,8 @@ license "Apache-2.0"
 targetName "uim-service"
 targetType "library"
 
-// external dependencies
-dependency "dservice" version="~>0.10.0"
-
 // uim dependencies
-dependency "uim-base:core" path=".."
+dependency "uim-base:oop" path=".."
 
 configuration "default" {
 	targetType "library"
