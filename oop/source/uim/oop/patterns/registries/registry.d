@@ -11,7 +11,6 @@ mixin(ShowModule!());
 
 @safe:
 
-
 /**
  * Basic registry implementation
  */
@@ -195,135 +194,7 @@ class LazyRegistry(K, V) : IRegistry!(K, V) {
   }
 }
 
-/**
- * Hierarchical registry with parent-child relationships
- */
-class HierarchicalRegistry(K, V) : IRegistry!(K, V) {
-  private V[K] _items;
-  private HierarchicalRegistry!(K, V) _parent;
 
-  this(HierarchicalRegistry!(K, V) parent = null) {
-    _parent = parent;
-  }
-
-  void register(K key, V value) {
-    _items[key] = value;
-  }
-
-  V get(K key) {
-    // Check local registry
-    if (auto item = key in _items) {
-      return *item;
-    }
-
-    // Check parent registry
-    if (_parent !is null) {
-      return _parent.get(key);
-    }
-
-    throw new Exception("Item not found in hierarchical registry: " ~ key.to!string);
-  }
-
-  bool has(K key) {
-    if ((key in _items) !is null) {
-      return true;
-    }
-    if (_parent !is null) {
-      return _parent.has(key);
-    }
-    return false;
-  }
-
-  bool hasLocal(K key) {
-    return (key in _items) !is null;
-  }
-
-  void unregister(K key) {
-    _items.remove(key);
-  }
-
-  void clear() {
-    _items.clear();
-  }
-
-  K[] keys() {
-    return _items.keys;
-  }
-
-  V[] values() {
-    return _items.values;
-  }
-
-  size_t count() {
-    return _items.length;
-  }
-
-  void setParent(HierarchicalRegistry!(K, V) parent) {
-    _parent = parent;
-  }
-
-  HierarchicalRegistry!(K, V) createChild() {
-    return new HierarchicalRegistry!(K, V)(this);
-  }
-}
-
-/**
- * Thread-safe registry with synchronized access
- */
-synchronized class ThreadSafeRegistry(K, V) : IRegistry!(K, V) {
-  private V[K] _items;
-
-  void register(K key, V value) {
-    synchronized(this) {
-      _items[key] = value;
-    }
-  }
-
-  V get(K key) {
-    synchronized(this) {
-      if (auto item = key in _items) {
-        return *item;
-      }
-      throw new Exception("Item not found in thread-safe registry: " ~ key.to!string);
-    }
-  }
-
-  bool has(K key) {
-    synchronized(this) {
-      return (key in _items) !is null;
-    }
-  }
-
-  void unregister(K key) {
-    synchronized(this) {
-      _items.remove(key);
-    }
-  }
-
-  void clear() {
-    synchronized(this) {
-      _items.clear();
-    }
-  }
-
-  K[] keys() {
-    synchronized(this) {
-      return _items.keys;
-    }
-  }
-
-  V[] values() {
-    synchronized(this) {
-      return _items.values;
-    }
-  }
-
-  size_t count() {
-    synchronized(this) {
-      return _items.length;
-    }
-  }
-}
 
 // Unit tests
 unittest {
@@ -454,11 +325,3 @@ unittest {
   assert(sum == 6);
 }
 
-unittest {
-  // Test thread-safe registry
-  auto registry = new shared ThreadSafeRegistry!(string, int);
-  registry.register("key", 42);
-  
-  assert(registry.has("key"));
-  assert(registry.get("key") == 42);
-}

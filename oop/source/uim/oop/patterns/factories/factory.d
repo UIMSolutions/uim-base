@@ -109,18 +109,18 @@ unittest {
     string getName() { return "ProductB"; }
   }
 
-  FactoryRegistry!IProduct.register("A", () => cast(Object)new ProductA());
-  FactoryRegistry!IProduct.register("B", () => cast(Object)new ProductB());
+  RegisterBasedFactory!IProduct.register("A", () => cast(Object)new ProductA());
+  RegisterBasedFactory!IProduct.register("B", () => cast(Object)new ProductB());
 
-  assert(FactoryRegistry!IProduct.isRegistered("A"));
+  assert(RegisterBasedFactory!IProduct.isRegistered("A"));
   
-  auto productA = FactoryRegistry!IProduct.create("A");
+  auto productA = RegisterBasedFactory!IProduct.create("A");
   assert(productA.getName() == "ProductA");
 
-  auto productB = FactoryRegistry!IProduct.create("B");
+  auto productB = RegisterBasedFactory!IProduct.create("B");
   assert(productB.getName() == "ProductB");
 
-  FactoryRegistry!IProduct.clear();
+  RegisterBasedFactory!IProduct.clear();
 }
 
 unittest {

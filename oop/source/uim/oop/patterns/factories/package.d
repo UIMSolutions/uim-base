@@ -4,4 +4,5 @@ public {
   import uim.oop.patterns.factories.interfaces;
   import uim.oop.patterns.factories.factory;
   import uim.oop.patterns.factories.helpers;
+  import uim.oop.patterns.factories.registrybased;
 }
