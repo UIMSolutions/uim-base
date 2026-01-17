@@ -17,20 +17,37 @@ class DImg : DHtmlElement {
         this.selfClosing(true);
     }
 
-    IHtmlAttribute src(string source) {
-        return attribute("src", source);
+    IHtmlElement src(string source) {
+        attribute("src", source);
+        return this;
+    }
+    IHtmlAttribute src() {
+        return attribute("src");
     }
 
-    IHtmlAttribute alt(string altText) {
-        return attribute("alt", altText);
+
+    IHtmlElement alt(string altText) {
+        attribute("alt", altText);
+        return this;
+    }
+    IHtmlAttribute alt() {
+        return attribute("alt");
     }
 
-    IHtmlAttribute width(string w) {
-        return attribute("width", w);
+    IHtmlElement width(string w) {
+        attribute("width", w);
+        return this;
+    }
+    IHtmlAttribute width() {
+        return attribute("width");
     }
 
-    IHtmlAttribute height(string h) {
-        return attribute("height", h);
+    IHtmlElement height(string h) {
+        attribute("height", h);
+        return this;
+    }
+    IHtmlAttribute height() {
+        return attribute("height");
     }
 }
 

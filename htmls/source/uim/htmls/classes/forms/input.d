@@ -25,7 +25,7 @@ class DInput : DHtmlElement, IInput {
         return attribute("name");
     }
 
-    IInput name(string nameValue) {
+    IHtmlElement name(string nameValue) {
         attribute("name", nameValue);
         return this;
     }

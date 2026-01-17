@@ -17,16 +17,30 @@ class DLink : DHtmlElement {
         this.selfClosing(true);
     }
 
-    IHtmlAttribute rel(string relValue) {
-        return attribute("rel", relValue);
+    IHtmlElement rel(string relValue) {
+        attribute("rel", relValue);
+        return this;
+    }
+    IHtmlAttribute rel() {
+        return attribute("rel");
     }
 
-    IHtmlAttribute href(string url) {
-        return attribute("href", url);
+    IHtmlElement href(string url) {
+        attribute("href", url);
+        return this;
     }
 
-    IHtmlAttribute type(string typeValue) {
-        return attribute("type", typeValue);
+    IHtmlAttribute href() {
+        return attribute("href");
+    }
+
+    IHtmlElement type(string typeValue) {
+        attribute("type", typeValue);
+        return this;
+    }
+
+    IHtmlAttribute type() {
+        return attribute("type");
     }
 }
 

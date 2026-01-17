@@ -22,7 +22,7 @@ class DHtmlElement : IHtmlElement {
   }
 
   // Setter for tagName
-  auto tagName(string value) {
+  IHtmlElement tagName(string value) {
     _tagName = value;
     return this;
   }
@@ -33,7 +33,7 @@ class DHtmlElement : IHtmlElement {
   }
 
   // Setter for content
-  auto content(string value) {
+  IHtmlElement content(string value) {
     _content = value;
     return this;
   }
@@ -44,7 +44,7 @@ class DHtmlElement : IHtmlElement {
   }
 
   // Setter for selfClosing
-  auto selfClosing(bool value) {
+  IHtmlElement selfClosing(bool value) {
     _selfClosing = value;
     return this;
   }
@@ -63,7 +63,7 @@ class DHtmlElement : IHtmlElement {
   }
 
   /// Add an attribute to the element
-  auto attribute(string name, string value) {
+  IHtmlElement attribute(string name, string value) {
     _attributes[name] = new DHtmlAttribute(name, value);
     return this;
   }
@@ -75,8 +75,9 @@ class DHtmlElement : IHtmlElement {
 
   // #region ID
   /// Set or get ID attribute
-  IHtmlAttribute id(string value) {
-    return attribute("id", value);
+  IHtmlElement id(string value) {
+    attribute("id", value);
+    return this;
   }
 
   string id() {
@@ -86,7 +87,7 @@ class DHtmlElement : IHtmlElement {
   // #endregion ID
 
   /// Add CSS class
-  auto addClass(string className) {
+  IHtmlElement addClass(string className) {
     auto classAttr = attribute("class");
     if (classAttr) {
       classAttr.value(classAttr.value ~ " " ~ className);
@@ -97,18 +98,19 @@ class DHtmlElement : IHtmlElement {
   }
 
   /// Set style attribute
-  IHtmlAttribute style(string styleValue) {
-    return attribute("style", styleValue);
+  IHtmlElement style(string styleValue) {
+    attribute("style", styleValue);
+    return this;
   }
 
   /// Add a child element
-  auto addChild(DHtmlElement child) {
+  IHtmlElement addChild(DHtmlElement child) {
     _children ~= child;
     return this;
   }
 
   /// Add multiple children
-  auto addChildren(DHtmlElement[] children...) {
+  IHtmlElement addChildren(DHtmlElement[] children...) {
     foreach (child; children) {
       addChild(child);
     }
@@ -116,12 +118,18 @@ class DHtmlElement : IHtmlElement {
   }
 
   /// Get children array
-  DHtmlElement[] children() {
+  IHtmlElement[] children() {
     return _children;
   }
 
+  /// Remove all children
+  IHtmlElement clearChildren() {
+    _children = [];
+    return this;
+  }
+
   /// Set text content
-  auto text(string textContent) {
+  IHtmlElement text(string textContent) {
     _content = textContent;
     return this;
   }
@@ -135,8 +143,8 @@ class DHtmlElement : IHtmlElement {
       return "";
 
     string[] attrStrings;
-    foreach (attr; _attributes.values) {
-      attrStrings ~= attr.toString();
+    foreach (attribute; _attributes) {
+      attrStrings ~= attribute.toString();
     }
     return " " ~ attrStrings.join(" ");
   }
@@ -166,12 +174,12 @@ class DHtmlElement : IHtmlElement {
   }
 
   /// Create a new element
-  static DHtmlElement create(string tag) {
+  static IHtmlElement create(string tag) {
     return new DHtmlElement(tag);
   }
 }
 
-auto HtmlElement(string tag) {
+IHtmlElement HtmlElement(string tag) {
   return new DHtmlElement(tag);
 }
 

@@ -23,7 +23,7 @@ class DButton : DHtmlElement {
   }
 
   IHtmlAttribute type() {
-    return attribute("type", typeValue);
+    return attribute("type");
   }
   // #endregion type
 

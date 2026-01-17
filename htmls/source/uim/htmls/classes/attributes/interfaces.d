@@ -17,4 +17,6 @@ interface IHtmlAttribute {
     // Getter / Setter for value
     string value();
     IHtmlAttribute value(string val);
+
+    string toString();
 }

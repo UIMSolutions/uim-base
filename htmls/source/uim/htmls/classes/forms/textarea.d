@@ -11,7 +11,7 @@ import uim.htmls;
 @safe:
 
 /// HTML textarea element
-class DTextarea : DHtmlElement, IHtmlElement {
+class DTextarea : DHtmlElement {
   this() {
     super("textarea");
   }
@@ -54,7 +54,7 @@ class DTextarea : DHtmlElement, IHtmlElement {
     return _content;
   }
 
-  IHtmlElement content(string value) {
+  override IHtmlElement content(string value) {
     _content = value;
     return this;
   }

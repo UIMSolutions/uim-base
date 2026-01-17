@@ -11,15 +11,22 @@ import uim.htmls;
 
 /// HTML span element
 class DSpan : DHtmlElement {
-    this() {
-        super("span");
-    }
+  this() {
+    super("span");
+  }
 }
 
-auto Span() { return new DSpan(); }
-auto Span(string content) { auto element = new DSpan(); element.text(content); return element; }
+auto Span() {
+  return new DSpan();
+}
+
+auto Span(string content) {
+  auto element = new DSpan();
+  element.text(content);
+  return element;
+}
 
 unittest {
-    auto span = Span("Text");
-    assert(span.toString() == "<span>Text</span>");
+  auto span = Span("Text");
+  assert(span.toString() == "<span>Text</span>");
 }

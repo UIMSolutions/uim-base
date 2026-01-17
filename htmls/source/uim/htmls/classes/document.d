@@ -34,8 +34,8 @@ class DHtmlDocument : UIMObject {
     // Setter for charset
     auto charset(string value) { _charset = value; return this; }
 
-    protected DHtmlElement _head;
-    protected DHtmlElement _body;
+    protected IHtmlElement _head;
+    protected IHtmlElement _body;
     protected string[] _metaTags;
     protected string[] _stylesheets;
     protected string[] _scripts;
@@ -49,42 +49,42 @@ class DHtmlDocument : UIMObject {
     }
 
     /// Add a meta tag
-    auto addMeta(string name, string content) {
+    DHtmlDocument addMeta(string name, string content) {
         _metaTags ~= `<meta name="` ~ name ~ `" content="` ~ content ~ `">`;
         return this;
     }
 
     /// Add a stylesheet link
-    auto addStylesheet(string href) {
+    DHtmlDocument addStylesheet(string href) {
         _stylesheets ~= `<link rel="stylesheet" href="` ~ href ~ `">`;
         return this;
     }
 
     /// Add a script tag
-    auto addScript(string src) {
+    DHtmlDocument addScript(string src) {
         _scripts ~= `<script src="` ~ src ~ `"></script>`;
         return this;
     }
 
     /// Add inline style
-    auto addInlineStyle(string css) {
+    DHtmlDocument addInlineStyle(string css) {
         _stylesheets ~= `<style>` ~ css ~ `</style>`;
         return this;
     }
 
     /// Add inline script
-    auto addInlineScript(string js) {
+    DHtmlDocument addInlineScript(string js) {
         _scripts ~= `<script>` ~ js ~ `</script>`;
         return this;
     }
 
     /// Get body element for adding content
-    DHtmlElement body() {
+    IHtmlElement body() {
         return _body;
     }
 
     /// Get head element
-    DHtmlElement head() {
+    IHtmlElement head() {
         return _head;
     }
 

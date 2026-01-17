@@ -18,11 +18,13 @@ unittest {
   assert(result[2] == "3");
 }
 
-string toString(T)(T value) if (!isArray!T) {
+/* 
+string toString(T)(T value) if (!isArray!T && !is(T == string) && !isObject!T) {
   return to!string(value);
-}
+} */ 
 ///
 unittest {
-  auto result = 42.toString;
-  assert(result == "42");
+//   auto result = 42.toString;
+//   assert(result == "42");
+// }
 }
