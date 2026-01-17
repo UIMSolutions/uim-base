@@ -27,28 +27,34 @@ class DTextarea : DHtmlFormElement {
     return this;
   }
 
-  IHtmlAttribute rows(string rowCount) {
-    return attribute("rows", rowCount);
+  IHtmlElement rows(string rowCount) {
+    attribute("rows", rowCount);
+    return this;
   }
 
-  IHtmlAttribute cols(string colCount) {
-    return attribute("cols", colCount);
+  IHtmlElement cols(string colCount) {
+    attribute("cols", colCount);
+    return this;
   }
 
-  IHtmlAttribute placeholder(string text) {
-    return attribute("placeholder", text);
+  IHtmlElement placeholder(string text) {
+    attribute("placeholder", text);
+    return this;
   }
 
-  IHtmlAttribute required() {
-    return attribute("required", "");
+  IHtmlElement required() {
+    attribute("required", "");
+    return this;
   }
 
-  IHtmlAttribute disabled() {
-    return attribute("disabled", "");
+  IHtmlElement disabled() {
+    attribute("disabled", "");
+    return this;
   }
 
-  IHtmlAttribute readonly() {
-    return attribute("readonly", "");
+  IHtmlElement readonly() {
+    attribute("readonly", "");
+    return this;
   }
 
   protected string _content;

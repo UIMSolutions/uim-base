@@ -1,5 +1,4 @@
-module uim.services.tests.service;
-
+module uim.services.tests.test;
 
 import uim.services;
 

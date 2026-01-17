@@ -10,7 +10,7 @@ import uim.htmls;
 @safe:
 
 /// Represents an HTML attribute with name and value
-class DHtmlAttribute : UIMObject, IHtmlAttribute {
+class DHtmlAttribute : /* UIMObject, */ IHtmlAttribute {
     protected string _name;
     protected string _value;
 
@@ -27,7 +27,7 @@ class DHtmlAttribute : UIMObject, IHtmlAttribute {
     override IHtmlAttribute value(string val) { _value = val; return this; }
 
     this() {
-        super();
+        // super();
     }
 
     this(string attributeName, string attributeValue = null) {

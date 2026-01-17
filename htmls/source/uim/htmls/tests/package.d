@@ -60,7 +60,8 @@ void testFormElements() {
     
     // Test select
     auto select = Select("country");
-    select.addOption("us", "USA").addOption("uk", "UK");
+    select.addOption("us", "USA");
+    select.addOption("uk", "UK");
 }
 
 void testTableElements() {

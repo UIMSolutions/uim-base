@@ -1,4 +1,4 @@
-module source.uim.services.classes.interfaces;
+module uim.services.classes.interfaces;
 
 import uim.services;
 

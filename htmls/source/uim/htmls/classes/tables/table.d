@@ -16,16 +16,19 @@ class DTable : DHtmlElement {
         super("table");
     }
 
-    IHtmlAttribute border(string borderValue) {
-        return attribute("border", borderValue);
+    IHtmlElement border(string borderValue) {
+        attribute("border", borderValue);
+        return this;
     }
 
-    IHtmlAttribute cellspacing(string value) {
-        return attribute("cellspacing", value);
+    IHtmlElement cellspacing(string value) {
+        attribute("cellspacing", value);
+        return this;
     }
 
-    IHtmlAttribute cellpadding(string value) {
-        return attribute("cellpadding", value);
+    IHtmlElement cellpadding(string value) {
+        attribute("cellpadding", value);
+        return this;
     }
 }
 

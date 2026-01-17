@@ -1,4 +1,4 @@
-module source.uim.services.classes.services;
+module uim.services.classes.service;
 
 import uim.services;
 
