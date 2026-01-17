@@ -13,4 +13,5 @@ public {
     import oop.tests.patterns.prototypes;
     import oop.tests.patterns.states;
     import oop.tests.patterns.strategies;
+    import oop.tests.patterns.visitors;
 }
