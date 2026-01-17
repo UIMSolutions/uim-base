@@ -12,7 +12,7 @@ import uim.htmls;
 /// Interface for form elements with name attribute
 interface IHtmlForm {
   /// Get or set the name attribute
-  string name();
+  IHtmlAttribute name();
   IHtmlForm name(string nameValue);
 
   IHtmlAttribute action(string url);
@@ -32,12 +32,11 @@ unittest {
       super("input");
     }
 
-    override string name() {
-      auto attr = attribute("name");
-      return attr ? attr.value : null;
+    IHtmlAttribute name() {
+      return attribute("name");
     }
 
-    override IForm name(string nameValue) {
+    override IHtmlForm name(string nameValue) {
       attribute("name", nameValue);
       return this;
     }

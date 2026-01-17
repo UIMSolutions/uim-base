@@ -15,3 +15,4 @@ public import uim.htmls.classes.elements.br;
 public import uim.htmls.classes.elements.hr;
 public import uim.htmls.classes.elements.img;
 public import uim.htmls.classes.elements.link;
+public import uim.htmls.classes.elements.interfaces;

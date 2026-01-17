@@ -12,49 +12,65 @@ import uim.htmls;
 
 /// HTML textarea element
 class DTextarea : DHtmlElement, IHtmlElement {
-    this() {
-        super("textarea");
-    }
+  this() {
+    super("textarea");
+  }
 
-    override string name() {
-        auto attr = attribute("name");
-        return attr ? attr.value : null;
-    }
+  IHtmlAttribute name() {
+    return attribute("name");
+  }
 
-    IHtmlElement name(string nameValue) {
-        attribute("name", nameValue);
-        return this;
-    }
+  IHtmlElement name(string nameValue) {
+    attribute("name", nameValue);
+    return this;
+  }
 
-    IHtmlAttribute rows(string rowCount) {
-        return attribute("rows", rowCount);
-    }
+  IHtmlAttribute rows(string rowCount) {
+    return attribute("rows", rowCount);
+  }
 
-    IHtmlAttribute cols(string colCount) {
-        return attribute("cols", colCount);
-    }
+  IHtmlAttribute cols(string colCount) {
+    return attribute("cols", colCount);
+  }
 
-    IHtmlAttribute placeholder(string text) {
-        return attribute("placeholder", text);
-    }
+  IHtmlAttribute placeholder(string text) {
+    return attribute("placeholder", text);
+  }
 
-    IHtmlAttribute required() {
-        return attribute("required", "");
-    }
+  IHtmlAttribute required() {
+    return attribute("required", "");
+  }
 
-    IHtmlAttribute disabled() {
-        return attribute("disabled", "");
-    }
+  IHtmlAttribute disabled() {
+    return attribute("disabled", "");
+  }
 
-    IHtmlAttribute readonly() {
-        return attribute("readonly", "");
-    }
+  IHtmlAttribute readonly() {
+    return attribute("readonly", "");
+  }
+
+  protected string _content;
+  override string content() {
+    return _content;
+  }
+
+  IHtmlElement content(string value) {
+    _content = value;
+    return this;
+  }
 }
 
-auto Textarea() { return new DTextarea(); }
-auto Textarea(string name) { auto ta = new DTextarea(); ta.name(name); return ta; }
+auto Textarea() {
+  return new DTextarea();
+}
+
+auto Textarea(string name) {
+  auto ta = new DTextarea();
+  ta.name(name);
+  return ta;
+}
 
 unittest {
-    auto ta = Textarea("comment");
-    assert(ta.toString().indexOf("textarea") > 0);
+  auto ta = Textarea("comment");
+  assert(ta.toString().indexOf("textarea") > 0);
 }

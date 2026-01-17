@@ -28,7 +28,7 @@ class DButton : DHtmlElement {
         return type("reset");
     }
 
-    auto disabled() {
+    IHtmlAttribute disabled() {
         return attribute("disabled", "");
     }
 }

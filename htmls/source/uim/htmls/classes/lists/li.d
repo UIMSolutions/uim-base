@@ -16,7 +16,7 @@ class DLi : DHtmlElement {
         super("li");
     }
 
-    auto value(string itemValue) {
+    IHtmlAttribute value(string itemValue) {
         return attribute("value", itemValue);
     }
 }

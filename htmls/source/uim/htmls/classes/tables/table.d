@@ -16,15 +16,15 @@ class DTable : DHtmlElement {
         super("table");
     }
 
-    auto border(string borderValue) {
+    IHtmlAttribute border(string borderValue) {
         return attribute("border", borderValue);
     }
 
-    auto cellspacing(string value) {
+    IHtmlAttribute cellspacing(string value) {
         return attribute("cellspacing", value);
     }
 
-    auto cellpadding(string value) {
+    IHtmlAttribute cellpadding(string value) {
         return attribute("cellpadding", value);
     }
 }

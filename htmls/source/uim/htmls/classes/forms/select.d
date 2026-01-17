@@ -38,9 +38,8 @@ class DSelect : DHtmlElement {
         super("select");
     }
 
-    override string name() {
-        auto attr = attribute("name");
-        return attr ? attr.value : null;
+    IHtmlAttribute name() {
+        return attribute("name");
     }
 
     DSelect name(string nameValue) {
@@ -48,15 +47,15 @@ class DSelect : DHtmlElement {
         return this;
     }
 
-    auto multiple() {
+    IHtmlAttribute multiple() {
         return attribute("multiple", "");
     }
 
-    auto required() {
+    IHtmlAttribute required() {
         return attribute("required", "");
     }
 
-    auto disabled() {
+    IHtmlAttribute disabled() {
         return attribute("disabled", "");
     }
 

@@ -38,7 +38,7 @@ class DHtmlElement {
     protected DHtmlElement[] _children;
 
     this() {
-        super();
+        // super();
         _selfClosing = false;
     }
 
@@ -54,12 +54,12 @@ class DHtmlElement {
     }
 
     /// Get an attribute by name
-    DHtmlAttribute attribute(string name) {
+    IHtmlAttribute attribute(string name) {
         return _attributes.get(name, null);
     }
 
     /// Set or get ID attribute
-    auto id(string value) {
+    IHtmlAttribute id(string value) {
         return attribute("id", value);
     }
 
@@ -80,7 +80,7 @@ class DHtmlElement {
     }
 
     /// Set style attribute
-    auto style(string styleValue) {
+    IHtmlAttribute style(string styleValue) {
         return attribute("style", styleValue);
     }
 

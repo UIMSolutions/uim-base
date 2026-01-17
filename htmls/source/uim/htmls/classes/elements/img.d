@@ -17,19 +17,19 @@ class DImg : DHtmlElement {
         this.selfClosing(true);
     }
 
-    auto src(string source) {
+    IHtmlAttribute src(string source) {
         return attribute("src", source);
     }
 
-    auto alt(string altText) {
+    IHtmlAttribute alt(string altText) {
         return attribute("alt", altText);
     }
 
-    auto width(string w) {
+    IHtmlAttribute width(string w) {
         return attribute("width", w);
     }
 
-    auto height(string h) {
+    IHtmlAttribute height(string h) {
         return attribute("height", h);
     }
 }

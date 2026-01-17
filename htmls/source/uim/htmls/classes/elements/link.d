@@ -17,15 +17,15 @@ class DLink : DHtmlElement {
         this.selfClosing(true);
     }
 
-    auto rel(string relValue) {
+    IHtmlAttribute rel(string relValue) {
         return attribute("rel", relValue);
     }
 
-    auto href(string url) {
+    IHtmlAttribute href(string url) {
         return attribute("href", url);
     }
 
-    auto type(string typeValue) {
+    IHtmlAttribute type(string typeValue) {
         return attribute("type", typeValue);
     }
 }

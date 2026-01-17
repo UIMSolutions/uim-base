@@ -16,11 +16,11 @@ class DTd : DHtmlElement {
         super("td");
     }
 
-    auto colspan(string value) {
+    IHtmlAttribute colspan(string value) {
         return attribute("colspan", value);
     }
 
-    auto rowspan(string value) {
+    IHtmlAttribute rowspan(string value) {
         return attribute("rowspan", value);
     }
 }
