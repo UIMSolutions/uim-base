@@ -4,18 +4,14 @@ import uim.htmls;
 
 @safe:
 
-class DCheckbox : DHtmlFormElement, IInput {
+class DCheckbox : DInput {
   this() {
     super("input");
     type("checkbox");
   }
 
-  IHtmlAttribute type() {
-    return attribute("type");
-  }
-
-  IHtmlElement type(string typeValue) {
-    attribute("type", typeValue);
-    return this;
+  this(string tag) {
+    super(tag);
+    type("checkbox");
   }
 }

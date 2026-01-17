@@ -9,7 +9,7 @@ class DHtmlFormElement : DHtmlElement, IHtmlFormElement {
     super(tagName);
   }
 
-  IHtmlForm form() {
+  IHtmlAttribute form() {
     return attribute("form");
   }
 

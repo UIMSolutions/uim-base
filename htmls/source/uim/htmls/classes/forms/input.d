@@ -17,9 +17,18 @@ class DInput : DHtmlFormElement, IInput {
     this.selfClosing(true);
   }
 
-  IHtmlElement type(string typeValue) {
+  this(string tag) {
+    super(tag);
+    this.selfClosing(true);
+  }
+
+  IInput type(string typeValue) {
     attribute("type", typeValue);
     return this;
+  }
+
+  IHtmlAttribute type() {
+    return attribute("type");
   }
 
   IHtmlAttribute name() {

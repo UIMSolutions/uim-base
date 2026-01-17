@@ -48,7 +48,7 @@ unittest {
 }
 
 interface IInput : IHtmlFormElement {
-    IHtmlElement type();
+    IHtmlAttribute type();
     IInput type(string typeValue);
 }
 
