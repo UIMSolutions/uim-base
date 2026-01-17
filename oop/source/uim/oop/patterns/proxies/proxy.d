@@ -10,7 +10,7 @@ import uim.oop.patterns.proxies.interfaces;
 /**
  * Base abstract class for subjects.
  */
-abstract class Subject : ISubject {
+abstract class ProxySubject : ISubject {
   /**
    * Execute the subject's main operation.
    */
@@ -353,7 +353,7 @@ class SmartReferenceProxy : IProxy {
 
 @safe unittest {
   // Test basic proxy
-  class RealSubject : Subject {
+  class RealSubject : ProxySubject {
     override string execute() {
       return "Real subject executed";
     }
@@ -374,7 +374,7 @@ class SmartReferenceProxy : IProxy {
 
 @safe unittest {
   // Test virtual proxy (lazy initialization)
-  class ExpensiveSubject : Subject {
+  class ExpensiveSubject : ProxySubject {
     override string execute() {
       return "Expensive operation";
     }
@@ -390,7 +390,7 @@ class SmartReferenceProxy : IProxy {
 
 @safe unittest {
   // Test protection proxy
-  class SecureSubject : Subject {
+  class SecureSubject : ProxySubject {
     override string execute() {
       return "Secure data";
     }
@@ -409,7 +409,7 @@ class SmartReferenceProxy : IProxy {
 
 @safe unittest {
   // Test caching proxy
-  class DataSubject : Subject {
+  class DataSubject : ProxySubject {
     private int _callCount = 0;
 
     override string execute() {
@@ -443,7 +443,7 @@ class SmartReferenceProxy : IProxy {
 
 @safe unittest {
   // Test logging proxy
-  class SimpleSubject : Subject {
+  class SimpleSubject : ProxySubject {
     override string execute() {
       return "Operation completed";
     }
@@ -464,7 +464,7 @@ class SmartReferenceProxy : IProxy {
 
 @safe unittest {
   // Test remote proxy
-  class ServiceSubject : Subject {
+  class ServiceSubject : ProxySubject {
     override string execute() {
       return "Service response";
     }
@@ -483,7 +483,7 @@ class SmartReferenceProxy : IProxy {
 
 @safe unittest {
   // Test smart reference proxy
-  class ResourceSubject : Subject {
+  class ResourceSubject : ProxySubject {
     override string execute() {
       return "Resource accessed";
     }

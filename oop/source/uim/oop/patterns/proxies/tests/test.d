@@ -13,7 +13,7 @@ mixin(ShowModule!());
 
 // Test Subjects
 
-class DatabaseService : Subject {
+class DatabaseService : ProxySubject {
   private string _connectionString;
 
   this(string connectionString) {
@@ -25,7 +25,7 @@ class DatabaseService : Subject {
   }
 }
 
-class ImageService : Subject {
+class ImageService : ProxySubject {
   private string _imagePath;
 
   this(string imagePath) {
@@ -37,7 +37,7 @@ class ImageService : Subject {
   }
 }
 
-class APIService : Subject {
+class APIService : ProxySubject {
   private string _endpoint;
 
   this(string endpoint) {
@@ -49,7 +49,7 @@ class APIService : Subject {
   }
 }
 
-class ExpensiveCalculation : Subject {
+class ExpensiveCalculation : ProxySubject {
   private int _value;
 
   this(int value) {
@@ -64,7 +64,7 @@ class ExpensiveCalculation : Subject {
   }
 }
 
-class SecureDocument : Subject {
+class SecureDocument : ProxySubject {
   private string _content;
 
   this(string content) {
