@@ -11,9 +11,11 @@ public import uim.oop.patterns.decorators;
 public import uim.oop.patterns.facades;
 public import uim.oop.patterns.factories;
 public import uim.oop.patterns.flyweights;
+public import uim.oop.patterns.mediators;
 public import uim.oop.patterns.observers;
 public import uim.oop.patterns.pools;
 public import uim.oop.patterns.prototypes;
 public import uim.oop.patterns.registries;
+public import uim.oop.patterns.states;
 public import uim.oop.patterns.strategies;
 /* public import uim.oop.patterns.singleton; */
