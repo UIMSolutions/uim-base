@@ -85,7 +85,7 @@ class SecureDocument : ProxySubject {
 
   auto proxy = new VirtualProxy(() {
     creationCount++;
-    return cast(ISubject) new DatabaseService("localhost:5432");
+    return cast(IProxySubject) new DatabaseService("localhost:5432");
   });
 
   assert(!proxy.isInitialized(), "Proxy should not be initialized");
@@ -105,7 +105,7 @@ class SecureDocument : ProxySubject {
   mixin(ShowTest!("Virtual Proxy - Image loading"));
 
   auto imageProxy = new VirtualProxy(() {
-    return cast(ISubject) new ImageService("/path/to/large/image.jpg");
+    return cast(IProxySubject) new ImageService("/path/to/large/image.jpg");
   });
 
   assert(!imageProxy.isInitialized(), "Image should not be loaded yet");
@@ -302,7 +302,7 @@ class SecureDocument : ProxySubject {
   mixin(ShowTest!("Proxy chaining - Virtual + Caching"));
 
   auto virtualProxy = new VirtualProxy(() {
-    return cast(ISubject) new ExpensiveCalculation(100);
+    return cast(IProxySubject) new ExpensiveCalculation(100);
   });
 
   auto cachingProxy = new CachingProxy(virtualProxy);
@@ -347,7 +347,7 @@ class SecureDocument : ProxySubject {
   mixin(ShowTest!("Real-world scenario - Lazy image loading with caching"));
 
   auto imageProxy = new VirtualProxy(() {
-    return cast(ISubject) new ImageService("/images/large-photo.jpg");
+    return cast(IProxySubject) new ImageService("/images/large-photo.jpg");
   });
 
   auto cachedImageProxy = new CachingProxy(imageProxy);

@@ -10,7 +10,7 @@ import uim.oop.patterns.proxies.interfaces;
 /**
  * Base abstract class for subjects.
  */
-abstract class ProxySubject : ISubject {
+abstract class ProxySubject : IProxySubject {
   /**
    * Execute the subject's main operation.
    */
@@ -22,19 +22,19 @@ abstract class ProxySubject : ISubject {
  * Forwards requests to the real subject.
  */
 abstract class Proxy : IProxy {
-  protected ISubject _realSubject;
+  protected IProxySubject _realSubject;
 
   /**
    * Constructor.
    */
-  this(ISubject realSubject) @safe {
+  this(IProxySubject realSubject) @safe {
     _realSubject = realSubject;
   }
 
   /**
    * Get the real subject.
    */
-  ISubject getRealSubject() @safe {
+  IProxySubject getRealSubject() @safe {
     return _realSubject;
   }
 
@@ -51,14 +51,14 @@ abstract class Proxy : IProxy {
  * Creates the real subject only when needed.
  */
 class VirtualProxy : IVirtualProxy {
-  private ISubject _realSubject;
-  private ISubject delegate() @safe _factory;
+  private IProxySubject _realSubject;
+  private IProxySubject delegate() @safe _factory;
   private bool _initialized;
 
   /**
    * Constructor with factory function.
    */
-  this(ISubject delegate() @safe factory) @safe {
+  this(IProxySubject delegate() @safe factory) @safe {
     _factory = factory;
     _initialized = false;
   }
@@ -73,7 +73,7 @@ class VirtualProxy : IVirtualProxy {
   /**
    * Get the real subject (lazy initialization).
    */
-  ISubject getRealSubject() @safe {
+  IProxySubject getRealSubject() @safe {
     if (!_initialized) {
       _realSubject = _factory();
       _initialized = true;
@@ -94,13 +94,13 @@ class VirtualProxy : IVirtualProxy {
  * Controls access to the real subject based on permissions.
  */
 class ProtectionProxy : IProtectionProxy {
-  private ISubject _realSubject;
+  private IProxySubject _realSubject;
   private bool _accessAllowed;
 
   /**
    * Constructor.
    */
-  this(ISubject realSubject, bool accessAllowed = true) @safe {
+  this(IProxySubject realSubject, bool accessAllowed = true) @safe {
     _realSubject = realSubject;
     _accessAllowed = accessAllowed;
   }
@@ -122,7 +122,7 @@ class ProtectionProxy : IProtectionProxy {
   /**
    * Get the real subject.
    */
-  ISubject getRealSubject() @safe {
+  IProxySubject getRealSubject() @safe {
     return _realSubject;
   }
 
@@ -142,14 +142,14 @@ class ProtectionProxy : IProtectionProxy {
  * Caches the result of expensive operations.
  */
 class CachingProxy : ICachingProxy {
-  private ISubject _realSubject;
+  private IProxySubject _realSubject;
   private string _cachedResult;
   private bool _isCached;
 
   /**
    * Constructor.
    */
-  this(ISubject realSubject) @safe {
+  this(IProxySubject realSubject) @safe {
     _realSubject = realSubject;
     _isCached = false;
   }
@@ -157,7 +157,7 @@ class CachingProxy : ICachingProxy {
   /**
    * Get the real subject.
    */
-  ISubject getRealSubject() @safe {
+  IProxySubject getRealSubject() @safe {
     return _realSubject;
   }
 
@@ -193,13 +193,13 @@ class CachingProxy : ICachingProxy {
  * Logs all accesses to the real subject.
  */
 class LoggingProxy : ILoggingProxy {
-  private ISubject _realSubject;
+  private IProxySubject _realSubject;
   private string[] _log;
 
   /**
    * Constructor.
    */
-  this(ISubject realSubject) @safe {
+  this(IProxySubject realSubject) @safe {
     _realSubject = realSubject;
     _log = [];
   }
@@ -207,7 +207,7 @@ class LoggingProxy : ILoggingProxy {
   /**
    * Get the real subject.
    */
-  ISubject getRealSubject() @safe {
+  IProxySubject getRealSubject() @safe {
     return _realSubject;
   }
 
@@ -243,14 +243,14 @@ class LoggingProxy : ILoggingProxy {
  * Simulates remote object access.
  */
 class RemoteProxy : IRemoteProxy {
-  private ISubject _realSubject;
+  private IProxySubject _realSubject;
   private string _endpoint;
   private bool _connected;
 
   /**
    * Constructor.
    */
-  this(ISubject realSubject, string endpoint) @safe {
+  this(IProxySubject realSubject, string endpoint) @safe {
     _realSubject = realSubject;
     _endpoint = endpoint;
     _connected = false;
@@ -287,7 +287,7 @@ class RemoteProxy : IRemoteProxy {
   /**
    * Get the real subject.
    */
-  ISubject getRealSubject() @safe {
+  IProxySubject getRealSubject() @safe {
     return _realSubject;
   }
 
@@ -308,13 +308,13 @@ class RemoteProxy : IRemoteProxy {
  * Performs additional actions when accessing the real subject.
  */
 class SmartReferenceProxy : IProxy {
-  private ISubject _realSubject;
+  private IProxySubject _realSubject;
   private int _accessCount;
 
   /**
    * Constructor.
    */
-  this(ISubject realSubject) @safe {
+  this(IProxySubject realSubject) @safe {
     _realSubject = realSubject;
     _accessCount = 0;
   }
@@ -322,7 +322,7 @@ class SmartReferenceProxy : IProxy {
   /**
    * Get the real subject.
    */
-  ISubject getRealSubject() @safe {
+  IProxySubject getRealSubject() @safe {
     return _realSubject;
   }
 
@@ -360,7 +360,7 @@ class SmartReferenceProxy : IProxy {
   }
 
   class BasicProxy : Proxy {
-    this(ISubject realSubject) {
+    this(IProxySubject realSubject) {
       super(realSubject);
     }
   }
@@ -380,7 +380,7 @@ class SmartReferenceProxy : IProxy {
     }
   }
 
-  auto proxy = new VirtualProxy(() => cast(ISubject) new ExpensiveSubject());
+  auto proxy = new VirtualProxy(() => cast(IProxySubject) new ExpensiveSubject());
   assert(!proxy.isInitialized(), "Should not be initialized yet");
 
   auto result = proxy.execute();
@@ -417,7 +417,7 @@ class SmartReferenceProxy : IProxy {
       return "Data fetched";
     }
 
-    int getCallCount() {
+    int getCallCount() @safe {
       return _callCount;
     }
   }

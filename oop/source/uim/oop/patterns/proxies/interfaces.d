@@ -8,7 +8,7 @@ module uim.oop.patterns.proxies.interfaces;
 /**
  * Base interface for subjects that can be proxied.
  */
-interface ISubject {
+interface IProxySubject {
   /**
    * Execute the subject's main operation.
    */
@@ -19,11 +19,11 @@ interface ISubject {
  * Interface for proxy objects.
  * Provides the same interface as the real subject.
  */
-interface IProxy : ISubject {
+interface IProxy : IProxySubject {
   /**
    * Get the real subject.
    */
-  ISubject getRealSubject() @safe;
+  IProxySubject getRealSubject() @safe;
 }
 
 /**
