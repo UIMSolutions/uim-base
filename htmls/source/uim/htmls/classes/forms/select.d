@@ -43,8 +43,9 @@ class DSelect : DHtmlElement {
         return attr ? attr.value : null;
     }
 
-    override auto name(string nameValue) {
-        return attribute("name", nameValue);
+    DSelect name(string nameValue) {
+        attribute("name", nameValue);
+        return this;
     }
 
     auto multiple() {

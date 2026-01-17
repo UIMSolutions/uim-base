@@ -11,7 +11,7 @@ import uim.htmls;
 @safe:
 
 /// HTML textarea element
-class DTextarea : DHtmlElement {
+class DTextarea : DHtmlElement, IHtmlElement {
     this() {
         super("textarea");
     }
@@ -21,31 +21,32 @@ class DTextarea : DHtmlElement {
         return attr ? attr.value : null;
     }
 
-    override auto name(string nameValue) {
-        return attribute("name", nameValue);
+    IHtmlElement name(string nameValue) {
+        attribute("name", nameValue);
+        return this;
     }
 
-    auto rows(string rowCount) {
+    IHtmlAttribute rows(string rowCount) {
         return attribute("rows", rowCount);
     }
 
-    auto cols(string colCount) {
+    IHtmlAttribute cols(string colCount) {
         return attribute("cols", colCount);
     }
 
-    auto placeholder(string text) {
+    IHtmlAttribute placeholder(string text) {
         return attribute("placeholder", text);
     }
 
-    auto required() {
+    IHtmlAttribute required() {
         return attribute("required", "");
     }
 
-    auto disabled() {
+    IHtmlAttribute disabled() {
         return attribute("disabled", "");
     }
 
-    auto readonly() {
+    IHtmlAttribute readonly() {
         return attribute("readonly", "");
     }
 }

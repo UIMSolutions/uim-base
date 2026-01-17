@@ -42,7 +42,9 @@ void testBasicElements() {
 
 void testFormElements() {
     // Test form
-    auto form = Form().action("/submit").post();
+    auto form = Form();
+    form.action("/submit");
+    form.post();
     
     // Test inputs
     auto input = InputText("username").placeholder("Enter username");

@@ -11,7 +11,7 @@ import uim.htmls;
 @safe:
 
 /// Base class for all HTML elements
-class DHtmlElement : UIMObject {
+class DHtmlElement {
     protected string _tagName;
     protected string _content;
     protected bool _selfClosing;

@@ -11,46 +11,46 @@ import uim.htmls;
 @safe:
 
 /// HTML input element
-class DInput : DHtmlElement {
+class DInput : DHtmlElement, IInput {
     this() {
         super("input");
         this.selfClosing(true);
     }
 
-    auto type(string typeValue) {
+    IHtmlAttribute type(string typeValue) {
         return attribute("type", typeValue);
     }
 
-    override string name() {
-        auto attr = attribute("name");
-        return attr ? attr.value : null;
+    IHtmlAttribute name() {
+        return attribute("name");
     }
 
-    override auto name(string nameValue) {
-        return attribute("name", nameValue);
+    IInput name(string nameValue) {
+        attribute("name", nameValue);
+        return this;
     }
 
-    auto value(string valueValue) {
+    IHtmlAttribute value(string valueValue) {
         return attribute("value", valueValue);
     }
 
-    auto placeholder(string text) {
+    IHtmlAttribute placeholder(string text) {
         return attribute("placeholder", text);
     }
 
-    auto required() {
+    IHtmlAttribute required() {
         return attribute("required", "");
     }
 
-    auto disabled() {
+    IHtmlAttribute disabled() {
         return attribute("disabled", "");
     }
 
-    auto readonly() {
+    IHtmlAttribute readonly() {
         return attribute("readonly", "");
     }
 
-    auto checked() {
+    IHtmlAttribute checked() {
         return attribute("checked", "");
     }
 }

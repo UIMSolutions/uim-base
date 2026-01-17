@@ -1,17 +1,16 @@
-module uim.htmls.classes.attribute;
-
 /****************************************************************************************************************
 * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
+module uim.htmls.classes.attributes.attribute;
 
 import uim.htmls;
 
 @safe:
 
 /// Represents an HTML attribute with name and value
-class DHtmlAttribute : UIMObject {
+class DHtmlAttribute : UIMObject, IHtmlAttribute {
     protected string _name;
     protected string _value;
 
@@ -19,13 +18,13 @@ class DHtmlAttribute : UIMObject {
     override string name() { return _name; }
     
     // Setter for name
-    override auto name(string value) { _name = value; return this; }
+    override IHtmlAttribute name(string value) { _name = value; return this; }
     
     // Getter for value
-    string value() { return _value; }
+    override string value() { return _value; }
     
     // Setter for value
-    auto value(string val) { _value = val; return this; }
+    override IHtmlAttribute value(string val) { _value = val; return this; }
 
     this() {
         super();
@@ -46,7 +45,7 @@ class DHtmlAttribute : UIMObject {
     }
 
     /// Create a new attribute
-    static DHtmlAttribute create(string name, string value = null) {
+    static IHtmlAttribute create(string name, string value = null) {
         return new DHtmlAttribute(name, value);
     }
 }

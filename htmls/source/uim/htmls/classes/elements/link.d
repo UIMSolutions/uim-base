@@ -33,7 +33,8 @@ class DLink : DHtmlElement {
 auto Link() { return new DLink(); }
 auto Link(string href, string rel = "stylesheet") { 
     auto element = new DLink(); 
-    element.href(href).rel(rel);
+    element.href(href);
+    element.rel(rel);
     return element; 
 }
 

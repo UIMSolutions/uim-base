@@ -1,39 +1,47 @@
-module uim.htmls.classes.forms.form;
-
 /****************************************************************************************************************
 * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
+module uim.htmls.classes.forms.form;
 
 import uim.htmls;
 
 @safe:
 
 /// HTML form element
-class DForm : DHtmlElement {
+class DForm : DHtmlElement, IHtmlForm {
     this() {
         super("form");
     }
 
-    auto action(string url) {
+    IHtmlAttribute name() {
+        return attribute("name");
+    }
+
+    override IHtmlForm name(string nameValue) {
+        attribute("name", nameValue);
+        return this;
+    }
+    
+    IHtmlAttribute action(string url) {
         return attribute("action", url);
     }
 
-    auto method(string methodValue) {
+    IHtmlAttribute method(string methodValue) {
         return attribute("method", methodValue);
     }
 
-    auto post() {
+    IHtmlForm post() {
         return method("POST");
     }
 
-    auto get() {
+    IHtmlForm get() {
         return method("GET");
     }
 
-    auto enctype(string value) {
-        return attribute("enctype", value);
+    IHtmlAttribute enctype(string value) {
+        return attribute("enctype", value).value;
     }
 }
 

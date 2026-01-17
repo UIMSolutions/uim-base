@@ -12,3 +12,4 @@ public import uim.htmls.classes.forms.button;
 public import uim.htmls.classes.forms.textarea;
 public import uim.htmls.classes.forms.select;
 public import uim.htmls.classes.forms.label;
+public import uim.htmls.classes.forms.interfaces;
