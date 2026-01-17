@@ -6,6 +6,7 @@
 module uim.htmls.classes.elements;
 
 public {
+  import uim.htmls.classes.elements.address;
   import uim.htmls.classes.elements.element;
   import uim.htmls.classes.elements.a;
   import uim.htmls.classes.elements.div;
