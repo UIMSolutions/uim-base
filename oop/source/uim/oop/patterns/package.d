@@ -6,12 +6,14 @@
 module uim.oop.patterns;
 
 public import uim.oop.patterns.bridges;
+public import uim.oop.patterns.commands;
 public import uim.oop.patterns.composites;
 public import uim.oop.patterns.decorators;
 public import uim.oop.patterns.facades;
 public import uim.oop.patterns.factories;
 public import uim.oop.patterns.flyweights;
 public import uim.oop.patterns.mediators;
+public import uim.oop.patterns.mementos;
 public import uim.oop.patterns.observers;
 public import uim.oop.patterns.pools;
 public import uim.oop.patterns.prototypes;

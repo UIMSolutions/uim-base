@@ -53,8 +53,8 @@ abstract class UndoableCommand : BaseCommand, IUndoableCommand {
         return _executed;
     }
     
-    protected abstract void doExecute();
-    protected abstract void doUndo();
+    protected abstract @safe void doExecute();
+    protected abstract @safe void doUndo();
 }
 
 /**
@@ -542,13 +542,13 @@ class RemoteControl {
     auto light1 = new Light("Light1");
     auto light2 = new Light("Light2");
     
-    auto macro = new MacroCommand("AllLightsOn");
-    macro.addCommand(new LightOnCommand(light1));
-    macro.addCommand(new LightOnCommand(light2));
+    auto macroCmd = new MacroCommand("AllLightsOn");
+    macroCmd.addCommand(new LightOnCommand(light1));
+    macroCmd.addCommand(new LightOnCommand(light2));
     
-    assert(macro.commandCount() == 2);
+    assert(macroCmd.commandCount() == 2);
     
-    macro.execute();
+    macroCmd.execute();
     assert(light1.isOn());
     assert(light2.isOn());
 }
