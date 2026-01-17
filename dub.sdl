@@ -34,6 +34,7 @@ subPackage "core"
 subPackage "yaml"
 subPackage "oop"
 subPackage "service"
+subPackage "entities"
 
 buildRequirements "allowWarnings" "silenceDeprecations"
 buildOptions "ignoreDeprecations" "debugInfo"

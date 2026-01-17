@@ -10,7 +10,6 @@ import uim.oop;
 mixin(ShowModule!());
 
 @safe:
-w
 /**
  * Base component abstract class.
  */

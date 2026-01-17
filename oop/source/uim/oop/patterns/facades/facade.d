@@ -74,128 +74,6 @@ abstract class SubsystemComponent : ISubsystemComponent {
   abstract void shutdown();
 }
 
-/**
- * Composite facade that manages multiple subsystems.
- */
-class CompositeFacade : Facade, IObservableFacade {
-  protected ISubsystemComponent[] _components;
-  protected string[string] _componentStatus;
-
-  /**
-   * Add a subsystem component to the facade.
-   * Params:
-   *   component = The component to add
-   */
-  void addComponent(ISubsystemComponent component) {
-    if (component !is null) {
-      _components ~= component;
-      _componentStatus[component.name()] = "inactive";
-    }
-  }
-
-  /**
-   * Initialize all subsystem components.
-   * Returns: true if all components initialized successfully
-   */
-  override bool initialize() {
-    if (_initialized) {
-      return true;
-    }
-
-    foreach (component; _components) {
-      if (component.initialize()) {
-        _componentStatus[component.name()] = "active";
-      } else {
-        _componentStatus[component.name()] = "failed";
-        return false;
-      }
-    }
-
-    _initialized = true;
-    return true;
-  }
-
-  /**
-   * Shutdown all subsystem components.
-   */
-  override void shutdown() {
-    foreach (component; _components) {
-      component.shutdown();
-      _componentStatus[component.name()] = "inactive";
-    }
-    _initialized = false;
-  }
-
-  /**
-   * Get facade status information.
-   * Returns: Status string
-   */
-  string status() {
-    import std.conv : to;
-    return _initialized ? "Active (" ~ _components.length.to!string ~ " components)" : "Inactive";
-  }
-
-  /**
-   * Get list of managed components.
-   * Returns: Array of component names
-   */
-  string[] components() {
-    import std.algorithm : map;
-    import std.array : array;
-    return _components.map!(c => c.name()).array;
-  }
-
-  /**
-   * Check if a specific component is active.
-   * Params:
-   *   componentName = Name of the component
-   * Returns: true if component is active
-   */
-  bool isComponentActive(string componentName) {
-    if (auto status = componentName in _componentStatus) {
-      return *status == "active";
-    }
-    return false;
-  }
-}
-
-/**
- * Configurable facade with configuration support.
- */
-class ConfigurableFacade : CompositeFacade, IConfigurableFacade {
-  protected string[string] _configuration;
-
-  /**
-   * Configure the facade with options.
-   * Params:
-   *   options = Configuration options
-   */
-  void configure(string[string] options) {
-    _configuration = options.dup;
-  }
-
-  /**
-   * Get current configuration.
-   * Returns: Current configuration options
-   */
-  string[string] configuration() {
-    return _configuration.dup;
-  }
-
-  /**
-   * Get a configuration value.
-   * Params:
-   *   key = Configuration key
-   *   defaultValue = Default value if key not found
-   * Returns: Configuration value or default
-   */
-  string getConfig(string key, string defaultValue = "") {
-    if (auto value = key in _configuration) {
-      return *value;
-    }
-    return defaultValue;
-  }
-}
 
 /**
  * Simple facade wrapper for delegate-based operations.
@@ -246,8 +124,8 @@ class SimpleFacade : Facade {
  * Helper function to create a simple facade.
  */
 SimpleFacade createSimpleFacade(
-    bool delegate() @safe initFunc,
-    void delegate() @safe shutdownFunc) {
+  bool delegate() @safe initFunc,
+  void delegate() @safe shutdownFunc) {
   return new SimpleFacade(initFunc, shutdownFunc);
 }
 
@@ -288,13 +166,13 @@ unittest {
 
 unittest {
   auto facade = new ConfigurableFacade();
-  
+
   string[string] config;
   config["host"] = "localhost";
   config["port"] = "8080";
-  
+
   facade.configure(config);
-  
+
   assert(facade.getConfig("host") == "localhost", "Should get configured value");
   assert(facade.getConfig("port") == "8080", "Should get configured value");
   assert(facade.getConfig("unknown", "default") == "default", "Should return default for unknown key");
@@ -305,13 +183,8 @@ unittest {
   bool shutdownCalled = false;
 
   auto facade = createSimpleFacade(
-    () {
-      initialized = true;
-      return true;
-    },
-    () {
-      shutdownCalled = true;
-    }
+    () { initialized = true; return true; },
+    () { shutdownCalled = true; }
   );
 
   assert(!facade.isReady(), "Should not be ready initially");
