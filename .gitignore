@@ -56,3 +56,4 @@ phobos/phobos-test-unittest
 errors/errors-test-test_uim_errors
 vibe/vibe-test-test_library
 oop/oop-test-default
+oop/oop-test-default

@@ -20,7 +20,7 @@ dependency ":core" version="*"
 dependency ":yaml" version="*"
 // dependency ":json" version="*"
 dependency ":oop" version="*"
-dependency ":service" version="*"
+dependency ":services" version="*"
 
 sourceFiles "./source/uim/base.d"
 
@@ -33,7 +33,7 @@ configuration "test_all" {
 subPackage "core"
 subPackage "yaml"
 subPackage "oop"
-subPackage "service"
+subPackage "services"
 subPackage "entities"
 
 buildRequirements "allowWarnings" "silenceDeprecations"
