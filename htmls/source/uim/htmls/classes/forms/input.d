@@ -21,7 +21,12 @@ class DInput : DHtmlElement {
         return attribute("type", typeValue);
     }
 
-    auto name(string nameValue) {
+    override string name() {
+        auto attr = attribute("name");
+        return attr ? attr.value : null;
+    }
+
+    override auto name(string nameValue) {
         return attribute("name", nameValue);
     }
 
@@ -59,7 +64,7 @@ auto InputCheckbox(string name = null) { auto input = new DInput(); input.type("
 auto InputRadio(string name = null) { auto input = new DInput(); input.type("radio"); if (name) input.name(name); return input; }
 auto InputFile(string name = null) { auto input = new DInput(); input.type("file"); if (name) input.name(name); return input; }
 auto InputHidden(string name = null) { auto input = new DInput(); input.type("hidden"); if (name) input.name(name); return input; }
-auto InputSubmit(string value = "Submit") { auto input = new DInput(); input.type("submit").value(value); return input; }
+auto InputSubmit(string value = "Submit") { auto input = new DInput(); input.type("submit"); input.value(value); return input; }
 
 unittest {
     auto input = InputText("username");

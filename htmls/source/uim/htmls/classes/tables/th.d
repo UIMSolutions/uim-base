@@ -24,7 +24,7 @@ class DTh : DHtmlElement {
         return attribute("rowspan", value);
     }
 
-    auto scope(string value) {
+    auto scope_(string value) {
         return attribute("scope", value);
     }
 }

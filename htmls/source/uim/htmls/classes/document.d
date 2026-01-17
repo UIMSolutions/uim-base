@@ -11,7 +11,7 @@ import uim.htmls;
 @safe:
 
 /// Represents a complete HTML document
-class DHtmlDocument : DObject {
+class DHtmlDocument : UIMObject {
     protected string _title;
     protected string _lang;
     protected string _charset;
@@ -110,7 +110,7 @@ class DHtmlDocument : DObject {
         }
 
         // Add additional head elements
-        foreach (child; _head._children) {
+        foreach (child; _head.children()) {
             html ~= child.toString() ~ "\n";
         }
 
@@ -118,11 +118,11 @@ class DHtmlDocument : DObject {
         html ~= "<body>\n";
         
         // Add body content
-        if (_body._content.length > 0) {
-            html ~= _body._content ~ "\n";
+        if (_body.content().length > 0) {
+            html ~= _body.content() ~ "\n";
         }
 
-        foreach (child; _body._children) {
+        foreach (child; _body.children()) {
             html ~= child.toString() ~ "\n";
         }
 

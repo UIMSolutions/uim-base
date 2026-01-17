@@ -34,9 +34,9 @@ class DButton : DHtmlElement {
 }
 
 auto Button() { return new DButton(); }
-auto Button(string text) { auto btn = new DButton(); btn.text(text); return btn; }
-auto ButtonSubmit(string text = "Submit") { auto btn = new DButton(); btn.text(text).submit(); return btn; }
-auto ButtonReset(string text = "Reset") { auto btn = new DButton(); btn.text(text).reset(); return btn; }
+auto Button(string text) { auto btn = new DButton(); btn.text(text); return btn; }auto HtmlButton() { return new DButton(); }
+auto HtmlButton(string text) { auto btn = new DButton(); btn.text(text); return btn; }auto ButtonSubmit(string text = "Submit") { auto btn = new DButton(); btn.text(text); btn.submit(); return btn; }
+auto ButtonReset(string text = "Reset") { auto btn = new DButton(); btn.text(text); btn.reset(); return btn; }
 
 unittest {
     auto btn = Button("Click me");

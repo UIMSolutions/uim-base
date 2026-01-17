@@ -98,6 +98,11 @@ class DHtmlElement : UIMObject {
         return this;
     }
 
+    /// Get children array
+    DHtmlElement[] children() {
+        return _children;
+    }
+
     /// Set text content
     auto text(string textContent) {
         _content = textContent;

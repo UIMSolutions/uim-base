@@ -11,15 +11,15 @@ import uim.htmls;
 @safe:
 
 /// Represents an HTML attribute with name and value
-class DHtmlAttribute : DObject {
+class DHtmlAttribute : UIMObject {
     protected string _name;
     protected string _value;
 
     // Getter for name
-    string name() { return _name; }
+    override string name() { return _name; }
     
     // Setter for name
-    auto name(string value) { _name = value; return this; }
+    override auto name(string value) { _name = value; return this; }
     
     // Getter for value
     string value() { return _value; }
@@ -33,7 +33,8 @@ class DHtmlAttribute : DObject {
 
     this(string attributeName, string attributeValue = null) {
         this();
-        this.name(attributeName).value(attributeValue);
+        this.name(attributeName);
+        this.value(attributeValue);
     }
 
     /// Convert attribute to string representation

@@ -16,7 +16,12 @@ class DTextarea : DHtmlElement {
         super("textarea");
     }
 
-    auto name(string nameValue) {
+    override string name() {
+        auto attr = attribute("name");
+        return attr ? attr.value : null;
+    }
+
+    override auto name(string nameValue) {
         return attribute("name", nameValue);
     }
 
