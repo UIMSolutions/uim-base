@@ -1,6 +1,5 @@
 module uim.oop.patterns.factories.helpers.builder;
 
-
 import uim.oop;
 
 mixin(ShowModule!());

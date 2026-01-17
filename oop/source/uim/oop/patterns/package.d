@@ -25,5 +25,6 @@ public import uim.oop.patterns.prototypes;
 public import uim.oop.patterns.registries;
 public import uim.oop.patterns.states;
 public import uim.oop.patterns.strategies;
+public import uim.oop.patterns.transferobjects;
 public import uim.oop.patterns.visitors;
 /* public import uim.oop.patterns.singleton; */
