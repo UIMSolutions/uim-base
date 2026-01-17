@@ -7,10 +7,12 @@ module uim.htmls.classes.forms.option;
 
 import uim.htmls;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML option element
-class DOption : DHtmlFormElement {
+class DSelectOption : DHtmlFormElement {
     this() {
         super("option");
     }
@@ -28,5 +30,5 @@ class DOption : DHtmlFormElement {
     }
 }
 
-auto Option() { return new DOption(); }
-auto Option(string value, string text) { auto opt = new DOption(); opt.value(value).text(text); return opt; }
+auto SelectOption() { return new DSelectOption(); }
+auto SelectOption(string value, string text) { auto opt = new DSelectOption(); opt.value(value).text(text); return opt; }

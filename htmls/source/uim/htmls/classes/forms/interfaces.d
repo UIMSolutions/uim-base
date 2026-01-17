@@ -53,6 +53,6 @@ interface IInput : IHtmlFormElement {
 }
 
 interface IHtmlFormElement : IHtmlElement {
-    IHtmlForm form();
+    IHtmlAttribute form();
     IHtmlFormElement form(string formId);
 }

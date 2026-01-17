@@ -7,6 +7,8 @@ module uim.htmls.classes.forms.label;
 
 import uim.htmls;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML label element

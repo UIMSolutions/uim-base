@@ -7,7 +7,7 @@ module uim.oop.patterns.interpreters.tests.test;
 
 import uim.oop;
 
-mixin(Version!"test_uim_oop");
+mixin(ShowModule!());
 
 @safe:
 

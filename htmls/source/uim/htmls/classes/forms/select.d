@@ -25,20 +25,23 @@ class DSelect : DHtmlFormElement {
         return this;
     }
 
-    IHtmlAttribute multiple() {
-        return attribute("multiple", "");
+    IHtmlElement multiple() {
+        attribute("multiple", "");
+        return this;
     }
 
-    IHtmlAttribute required() {
-        return attribute("required", "");
+    IHtmlElement required() {
+        attribute("required", "");
+        return this;
     }
 
-    IHtmlAttribute disabled() {
-        return attribute("disabled", "");
+    IHtmlElement disabled() {
+        attribute("disabled", "");
+        return this;
     }
 
-    auto addOption(string value, string text) {
-        addChild(Option(value, text));
+    IHtmlElement addOption(string value, string text) {
+        addChild(SelectOption(value, text));
         return this;
     }
 }

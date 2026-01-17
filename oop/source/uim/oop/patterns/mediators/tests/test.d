@@ -7,6 +7,6 @@ module uim.oop.patterns.mediators.tests.test;
 
 import uim.oop;
 
-mixin(Version!"test_uim_oop");
+mixin(ShowModule!());
 
 @safe:

@@ -7,6 +7,8 @@ module uim.htmls.classes.forms.form;
 
 import uim.htmls;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML form element

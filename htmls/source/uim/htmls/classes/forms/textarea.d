@@ -8,6 +8,8 @@ module uim.htmls.classes.forms.textarea;
 
 import uim.htmls;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML textarea element

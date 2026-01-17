@@ -2,6 +2,8 @@ module uim.htmls.classes.forms.element;
 
 import uim.htmls;
 
+mixin(ShowModule!());
+
 @safe:
 
 class DHtmlFormElement : DHtmlElement, IHtmlFormElement {
