@@ -174,7 +174,12 @@ struct Matrix {
      */
     Matrix luDecomposition() const pure {
         assert(rows == cols, "LU decomposition only for square matrices");
-        auto result = Matrix(data);
+        auto result = Matrix(rows, cols);
+        
+        // Copy data
+        foreach (i; 0 .. rows) {
+            result.data[i][] = data[i][];
+        }
         
         foreach (k; 0 .. rows - 1) {
             foreach (i; k + 1 .. rows) {

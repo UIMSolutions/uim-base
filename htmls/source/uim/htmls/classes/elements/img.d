@@ -20,42 +20,52 @@ class DImg : DHtmlElement {
         attribute("src", source);
         return this;
     }
+
     IHtmlAttribute src() {
         return attribute("src");
     }
-
 
     IHtmlElement alt(string altText) {
         attribute("alt", altText);
         return this;
     }
+
     IHtmlAttribute alt() {
         return attribute("alt");
-    }
-
-    IHtmlElement width(string w) {
-        attribute("width", w);
-        return this;
-    }
-    IHtmlAttribute width() {
-        return attribute("width");
     }
 
     IHtmlElement height(string h) {
         attribute("height", h);
         return this;
     }
+
     IHtmlAttribute height() {
         return attribute("height");
     }
+
+    // #region width
+    // Width attribute
+    IHtmlElement width(string w) {
+        attribute("width", w);
+        return this;
+    }
+
+    IHtmlAttribute width() {
+        return attribute("width");
+    }
+    // #endregion width
 }
 
-auto Img() { return new DImg(); }
-auto Img(string src, string alt = null) { 
-    auto element = new DImg(); 
+auto Img() {
+    return new DImg();
+}
+
+auto Img(string src, string alt = null) {
+    auto element = new DImg();
     element.src(src);
-    if (alt) element.alt(alt);
-    return element; 
+    if (alt)
+        element.alt(alt);
+    return element;
 }
 
 unittest {

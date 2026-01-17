@@ -113,9 +113,9 @@ double secondDerivative(scope double delegate(double) @safe pure f, double x, do
 /**
  * Numerical integration of a function with multiple variables using Monte Carlo method
  */
-double monteCarloIntegration(scope double delegate(double[]) @safe pure f, 
+double monteCarloIntegration(scope double delegate(double[]) @safe f, 
                              double[] lowerBounds, double[] upperBounds, 
-                             size_t numSamples = 10000) pure {
+                             size_t numSamples = 10000) @trusted {
     import std.random : uniform;
     
     assert(lowerBounds.length == upperBounds.length, "Bounds must have same dimension");
