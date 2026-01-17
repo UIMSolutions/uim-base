@@ -7,6 +7,10 @@ module uim.htmls.classes.elements;
 
 public {
   import uim.htmls.classes.elements.address;
+  import uim.htmls.classes.elements.article;
+  import uim.htmls.classes.elements.aside;
+  import uim.htmls.classes.elements.footer;
+  import uim.htmls.classes.elements.header;
   import uim.htmls.classes.elements.element;
   import uim.htmls.classes.elements.a;
   import uim.htmls.classes.elements.div;

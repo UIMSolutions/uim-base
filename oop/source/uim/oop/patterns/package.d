@@ -11,6 +11,7 @@ public import uim.oop.patterns.commands;
 public import uim.oop.patterns.composites;
 public import uim.oop.patterns.daos;
 public import uim.oop.patterns.decorators;
+public import uim.oop.patterns.delegates;
 public import uim.oop.patterns.facades;
 public import uim.oop.patterns.factories;
 public import uim.oop.patterns.flyweights;
