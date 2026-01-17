@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Module uim.oop.patterns.chains.chain</title>
+		<link rel="stylesheet" type="text/css" href="../../../../styles/ddox.css"/>
+		<link rel="stylesheet" href="../../../../prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="../../../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../../../scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="../../../../symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "../../../../";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">uim
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">oop
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">datatypes
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">objects
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/datatypes/objects/interfaces.html">interfaces</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/datatypes/objects/obj.html">obj</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">helpers
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/helpers/classes.html">classes</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view ">
+					<div class="package ">
+						<a href="../../../../uim/oop/patterns.html">patterns</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">
+						<a href="../../../../uim/oop/patterns/chains.html">chains</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module selected">
+						<a href="../../../../uim/oop/patterns/chains/chain.html">chain</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/chains/interfaces.html">interfaces</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../uim/oop/patterns/commands.html">commands</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/commands/command.html">command</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/commands/interfaces.html">interfaces</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">composites
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/composites/composite.html">composite</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/composites/interfaces.html">interfaces</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">decorators
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/decorators/decorator.html">decorator</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/decorators/interfaces.html">interfaces</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">facades
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/facades/composite.html">composite</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/facades/configurable.html">configurable</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/facades/facade.html">facade</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/facades/interfaces.html">interfaces</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">factories
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">tests
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/factories/tests/test.html">test</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/factories/factory.html">factory</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">flyweights
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">tests
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/flyweights/tests/test.html">test</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../uim/oop/patterns/interpreters.html">interpreters</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">tests
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/interpreters/tests/test.html">test</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/interpreters/interfaces.html">interfaces</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/interpreters/interpreter.html">interpreter</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">mediators
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">tests
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/mediators/tests/test.html">test</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../uim/oop/patterns/mementos.html">mementos</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">tests
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/mementos/tests/test.html">test</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/mementos/interfaces.html">interfaces</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/mementos/memento.html">memento</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">observers
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">tests
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/observers/tests/test.html">test</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/observers/helpers.html">helpers</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/observers/interfaces.html">interfaces</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/observers/observer.html">observer</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/observers/subject.html">subject</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../uim/oop/patterns/pools.html">pools</a>
+					</div>
+			<ul class="tree-view">
+				<li class="tree-view collapsed">
+					<div class="package ">helpers
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/pools/helpers/helpers.html">helpers</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/pools/interfaces.html">interfaces</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/pools/pool.html">pool</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/pools/pooled.html">pooled</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/pools/threadsafe.html">threadsafe</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">registries
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/registries/registry.html">registry</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../uim/oop/patterns/states.html">states</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/states/interfaces.html">interfaces</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/states/state.html">state</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">strategies
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/strategies/context.html">context</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/strategies/interfaces.html">interfaces</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/strategies/strategy.html">strategy</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+				<li class="tree-view collapsed">
+					<div class="package ">
+						<a href="../../../../uim/oop/patterns/visitors.html">visitors</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/visitors/interfaces.html">interfaces</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../../../uim/oop/patterns/visitors/visitor.html">visitor</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+				</li>
+			</ul>
+				</li>
+			</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>Module uim.oop.patterns.chains.chain</h1><p></p>
+			<section></section>
+			<section>
+				<h2>Classes</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th><th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="AuthenticationHandler" class="public" href="../../../../uim/oop/patterns/chains/chain/AuthenticationHandler.html">AuthenticationHandler</a>
+							</code>
+						</td>
+						<td>Authentication handler.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="AuthorizationHandler" class="public" href="../../../../uim/oop/patterns/chains/chain/AuthorizationHandler.html">AuthorizationHandler</a>
+							</code>
+						</td>
+						<td>Authorization handler.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BaseHandler" class="public" href="../../../../uim/oop/patterns/chains/chain/BaseHandler.html">BaseHandler</a>
+							</code>
+						</td>
+						<td>Abstract base handler implementing the chain mechanism.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="ChainBuilder" class="public" href="../../../../uim/oop/patterns/chains/chain/ChainBuilder.html">ChainBuilder</a>
+							</code>
+						</td>
+						<td>Chain builder for constructing handler chains.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="ChainCoordinator" class="public" href="../../../../uim/oop/patterns/chains/chain/ChainCoordinator.html">ChainCoordinator</a>
+							</code>
+						</td>
+						<td>Chain coordinator for managing multiple chains.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="ConditionalHandler" class="public" href="../../../../uim/oop/patterns/chains/chain/ConditionalHandler.html">ConditionalHandler</a>
+							</code>
+						</td>
+						<td>Abstract conditional handler with filtering capability.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="DirectorApproval" class="public" href="../../../../uim/oop/patterns/chains/chain/DirectorApproval.html">DirectorApproval</a>
+							</code>
+						</td>
+						<td>Director approval handler.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="Level1Support" class="public" href="../../../../uim/oop/patterns/chains/chain/Level1Support.html">Level1Support</a>
+							</code>
+						</td>
+						<td>Level 1 support handler.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="Level2Support" class="public" href="../../../../uim/oop/patterns/chains/chain/Level2Support.html">Level2Support</a>
+							</code>
+						</td>
+						<td>Level 2 support handler.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="Level3Support" class="public" href="../../../../uim/oop/patterns/chains/chain/Level3Support.html">Level3Support</a>
+							</code>
+						</td>
+						<td>Level 3 support handler.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="LoggingHandler" class="public" href="../../../../uim/oop/patterns/chains/chain/LoggingHandler.html">LoggingHandler</a>
+							</code>
+						</td>
+						<td>Logging handler that tracks request flow.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="ManagerApproval" class="public" href="../../../../uim/oop/patterns/chains/chain/ManagerApproval.html">ManagerApproval</a>
+							</code>
+						</td>
+						<td>Manager approval handler.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="ManagerEscalation" class="public" href="../../../../uim/oop/patterns/chains/chain/ManagerEscalation.html">ManagerEscalation</a>
+							</code>
+						</td>
+						<td>Manager escalation handler (fallback).
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="ProcessingHandler" class="public" href="../../../../uim/oop/patterns/chains/chain/ProcessingHandler.html">ProcessingHandler</a>
+							</code>
+						</td>
+						<td>Request processing handler.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="PurchaseRequest" class="public" href="../../../../uim/oop/patterns/chains/chain/PurchaseRequest.html">PurchaseRequest</a>
+							</code>
+						</td>
+						<td>Purchase request.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="SupportTicket" class="public" href="../../../../uim/oop/patterns/chains/chain/SupportTicket.html">SupportTicket</a>
+							</code>
+						</td>
+						<td>Support ticket request.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="TeamLeadApproval" class="public" href="../../../../uim/oop/patterns/chains/chain/TeamLeadApproval.html">TeamLeadApproval</a>
+							</code>
+						</td>
+						<td>Team lead approval handler.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="ValidationHandler" class="public" href="../../../../uim/oop/patterns/chains/chain/ValidationHandler.html">ValidationHandler</a>
+							</code>
+						</td>
+						<td>Request validation handler.
+</td>
+					</tr>
+				</table>
+			</section>
+			<footer>
+				<table class="license-info">
+					<tr>
+						<th>Authors</th>
+						<td>
+							<p>Ozan Nurettin Süel (aka UIManufaktur)
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>Copyright</th>
+						<td>
+							<p>© 2018-2026 Ozan Nurettin Süel (aka UIManufaktur)
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>License</th>
+						<td>
+							<p>Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.
+</p>
+
+						</td>
+					</tr>
+				</table>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>
