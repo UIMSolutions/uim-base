@@ -1,5 +1,5 @@
-module uim.oop.patterns.factories.tests;
+module uim.oop.patterns.observers.tests;
 
 public {
-  import uim.oop.patterns.factories.tests.test;
+  import uim.oop.patterns.observers.tests.test;
 }

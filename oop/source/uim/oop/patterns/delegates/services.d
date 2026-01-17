@@ -445,7 +445,7 @@ class CalculationService : IGenericBusinessService!(double[], double) {
 
   assert(auth.serviceName() == "AuthenticationService");
   string result1 = auth.authenticate("admin", "secret");
-  assert(result1.length > 0 && result1[0..13] == "Authentication");
+  assert(result1.length > 0 && result1[0..14] == "Authentication");
   
   string result2 = auth.authenticate("admin", "wrong");
   assert(result2.length > 0);

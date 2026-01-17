@@ -176,22 +176,25 @@ class Customer {
   // Save a product
   auto product = new Product("Cached Item", 49.99, 100);
   product = cacheableDAO.save(product);
+  int productId = product.id;
 
-  // First access - from DAO
-  auto found1 = cacheableDAO.findById(product.id);
+  // First access - caches the product
+  auto found1 = cacheableDAO.findById(productId);
   assert(found1 !is null, "Product should be found");
+  assert(found1.price == 49.99, "Price should match");
 
-  // Modify the product in the inner DAO directly
-  product.price = 59.99;
-  innerDAO.update(product);
+  // Create a new product object with different price and update via inner DAO
+  auto updatedProduct = new Product("Cached Item", 59.99, 100);
+  updatedProduct.id = productId;
+  innerDAO.update(updatedProduct);
 
   // Second access - should still return cached version
-  auto found2 = cacheableDAO.findById(product.id);
+  auto found2 = cacheableDAO.findById(productId);
   assert(found2.price == 49.99, "Should return cached version");
 
   // Clear cache and retrieve again
   cacheableDAO.clearCache();
-  auto found3 = cacheableDAO.findById(product.id);
+  auto found3 = cacheableDAO.findById(productId);
   assert(found3.price == 59.99, "Should return updated version after cache clear");
 
   // Disable cache

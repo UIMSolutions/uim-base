@@ -397,7 +397,7 @@ version(unittest) {
 
   // Test generic business service
   class CalculatorService : IGenericBusinessService!(int[], int) {
-    string execute(int[] numbers) {
+    string execute() {
       return "Processed";
     }
 

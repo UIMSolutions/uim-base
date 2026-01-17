@@ -8,5 +8,4 @@ public { // Modules
 
 public { // Packages
   import uim.oop.patterns.factories.helpers;
-  import uim.oop.patterns.factories.tests;
 }

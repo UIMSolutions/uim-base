@@ -26,6 +26,7 @@ var symbols = [
 {name: 'uim.htmls.classes.elements.interfaces', kind: "module", path: './uim/htmls/classes/elements/interfaces.html', attributes: []},
 {name: 'uim.htmls.classes.elements.link', kind: "module", path: './uim/htmls/classes/elements/link.html', attributes: []},
 {name: 'uim.htmls.classes.elements.link.DLink', kind: "classdeclaration", path: './uim/htmls/classes/elements/link/DLink.html', attributes: []},
+{name: 'uim.htmls.classes.elements.main', kind: "module", path: './uim/htmls/classes/elements/main.html', attributes: []},
 {name: 'uim.htmls.classes.elements.p', kind: "module", path: './uim/htmls/classes/elements/p.html', attributes: []},
 {name: 'uim.htmls.classes.elements.p.DP', kind: "classdeclaration", path: './uim/htmls/classes/elements/p/DP.html', attributes: []},
 {name: 'uim.htmls.classes.elements.span', kind: "module", path: './uim/htmls/classes/elements/span.html', attributes: []},
