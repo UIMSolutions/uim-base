@@ -41,8 +41,8 @@ abstract class ConditionalHandler : BaseHandler, IConditionalHandler {
         return super.handle(request);
     }
     
-    abstract bool shouldHandle(string request);
-    protected abstract string doHandle(string request);
+    abstract @safe bool shouldHandle(string request);
+    protected abstract @safe string doHandle(string request);
 }
 
 /**
@@ -217,9 +217,16 @@ class AuthenticationHandler : ConditionalHandler {
     }
     
     protected override @safe string doHandle(string request) {
-        auto tokenStart = request.indexOf("auth:") + 5;
-        if (tokenStart + 16 <= request.length) {
-            auto token = request[tokenStart..tokenStart+16];
+        auto authIdx = request.indexOf("auth:");
+        if (authIdx >= 0) {
+            auto tokenStart = authIdx + 5;
+            auto spaceIdx = request.indexOf(" ", tokenStart);
+            string token;
+            if (spaceIdx > tokenStart) {
+                token = request[tokenStart..spaceIdx];
+            } else {
+                token = request[tokenStart..$];
+            }
             if (token == _validToken) {
                 return "Authenticated";
             }

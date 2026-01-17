@@ -9,6 +9,7 @@ public {
     import oop.tests.patterns.facades;
     import oop.tests.patterns.factories;
     import oop.tests.patterns.flyweights;
+    import oop.tests.patterns.interpreters;
     import oop.tests.patterns.mediators;
     import oop.tests.patterns.mementos;
     import oop.tests.patterns.observers;
