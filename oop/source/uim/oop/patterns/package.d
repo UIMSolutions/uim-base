@@ -10,5 +10,5 @@ public import uim.oop.patterns.factories;
 public import uim.oop.patterns.observers;
 public import uim.oop.patterns.pools;
 public import uim.oop.patterns.registries;
-/* public import uim.oop.patterns.singleton;
-public import uim.oop.patterns.strategy; */
+public import uim.oop.patterns.strategies;
+/* public import uim.oop.patterns.singleton; */
