@@ -14,3 +14,8 @@ public import uim.htmls.classes.forms.textarea;
 public import uim.htmls.classes.forms.select;
 public import uim.htmls.classes.forms.label;
 public import uim.htmls.classes.forms.interfaces;
+public import uim.htmls.classes.forms.element;
+public import uim.htmls.classes.forms.fieldset;
+public import uim.htmls.classes.forms.legend;
+public import uim.htmls.classes.forms.checkbox;
+public import uim.htmls.classes.forms.radio;

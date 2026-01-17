@@ -11,7 +11,7 @@ import uim.htmls;
 @safe:
 
 /// HTML label element
-class DLabel : DHtmlElement {
+class DLabel : DHtmlFormElement {
     this() {
         super("label");
     }

@@ -47,6 +47,12 @@ unittest {
   assert(element.name() == "testName");
 }
 
-interface IInput {
-    IHtmlAttribute type(string typeValue);
+interface IInput : IHtmlFormElement {
+    IHtmlElement type();
+    IInput type(string typeValue);
+}
+
+interface IHtmlFormElement : IHtmlElement {
+    IHtmlForm form();
+    IHtmlFormElement form(string formId);
 }

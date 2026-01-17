@@ -11,62 +11,133 @@ import uim.htmls;
 @safe:
 
 /// HTML input element
-class DInput : DHtmlElement, IInput {
-    this() {
-        super("input");
-        this.selfClosing(true);
-    }
+class DInput : DHtmlFormElement, IInput {
+  this() {
+    super("input");
+    this.selfClosing(true);
+  }
 
-    IHtmlAttribute type(string typeValue) {
-        return attribute("type", typeValue);
-    }
+  IHtmlElement type(string typeValue) {
+    attribute("type", typeValue);
+    return this;
+  }
 
-    IHtmlAttribute name() {
-        return attribute("name");
-    }
+  IHtmlAttribute name() {
+    return attribute("name");
+  }
 
-    IHtmlElement name(string nameValue) {
-        attribute("name", nameValue);
-        return this;
-    }
+  IHtmlElement name(string nameValue) {
+    attribute("name", nameValue);
+    return this;
+  }
 
-    IHtmlAttribute value(string valueValue) {
-        return attribute("value", valueValue);
-    }
+  IHtmlElement value(string valueValue) {
+    attribute("value", valueValue);
+    return this;
+  }
 
-    IHtmlAttribute placeholder(string text) {
-        return attribute("placeholder", text);
-    }
+  IHtmlElement placeholder(string text) {
+    attribute("placeholder", text);
+    return this;
+  }
 
-    IHtmlAttribute required() {
-        return attribute("required", "");
-    }
+  IHtmlElement required() {
+    attribute("required", "");
+    return this;
+  }
 
-    IHtmlAttribute disabled() {
-        return attribute("disabled", "");
-    }
+  IHtmlElement disabled() {
+    attribute("disabled", "");
+    return this;
+  }
 
-    IHtmlAttribute readonly() {
-        return attribute("readonly", "");
-    }
+  IHtmlElement readonly() {
+    attribute("readonly", "");
+    return this;
+  }
 
-    IHtmlAttribute checked() {
-        return attribute("checked", "");
-    }
+  IHtmlElement checked() {
+    attribute("checked", "");
+    return this;
+  }
 }
 
-auto Input() { return new DInput(); }
-auto InputText(string name = null) { auto input = new DInput(); input.type("text"); if (name) input.name(name); return input; }
-auto InputPassword(string name = null) { auto input = new DInput(); input.type("password"); if (name) input.name(name); return input; }
-auto InputEmail(string name = null) { auto input = new DInput(); input.type("email"); if (name) input.name(name); return input; }
-auto InputNumber(string name = null) { auto input = new DInput(); input.type("number"); if (name) input.name(name); return input; }
-auto InputCheckbox(string name = null) { auto input = new DInput(); input.type("checkbox"); if (name) input.name(name); return input; }
-auto InputRadio(string name = null) { auto input = new DInput(); input.type("radio"); if (name) input.name(name); return input; }
-auto InputFile(string name = null) { auto input = new DInput(); input.type("file"); if (name) input.name(name); return input; }
-auto InputHidden(string name = null) { auto input = new DInput(); input.type("hidden"); if (name) input.name(name); return input; }
-auto InputSubmit(string value = "Submit") { auto input = new DInput(); input.type("submit"); input.value(value); return input; }
+auto Input() {
+  return new DInput();
+}
+
+auto InputText(string name = null) {
+  auto input = new DInput();
+  input.type("text");
+  if (name)
+    input.name(name);
+  return input;
+}
+
+auto InputPassword(string name = null) {
+  auto input = new DInput();
+  input.type("password");
+  if (name)
+    input.name(name);
+  return input;
+}
+
+auto InputEmail(string name = null) {
+  auto input = new DInput();
+  input.type("email");
+  if (name)
+    input.name(name);
+  return input;
+}
+
+auto InputNumber(string name = null) {
+  auto input = new DInput();
+  input.type("number");
+  if (name)
+    input.name(name);
+  return input;
+}
+
+auto InputCheckbox(string name = null) {
+  auto input = new DInput();
+  input.type("checkbox");
+  if (name)
+    input.name(name);
+  return input;
+}
+
+auto InputRadio(string name = null) {
+  auto input = new DInput();
+  input.type("radio");
+  if (name)
+    input.name(name);
+  return input;
+}
+
+auto InputFile(string name = null) {
+  auto input = new DInput();
+  input.type("file");
+  if (name)
+    input.name(name);
+  return input;
+}
+
+auto InputHidden(string name = null) {
+  auto input = new DInput();
+  input.type("hidden");
+  if (name)
+    input.name(name);
+  return input;
+}
+
+auto InputSubmit(string value = "Submit") {
+  auto input = new DInput();
+  input.type("submit");
+  input.value(value);
+  return input;
+}
 
 unittest {
-    auto input = InputText("username");
-    assert(input.toString().indexOf("type=\"text\"") > 0);
+  auto input = InputText("username");
+  assert(input.toString().indexOf("type=\"text\"") > 0);
 }

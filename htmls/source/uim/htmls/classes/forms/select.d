@@ -11,7 +11,7 @@ import uim.htmls;
 @safe:
 
 /// HTML select element
-class DSelect : DHtmlElement {
+class DSelect : DHtmlFormElement {
     this() {
         super("select");
     }

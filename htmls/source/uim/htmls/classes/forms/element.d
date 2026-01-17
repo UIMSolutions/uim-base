@@ -1,0 +1,20 @@
+module uim.htmls.classes.forms.element;
+
+import uim.htmls;
+
+@safe:
+
+class DHtmlFormElement : DHtmlElement, IHtmlFormElement {
+  this(string tagName) {
+    super(tagName);
+  }
+
+  IHtmlForm form() {
+    return attribute("form");
+  }
+
+  IHtmlFormElement form(string formId) {
+    attribute("form", formId);
+    return this;
+  }
+}

@@ -10,7 +10,7 @@ import uim.htmls;
 @safe:
 
 /// HTML option element
-class DOption : DHtmlElement {
+class DOption : DHtmlFormElement {
     this() {
         super("option");
     }
