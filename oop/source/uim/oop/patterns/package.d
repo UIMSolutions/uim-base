@@ -16,6 +16,7 @@ public import uim.oop.patterns.facades;
 public import uim.oop.patterns.factories;
 public import uim.oop.patterns.flyweights;
 public import uim.oop.patterns.interpreters;
+public import uim.oop.patterns.locators;
 public import uim.oop.patterns.mediators;
 public import uim.oop.patterns.mementos;
 public import uim.oop.patterns.observers;
