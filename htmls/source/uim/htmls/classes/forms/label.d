@@ -1,0 +1,31 @@
+module uim.htmls.classes.forms.label;
+
+/****************************************************************************************************************
+* Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
+* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
+* Authors: Ozan Nurettin Süel (aka UIManufaktur)
+*****************************************************************************************************************/
+
+import uim.htmls;
+
+@safe:
+
+/// HTML label element
+class DLabel : DHtmlElement {
+    this() {
+        super("label");
+    }
+
+    auto forElement(string elementId) {
+        return attribute("for", elementId);
+    }
+}
+
+auto Label() { return new DLabel(); }
+auto Label(string text) { auto lbl = new DLabel(); lbl.text(text); return lbl; }
+auto Label(string forId, string text) { auto lbl = new DLabel(); lbl.forElement(forId).text(text); return lbl; }
+
+unittest {
+    auto label = Label("username", "Username:");
+    assert(label.toString().indexOf("label") > 0);
+}

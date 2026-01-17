@@ -47,7 +47,7 @@ class Context : IContext {
  * Abstract base expression.
  */
 abstract class Expression : IExpression {
-    abstract @safe Variant interpret(IContext context);
+    abstract Variant interpret(IContext context);
     abstract override @safe string toString() const;
 }
 
@@ -57,19 +57,19 @@ abstract class Expression : IExpression {
 class LiteralExpression : Expression, ILiteralExpression {
     private Variant _value;
     
-    this(Variant value) @safe {
+    this(Variant value) @trusted {
         _value = value;
     }
     
-    override @safe Variant interpret(IContext context) {
+    override @trusted Variant interpret(IContext context) {
         return _value;
     }
     
-    @safe Variant getValue() const {
+    @trusted Variant getValue() const {
         return _value;
     }
     
-    override @safe string toString() const {
+    override @trusted string toString() const {
         if (_value.type == typeid(int)) {
             return to!string(_value.get!int);
         } else if (_value.type == typeid(double)) {
@@ -79,7 +79,7 @@ class LiteralExpression : Expression, ILiteralExpression {
         } else if (_value.type == typeid(string)) {
             return "\"" ~ _value.get!string ~ "\"";
         }
-        return _value.toString();
+        return "";
     }
 }
 
@@ -93,7 +93,7 @@ class VariableExpression : Expression, IVariableExpression {
         _name = name;
     }
     
-    override @safe Variant interpret(IContext context) {
+    override @trusted Variant interpret(IContext context) {
         return context.getVariable(_name);
     }
     
@@ -101,7 +101,7 @@ class VariableExpression : Expression, IVariableExpression {
         return _name;
     }
     
-    @safe Variant getValue() const {
+    @trusted Variant getValue() const {
         return Variant(_name);
     }
     
@@ -124,11 +124,11 @@ abstract class BinaryExpression : Expression, IBinaryExpression {
         _operator = operator;
     }
     
-    @safe IExpression getLeft() const {
+    @trusted IExpression getLeft() const {
         return cast(IExpression)_left;
     }
     
-    @safe IExpression getRight() const {
+    @trusted IExpression getRight() const {
         return cast(IExpression)_right;
     }
     
@@ -136,7 +136,7 @@ abstract class BinaryExpression : Expression, IBinaryExpression {
         return _operator;
     }
     
-    @safe IExpression[] getChildren() const {
+    @trusted IExpression[] getChildren() const {
         return [cast(IExpression)_left, cast(IExpression)_right];
     }
     
@@ -155,7 +155,7 @@ class AddExpression : BinaryExpression {
         super(left, right, "+");
     }
     
-    override @safe Variant interpret(IContext context) {
+    override @trusted Variant interpret(IContext context) {
         auto leftVal = _left.interpret(context);
         auto rightVal = _right.interpret(context);
         
@@ -178,7 +178,7 @@ class SubtractExpression : BinaryExpression {
         super(left, right, "-");
     }
     
-    override @safe Variant interpret(IContext context) {
+    override @trusted Variant interpret(IContext context) {
         auto leftVal = _left.interpret(context);
         auto rightVal = _right.interpret(context);
         
@@ -201,7 +201,7 @@ class MultiplyExpression : BinaryExpression {
         super(left, right, "*");
     }
     
-    override @safe Variant interpret(IContext context) {
+    override @trusted Variant interpret(IContext context) {
         auto leftVal = _left.interpret(context);
         auto rightVal = _right.interpret(context);
         
@@ -224,7 +224,7 @@ class DivideExpression : BinaryExpression {
         super(left, right, "/");
     }
     
-    override @safe Variant interpret(IContext context) {
+    override @trusted Variant interpret(IContext context) {
         auto leftVal = _left.interpret(context);
         auto rightVal = _right.interpret(context);
         
@@ -252,7 +252,7 @@ class AndExpression : BinaryExpression {
         super(left, right, "AND");
     }
     
-    override @safe Variant interpret(IContext context) {
+    override @trusted Variant interpret(IContext context) {
         auto leftVal = _left.interpret(context);
         auto rightVal = _right.interpret(context);
         
@@ -271,7 +271,7 @@ class OrExpression : BinaryExpression {
         super(left, right, "OR");
     }
     
-    override @safe Variant interpret(IContext context) {
+    override @trusted Variant interpret(IContext context) {
         auto leftVal = _left.interpret(context);
         auto rightVal = _right.interpret(context);
         
@@ -294,7 +294,7 @@ abstract class UnaryExpression : Expression, IUnaryExpression {
         _operator = operator;
     }
     
-    @safe IExpression getOperand() const {
+    @trusted IExpression getOperand() const {
         return cast(IExpression)_operand;
     }
     
@@ -302,7 +302,7 @@ abstract class UnaryExpression : Expression, IUnaryExpression {
         return _operator;
     }
     
-    @safe IExpression[] getChildren() const {
+    @trusted IExpression[] getChildren() const {
         return [cast(IExpression)_operand];
     }
     
@@ -319,7 +319,7 @@ class NotExpression : UnaryExpression {
         super(operand, "NOT");
     }
     
-    override @safe Variant interpret(IContext context) {
+    override @trusted Variant interpret(IContext context) {
         auto value = _operand.interpret(context);
         
         if (value.type == typeid(bool)) {
@@ -337,7 +337,7 @@ class NegateExpression : UnaryExpression {
         super(operand, "-");
     }
     
-    override @safe Variant interpret(IContext context) {
+    override @trusted Variant interpret(IContext context) {
         auto value = _operand.interpret(context);
         
         if (value.type == typeid(int)) {
@@ -359,7 +359,7 @@ class EqualsExpression : BinaryExpression {
         super(left, right, "==");
     }
     
-    override @safe Variant interpret(IContext context) {
+    override @trusted Variant interpret(IContext context) {
         auto leftVal = _left.interpret(context);
         auto rightVal = _right.interpret(context);
         
@@ -386,7 +386,7 @@ class GreaterThanExpression : BinaryExpression {
         super(left, right, ">");
     }
     
-    override @safe Variant interpret(IContext context) {
+    override @trusted Variant interpret(IContext context) {
         auto leftVal = _left.interpret(context);
         auto rightVal = _right.interpret(context);
         
@@ -409,7 +409,7 @@ class LessThanExpression : BinaryExpression {
         super(left, right, "<");
     }
     
-    override @safe Variant interpret(IContext context) {
+    override @trusted Variant interpret(IContext context) {
         auto leftVal = _left.interpret(context);
         auto rightVal = _right.interpret(context);
         

@@ -15,12 +15,12 @@ interface IContext {
     /**
      * Set a variable value in the context.
      */
-    @safe void setVariable(string name, Variant value);
+    void setVariable(string name, Variant value);
     
     /**
      * Get a variable value from the context.
      */
-    @safe Variant getVariable(string name) const;
+    Variant getVariable(string name) const;
     
     /**
      * Check if a variable exists in the context.
@@ -46,7 +46,7 @@ interface IExpression {
     /**
      * Interpret the expression in the given context.
      */
-    @safe Variant interpret(IContext context);
+    Variant interpret(IContext context);
     
     /**
      * Get a string representation of the expression.
@@ -62,7 +62,7 @@ interface ITerminalExpression : IExpression {
     /**
      * Get the value of this terminal expression.
      */
-    @safe Variant getValue() const;
+    Variant getValue() const;
 }
 
 /**

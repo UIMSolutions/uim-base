@@ -1,4 +1,4 @@
-module uim.htmls;
+module uim.htmls.classes.tables.tr;
 
 /****************************************************************************************************************
 * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
@@ -6,10 +6,20 @@ module uim.htmls;
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
 
-// UIM libraries
-public import uim.oop;
+import uim.htmls;
 
-// HTML library modules
-public import uim.htmls.classes;
-public import uim.htmls.mixins;
-public import uim.htmls.tests;
+@safe:
+
+/// HTML table row element
+class DTr : DHtmlElement {
+    this() {
+        super("tr");
+    }
+}
+
+auto Tr() { return new DTr(); }
+
+unittest {
+    auto tr = Tr();
+    assert(tr.toString() == "<tr></tr>");
+}

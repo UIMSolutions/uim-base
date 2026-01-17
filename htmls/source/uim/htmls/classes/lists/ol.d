@@ -1,4 +1,4 @@
-module uim.htmls;
+module uim.htmls.classes.lists.ol;
 
 /****************************************************************************************************************
 * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
@@ -6,10 +6,28 @@ module uim.htmls;
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
 
-// UIM libraries
-public import uim.oop;
+import uim.htmls;
 
-// HTML library modules
-public import uim.htmls.classes;
-public import uim.htmls.mixins;
-public import uim.htmls.tests;
+@safe:
+
+/// HTML ordered list element
+class DOl : DHtmlElement {
+    this() {
+        super("ol");
+    }
+
+    auto type(string listType) {
+        return attribute("type", listType);
+    }
+
+    auto start(string startValue) {
+        return attribute("start", startValue);
+    }
+}
+
+auto Ol() { return new DOl(); }
+
+unittest {
+    auto ol = Ol();
+    assert(ol.toString() == "<ol></ol>");
+}

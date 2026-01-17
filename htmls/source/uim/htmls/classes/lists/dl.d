@@ -1,4 +1,4 @@
-module uim.htmls;
+module uim.htmls.classes.lists.dl;
 
 /****************************************************************************************************************
 * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
@@ -6,10 +6,20 @@ module uim.htmls;
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
 
-// UIM libraries
-public import uim.oop;
+import uim.htmls;
 
-// HTML library modules
-public import uim.htmls.classes;
-public import uim.htmls.mixins;
-public import uim.htmls.tests;
+@safe:
+
+/// HTML definition list element
+class DDl : DHtmlElement {
+    this() {
+        super("dl");
+    }
+}
+
+auto Dl() { return new DDl(); }
+
+unittest {
+    auto dl = Dl();
+    assert(dl.toString() == "<dl></dl>");
+}

@@ -1,4 +1,4 @@
-module uim.htmls;
+module uim.htmls.classes.tables;
 
 /****************************************************************************************************************
 * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
@@ -6,10 +6,10 @@ module uim.htmls;
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
 
-// UIM libraries
-public import uim.oop;
-
-// HTML library modules
-public import uim.htmls.classes;
-public import uim.htmls.mixins;
-public import uim.htmls.tests;
+public import uim.htmls.classes.tables.table;
+public import uim.htmls.classes.tables.tr;
+public import uim.htmls.classes.tables.td;
+public import uim.htmls.classes.tables.th;
+public import uim.htmls.classes.tables.thead;
+public import uim.htmls.classes.tables.tbody;
+public import uim.htmls.classes.tables.tfoot;

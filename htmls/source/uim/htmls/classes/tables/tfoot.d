@@ -1,4 +1,4 @@
-module uim.htmls;
+module uim.htmls.classes.tables.tfoot;
 
 /****************************************************************************************************************
 * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
@@ -6,10 +6,20 @@ module uim.htmls;
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
 
-// UIM libraries
-public import uim.oop;
+import uim.htmls;
 
-// HTML library modules
-public import uim.htmls.classes;
-public import uim.htmls.mixins;
-public import uim.htmls.tests;
+@safe:
+
+/// HTML table foot element
+class DTfoot : DHtmlElement {
+    this() {
+        super("tfoot");
+    }
+}
+
+auto Tfoot() { return new DTfoot(); }
+
+unittest {
+    auto tfoot = Tfoot();
+    assert(tfoot.toString() == "<tfoot></tfoot>");
+}

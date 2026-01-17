@@ -1,4 +1,4 @@
-module uim.htmls;
+module uim.htmls.classes.elements.hr;
 
 /****************************************************************************************************************
 * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
@@ -6,10 +6,21 @@ module uim.htmls;
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
 
-// UIM libraries
-public import uim.oop;
+import uim.htmls;
 
-// HTML library modules
-public import uim.htmls.classes;
-public import uim.htmls.mixins;
-public import uim.htmls.tests;
+@safe:
+
+/// HTML horizontal rule element
+class DHr : DHtmlElement {
+    this() {
+        super("hr");
+        this.selfClosing(true);
+    }
+}
+
+auto Hr() { return new DHr(); }
+
+unittest {
+    auto hr = Hr();
+    assert(hr.toString() == "<hr />");
+}

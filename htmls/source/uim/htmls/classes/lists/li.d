@@ -1,4 +1,4 @@
-module uim.htmls;
+module uim.htmls.classes.lists.li;
 
 /****************************************************************************************************************
 * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
@@ -6,10 +6,25 @@ module uim.htmls;
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
 
-// UIM libraries
-public import uim.oop;
+import uim.htmls;
 
-// HTML library modules
-public import uim.htmls.classes;
-public import uim.htmls.mixins;
-public import uim.htmls.tests;
+@safe:
+
+/// HTML list item element
+class DLi : DHtmlElement {
+    this() {
+        super("li");
+    }
+
+    auto value(string itemValue) {
+        return attribute("value", itemValue);
+    }
+}
+
+auto Li() { return new DLi(); }
+auto Li(string content) { auto li = new DLi(); li.text(content); return li; }
+
+unittest {
+    auto li = Li("Item");
+    assert(li.toString() == "<li>Item</li>");
+}

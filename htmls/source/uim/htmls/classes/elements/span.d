@@ -1,4 +1,4 @@
-module uim.htmls;
+module uim.htmls.classes.elements.span;
 
 /****************************************************************************************************************
 * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
@@ -6,10 +6,21 @@ module uim.htmls;
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
 
-// UIM libraries
-public import uim.oop;
+import uim.htmls;
 
-// HTML library modules
-public import uim.htmls.classes;
-public import uim.htmls.mixins;
-public import uim.htmls.tests;
+@safe:
+
+/// HTML span element
+class DSpan : DHtmlElement {
+    this() {
+        super("span");
+    }
+}
+
+auto Span() { return new DSpan(); }
+auto Span(string content) { auto element = new DSpan(); element.text(content); return element; }
+
+unittest {
+    auto span = Span("Text");
+    assert(span.toString() == "<span>Text</span>");
+}

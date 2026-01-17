@@ -1,4 +1,4 @@
-module uim.htmls;
+module uim.htmls.classes.lists.dd;
 
 /****************************************************************************************************************
 * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
@@ -6,10 +6,21 @@ module uim.htmls;
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
 
-// UIM libraries
-public import uim.oop;
+import uim.htmls;
 
-// HTML library modules
-public import uim.htmls.classes;
-public import uim.htmls.mixins;
-public import uim.htmls.tests;
+@safe:
+
+/// HTML definition description element
+class DDd : DHtmlElement {
+    this() {
+        super("dd");
+    }
+}
+
+auto Dd() { return new DDd(); }
+auto Dd(string content) { auto dd = new DDd(); dd.text(content); return dd; }
+
+unittest {
+    auto dd = Dd("Description");
+    assert(dd.toString() == "<dd>Description</dd>");
+}

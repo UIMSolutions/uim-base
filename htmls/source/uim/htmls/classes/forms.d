@@ -1,4 +1,4 @@
-module uim.htmls;
+module uim.htmls.classes.forms;
 
 /****************************************************************************************************************
 * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
@@ -6,10 +6,9 @@ module uim.htmls;
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
 
-// UIM libraries
-public import uim.oop;
-
-// HTML library modules
-public import uim.htmls.classes;
-public import uim.htmls.mixins;
-public import uim.htmls.tests;
+public import uim.htmls.classes.forms.form;
+public import uim.htmls.classes.forms.input;
+public import uim.htmls.classes.forms.button;
+public import uim.htmls.classes.forms.textarea;
+public import uim.htmls.classes.forms.select;
+public import uim.htmls.classes.forms.label;

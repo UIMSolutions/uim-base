@@ -1,4 +1,4 @@
-module uim.htmls;
+module uim.htmls.classes.lists.dt;
 
 /****************************************************************************************************************
 * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
@@ -6,10 +6,21 @@ module uim.htmls;
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
 
-// UIM libraries
-public import uim.oop;
+import uim.htmls;
 
-// HTML library modules
-public import uim.htmls.classes;
-public import uim.htmls.mixins;
-public import uim.htmls.tests;
+@safe:
+
+/// HTML definition term element
+class DDt : DHtmlElement {
+    this() {
+        super("dt");
+    }
+}
+
+auto Dt() { return new DDt(); }
+auto Dt(string content) { auto dt = new DDt(); dt.text(content); return dt; }
+
+unittest {
+    auto dt = Dt("Term");
+    assert(dt.toString() == "<dt>Term</dt>");
+}
