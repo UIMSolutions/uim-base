@@ -10,20 +10,20 @@ import uim.htmls;
 @safe:
 
 /// Interface for form elements with name attribute
-interface IHtmlForm {
+interface IHtmlForm : IHtmlElement {
   /// Get or set the name attribute
   IHtmlAttribute name();
   IHtmlForm name(string nameValue);
 
-  IHtmlAttribute action(string url);
+  IHtmlForm action(string url);
 
-  IHtmlAttribute method(string methodValue);
+  IHtmlForm method(string methodValue);
 
   IHtmlForm post();
 
   IHtmlForm get();
 
-  IHtmlAttribute enctype(string value);
+  IHtmlForm enctype(string value);
 }
 
 unittest {

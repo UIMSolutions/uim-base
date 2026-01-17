@@ -24,12 +24,12 @@ class DForm : DHtmlElement, IHtmlForm {
         return this;
     }
     
-    IHtmlElement action(string url) {
+    IHtmlForm action(string url) {
         attribute("action", url);
         return this;
     }
 
-    IHtmlElement method(string methodValue) {
+    IHtmlForm method(string methodValue) {
         attribute("method", methodValue);
         return this;
     }
@@ -42,7 +42,7 @@ class DForm : DHtmlElement, IHtmlForm {
         return method("GET");
     }
 
-    IHtmlElement enctype(string value) {
+    IHtmlForm enctype(string value) {
         attribute("enctype", value);
         return this;
     }
