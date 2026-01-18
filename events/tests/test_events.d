@@ -22,13 +22,13 @@ void testEventData() {
     writeln("Testing event data...");
     
     auto event = Event("test.data");
-    event.setData("key1", "value1");
-    event.setData("key2", "value2");
+    event.setData("key1", Json("value1"));
+    event.setData("key2", Json("value2"));
     
-    assert(event.hasData("key1"));
-    assert(event.getData("key1") == "value1");
-    assert(event.getData("key2") == "value2");
-    assert(event.getData("nonexistent", "default") == "default");
+    assert(event.hasKey("key1"));
+    assert(event.getData("key1") == Json("value1"));
+    assert(event.getData("key2") == Json("value2"));
+    assert(event.getData("nonexistent", Json("default")) == Json("default"));
     
     writeln("✓ Event data test passed");
 }

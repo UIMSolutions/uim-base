@@ -6,10 +6,15 @@
 module uim.events;
 
 public {
-    import uim.events.event;
-    import uim.events.listener;
-    import uim.events.dispatcher;
-    import uim.events.subscriber;
-    import uim.events.attributes;
-    import uim.events.annotated;
+  import uim.events.helpers;
+}
+
+public {
+  import uim.events.event;
+  import uim.events.listener;
+  import uim.events.dispatcher;
+  import uim.events.subscriber;
+  import uim.events.attributes;
+  import uim.events.annotated;
+  import uim.events.interfaces;
 }

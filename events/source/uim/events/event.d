@@ -5,47 +5,66 @@
 *****************************************************************************************************************/
 module uim.events.event;
 
-import uim.core;
-import uim.oop;
+import uim.events;
 
-import std.datetime : SysTime, Clock;
+
 
 @safe:
-
-/**
- * Event interface that defines the contract for all events
- */
-interface IEvent {
-    // Properties
-    string name();
-    IEvent name(string value);
-    
-    SysTime timestamp();
-    IEvent timestamp(SysTime value);
-    
-    bool stopped();
-    IEvent stopped(bool value);
-    
-    STRINGAA data();
-    IEvent data(STRINGAA value);
-    
-    // Methods
-    void stopPropagation();
-    bool isPropagationStopped();
-    IEvent setData(string key, string value);
-    string getData(string key, string defaultValue = "");
-    bool hasData(string key);
-}
 
 /**
  * Base event class that all events should inherit from.
  * Provides common event functionality including name, timestamp, and propagation control.
  */
 class DEvent : UIMObject, IEvent {
-    mixin(OProperty!("string", "name"));
-    mixin(OProperty!("SysTime", "timestamp"));
-    mixin(OProperty!("bool", "stopped"));
-    mixin(OProperty!("STRINGAA", "data"));
+
+    // Getter and setter for name
+    private string _name;
+    string name() {
+        return _name;
+    }
+    
+    IEvent name(string value) {
+        _name = value;
+        return this;
+    }
+
+    // Getter and setter for timestamp
+    private SysTime _timestamp;
+    SysTime timestamp() {
+        return _timestamp;
+    }
+    
+    IEvent timestamp(SysTime value) {
+        _timestamp = value;
+        return this;
+    }
+
+    // #region stopped
+    private bool _stopped;
+    // Getter for stopped
+    bool stopped() {
+        return _stopped;
+    }
+    
+    // Setter for stopped
+    IEvent stopped(bool value) {
+        _stopped = value;
+        return this;
+    }
+    // #endregion stopped
+
+    // #region data
+    private Json[string] _data;
+    // Getter and setter for data
+    Json[string] data() {
+        return _data;
+    }
+    
+    IEvent data(Json[string] value) {
+        _data = value;
+        return this;
+    }
+    // #endregion data
     
     protected bool _propagationStopped = false;
     
@@ -77,7 +96,7 @@ class DEvent : UIMObject, IEvent {
     /**
      * Set event data
      */
-    DEvent setData(string key, string value) {
+    IEvent setData(string key, Json value) {
         auto currentData = this.data();
         currentData[key] = value;
         this.data(currentData);
@@ -87,7 +106,7 @@ class DEvent : UIMObject, IEvent {
     /**
      * Get event data
      */
-    string getData(string key, string defaultValue = "") {
+    Json getData(string key, Json defaultValue = Json(null)) {
         auto currentData = this.data();
         return (key in currentData) ? currentData[key] : defaultValue;
     }
@@ -95,7 +114,7 @@ class DEvent : UIMObject, IEvent {
     /**
      * Check if event has data key
      */
-    bool hasData(string key) {
+    bool hasKey(string key) {
         auto currentData = this.data();
         return (key in currentData) !is null;
     }
@@ -117,7 +136,7 @@ unittest {
     assert(event.isPropagationStopped());
     
     event.setData("key1", "value1");
-    assert(event.hasData("key1"));
+    assert(event.hasKey("key1"));
     assert(event.getData("key1") == "value1");
     assert(event.getData("nonexistent", "default") == "default");
     
