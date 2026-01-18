@@ -17,137 +17,137 @@ void main() {
         .rule("body")
             .margin("0")
             .padding("0")
-            .fontWeight("Segoe UI, sans-serif")
+            .property("font-family", "Segoe UI, sans-serif")
             .fontSize("16px")
             .color("#333")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}    writeln("=== Example Complete ===");        writeln();    writeln(responsive.toString());            .endMedia();            .endRule()                .property("grid-template-columns", "1fr")            .rule(".grid")        .media("screen", ["max-width: 480px"])        .endMedia()            .endRule()                .property("gap", "10px")                .property("grid-template-columns", "repeat(2, 1fr)")            .rule(".grid")        .media("screen", ["max-width: 768px"])        .endMedia()            .endRule()                .property("grid-template-columns", "repeat(3, 1fr)")            .rule(".grid")        .media("screen", ["max-width: 1200px"])        .endRule()            .property("gap", "20px")            .property("grid-template-columns", "repeat(4, 1fr)")            .display("grid")        .rule(".grid")    auto responsive = css()    writeln("5. Complex responsive design:");    // Example 5: Complex responsive design        writeln();    writeln(varSheet.toString());            .endRule();            .property("margin", "var(--spacing)")            .property("color", "var(--primary-color)")        .rule(".theme-element")        .variable("spacing", "1rem")        .variable("secondary-color", "#6c757d")        .variable("primary-color", "#007bff")    auto varSheet = css()    writeln("4. CSS Variables:");    // Example 4: CSS Variables        }        writeln();        writeln(rule.toString());        writeln("Modified rule:");                rule.setProperty("border", "1px solid #ccc");        rule.setProperty("background-color", "#f0f0f0");        // Add new properties                writeln();        writeln(rule.toString());        writeln("Original rule:");        auto rule = rules[0];    if (rules.length > 0) {    auto rules = sheet.findRules(".box");    // Find and modify a rule        auto sheet = parseCSS(".box { width: 100px; height: 100px; }");    writeln("3. Manipulating parsed CSS:");    // Example 3: Manipulating CSS        writeln();    writeln(stylesheet.toString());    writeln("Parsed stylesheet:");    auto stylesheet = parseCSS(cssCode);        `;        }            }                margin: 5px;                padding: 10px;            .card {        @media (max-width: 600px) {                }            margin-bottom: 10px;            font-weight: bold;            font-size: 20px;        .card-title {                }            box-shadow: 0 2px 4px rgba(0,0,0,0.1);            background-color: white;            margin: 10px;            padding: 15px;            border-radius: 8px;            border: 1px solid #ddd;        .card {                }            font-family: Arial, sans-serif;            color: #2c3e50;        h1, h2 {        /* Main styles */    string cssCode = `    writeln("2. Parsing existing CSS:");    // Example 2: Parsing existing CSS        writeln();    writeln(builder.toString());            .endMedia();            .endRule()                .padding("10px")                .width("100%")            .rule(".container")        .media("screen", ["max-width: 768px"])        .endRule()            .backgroundColor("#0056b3")        .rule(".button:hover")        .endRule()            .property("cursor", "pointer")            .borderRadius("4px")            .border("none")            .color("#fff")            .backgroundColor("#007bff")            .padding("10px 20px")            .display("inline-block")        .rule(".button", ".btn")        .endRule()            .padding("20px")            .margin("0 auto")            .width("1200px")        .endRule()
+        .endRule()
         .rule(".container")
+            .width("1200px")
+            .margin("0 auto")
+            .padding("20px")
+        .endRule()
+        .rule(".button")
+            .addSelector(".btn")
+            .display("inline-block")
+            .padding("10px 20px")
+            .backgroundColor("#007bff")
+            .color("#fff")
+            .border("none")
+            .borderRadius("4px")
+            .property("cursor", "pointer")
+        .endRule()
+        .rule(".button:hover")
+            .backgroundColor("#0056b3")
+        .endRule()
+        .media("screen", ["max-width: 768px"])
+            .rule(".container")
+                .width("100%")
+                .padding("10px")
+            .endRule()
+        .endMedia();
+    
+    writeln(builder.toString());
+    writeln();
+    
+    // Example 2: Parsing existing CSS
+    writeln("2. Parsing existing CSS:");
+    string cssCode = `
+        /* Main styles */
+        h1, h2 {
+            color: #2c3e50;
+            font-family: Arial, sans-serif;
+        }
+        
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .card-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 600px) {
+            .card {
+                padding: 10px;
+                margin: 5px;
+            }
+        }
+    `;
+    
+    auto stylesheet = parseCSS(cssCode);
+    writeln("Parsed stylesheet:");
+    writeln(stylesheet.toString());
+    writeln();
+    
+    // Example 3: Manipulating parsed CSS
+    writeln("3. Manipulating parsed CSS:");
+    auto sheet = parseCSS(".box { width: 100px; height: 100px; }");
+    
+    // Find and modify a rule
+    auto rules = sheet.findRules(".box");
+    if (rules.length > 0) {
+        auto rule = cast(CSSRule)rules[0];
+        writeln("Original rule:");
+        writeln(rule.toString());
+        writeln();
+        
+        // Add new properties
+        rule.setProperty("background-color", "#f0f0f0");
+        rule.setProperty("border", "1px solid #ccc");
+        
+        writeln("Modified rule:");
+        writeln(rule.toString());
+    }
+    writeln();
+    
+    // Example 4: CSS Variables
+    writeln("4. CSS Variables:");
+    auto varSheet = css()
+        .variable("primary-color", "#007bff")
+        .variable("secondary-color", "#6c757d")
+        .variable("spacing", "1rem")
+        .rule(".theme-element")
+            .property("color", "var(--primary-color)")
+            .property("margin", "var(--spacing)")
+        .endRule();
+    
+    writeln(varSheet.toString());
+    writeln();
+    
+    // Example 5: Complex responsive design
+    writeln("5. Complex responsive design:");
+    auto responsive = css()
+        .rule(".grid")
+            .display("grid")
+            .property("grid-template-columns", "repeat(4, 1fr)")
+            .property("gap", "20px")
+        .endRule()
+        .media("screen", ["max-width: 1200px"])
+            .rule(".grid")
+                .property("grid-template-columns", "repeat(3, 1fr)")
+            .endRule()
+        .endMedia()
+        .media("screen", ["max-width: 768px"])
+            .rule(".grid")
+                .property("grid-template-columns", "repeat(2, 1fr)")
+                .property("gap", "10px")
+            .endRule()
+        .endMedia()
+        .media("screen", ["max-width: 480px"])
+            .rule(".grid")
+                .property("grid-template-columns", "1fr")
+            .endRule()
+        .endMedia();
+    
+    writeln(responsive.toString());
+    writeln();
+    
+    writeln("=== Example Complete ===");
+}

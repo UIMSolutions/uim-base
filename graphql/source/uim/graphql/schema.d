@@ -24,7 +24,7 @@ class GraphQLSchema {
     GraphQLType[string] types;
     GraphQLDirective[string] directives;
     
-    this(GraphQLObjectType queryType, GraphQLObjectType mutationType = null, GraphQLObjectType subscriptionType = null) pure nothrow @safe {
+    this(GraphQLObjectType queryType, GraphQLObjectType mutationType = null, GraphQLObjectType subscriptionType = null) @safe {
         this.queryType = queryType;
         this.mutationType = mutationType;
         this.subscriptionType = subscriptionType;

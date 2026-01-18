@@ -312,7 +312,7 @@ __gshared GraphQLScalarType GraphQLString;
 __gshared GraphQLScalarType GraphQLBoolean;
 __gshared GraphQLScalarType GraphQLID;
 
-shared static this() {
+shared static this() @trusted {
     GraphQLInt = new GraphQLScalarType("Int", "The Int scalar type represents non-fractional signed whole numeric values.");
     GraphQLInt.serialize = &intSerialize;
     GraphQLInt.parseValue = &intSerialize;

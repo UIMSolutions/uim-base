@@ -43,12 +43,15 @@ struct ExecutionResult {
         return errors.length > 0;
     }
     
-    JSONValue toJSON() const @safe {
-        JSONValue result = JSONValue(["data": data]);
+    JSONValue toJSON() const @trusted {
+        JSONValue result;
+        result["data"] = data;
         if (hasErrors()) {
             JSONValue[] errorArray;
             foreach (err; errors) {
-                errorArray ~= JSONValue(["message": JSONValue(err)]);
+                JSONValue errorObj;
+                errorObj["message"] = JSONValue(err);
+                errorArray ~= errorObj;
             }
             result["errors"] = JSONValue(errorArray);
         }
@@ -163,7 +166,7 @@ class GraphQLExecutor {
         } else {
             // Default resolver: try to get field from source object
             if (source.type == JSONType.object) {
-                resolvedValue = source.object.get(field.name, JSONValue(null));
+                resolvedValue = () @trusted { return source.object.get(field.name, JSONValue(null)); }();
             } else {
                 resolvedValue = JSONValue(null);
             }
@@ -176,7 +179,7 @@ class GraphQLExecutor {
                 if (resolvedValue.type == JSONType.array) {
                     // Handle lists
                     JSONValue[] resultArray;
-                    foreach (item; resolvedValue.array) {
+                    foreach (item; () @trusted { return resolvedValue.array; }()) {
                         resultArray ~= executeSelectionSet(context, field.selectionSet, objectType, item);
                     }
                     return JSONValue(resultArray);
