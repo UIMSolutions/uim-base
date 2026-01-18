@@ -94,18 +94,18 @@ class UIMObject : IObject {
   Returns: 
     Returns 'true' if all members exist, 'false' otherwise
   */
-  bool hasAllMembers(string[] names) {
+  bool hasAllMember(string[] names) {
     return names.all!(name => hasMember(name));
   }
   /// 
   unittest {
     // Test hasAllMembers with all existing members
     auto obj1 = new UIMObject;
-    assert(obj1.hasAllMember(["objName", "objId"]));
+    assert(obj1.hasAllMember(["objName", "objId"]), "Expected hasAllMember to return true when all members exist");
 
     // Test hasAllMember with some non-existing members
     auto obj2 = new UIMObject;
-    assert(!obj2.hasAllMember(["objName", "nonExistentMember"]));
+    assert(!obj2.hasAllMember(["objName", "nonExistentMember"]), "Expected hasAllMember to return false when at least one member does not exist");
   }
 
   /** 

@@ -9,6 +9,7 @@ module uim.oop;
 public import uim.core;
 
 public  {
+    import uim.oop.containers;
     import uim.oop.datatypes;
     import uim.oop.helpers;
     import uim.oop.patterns;

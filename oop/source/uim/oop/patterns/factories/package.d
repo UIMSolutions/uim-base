@@ -9,6 +9,7 @@ public { // Modules
   import uim.oop.patterns.factories.interfaces;
   import uim.oop.patterns.factories.factory;
   import uim.oop.patterns.factories.registrybased;
+  import uim.oop.patterns.factories.parameterized;
 }
 
 public { // Packages

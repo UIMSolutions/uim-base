@@ -32,3 +32,20 @@ class SingletonFactory(T) {
     _instance = null;
   }
 }
+///
+unittest {
+  mixin(ShowTest!"Testing Singleton Factory Pattern");
+
+  class Product {
+    int value;
+    this() { value = 42; }
+  }
+
+  auto singletonFactory = new SingletonFactory!Product(() => new Product());
+  
+  auto instance1 = singletonFactory.getInstance();
+  auto instance2 = singletonFactory.getInstance();
+  
+  assert(instance1 is instance2); // Same instance
+  assert(instance1.value == 42);
+}

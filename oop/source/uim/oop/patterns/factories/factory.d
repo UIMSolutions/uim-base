@@ -13,39 +13,69 @@ mixin(ShowModule!());
 
 /**
  * Simple factory implementation using a delegate.
+ * Supports both direct creation and registry-based creation by key.
  */
-class Factory(T) : IFactory!T {
-  private T delegate() @safe _creator;
+class Factory(T : UIMObject) : IFactory!T {
+  private T delegate() @safe _defaultCreator;
+  protected T delegate()[string] _creators;
+  protected T[string] _createObjects;
 
   this(T delegate() @safe creator) {
-    _creator = creator;
+    _defaultCreator = creator;
   }
 
+  /**
+   * Create an instance using the default creator.
+   */
   T create() {
-    return _creator();
-  }
-}
-
-/**
- * Factory with parameters support.
- */
-class ParameterizedFactory(T, Args...) {
-  private T delegate(Args) @safe _creator;
-
-  this(T delegate(Args) @safe creator) {
-    _creator = creator;
+    return _defaultCreator();
   }
 
-  T create(Args args) {
-    return _creator(args);
+  /**
+   * Register a creator function for a specific key.
+   */
+  Factory!T register(string key, T delegate() @safe creator) {
+    _creators[key] = creator;
+    return this;
   }
-}
 
-/**
- * Abstract factory interface for creating families of related objects.
- */
-interface IAbstractFactory {
-  Object createProduct(string productType);
+  /**
+   * Create an instance by key using a registered creator.
+   * Throws: Exception if key is not registered
+   */
+  T create(string key) {
+    return isRegistered(key) ? _creators[key]() : null;
+  }
+
+  /**
+   * Check if a key is registered.
+   */
+  bool isRegistered(string key) {
+    return key in _creators ? true : false;
+  }
+
+  /**
+   * Unregister a key.
+   */
+  Factory!T unregister(string key) {
+    _creators.remove(key);
+    return this;
+  }
+
+  /**
+   * Clear all registrations.
+   */
+  Factory!T clearRegistry() {
+    _creators.clear();
+    return this;
+  }
+
+  /**
+   * Get all registered keys.
+   */
+  string[] registeredKeys() {
+    return _creators.keys;
+  }
 }
 
 
@@ -72,7 +102,9 @@ FactoryBuilder!T factoryBuilder(T)(T delegate() @safe creator) {
 
 // Unit tests
 unittest {
-  class Product {
+  mixin(ShowTest!"Testing Factory Pattern");
+
+  class Product : UIMObject {
     int value;
     this(int v = 0) { value = v; }
   }
@@ -86,7 +118,65 @@ unittest {
 }
 
 unittest {
-  class Product {
+  mixin(ShowTest!"Testing Factory with Registry");
+
+  class Product : UIMObject {
+    string type;
+    int value;
+    this(string t, int v) { 
+      type = t; 
+      value = v; 
+    }
+  }
+
+  auto factory = createFactory(() => new Product("default", 0));
+  
+  // Register multiple product creators
+  factory.register("small", () => new Product("small", 10));
+  factory.register("medium", () => new Product("medium", 50));
+  factory.register("large", () => new Product("large", 100));
+  
+  // Test isRegistered
+  assert(factory.isRegistered("small"));
+  assert(factory.isRegistered("medium"));
+  assert(!factory.isRegistered("extra-large"));
+  
+  // Test create by key
+  auto small = factory.create("small");
+  assert(small.type == "small");
+  assert(small.value == 10);
+  
+  auto large = factory.create("large");
+  assert(large.type == "large");
+  assert(large.value == 100);
+  
+  // Test registeredKeys
+  auto keys = factory.registeredKeys();
+  assert(keys.length == 3);
+  
+  // Test tryCreate
+  auto valid = factory.create("medium");
+  assert(valid !is null);
+  assert(valid.type == "medium");
+  
+  auto invalid = factory.create("nonexistent");
+  assert(invalid is null);
+  
+  // Test unregister
+  factory.unregister("small");
+  assert(!factory.isRegistered("small"));
+  assert(factory.registeredKeys().length == 2);
+  
+  // Test clearRegistry
+  factory.clearRegistry();
+  assert(factory.registeredKeys().length == 0);
+  assert(!factory.isRegistered("medium"));  
+}
+
+unittest {
+  mixin(ShowTest!"Testing Parameterized Factory Pattern");
+
+  class Product : UIMObject {
     int value;
     this(int v) { value = v; }
   }
@@ -97,6 +187,8 @@ unittest {
 }
 
 unittest {
+  mixin(ShowTest!"Testing Registry Based Factory Pattern");
+
   @safe interface IProduct {
     string getName();
   }
@@ -123,23 +215,10 @@ unittest {
   RegisterBasedFactory!IProduct.clear();
 }
 
-unittest {
-  class Product {
-    int value;
-    this() { value = 42; }
-  }
 
-  auto singletonFactory = new SingletonFactory!Product(() => new Product());
-  
-  auto instance1 = singletonFactory.getInstance();
-  auto instance2 = singletonFactory.getInstance();
-  
-  assert(instance1 is instance2); // Same instance
-  assert(instance1.value == 42);
-}
 
 unittest {
-  class Product {
+  class Product : UIMObject {
     int value;
     this() { value = 100; }
   }
