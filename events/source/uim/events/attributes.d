@@ -5,7 +5,8 @@
 *****************************************************************************************************************/
 module uim.events.attributes;
 
-import uim.events;
+import uim.core;
+import uim.oop;
 
 @safe:
 
@@ -128,10 +129,12 @@ template getListenerOnceAttribute(alias member) {
 }
 
 unittest {
+    import uim.events.event : DEvent;
+    
     writeln("Testing UDA attributes...");
     
     @Event("test.event")
-    class TestEvent : uim.events.event.DEvent {
+    class TestEvent : DEvent {
         this() { super("test.event"); }
     }
     

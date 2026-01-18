@@ -7,23 +7,12 @@ module uim.events.subscriber;
 
 import uim.core;
 import uim.oop;
+import uim.events.interfaces;
 import uim.events.event;
 import uim.events.listener;
 import uim.events.dispatcher;
 
 @safe:
-
-/**
- * Event subscriber interface for registering multiple event listeners at once
- */
-interface IEventSubscriber {
-    /**
-     * Get subscribed events as an associative array
-     * Key: event name
-     * Value: callback or listener
-     */
-    void subscribe(DEventDispatcher dispatcher);
-}
 
 /**
  * Base event subscriber class
@@ -40,6 +29,9 @@ abstract class DEventSubscriber : UIMObject, IEventSubscriber {
 }
 
 unittest {
+    import uim.events.event : Event;
+    import uim.events.dispatcher : EventDispatcher;
+    
     writeln("Testing DEventSubscriber class...");
     
     class TestSubscriber : DEventSubscriber {

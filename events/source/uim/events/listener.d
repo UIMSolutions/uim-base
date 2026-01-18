@@ -5,7 +5,9 @@
 *****************************************************************************************************************/
 module uim.events.listener;
 
-import uim.events;
+import uim.core;
+import uim.oop;
+import uim.events.interfaces;
 
 @safe:
 
@@ -18,9 +20,39 @@ alias EventCallback = void delegate(IEvent event) @safe;
  * Event listener with priority support
  */
 class DEventListener : UIMObject {
-  mixin(OProperty!("EventCallback", "callback"));
-  mixin(OProperty!("int", "priority"));
-  mixin(OProperty!("bool", "once"));
+  private EventCallback _callback;
+  private int _priority;
+  private bool _once;
+
+  // Getter and setter for callback
+  EventCallback callback() {
+    return _callback;
+  }
+  
+  DEventListener callback(EventCallback value) {
+    _callback = value;
+    return this;
+  }
+
+  // Getter and setter for priority
+  int priority() {
+    return _priority;
+  }
+  
+  DEventListener priority(int value) {
+    _priority = value;
+    return this;
+  }
+
+  // Getter and setter for once
+  bool once() {
+    return _once;
+  }
+  
+  DEventListener once(bool value) {
+    _once = value;
+    return this;
+  }
 
   protected bool _executed = false;
 
@@ -78,10 +110,12 @@ auto EventListenerOnce(EventCallback callback, int priority = 0) {
 }
 
 unittest {
+  import uim.events.event : Event;
+  
   writeln("Testing DEventListener class...");
 
   int callCount = 0;
-  auto listener = EventListener((DEvent event) { callCount++; });
+  auto listener = EventListener((IEvent event) { callCount++; });
 
   auto event = Event("test");
   listener.execute(event);
@@ -92,7 +126,7 @@ unittest {
 
   // Test one-time listener
   int onceCount = 0;
-  auto onceListener = EventListenerOnce((DEvent event) { onceCount++; });
+  auto onceListener = EventListenerOnce((IEvent event) { onceCount++; });
 
   onceListener.execute(event);
   assert(onceCount == 1);

@@ -5,7 +5,12 @@
 *****************************************************************************************************************/
 module uim.events.annotated;
 
-import uim.events;
+import uim.core;
+import uim.oop;
+import uim.events.interfaces;
+import uim.events.event;
+import uim.events.dispatcher;
+import uim.events.attributes;
 
 @safe:
 
@@ -16,28 +21,28 @@ import uim.events;
 void registerAnnotatedListeners(T)(T obj, DEventDispatcher dispatcher) 
     if (is(T == class) || is(T == struct))
 {
-    static foreach (memberName; __traits(allMembers, T)) {
+    import std.traits : hasUDA, getUDAs;
+    
+    static foreach (memberName; __traits(allMembers, T)) {{
         static if (is(typeof(__traits(getMember, obj, memberName)) == function)) {
-            alias member = __traits(getMember, T, memberName);
-            
             // Check for @EventListener
-            static if (hasListenerAttribute!member) {
-                enum attr = getListenerAttribute!member;
+            static if (hasUDA!(__traits(getMember, T, memberName), EventListener)) {
+                enum attr = getUDAs!(__traits(getMember, T, memberName), EventListener)[0];
                 
                 dispatcher.on(attr.eventName, (IEvent event) @trusted {
                     __traits(getMember, obj, memberName)(event);
                 }, attr.priority);
             }
             // Check for @EventListenerOnce
-            else static if (hasListenerOnceAttribute!member) {
-                enum attr = getListenerOnceAttribute!member;
+            else static if (hasUDA!(__traits(getMember, T, memberName), EventListenerOnce)) {
+                enum attr = getUDAs!(__traits(getMember, T, memberName), EventListenerOnce)[0];
                 
                 dispatcher.once(attr.eventName, (IEvent event) @trusted {
                     __traits(getMember, obj, memberName)(event);
                 }, attr.priority);
             }
         }
-    }
+    }}
 }
 
 /**

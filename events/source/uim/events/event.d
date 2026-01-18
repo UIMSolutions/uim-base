@@ -5,7 +5,11 @@
 *****************************************************************************************************************/
 module uim.events.event;
 
-import uim.events;
+import uim.core;
+import uim.oop;
+import uim.events.interfaces;
+
+import std.datetime : SysTime, Clock;
 
 @safe:
 
@@ -14,7 +18,17 @@ import uim.events;
  * Provides common event functionality including name, timestamp, and propagation control.
  */
 class DEvent : UIMObject, IEvent {
+    this() {
+        super();
+        this.timestamp(Clock.currTime());
+    }
+    
+    this(string eventName) {
+        this();
+        this.name(eventName);
+    }
 
+    // #region name
     // Getter and setter for name
     private string _name;
     string name() {
@@ -25,7 +39,9 @@ class DEvent : UIMObject, IEvent {
         _name = value;
         return this;
     }
+    // #endregion name
 
+    // #region timestamp
     // Getter and setter for timestamp
     private SysTime _timestamp;
     SysTime timestamp() {
@@ -36,6 +52,7 @@ class DEvent : UIMObject, IEvent {
         _timestamp = value;
         return this;
     }
+    // #endregion timestamp
 
     // #region stopped
     private bool _stopped;
@@ -66,15 +83,7 @@ class DEvent : UIMObject, IEvent {
     
     protected bool _propagationStopped = false;
     
-    this() {
-        super();
-        this.timestamp(Clock.currTime());
-    }
-    
-    this(string eventName) {
-        this();
-        this.name(eventName);
-    }
+
     
     /**
      * Stop event propagation to subsequent listeners
@@ -133,10 +142,10 @@ unittest {
     event.stopPropagation();
     assert(event.isPropagationStopped());
     
-    event.setData("key1", "value1");
+    event.setData("key1", Json("value1"));
     assert(event.hasKey("key1"));
-    assert(event.getData("key1") == "value1");
-    assert(event.getData("nonexistent", "default") == "default");
+    assert(event.getData("key1") == Json("value1"));
+    assert(event.getData("nonexistent", Json("default")) == Json("default"));
     
     writeln("DEvent tests passed!");
 }
