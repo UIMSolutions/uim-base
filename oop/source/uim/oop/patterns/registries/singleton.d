@@ -5,6 +5,7 @@ import uim.oop;
 mixin(ShowModule!());
 
 @safe:
+
 /**
  * Singleton registry - ensures single instance per key
  */
@@ -64,4 +65,22 @@ class SingletonRegistry(K, V) : IRegistry!(K, V) {
   size_t count() {
     return _instances.length;
   }
+}
+///
+unittest {
+  mixin(ShowTest!"Testing SingletonRegistry class...");
+  
+  class Service {
+    int value;
+    this() { value = 42; }
+  }
+  
+  auto registry = new SingletonRegistry!(string, Service);
+  registry.register("service", () => new Service());
+  
+  auto instance1 = registry.get("service");
+  auto instance2 = registry.get("service");
+  
+  assert(instance1 is instance2); // Same instance
+  assert(instance1.value == 42);
 }
