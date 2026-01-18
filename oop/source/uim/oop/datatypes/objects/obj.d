@@ -17,22 +17,20 @@ class UIMObject : IObject {
 
   this() {
     this.initialize;
-    this.name(this.classname);
   }
 
   this(Json[string] initData) {
     this.initialize(initData);
-    this.name(this.classname);
   }
 
   this(string newName, Json[string] initData = null) {
     this.initialize(initData);
-    this.name(newName);
+    objName(newName);
   }
 
   bool initialize(Json[string] initData = null) {
-    objId(randomUUID);
-    name("Object");
+    objId(initData.hasKey("objId") ? UUID(initData["objId"].to!string) : randomUUID);
+    objName(initData.hasKey("objName") ? initData["objName"].to!string : "Object");
 
     /* auto config = ConfigurationFactory.create("memory");
     configuration(config);
@@ -69,20 +67,20 @@ class UIMObject : IObject {
 
   // #region object member
   /// Get the names of all members of the object.
-  string[] memberNames() {
+  string[] objMemberNames() {
     return [__traits(allMembers, typeof(this))];
   }
   ///
   unittest {
     // Test memberNames returns non-empty array
     auto obj1 = new UIMObject;
-    auto members1 = obj1.memberNames();
+    auto members1 = obj1.objMemberNames();
     assert(members1.length > 0);
 
     // Test memberNames contains expected base members
     auto obj2 = new UIMObject;
-    auto members2 = obj2.memberNames();
-    assert(members2.canFind("name"));
+    auto members2 = obj2.objMemberNames();
+    assert(members2.canFind("objName"));
     assert(members2.canFind("objId"));
     assert(members2.canFind("initialize"));
   }
@@ -96,18 +94,18 @@ class UIMObject : IObject {
   Returns: 
     Returns 'true' if all members exist, 'false' otherwise
   */
-  bool hasAllMember(string[] names) {
+  bool hasAllMembers(string[] names) {
     return names.all!(name => hasMember(name));
   }
   /// 
   unittest {
-    // Test hasAllMember with all existing members
+    // Test hasAllMembers with all existing members
     auto obj1 = new UIMObject;
-    assert(obj1.hasAllMember(["name", "objId"]));
+    assert(obj1.hasAllMember(["objName", "objId"]));
 
     // Test hasAllMember with some non-existing members
     auto obj2 = new UIMObject;
-    assert(!obj2.hasAllMember(["name", "nonExistentMember"]));
+    assert(!obj2.hasAllMember(["objName", "nonExistentMember"]));
   }
 
   /** 
@@ -126,11 +124,11 @@ class UIMObject : IObject {
   unittest {
     // Test hasAnyMember with at least one existing member
     auto obj1 = new UIMObject;
-    assert(obj1.hasAnyMember(["name", "nonExistentMember"]));
+    assert(obj1.hasAnyMember(["objName", "nonExistentMember"]));
 
     // Test hasAnyMember with all existing members
     auto obj2 = new UIMObject;
-    assert(obj2.hasAnyMember(["name", "objId", "initialize"]));
+    assert(obj2.hasAnyMember(["objName", "objId", "initialize"]));
   }
 
   /**
@@ -143,49 +141,53 @@ class UIMObject : IObject {
     true if a member with the given name exists, false otherwise.
   */
   bool hasMember(string checkName) {
-    return memberNames.any!(name => name == checkName);
+    return objMemberNames.any!(name => name == checkName);
   }
   ///
   unittest {
     auto obj1 = new UIMObject;
-    assert(obj1.hasMember("name")); // existing member
+    assert(obj1.hasMember("objName")); // existing member
     assert(obj1.hasMember("objId")); // existing member
     assert(obj1.hasMember("initialize")); // existing member
     assert(!obj1.hasMember("nonExistentMember")); // non-existing member
 
     auto obj2 = new UIMObject;
-    assert(!obj2.hasMember("Name")); // case sensitivity
-    assert(obj2.hasMember("name")); // correct case
+    assert(!obj2.hasMember("ObjName")); // case sensitivity
+    assert(obj2.hasMember("objName")); // correct case
   }
   // #region object member
 
-  // #region name
-  protected string _name;
+  // #region object name
+  protected string _objName;
   // Get the name of the object.
-  string name() {
-    return _name;
+  string objName() {
+    return _objName;
   }
 
   // Get or set the name of the object.
-  void name(string newName) {
-    _name = newName.dup;
+  void objName(string newName) {
+    _objName = newName.dup;
   }
   // #endregion name
 
-  /*   void opIndexAssign(T)(T value, string name) {
-    switch(name) {
-      case "name": this.name(value.toString);
-      default: break;
+  void opIndexAssign(T)(T value, string key) {
+    switch (key) {
+    case "objId":
+      this.objId(value);
+    case "objName":
+      this.objName(value);
+    default:
+      break;
     }
     return;
-  } */
+  }
 
   /* Json opIndex(string name) {
     switch (name) {
-    case "name":
-      return name.toJson;
-    case "classname":
-      return this.classname.toJson;
+    case "objName":
+      return objName.toJson;
+    case "objClass":
+      return this.objClass.toJson;
     case "classFullname":
       return this.classFullname.toJson;
     case "memberNames":
@@ -197,19 +199,16 @@ class UIMObject : IObject {
 
   Json toJson(string[] showKeys = null, string[] hideKeys = null) {
     Json json = Json.emptyObject;
-    json["name"] = name;
-    json["classname"] = this.classname;
-    
+    json["objName"] = objName;
+    json["objClass"] = this.classname;
+
     return json;
   }
 
-  // #region debugInfo
+  // #region debugInfom
   // Provides debug information about the object.
   Json[string] debugInfo(string[] showKeys = null, string[] hideKeys = null) {
-    Json[string] info;
-
-    info["name"] = name;
-    info["classname"] = this.classname;
+    Json[string] info = toJson().toMap;
     info["classFullname"] = this.classFullname;
 
     return info;
@@ -223,7 +222,7 @@ class UIMObject : IObject {
     if (this !is other) {
       return false;
     }
-    if (this.name is null || other.name is null) {
+    if (this.objName is null || other.objName is null) {
       return false;
     }
     if (cast(IObject)other is null) {
@@ -236,20 +235,18 @@ class UIMObject : IObject {
     if (other is null) {
       return false;
     } */
-    return this.name == other.name;
+    return this.objName == other.objName;
     // TODO: Consider adding more properties for comparison if needed.
   }
 
   // Returns a string representation comparing two IObject instances.
   override string toString() {
-    return "Object: " ~ this.name;
+    return "Object: " ~ this.objName;
   }
 
   // Creates a clone of the current object.
   IObject clone() {
-    auto obj = new UIMObject;
-    obj.name(this.name);
-    return obj;
+    return new UIMObject(toJson().toMap);
   }
   // #endregion IObject
 
@@ -264,7 +261,7 @@ class Test : UIMObject {
     return null;
   }
 
-  override string[] memberNames() {
+  override string[] objMemberNames() {
     return [__traits(allMembers, typeof(this))];
   }
 }

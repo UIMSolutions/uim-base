@@ -5,8 +5,7 @@
 *****************************************************************************************************************/
 module uim.events.attributes;
 
-import uim.core;
-import uim.oop;
+import uim.events;
 
 @safe:
 

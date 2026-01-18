@@ -5,14 +5,7 @@
 *****************************************************************************************************************/
 module uim.events.annotated;
 
-import uim.core;
-import uim.oop;
-import uim.events.event;
-import uim.events.listener;
-import uim.events.dispatcher;
-import uim.events.attributes;
-
-import std.traits;
+import uim.events;
 
 @safe:
 

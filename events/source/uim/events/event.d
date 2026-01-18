@@ -7,8 +7,6 @@ module uim.events.event;
 
 import uim.events;
 
-
-
 @safe:
 
 /**

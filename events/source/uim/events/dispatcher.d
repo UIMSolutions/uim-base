@@ -5,14 +5,7 @@
 *****************************************************************************************************************/
 module uim.events.dispatcher;
 
-import uim.core;
-import uim.oop;
-import uim.events.event;
-import uim.events.listener;
-
-import vibe.core.core : runTask;
-import std.algorithm : sort;
-import std.array : array;
+import uim.events;
 
 @safe:
 

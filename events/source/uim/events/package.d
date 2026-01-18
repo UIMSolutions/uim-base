@@ -6,6 +6,12 @@
 module uim.events;
 
 public {
+  import uim.core;
+  import uim.oop;
+}
+
+
+public {
   import uim.events.helpers;
 }
 

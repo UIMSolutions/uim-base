@@ -14,10 +14,10 @@ mixin(ShowModule!());
 /// Interface for all UIM objects.
 interface IObject {
   /// Get the name of the object.
-  string name(); 
+  string objName(); 
 
   /// Get or set the name of the object.
-  void name(string newName); 
+  void objName(string newName); 
 
   /// Compares two IObject instances for equality based on their names.
   bool isEqual(IObject other); 

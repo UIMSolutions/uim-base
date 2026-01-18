@@ -5,9 +5,7 @@
 *****************************************************************************************************************/
 module uim.events.listener;
 
-import uim.core;
-import uim.oop;
-import uim.events.event;
+import uim.events;
 
 @safe:
 
