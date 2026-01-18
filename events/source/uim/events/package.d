@@ -10,9 +10,9 @@ public {
   import uim.oop;
 }
 
-
 public {
   import uim.events.helpers;
+  import uim.events.interfaces;
 }
 
 public {
@@ -22,5 +22,4 @@ public {
   import uim.events.subscriber;
   import uim.events.attributes;
   import uim.events.annotated;
-  import uim.events.interfaces;
 }

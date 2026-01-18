@@ -11,6 +11,8 @@ import uim.events.interfaces;
 import uim.events.listener;
 import uim.events.event;
 
+mixin(ShowModule!());
+
 @safe:
 
 /**
@@ -163,7 +165,7 @@ auto EventDispatcher() {
 }
 
 unittest {
-  writeln("Testing DEventDispatcher class...");
+  mixin(ShowTest!"Testing DEventDispatcher class...");
 
   auto dispatcher = EventDispatcher();
   int callCount = 0;

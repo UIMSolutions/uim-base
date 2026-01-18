@@ -9,6 +9,8 @@ import uim.core;
 import uim.oop;
 import uim.events.interfaces;
 
+mixin(ShowModule!());
+
 @safe:
 
 /**
@@ -20,19 +22,44 @@ alias EventCallback = void delegate(IEvent event) @safe;
  * Event listener with priority support
  */
 class DEventListener : UIMObject {
-  private EventCallback _callback;
   private int _priority;
   private bool _once;
 
+  // #region callback
+  private EventCallback _callback;
   // Getter and setter for callback
   EventCallback callback() {
     return _callback;
+  }
+    ///
+  unittest {
+    writeln("Testing DEventListener callback getter/setter...");
+    int callCount = 0;
+    auto listener = EventListener((IEvent event) { callCount++; });
+    assert(listener.callback() !is null, "Callback should not be null");
+    auto event = cast(IEvent) null;
+    listener.callback()(event);
+    assert(callCount == 1, "Callback should have been called once");
+    writeln("DEventListener callback tests passed!");
   }
   
   DEventListener callback(EventCallback value) {
     _callback = value;
     return this;
   }
+  ///
+  unittest {
+    mixin(ShowTest!"Testing DEventListener callback getter/setter...");
+
+    int callCount = 0;
+    auto listener = EventListener((IEvent event) { callCount++; });
+    assert(listener.callback() !is null, "Callback should not be null");
+    auto event = cast(IEvent) null;
+    listener.callback()(event);
+    assert(callCount == 1, "Callback should have been called once");
+    writeln("DEventListener callback tests passed!");
+  }
+  // #endregion callback
 
   // Getter and setter for priority
   int priority() {

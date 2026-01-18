@@ -18,134 +18,132 @@ import std.datetime : SysTime, Clock;
  * Provides common event functionality including name, timestamp, and propagation control.
  */
 class DEvent : UIMObject, IEvent {
-    this() {
-        super();
-        this.timestamp(Clock.currTime());
-    }
-    
-    this(string eventName) {
-        this();
-        this.name(eventName);
-    }
+  this() {
+    super();
+    this.timestamp(Clock.currTime());
+  }
 
-    // #region name
-    // Getter and setter for name
-    private string _name;
-    string name() {
-        return _name;
-    }
-    
-    IEvent name(string value) {
-        _name = value;
-        return this;
-    }
-    // #endregion name
+  this(string eventName) {
+    this();
+    this.name(eventName);
+  }
 
-    // #region timestamp
-    // Getter and setter for timestamp
-    private SysTime _timestamp;
-    SysTime timestamp() {
-        return _timestamp;
-    }
-    
-    IEvent timestamp(SysTime value) {
-        _timestamp = value;
-        return this;
-    }
-    // #endregion timestamp
+  // #region name
+  // Getter and setter for name
+  private string _name;
+  string name() {
+    return _name;
+  }
 
-    // #region stopped
-    private bool _stopped;
-    // Getter for stopped
-    bool stopped() {
-        return _stopped;
-    }
-    
-    // Setter for stopped
-    IEvent stopped(bool value) {
-        _stopped = value;
-        return this;
-    }
-    // #endregion stopped
+  IEvent name(string value) {
+    _name = value;
+    return this;
+  }
+  // #endregion name
 
-    // #region data
-    private Json[string] _data;
-    // Getter and setter for data
-    Json[string] data() {
-        return _data;
-    }
-    
-    IEvent data(Json[string] value) {
-        _data = value;
-        return this;
-    }
-    // #endregion data
-    
-    protected bool _propagationStopped = false;
-    
+  // #region timestamp
+  // Getter and setter for timestamp
+  private SysTime _timestamp;
+  SysTime timestamp() {
+    return _timestamp;
+  }
 
-    
-    /**
+  IEvent timestamp(SysTime value) {
+    _timestamp = value;
+    return this;
+  }
+  // #endregion timestamp
+
+  // #region stopped
+  private bool _stopped;
+  // Getter for stopped
+  bool stopped() {
+    return _stopped;
+  }
+
+  // Setter for stopped
+  IEvent stopped(bool value) {
+    _stopped = value;
+    return this;
+  }
+  // #endregion stopped
+
+  // #region data
+  private Json[string] _data;
+  // Getter and setter for data
+  Json[string] data() {
+    return _data;
+  }
+
+  IEvent data(Json[string] value) {
+    _data = value;
+    return this;
+  }
+  // #endregion data
+
+  protected bool _propagationStopped = false;
+
+  /**
      * Stop event propagation to subsequent listeners
      */
-    void stopPropagation() {
-        _propagationStopped = true;
-        this.stopped(true);
-    }
-    
-    /**
+  void stopPropagation() {
+    _propagationStopped = true;
+    this.stopped(true);
+  }
+
+  /**
      * Check if propagation has been stopped
      */
-    bool isPropagationStopped() {
-        return _propagationStopped;
-    }
-    
-    /**
+  bool isPropagationStopped() {
+    return _propagationStopped;
+  }
+
+  /**
      * Set event data
      */
-    IEvent setData(string key, Json value) {
-        auto currentData = this.data();
-        currentData[key] = value;
-        this.data(currentData);
-        return this;
-    }
-    
-    /**
+  IEvent setData(string key, Json value) {
+    auto currentData = this.data();
+    currentData[key] = value;
+    this.data(currentData);
+    return this;
+  }
+
+  /**
      * Get event data
      */
-    Json getData(string key, Json defaultValue = Json(null)) {
-        auto currentData = this.data();
-        return (key in currentData) ? currentData[key] : defaultValue;
-    }
-    
-    /**
+  Json getData(string key, Json defaultValue = Json(null)) {
+    auto currentData = this.data();
+    return (key in currentData) ? currentData[key] : defaultValue;
+  }
+
+  /**
      * Check if event has data key
      */
-    bool hasKey(string key) {
-        auto currentData = this.data();
-        return (key in currentData) !is null;
-    }
+  bool hasKey(string key) {
+    auto currentData = this.data();
+    return (key in currentData) !is null;
+  }
 }
 
 // Factory function
 auto Event(string name = "") {
-    return new DEvent(name);
+  return new DEvent(name);
 }
 
 unittest {
-    writeln("Testing DEvent class...");
-    
-    auto event = Event("test.event");
-    assert(event.name() == "test.event");
-    assert(!event.isPropagationStopped());
-    
-    event.stopPropagation();
-    assert(event.isPropagationStopped());
-    
-    event.setData("key1", Json("value1"));
-    assert(event.hasKey("key1"));
-    assert(event.getData("key1") == Json("value1"));
-    assert(event.getData("nonexistent", Json("default")) == Json("default"));
-    
-    writeln("DEvent tests passed!");
+  mixin(ShowTest!"Testing DEvent class...");
+
+  auto event = Event("test.event");
+  assert(event.name() == "test.event");
+  assert(!event.isPropagationStopped());
+
+  event.stopPropagation();
+  assert(event.isPropagationStopped());
+
+  event.setData("key1", Json("value1"));
+  assert(event.hasKey("key1"));
+  assert(event.getData("key1") == Json("value1"));
+  assert(event.getData("nonexistent", Json("default")) == Json("default"));
+
+  writeln("DEvent tests passed!");
 }

@@ -2,8 +2,10 @@ module uim.events.interfaces.subscriber;
 
 import uim.core;
 import uim.oop;
-
+import uim.events.dispatcher;
 import std.datetime : SysTime, Clock;
+
+mixin(ShowModule!());
 
 @safe:
 
@@ -12,9 +14,7 @@ import std.datetime : SysTime, Clock;
  */
 interface IEventSubscriber {
     /**
-     * Get subscribed events as an associative array
-     * Key: event name
-     * Value: callback or listener
+     * Register event listeners with a dispatcher
      */
     void subscribe(DEventDispatcher dispatcher);
 }

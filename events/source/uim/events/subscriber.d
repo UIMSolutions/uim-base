@@ -12,6 +12,8 @@ import uim.events.event;
 import uim.events.listener;
 import uim.events.dispatcher;
 
+mixin(ShowModule!());
+
 @safe:
 
 /**
