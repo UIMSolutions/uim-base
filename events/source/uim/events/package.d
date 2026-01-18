@@ -3,15 +3,13 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.entities;
+module uim.events;
 
 public {
-    import uim.entities.entity;
-    import uim.entities.collection;
-    import uim.entities.repository;
-    import uim.entities.attributes;
-    import uim.entities.validator;
-    import uim.entities.events;
-    import uim.entities.manager;
+    import uim.events.event;
+    import uim.events.listener;
+    import uim.events.dispatcher;
+    import uim.events.subscriber;
+    import uim.events.attributes;
+    import uim.events.annotated;
 }
-
