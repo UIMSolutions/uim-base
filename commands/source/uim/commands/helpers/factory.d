@@ -3,20 +3,19 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.commands.helpers.directory;
+module uim.commands.helpers.factory;
 
-import uim.oop;
+import uim.commands;
 
-mixin(Version!"test_uim_oop");
-
+mixin(ShowModule!());
 @safe:
 
-class DCommandDirectory : DDirectory!ICommand {
-  mixin(DirectoryThis!("Command"));
+class DCommandFactory : DFactory!ICommand {
+  mixin(FactoryThis!("Command"));
 }
-mixin(DirectoryCalls!("Command"));
+mixin(FactoryCalls!("Command"));
 
 unittest {
-  auto directory = new DCommandDirectory();
-  assert(testDirectory(directory, "CommandDirectory"), "Test of DCommandDirectory failed!");
+  auto factory = new DCommandFactory();
+  assert(testFactory(factory, "Command"), "Test of DCommandFactory failed!");
 }

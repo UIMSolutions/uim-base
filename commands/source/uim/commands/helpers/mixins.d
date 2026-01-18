@@ -5,9 +5,9 @@
 *****************************************************************************************************************/
 module uim.oop.commands.helpers.mixins;
 
-import uim.oop;
+import uim.commands;
 
-mixin(Version!"test_uim_oop");
+mixin(ShowModule!());
 
 @safe:
 
