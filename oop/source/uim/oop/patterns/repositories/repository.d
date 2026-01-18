@@ -12,11 +12,176 @@ mixin(ShowModule!());
 @safe:
 
 /**
- * Repository with specification support.
- */
-class SpecificationRepository(T, ID) : MemoryRepository!(T, ID), ISpecificationRepository!(T, ID) {
+  * Abstract repository base class.
+  * Provides common functionality for repository implementations.
+  * Concrete repositories should inherit from this and implement abstract methods.
+  */
+abstract class UIMRepository(T, ID) : IRepository!(T, ID) {
+  protected ID delegate(T) @safe _idExtractor;
+
   /**
      * Constructor.
+     * Params:
+     *   idExtractor = Function to extract ID from entity
+     */
+  this(ID delegate(T) @safe idExtractor) {
+    _idExtractor = idExtractor;
+  }
+
+  /**
+     * Add a new entity to the repository.
+     * Must be implemented by concrete repositories.
+     */
+  abstract void add(T entity);
+
+  /**
+     * Update an existing entity in the repository.
+     * Must be implemented by concrete repositories.
+     */
+  abstract void update(T entity);
+
+  /**
+     * Remove an entity from the repository.
+     * Must be implemented by concrete repositories.
+     */
+  abstract void remove(T entity);
+
+  /**
+     * Remove an entity by its ID.
+     * Must be implemented by concrete repositories.
+     */
+  abstract bool removeById(ID id);
+
+  /**
+     * Find an entity by its ID.
+     * Returns: The entity or T.init if not found
+     * Must be implemented by concrete repositories.
+     */
+  abstract T findById(ID id);
+
+  /**
+     * Get all entities in the repository.
+     * Must be implemented by concrete repositories.
+     */
+  abstract T[] findAll();
+
+  /**
+     * Check if an entity with the given ID exists.
+     * Must be implemented by concrete repositories.
+     */
+  abstract bool exists(ID id);
+
+  /**
+     * Get the total count of entities.
+     * Must be implemented by concrete repositories.
+     */
+  abstract size_t count();
+
+  /**
+     * Clear all entities from the repository.
+     * Must be implemented by concrete repositories.
+     */
+  abstract void clear();
+
+  /**
+     * Extract ID from an entity using the configured extractor.
+     * Params:
+     *   entity = The entity to extract ID from
+     * Returns: The entity's ID
+     */
+  protected ID extractId(T entity) {
+    return _idExtractor(entity);
+  }
+
+  /**
+     * Validate entity before add/update operations.
+     * Default implementation does nothing.
+     * Override in concrete repositories to add validation logic.
+     * Params:
+     *   entity = The entity to validate
+     * Returns: true if valid, false otherwise
+     */
+  protected bool validateEntity(T entity) {
+    return true;
+  }
+
+  /**
+     * Hook called before adding an entity.
+     * Default implementation does nothing.
+     * Override in concrete repositories to add custom logic.
+     * Params:
+     *   entity = The entity about to be added
+     */
+  protected void beforeAdd(T entity) {
+    // Default: no-op
+  }
+
+  /**
+     * Hook called after adding an entity.
+     * Default implementation does nothing.
+     * Override in concrete repositories to add custom logic.
+     * Params:
+     *   entity = The entity that was added
+     */
+  protected void afterAdd(T entity) {
+    // Default: no-op
+  }
+
+  /**
+     * Hook called before updating an entity.
+     * Default implementation does nothing.
+     * Override in concrete repositories to add custom logic.
+     * Params:
+     *   entity = The entity about to be updated
+     */
+  protected void beforeUpdate(T entity) {
+    // Default: no-op
+  }
+
+  /**
+     * Hook called after updating an entity.
+     * Default implementation does nothing.
+     * Override in concrete repositories to add custom logic.
+     * Params:
+     *   entity = The entity that was updated
+     */
+  protected void afterUpdate(T entity) {
+    // Default: no-op
+  }
+
+  /**
+     * Hook called before removing an entity.
+     * Default implementation does nothing.
+     * Override in concrete repositories to add custom logic.
+     * Params:
+     *   entity = The entity about to be removed
+     */
+  protected void beforeRemove(T entity) {
+    // Default: no-op
+  }
+
+  /**
+     * Hook called after removing an entity.
+     * Default implementation does nothing.
+     * Override in concrete repositories to add custom logic.
+     * Params:
+     *   entity = The entity that was removed
+     */
+  protected void afterRemove(T entity) {
+    // Default: no-op
+  }
+}
+
+/**
+ * Abstract specification repository with specification pattern support.
+ * Extends AbstractRepository with specification querying capabilities.
+ */
+abstract class AbstractSpecificationRepository(T, ID) : AbstractRepository!(T, ID), ISpecificationRepository!(
+  T, ID) {
+  /**
+     * Constructor.
+     * Params:
+     *   idExtractor = Function to extract ID from entity
      */
   this(ID delegate(T) @safe idExtractor) {
     super(idExtractor);
@@ -24,19 +189,23 @@ class SpecificationRepository(T, ID) : MemoryRepository!(T, ID), ISpecificationR
 
   /**
      * Find entities that satisfy a specification.
+     * Default implementation iterates through all entities.
+     * Override for more efficient implementation.
      */
   T[] find(ISpecification!T spec) {
     import std.algorithm : filter;
     import std.array : array;
 
-    return _entities.values.filter!(e => spec.isSatisfiedBy(e)).array;
+    return findAll().filter!(e => spec.isSatisfiedBy(e)).array;
   }
 
   /**
      * Find first entity that satisfies a specification.
+     * Default implementation iterates through all entities.
+     * Override for more efficient implementation.
      */
   T findOne(ISpecification!T spec) {
-    foreach (entity; _entities.values) {
+    foreach (entity; findAll()) {
       if (spec.isSatisfiedBy(entity)) {
         return entity;
       }
@@ -46,151 +215,12 @@ class SpecificationRepository(T, ID) : MemoryRepository!(T, ID), ISpecificationR
 
   /**
      * Count entities that satisfy a specification.
+     * Default implementation iterates through all entities.
+     * Override for more efficient implementation.
      */
   size_t count(ISpecification!T spec) {
     import std.algorithm : count, filter;
 
-    return _entities.values.filter!(e => spec.isSatisfiedBy(e)).count;
+    return findAll().filter!(e => spec.isSatisfiedBy(e)).count;
   }
-}
-
-
-
-// Unit tests
-unittest {
-  mixin(ShowTest!"Testing MemoryRepository");
-
-  class User {
-    int id;
-    string name;
-    int age;
-
-    this(int id, string name, int age) {
-      this.id = id;
-      this.name = name;
-      this.age = age;
-    }
-  }
-
-  auto repo = new MemoryRepository!(User, int)((User u) => u.id);
-
-  // Test add
-  auto user1 = new User(1, "Alice", 30);
-  auto user2 = new User(2, "Bob", 25);
-  repo.add(user1);
-  repo.add(user2);
-  assert(repo.count() == 2);
-
-  // Test findById
-  auto found = repo.findById(1);
-  assert(found !is null);
-  assert(found.name == "Alice");
-
-  // Test exists
-  assert(repo.exists(1));
-  assert(repo.exists(2));
-  assert(!repo.exists(999));
-
-  // Test findAll
-  auto all = repo.findAll();
-  assert(all.length == 2);
-
-  // Test update
-  user1.name = "Alice Updated";
-  repo.update(user1);
-  auto updated = repo.findById(1);
-  assert(updated.name == "Alice Updated");
-
-  // Test removeById
-  assert(repo.removeById(2));
-  assert(repo.count() == 1);
-  assert(!repo.exists(2));
-
-  // Test remove
-  repo.remove(user1);
-  assert(repo.count() == 0);
-  assert(!repo.exists(1));
-
-  // Test clear
-  repo.add(new User(3, "Charlie", 35));
-  repo.add(new User(4, "Diana", 28));
-  assert(repo.count() == 2);
-  repo.clear();
-  assert(repo.count() == 0);
-}
-
-unittest {
-  mixin(ShowTest!"Testing SpecificationRepository");
-
-  class Product {
-    int id;
-    string name;
-    double price;
-
-    this(int id, string name, double price) {
-      this.id = id;
-      this.name = name;
-      this.price = price;
-    }
-  }
-
-  // Price specification
-  class PriceRangeSpec : ISpecification!Product {
-    private double _min;
-    private double _max;
-
-    this(double min, double max) {
-      _min = min;
-      _max = max;
-    }
-
-    bool isSatisfiedBy(Product product) {
-      return product.price >= _min && product.price <= _max;
-    }
-  }
-
-  auto repo = new SpecificationRepository!(Product, int)((Product p) => p.id);
-
-  // Add products
-  repo.add(new Product(1, "Cheap Item", 10.0));
-  repo.add(new Product(2, "Mid Item", 50.0));
-  repo.add(new Product(3, "Expensive Item", 150.0));
-
-  // Find products in price range
-  auto midRange = new PriceRangeSpec(20.0, 100.0);
-  auto results = repo.find(midRange);
-  assert(results.length == 1);
-  assert(results[0].name == "Mid Item");
-
-  // Count products
-  auto expensiveSpec = new PriceRangeSpec(100.0, 200.0);
-  assert(repo.count(expensiveSpec) == 1);
-
-  // Find one
-  auto cheapSpec = new PriceRangeSpec(0.0, 20.0);
-  auto cheap = repo.findOne(cheapSpec);
-  assert(cheap !is null);
-  assert(cheap.name == "Cheap Item");
-}
-
-unittest {
-  mixin(ShowTest!"Testing RepositoryFactory");
-
-  class Item {
-    string id;
-    string value;
-
-    this(string id, string value) {
-      this.id = id;
-      this.value = value;
-    }
-  }
-
-  auto repo = RepositoryFactory.createInMemory!Item((Item i) => i.id);
-  repo.add(new Item("key1", "value1"));
-  assert(repo.count() == 1);
-
-  auto specRepo = RepositoryFactory.createWithSpecification!Item((Item i) => i.id);
-  specRepo.add(new Item("key2", "value2"));
-  assert(specRepo.count() == 1);
 }

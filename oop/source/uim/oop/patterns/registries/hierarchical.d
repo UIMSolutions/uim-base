@@ -76,3 +76,20 @@ class HierarchicalRegistry(K, V) : IRegistry!(K, V) {
     return new HierarchicalRegistry!(K, V)(this);
   }
 }
+///
+unittest {
+  // Test hierarchical registry
+  auto parent = new HierarchicalRegistry!(string, int);
+  parent.register("global", 100);
+  
+  auto child = parent.createChild();
+  child.register("local", 200);
+  
+  assert(child.has("local"));
+  assert(child.has("global")); // Inherited from parent
+  assert(child.hasLocal("local"));
+  assert(!child.hasLocal("global"));
+  
+  assert(child.get("local") == 200);
+  assert(child.get("global") == 100);
+}

@@ -97,3 +97,65 @@ class MemoryRepository(T, ID) : IRepository!(T, ID) {
         _entities.clear();
     }
 }
+///
+unittest {
+  mixin(ShowTest!"Testing MemoryRepository");
+
+  class User {
+    int id;
+    string name;
+    int age;
+
+    this(int id, string name, int age) {
+      this.id = id;
+      this.name = name;
+      this.age = age;
+    }
+  }
+
+  auto repo = new MemoryRepository!(User, int)((User u) => u.id);
+
+  // Test add
+  auto user1 = new User(1, "Alice", 30);
+  auto user2 = new User(2, "Bob", 25);
+  repo.add(user1);
+  repo.add(user2);
+  assert(repo.count() == 2);
+
+  // Test findById
+  auto found = repo.findById(1);
+  assert(found !is null);
+  assert(found.name == "Alice");
+
+  // Test exists
+  assert(repo.exists(1));
+  assert(repo.exists(2));
+  assert(!repo.exists(999));
+
+  // Test findAll
+  auto all = repo.findAll();
+  assert(all.length == 2);
+
+  // Test update
+  user1.name = "Alice Updated";
+  repo.update(user1);
+  auto updated = repo.findById(1);
+  assert(updated.name == "Alice Updated");
+
+  // Test removeById
+  assert(repo.removeById(2));
+  assert(repo.count() == 1);
+  assert(!repo.exists(2));
+
+  // Test remove
+  repo.remove(user1);
+  assert(repo.count() == 0);
+  assert(!repo.exists(1));
+
+  // Test clear
+  repo.add(new User(3, "Charlie", 35));
+  repo.add(new User(4, "Diana", 28));
+  assert(repo.count() == 2);
+  repo.clear();
+  assert(repo.count() == 0);
+}

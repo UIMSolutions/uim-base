@@ -11,105 +11,52 @@ mixin(ShowModule!());
 
 @safe:
 
-/**
- * Repository interface for managing entities.
- * Provides CRUD operations and query capabilities.
- */
-interface IRepository(T, ID) {
-    /**
-     * Add a new entity to the repository.
-     */
-    void add(T entity);
-
-    /**
-     * Update an existing entity in the repository.
-     */
-    void update(T entity);
-
-    /**
-     * Remove an entity from the repository.
-     */
-    void remove(T entity);
-
-    /**
-     * Remove an entity by its ID.
-     */
-    bool removeById(ID id);
-
-    /**
-     * Find an entity by its ID.
-     * Returns: The entity or null if not found
-     */
-    T findById(ID id);
-
-    /**
-     * Get all entities in the repository.
-     */
-    T[] findAll();
-
-    /**
-     * Check if an entity with the given ID exists.
-     */
-    bool exists(ID id);
-
-    /**
-     * Get the total count of entities.
-     */
-    size_t count();
-
-    /**
-     * Clear all entities from the repository.
-     */
-    void clear();
-}
 
 /**
  * Specification interface for querying repositories.
  * Used with Specification pattern for complex queries.
  */
 interface ISpecification(T) {
-    /**
+  /**
      * Check if an entity satisfies the specification.
      */
-    bool isSatisfiedBy(T entity);
+  bool isSatisfiedBy(T entity);
 }
 
 /**
  * Extended repository interface with specification support.
  */
-interface ISpecificationRepository(T, ID) : IRepository!(T, ID) {
-    /**
+interface ISpecificationRepository(V, K) : IRepository!(K, V) {
+  /**
      * Find entities that satisfy a specification.
      */
-    T[] find(ISpecification!T spec);
-
-    /**
+  V[] find(ISpecification!V spec);
+  /**
      * Find first entity that satisfies a specification.
      */
-    T findOne(ISpecification!T spec);
-
-    /**
+  V findOne(ISpecification!V spec);
+  /**
      * Count entities that satisfy a specification.
      */
-    size_t count(ISpecification!T spec);
+  size_t count(ISpecification!V spec);
 }
 
 /**
  * Unit of Work interface for transactional operations.
  */
 interface IUnitOfWork {
-    /**
+  /**
      * Commit all pending changes.
      */
-    void commit();
+  void commit();
 
-    /**
+  /**
      * Rollback all pending changes.
      */
-    void rollback();
+  void rollback();
 
-    /**
+  /**
      * Check if there are pending changes.
      */
-    bool hasChanges();
+  bool hasChanges();
 }

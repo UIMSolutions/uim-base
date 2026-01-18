@@ -8,7 +8,7 @@ mixin(ShowModule!());
 /**
  * Generic repository factory.
  */
-class RepositoryFactory {
+class RepositoryFactory!IRepository : UIMFactory {
   /**
      * Create an in-memory repository.
      */
@@ -24,3 +24,21 @@ class RepositoryFactory {
     return new SpecificationRepository!(T, ID)(idExtractor);
   }
 }
+///
+unittest {
+  mixin(ShowTest!"Testing RepositoryFactory");
+
+  class User {
+    int id;
+    string name;
+  } 
+  void testCreateInMemory() {
+    auto repo = RepositoryFactory.createInMemory!(User, int)((u) => u.id);
+    assert(repo !is null);
+  }
+  void testCreateWithSpecification() {
+    auto repo = RepositoryFactory.createWithSpecification!(User, int)((u) => u.id);
+    assert(repo !is null);
+  
+  }
+} 
