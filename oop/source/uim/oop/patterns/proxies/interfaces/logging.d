@@ -1,5 +1,10 @@
 module uim.oop.patterns.proxies.interfaces.logging;
 
+import uim.oop;
+
+mixin(ShowModule!());
+
+@safe:
 /**
  * Interface for logging proxy.
  */
