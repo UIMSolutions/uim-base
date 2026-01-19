@@ -3,17 +3,17 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.jsonrpc.request;
+module uim.jsonRpc.request;
 
-import uim.jsonrpc;
+import uim.jsonRpc;
 
 @safe:
 
 /**
  * JSON-RPC 2.0 request.
  */
-class DJSONRPCRequest : UIMObject {
-  protected string _jsonrpc = "2.0";
+class DJsonRpcRequest : UIMObject {
+  protected string _jsonRpc = "2.0";
   protected string _method;
   protected Json _params;
   protected Json _id;
@@ -32,7 +32,7 @@ class DJSONRPCRequest : UIMObject {
   }
 
   // Getters
-  string jsonrpc() { return _jsonrpc; }
+  string jsonRpc() { return _jsonRpc; }
   string method() { return _method; }
   Json params() { return _params; }
   Json id() { return _id; }
@@ -54,7 +54,7 @@ class DJSONRPCRequest : UIMObject {
    */
   Json toJson() {
     auto result = Json.emptyObject;
-    result["jsonrpc"] = _jsonrpc;
+    result["jsonRpc"] = _jsonRpc;
     result["method"] = _method;
     
     if (_params.type != Json.Type.null_) {
@@ -71,15 +71,15 @@ class DJSONRPCRequest : UIMObject {
   /**
    * Create from JSON object.
    */
-  static DJSONRPCRequest fromJson(Json json) {
-    auto request = new DJSONRPCRequest();
+  static DJsonRpcRequest fromJson(Json json) {
+    auto request = new DJsonRpcRequest();
     
-    if (auto jsonrpc = "jsonrpc" in json) {
-      if (jsonrpc.get!string != "2.0") {
+    if (auto jsonRpc = "jsonRpc" in json) {
+      if (jsonRpc.get!string != "2.0") {
         throw new Exception("Invalid JSON-RPC version");
       }
     } else {
-      throw new Exception("Missing jsonrpc field");
+      throw new Exception("Missing jsonRpc field");
     }
     
     if (auto method = "method" in json) {
@@ -103,7 +103,7 @@ class DJSONRPCRequest : UIMObject {
    * Validate the request.
    */
   bool validate() {
-    if (_jsonrpc != "2.0") return false;
+    if (_jsonRpc != "2.0") return false;
     if (_method.length == 0) return false;
     
     // Params must be array or object if present
@@ -130,20 +130,20 @@ class DJSONRPCRequest : UIMObject {
 }
 
 // Factory functions
-DJSONRPCRequest request(string method, Json params = Json(null), long id = 1) {
-  return new DJSONRPCRequest(method, params, Json(id));
+DJsonRpcRequest request(string method, Json params = Json(null), long id = 1) {
+  return new DJsonRpcRequest(method, params, Json(id));
 }
 
-DJSONRPCRequest request(string method, Json params, string id) {
-  return new DJSONRPCRequest(method, params, Json(id));
+DJsonRpcRequest request(string method, Json params, string id) {
+  return new DJsonRpcRequest(method, params, Json(id));
 }
 
-DJSONRPCRequest requestWithArrayParams(string method, Json[] params, long id = 1) {
-  return new DJSONRPCRequest(method, Json(params), Json(id));
+DJsonRpcRequest requestWithArrayParams(string method, Json[] params, long id = 1) {
+  return new DJsonRpcRequest(method, Json(params), Json(id));
 }
 
-DJSONRPCRequest requestWithObjectParams(string method, Json[string] params, long id = 1) {
-  return new DJSONRPCRequest(method, Json(params), Json(id));
+DJsonRpcRequest requestWithObjectParams(string method, Json[string] params, long id = 1) {
+  return new DJsonRpcRequest(method, Json(params), Json(id));
 }
 
 unittest {
@@ -153,6 +153,6 @@ unittest {
   assert(req.validate());
   
   auto json = req.toJson();
-  assert("jsonrpc" in json);
-  assert(json["jsonrpc"].get!string == "2.0");
+  assert("jsonRpc" in json);
+  assert(json["jsonRpc"].get!string == "2.0");
 }

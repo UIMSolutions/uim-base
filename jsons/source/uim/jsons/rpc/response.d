@@ -3,19 +3,19 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.jsonrpc.response;
+module uim.jsonRpc.response;
 
-import uim.jsonrpc;
+import uim.jsonRpc;
 
 @safe:
 
 /**
  * JSON-RPC 2.0 response.
  */
-class DJSONRPCResponse : UIMObject {
-  protected string _jsonrpc = "2.0";
+class DJsonRpcResponse : UIMObject {
+  protected string _jsonRpc = "2.0";
   protected Json _result;
-  protected DJSONRPCError _error;
+  protected DJsonRpcError _error;
   protected Json _id;
 
   this() {
@@ -30,16 +30,16 @@ class DJSONRPCResponse : UIMObject {
     _id = id;
   }
 
-  this(DJSONRPCError error, Json id) {
+  this(DJsonRpcError error, Json id) {
     this();
     _error = error;
     _id = id;
   }
 
   // Getters
-  string jsonrpc() { return _jsonrpc; }
+  string jsonRpc() { return _jsonRpc; }
   Json result() { return _result; }
-  DJSONRPCError error() { return _error; }
+  DJsonRpcError error() { return _error; }
   Json id() { return _id; }
 
   // Setters
@@ -48,7 +48,7 @@ class DJSONRPCResponse : UIMObject {
     _error = null;
   }
   
-  void error(DJSONRPCError value) { 
+  void error(DJsonRpcError value) { 
     _error = value;
     _result = Json(null);
   }
@@ -74,7 +74,7 @@ class DJSONRPCResponse : UIMObject {
    */
   Json toJson() {
     auto response = Json.emptyObject;
-    response["jsonrpc"] = _jsonrpc;
+    response["jsonRpc"] = _jsonRpc;
     
     if (_error !is null) {
       response["error"] = _error.toJson();
@@ -90,11 +90,11 @@ class DJSONRPCResponse : UIMObject {
   /**
    * Create from JSON object.
    */
-  static DJSONRPCResponse fromJson(Json json) {
-    auto response = new DJSONRPCResponse();
+  static DJsonRpcResponse fromJson(Json json) {
+    auto response = new DJsonRpcResponse();
     
-    if (auto jsonrpc = "jsonrpc" in json) {
-      if (jsonrpc.get!string != "2.0") {
+    if (auto jsonRpc = "jsonRpc" in json) {
+      if (jsonRpc.get!string != "2.0") {
         throw new Exception("Invalid JSON-RPC version");
       }
     }
@@ -104,7 +104,7 @@ class DJSONRPCResponse : UIMObject {
     }
     
     if (auto error = "error" in json) {
-      response.error = DJSONRPCError.fromJson(*error);
+      response.error = DJsonRpcError.fromJson(*error);
     } else if (auto result = "result" in json) {
       response.result = *result;
     }
@@ -116,7 +116,7 @@ class DJSONRPCResponse : UIMObject {
    * Validate the response.
    */
   bool validate() {
-    if (_jsonrpc != "2.0") return false;
+    if (_jsonRpc != "2.0") return false;
     
     // Must have either result or error, but not both
     bool hasResult = _result.type != Json.Type.null_;
@@ -137,28 +137,28 @@ class DJSONRPCResponse : UIMObject {
 }
 
 // Factory functions
-DJSONRPCResponse successResponse(Json result, Json id) {
-  return new DJSONRPCResponse(result, id);
+DJsonRpcResponse successResponse(Json result, Json id) {
+  return new DJsonRpcResponse(result, id);
 }
 
-DJSONRPCResponse successResponse(Json result, long id) {
-  return new DJSONRPCResponse(result, Json(id));
+DJsonRpcResponse successResponse(Json result, long id) {
+  return new DJsonRpcResponse(result, Json(id));
 }
 
-DJSONRPCResponse successResponse(Json result, string id) {
-  return new DJSONRPCResponse(result, Json(id));
+DJsonRpcResponse successResponse(Json result, string id) {
+  return new DJsonRpcResponse(result, Json(id));
 }
 
-DJSONRPCResponse errorResponse(DJSONRPCError error, Json id) {
-  return new DJSONRPCResponse(error, id);
+DJsonRpcResponse errorResponse(DJsonRpcError error, Json id) {
+  return new DJsonRpcResponse(error, id);
 }
 
-DJSONRPCResponse errorResponse(DJSONRPCError error, long id) {
-  return new DJSONRPCResponse(error, Json(id));
+DJsonRpcResponse errorResponse(DJsonRpcError error, long id) {
+  return new DJsonRpcResponse(error, Json(id));
 }
 
-DJSONRPCResponse errorResponse(DJSONRPCError error, string id) {
-  return new DJSONRPCResponse(error, Json(id));
+DJsonRpcResponse errorResponse(DJsonRpcError error, string id) {
+  return new DJsonRpcResponse(error, Json(id));
 }
 
 unittest {

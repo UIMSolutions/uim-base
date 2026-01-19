@@ -3,27 +3,27 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.jsonrpc.server;
+module uim.jsonRpc.server;
 
-import uim.jsonrpc;
+import uim.jsonRpc;
 
 @safe:
 
 /**
  * JSON-RPC 2.0 server.
  */
-class DJSONRPCServer : UIMObject {
-  protected DJSONRPCHandlerRegistry _handlers;
+class DJsonRpcServer : UIMObject {
+  protected DJsonRpcHandlerRegistry _handlers;
 
   this() {
     super();
-    _handlers = new DJSONRPCHandlerRegistry();
+    _handlers = new DJsonRpcHandlerRegistry();
   }
 
   /**
    * Register a method handler.
    */
-  DJSONRPCServer register(string methodName, JSONRPCHandler handler) {
+  DJsonRpcServer register(string methodName, jsonRpcHandler handler) {
     _handlers.register(methodName, handler);
     return this;
   }
@@ -50,9 +50,9 @@ class DJSONRPCServer : UIMObject {
   /**
    * Process a single request.
    */
-  protected DJSONRPCResponse handleSingleRequest(Json json) {
+  protected DJsonRpcResponse handleSingleRequest(Json json) {
     try {
-      auto request = DJSONRPCRequest.fromJson(json);
+      auto request = DJsonRpcRequest.fromJson(json);
       
       if (!request.validate()) {
         return errorResponse(invalidRequest(), request.id);
@@ -81,8 +81,8 @@ class DJSONRPCServer : UIMObject {
   /**
    * Process a batch request.
    */
-  protected DJSONRPCBatchResponse handleBatchRequest(Json json) {
-    auto batchResponse = new DJSONRPCBatchResponse();
+  protected DJsonRpcBatchResponse handleBatchRequest(Json json) {
+    auto batchResponse = new DJsonRpcBatchResponse();
     
     if (json.get!(Json[]).length == 0) {
       batchResponse.add(errorResponse(invalidRequest("Empty array"), Json(null)));
@@ -94,7 +94,7 @@ class DJSONRPCServer : UIMObject {
       
       // Don't include responses for notifications
       try {
-        auto request = DJSONRPCRequest.fromJson(item);
+        auto request = DJsonRpcRequest.fromJson(item);
         if (!request.isNotification()) {
           batchResponse.add(response);
         }
@@ -115,7 +115,7 @@ class DJSONRPCServer : UIMObject {
 }
 
 unittest {
-  auto server = new DJSONRPCServer();
+  auto server = new DJsonRpcServer();
   
   // Register methods
   server.register("add", (Json params) {

@@ -3,22 +3,22 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.jsonrpc.handler;
+module uim.jsonRpc.handler;
 
-import uim.jsonrpc;
+import uim.jsonRpc;
 
 @safe:
 
 /**
  * Method handler delegate type.
  */
-alias JSONRPCHandler = Json delegate(Json params) @safe;
+alias jsonRpcHandler = Json delegate(Json params) @safe;
 
 /**
  * Method handler registry.
  */
-class DJSONRPCHandlerRegistry : UIMObject {
-  protected JSONRPCHandler[string] _handlers;
+class DJsonRpcHandlerRegistry : UIMObject {
+  protected jsonRpcHandler[string] _handlers;
 
   this() {
     super();
@@ -27,7 +27,7 @@ class DJSONRPCHandlerRegistry : UIMObject {
   /**
    * Register a method handler.
    */
-  void register(string methodName, JSONRPCHandler handler) {
+  void register(string methodName, jsonRpcHandler handler) {
     _handlers[methodName] = handler;
   }
 
@@ -41,7 +41,7 @@ class DJSONRPCHandlerRegistry : UIMObject {
   /**
    * Get a method handler.
    */
-  JSONRPCHandler get(string methodName) {
+  jsonRpcHandler get(string methodName) {
     if (auto handler = methodName in _handlers) {
       return *handler;
     }
@@ -75,7 +75,7 @@ class DJSONRPCHandlerRegistry : UIMObject {
 }
 
 unittest {
-  auto registry = new DJSONRPCHandlerRegistry();
+  auto registry = new DJsonRpcHandlerRegistry();
   
   registry.register("add", (Json params) {
     auto arr = params.get!(Json[]);

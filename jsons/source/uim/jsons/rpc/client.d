@@ -3,16 +3,16 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.jsonrpc.client;
+module uim.jsonRpc.client;
 
-import uim.jsonrpc;
+import uim.jsonRpc;
 
 @safe:
 
 /**
  * JSON-RPC 2.0 client.
  */
-class DJSONRPCClient : UIMObject {
+class DJsonRpcClient : UIMObject {
   protected long _nextId = 1;
 
   this() {
@@ -22,7 +22,7 @@ class DJSONRPCClient : UIMObject {
   /**
    * Create a request.
    */
-  DJSONRPCRequest createRequest(string method, Json params = Json(null)) {
+  DJsonRpcRequest createRequest(string method, Json params = Json(null)) {
     auto req = request(method, params, _nextId);
     _nextId++;
     return req;
@@ -31,15 +31,15 @@ class DJSONRPCClient : UIMObject {
   /**
    * Create a notification.
    */
-  DJSONRPCNotification createNotification(string method, Json params = Json(null)) {
+  DJsonRpcNotification createNotification(string method, Json params = Json(null)) {
     return notification(method, params);
   }
 
   /**
    * Create a batch request.
    */
-  DJSONRPCBatchRequest createBatch() {
-    return new DJSONRPCBatchRequest();
+  DJsonRpcBatchRequest createBatch() {
+    return new DJsonRpcBatchRequest();
   }
 
   /**
@@ -59,17 +59,17 @@ class DJSONRPCClient : UIMObject {
   /**
    * Parse a response string.
    */
-  DJSONRPCResponse parseResponse(string responseJson) {
+  DJsonRpcResponse parseResponse(string responseJson) {
     auto json = parseJsonString(responseJson);
-    return DJSONRPCResponse.fromJson(json);
+    return DJsonRpcResponse.fromJson(json);
   }
 
   /**
    * Parse a batch response string.
    */
-  DJSONRPCBatchResponse parseBatchResponse(string responseJson) {
+  DJsonRpcBatchResponse parseBatchResponse(string responseJson) {
     auto json = parseJsonString(responseJson);
-    return DJSONRPCBatchResponse.fromJson(json);
+    return DJsonRpcBatchResponse.fromJson(json);
   }
 
   /**
@@ -88,7 +88,7 @@ class DJSONRPCClient : UIMObject {
 }
 
 unittest {
-  auto client = new DJSONRPCClient();
+  auto client = new DJsonRpcClient();
   
   auto req = client.createRequest("testMethod", Json([Json(1), Json(2)]));
   assert(req.id.get!long == 1);

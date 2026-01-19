@@ -3,17 +3,17 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.jsonrpc.notification;
+module uim.jsonRpc.notification;
 
-import uim.jsonrpc;
+import uim.jsonRpc;
 
 @safe:
 
 /**
  * JSON-RPC 2.0 notification (request without id).
  */
-class DJSONRPCNotification : UIMObject {
-  protected string _jsonrpc = "2.0";
+class DJsonRpcNotification : UIMObject {
+  protected string _jsonRpc = "2.0";
   protected string _method;
   protected Json _params;
 
@@ -29,7 +29,7 @@ class DJSONRPCNotification : UIMObject {
   }
 
   // Getters
-  string jsonrpc() { return _jsonrpc; }
+  string jsonRpc() { return _jsonRpc; }
   string method() { return _method; }
   Json params() { return _params; }
 
@@ -42,7 +42,7 @@ class DJSONRPCNotification : UIMObject {
    */
   Json toJson() {
     auto result = Json.emptyObject;
-    result["jsonrpc"] = _jsonrpc;
+    result["jsonRpc"] = _jsonRpc;
     result["method"] = _method;
     
     if (_params.type != Json.Type.null_) {
@@ -55,11 +55,11 @@ class DJSONRPCNotification : UIMObject {
   /**
    * Create from JSON object.
    */
-  static DJSONRPCNotification fromJson(Json json) {
-    auto notification = new DJSONRPCNotification();
+  static DJsonRpcNotification fromJson(Json json) {
+    auto notification = new DJsonRpcNotification();
     
-    if (auto jsonrpc = "jsonrpc" in json) {
-      if (jsonrpc.get!string != "2.0") {
+    if (auto jsonRpc = "jsonRpc" in json) {
+      if (jsonRpc.get!string != "2.0") {
         throw new Exception("Invalid JSON-RPC version");
       }
     }
@@ -80,8 +80,8 @@ class DJSONRPCNotification : UIMObject {
   /**
    * Convert to request (for internal use).
    */
-  DJSONRPCRequest toRequest() {
-    return new DJSONRPCRequest(_method, _params, Json(null));
+  DJsonRpcRequest toRequest() {
+    return new DJsonRpcRequest(_method, _params, Json(null));
   }
 
   override string toString() const {
@@ -90,16 +90,16 @@ class DJSONRPCNotification : UIMObject {
 }
 
 // Factory functions
-DJSONRPCNotification notification(string method, Json params = Json(null)) {
-  return new DJSONRPCNotification(method, params);
+DJsonRpcNotification notification(string method, Json params = Json(null)) {
+  return new DJsonRpcNotification(method, params);
 }
 
-DJSONRPCNotification notificationWithArrayParams(string method, Json[] params) {
-  return new DJSONRPCNotification(method, Json(params));
+DJsonRpcNotification notificationWithArrayParams(string method, Json[] params) {
+  return new DJsonRpcNotification(method, Json(params));
 }
 
-DJSONRPCNotification notificationWithObjectParams(string method, Json[string] params) {
-  return new DJSONRPCNotification(method, Json(params));
+DJsonRpcNotification notificationWithObjectParams(string method, Json[string] params) {
+  return new DJsonRpcNotification(method, Json(params));
 }
 
 unittest {
