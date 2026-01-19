@@ -3,15 +3,15 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.jsonld;
+module uim.jsons.ld;
 
 public {
-  import uim.jsonld.context;
-  import uim.jsonld.document;
-  import uim.jsonld.node;
-  import uim.jsonld.graph;
-  import uim.jsonld.builder;
-  import uim.jsonld.keywords;
-  import uim.jsonld.types;
-  import uim.jsonld.exceptions;
+  import uim.jsons.ld.context;
+  import uim.jsons.ld.document;
+  import uim.jsons.ld.node;
+  import uim.jsons.ld.graph;
+  import uim.jsons.ld.builder;
+  import uim.jsons.ld.keywords;
+  import uim.jsons.ld.types;
+  import uim.jsons.ld.exceptions;
 }

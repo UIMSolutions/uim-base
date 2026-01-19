@@ -45,7 +45,7 @@ JSON-LD is a lightweight Linked Data format that extends JSON with semantic anno
 ### Creating a Simple Person Document
 
 ```d
-import uim.jsonld;
+import uim.jsons.ld;
 
 auto doc = new DJSONLDDocument();
 
@@ -81,7 +81,7 @@ writeln(doc.toString());
 ### Using the Fluent Builder API
 
 ```d
-import uim.jsonld;
+import uim.jsons.ld;
 
 auto doc = jsonld()
   .vocab("http://schema.org/")
@@ -98,7 +98,7 @@ writeln(doc.toString());
 ### Working with Context
 
 ```d
-import uim.jsonld;
+import uim.jsons.ld;
 
 // Create context
 auto ctx = new DJSONLDContext();
@@ -123,7 +123,7 @@ writeln(ctx.expand("foaf:Person"));  // http://xmlns.com/foaf/0.1/Person
 ### Multiple Nodes and Graphs
 
 ```d
-import uim.jsonld;
+import uim.jsons.ld;
 
 auto doc = jsonld()
   .vocab("http://schema.org/")
@@ -168,7 +168,7 @@ writeln(doc.toString());
 ### Schema.org Example: Product
 
 ```d
-import uim.jsonld;
+import uim.jsons.ld;
 
 auto product = jsonld()
   .vocab("http://schema.org/")
@@ -191,7 +191,7 @@ writeln(product.toString());
 ### Working with Multiple Types
 
 ```d
-import uim.jsonld;
+import uim.jsons.ld;
 
 auto node = new DJSONLDNode("http://example.com/resource");
 node.addType("http://schema.org/Person");
@@ -212,7 +212,7 @@ node.set("name", "Leonardo da Vinci");
 ### Parsing JSON-LD Documents
 
 ```d
-import uim.jsonld;
+import uim.jsons.ld;
 
 string jsonldStr = `{
   "@context": {
@@ -234,7 +234,7 @@ writeln("Email: ", person.get("email").get!string);
 ### Working with Graphs Directly
 
 ```d
-import uim.jsonld;
+import uim.jsons.ld;
 
 auto graph = new DJSONLDGraph("http://example.com/graph1");
 
@@ -263,7 +263,7 @@ if (graph.hasNode("http://example.com/alice")) {
 ### File Operations
 
 ```d
-import uim.jsonld;
+import uim.jsons.ld;
 
 // Create document
 auto doc = jsonld()
@@ -284,7 +284,7 @@ writeln(loaded.toString());
 ### Context with Custom Prefixes
 
 ```d
-import uim.jsonld;
+import uim.jsons.ld;
 
 auto doc = jsonld()
   .prefix("schema", "http://schema.org/")
@@ -313,7 +313,7 @@ auto doc = jsonld()
 ### Blank Nodes
 
 ```d
-import uim.jsonld;
+import uim.jsons.ld;
 
 auto doc = jsonld()
   .vocab("http://schema.org/")
@@ -337,7 +337,7 @@ auto doc = jsonld()
 ### Complete Example: Organization with Employees
 
 ```d
-import uim.jsonld;
+import uim.jsons.ld;
 
 auto org = jsonld()
   .vocab("http://schema.org/")
@@ -371,7 +371,7 @@ writeln(org.toString());
 ### Accessing Node Properties
 
 ```d
-import uim.jsonld;
+import uim.jsons.ld;
 
 auto person = new DJSONLDNode("http://example.com/person/1");
 person.set("name", "John Doe");
@@ -397,7 +397,7 @@ bool active = person.get("active").get!bool;
 ### Error Handling
 
 ```d
-import uim.jsonld;
+import uim.jsons.ld;
 
 try {
     auto doc = DJSONLDDocument.loadFile("config.jsonld");
