@@ -13,6 +13,8 @@ import uim.jsons;
  * JSON-RPC 2.0 notification (request without id).
  */
 class DJsonRpcNotification : UIMObject {
+  alias toJson = UIMObject.toJson;
+  
   protected string _jsonRpc = "2.0";
   protected string _method;
   protected Json _params;

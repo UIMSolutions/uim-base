@@ -13,6 +13,8 @@ import uim.jsons;
  * JSON-RPC 2.0 response.
  */
 class DJsonRpcResponse : UIMObject {
+  alias toJson = UIMObject.toJson;
+  
   protected string _jsonRpc = "2.0";
   protected Json _result;
   protected DJsonRpcError _error;

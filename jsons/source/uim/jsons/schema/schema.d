@@ -14,6 +14,8 @@ import uim.jsons;
  * Supports JSON Schema Draft 7.
  */
 class DJSONSchema : UIMObject {
+  alias toJson = UIMObject.toJson;
+  
   protected Json _schema;
   protected string _version = "http://json-schema.org/draft-07/schema#";
 

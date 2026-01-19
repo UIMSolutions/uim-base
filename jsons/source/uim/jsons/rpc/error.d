@@ -25,6 +25,8 @@ enum jsonRpcErrorCode : int {
  * JSON-RPC error object.
  */
 class DJsonRpcError : UIMObject {
+  alias toJson = UIMObject.toJson;
+  
   protected int _code;
   protected string _message;
   protected Json _data;

@@ -13,6 +13,8 @@ import uim.jsons;
  * Complete JSON-LD document.
  */
 class DJSONLDDocument : UIMObject {
+  alias toJson = UIMObject.toJson;
+  
   protected DJSONLDContext _context;
   protected DJSONLDGraph _graph;
 
@@ -85,7 +87,7 @@ class DJSONLDDocument : UIMObject {
   /**
    * Convert to string (pretty printed).
    */
-  override string toString() const {
+  override string toString() const @trusted {
     return (cast(DJSONLDDocument)this).toJson().toPrettyString();
   }
 

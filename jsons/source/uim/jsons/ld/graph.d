@@ -13,6 +13,8 @@ import uim.jsons;
  * JSON-LD graph containing multiple nodes.
  */
 class DJSONLDGraph : UIMObject {
+  alias toJson = UIMObject.toJson;
+  
   protected string _id;
   protected DJSONLDNode[string] _nodes;
 

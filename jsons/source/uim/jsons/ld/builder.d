@@ -13,6 +13,8 @@ import uim.jsons;
  * Fluent builder for JSON-LD documents.
  */
 class DJSONLDBuilder : UIMObject {
+  alias toJson = UIMObject.toJson;
+  
   protected DJSONLDDocument _document;
   protected DJSONLDNode _currentNode;
 
@@ -122,7 +124,7 @@ class DJSONLDBuilder : UIMObject {
   /**
    * Get string representation.
    */
-  override string toString() const {
+  override string toString() const @trusted {
     return (cast(DJSONLDBuilder)this)._document.toString();
   }
 }

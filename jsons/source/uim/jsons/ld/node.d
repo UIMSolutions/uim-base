@@ -13,6 +13,8 @@ import uim.jsons;
  * JSON-LD node object.
  */
 class DJSONLDNode : UIMObject {
+  alias toJson = UIMObject.toJson;
+  
   protected string _id;
   protected string[] _types;
   protected Json[string] _properties;

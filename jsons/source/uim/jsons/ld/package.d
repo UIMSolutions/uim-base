@@ -6,6 +6,11 @@
 module uim.jsons.ld;
 
 public {
+  import uim.jsons.ld.helpers;
+  import uim.jsons.ld.interfaces;
+}
+
+public {
   import uim.jsons.ld.context;
   import uim.jsons.ld.document;
   import uim.jsons.ld.node;
