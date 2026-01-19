@@ -82,11 +82,11 @@ class DJSONSchemaValidator : UIMObject {
       string actualType = data.type.to!string.toLower;
 
       // Map JSON types
-      if (data.type == Json.Type.int_ || data.type == Json.Type.float_) {
+      if (data.isInteger || data.isDouble) {
         actualType = "number";
-      } else if (data.type == Json.Type.true_ || data.type == Json.Type.false_) {
+      } else if (data.isBoolean) {
         actualType = "boolean";
-      } else if (data.type == Json.Type.null_) {
+      } else if (data.isNull) {
         actualType = "null";
       }
 

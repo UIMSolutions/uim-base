@@ -3,11 +3,13 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.jsons.all;
+module uim.ini;
 
-// UIM libraries
-public import uim.oop;
-public import uim.jsons.rpc;
-public import uim.jsons.schemas;
-
-
+public {
+  import uim.ini.section;
+  import uim.ini.property;
+  import uim.ini.document;
+  import uim.ini.parser;
+  import uim.ini.writer;
+  import uim.ini.exceptions;
+}

@@ -81,7 +81,7 @@ class DJSONSchema : UIMObject {
    * Set as required.
    */
   void required(string[] fields) {
-    _schema["required"] = Json(fields);
+    _schema["required"] = fields.toJson;
   }
 
   /**
