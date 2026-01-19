@@ -179,6 +179,54 @@ sorted = sorter.sort(data);
 
 ---
 
+### 7. MVC Pattern ✓
+**Location**: `patterns/mvc/`
+
+**Purpose**: Separates application into three interconnected components: Model (data and business logic), View (presentation), and Controller (handles input and coordinates Model and View).
+
+**Key Components**:
+- `IModel`, `Model` - Data and business logic
+- `IView`, `View` - Presentation layer
+- `IController`, `Controller` - Request handling and coordination
+- `MVCApplication` - Complete MVC application
+- `DataModel!T` - Typed model support
+- `ObservableModel` - Model with change callbacks
+- `TemplateView`, `JSONView`, `HTMLView` - Different view types
+- `RESTController` - RESTful CRUD operations
+- `ValidationController` - Input validation
+- `AsyncController` - Before/after action hooks
+
+**Use Cases**:
+- Web applications
+- Desktop applications with GUI
+- RESTful APIs
+- Data entry forms
+- Real-time updates
+- CRUD operations
+
+**Example**:
+```d
+// Create MVC application
+auto model = new Model();
+auto view = new TemplateView(model, "User: {{username}}");
+auto controller = new RESTController(model, view);
+
+// Create and initialize application
+auto app = createMVCApplication(model, view, controller);
+
+// Handle request
+auto response = app.run([
+    "action": "create",
+    "username": "alice",
+    "email": "alice@example.com"
+]);
+
+// View automatically renders updated model
+writeln(view.render()); // "User: alice"
+```
+
+---
+
 ## Pattern Comparison Table
 
 | Pattern | Type | Complexity | When to Use |
@@ -189,6 +237,7 @@ sorted = sorter.sort(data);
 | Observer | Behavioral | Medium | Event handling, state change notifications |
 | Decorator | Structural | Medium | Adding responsibilities dynamically |
 | Strategy | Behavioral | Low | Interchangeable algorithms |
+| MVC | Architectural | Medium | Separating data, presentation, and logic |
 
 ## Testing
 
@@ -198,6 +247,7 @@ All patterns include comprehensive unit tests:
 - **Observer**: ~200 lines of tests
 - **Decorator**: ~250 lines of tests
 - **Strategy**: ~270 lines of tests
+- **MVC**: Comprehensive test suite with integration tests
 
 **Run all tests**:
 ```bash
@@ -211,6 +261,7 @@ Each pattern includes working examples in `examples/`:
 - `examples/objectpool.d` - Object Pool example
 - `examples/decorator.d` - Decorator pattern examples
 - `examples/strategy.d` - Strategy pattern examples
+- `examples/mvc_todolist.d` - MVC Todo List application example
 
 **Run examples**:
 ```bash
@@ -225,6 +276,7 @@ Each pattern has its own README:
 - [Observer Pattern](source/uim/oop/patterns/observers/README.md)
 - [Decorator Pattern](source/uim/oop/patterns/decorators/README.md)
 - [Strategy Pattern](source/uim/oop/patterns/strategies/README.md)
+- [MVC Pattern](source/uim/oop/patterns/mvc/README.md)
 
 ## Pattern Relationships
 
@@ -242,6 +294,12 @@ Factory + Registry
 
 Pool + Factory
 └─> Factories create pooled objects
+
+MVC + Observer
+└─> Models use Observer pattern to notify Views
+
+MVC + Strategy
+└─> Controllers use Strategy pattern for different actions
 ```
 
 ## Future Patterns (Commented Out)
@@ -303,11 +361,19 @@ uim.oop.patterns
 │   ├── interfaces.d
 │   ├── strategy.d
 │   └── context.d
+├── mvc/
+│   ├── interfaces.d
+│   ├── model.d
+│   ├── view.d
+│   ├── controller.d
+│   ├── application.d
+│   ├── package.d
+│   └── README.md
 └── package.d
 ```
 
 ---
 
-**Total Patterns Implemented**: 6  
-**Total Test Coverage**: 13+ modules  
+**Total Patterns Implemented**: 7  
+**Total Test Coverage**: 14+ modules  
 **All Tests**: ✓ Passing

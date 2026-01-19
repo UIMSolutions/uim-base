@@ -19,6 +19,7 @@ public import uim.oop.patterns.interpreters;
 public import uim.oop.patterns.locators;
 public import uim.oop.patterns.mediators;
 public import uim.oop.patterns.mementos;
+public import uim.oop.patterns.mvc;
 public import uim.oop.patterns.observers;
 public import uim.oop.patterns.pools;
 public import uim.oop.patterns.prototypes;
