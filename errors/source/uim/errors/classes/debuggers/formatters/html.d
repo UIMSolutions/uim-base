@@ -6,7 +6,8 @@
 module uim.errors.classes.debuggers.formatters.html;
 
 import uim.errors;
-mixin(Version!("test_uim_errors"));
+
+mixin(ShowModule!());
 
 @safe:
 

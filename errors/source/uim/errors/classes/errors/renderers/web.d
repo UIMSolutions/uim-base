@@ -6,7 +6,7 @@
 module uim.errors.classes.errors.renderers.web;
 
 import uim.errors;
-mixin(Version!("test_uim_errors"));
+mixin(ShowModule!());
 @safe:
 
 class DWebErrorRenderer : UIMErrorRenderer { 

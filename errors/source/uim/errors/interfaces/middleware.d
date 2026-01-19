@@ -6,7 +6,7 @@
 module uim.errors.interfaces.middleware;
 
 import uim.errors;
-mixin(Version!("test_uim_errors"));
+mixin(ShowModule!());
 @safe:
 
 interface IErrorMiddleware : IObject {

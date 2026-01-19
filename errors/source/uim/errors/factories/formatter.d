@@ -11,13 +11,10 @@ import uim.errors;
 
 @safe:
 
-class UIMErrorFormatterFactory : DFactory!UIMErrorFormatter {
+class UIMErrorFormatterFactory : DFactory!(string, UIMErrorFormatter) {
 }
 
 auto ErrorFormatterFactory() {
     return UIMErrorFormatterFactory.instance;
 }
 
-auto ErrorFormatterFactory(string key) {
-    return ErrorFormatterFactory.create(key);   
-}

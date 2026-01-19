@@ -10,7 +10,7 @@ mixin(Version!"test_uim_errors");
 import uim.errors;
 @safe:
 
-class UIMErrorRendererFactory : DFactory!UIMErrorRenderer {
+class UIMErrorRendererFactory : DFactory!(string, UIMErrorRenderer) {
   mixin(FactoryThis!("ErrorRenderer"));
 }
 auto ErrorRendererFactory() { return UIMErrorRendererFactory.instance; }

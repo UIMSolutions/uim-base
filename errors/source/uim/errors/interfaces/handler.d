@@ -6,7 +6,7 @@
 module uim.errors.interfaces.handler;
 
 import uim.errors;
-mixin(Version!("test_uim_errors"));
+mixin(ShowModule!());
 @safe:
 
 interface IErrorHandler {}

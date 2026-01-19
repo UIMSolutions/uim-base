@@ -6,7 +6,7 @@
 module uim.errors.interfaces.node;
 
 import uim.errors;
-mixin(Version!("test_uim_errors"));
+mixin(ShowModule!());
 @safe:
 
 // Interface for Error Nodes

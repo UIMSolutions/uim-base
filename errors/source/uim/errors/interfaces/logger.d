@@ -6,7 +6,7 @@
 module uim.errors.interfaces.logger;
 
 import uim.errors;
-mixin(Version!("test_uim_errors"));
+mixin(ShowModule!());
 @safe:
 
 // Used by the ErrorHandlerMiddleware and global error handlers to log errors and errors.

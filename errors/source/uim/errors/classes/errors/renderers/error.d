@@ -6,7 +6,7 @@
 module uim.errors.classes.errors.renderers.error;
 
 import uim.errors;
-mixin(Version!("test_uim_errors"));
+mixin(ShowModule!());
 
 @safe:
 
@@ -366,7 +366,7 @@ class UIMErrorRenderer : UIMObject, IErrorRenderer {
 module uim.errors.classes.errors.renderer;
 
 import uim.errors;
-mixin(Version!("test_uim_errors"));
+mixin(ShowModule!());
 @safe:
 
 

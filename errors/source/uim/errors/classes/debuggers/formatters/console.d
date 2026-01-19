@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.errors.classes.debuggers.formatters.console;
 
-mixin(Version!("test_uim_errors"));
+mixin(ShowModule!());
 import uim.errors;
 
 @safe:
