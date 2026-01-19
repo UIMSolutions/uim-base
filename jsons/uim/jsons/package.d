@@ -9,5 +9,6 @@ module uim.jsons.all;
 public import uim.oop;
 public import uim.jsons.rpc;
 public import uim.jsons.schemas;
+public import uim.jsons.ld;
 
 

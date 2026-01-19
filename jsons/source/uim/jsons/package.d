@@ -1,7 +1,10 @@
-module uim.json;
+module uim.jsons;
 
 // UIM libraries
 public import uim.oop;
-public import uim.jsons.schemas;
-public import uim.jsons.rpc;
-public import uim.jsons.ld;
+
+public {
+  import uim.jsons.schemas;
+  import uim.jsons.rpc;
+  import uim.jsons.ld;
+}

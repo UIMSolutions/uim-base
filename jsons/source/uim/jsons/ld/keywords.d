@@ -39,7 +39,7 @@ struct JSONLDKeywords {
   // Processing keywords
   static immutable string nest = "@nest";
   static immutable string protected_ = "@protected";
-  static immutable string version = "@version";
+  static immutable string _version = "@version";
   
   /**
    * Check if a string is a JSON-LD keyword.

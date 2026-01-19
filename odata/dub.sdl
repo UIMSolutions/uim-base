@@ -5,7 +5,6 @@ license "Apache-2.0"
 copyright "Copyright © 2018-2026, Ozan Nurettin Süel"
 
 dependency "uim-oop" path="../oop"
-dependency "uim-core" path="../core"
 dependency "uim-jsons" path="../jsons"
 dependency "vibe-d:http" version="~>0.10.3"
 
