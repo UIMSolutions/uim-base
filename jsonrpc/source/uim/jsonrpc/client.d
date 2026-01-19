@@ -1,0 +1,101 @@
+/****************************************************************************************************************
+* Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
+* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
+* Authors: Ozan Nurettin Süel (aka UIManufaktur)
+*****************************************************************************************************************/
+module uim.jsonrpc.client;
+
+import uim.jsonrpc;
+
+@safe:
+
+/**
+ * JSON-RPC 2.0 client.
+ */
+class DJSONRPCClient : UIMObject {
+  protected long _nextId = 1;
+
+  this() {
+    super();
+  }
+
+  /**
+   * Create a request.
+   */
+  DJSONRPCRequest createRequest(string method, Json params = Json(null)) {
+    auto req = request(method, params, _nextId);
+    _nextId++;
+    return req;
+  }
+
+  /**
+   * Create a notification.
+   */
+  DJSONRPCNotification createNotification(string method, Json params = Json(null)) {
+    return notification(method, params);
+  }
+
+  /**
+   * Create a batch request.
+   */
+  DJSONRPCBatchRequest createBatch() {
+    return new DJSONRPCBatchRequest();
+  }
+
+  /**
+   * Build a JSON-RPC call.
+   */
+  string buildCall(string method, Json params = Json(null)) {
+    return createRequest(method, params).toJson().toString();
+  }
+
+  /**
+   * Build a JSON-RPC notification.
+   */
+  string buildNotification(string method, Json params = Json(null)) {
+    return createNotification(method, params).toJson().toString();
+  }
+
+  /**
+   * Parse a response string.
+   */
+  DJSONRPCResponse parseResponse(string responseJson) {
+    auto json = parseJsonString(responseJson);
+    return DJSONRPCResponse.fromJson(json);
+  }
+
+  /**
+   * Parse a batch response string.
+   */
+  DJSONRPCBatchResponse parseBatchResponse(string responseJson) {
+    auto json = parseJsonString(responseJson);
+    return DJSONRPCBatchResponse.fromJson(json);
+  }
+
+  /**
+   * Reset the ID counter.
+   */
+  void resetIdCounter(long startId = 1) {
+    _nextId = startId;
+  }
+
+  /**
+   * Get the next ID that will be used.
+   */
+  long nextId() {
+    return _nextId;
+  }
+}
+
+unittest {
+  auto client = new DJSONRPCClient();
+  
+  auto req = client.createRequest("testMethod", Json([Json(1), Json(2)]));
+  assert(req.id.get!long == 1);
+  
+  auto req2 = client.createRequest("anotherMethod");
+  assert(req2.id.get!long == 2);
+  
+  auto notif = client.createNotification("update");
+  assert(notif.method == "update");
+}

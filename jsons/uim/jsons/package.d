@@ -1,4 +1,4 @@
-module uim.json;
+module uim.jsons.all;
 
 /****************************************************************************************************************
 * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
@@ -8,5 +8,6 @@ module uim.json;
 
 // UIM libraries
 public import uim.core;
+public import uim.jsons.schemas;
 
 

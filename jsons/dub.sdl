@@ -1,4 +1,4 @@
-name "json"
+name "jsons"
 description "uim library to work with JSON"
 homepage "https://www.sueel.de"
 authors "Ozan Nurettin Süel"
@@ -6,7 +6,7 @@ copyright "Copyright © 2018 - 2026, ONS"
 license "Apache-2.0"
 
 // target
-targetName "uim-json"
+targetName "uim-jsons"
 targetType "library"
 
 // uim dependencies

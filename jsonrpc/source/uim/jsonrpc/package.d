@@ -3,13 +3,15 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.jsons.schemas;
+module uim.jsonrpc;
 
 public {
-  import uim.jsons.schemas.schema;
-  import uim.jsons.schemas.validator;
-  import uim.jsons.schemas.types;
-  import uim.jsons.schemas.formats;
-  import uim.jsons.schemas.builder;
-  import uim.jsons.schemas.errors;
+  import uim.jsonrpc.request;
+  import uim.jsonrpc.response;
+  import uim.jsonrpc.error;
+  import uim.jsonrpc.notification;
+  import uim.jsonrpc.batch;
+  import uim.jsonrpc.server;
+  import uim.jsonrpc.client;
+  import uim.jsonrpc.handler;
 }

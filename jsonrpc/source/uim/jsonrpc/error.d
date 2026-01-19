@@ -1,0 +1,154 @@
+/****************************************************************************************************************
+* Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
+* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
+* Authors: Ozan Nurettin Süel (aka UIManufaktur)
+*****************************************************************************************************************/
+module uim.jsonrpc.error;
+
+import uim.jsonrpc;
+
+@safe:
+
+/**
+ * JSON-RPC 2.0 error codes.
+ */
+enum JSONRPCErrorCode : int {
+  ParseError = -32700,
+  InvalidRequest = -32600,
+  MethodNotFound = -32601,
+  InvalidParams = -32602,
+  InternalError = -32603,
+  ServerError = -32000  // -32000 to -32099 are reserved for implementation-defined server errors
+}
+
+/**
+ * JSON-RPC error object.
+ */
+class DJSONRPCError : UIMObject {
+  protected int _code;
+  protected string _message;
+  protected Json _data;
+
+  this() {
+    super();
+    _data = Json(null);
+  }
+
+  this(int code, string message, Json data = Json(null)) {
+    this();
+    _code = code;
+    _message = message;
+    _data = data;
+  }
+
+  // Getters
+  int code() { return _code; }
+  string message() { return _message; }
+  Json data() { return _data; }
+
+  // Setters
+  void code(int value) { _code = value; }
+  void message(string value) { _message = value; }
+  void data(Json value) { _data = value; }
+
+  /**
+   * Convert to JSON object.
+   */
+  Json toJson() {
+    auto result = Json.emptyObject;
+    result["code"] = _code;
+    result["message"] = _message;
+    if (_data.type != Json.Type.null_) {
+      result["data"] = _data;
+    }
+    return result;
+  }
+
+  /**
+   * Create from JSON object.
+   */
+  static DJSONRPCError fromJson(Json json) {
+    auto error = new DJSONRPCError();
+    
+    if (auto code = "code" in json) {
+      error.code = code.get!int;
+    }
+    
+    if (auto message = "message" in json) {
+      error.message = message.get!string;
+    }
+    
+    if (auto data = "data" in json) {
+      error.data = *data;
+    }
+    
+    return error;
+  }
+
+  override string toString() const {
+    return "JSON-RPC Error " ~ _code.to!string ~ ": " ~ _message;
+  }
+}
+
+// Factory functions for common errors
+DJSONRPCError parseError(string details = "") {
+  auto data = details.length > 0 ? Json(details) : Json(null);
+  return new DJSONRPCError(
+    JSONRPCErrorCode.ParseError,
+    "Parse error",
+    data
+  );
+}
+
+DJSONRPCError invalidRequest(string details = "") {
+  auto data = details.length > 0 ? Json(details) : Json(null);
+  return new DJSONRPCError(
+    JSONRPCErrorCode.InvalidRequest,
+    "Invalid Request",
+    data
+  );
+}
+
+DJSONRPCError methodNotFound(string methodName = "") {
+  auto data = methodName.length > 0 ? Json(methodName) : Json(null);
+  return new DJSONRPCError(
+    JSONRPCErrorCode.MethodNotFound,
+    "Method not found",
+    data
+  );
+}
+
+DJSONRPCError invalidParams(string details = "") {
+  auto data = details.length > 0 ? Json(details) : Json(null);
+  return new DJSONRPCError(
+    JSONRPCErrorCode.InvalidParams,
+    "Invalid params",
+    data
+  );
+}
+
+DJSONRPCError internalError(string details = "") {
+  auto data = details.length > 0 ? Json(details) : Json(null);
+  return new DJSONRPCError(
+    JSONRPCErrorCode.InternalError,
+    "Internal error",
+    data
+  );
+}
+
+DJSONRPCError serverError(int code, string message, Json data = Json(null)) {
+  if (code < -32099 || code > -32000) {
+    code = JSONRPCErrorCode.ServerError;
+  }
+  return new DJSONRPCError(code, message, data);
+}
+
+unittest {
+  auto error = methodNotFound("testMethod");
+  assert(error.code == JSONRPCErrorCode.MethodNotFound);
+  assert(error.message == "Method not found");
+  
+  auto json = error.toJson();
+  assert("code" in json);
+  assert(json["code"].get!int == -32601);
+}
