@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.jsons.schemas.errors;
 
-import uim.jsons.schemas;
+import uim.jsons;
 
 @safe:
 

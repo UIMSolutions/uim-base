@@ -3,9 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.jsonRpc.notification;
+module uim.jsons.rpc.notification;
 
-import uim.jsonRpc;
+import uim.jsons;
 
 @safe:
 

@@ -3,15 +3,15 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.jsonRpc;
+module uim.jsons.rpc;
 
 public {
-  import uim.jsonRpc.request;
-  import uim.jsonRpc.response;
-  import uim.jsonRpc.error;
-  import uim.jsonRpc.notification;
-  import uim.jsonRpc.batch;
-  import uim.jsonRpc.server;
-  import uim.jsonRpc.client;
-  import uim.jsonRpc.handler;
+  import uim.jsons.rpc.request;
+  import uim.jsons.rpc.response;
+  import uim.jsons.rpc.error;
+  import uim.jsons.rpc.notification;
+  import uim.jsons.rpc.batch;
+  import uim.jsons.rpc.server;
+  import uim.jsons.rpc.client;
+  import uim.jsons.rpc.handler;
 }

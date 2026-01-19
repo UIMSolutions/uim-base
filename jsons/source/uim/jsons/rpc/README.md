@@ -68,7 +68,7 @@ JSON-RPC is a stateless, light-weight remote procedure call (RPC) protocol. It u
 ### Server Implementation
 
 ```d
-import uim.jsonrpc;
+import uim.jsons;
 
 // Create server
 auto server = new DJSONRPCServer();
@@ -102,7 +102,7 @@ string responseJson = server.handleRequest(requestJson);
 ### Client Implementation
 
 ```d
-import uim.jsonrpc;
+import uim.jsons;
 
 // Create client
 auto client = new DJSONRPCClient();
@@ -164,7 +164,7 @@ foreach (response; batchResponse.responses()) {
 ### Error Handling
 
 ```d
-import uim.jsonrpc;
+import uim.jsons;
 
 // Using predefined errors
 auto error1 = methodNotFound("calculatePi");
@@ -181,7 +181,7 @@ auto errorResponse = errorResponse(error1, Json(1));
 ### Complete Example: Calculator Service
 
 ```d
-import uim.jsonrpc;
+import uim.jsons;
 import std.stdio;
 
 void main() {

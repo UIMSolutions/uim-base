@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.jsons.schemas.types;
 
-import uim.jsons.schemas;
+import uim.jsons;
 
 @safe:
 
