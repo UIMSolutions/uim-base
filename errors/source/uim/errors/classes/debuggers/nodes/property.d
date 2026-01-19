@@ -19,7 +19,7 @@ class DPropertyErrorNode : UIMErrorNode {
   this(string name, string visibility, IErrorNode node) {
     super();
 
-    this.name(name);
+    this.objName(name);
     this.visibility(visibility);
     this.value(node);
   }

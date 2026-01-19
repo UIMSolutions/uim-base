@@ -141,7 +141,8 @@ class DConsoleErrorFormatter : UIMErrorFormatter {
     }
 
     auto visibility = node.visibility;
-    auto nodeName = node.name;
+    // Get the object name from UIMObject base class
+    string nodeName = node.objName();
     auto arrow = style("punct", ": ");
 
     return visibility != "public"

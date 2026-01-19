@@ -7,6 +7,7 @@ module uim.errors.classes.debuggers.formatters.html;
 
 import uim.errors;
 import std.array : replicate;
+import std.conv : to;
 
 mixin(ShowModule!());
 
@@ -117,7 +118,7 @@ class DHtmlErrorFormatter : UIMErrorFormatter {
 
     auto objectId = "uim-db-object-{id}-{nodeid}".mustache([
       "id": id,
-      "nodeid": node.id.toString
+      "nodeid": node.id.to!string
     ]);
 
     auto result = `<span class="uim-debug-object" id="%s">`.format(objectId);
@@ -167,7 +168,8 @@ class DHtmlErrorFormatter : UIMErrorFormatter {
 
     auto arrow = style("punct", ": ");
     auto visibility = node.visibility;
-    auto nodeName = node.name;
+    // Get the object name from UIMObject base class  
+    string nodeName = node.objName();
     return visibility != "public"
       ? startBreak ~
       "<span class=\"uim-debug-prop\">" ~
@@ -184,14 +186,15 @@ class DHtmlErrorFormatter : UIMErrorFormatter {
 
     switch (node.type) {
     case "bool":
-      return style("const", node.data.getBoolean ? "true" : "false");
+      bool boolVal = (node.data.type == Json.Type.bool_) && (node.data.get!bool);
+      return style("const", boolVal ? "true" : "false");
     case "null":
       return style("const", "null");
     case "string":
-      return style("string", "'" ~ node.data.getString ~ "'");
+      return style("string", "'" ~ node.data.get!string ~ "'");
     case "int", "float":
       return style("visibility", "({"~node.type~"})") ~
-        " " ~ style("number", "{"~node.data.getLong.toString~"}");
+        " " ~ style("number", "{"~node.data.toString~"}");
     default:
       return "({"~node.type~"}) {"~node.data.toString~"}";
     };
@@ -204,6 +207,9 @@ class DHtmlErrorFormatter : UIMErrorFormatter {
 
   // Style text with HTML class names
   protected string style(string styleToUse, string testToStyle) {
-    return "<span class=\"uim-debug-%s\">%s</span>".format(styleToUse, escapeHtmlAttribute(testToStyle));
+    import std.array : replace;
+    // Simple HTML escaping
+    string escaped = testToStyle.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;");
+    return "<span class=\"uim-debug-%s\">%s</span>".format(styleToUse, escaped);
   }
 }

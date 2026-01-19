@@ -6,6 +6,7 @@
 module uim.errors.classes.debuggers.formatters.text;
 
 import uim.errors;
+import std.conv : to;
 mixin(ShowModule!());
 
 @safe:
@@ -23,7 +24,7 @@ class DTextErrorFormatter : UIMErrorFormatter {
 ";
     string lineInfo = "";
 
-    if (location.hasAllKey(["file", "line"])) {
+    if (("file" in location) && ("line" in location)) {
       lineInfo = "%s (line %s)".format(location.getString("file"), location.getString("line"));
     }
     return templateTxt.format(lineInfo, content);
@@ -55,7 +56,7 @@ class DTextErrorFormatter : UIMErrorFormatter {
     }
 
     return "object({nodeClassname}) id:{nodeId} {}".mustache(
-      ["nodeClassname": node.classname, "nodeId": node.id.toString]);
+      ["nodeClassname": node.classname, "nodeId": node.id.to!string]);
   }
 
   override protected string exportClass(DClassErrorNode node, size_t indentLevel) {
@@ -66,7 +67,7 @@ class DTextErrorFormatter : UIMErrorFormatter {
     }
 
     string result = "(Object) Name:{nodeClassname} Id:{nodeId} {".mustache(
-      ["nodeClassname": node.classname, "nodeId": node.id.toString]);
+      ["nodeClassname": node.classname, "nodeId": node.id.to!string]);
 
     auto items = node.children()
       .map!(property => export_(property, indentLevel))
@@ -87,7 +88,7 @@ class DTextErrorFormatter : UIMErrorFormatter {
         ? "[{propVisibility}] Name:{propName} " : "Name:{propName} ").mustache(
       [
         "propVisibility": node.visibility,
-        "propName": node.name
+        "propName": node.objName()
       ]) ~ export_(node.value, indentLevel);
   }
 
@@ -100,11 +101,12 @@ class DTextErrorFormatter : UIMErrorFormatter {
 
     switch (node.type) {
     case "bool":
-      return "Type:Bool Value:"~node.data.getBoolean() ? "true" : "false";
+      bool boolVal = (node.data.type == Json.Type.bool_) && (node.data.get!bool);
+      return "Type:Bool Value:" ~ (boolVal ? "true" : "false");
     case "null":
       return "Type:Null Value:null";
     case "string":
-      return "Type:String Value:'" ~ node.data.getString ~ "'";
+      return "Type:String Value:'" ~ node.data.get!string ~ "'";
     default:
       return "Type:" ~ node.type ~ " Value:" ~ node.data.toString;
     }
