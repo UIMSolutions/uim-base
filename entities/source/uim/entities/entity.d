@@ -28,15 +28,31 @@ enum EntityState {
  * Base entity class with common functionality
  */
 class DEntity : UIMObject, IEntity {
-    mixin(OProperty!("UUID", "id"));
-    mixin(OProperty!("string", "name"));
-    mixin(OProperty!("SysTime", "createdAt"));
-    mixin(OProperty!("SysTime", "updatedAt"));
-    mixin(OProperty!("EntityState", "state"));
-    mixin(OProperty!("string[string]", "attributes"));
+    protected UUID _id;
+    protected string _name;
+    protected SysTime _createdAt;
+    protected SysTime _updatedAt;
+    protected EntityState _state;
+    protected string[string] _attributes;
     
     protected string[] _errors;
     protected string[string] _originalAttributes;
+    
+    // Getters
+    UUID id() { return _id; }
+    string name() { return _name; }
+    SysTime createdAt() { return _createdAt; }
+    SysTime updatedAt() { return _updatedAt; }
+    EntityState state() { return _state; }
+    string[string] attributes() { return _attributes; }
+    
+    // Setters
+    void id(UUID value) { _id = value; }
+    void name(string value) { _name = value; }
+    void createdAt(SysTime value) { _createdAt = value; }
+    void updatedAt(SysTime value) { _updatedAt = value; }
+    void state(EntityState value) { _state = value; }
+    void attributes(string[string] value) { _attributes = value; }
     
     this() {
         super();
