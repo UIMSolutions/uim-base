@@ -25,7 +25,7 @@ class FunctionalDecorator : Decorator {
    *   beforeFunc = Function to execute before the component
    *   afterFunc = Function to execute after the component
    */
-  this(IComponent component, 
+  this(IDecoratorComponent component, 
        string delegate() @safe beforeFunc = null,
        string delegate() @safe afterFunc = null) {
     super(component);

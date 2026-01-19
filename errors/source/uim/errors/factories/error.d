@@ -5,10 +5,26 @@
 *****************************************************************************************************************/
 module uim.errors.factories.error;
 
-mixin(Version!"test_uim_errors");
+mixin(ShowModule!());
 
 import uim.errors;
+
 @safe:
 
-class UIMErrorFactory : DFactory!(string, UIMError) {}
-auto ErrorFactory() { return UIMErrorFactory.instance; }
+class UIMErrorFactory : UIMFactory!(string, UIMError) {
+    this() {
+        super("ErrorFactory");
+    }
+
+    private static UIMErrorFactory _instance;
+    static UIMErrorFactory instance() {
+        if (_instance is null) {
+            _instance = new UIMErrorFactory();
+        }
+        return _instance;
+    }
+}
+
+auto ErrorFactory() {
+    return UIMErrorFactory.instance;
+}

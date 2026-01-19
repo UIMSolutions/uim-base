@@ -15,7 +15,7 @@ mixin(ShowModule!());
  * Base component interface for the Decorator pattern.
  * Components can be decorated with additional behavior.
  */
-interface IComponent {
+interface IDecoratorComponent {
   /**
    * Execute the component's operation.
    * Returns: Result of the operation
@@ -26,19 +26,19 @@ interface IComponent {
 /**
  * Decorator interface that wraps a component.
  */
-interface IDecorator : IComponent {
+interface IDecorator : IDecoratorComponent {
   /**
    * Get the wrapped component.
    * Returns: The component being decorated
    */
-  IComponent component();
+  IDecoratorComponent component();
 
   /**
    * Set the wrapped component.
    * Params:
    *   comp = The component to wrap
    */
-  void component(IComponent comp);
+  void component(IDecoratorComponent comp);
 }
 
 /**

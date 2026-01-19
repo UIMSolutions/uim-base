@@ -7,6 +7,7 @@ module uim.errors.classes.debuggers.formatters.console;
 
 mixin(ShowModule!());
 import uim.errors;
+import std.array : replicate;
 
 @safe:
 
@@ -15,7 +16,7 @@ class DConsoleErrorFormatter : UIMErrorFormatter {
   mixin(ErrorFormatterThis!("Console"));
 
   // text colors used in colored output.
-  protected STRINGAA styles = [
+  protected string[string] styles = [
     // bold yellow
     "const": "1;33",
     // green
@@ -59,7 +60,7 @@ class DConsoleErrorFormatter : UIMErrorFormatter {
 
   string formatWrapper(string contents, Json[string] locations) {
     string lineInfo = "";
-    if (locations.hasAllKey(["file", "line"])) {
+    if (("file" in locations) && ("line" in locations)) {
       lineInfo = "%s (line %s)".format(locations.getString("file"), locations.getString("line"));
     }
 
@@ -113,8 +114,8 @@ class DConsoleErrorFormatter : UIMErrorFormatter {
   }
 
   override protected string exportClass(DClassErrorNode node, size_t indentLevel) {
-    string startBreak = "\n" ~ " ".repeatTxt(indentLevel);
-    string endBreak = "\n" ~ " ".repeatTxt(indentLevel - 1) ~ style("punct", "}");
+    string startBreak = "\n" ~ replicate(" ", indentLevel);
+    string endBreak = "\n" ~ replicate(" ", indentLevel - 1) ~ style("punct", "}");
 
     if (node is null) {
       return null;
@@ -140,12 +141,12 @@ class DConsoleErrorFormatter : UIMErrorFormatter {
     }
 
     auto visibility = node.visibility;
-    auto name = node.name;
+    auto nodeName = node.name;
     auto arrow = style("punct", ": ");
 
     return visibility != "public"
-      ? style("visibility", visibility) ~ " " ~ style("property", name) ~ arrow ~ export_(node.value(), indentLevel)
-      : style("property", name) ~ arrow ~ export_(node.value(), indentLevel);
+      ? style("visibility", visibility) ~ " " ~ style("property", nodeName) ~ arrow ~ export_(node.value(), indentLevel)
+      : style("property", nodeName) ~ arrow ~ export_(node.value(), indentLevel);
   }
 
   override protected string exportScalar(DScalarErrorNode node, size_t indentLevel) {

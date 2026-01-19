@@ -15,14 +15,14 @@ mixin(ShowModule!());
  * Abstract base decorator class.
  */
 abstract class Decorator : IDecorator {
-  protected IComponent _component;
+  protected IDecoratorComponent _component;
 
   /**
    * Create a decorator wrapping a component.
    * Params:
    *   component = The component to decorate
    */
-  this(IComponent component) {
+  this(IDecoratorComponent component) {
     _component = component;
   }
 
@@ -30,7 +30,7 @@ abstract class Decorator : IDecorator {
    * Get the wrapped component.
    * Returns: The component being decorated
    */
-  IComponent component() {
+  IDecoratorComponent component() {
     return _component;
   }
 
@@ -39,7 +39,7 @@ abstract class Decorator : IDecorator {
    * Params:
    *   comp = The component to wrap
    */
-  void component(IComponent comp) {
+  void component(IDecoratorComponent comp) {
     _component = comp;
   }
 
@@ -115,14 +115,14 @@ GenericDecorator!T createGenericDecorator(T)(
 
 // Unit tests
 unittest {
-  class SimpleComponent : IComponent {
+  class SimpleComponent : IDecoratorComponent {
     @safe string execute() {
       return "Simple";
     }
   }
 
   class UppercaseDecorator : Decorator {
-    this(IComponent component) {
+    this(IDecoratorComponent component) {
       super(component);
     }
 
@@ -140,7 +140,7 @@ unittest {
 }
 
 unittest {
-  class NumberComponent : IComponent {
+  class NumberComponent : IDecoratorComponent {
     private int _value;
     
     this(int value) { _value = value; }
@@ -154,7 +154,7 @@ unittest {
   class PrefixDecorator : Decorator {
     private string _prefix;
     
-    this(IComponent component, string prefix) {
+    this(IDecoratorComponent component, string prefix) {
       super(component);
       _prefix = prefix;
     }
@@ -171,7 +171,7 @@ unittest {
 }
 
 unittest {
-  class TestComponent : IComponent {
+  class TestComponent : IDecoratorComponent {
     @safe string execute() {
       return "Core";
     }

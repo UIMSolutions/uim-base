@@ -24,7 +24,7 @@ string objThis(string name, bool overrideMemberNames = true) {
     }`.replace("{name}", name)
     ~
     (overrideMemberNames ? `override ` : ``) ~
-    `string[] memberNames() {
+    `string[] objMemberNames() {
       return [__traits(allMembers, typeof(this))];
     }
     `;

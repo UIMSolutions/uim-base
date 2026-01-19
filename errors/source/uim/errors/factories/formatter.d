@@ -5,16 +5,26 @@
 *****************************************************************************************************************/
 module uim.errors.factories.formatter;
 
-mixin(Version!"test_uim_errors");
-
 import uim.errors;
+
+mixin(ShowModule!());
 
 @safe:
 
-class UIMErrorFormatterFactory : DFactory!(string, UIMErrorFormatter) {
+class UIMErrorFormatterFactory : UIMFactory!(string, UIMErrorFormatter) {
+  this() {
+    super("ErrorFormatter");
+  }
+
+  private static UIMErrorFormatterFactory _instance;
+  static UIMErrorFormatterFactory instance() {
+    if (_instance is null) {
+      _instance = new UIMErrorFormatterFactory();
+    }
+    return _instance;
+  }
 }
 
 auto ErrorFormatterFactory() {
-    return UIMErrorFormatterFactory.instance;
+  return UIMErrorFormatterFactory.instance;
 }
-

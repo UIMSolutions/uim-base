@@ -18,7 +18,7 @@ The Decorator pattern allows you to attach additional responsibilities to an obj
 import uim.oop;
 
 // Define a base component
-class TextComponent : IComponent {
+class TextComponent : IDecoratorComponent {
     private string _text;
     
     this(string text) { _text = text; }
@@ -30,7 +30,7 @@ class TextComponent : IComponent {
 
 // Create a decorator
 class BoldDecorator : Decorator {
-    this(IComponent component) {
+    this(IDecoratorComponent component) {
         super(component);
     }
     
@@ -49,7 +49,7 @@ writeln(bold.execute()); // Output: <b>Hello</b>
 
 ```d
 class ItalicDecorator : Decorator {
-    this(IComponent component) {
+    this(IDecoratorComponent component) {
         super(component);
     }
     
@@ -107,13 +107,13 @@ writeln(decorator.execute()); // Output: Laptop: $999.99
 ### Coffee Shop
 
 ```d
-class Coffee : IComponent {
+class Coffee : IDecoratorComponent {
     string execute() { return "Coffee"; }
     double cost() { return 2.0; }
 }
 
 class MilkDecorator : Decorator {
-    this(IComponent component) { super(component); }
+    this(IDecoratorComponent component) { super(component); }
     
     override string execute() {
         return super.execute() ~ " + Milk";
@@ -130,7 +130,7 @@ auto coffeeWithMilk = new MilkDecorator(coffee);
 ### Logging Decorator
 
 ```d
-class DataProcessor : IComponent {
+class DataProcessor : IDecoratorComponent {
     string execute() { return "Processing data"; }
 }
 

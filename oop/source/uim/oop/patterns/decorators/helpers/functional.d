@@ -14,7 +14,7 @@ mixin(ShowModule!());
  * Helper function to create a functional decorator.
  */
 FunctionalDecorator createFunctionalDecorator(
-    IComponent component,
+    IDecoratorComponent component,
     string delegate() @safe beforeFunc = null,
     string delegate() @safe afterFunc = null) {
   return new FunctionalDecorator(component, beforeFunc, afterFunc);

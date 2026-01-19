@@ -33,7 +33,7 @@ mixin(ShowModule!());
  * - message / message(string): Gets or sets the error message.
  * - fileName / fileName(string): Gets or sets the file name.
  * - lineNumber / lineNumber(size_t): Gets or sets the line number.
- * - trace / trace(STRINGAA[]): Gets or sets the stack trace.
+ * - trace / trace(string[string][]): Gets or sets the stack trace.
  * - addTrace: Adds entries to the stack trace.
  * - traceAsString: Returns the stack trace as a formatted string.
  * - throwError: Throws a D `Error` with the current message.
@@ -150,23 +150,23 @@ class UIMError : UIMObject, IError {
 
   // #region trace
   // Get the stacktrace.
-  protected STRINGAA[] _trace;
-  STRINGAA[] trace() {
+  protected string[string][] _trace;
+  string[string][] trace() {
     return _trace;
   }
 
-  IError trace(STRINGAA[] newTrace) {
+  IError trace(string[string][] newTrace) {
     _trace = newTrace;
     return this;
   }
   // Add a trace entry.
-  IError addTrace(STRINGAA[] newTrace) {
+  IError addTrace(string[string][] newTrace) {
     _trace ~= newTrace;
     return this;
   }
   // Add a trace entry.
   IError addTrace(string reference, string file, string line) {
-    STRINGAA newTrace;
+    string[string] newTrace;
     newTrace["reference"] = reference;
     newTrace["file"] = file;
     newTrace["line"] = line;
@@ -175,7 +175,7 @@ class UIMError : UIMObject, IError {
     return this;
   }
   // Add a trace entry.
-  IError addTrace(STRINGAA newTrace) {
+  IError addTrace(string[string] newTrace) {
     _trace ~= newTrace;
     return this;
   }
@@ -235,12 +235,12 @@ unittest {
 
   // Test trace getter/setter
   assert(error.trace() == null);
-  STRINGAA[] traces = [];
+  string[string][] traces = [];
   error.trace(traces);
   assert(error.trace().length == 0);
 
-  // Test addTrace(STRINGAA[])
-  STRINGAA traceEntry1;
+  // Test addTrace(string[string][])
+  string[string] traceEntry1;
   traceEntry1["reference"] = "ref1";
   traceEntry1["file"] = "file1.d";
   traceEntry1["line"] = "10";
@@ -255,8 +255,8 @@ unittest {
   assert(error.trace()[1]["file"] == "file2.d");
   assert(error.trace()[1]["line"] == "20");
 
-  // Test addTrace(STRINGAA[])
-  STRINGAA traceEntry2;
+  // Test addTrace(string[string][])
+  string[string] traceEntry2;
   traceEntry2["reference"] = "ref3";
   traceEntry2["file"] = "file3.d";
   traceEntry2["line"] = "30";

@@ -6,6 +6,7 @@
 module uim.errors.classes.debuggers.formatters.html;
 
 import uim.errors;
+import std.array : replicate;
 
 mixin(ShowModule!());
 
@@ -45,9 +46,8 @@ class DHtmlErrorFormatter : UIMErrorFormatter {
 
   string formatWrapper(string acontents, Json[string] location) {
     string lineInfo = "";
-    if (location.hasAllKey(["file", "line"])) {
-      /* lineInfo = htmlDoubleTag("span", "<strong>{file}</strong> (line <strong>{line}</strong>)")
-        .mustache(location, ["file", "line"]); */
+    if (("file" in location) && ("line" in location)) {
+      // lineInfo = "<span><strong>" ~ location["file"].toString ~ "</strong> (line <strong>" ~ location["line"].toString ~ "</strong>)</span>";
     }
 
     /*     return [
@@ -79,7 +79,7 @@ class DHtmlErrorFormatter : UIMErrorFormatter {
       outputHeader = true;
       head = this.dumpHeader();
     }
-    return head ~ htmlDoubleTag("div", ["uim-debug"], content);
+    return head ~ "<div class=\"uim-debug\">" ~ content ~ "</div>";
   }
 
   // #region export
@@ -91,9 +91,9 @@ class DHtmlErrorFormatter : UIMErrorFormatter {
     }
 
     string[] items = node.children.map!(item => exportArrayItem(item, indentLevel)).array;
-    return htmlDoubleTag("span", `class="uim-debug-array"`, style("punct", "[") ~
-        htmlDoubleTag("samp", `class="uim-debug-array-items"`, items.join("")) ~
-        endBreak ~ style("punct", "]"));
+    return "<span class=\"uim-debug-array\">" ~ style("punct", "[") ~
+        "<samp class=\"uim-debug-array-items\">" ~ items.join("") ~ "</samp>" ~
+        endBreak ~ style("punct", "]") ~ "</span>";
   }
 
   protected override string exportArrayItem(IErrorNode node, size_t indentLevel) {
@@ -105,9 +105,9 @@ class DHtmlErrorFormatter : UIMErrorFormatter {
 
     auto arrow = style("punct", ": ");
     auto value = node.value();
-    return startBreak ~ htmlDoubleTag("span", ["uim-debug-array-item"],
-      export_(node.value, indentLevel) ~ arrow ~ export_(node.value, indentLevel) ~
-        style("punct", ","));
+    return startBreak ~ "<span class=\"uim-debug-array-item\">" ~
+      export_(value, indentLevel) ~ arrow ~ export_(value, indentLevel) ~
+        style("punct", ",") ~ "</span>";
   }
 
   protected override string exportReference(DReferenceErrorNode node, size_t indentLevel) {
@@ -121,18 +121,18 @@ class DHtmlErrorFormatter : UIMErrorFormatter {
     ]);
 
     auto result = `<span class="uim-debug-object" id="%s">`.format(objectId);
-    auto startBreak = "\n" ~ " ".repeatTxt(indentLevel);
-    auto endBreak = "\n" ~ " ".repeatTxt(indentLevel - 1);
+    auto startBreak = "\n" ~ replicate(" ", indentLevel);
+    auto endBreak = "\n" ~ replicate(" ", indentLevel - 1);
 
     auto link = `<a class="uim-debug-ref" href="#%s">id: %s</a>`
-      .format(objectId, node.id());
+      .format(objectId, node.id);
 
-    return htmlDoubleTag("span", ["uim-debug-ref"],
+    return "<span class=\"uim-debug-ref\">" ~
       style("punct", "object(") ~
         style("class", node.classname) ~
         style("punct", ") ") ~
         link ~
-        style("punct", " {}"));
+        style("punct", " {}") ~ "</span>";
   }
 
   protected override string exportClass(DClassErrorNode node, size_t indentLevel) {
@@ -142,12 +142,12 @@ class DHtmlErrorFormatter : UIMErrorFormatter {
       return null;
     }
 
-    auto objectId = "uim-db-object-{this.id}-{node.id()}";
+    auto objectId = "uim-db-object-{this.id}-{node.id}";
     auto result = `<span class="uim-debug-object" id="%s">`.format(objectId) ~
       style("punct", "object(") ~
       style("class", node.classname) ~
       style("punct", ") id:") ~
-      style("number", node.id.toString) ~ style("punct", " {") ~
+      style("number", node.id.to!string) ~ style("punct", " {") ~
       `<samp class="uim-debug-object-props">`;
 
     string[] props = node.children.map!(property => exportProperty(cast(DPropertyErrorNode) property, indentLevel)).array;
@@ -167,14 +167,14 @@ class DHtmlErrorFormatter : UIMErrorFormatter {
 
     auto arrow = style("punct", ": ");
     auto visibility = node.visibility;
-    auto name = node.name;
+    auto nodeName = node.name;
     return visibility != "public"
       ? startBreak ~
-      htmlDoubleTag("span", ["uim-debug-prop"],
-        style("visibility", visibility) ~ ' ' ~ style("property", name) ~ arrow ~ export_(node.value(), indentLevel))
+      "<span class=\"uim-debug-prop\">" ~
+        (style("visibility", visibility) ~ ' ' ~ style("property", nodeName) ~ arrow ~ export_(node.value(), indentLevel)) ~ "</span>"
       : startBreak ~
-      htmlDoubleTag("span", ["uim-debug-prop"],
-        style("property", name) ~ arrow ~ export_(node.value(), indentLevel));
+      "<span class=\"uim-debug-prop\">" ~
+        (style("property", nodeName) ~ arrow ~ export_(node.value(), indentLevel)) ~ "</span>";
   }
 
   protected override string exportScalar(DScalarErrorNode node, size_t indentLevel) {
@@ -204,7 +204,6 @@ class DHtmlErrorFormatter : UIMErrorFormatter {
 
   // Style text with HTML class names
   protected string style(string styleToUse, string testToStyle) {
-    return htmlDoubleTag("span", ["uim-debug-%s"], "%s")
-      .format(styleToUse, escapeHtmlAttribute(testToStyle));
+    return "<span class=\"uim-debug-%s\">%s</span>".format(styleToUse, escapeHtmlAttribute(testToStyle));
   }
 }

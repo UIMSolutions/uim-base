@@ -6,6 +6,7 @@
 module uim.errors.classes.debuggers.formatters.formatter;
 
 import uim.errors;
+import std.array : replicate;
 mixin(ShowModule!());
 
 @safe:
@@ -19,7 +20,7 @@ class UIMErrorFormatter : UIMObject, IErrorFormatter {
   }
 
   string startBreak(size_t indentLevel) {
-    return _startBreak = "\n" ~ " ".repeatTxt(indentLevel);
+    return _startBreak = "\n" ~ replicate(" ", indentLevel);
   }
 
   string _endBreak;
@@ -28,7 +29,7 @@ class UIMErrorFormatter : UIMObject, IErrorFormatter {
   }
 
   string endBreak(size_t indentLevel) {
-    return _endBreak = "\n" ~ " ".repeatTxt(indentLevel - 1);
+    return _endBreak = "\n" ~ replicate(" ", indentLevel - 1);
   }
 
   // Convert a tree of IErrorNode objects into a plain text string.

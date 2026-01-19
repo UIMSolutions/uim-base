@@ -22,7 +22,7 @@ class ChainableDecorator : Decorator, IChainableDecorator {
    * Params:
    *   component = The component to decorate
    */
-  this(IComponent component) {
+  this(IDecoratorComponent component) {
     super(component);
   }
 

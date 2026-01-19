@@ -27,8 +27,8 @@ interface IError {
   size_t lineNumber();
   IError lineNumber(size_t newLineNumber);
 
-  STRINGAA[] trace();
-  IError trace(STRINGAA[] newTrace);
+  string[string][] trace();
+  IError trace(string[string][] newTrace);
   string traceAsString();
 
   IError previous();
@@ -58,7 +58,7 @@ interface IError {
   string messageTemplate(string templateName = "default");
   void messageTemplate(string templateName, string templateText);
 
-  STRINGAA messageTemplates();
+  string[string] messageTemplates();
   void messageTemplates(string[string] templates);
 
 */ 
