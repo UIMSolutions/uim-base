@@ -1,11 +1,11 @@
 /****************************************************************************************************************
-* Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur) 
+* Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.commands.exceptions.exception;
+module uim.commands.exceptions.exception;
 
-import uim.oop;
+import uim.commands;
 
 mixin(Version!"test_uim_oop");
 
@@ -20,7 +20,7 @@ class DCommandException : DException {
       return false;
     }
 
-    messageTemplate("default", "Exception uim.oop.exceptions");
+    messageTemplate("default", "Exception in uim.commands");
 
     return true;
   }

@@ -1,6 +1,10 @@
 module uim.oop.patterns.repositories.interfaces.repository;
 
+import uim.oop;
 
+mixin(ShowModule!());
+
+@safe:
 /**
  * Repository interface for managing entities.
  * Provides CRUD operations and query capabilities.

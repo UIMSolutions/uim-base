@@ -30,9 +30,23 @@ version (show_test) {
 `;
 }
 
+template ShowInit(string msg) {
+  const char[] ShowInit = `
+version (show_init) {
+  import std.stdio;
+  import std.string;
+  import consolecolors;
+
+  string inner = leftJustify("`~msg~`", 154, ' ');
+  string outer = "  | Initializing " ~ inner;
+  cwritefln(outer.black.on_yellow);  
+}  
+`;
+}
+
 template ShowFunction() {
   const char[] ShowFunction = `
-version (show_test) {
+version (show_function) {
   import std.stdio;
   import std.string;
   import consolecolors;

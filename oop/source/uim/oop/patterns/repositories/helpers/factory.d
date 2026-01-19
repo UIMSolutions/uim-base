@@ -8,7 +8,7 @@ mixin(ShowModule!());
 /**
  * Generic repository factory.
  */
-class RepositoryFactory!IRepository : UIMFactory {
+class RepositoryFactory : UIMFactory!IRepository {
   /**
      * Create an in-memory repository.
      */
@@ -42,3 +42,9 @@ unittest {
   
   }
 } 
+
+static this() {
+  mixin(ShowInit!"Initializing RepositoryFactory module");
+
+  
+}

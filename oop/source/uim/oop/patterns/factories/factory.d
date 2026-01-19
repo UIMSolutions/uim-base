@@ -15,26 +15,26 @@ mixin(ShowModule!());
  * Simple factory implementation using a delegate.
  * Supports both direct creation and registry-based creation by key.
  */
-class Factory(T : UIMObject) : IFactory!T {
-  private T delegate() @safe _defaultCreator;
-  protected T delegate()[string] _creators;
-  protected T[string] _createObjects;
+class Factory(K, V) : IFactory!(K, V) {
+  private V delegate() @safe _defaultCreator;
+  protected V delegate()[K] _creators;
+  protected V[K] _createObjects;
 
-  this(T delegate() @safe creator) {
+  this(V delegate() @safe creator) { // Constructor with default creator
     _defaultCreator = creator;
   }
 
   /**
    * Create an instance using the default creator.
    */
-  T create() {
+  V create() {
     return _defaultCreator();
   }
 
   /**
    * Register a creator function for a specific key.
    */
-  Factory!T register(string key, T delegate() @safe creator) {
+  Factory!T register(K key, V delegate() @safe creator) {
     _creators[key] = creator;
     return this;
   }
@@ -43,21 +43,21 @@ class Factory(T : UIMObject) : IFactory!T {
    * Create an instance by key using a registered creator.
    * Throws: Exception if key is not registered
    */
-  T create(string key) {
+  V create(K key) {
     return isRegistered(key) ? _creators[key]() : null;
   }
 
   /**
    * Check if a key is registered.
    */
-  bool isRegistered(string key) {
+  bool isRegistered(K key) {
     return key in _creators ? true : false;
   }
 
   /**
    * Unregister a key.
    */
-  Factory!T unregister(string key) {
+  IFactory!(K, V) unregister(K key) {
     _creators.remove(key);
     return this;
   }
@@ -65,7 +65,7 @@ class Factory(T : UIMObject) : IFactory!T {
   /**
    * Clear all registrations.
    */
-  Factory!T clearRegistry() {
+  IFactory!(K, V) clearRegistry() {
     _creators.clear();
     return this;
   }

@@ -1,11 +1,11 @@
 /****************************************************************************************************************
-* Copyright: © 2018-2025 Ozan Nurettin Süel (aka UIManufaktur) 
+* Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.commands.exceptions.subclasses;
+module uim.commands.exceptions.subclasses;
 
 public {
-  import uim.oop.commands.exceptions.subclasses.notcreate;
-  import uim.oop.commands.exceptions.subclasses.notfind;
+  import uim.commands.exceptions.subclasses.notcreate;
+  import uim.commands.exceptions.subclasses.notfind;
 }

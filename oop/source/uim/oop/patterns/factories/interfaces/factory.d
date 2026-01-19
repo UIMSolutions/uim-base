@@ -8,6 +8,15 @@ mixin(ShowModule!());
 /**
  * Factory interface for creating objects.
  */
-interface IFactory(T) {
-  T create();
+interface IFactory(K, V) {
+    /** 
+     * Creates and returns an instance of type T.
+     * 
+     * Params:
+     *     K key = The key associated with the object to be created.
+     * 
+     * Returns:
+     *     An instance of type T.
+     */
+  V create(K key);  
 }

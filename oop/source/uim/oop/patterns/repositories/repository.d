@@ -16,15 +16,15 @@ mixin(ShowModule!());
   * Provides common functionality for repository implementations.
   * Concrete repositories should inherit from this and implement abstract methods.
   */
-abstract class UIMRepository(T, ID) : IRepository!(T, ID) {
-  protected ID delegate(T) @safe _idExtractor;
+abstract class UIMRepository(K, V) : IRepository!(K, V) {
+  protected K delegate(V) @safe _idExtractor;
 
   /**
      * Constructor.
      * Params:
      *   idExtractor = Function to extract ID from entity
      */
-  this(ID delegate(T) @safe idExtractor) {
+  this(K delegate(V) @safe idExtractor) {
     _idExtractor = idExtractor;
   }
 
@@ -32,44 +32,44 @@ abstract class UIMRepository(T, ID) : IRepository!(T, ID) {
      * Add a new entity to the repository.
      * Must be implemented by concrete repositories.
      */
-  abstract void add(T entity);
+  abstract void add(V entity);
 
   /**
      * Update an existing entity in the repository.
      * Must be implemented by concrete repositories.
      */
-  abstract void update(T entity);
+  abstract void update(V entity);
 
   /**
      * Remove an entity from the repository.
      * Must be implemented by concrete repositories.
      */
-  abstract void remove(T entity);
+  abstract void remove(V entity);
 
   /**
      * Remove an entity by its ID.
      * Must be implemented by concrete repositories.
      */
-  abstract bool removeById(ID id);
+  abstract bool removeById(K id);
 
   /**
      * Find an entity by its ID.
      * Returns: The entity or T.init if not found
      * Must be implemented by concrete repositories.
      */
-  abstract T findById(ID id);
+  abstract V findById(K id);
 
   /**
      * Get all entities in the repository.
      * Must be implemented by concrete repositories.
      */
-  abstract T[] findAll();
+  abstract V[] findAll();
 
   /**
      * Check if an entity with the given ID exists.
      * Must be implemented by concrete repositories.
      */
-  abstract bool exists(ID id);
+  abstract bool exists(K id);
 
   /**
      * Get the total count of entities.
@@ -89,7 +89,7 @@ abstract class UIMRepository(T, ID) : IRepository!(T, ID) {
      *   entity = The entity to extract ID from
      * Returns: The entity's ID
      */
-  protected ID extractId(T entity) {
+  protected K extractId(V entity) {
     return _idExtractor(entity);
   }
 
@@ -101,7 +101,7 @@ abstract class UIMRepository(T, ID) : IRepository!(T, ID) {
      *   entity = The entity to validate
      * Returns: true if valid, false otherwise
      */
-  protected bool validateEntity(T entity) {
+  protected bool validateEntity(V entity) {
     return true;
   }
 
@@ -112,7 +112,7 @@ abstract class UIMRepository(T, ID) : IRepository!(T, ID) {
      * Params:
      *   entity = The entity about to be added
      */
-  protected void beforeAdd(T entity) {
+  protected void beforeAdd(V entity) {
     // Default: no-op
   }
 
@@ -123,7 +123,7 @@ abstract class UIMRepository(T, ID) : IRepository!(T, ID) {
      * Params:
      *   entity = The entity that was added
      */
-  protected void afterAdd(T entity) {
+  protected void afterAdd(V entity) {
     // Default: no-op
   }
 
@@ -134,7 +134,7 @@ abstract class UIMRepository(T, ID) : IRepository!(T, ID) {
      * Params:
      *   entity = The entity about to be updated
      */
-  protected void beforeUpdate(T entity) {
+  protected void beforeUpdate(V entity) {
     // Default: no-op
   }
 
@@ -145,7 +145,7 @@ abstract class UIMRepository(T, ID) : IRepository!(T, ID) {
      * Params:
      *   entity = The entity that was updated
      */
-  protected void afterUpdate(T entity) {
+  protected void afterUpdate(V entity) {
     // Default: no-op
   }
 
@@ -156,7 +156,7 @@ abstract class UIMRepository(T, ID) : IRepository!(T, ID) {
      * Params:
      *   entity = The entity about to be removed
      */
-  protected void beforeRemove(T entity) {
+  protected void beforeRemove(V entity) {
     // Default: no-op
   }
 
@@ -167,7 +167,7 @@ abstract class UIMRepository(T, ID) : IRepository!(T, ID) {
      * Params:
      *   entity = The entity that was removed
      */
-  protected void afterRemove(T entity) {
+  protected void afterRemove(V entity) {
     // Default: no-op
   }
 }
@@ -176,14 +176,14 @@ abstract class UIMRepository(T, ID) : IRepository!(T, ID) {
  * Abstract specification repository with specification pattern support.
  * Extends AbstractRepository with specification querying capabilities.
  */
-abstract class AbstractSpecificationRepository(T, ID) : AbstractRepository!(T, ID), ISpecificationRepository!(
-  T, ID) {
+abstract class AbstractSpecificationRepository(T, K) : AbstractRepository!(T, K), ISpecificationRepository!(
+  T, K) {
   /**
      * Constructor.
      * Params:
      *   idExtractor = Function to extract ID from entity
      */
-  this(ID delegate(T) @safe idExtractor) {
+  this(K delegate(T) @safe idExtractor) {
     super(idExtractor);
   }
 
