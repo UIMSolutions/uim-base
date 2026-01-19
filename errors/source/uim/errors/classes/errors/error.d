@@ -265,7 +265,7 @@ unittest {
 
   // Test traceAsString
   auto traceStr = error.traceAsString();
-  assert(traceStr.has("ref1"));
-  assert(traceStr.has("file2.d"));
-  assert(traceStr.has("30"));
+  assert(traceStr.canFind("ref1"));
+  assert(traceStr.canFind("file2.d"));
+  assert(traceStr.canFind("30"));
 }

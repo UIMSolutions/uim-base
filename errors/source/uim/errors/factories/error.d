@@ -13,7 +13,7 @@ import uim.errors;
 
 class UIMErrorFactory : UIMFactory!(string, UIMError) {
     this() {
-        super("ErrorFactory");
+        super(() => new UIMError());
     }
 
     private static UIMErrorFactory _instance;

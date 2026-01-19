@@ -25,7 +25,7 @@ class DConsoleErrorRenderer : UIMErrorRenderer {
     // `stderr` - The OutputConsole instance to use. Defaults to `D://stderr`
     // TODO _output = configuration.getEntry("stderr", new DOutput("d://stderr"));
     // `trace` - Whether or not stacktraces should be output.       
-    showTrace(configuration.getBooleanEntry("trace"));
+    // TODO showTrace(configuration.getBooleanEntry("trace"));
 
     return true;
   }
@@ -76,7 +76,8 @@ class DConsoleErrorRenderer : UIMErrorRenderer {
         showTrace ? "\n<info>Stack Trace:</info>\n\n" ~ error.traceAsString() : ""
       );
 
-    auto showDebug = configuration.getBooleanEntry("debug");
+    // auto showDebug = configuration.getBooleanEntry("debug");
+    bool showDebug = false; // TODO: Get from configuration
     if (showDebug) {
       auto attributes = error.attributes();
       if (attributes) {

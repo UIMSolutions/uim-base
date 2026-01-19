@@ -12,7 +12,7 @@ import uim.errors;
 
 class UIMErrorRendererFactory : UIMFactory!(string, UIMErrorRenderer) {
   this() {
-    super("ErrorRenderer");
+    super(() => new UIMErrorRenderer());
   }
   
   private static UIMErrorRendererFactory _instance;
@@ -26,31 +26,31 @@ class UIMErrorRendererFactory : UIMFactory!(string, UIMErrorRenderer) {
 auto ErrorRendererFactory() { return UIMErrorRendererFactory.instance; }
 
 static this() {
-  ErrorRendererFactory.setKey("console", (Json[string] options = null) @safe {
-    return new DConsoleErrorRenderer(options);
+  ErrorRendererFactory.register("console", () @safe {
+    return new DConsoleErrorRenderer();
   });
 
-  ErrorRendererFactory.setKey("html", (Json[string] options = null) @safe {
-    return new DHtmlErrorRenderer(options);
+  ErrorRendererFactory.register("html", () @safe {
+    return new DHtmlErrorRenderer();
   });
 
-  ErrorRendererFactory.setKey("json", (Json[string] options = null) @safe {
-    return new DJsonErrorRenderer(options);
+  ErrorRendererFactory.register("json", () @safe {
+    return new DJsonErrorRenderer();
   });
 
-  ErrorRendererFactory.setKey("text", (Json[string] options = null) @safe {
-    return new DTextErrorRenderer(options);
+  ErrorRendererFactory.register("text", () @safe {
+    return new DTextErrorRenderer();
   });
 
-  ErrorRendererFactory.setKey("xml", (Json[string] options = null) @safe {
-    return new DXmlErrorRenderer(options);
+  ErrorRendererFactory.register("xml", () @safe {
+    return new DXmlErrorRenderer();
   });
 
-  ErrorRendererFactory.setKey("web", (Json[string] options = null) @safe {
-    return new DWebErrorRenderer(options);
+  ErrorRendererFactory.register("web", () @safe {
+    return new DWebErrorRenderer();
   });
 
-  ErrorRendererFactory.setKey("yaml", (Json[string] options = null) @safe {
-    return new DYamlErrorRenderer(options);
+  ErrorRendererFactory.register("yaml", () @safe {
+    return new DYamlErrorRenderer();
   });
 }

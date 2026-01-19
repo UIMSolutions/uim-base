@@ -5,8 +5,10 @@
 *****************************************************************************************************************/
 module uim.graphql;
 
-public import uim.graphql.types;
-public import uim.graphql.schema;
-public import uim.graphql.parser;
-public import uim.graphql.executor;
-public import uim.graphql.builder;
+public {
+    import uim.graphql.types;
+    import uim.graphql.schema;
+    import uim.graphql.parser;
+    import uim.graphql.executor;
+    import uim.graphql.builder;
+}

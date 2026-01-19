@@ -25,8 +25,7 @@ auto InvalidArgumentException(string message) {
 }
 
 unittest {
-  auto exception = new InvalidArgumentException();
+  auto exception = InvalidArgumentException();
   assert(exception !is null, "Failed to create InvalidArgumentException instance");
-
-  assert(testException(exception), "Test for InvalidArgumentException failed");
+  assert(exception.msg == "Invalid Argumnent", "Exception message mismatch");
 }

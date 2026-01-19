@@ -17,16 +17,15 @@ class DUnknownEditorException : Exception {
 }
 
 auto UnknownEditorException() {
-  return new DInvalidArgumentException("Unknown Editor");
+  return new DUnknownEditorException("Unknown Editor");
 }
 
 auto UnknownEditorException(string message) {
-  return new DInvalidArgumentException(message);
+  return new DUnknownEditorException(message);
 }
 
 unittest {
-  auto exception = new DUnknownEditorException();
+  auto exception = UnknownEditorException();
   assert(exception !is null, "Failed to create DUnknownEditorException instance");
-
-  assert(testException(exception), "Test for DUnknownEditorException failed");
+  assert(exception.msg == "Unknown Editor", "Exception message mismatch");
 }

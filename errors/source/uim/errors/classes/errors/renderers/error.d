@@ -348,11 +348,10 @@ class UIMErrorRenderer : UIMObject, IErrorRenderer {
 
   // Returns an array that can be used to describe the internal state of this object.
   override Json[string] debugInfo(string[] showKeys = null, string[] hideKeys = null) {
-    return super.debugInfo(showKeys, hideKeys) // .set("error", _error.toString)
-    // .set("request", _request.toString)
-    // .set("controller", _controller.toString)
-    .set("template", _template)
-      .set("method", method);
+    auto result = super.debugInfo(showKeys, hideKeys);
+    result["template"] = _template.toJson;
+    result["method"] = method.toJson;
+    return result;
   }
 
 }

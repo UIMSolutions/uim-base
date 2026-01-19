@@ -13,7 +13,7 @@ mixin(ShowModule!());
 
 class UIMErrorFormatterFactory : UIMFactory!(string, UIMErrorFormatter) {
   this() {
-    super("ErrorFormatter");
+    super(() => new UIMErrorFormatter());
   }
 
   private static UIMErrorFormatterFactory _instance;
