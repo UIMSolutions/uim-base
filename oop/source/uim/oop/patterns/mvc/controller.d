@@ -386,7 +386,7 @@ unittest {
     auto controller = new ValidationController();
     
     controller.addValidationRule((input) {
-        return "name" in input;
+        return ("name" in input) !is null;
     });
 
     assert(!controller.validateInput(["value": "test"]));

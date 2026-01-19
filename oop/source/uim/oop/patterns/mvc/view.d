@@ -133,10 +133,10 @@ class View : IView {
      * Sets the template for this view
      * 
      * Params:
-     *   template = The template string
+     *   templateStr = The template string
      */
-    void setTemplate(string template) {
-        _template = template;
+    void setTemplate(string templateStr) {
+        _template = templateStr;
     }
 
     /**
@@ -155,10 +155,10 @@ class View : IView {
  * Supports placeholder replacement in templates
  */
 class TemplateView : View {
-    this(IModel model = null, string template = null) {
+    this(IModel model = null, string templateStr = null) {
         super(model);
-        if (template !is null) {
-            _template = template;
+        if (templateStr !is null) {
+            _template = templateStr;
         }
     }
 

@@ -104,12 +104,15 @@ class Model : IModel {
      *   view = The view to attach
      */
     void attachView(IView view) {
-        import std.algorithm : canFind;
-        
-        if (!_views.canFind(view)) {
-            _views ~= view;
-            view.setModel(this);
+        // Check if view is already attached
+        foreach (v; _views) {
+            if (v is view) {
+                return; // Already attached
+            }
         }
+        
+        _views ~= view;
+        view.setModel(this);
     }
 
     /**
