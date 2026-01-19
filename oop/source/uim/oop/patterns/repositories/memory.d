@@ -7,80 +7,80 @@ mixin(ShowModule!());
 @safe:
 /**
  * In-memory repository implementation.
- * Stores entities in memory using their ID as key.
+ * Stores entities in memory using their K as key.
  */
-class MemoryRepository(T, ID) : IRepository!(T, ID) {
-    private T[ID] _entities;
-    private ID delegate(T) @safe _idExtractor;
+class MemoryRepository(K, V) : IRepository!(K, V) {
+    private V[K] _entities;
+    private K delegate(V) @safe _keyExtractor;
 
     /**
      * Constructor.
      * Params:
-     *   idExtractor = Function to extract ID from entity
+     *   keyExtractor = Function to extract K from value
      */
-    this(ID delegate(T) @safe idExtractor) {
-        _idExtractor = idExtractor;
+    this(K delegate(V) @safe keyExtractor) {
+        _keyExtractor = keyExtractor;
     }
 
     /**
-     * Add a new entity to the repository.
+     * Add a new value to the repository.
      */
-    void add(T entity) {
-        auto id = _idExtractor(entity);
-        _entities[id] = entity;
+    void add(V value) {
+        auto id = _keyExtractor(value);
+        _entities[id] = value;
     }
 
     /**
-     * Update an existing entity in the repository.
+     * Update an existing value in the repository.
      */
-    void update(T entity) {
-        auto id = _idExtractor(entity);
+    void update(V value) {
+        auto id = _keyExtractor(value);
         if (id in _entities) {
-            _entities[id] = entity;
+            _entities[id] = value;
         }
     }
 
     /**
-     * Remove an entity from the repository.
+     * Remove an value from the repository.
      */
-    void remove(T entity) {
-        auto id = _idExtractor(entity);
+    void remove(V value) {
+        auto id = _keyExtractor(value);
         _entities.remove(id);
     }
 
     /**
-     * Remove an entity by its ID.
+     * Remove an value by its K.
      */
-    bool removeById(ID id) {
-        if (id in _entities) {
-            _entities.remove(id);
+    bool removeById(K key) {
+        if (key in _entities) {
+            _entities.remove(key);
             return true;
         }
         return false;
     }
 
     /**
-     * Find an entity by its ID.
+     * Find an value by its K.
      */
-    T findById(ID id) {
-        if (auto entity = id in _entities) {
-            return *entity;
+    V findById(K key) {
+        if (auto value = key in _entities) {
+            return *value;
         }
-        return T.init;
+        return V.init;
     }
 
     /**
      * Get all entities in the repository.
      */
-    T[] findAll() {
+    V[] findAll() {
         return _entities.values;
     }
 
     /**
-     * Check if an entity with the given ID exists.
+     * Check if an value with the given K exists.
      */
-    bool exists(ID id) {
-        return (id in _entities) !is null;
+    bool exists(K key) {
+        return (key in _entities) !is null;
     }
 
     /**
@@ -113,7 +113,7 @@ unittest {
     }
   }
 
-  auto repo = new MemoryRepository!(User, int)((User u) => u.id);
+  auto repo = new MemoryRepository!(int, User)((User u) => u.id);
 
   // Test add
   auto user1 = new User(1, "Alice", 30);

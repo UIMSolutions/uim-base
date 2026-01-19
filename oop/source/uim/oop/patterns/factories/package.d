@@ -5,13 +5,12 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.factories;
 
-public { // Modules
-  import uim.oop.patterns.factories.interfaces;
-  import uim.oop.patterns.factories.factory;
-  import uim.oop.patterns.factories.registrybased;
-  import uim.oop.patterns.factories.parameterized;
-}
-
 public { // Packages
+  import uim.oop.patterns.factories.interfaces;
   import uim.oop.patterns.factories.helpers;
 }
+
+public { // Modules
+  import uim.oop.patterns.factories.factory;
+}
+

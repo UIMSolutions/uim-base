@@ -27,8 +27,7 @@ class DDialog : DHtmlElement {
   }
 
   IHtmlAttribute closedBy() {
-    attribute("closedby");
-    return this;
+    return attribute("closedby");
   }
 
   IHtmlElement open() {

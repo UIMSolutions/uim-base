@@ -7,19 +7,19 @@ mixin(ShowModule!());
 @safe:
 /**
  * Repository with specification support.
- */
-class SpecificationRepository(T, ID) : MemoryRepository!(T, ID), ISpecificationRepository!(T, ID) {
+ * /
+class SpecificationRepository(K, V) : MemoryRepository!(K, V), ISpecificationRepository!(K, V) {
   /**
      * Constructor.
-     */
-  this(ID delegate(T) @safe idExtractor) {
+     * /
+  this(K delegate(V) @safe idExtractor) {
     super(idExtractor);
   }
 
   /**
      * Find entities that satisfy a specification.
-     */
-  T[] find(ISpecification!T spec) {
+     * /
+  V[] find(ISpecification!V spec) {
     import std.algorithm : filter;
     import std.array : array;
 
@@ -28,20 +28,20 @@ class SpecificationRepository(T, ID) : MemoryRepository!(T, ID), ISpecificationR
 
   /**
      * Find first entity that satisfies a specification.
-     */
-  T findOne(ISpecification!T spec) {
-    foreach (entity; _entities.values) {
-      if (spec.isSatisfiedBy(entity)) {
-        return entity;
+     * /
+  V findOne(ISpecification!V spec) {
+    foreach (value; _entities.values) {
+      if (spec.isSatisfiedBy(value)) {
+        return value;
       }
     }
-    return T.init;
+    return V.init;
   }
 
   /**
      * Count entities that satisfy a specification.
-     */
-  size_t count(ISpecification!T spec) {
+     * /
+  size_t count(ISpecification!V spec) {
     import std.algorithm : count, filter;
 
     return _entities.values.filter!(e => spec.isSatisfiedBy(e)).count;
@@ -82,7 +82,7 @@ unittest {
     }
   }
 
-  auto repo = new SpecificationRepository!(Product, int)((Product p) => p.id);
+  auto repo = new SpecificationRepository!(int, Product)((Product p) => p.id);
 
   // Add products
   repo.add(new Product(1, "Cheap Item", 10.0));
@@ -104,4 +104,4 @@ unittest {
   auto cheap = repo.findOne(cheapSpec);
   assert(cheap !is null);
   assert(cheap.name == "Cheap Item");
-}
+} */

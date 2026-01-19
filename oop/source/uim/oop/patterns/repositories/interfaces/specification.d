@@ -10,11 +10,11 @@ mixin(ShowModule!());
  * Specification interface for querying repositories.
  * Used with Specification pattern for complex queries.
  */
-interface ISpecification(T) {
+interface ISpecification(V) {
   /**
-     * Check if an entity satisfies the specification.
+     * Check if an value satisfies the specification.
      */
-  bool isSatisfiedBy(T entity);
+  bool isSatisfiedBy(V value);
 }
 
 /**
@@ -22,15 +22,15 @@ interface ISpecification(T) {
  */
 interface ISpecificationRepository(V, K) : IRepository!(K, V) {
   /**
-     * Find entities that satisfy a specification.
+     * Find values that satisfy a specification.
      */
   V[] find(ISpecification!V spec);
   /**
-     * Find first entity that satisfies a specification.
+     * Find first value that satisfies a specification.
      */
   V findOne(ISpecification!V spec);
   /**
-     * Count entities that satisfy a specification.
+     * Count values that satisfy a specification.
      */
   size_t count(ISpecification!V spec);
 }

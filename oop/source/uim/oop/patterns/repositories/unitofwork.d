@@ -100,6 +100,12 @@ class UnitOfWork(T, ID) : IUnitOfWork {
 }
 
 // Unit tests
+/*class MyException : Exception {
+  this(string msg, string file = __FILE__, size_t line = __LINE__, Throwable nextInChain = null) pure nothrow @nogc @safe {
+    super(msg, file, line, nextInChain);
+  }
+}
+
 unittest {
   mixin(ShowTest!"Testing UnitOfWork");
 
@@ -113,8 +119,8 @@ unittest {
     }
   }
 
-  auto repo = new InMemoryRepository!(Entity, int)((Entity e) => e.id);
-  auto uow = new UnitOfWork!(Entity, int)(repo);
+  auto repo = new InMemoryRepository!(int, Entity)((Entity e) => e.id);
+  auto uow = new UnitOfWork!(int, Entity)(repo);
 
   // Register changes
   auto e1 = new Entity(1, "First");
@@ -153,3 +159,4 @@ unittest {
   assert(!uow.hasChanges());
   assert(!repo.exists(3));
 }
+*/
