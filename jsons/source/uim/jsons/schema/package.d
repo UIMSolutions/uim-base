@@ -3,13 +3,13 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.jsonschema;
+module uim.jsons.schema;
 
 public {
-  import uim.jsonschema.schema;
-  import uim.jsonschema.validator;
-  import uim.jsonschema.types;
-  import uim.jsonschema.formats;
-  import uim.jsonschema.builder;
-  import uim.jsonschema.errors;
+  import uim.jsons.schema.schema;
+  import uim.jsons.schema.validator;
+  import uim.jsons.schema.types;
+  import uim.jsons.schema.formats;
+  import uim.jsons.schema.builder;
+  import uim.jsons.schema.errors;
 }

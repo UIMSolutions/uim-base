@@ -3,9 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.jsonschema.schema;
+module uim.jsons.schema.schema;
 
-import uim.jsonschema;
+import uim.jsons.schema;
 
 @safe:
 
