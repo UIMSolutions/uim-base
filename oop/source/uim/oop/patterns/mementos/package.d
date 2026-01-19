@@ -5,5 +5,10 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.mementos;
 
+public {
+    import uim.oop.patterns.mementos.helpers;
+    import uim.oop.patterns.mementos.tests;
+}
+
 public import uim.oop.patterns.mementos.interfaces;
 public import uim.oop.patterns.mementos.memento;

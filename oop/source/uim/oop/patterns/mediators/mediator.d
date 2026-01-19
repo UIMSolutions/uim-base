@@ -1,8 +1,11 @@
 module uim.oop.patterns.mediators.mediator;
 
+import uim.oop;
 import uim.oop.patterns.mediators.interfaces;
-import std.format;
-import std.algorithm : remove;
+
+mixin(ShowModule!());
+
+@safe:
 
 /**
  * Abstract base colleague class.

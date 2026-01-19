@@ -5,11 +5,11 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.mementos.memento;
 
-import uim.oop.patterns.mementos.interfaces;
-import std.datetime;
-import std.format;
-import std.algorithm : remove;
-import std.conv : to;
+import uim.oop;
+
+mixin(ShowModule!());
+
+@safe:
 
 /**
  * Base memento implementation.
