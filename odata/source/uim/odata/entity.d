@@ -20,7 +20,7 @@ import std.datetime;
  */
 class ODataEntity {
     private string _entityType;
-    private JSONValue _properties;
+    private Json _properties;
     private string _id;
     private string _etag;
 
@@ -32,13 +32,13 @@ class ODataEntity {
      */
     this(string entityType) {
         _entityType = entityType;
-        _properties = JSONValue.emptyObject;
+        _properties = Json.emptyObject;
     }
 
     /**
      * Constructor with initial data
      */
-    this(string entityType, JSONValue data) {
+    this(string entityType, Json data) {
         _entityType = entityType;
         _properties = data;
     }
@@ -48,24 +48,24 @@ class ODataEntity {
      */
     void set(T)(string propertyName, T value) {
         static if (is(T == string)) {
-            _properties[propertyName] = JSONValue(value);
+            _properties[propertyName] = value.toJson;
         } else static if (is(T == int) || is(T == long)) {
             _properties[propertyName] = JSONValue(cast(long)value);
         } else static if (is(T == double) || is(T == float)) {
-            _properties[propertyName] = JSONValue(cast(double)value);
+            _properties[propertyName] = double.toJson;
         } else static if (is(T == bool)) {
             _properties[propertyName] = JSONValue(value);
         } else static if (is(T == JSONValue)) {
             _properties[propertyName] = value;
         } else {
-            _properties[propertyName] = JSONValue(value.to!string);
+            _properties[propertyName] = value.to!string.toJson;
         }
     }
 
     /**
      * Gets a property value as JSON
      */
-    JSONValue get(string propertyName) const {
+    Json get(string propertyName) const {
         if (propertyName !in _properties.object) {
             throw new ODataEntityException("Property not found: " ~ propertyName);
         }
@@ -77,8 +77,8 @@ class ODataEntity {
      */
     string getString(string propertyName) const {
         auto value = get(propertyName);
-        if (value.type == JSONType.string) {
-            return value.str;
+        if (value.isString) {
+            return value.getString;
         }
         return value.toString();
     }
@@ -88,8 +88,8 @@ class ODataEntity {
      */
     long getInt(string propertyName) const {
         auto value = get(propertyName);
-        if (value.type == JSONType.integer) {
-            return value.integer;
+        if (value.isInteger) {
+            return value.getInteger;
         }
         if (value.type == JSONType.string) {
             return value.str.to!long;
