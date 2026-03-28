@@ -91,7 +91,7 @@ class ODataEntity {
         if (value.isInteger) {
             return value.getInteger;
         }
-        if (value.type == JSONType.string) {
+        if (value.isString) {
             return value.str.to!long;
         }
         throw new ODataEntityException("Cannot convert property to integer: " ~ propertyName);
@@ -102,13 +102,13 @@ class ODataEntity {
      */
     double getFloat(string propertyName) const {
         auto value = get(propertyName);
-        if (value.type == JSONType.float_) {
+        if (value.isFloat) {
             return value.floating;
         }
-        if (value.type == JSONType.integer) {
+        if (value.isInteger) {
             return cast(double)value.integer;
         }
-        if (value.type == JSONType.string) {
+        if (value.isString) {
             return value.str.to!double;
         }
         throw new ODataEntityException("Cannot convert property to float: " ~ propertyName);
@@ -187,14 +187,14 @@ class ODataEntity {
     /**
      * Converts the entity to JSON format
      */
-    string toJSON() const {
+    string toJSONString() const {
         return _properties.toPrettyString();
     }
 
     /**
      * Gets the raw JSON value
      */
-    JSONValue toJSONValue() const {
+    Json toJson() const {
         return _properties;
     }
 
